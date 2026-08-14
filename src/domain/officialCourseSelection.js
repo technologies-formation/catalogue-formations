@@ -10,9 +10,10 @@ export function getFilteredOfficialCourses(courses, filters = {}) {
     organizingEntity = '',
   } = filters
   const query = normalizeSearchText(search)
+  const hasTargetingFilter = Boolean(personnelCategory || entity)
 
   return courses.filter((course) => {
-    if (!isCourseTargetingReady(course)) {
+    if (hasTargetingFilter && !isCourseTargetingReady(course)) {
       return false
     }
 

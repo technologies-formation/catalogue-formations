@@ -226,6 +226,16 @@ h1 {
   line-height: 1.4;
 }
 
+.targeting-coverage-note {
+  margin: -5px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid #7f8992;
+  background: #f3f4f5;
+  color: #4d565e;
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
 input[type='search'],
 select {
   width: 100%;

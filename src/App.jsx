@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 import { entities } from './config/entities.js'
 import { personnelCategories } from './config/personnelCategories.js'
-import { officialCourseSamples } from './data/officialCourseSamples.js'
+import { fullCatalogueCourses } from './data/fullCatalogueCourses.js'
 import { getFilteredOfficialCourses } from './domain/officialCourseSelection.js'
 
 const NO_FILTER = ''
@@ -10,7 +10,7 @@ const LONG_AUDIENCE_THRESHOLD = 220
 
 const officialOrganizers = [
   ...new Set(
-    officialCourseSamples
+    fullCatalogueCourses
       .map((course) => course.officialData.organizingEntityRaw)
       .filter((organizer) => organizer !== null),
   ),
@@ -34,7 +34,7 @@ function App() {
 
   const coursesWithoutDomain = useMemo(
     () =>
-      getFilteredOfficialCourses(officialCourseSamples, {
+      getFilteredOfficialCourses(fullCatalogueCourses, {
         search: officialSearch,
         personnelCategory: officialPersonnelCategory,
         entity: officialEntity,
@@ -72,7 +72,7 @@ function App() {
 
   const matchingOfficialCourses = useMemo(
     () =>
-      getFilteredOfficialCourses(officialCourseSamples, {
+      getFilteredOfficialCourses(fullCatalogueCourses, {
         search: officialSearch,
         personnelCategory: officialPersonnelCategory,
         entity: officialEntity,
@@ -165,9 +165,8 @@ function App() {
             Exemples : communication, projet, intelligence artificielle, FP173...
           </p>
           <p className="prototype-note">
-            Maquette métier V1.1 — échantillon de {officialCourseSamples.length}{' '}
-            formations officielles. Prototype de démonstration — ne remplace pas
-            le catalogue officiel.
+            Catalogue importé — {fullCatalogueCourses.length} formations uniques.
+            {' '}Prototype de démonstration — ne remplace pas le catalogue officiel.
           </p>
         </section>
 
@@ -217,6 +216,12 @@ function App() {
                 options={entities}
                 onChange={setOfficialEntity}
               />
+
+              <p className="targeting-coverage-note">
+                Le ciblage par catégorie de personnel et appartenance est
+                progressivement enrichi. Certaines formations peuvent ne pas
+                apparaître lorsque ces filtres sont utilisés.
+              </p>
 
               <label className="field">
                 <span>Entité organisatrice</span>
@@ -276,7 +281,7 @@ function App() {
                   {matchingOfficialCourses.length !== 1 ? 's' : ''}
                 </h2>
                 <p>
-                  Échantillon actuel : {officialCourseSamples.length} formations officielles
+                  Catalogue importé : {fullCatalogueCourses.length} formations uniques
                 </p>
                 {activeOfficialFilters.length > 0 && (
                   <div className="active-filters" aria-label="Filtres actifs">
@@ -344,7 +349,7 @@ function ReferenceSelect({ label, help, emptyLabel, value, options, onChange }) 
 }
 
 function OfficialCourseCard({ course }) {
-  const unavailable = 'Information officielle non disponible dans l’échantillon'
+  const unavailable = 'Information officielle non disponible'
   const targetAudience = course.officialData.targetAudienceRaw
   const hasLongTargetAudience =
     typeof targetAudience === 'string' &&

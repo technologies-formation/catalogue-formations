@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { fullCatalogueCourses } from '../data/fullCatalogueCourses.js'
 import { officialCourseSamples } from '../data/officialCourseSamples.js'
 import { getFilteredOfficialCourses } from './officialCourseSelection.js'
 
@@ -297,4 +298,103 @@ test('les valeurs neutres de réinitialisation retournent les vingt-quatre forma
     courses.map((course) => course.code),
     expectedCodes,
   )
+})
+
+test('le catalogue complet retourne 1 078 formations uniques sans filtre', () => {
+  const courses = getFilteredOfficialCourses(fullCatalogueCourses)
+
+  assert.equal(courses.length, 1078)
+  assert.equal(new Set(courses.map((course) => course.code)).size, 1078)
+})
+
+test('une formation à revoir reste trouvable par son code', () => {
+  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
+    search: '  ocd371  ',
+  })
+
+  assert.deepEqual(courses.map((course) => course.code), ['OCD371'])
+  assert.equal(courses[0].normalizationStatus, 'needsReview')
+})
+
+test('une formation à revoir reste trouvable par son intitulé', () => {
+  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
+    search: 'execution des sanctions penales',
+  })
+
+  assert.ok(courses.some((course) => course.code === 'OCD371'))
+})
+
+test('une formation à revoir reste sélectionnable par son organisateur', () => {
+  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
+    organizingEntity: "Centre de formation de l'OCD",
+  })
+
+  assert.ok(courses.some((course) => course.code === 'OCD371'))
+})
+
+test('une formation à revoir reste sélectionnable par son domaine', () => {
+  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
+    domain: 'Collaboration & auto-gestion',
+  })
+
+  assert.ok(courses.some((course) => course.code === 'OCD371'))
+})
+
+test('une catégorie exclut les formations à revoir sans ciblage', () => {
+  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
+    search: 'OCD371',
+    personnelCategory: 'PEN',
+  })
+
+  assert.deepEqual(courses, [])
+})
+
+test('une appartenance exclut les formations à revoir sans ciblage', () => {
+  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
+    search: 'OCD371',
+    entity: 'OCD',
+  })
+
+  assert.deepEqual(courses, [])
+})
+
+test('catégorie et appartenance doivent correspondre dans un même couple', () => {
+  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
+    search: 'FP203',
+    personnelCategory: 'PEN',
+    entity: 'POLICE',
+  })
+
+  assert.deepEqual(courses, [])
+})
+
+test('un ciblage validé compatible reste sélectionnable', () => {
+  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
+    search: 'FP203',
+    personnelCategory: 'PEN',
+    entity: 'OCD',
+  })
+
+  assert.deepEqual(courses.map((course) => course.code), ['FP203'])
+})
+
+test('une formation rattachée à cinq offres reste un résultat unique', () => {
+  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
+    search: 'SEM-10204',
+  })
+
+  assert.equal(courses.length, 1)
+  assert.equal(courses[0].catalogueOffers.length, 5)
+})
+
+test('la réinitialisation du catalogue complet retourne 1 078 formations', () => {
+  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
+    search: '',
+    personnelCategory: '',
+    entity: '',
+    domain: '',
+    organizingEntity: '',
+  })
+
+  assert.equal(courses.length, 1078)
 })
