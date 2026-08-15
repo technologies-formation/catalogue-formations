@@ -2,6 +2,7 @@ import officialCatalogueSnapshot from './officialCatalogueSnapshot.json' with {
   type: 'json',
 }
 import { officialCourseSamples } from './officialCourseSamples.js'
+import { getCoursePublicValue } from '../domain/coursePublic.js'
 
 const validatedTargetingByCode = new Map(
   officialCourseSamples
@@ -30,7 +31,13 @@ export const fullCatalogueCourses = officialCatalogueSnapshot.map(
         titleRaw: snapshotCourse.titleRaw,
         organizingEntityRaw: snapshotCourse.organizingEntityRaw,
         domainRaw: snapshotCourse.domainRaw,
+        themeRaw:
+          typeof snapshotCourse.themeRaw === 'string' &&
+          snapshotCourse.themeRaw.trim() !== ''
+            ? snapshotCourse.themeRaw
+            : null,
         publicRaw: snapshotCourse.publicRaw,
+        publicValue: getCoursePublicValue(snapshotCourse.publicRaw),
         targetAudienceRaw: snapshotCourse.targetAudienceRaw,
       },
       catalogueOffers: snapshotCourse.catalogueOffers,

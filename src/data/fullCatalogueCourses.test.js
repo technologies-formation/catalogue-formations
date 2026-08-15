@@ -63,10 +63,42 @@ test('les données descriptives projetées proviennent du snapshot', () => {
     titleRaw: snapshotCourse.titleRaw,
     organizingEntityRaw: snapshotCourse.organizingEntityRaw,
     domainRaw: snapshotCourse.domainRaw,
+    themeRaw: snapshotCourse.themeRaw,
     publicRaw: snapshotCourse.publicRaw,
+    publicValue: snapshotCourse.publicRaw,
     targetAudienceRaw: snapshotCourse.targetAudienceRaw,
   })
   assert.equal(projectedCourse.sourceUrl, snapshotCourse.sourceUrl)
+})
+
+test('les thèmes sont projetés sans transformation et les valeurs absentes restent nulles', () => {
+  for (const course of fullCatalogueCourses) {
+    const sourceTheme = snapshotByCode.get(course.code).themeRaw
+    const expectedTheme =
+      typeof sourceTheme === 'string' && sourceTheme.trim() !== ''
+        ? sourceTheme
+        : null
+
+    assert.equal(course.officialData.themeRaw, expectedTheme)
+  }
+})
+
+test('la valeur applicative Public est dérivée sans modifier publicRaw', () => {
+  let coursesWithoutSourcePublic = 0
+
+  for (const course of fullCatalogueCourses) {
+    const sourcePublic = snapshotByCode.get(course.code).publicRaw
+
+    assert.equal(course.officialData.publicRaw, sourcePublic)
+    if (typeof sourcePublic === 'string' && sourcePublic.trim() !== '') {
+      assert.equal(course.officialData.publicValue, sourcePublic)
+    } else {
+      assert.equal(course.officialData.publicValue, 'Non renseigné')
+      coursesWithoutSourcePublic += 1
+    }
+  }
+
+  assert.equal(coursesWithoutSourcePublic, 107)
 })
 
 test('les ciblages validés existants sont réutilisés sans être recalculés', () => {

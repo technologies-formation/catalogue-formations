@@ -1,90 +1,129 @@
 import { useEffect, useMemo, useState } from 'react'
 import './App.css'
-import { entities } from './config/entities.js'
-import { personnelCategories } from './config/personnelCategories.js'
 import { fullCatalogueCourses } from './data/fullCatalogueCourses.js'
-import { getFilteredOfficialCourses } from './domain/officialCourseSelection.js'
+import {
+  getPublicFacetOptions,
+  matchesPublicFacet,
+} from './domain/coursePublic.js'
 
 const NO_FILTER = ''
 const LONG_AUDIENCE_THRESHOLD = 220
 
-const officialOrganizers = [
-  ...new Set(
-    fullCatalogueCourses
-      .map((course) => course.officialData.organizingEntityRaw)
-      .filter((organizer) => organizer !== null),
-  ),
-]
+function uniqueTextValues(values) {
+  return [
+    ...new Set(
+      values.filter((value) => typeof value === 'string' && value.trim()),
+    ),
+  ].sort((left, right) => left.localeCompare(right, 'fr-CH'))
+}
+
+function getFacetOptions(courses, getValue) {
+  return uniqueTextValues(courses.flatMap((course) => getValue(course) ?? []))
+}
+
+const trainingOfferOptions = getFacetOptions(
+  fullCatalogueCourses,
+  (course) => course.catalogueOffers,
+)
+const trainingEntityOptions = getFacetOptions(
+  fullCatalogueCourses,
+  (course) => course.officialData.organizingEntityRaw,
+)
 
 function App() {
   const [officialSearch, setOfficialSearch] = useState(NO_FILTER)
-  const [officialPersonnelCategory, setOfficialPersonnelCategory] =
-    useState(NO_FILTER)
-  const [officialEntity, setOfficialEntity] = useState(NO_FILTER)
-  const [officialDomain, setOfficialDomain] = useState(NO_FILTER)
-  const [officialOrganizer, setOfficialOrganizer] = useState(NO_FILTER)
+  const [trainingOffers, setTrainingOffers] = useState([])
+  const [trainingEntities, setTrainingEntities] = useState([])
+  const [domains, setDomains] = useState([])
+  const [themes, setThemes] = useState([])
+  const [publics, setPublics] = useState([])
   const [showGettingStarted, setShowGettingStarted] = useState(true)
 
-  const hasDomainPrerequisite = Boolean(
-    officialSearch.trim() ||
-      officialPersonnelCategory ||
-      officialEntity ||
-      officialOrganizer,
-  )
+  const hasPrimarySelection = trainingOffers.length > 0 || trainingEntities.length > 0
+  const hasDomainSelection = domains.length > 0
 
-  const coursesWithoutDomain = useMemo(
+  const coursesMatchingPrimaryFacets = useMemo(
     () =>
-      getFilteredOfficialCourses(fullCatalogueCourses, {
-        search: officialSearch,
-        personnelCategory: officialPersonnelCategory,
-        entity: officialEntity,
-        domain: NO_FILTER,
-        organizingEntity: officialOrganizer,
-      }),
-    [
-      officialEntity,
-      officialOrganizer,
-      officialPersonnelCategory,
-      officialSearch,
-    ],
+      fullCatalogueCourses.filter(
+        (course) =>
+          (trainingOffers.length === 0 ||
+            course.catalogueOffers.some((offer) => trainingOffers.includes(offer))) &&
+          (trainingEntities.length === 0 ||
+            trainingEntities.includes(course.officialData.organizingEntityRaw)),
+      ),
+    [trainingEntities, trainingOffers],
   )
 
-  const availableOfficialDomains = useMemo(
-    () => [
-      ...new Set(
-        coursesWithoutDomain
-          .map((course) => course.officialData.domainRaw)
-          .filter((domainValue) => domainValue !== null),
+  const domainOptions = useMemo(
+    () =>
+      getFacetOptions(
+        coursesMatchingPrimaryFacets,
+        (course) => course.officialData.domainRaw,
       ),
-    ],
-    [coursesWithoutDomain],
+    [coursesMatchingPrimaryFacets],
+  )
+  const publicOptions = useMemo(
+    () => getPublicFacetOptions(coursesMatchingPrimaryFacets),
+    [coursesMatchingPrimaryFacets],
+  )
+  const themeOptions = useMemo(
+    () =>
+      getFacetOptions(
+        coursesMatchingPrimaryFacets.filter(
+          (course) =>
+            domains.includes(course.officialData.domainRaw) &&
+            matchesPublicFacet(course, publics),
+        ),
+        (course) => course.officialData.themeRaw,
+      ),
+    [coursesMatchingPrimaryFacets, domains, publics],
   )
 
   useEffect(() => {
-    if (
-      officialDomain &&
-      (!hasDomainPrerequisite ||
-        !availableOfficialDomains.includes(officialDomain))
-    ) {
-      setOfficialDomain(NO_FILTER)
+    if (!hasPrimarySelection) {
+      setDomains([])
+      setThemes([])
+      setPublics([])
+      return
     }
-  }, [availableOfficialDomains, hasDomainPrerequisite, officialDomain])
+
+    setDomains((selected) => selected.filter((value) => domainOptions.includes(value)))
+    setPublics((selected) => selected.filter((value) => publicOptions.includes(value)))
+  }, [domainOptions, hasPrimarySelection, publicOptions])
+
+  useEffect(() => {
+    setThemes((selected) =>
+      hasDomainSelection
+        ? selected.filter((value) => themeOptions.includes(value))
+        : [],
+    )
+  }, [hasDomainSelection, themeOptions])
 
   const matchingOfficialCourses = useMemo(
     () =>
-      getFilteredOfficialCourses(fullCatalogueCourses, {
-        search: officialSearch,
-        personnelCategory: officialPersonnelCategory,
-        entity: officialEntity,
-        domain: officialDomain,
-        organizingEntity: officialOrganizer,
+      fullCatalogueCourses.filter((course) => {
+        const query = officialSearch.trim().toLocaleLowerCase('fr-CH')
+        const searchableText = `${course.code} ${course.officialData.titleRaw ?? ''}`
+          .toLocaleLowerCase('fr-CH')
+
+        return (
+          (!query || searchableText.includes(query)) &&
+          (trainingOffers.length === 0 ||
+            course.catalogueOffers.some((offer) => trainingOffers.includes(offer))) &&
+          (trainingEntities.length === 0 ||
+            trainingEntities.includes(course.officialData.organizingEntityRaw)) &&
+          (domains.length === 0 || domains.includes(course.officialData.domainRaw)) &&
+          (themes.length === 0 || themes.includes(course.officialData.themeRaw)) &&
+          matchesPublicFacet(course, publics)
+        )
       }),
     [
-      officialDomain,
-      officialEntity,
-      officialOrganizer,
-      officialPersonnelCategory,
       officialSearch,
+      trainingOffers,
+      trainingEntities,
+      domains,
+      themes,
+      publics,
     ],
   )
 
@@ -94,36 +133,40 @@ function App() {
       label: `Recherche : ${officialSearch.trim()}`,
       clear: () => setOfficialSearch(NO_FILTER),
     },
-    officialPersonnelCategory && {
-      key: 'category',
-      label: officialPersonnelCategory,
-      clear: () => setOfficialPersonnelCategory(NO_FILTER),
-    },
-    officialEntity && {
-      key: 'entity',
-      label:
-        entities.find((item) => item.id === officialEntity)?.label ??
-        officialEntity,
-      clear: () => setOfficialEntity(NO_FILTER),
-    },
-    officialDomain && {
-      key: 'domain',
-      label: officialDomain,
-      clear: () => setOfficialDomain(NO_FILTER),
-    },
-    officialOrganizer && {
-      key: 'organizer',
-      label: officialOrganizer,
-      clear: () => setOfficialOrganizer(NO_FILTER),
-    },
+    ...trainingOffers.map((value) => ({
+      key: `offer-${value}`,
+      label: `Offre : ${value}`,
+      clear: () => setTrainingOffers((selected) => selected.filter((item) => item !== value)),
+    })),
+    ...trainingEntities.map((value) => ({
+      key: `entity-${value}`,
+      label: `Entité : ${value}`,
+      clear: () => setTrainingEntities((selected) => selected.filter((item) => item !== value)),
+    })),
+    ...domains.map((value) => ({
+      key: `domain-${value}`,
+      label: `Domaine : ${value}`,
+      clear: () => setDomains((selected) => selected.filter((item) => item !== value)),
+    })),
+    ...themes.map((value) => ({
+      key: `theme-${value}`,
+      label: `Thème : ${value}`,
+      clear: () => setThemes((selected) => selected.filter((item) => item !== value)),
+    })),
+    ...publics.map((value) => ({
+      key: `public-${value}`,
+      label: `Public : ${value}`,
+      clear: () => setPublics((selected) => selected.filter((item) => item !== value)),
+    })),
   ].filter(Boolean)
 
   function resetOfficialFilters() {
     setOfficialSearch(NO_FILTER)
-    setOfficialPersonnelCategory(NO_FILTER)
-    setOfficialEntity(NO_FILTER)
-    setOfficialDomain(NO_FILTER)
-    setOfficialOrganizer(NO_FILTER)
+    setTrainingOffers([])
+    setTrainingEntities([])
+    setDomains([])
+    setThemes([])
+    setPublics([])
   }
 
   return (
@@ -199,70 +242,51 @@ function App() {
             <aside className="official-filter-panel" aria-label="Filtres du catalogue officiel">
               <h2>Affiner les résultats</h2>
 
-              <ReferenceSelect
-                label="Catégorie de personnel"
-                help="Votre catégorie professionnelle."
-                emptyLabel="Toutes les catégories"
-                value={officialPersonnelCategory}
-                options={personnelCategories}
-                onChange={setOfficialPersonnelCategory}
+              <FacetGroup
+                label="Offre de formation"
+                help="Catalogue ou offre auxquels la formation est rattachée."
+                options={trainingOfferOptions}
+                selected={trainingOffers}
+                onChange={setTrainingOffers}
               />
 
-              <ReferenceSelect
-                label="Appartenance"
-                help="L’entité dans laquelle vous travaillez."
-                emptyLabel="Toutes les entités"
-                value={officialEntity}
-                options={entities}
-                onChange={setOfficialEntity}
+              <FacetGroup
+                label="Entité de formation"
+                help="Entité organisatrice indiquée dans la fiche officielle."
+                options={trainingEntityOptions}
+                selected={trainingEntities}
+                onChange={setTrainingEntities}
               />
 
-              <p className="targeting-coverage-note">
-                Le ciblage par catégorie de personnel et appartenance est
-                progressivement enrichi. Certaines formations peuvent ne pas
-                apparaître lorsque ces filtres sont utilisés.
-              </p>
+              <FacetGroup
+                label="Domaine"
+                help="Domaine indiqué dans la fiche officielle."
+                options={domainOptions}
+                selected={domains}
+                onChange={setDomains}
+                disabled={!hasPrimarySelection}
+                disabledReason="Sélectionnez d’abord une Offre de formation ou une Entité de formation."
+              />
 
-              <label className="field">
-                <span>Entité organisatrice</span>
-                <small className="field-help">L’entité qui propose la formation.</small>
-                <select
-                  value={officialOrganizer}
-                  onChange={(event) => setOfficialOrganizer(event.target.value)}
-                >
-                  <option value={NO_FILTER}>Tous les organisateurs</option>
-                  {officialOrganizers.map((organizer) => (
-                    <option key={organizer} value={organizer}>
-                      {organizer}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <FacetGroup
+                label="Thème"
+                help="Thème indiqué dans la fiche officielle."
+                options={themeOptions}
+                selected={themes}
+                onChange={setThemes}
+                disabled={!hasDomainSelection}
+                disabledReason="Sélectionnez d’abord un Domaine."
+              />
 
-              <label className={`field ${!hasDomainPrerequisite ? 'is-disabled' : ''}`}>
-                <span>Domaine de formation</span>
-                {!hasDomainPrerequisite && (
-                  <small className="field-help">
-                    Sélectionnez d’abord un autre critère.
-                  </small>
-                )}
-                <select
-                  value={officialDomain}
-                  onChange={(event) => setOfficialDomain(event.target.value)}
-                  disabled={!hasDomainPrerequisite}
-                >
-                  <option value={NO_FILTER}>
-                    {hasDomainPrerequisite
-                      ? 'Tous les domaines disponibles'
-                      : 'Sélectionnez d’abord un autre critère'}
-                  </option>
-                  {availableOfficialDomains.map((domainValue) => (
-                    <option key={domainValue} value={domainValue}>
-                      {domainValue}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <FacetGroup
+                label="Public"
+                help="Public indiqué dans la fiche officielle."
+                options={publicOptions}
+                selected={publics}
+                onChange={setPublics}
+                disabled={!hasPrimarySelection}
+                disabledReason="Sélectionnez d’abord une Offre de formation ou une Entité de formation."
+              />
 
               <button
                 className="reset-filters"
@@ -331,20 +355,46 @@ function App() {
   )
 }
 
-function ReferenceSelect({ label, help, emptyLabel, value, options, onChange }) {
+function FacetGroup({
+  label,
+  help,
+  options,
+  selected,
+  onChange,
+  disabled = false,
+  disabledReason,
+}) {
+  function toggleOption(value) {
+    onChange(
+      selected.includes(value)
+        ? selected.filter((item) => item !== value)
+        : [...selected, value],
+    )
+  }
+
   return (
-    <label className="field">
-      <span>{label}</span>
-      {help && <small className="field-help">{help}</small>}
-      <select value={value} onChange={(event) => onChange(event.target.value)}>
-        <option value={NO_FILTER}>{emptyLabel}</option>
-        {options.map((option) => (
-          <option key={option.id} value={option.id}>
-            {option.id} — {option.label}
-          </option>
-        ))}
-      </select>
-    </label>
+    <fieldset className={`facet ${disabled ? 'is-disabled' : ''}`} disabled={disabled}>
+      <legend>{label}</legend>
+      {disabled ? (
+        <p className="facet-status">{disabledReason}</p>
+      ) : (
+        <>
+          {help && <p className="field-help">{help}</p>}
+          <div className="facet-options">
+            {options.map((option) => (
+              <label key={option} className="facet-option">
+                <input
+                  type="checkbox"
+                  checked={selected.includes(option)}
+                  onChange={() => toggleOption(option)}
+                />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+        </>
+      )}
+    </fieldset>
   )
 }
 
@@ -372,7 +422,7 @@ function OfficialCourseCard({ course }) {
         </div>
         <div>
           <dt>Public</dt>
-          <dd>{course.officialData.publicRaw ?? unavailable}</dd>
+          <dd>{course.officialData.publicValue}</dd>
         </div>
         <div className="official-course-target-audience">
           <dt>Public visé</dt>

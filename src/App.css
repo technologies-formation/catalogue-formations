@@ -208,7 +208,23 @@ h1 {
   font-size: 1.35rem;
 }
 
-.field {
+.facet {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.facet legend {
+  width: 100%;
+  margin-bottom: 8px;
+  color: #252a2f;
+  font-size: .9rem;
+  font-weight: 750;
+}
+
+.field,
+.facet {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -226,13 +242,45 @@ h1 {
   line-height: 1.4;
 }
 
-.targeting-coverage-note {
-  margin: -5px 0 0;
-  padding: 10px 12px;
-  border-left: 3px solid #7f8992;
-  background: #f3f4f5;
-  color: #4d565e;
+.facet-options {
+  display: grid;
+  gap: 2px;
+  max-height: 210px;
+  padding: 5px;
+  border: 1px solid #aeb5bb;
+  background: #fff;
+  overflow-y: auto;
+}
+
+.facet-option {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  padding: 7px 6px;
+  color: #303840;
+  font-size: .82rem;
+  font-weight: 400;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.facet-option:hover {
+  background: #edf3f8;
+}
+
+.facet-option input {
+  width: 17px;
+  height: 17px;
+  margin: 1px 0 0;
+  accent-color: #8b1722;
+}
+
+.facet-status {
+  margin: 0;
+  color: #50575e;
   font-size: .8rem;
+  font-weight: 400;
   line-height: 1.45;
 }
 
@@ -251,16 +299,22 @@ select {
 input[type='search']:focus,
 select:focus,
 button:focus-visible,
+input[type='checkbox']:focus-visible,
 summary:focus-visible,
 a:focus-visible {
   outline: 3px solid rgba(47, 98, 143, .35);
   outline-offset: 2px;
 }
 
-.field.is-disabled {
+.field.is-disabled,
+.facet.is-disabled {
   padding: 13px;
   border: 1px solid #d4d8dc;
   background: #f3f4f5;
+}
+
+.facet.is-disabled legend {
+  color: #50575e;
 }
 
 select:disabled {
