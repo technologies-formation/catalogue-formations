@@ -25,6 +25,10 @@ dist/
 dist-ssr/
 *.local
 
+# Generated catalogue import candidates
+reports/officialCatalogueSnapshot.candidate.json
+reports/catalogue-import-report.candidate.md
+
 # Editor and operating-system files
 .vscode/*
 !.vscode/extensions.json

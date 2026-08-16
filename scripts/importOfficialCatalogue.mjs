@@ -3,7 +3,12 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const INDEX_URL = 'https://outils.ge.ch/referentiel/formation/CatalogueDescription/'
-const SNAPSHOT_DATE = '2026-08-13'
+const now = new Date()
+const SNAPSHOT_DATE = [
+  now.getFullYear(),
+  String(now.getMonth() + 1).padStart(2, '0'),
+  String(now.getDate()).padStart(2, '0'),
+].join('-')
 const MAX_ATTEMPTS = 3
 const REQUEST_TIMEOUT_MS = 20_000
 const WORKER_COUNT = 3
@@ -11,8 +16,8 @@ const WORKER_DELAY_MS = 200
 const MAX_CONSECUTIVE_SERVER_ERRORS = 10
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const snapshotPath = path.join(projectRoot, 'src', 'data', 'officialCatalogueSnapshot.json')
-const reportPath = path.join(projectRoot, 'reports', 'catalogue-import-report.md')
+const snapshotPath = path.join(projectRoot, 'reports', 'officialCatalogueSnapshot.candidate.json')
+const reportPath = path.join(projectRoot, 'reports', 'catalogue-import-report.candidate.md')
 
 const detailFields = [
   'organizingEntityRaw',
