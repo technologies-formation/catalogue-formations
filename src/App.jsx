@@ -16,6 +16,11 @@ import {
   getFacetValueCounts,
   keepAvailableFacetOptions,
 } from './domain/courseFacets.js'
+import {
+  COURSE_SORT_OPTIONS,
+  DEFAULT_COURSE_SORT,
+  sortCourses,
+} from './domain/courseSorting.js'
 
 const NO_FILTER = ''
 const LONG_TARGET_AUDIENCE_THRESHOLD = 240
@@ -52,6 +57,7 @@ function App() {
   const [domains, setDomains] = useState([])
   const [themes, setThemes] = useState([])
   const [publics, setPublics] = useState([])
+  const [courseSort, setCourseSort] = useState(DEFAULT_COURSE_SORT)
   const [showGettingStarted, setShowGettingStarted] = useState(true)
   const [currentPage, dispatchPagination] = useReducer(paginationReducer, 1)
   const resultsHeadingRef = useRef(null)
@@ -219,11 +225,16 @@ function App() {
     ],
   )
 
+  const sortedOfficialCourses = useMemo(
+    () => sortCourses(matchingOfficialCourses, courseSort),
+    [courseSort, matchingOfficialCourses],
+  )
+
   const pageCount = getPageCount(matchingOfficialCourses.length)
   const activePage = Math.min(currentPage, Math.max(1, pageCount))
   const visiblePages = getVisiblePages(activePage, pageCount)
   const paginatedOfficialCourses = getPageResults(
-    matchingOfficialCourses,
+    sortedOfficialCourses,
     activePage,
   )
 
@@ -286,6 +297,11 @@ function App() {
       behavior: 'smooth',
       block: 'start',
     })
+  }
+
+  function changeCourseSort(event) {
+    setCourseSort(event.target.value)
+    dispatchPagination({ type: 'sortChanged' })
   }
 
   return (
@@ -428,11 +444,23 @@ function App() {
 
             <div className="official-catalog-results">
               <div className="official-results-heading" ref={resultsHeadingRef}>
-                <h2 id="official-catalog-heading">
-                  {formatFormationCount(matchingOfficialCourses.length)} formation
-                  {matchingOfficialCourses.length !== 1 ? 's' : ''} trouvée
-                  {matchingOfficialCourses.length !== 1 ? 's' : ''}
-                </h2>
+                <div className="official-results-toolbar">
+                  <h2 id="official-catalog-heading">
+                    {formatFormationCount(matchingOfficialCourses.length)} formation
+                    {matchingOfficialCourses.length !== 1 ? 's' : ''} trouvée
+                    {matchingOfficialCourses.length !== 1 ? 's' : ''}
+                  </h2>
+                  <label className="course-sort-control">
+                    <span>Trier par</span>
+                    <select value={courseSort} onChange={changeCourseSort}>
+                      {COURSE_SORT_OPTIONS.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
                 {activeOfficialFilters.length > 0 && (
                   <div className="active-filters" aria-label="Filtres actifs">
                     {activeOfficialFilters.map((filter) => (
@@ -625,7 +653,8 @@ function OfficialCourseCard({ course }) {
       <div className="official-course-card-heading">
         <h3>{course.officialData.titleRaw ?? unavailable}</h3>
         <p className="official-course-code">
-          <span>Code du cours</span> {course.code}
+          <span>Code du cours</span>
+          <strong>{course.code}</strong>
         </p>
       </div>
       <dl className="official-course-metadata">

@@ -10,7 +10,7 @@ export function getPageResults(results, currentPage, pageSize = RESULTS_PER_PAGE
 }
 
 export function paginationReducer(currentPage, action) {
-  if (action.type === 'criteriaChanged') return 1
+  if (action.type === 'criteriaChanged' || action.type === 'sortChanged') return 1
 
   const lastPage = Math.max(1, action.pageCount)
 
