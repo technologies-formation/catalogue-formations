@@ -1,6 +1,7 @@
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { compareCatalogueSnapshots } from './catalogueDiff.mjs'
 
 const INDEX_URL = 'https://outils.ge.ch/referentiel/formation/CatalogueDescription/'
 const now = new Date()
@@ -16,6 +17,7 @@ const WORKER_DELAY_MS = 200
 const MAX_CONSECUTIVE_SERVER_ERRORS = 10
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
+const officialSnapshotPath = path.join(projectRoot, 'src', 'data', 'officialCatalogueSnapshot.json')
 const snapshotPath = path.join(projectRoot, 'reports', 'officialCatalogueSnapshot.candidate.json')
 const reportPath = path.join(projectRoot, 'reports', 'catalogue-import-report.candidate.md')
 
@@ -324,8 +326,121 @@ function percentage(count, total) {
   return total === 0 ? '0,0 %' : `${((count / total) * 100).toFixed(1)} %`
 }
 
+function shortDiffValue(value) {
+  if (value === null || value === undefined) return '`null`'
+  const compact = String(value).replace(/\s+/g, ' ').trim()
+  const readable = compact.length > 240 ? `${compact.slice(0, 237)}…` : compact
+  return `« ${markdown(readable)} »`
+}
+
+function courseSummaryRow(course) {
+  return `| ${course.code} | ${markdown(course.titleRaw ?? '')} | ${(course.catalogueOffers ?? []).map(markdown).join('<br>')} | ${markdown(course.organizingEntityRaw ?? '')} | ${markdown(course.domainRaw ?? '')} |`
+}
+
+function buildCatalogueDiffLines(catalogueDiff, technicalAnomalies) {
+  const visibleModified = catalogueDiff.modified.filter(({ visibleChanges }) => visibleChanges.length > 0)
+  const longModified = catalogueDiff.modified.filter(({ longFields }) => longFields.length > 0)
+  const lines = [
+    '## Comparaison avec le snapshot officiel',
+    '',
+    'Les ajouts, suppressions et modifications sont des évolutions métier à examiner ; ils ne constituent pas automatiquement des anomalies.',
+    '',
+    '| Indicateur | Valeur |',
+    '| --- | ---: |',
+    `| Cours dans le snapshot officiel | ${catalogueDiff.summary.officialCourses} |`,
+    `| Cours dans le candidat | ${catalogueDiff.summary.candidateCourses} |`,
+    `| Cours ajoutés | ${catalogueDiff.summary.addedCourses} |`,
+    `| Cours supprimés | ${catalogueDiff.summary.removedCourses} |`,
+    `| Cours modifiés | ${catalogueDiff.summary.modifiedCourses} |`,
+    `| Cours dont les offres ont changé | ${catalogueDiff.summary.coursesWithOfferChanges} |`,
+    `| Anomalies techniques | ${technicalAnomalies.length} |`,
+    '',
+    '### Cours ajoutés',
+    '',
+  ]
+
+  if (catalogueDiff.added.length === 0) {
+    lines.push('Aucun cours ajouté.', '')
+  } else {
+    lines.push(
+      '| Code | Intitulé | Offres | Entité | Domaine |',
+      '| --- | --- | --- | --- | --- |',
+      ...catalogueDiff.added.map(courseSummaryRow),
+      '',
+    )
+  }
+
+  lines.push('### Cours supprimés', '')
+  if (catalogueDiff.removed.length === 0) {
+    lines.push('Aucun cours supprimé.', '')
+  } else {
+    lines.push(
+      '| Code | Intitulé | Offres | Entité | Domaine |',
+      '| --- | --- | --- | --- | --- |',
+      ...catalogueDiff.removed.map(courseSummaryRow),
+      '',
+    )
+  }
+
+  lines.push('### Cours modifiés — champs visibles ou utilisés', '')
+  if (visibleModified.length === 0) {
+    lines.push('Aucun champ visible ou utilisé n’a changé.', '')
+  } else {
+    lines.push('| Code | Intitulé candidat | Changements |', '| --- | --- | --- |')
+    for (const course of visibleModified) {
+      const changes = course.visibleChanges
+        .map(({ field, oldValue, newValue }) => `\`${field}\` : ${shortDiffValue(oldValue)} → ${shortDiffValue(newValue)}`)
+        .join('<br>')
+      lines.push(`| ${course.code} | ${markdown(course.titleRaw ?? '')} | ${changes} |`)
+    }
+    lines.push('')
+  }
+
+  lines.push('### Cours modifiés — champs descriptifs longs', '')
+  if (longModified.length === 0) {
+    lines.push('Aucun champ descriptif long n’a changé.', '')
+  } else {
+    lines.push('| Code | Intitulé candidat | Champs modifiés |', '| --- | --- | --- |')
+    lines.push(
+      ...longModified.map(
+        (course) => `| ${course.code} | ${markdown(course.titleRaw ?? '')} | ${course.longFields.map((field) => `\`${field}\``).join(', ')} |`,
+      ),
+      '',
+    )
+  }
+
+  lines.push('### Changements d’offres', '')
+  if (catalogueDiff.offerChanges.length === 0) {
+    lines.push('Aucun rattachement à une offre n’a changé.', '')
+  } else {
+    lines.push('| Code | Intitulé | Offres ajoutées | Offres retirées |', '| --- | --- | --- | --- |')
+    lines.push(
+      ...catalogueDiff.offerChanges.map(
+        (course) => `| ${course.code} | ${markdown(course.titleRaw ?? '')} | ${course.added.map(markdown).join('<br>') || '—'} | ${course.removed.map(markdown).join('<br>') || '—'} |`,
+      ),
+      '',
+    )
+  }
+
+  lines.push('### Anomalies techniques', '')
+  if (technicalAnomalies.length === 0) {
+    lines.push('Aucune anomalie technique.', '')
+  } else {
+    lines.push('| Type | Code ou élément | Détail |', '| --- | --- | --- |')
+    lines.push(
+      ...technicalAnomalies.map(
+        ({ type, code, detail }) => `| ${markdown(type)} | ${markdown(code ?? '—')} | ${markdown(detail)} |`,
+      ),
+      '',
+    )
+  }
+
+  return lines
+}
+
 function buildReport(context) {
   const {
+    catalogueDiff,
     durationSeconds,
     errors,
     indexData,
@@ -336,6 +451,7 @@ function buildReport(context) {
     snapshot,
     snapshotBytes,
     suppressedContactSections,
+    technicalAnomalies,
   } = context
   const offerCounts = new Map()
   for (const occurrence of indexData.occurrences) {
@@ -370,6 +486,7 @@ function buildReport(context) {
     `- Fiches récupérées avec succès : ${successful}`,
     `- Fiches indisponibles : ${unavailable}`,
     '',
+    ...buildCatalogueDiffLines(catalogueDiff, technicalAnomalies),
     '## Offres détectées',
     '',
     '| Offre | Occurrences | Formations uniques |',
@@ -586,8 +703,38 @@ async function main() {
     throw new Error(`Contrôles d’intégrité en échec : ${integrityFailures.join('; ')}`)
   }
   const divergences = await compareReferences(snapshot)
+  const officialSnapshot = JSON.parse(await readFile(officialSnapshotPath, 'utf8'))
+  const catalogueDiff = compareCatalogueSnapshots(officialSnapshot, snapshot)
+  const technicalAnomalies = [
+    ...catalogueDiff.technicalAnomalies.filter(
+      ({ type, code }) =>
+        type !== 'fiche indisponible' ||
+        !errors.some((error) => error.code === code),
+    ),
+    ...errors.map(({ code, error }) => ({
+      type: 'récupération ou parsing',
+      code,
+      detail: error,
+    })),
+    ...indexData.unparsedCourseRows.map((detail) => ({
+      type: 'ligne d’index non analysée',
+      code: null,
+      detail,
+    })),
+    ...indexData.duplicateOccurrencesWithinOffer.map(({ code, offer }) => ({
+      type: 'occurrence répétée',
+      code,
+      detail: offer,
+    })),
+    ...integrityFailures.map((detail) => ({
+      type: 'intégrité',
+      code: null,
+      detail,
+    })),
+  ]
   const snapshotText = `${JSON.stringify(snapshot, null, 2)}\n`
   const baseContext = {
+    catalogueDiff,
     durationSeconds: (performance.now() - startedAt) / 1000,
     errors,
     indexData,
@@ -597,6 +744,7 @@ async function main() {
     snapshot,
     snapshotBytes: Buffer.byteLength(snapshotText),
     suppressedContactSections,
+    technicalAnomalies,
   }
   let reportText = buildReport({ ...baseContext, securityIssues: [] })
   const securityIssues = auditGeneratedText(snapshotText, reportText)
