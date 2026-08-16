@@ -651,11 +651,18 @@ function OfficialCourseCard({ course }) {
   return (
     <article className="official-course-card">
       <div className="official-course-card-heading">
-        <h3>{course.officialData.titleRaw ?? unavailable}</h3>
         <p className="official-course-code">
-          <span>Code du cours</span>
           <strong>{course.code}</strong>
         </p>
+        <h3>{course.officialData.titleRaw ?? unavailable}</h3>
+      </div>
+      <div className="official-course-offers">
+        <h4>Offre</h4>
+        <ul>
+          {course.catalogueOffers.map((offer) => (
+            <li key={offer}>{offer}</li>
+          ))}
+        </ul>
       </div>
       <dl className="official-course-metadata">
         <div>
@@ -687,14 +694,6 @@ function OfficialCourseCard({ course }) {
           </details>
         )}
       </section>
-      <div className="official-course-offers">
-        <h4>Offre{course.catalogueOffers.length !== 1 ? 's' : ''} de formation</h4>
-        <ul>
-          {course.catalogueOffers.map((offer) => (
-            <li key={offer}>{offer}</li>
-          ))}
-        </ul>
-      </div>
       <div className="official-course-card-action">
         <a href={course.sourceUrl} target="_blank" rel="noopener noreferrer">
           Voir la formation <span aria-hidden="true">↗</span>

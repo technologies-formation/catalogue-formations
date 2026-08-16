@@ -615,12 +615,11 @@ select:disabled {
 }
 
 .official-course-card-heading {
-  margin-bottom: 20px;
-  padding-bottom: 17px;
-  border-bottom: 1px solid #e1e5e9;
+  margin-bottom: 11px;
 }
 
 .official-course-card h3 {
+  min-width: 0;
   margin: 0;
   color: #1d2935;
   font-family: Georgia, 'Times New Roman', serif;
@@ -630,28 +629,18 @@ select:disabled {
 }
 
 .official-course-code {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 7px;
-  margin: 11px 0 0;
-}
-
-.official-course-code span {
-  color: #6d7780;
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .04em;
-  text-transform: uppercase;
+  display: block;
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 5px 9px;
+  border-bottom: 1px solid #cbd4db;
+  background: #f5f7f9;
+  line-height: 1.2;
 }
 
 .official-course-code strong {
-  padding: 4px 8px;
-  border: 1px solid #aeb9c3;
-  border-radius: 3px;
   color: #243746;
-  background: #f2f5f7;
-  font-size: .84rem;
+  font-size: .78rem;
   font-weight: 750;
   letter-spacing: .035em;
   line-height: 1.2;
@@ -662,6 +651,8 @@ select:disabled {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 17px 22px;
   margin: 0 0 22px;
+  padding-top: 18px;
+  border-top: 1px solid #e1e5e9;
 }
 
 .official-course-metadata > div {
@@ -743,9 +734,7 @@ select:disabled {
 }
 
 .official-course-offers {
-  margin-top: auto;
-  padding-top: 18px;
-  border-top: 1px solid #e1e5e9;
+  margin-bottom: 15px;
 }
 
 .official-course-offers ul {
@@ -770,7 +759,8 @@ select:disabled {
 }
 
 .official-course-card-action {
-  margin-top: 20px;
+  margin-top: auto;
+  padding-top: 20px;
 }
 
 .official-course-card-action a {
