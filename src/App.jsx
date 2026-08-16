@@ -1,10 +1,16 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import './App.css'
 import { fullCatalogueCourses } from './data/fullCatalogueCourses.js'
 import {
   getPublicFacetOptions,
   matchesPublicFacet,
 } from './domain/coursePublic.js'
+import {
+  getPageCount,
+  getPageResults,
+  getVisiblePages,
+  paginationReducer,
+} from './domain/coursePagination.js'
 
 const NO_FILTER = ''
 const LONG_TARGET_AUDIENCE_THRESHOLD = 240
@@ -42,6 +48,8 @@ function App() {
   const [themes, setThemes] = useState([])
   const [publics, setPublics] = useState([])
   const [showGettingStarted, setShowGettingStarted] = useState(true)
+  const [currentPage, dispatchPagination] = useReducer(paginationReducer, 1)
+  const resultsHeadingRef = useRef(null)
 
   const hasPrimarySelection = trainingOffers.length > 0 || trainingEntities.length > 0
   const hasDomainSelection = domains.length > 0
@@ -131,6 +139,25 @@ function App() {
     ],
   )
 
+  const pageCount = getPageCount(matchingOfficialCourses.length)
+  const activePage = Math.min(currentPage, Math.max(1, pageCount))
+  const visiblePages = getVisiblePages(activePage, pageCount)
+  const paginatedOfficialCourses = getPageResults(
+    matchingOfficialCourses,
+    activePage,
+  )
+
+  useEffect(() => {
+    dispatchPagination({ type: 'criteriaChanged' })
+  }, [
+    officialSearch,
+    trainingOffers,
+    trainingEntities,
+    domains,
+    themes,
+    publics,
+  ])
+
   const activeOfficialFilters = [
     officialSearch.trim() && {
       key: 'search',
@@ -171,6 +198,14 @@ function App() {
     setDomains([])
     setThemes([])
     setPublics([])
+  }
+
+  function changePage(action) {
+    dispatchPagination({ ...action, pageCount })
+    resultsHeadingRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
   }
 
   return (
@@ -302,7 +337,7 @@ function App() {
             </aside>
 
             <div className="official-catalog-results">
-              <div className="official-results-heading">
+              <div className="official-results-heading" ref={resultsHeadingRef}>
                 <h2 id="official-catalog-heading">
                   {formatFormationCount(matchingOfficialCourses.length)} formation
                   {matchingOfficialCourses.length !== 1 ? 's' : ''} trouvée
@@ -327,7 +362,7 @@ function App() {
 
               <div className="official-results-scroll" aria-live="polite">
                 {matchingOfficialCourses.length > 0 ? (
-                  matchingOfficialCourses.map((course) => (
+                  paginatedOfficialCourses.map((course) => (
                     <OfficialCourseCard key={course.code} course={course} />
                   ))
                 ) : (
@@ -347,6 +382,44 @@ function App() {
                   </div>
                 )}
               </div>
+              {pageCount > 1 && (
+                <nav className="pagination" aria-label="Pagination des formations">
+                  <button
+                    type="button"
+                    onClick={() => changePage({ type: 'previous' })}
+                    disabled={activePage === 1}
+                  >
+                    Précédent
+                  </button>
+                  <div className="pagination-pages">
+                    {visiblePages.map((page) =>
+                      typeof page === 'number' ? (
+                        <button
+                          key={page}
+                          type="button"
+                          className={page === activePage ? 'is-current' : ''}
+                          aria-current={page === activePage ? 'page' : undefined}
+                          aria-label={`Page ${page}`}
+                          onClick={() => changePage({ type: 'goTo', page })}
+                        >
+                          {page}
+                        </button>
+                      ) : (
+                        <span key={page} className="pagination-ellipsis" aria-hidden="true">
+                          …
+                        </span>
+                      ),
+                    )}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => changePage({ type: 'next' })}
+                    disabled={activePage === pageCount}
+                  >
+                    Suivant
+                  </button>
+                </nav>
+              )}
             </div>
           </div>
         </section>
