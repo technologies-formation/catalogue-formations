@@ -8,6 +8,7 @@
     "build": "vite build",
     "import:catalogue": "node scripts/importOfficialCatalogue.mjs",
     "lint": "oxlint",
+    "promote:catalogue": "node scripts/promoteOfficialCatalogue.mjs",
     "test": "node --test",
     "preview": "vite preview"
   },

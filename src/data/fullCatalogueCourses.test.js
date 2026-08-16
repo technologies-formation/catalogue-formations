@@ -17,18 +17,19 @@ const samplesByCode = new Map(
   officialCourseSamples.map((course) => [course.code, course]),
 )
 
-test('la projection contient exactement les 1 078 formations du snapshot', () => {
-  assert.equal(fullCatalogueCourses.length, 1078)
+test('la projection contient toutes les formations d’un snapshot non vide', () => {
+  assert.ok(officialCatalogueSnapshot.length > 0)
+  assert.equal(fullCatalogueCourses.length, officialCatalogueSnapshot.length)
   assert.deepEqual(
     fullCatalogueCourses.map((course) => course.code),
     officialCatalogueSnapshot.map((course) => course.code),
   )
 })
 
-test('les 1 078 codes projetés sont uniques', () => {
+test('tous les codes projetés sont uniques', () => {
   assert.equal(
     new Set(fullCatalogueCourses.map((course) => course.code)).size,
-    1078,
+    officialCatalogueSnapshot.length,
   )
 })
 
@@ -150,6 +151,12 @@ test('la couverture de ciblage correspond aux 22 échantillons encore actifs', (
   )
 
   assert.equal(validatedCourses.length, 22)
-  assert.equal(coursesNeedingReview.length, 1056)
-  assert.equal(validatedCourses.length + coursesNeedingReview.length, 1078)
+  assert.equal(
+    coursesNeedingReview.length,
+    officialCatalogueSnapshot.length - validatedCourses.length,
+  )
+  assert.equal(
+    validatedCourses.length + coursesNeedingReview.length,
+    officialCatalogueSnapshot.length,
+  )
 })

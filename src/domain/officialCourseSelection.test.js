@@ -300,11 +300,15 @@ test('les valeurs neutres de réinitialisation retournent les vingt-quatre forma
   )
 })
 
-test('le catalogue complet retourne 1 078 formations uniques sans filtre', () => {
+test('le catalogue complet retourne toutes ses formations uniques sans filtre', () => {
   const courses = getFilteredOfficialCourses(fullCatalogueCourses)
 
-  assert.equal(courses.length, 1078)
-  assert.equal(new Set(courses.map((course) => course.code)).size, 1078)
+  assert.ok(fullCatalogueCourses.length > 0)
+  assert.equal(courses.length, fullCatalogueCourses.length)
+  assert.equal(
+    new Set(courses.map((course) => course.code)).size,
+    fullCatalogueCourses.length,
+  )
 })
 
 test('une formation à revoir reste trouvable par son code', () => {
@@ -387,7 +391,7 @@ test('une formation rattachée à cinq offres reste un résultat unique', () => 
   assert.equal(courses[0].catalogueOffers.length, 5)
 })
 
-test('la réinitialisation du catalogue complet retourne 1 078 formations', () => {
+test('la réinitialisation retourne toutes les formations du catalogue complet', () => {
   const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
     search: '',
     personnelCategory: '',
@@ -396,5 +400,5 @@ test('la réinitialisation du catalogue complet retourne 1 078 formations', () =
     organizingEntity: '',
   })
 
-  assert.equal(courses.length, 1078)
+  assert.equal(courses.length, fullCatalogueCourses.length)
 })

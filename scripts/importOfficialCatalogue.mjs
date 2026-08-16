@@ -1,4 +1,5 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { createHash } from 'node:crypto'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { compareCatalogueSnapshots } from './catalogueDiff.mjs'
@@ -450,6 +451,7 @@ function buildReport(context) {
     securityIssues,
     snapshot,
     snapshotBytes,
+    snapshotHash,
     suppressedContactSections,
     technicalAnomalies,
   } = context
@@ -475,6 +477,7 @@ function buildReport(context) {
     `- URL source : ${INDEX_URL}`,
     `- Durée totale de l’import : ${durationSeconds.toFixed(1)} secondes`,
     `- Taille du JSON final : ${(snapshotBytes / 1024 / 1024).toFixed(2)} Mio (${snapshotBytes} octets)`,
+    `- Empreinte SHA-256 du snapshot : \`${snapshotHash}\``,
     '',
     '## Synthèse',
     '',
@@ -733,6 +736,7 @@ async function main() {
     })),
   ]
   const snapshotText = `${JSON.stringify(snapshot, null, 2)}\n`
+  const snapshotHash = createHash('sha256').update(snapshotText).digest('hex')
   const baseContext = {
     catalogueDiff,
     durationSeconds: (performance.now() - startedAt) / 1000,
@@ -743,6 +747,7 @@ async function main() {
     sectionLabels,
     snapshot,
     snapshotBytes: Buffer.byteLength(snapshotText),
+    snapshotHash,
     suppressedContactSections,
     technicalAnomalies,
   }
