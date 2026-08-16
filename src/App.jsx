@@ -7,7 +7,7 @@ import {
 } from './domain/coursePublic.js'
 
 const NO_FILTER = ''
-const LONG_AUDIENCE_THRESHOLD = 220
+const LONG_TARGET_AUDIENCE_THRESHOLD = 240
 
 function uniqueTextValues(values) {
   return [
@@ -422,47 +422,67 @@ function FacetGroup({
 
 function OfficialCourseCard({ course }) {
   const unavailable = 'Information officielle non disponible'
-  const targetAudience = course.officialData.targetAudienceRaw
+  const theme = course.officialData.themeRaw
+  const targetAudience =
+    typeof course.officialData.targetAudienceRaw === 'string' &&
+    course.officialData.targetAudienceRaw.trim() !== ''
+      ? course.officialData.targetAudienceRaw
+      : unavailable
   const hasLongTargetAudience =
-    typeof targetAudience === 'string' &&
-    targetAudience.length > LONG_AUDIENCE_THRESHOLD
+    targetAudience !== unavailable &&
+    targetAudience.length > LONG_TARGET_AUDIENCE_THRESHOLD
 
   return (
     <article className="official-course-card">
       <div className="official-course-card-heading">
         <h3>{course.officialData.titleRaw ?? unavailable}</h3>
-        <p className="official-course-code">Code {course.code}</p>
+        <p className="official-course-code">
+          <span>Code du cours</span> {course.code}
+        </p>
       </div>
-      <dl>
-        <div className="official-course-domain">
+      <dl className="official-course-metadata">
+        <div>
           <dt>Domaine</dt>
           <dd>{course.officialData.domainRaw ?? unavailable}</dd>
         </div>
+        {theme && (
+          <div>
+            <dt>Thème</dt>
+            <dd>{theme}</dd>
+          </div>
+        )}
         <div>
-          <dt>Entité organisatrice</dt>
+          <dt>Entité de formation</dt>
           <dd>{course.officialData.organizingEntityRaw ?? unavailable}</dd>
         </div>
         <div>
           <dt>Public</dt>
           <dd>{course.officialData.publicValue}</dd>
         </div>
-        <div className="official-course-target-audience">
-          <dt>Public visé</dt>
-          <dd>
-            {hasLongTargetAudience ? (
-              <details className="target-audience-details">
-                <summary>Afficher le public visé</summary>
-                <p>{targetAudience}</p>
-              </details>
-            ) : (
-              targetAudience ?? unavailable
-            )}
-          </dd>
-        </div>
       </dl>
-      <a href={course.sourceUrl} target="_blank" rel="noopener noreferrer">
-        Voir la fiche officielle <span aria-hidden="true">↗</span>
-      </a>
+      <section className="official-course-target-audience" aria-label="Public visé">
+        <h4>Public visé</h4>
+        <p className="target-audience-preview">{targetAudience}</p>
+        {hasLongTargetAudience && (
+          <details className="target-audience-details">
+            <summary>Lire le public visé complet</summary>
+            <p>{targetAudience}</p>
+          </details>
+        )}
+      </section>
+      <div className="official-course-offers">
+        <h4>Offre{course.catalogueOffers.length !== 1 ? 's' : ''} de formation</h4>
+        <ul>
+          {course.catalogueOffers.map((offer) => (
+            <li key={offer}>{offer}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="official-course-card-action">
+        <a href={course.sourceUrl} target="_blank" rel="noopener noreferrer">
+          Voir la formation <span aria-hidden="true">↗</span>
+        </a>
+      </div>
     </article>
   )
 }
