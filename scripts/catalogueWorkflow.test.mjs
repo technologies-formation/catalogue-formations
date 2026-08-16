@@ -50,10 +50,20 @@ test('accepte uniquement les deux fichiers de données autorisés au commit', ()
   assert.throws(() => assertAllowedCommitFiles([...allowedCommitFiles, 'package.json']), /package\.json/)
 })
 
-test('le workflow reste manuel et exclut add global, force push et schedule', async () => {
+test('le workflow conserve le lancement manuel et planifie le mode réel quotidien', async () => {
   const workflow = await readFile(new URL('../.github/workflows/update-catalogue.yml', import.meta.url), 'utf8')
   assert.match(workflow, /workflow_dispatch:/)
-  assert.doesNotMatch(workflow, /^\s*schedule:/m)
+  assert.match(workflow, /^\s*schedule:$/m)
+  assert.match(workflow, /cron: '7 5 \* \* \*'/)
+  assert.match(workflow, /timezone: 'Europe\/Zurich'/)
+  assert.equal(
+    workflow.match(/DRY_RUN: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.dry_run \|\| false \}\}/g)?.length,
+    2,
+  )
+  assert.match(
+    workflow,
+    /if: \$\{\{ needs\.validate\.outputs\.has_changes == 'true' && \(github\.event_name == 'schedule' \|\| !inputs\.dry_run\) \}\}/,
+  )
   assert.doesNotMatch(workflow, /git add \.|git push --force/)
   assert.match(workflow, /git add -- src\/data\/officialCatalogueSnapshot\.json reports\/catalogue-import-report\.md/)
   const testsIndex = workflow.indexOf('- name: Run tests after promotion')

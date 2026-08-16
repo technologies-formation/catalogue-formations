@@ -1,6 +1,10 @@
 name: Update catalogue
 
 on:
+  # Daily update at 05:07 Europe/Zurich
+  schedule:
+    - cron: '7 5 * * *'
+      timezone: 'Europe/Zurich'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -36,7 +40,7 @@ jobs:
       - name: Validate candidate and determine changes
         id: validate
         env:
-          DRY_RUN: ${{ inputs.dry_run }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
         run: node scripts/catalogueWorkflow.mjs
       - name: Run tests
         run: npm test
@@ -64,7 +68,7 @@ jobs:
 
   publish:
     needs: validate
-    if: ${{ !inputs.dry_run && needs.validate.outputs.has_changes == 'true' }}
+    if: ${{ needs.validate.outputs.has_changes == 'true' && (github.event_name == 'schedule' || !inputs.dry_run) }}
     runs-on: ubuntu-latest
     concurrency:
       group: pages
@@ -166,7 +170,7 @@ jobs:
       - name: Determine notification status
         id: notification
         env:
-          DRY_RUN: ${{ inputs.dry_run }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
           HAS_CHANGES: ${{ needs.validate.outputs.has_changes }}
           VALIDATION_RESULT: ${{ needs.validate.result }}
           PUBLICATION_RESULT: ${{ needs.publish.result }}
