@@ -265,7 +265,7 @@ function App() {
                 selected={domains}
                 onChange={setDomains}
                 disabled={!hasPrimarySelection}
-                disabledReason="Sélectionnez d’abord une Offre de formation ou une Entité de formation."
+                disabledReason="Sélectionnez d’abord une offre ou une entité."
               />
 
               <FacetGroup
@@ -275,7 +275,7 @@ function App() {
                 selected={themes}
                 onChange={setThemes}
                 disabled={!hasDomainSelection}
-                disabledReason="Sélectionnez d’abord un Domaine."
+                disabledReason="Sélectionnez d’abord un domaine."
               />
 
               <FacetGroup
@@ -285,7 +285,7 @@ function App() {
                 selected={publics}
                 onChange={setPublics}
                 disabled={!hasPrimarySelection}
-                disabledReason="Sélectionnez d’abord une Offre de formation ou une Entité de formation."
+                disabledReason="Sélectionnez d’abord une offre ou une entité."
               />
 
               <button
@@ -372,15 +372,38 @@ function FacetGroup({
     )
   }
 
-  return (
-    <fieldset className={`facet ${disabled ? 'is-disabled' : ''}`} disabled={disabled}>
-      <legend>{label}</legend>
-      {disabled ? (
+  const selectionSummary =
+    selected.length === 0
+      ? 'Sélectionner...'
+      : selected.length === 1
+        ? selected[0]
+        : `${selected.length} sélectionnées`
+
+  const triggerContent = (
+    <>
+      <span className="facet-label">{label}</span>
+      <span className="facet-selection" title={selectionSummary}>
+        {selectionSummary}
+      </span>
+      <span className="facet-chevron" aria-hidden="true" />
+    </>
+  )
+
+  if (disabled) {
+    return (
+      <div className="facet is-disabled" aria-disabled="true">
+        <div className="facet-trigger">{triggerContent}</div>
         <p className="facet-status">{disabledReason}</p>
-      ) : (
-        <>
+      </div>
+    )
+  }
+
+  return (
+    <details className="facet">
+      <summary className="facet-trigger">{triggerContent}</summary>
+      <div className="facet-dropdown">
           {help && <p className="field-help">{help}</p>}
-          <div className="facet-options">
+          <div className="facet-options" role="group" aria-label={label}>
             {options.map((option) => (
               <label key={option} className="facet-option">
                 <input
@@ -392,9 +415,8 @@ function FacetGroup({
               </label>
             ))}
           </div>
-        </>
-      )}
-    </fieldset>
+      </div>
+    </details>
   )
 }
 
