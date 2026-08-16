@@ -11,6 +11,11 @@ import {
   getVisiblePages,
   paginationReducer,
 } from './domain/coursePagination.js'
+import {
+  filterFacetOptions,
+  getFacetValueCounts,
+  keepAvailableFacetOptions,
+} from './domain/courseFacets.js'
 
 const NO_FILTER = ''
 const LONG_TARGET_AUDIENCE_THRESHOLD = 240
@@ -89,6 +94,81 @@ function App() {
         (course) => course.officialData.themeRaw,
       ),
     [coursesMatchingPrimaryFacets, domains, publics],
+  )
+
+  const currentFacetFilters = useMemo(
+    () => ({
+      search: officialSearch,
+      offers: trainingOffers,
+      entities: trainingEntities,
+      domains,
+      themes,
+      publics,
+    }),
+    [
+      officialSearch,
+      trainingOffers,
+      trainingEntities,
+      domains,
+      themes,
+      publics,
+    ],
+  )
+  const facetCounts = useMemo(
+    () => ({
+      offers: getFacetValueCounts(
+        fullCatalogueCourses,
+        currentFacetFilters,
+        'offers',
+      ),
+      entities: getFacetValueCounts(
+        fullCatalogueCourses,
+        currentFacetFilters,
+        'entities',
+      ),
+      domains: getFacetValueCounts(
+        fullCatalogueCourses,
+        currentFacetFilters,
+        'domains',
+      ),
+      themes: getFacetValueCounts(
+        fullCatalogueCourses,
+        currentFacetFilters,
+        'themes',
+      ),
+      publics: getFacetValueCounts(
+        fullCatalogueCourses,
+        currentFacetFilters,
+        'publics',
+      ),
+    }),
+    [currentFacetFilters],
+  )
+
+  const displayedOfferOptions = keepAvailableFacetOptions(
+    trainingOfferOptions,
+    facetCounts.offers,
+    trainingOffers,
+  )
+  const displayedEntityOptions = keepAvailableFacetOptions(
+    trainingEntityOptions,
+    facetCounts.entities,
+    trainingEntities,
+  )
+  const displayedDomainOptions = keepAvailableFacetOptions(
+    domainOptions,
+    facetCounts.domains,
+    domains,
+  )
+  const displayedThemeOptions = keepAvailableFacetOptions(
+    themeOptions,
+    facetCounts.themes,
+    themes,
+  )
+  const displayedPublicOptions = keepAvailableFacetOptions(
+    publicOptions,
+    facetCounts.publics,
+    publics,
   )
 
   useEffect(() => {
@@ -284,25 +364,31 @@ function App() {
               <FacetGroup
                 label="Offre de formation"
                 help="Catalogue ou offre auxquels la formation est rattachée."
-                options={trainingOfferOptions}
+                options={displayedOfferOptions}
+                counts={facetCounts.offers}
                 selected={trainingOffers}
                 onChange={setTrainingOffers}
+                searchPlaceholder="Rechercher une offre..."
               />
 
               <FacetGroup
                 label="Entité de formation"
                 help="Entité organisatrice indiquée dans la fiche officielle."
-                options={trainingEntityOptions}
+                options={displayedEntityOptions}
+                counts={facetCounts.entities}
                 selected={trainingEntities}
                 onChange={setTrainingEntities}
+                searchPlaceholder="Rechercher une entité..."
               />
 
               <FacetGroup
                 label="Domaine"
                 help="Domaine indiqué dans la fiche officielle."
-                options={domainOptions}
+                options={displayedDomainOptions}
+                counts={facetCounts.domains}
                 selected={domains}
                 onChange={setDomains}
+                searchPlaceholder="Rechercher un domaine..."
                 disabled={!hasPrimarySelection}
                 disabledReason="Sélectionnez d’abord une offre ou une entité."
               />
@@ -310,9 +396,11 @@ function App() {
               <FacetGroup
                 label="Thème"
                 help="Thème indiqué dans la fiche officielle."
-                options={themeOptions}
+                options={displayedThemeOptions}
+                counts={facetCounts.themes}
                 selected={themes}
                 onChange={setThemes}
+                searchPlaceholder="Rechercher un thème..."
                 disabled={!hasDomainSelection}
                 disabledReason="Sélectionnez d’abord un domaine."
               />
@@ -320,9 +408,11 @@ function App() {
               <FacetGroup
                 label="Public"
                 help="Public indiqué dans la fiche officielle."
-                options={publicOptions}
+                options={displayedPublicOptions}
+                counts={facetCounts.publics}
                 selected={publics}
                 onChange={setPublics}
+                searchPlaceholder="Rechercher un public..."
                 disabled={!hasPrimarySelection}
                 disabledReason="Sélectionnez d’abord une offre ou une entité."
               />
@@ -433,11 +523,15 @@ function FacetGroup({
   label,
   help,
   options,
+  counts,
   selected,
   onChange,
+  searchPlaceholder,
   disabled = false,
   disabledReason,
 }) {
+  const [optionSearch, setOptionSearch] = useState('')
+
   function toggleOption(value) {
     onChange(
       selected.includes(value)
@@ -445,6 +539,8 @@ function FacetGroup({
         : [...selected, value],
     )
   }
+
+  const filteredOptions = filterFacetOptions(options, optionSearch)
 
   const selectionSummary =
     selected.length === 0
@@ -477,17 +573,35 @@ function FacetGroup({
       <summary className="facet-trigger">{triggerContent}</summary>
       <div className="facet-dropdown">
           {help && <p className="field-help">{help}</p>}
+          <input
+            className="facet-search"
+            type="search"
+            value={optionSearch}
+            onChange={(event) => setOptionSearch(event.target.value)}
+            placeholder={searchPlaceholder}
+            aria-label={`Rechercher dans la facette ${label}`}
+          />
           <div className="facet-options" role="group" aria-label={label}>
-            {options.map((option) => (
-              <label key={option} className="facet-option">
-                <input
-                  type="checkbox"
-                  checked={selected.includes(option)}
-                  onChange={() => toggleOption(option)}
-                />
-                <span>{option}</span>
-              </label>
-            ))}
+            {filteredOptions.length > 0 ? (
+              filteredOptions.map((option) => (
+                <label key={option} className="facet-option">
+                  <input
+                    type="checkbox"
+                    checked={selected.includes(option)}
+                    onChange={() => toggleOption(option)}
+                  />
+                  <span className="facet-option-label">{option}</span>
+                  <span
+                    className="facet-option-count"
+                    aria-label={`${formatFormationCount(counts.get(option) ?? 0)} formations`}
+                  >
+                    {formatFormationCount(counts.get(option) ?? 0)}
+                  </span>
+                </label>
+              ))
+            ) : (
+              <p className="facet-empty-search">Aucune valeur trouvée</p>
+            )}
           </div>
       </div>
     </details>

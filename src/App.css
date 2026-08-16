@@ -308,6 +308,16 @@ summary.facet-trigger::-webkit-details-marker {
   line-height: 1.4;
 }
 
+.facet-dropdown .facet-search {
+  min-height: 38px;
+  margin-bottom: 8px;
+  padding: 7px 9px;
+  border: 1px solid #8c98a3;
+  border-radius: 3px;
+  box-shadow: none;
+  font-size: .8rem;
+}
+
 .facet-options {
   display: grid;
   gap: 2px;
@@ -320,7 +330,7 @@ summary.facet-trigger::-webkit-details-marker {
 
 .facet-option {
   display: grid;
-  grid-template-columns: 20px minmax(0, 1fr);
+  grid-template-columns: 20px minmax(0, 1fr) auto;
   gap: 8px;
   align-items: start;
   min-height: 38px;
@@ -341,6 +351,31 @@ summary.facet-trigger::-webkit-details-marker {
   height: 17px;
   margin: 1px 0 0;
   accent-color: #8b1722;
+}
+
+.facet-option-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.facet-option-count {
+  min-width: 28px;
+  padding: 2px 5px;
+  border-radius: 10px;
+  color: #53616d;
+  background: #e9eef2;
+  font-size: .72rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.facet-empty-search {
+  margin: 5px;
+  padding: 8px 4px;
+  color: #59656f;
+  font-size: .8rem;
+  text-align: center;
 }
 
 .facet-status {
