@@ -1,4 +1,4 @@
-name: Test catalogue update
+name: Update catalogue
 
 on:
   workflow_dispatch:
@@ -9,71 +9,43 @@ on:
         default: true
         type: boolean
 
-permissions:
-  contents: read
-
 concurrency:
-  group: catalogue-update-test
+  group: catalogue-update
   cancel-in-progress: false
 
 jobs:
-  test-catalogue-update:
-    if: ${{ inputs.dry_run }}
+  validate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      has_changes: ${{ steps.validate.outputs.has_changes }}
+      snapshot_date: ${{ steps.validate.outputs.snapshot_date }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-
       - name: Set up Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: lts/*
           cache: npm
-
       - name: Install dependencies
         run: npm ci
-
       - name: Import candidate catalogue
         run: npm run import:catalogue
-
       - name: Validate candidate and determine changes
         id: validate
-        shell: bash
-        run: |
-          node --input-type=module <<'NODE'
-          import { appendFile, readFile } from 'node:fs/promises'
-          import {
-            sha256,
-            validateCandidateReport,
-            validateCandidateSnapshot,
-          } from './scripts/promoteOfficialCatalogue.mjs'
-          import { parseCatalogueReport } from './scripts/sendCatalogueUpdateEmail.mjs'
-
-          const snapshotText = await readFile('reports/officialCatalogueSnapshot.candidate.json', 'utf8')
-          const report = await readFile('reports/catalogue-import-report.candidate.md', 'utf8')
-          const candidate = JSON.parse(snapshotText)
-          const metadata = validateCandidateSnapshot(candidate)
-          validateCandidateReport(report, { ...metadata, snapshotHash: sha256(snapshotText) })
-          const metrics = parseCatalogueReport(report)
-          const requiredMetrics = ['added', 'removed', 'modified', 'offerChanges', 'technicalAnomalies']
-          if (requiredMetrics.some((field) => metrics[field] === null)) {
-            throw new Error('Le rapport différentiel ne contient pas tous les indicateurs requis')
-          }
-          const hasChanges = metrics.added + metrics.removed + metrics.modified + metrics.offerChanges > 0
-          await appendFile(process.env.GITHUB_OUTPUT, `has_changes=${hasChanges}\n`)
-          console.log(`${metadata.courseCount} formations candidates valides.`)
-          console.log(hasChanges ? 'Des évolutions métier sont détectées.' : 'Aucun changement métier détecté.')
-          NODE
-
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: node scripts/catalogueWorkflow.mjs
       - name: Run tests
         run: npm test
-
       - name: Run lint
         run: npm run lint
-
       - name: Build application
         run: npm run build
-
+      - name: Check diff
+        run: git diff --check
       - name: Upload candidate report
         if: ${{ always() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -82,7 +54,123 @@ jobs:
           path: reports/catalogue-import-report.candidate.md
           if-no-files-found: ignore
           retention-days: 7
+      - name: Upload candidate snapshot
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: catalogue-candidate-snapshot
+          path: reports/officialCatalogueSnapshot.candidate.json
+          if-no-files-found: error
+          retention-days: 7
 
+  publish:
+    needs: validate
+    if: ${{ !inputs.dry_run && needs.validate.outputs.has_changes == 'true' }}
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout validated revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: lts/*
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Download candidate report
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: catalogue-candidate-report
+          path: reports
+      - name: Download candidate snapshot
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: catalogue-candidate-snapshot
+          path: reports
+      - name: Promote validated catalogue
+        run: npm run promote:catalogue -- --confirm-date "${{ needs.validate.outputs.snapshot_date }}"
+      - name: Run tests after promotion
+        run: npm test
+      - name: Run lint after promotion
+        run: npm run lint
+      - name: Build application after promotion
+        run: npm run build
+      - name: Check promoted diff
+        run: git diff --check
+      - name: Commit promoted data only
+        env:
+          SNAPSHOT_DATE: ${{ needs.validate.outputs.snapshot_date }}
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { execFileSync } from 'node:child_process'
+          import { assertAllowedCommitFiles } from './scripts/catalogueWorkflow.mjs'
+          const files = execFileSync('git', ['diff', '--name-only'], { encoding: 'utf8' })
+            .trim().split('\n').filter(Boolean)
+          assertAllowedCommitFiles(files)
+          NODE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- src/data/officialCatalogueSnapshot.json reports/catalogue-import-report.md
+          node --input-type=module <<'NODE'
+          import { execFileSync } from 'node:child_process'
+          import { assertAllowedCommitFiles } from './scripts/catalogueWorkflow.mjs'
+          const files = execFileSync('git', ['diff', '--cached', '--name-only'], { encoding: 'utf8' })
+            .trim().split('\n').filter(Boolean)
+          assertAllowedCommitFiles(files)
+          NODE
+          git commit -m "data: mettre à jour automatiquement le catalogue au ${SNAPSHOT_DATE}"
+      - name: Push promoted data
+        run: git push origin HEAD:main
+      - name: Configure Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
+        with:
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128
+
+  notify:
+    needs: [validate, publish]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: lts/*
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Download candidate report
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: catalogue-candidate-report
+          path: reports
+      - name: Determine notification status
+        id: notification
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+          HAS_CHANGES: ${{ needs.validate.outputs.has_changes }}
+          VALIDATION_RESULT: ${{ needs.validate.result }}
+          PUBLICATION_RESULT: ${{ needs.publish.result }}
+        run: node scripts/catalogueWorkflow.mjs --notification-status
       - name: Send catalogue result email
         if: ${{ always() }}
         env:
@@ -93,6 +181,6 @@ jobs:
           SMTP_SECURE: ${{ secrets.SMTP_SECURE }}
           MAIL_FROM: ${{ secrets.MAIL_FROM }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
-          CATALOGUE_STATUS: ${{ job.status == 'success' && (steps.validate.outputs.has_changes == 'true' && 'SUCCESS' || 'NO_CHANGE') || 'ALERT' }}
+          CATALOGUE_STATUS: ${{ steps.notification.outputs.status || 'ALERT' }}
           ACTIONS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: npm run mail:catalogue
