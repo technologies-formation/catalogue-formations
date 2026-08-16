@@ -9,6 +9,10 @@ import {
 const NO_FILTER = ''
 const LONG_TARGET_AUDIENCE_THRESHOLD = 240
 
+function formatFormationCount(value) {
+  return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, "'")
+}
+
 function uniqueTextValues(values) {
   return [
     ...new Set(
@@ -173,18 +177,12 @@ function App() {
     <div className="site-shell">
       <main>
         <section className="search-hero" aria-labelledby="page-title">
-          <div className="search-hero-topbar">
+          <header className="search-hero-topbar">
             <div className="institutional-identity">
               <div className="brand-mark" aria-hidden="true">GE</div>
               <div className="institutional-wordmark">
                 <span className="brand-name">RÉPUBLIQUE ET CANTON DE GENÈVE</span>
                 <span className="brand-service">Formation du personnel</span>
-              </div>
-              <div className="application-identity">
-                <h1 id="page-title">Outil de recherche</h1>
-                <span className="application-subtitle">
-                  En lien avec l’espace de formation de l’État de Genève
-                </span>
               </div>
             </div>
             <button
@@ -194,40 +192,46 @@ function App() {
             >
               Aide
             </button>
+          </header>
+          <div className="application-intro">
+            <h1 id="page-title">Catalogue de formations</h1>
+            <p className="application-subtitle">
+              Recherchez les formations proposées au personnel de l’État de Genève.
+            </p>
           </div>
           <label className="main-search-field">
-            <span>Rechercher dans le catalogue</span>
+            <span>Rechercher une formation</span>
             <input
               type="search"
               value={officialSearch}
               onChange={(event) => setOfficialSearch(event.target.value)}
-              placeholder="Rechercher une formation, un mot-clé, un code..."
+              placeholder="Rechercher une formation, un mot-clé ou un code..."
             />
           </label>
-          <p className="search-examples">
-            Exemples : communication, projet, intelligence artificielle, FP173...
-          </p>
-          <p className="prototype-note">
-            Catalogue importé — {fullCatalogueCourses.length} formations uniques.
-            {' '}Prototype de démonstration — ne remplace pas le catalogue officiel.
-          </p>
+          <div className="search-support">
+            <p className="search-examples">
+              Exemples : communication, projet, intelligence artificielle, FP173
+            </p>
+            <p className="prototype-note">
+              Données issues du catalogue importé — {formatFormationCount(fullCatalogueCourses.length)} formations.
+              {' '}Prototype de démonstration.
+            </p>
+          </div>
         </section>
 
         {showGettingStarted && (
           <section className="getting-started" aria-labelledby="getting-started-title">
             <div>
-              <h2 id="getting-started-title">Premiers pas</h2>
+              <h2 id="getting-started-title">Besoin d’aide&nbsp;?</h2>
               <p>
-                Utilisez la recherche ci-dessus ou les filtres pour trouver les
-                formations qui correspondent à votre situation professionnelle
-                et à vos besoins.
+                Utilisez la recherche ou les filtres pour trouver une formation.
+                Les résultats s’adaptent automatiquement à vos choix.
               </p>
-              <p>Les résultats s’adaptent automatiquement à vos choix.</p>
             </div>
             <button
               type="button"
               onClick={() => setShowGettingStarted(false)}
-              aria-label="Fermer l’aide Premiers pas"
+              aria-label="Fermer l’aide"
             >
               Fermer
             </button>
@@ -300,13 +304,10 @@ function App() {
             <div className="official-catalog-results">
               <div className="official-results-heading">
                 <h2 id="official-catalog-heading">
-                  {matchingOfficialCourses.length} formation
+                  {formatFormationCount(matchingOfficialCourses.length)} formation
                   {matchingOfficialCourses.length !== 1 ? 's' : ''} trouvée
                   {matchingOfficialCourses.length !== 1 ? 's' : ''}
                 </h2>
-                <p>
-                  Catalogue importé : {fullCatalogueCourses.length} formations uniques
-                </p>
                 {activeOfficialFilters.length > 0 && (
                   <div className="active-filters" aria-label="Filtres actifs">
                     {activeOfficialFilters.map((filter) => (
