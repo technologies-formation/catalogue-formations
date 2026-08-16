@@ -18,9 +18,12 @@ import {
 } from './domain/courseFacets.js'
 import {
   COURSE_SORT_OPTIONS,
-  DEFAULT_COURSE_SORT,
   sortCourses,
 } from './domain/courseSorting.js'
+import {
+  parseCourseSearchUrl,
+  serializeCourseSearchState,
+} from './domain/courseSearchUrl.js'
 
 const NO_FILTER = ''
 const LONG_TARGET_AUDIENCE_THRESHOLD = 240
@@ -51,13 +54,16 @@ const trainingEntityOptions = getFacetOptions(
 )
 
 function App() {
-  const [officialSearch, setOfficialSearch] = useState(NO_FILTER)
-  const [trainingOffers, setTrainingOffers] = useState([])
-  const [trainingEntities, setTrainingEntities] = useState([])
-  const [domains, setDomains] = useState([])
-  const [themes, setThemes] = useState([])
-  const [publics, setPublics] = useState([])
-  const [courseSort, setCourseSort] = useState(DEFAULT_COURSE_SORT)
+  const [initialSearchState] = useState(() =>
+    parseCourseSearchUrl(window.location.search, fullCatalogueCourses),
+  )
+  const [officialSearch, setOfficialSearch] = useState(initialSearchState.search)
+  const [trainingOffers, setTrainingOffers] = useState(initialSearchState.offers)
+  const [trainingEntities, setTrainingEntities] = useState(initialSearchState.entities)
+  const [domains, setDomains] = useState(initialSearchState.domains)
+  const [themes, setThemes] = useState(initialSearchState.themes)
+  const [publics, setPublics] = useState(initialSearchState.publics)
+  const [courseSort, setCourseSort] = useState(initialSearchState.sort)
   const [showGettingStarted, setShowGettingStarted] = useState(true)
   const [currentPage, dispatchPagination] = useReducer(paginationReducer, 1)
   const resultsHeadingRef = useRef(null)
@@ -196,6 +202,34 @@ function App() {
         : [],
     )
   }, [hasDomainSelection, themeOptions])
+
+  useEffect(() => {
+    const search = serializeCourseSearchState(
+      {
+        search: officialSearch,
+        offers: trainingOffers,
+        entities: trainingEntities,
+        domains,
+        themes,
+        publics,
+        sort: courseSort,
+      },
+      fullCatalogueCourses,
+    )
+    const url = new URL(window.location.href)
+
+    if (url.search.slice(1) === search) return
+    url.search = search
+    window.history.replaceState(window.history.state, '', url)
+  }, [
+    courseSort,
+    domains,
+    officialSearch,
+    publics,
+    themes,
+    trainingEntities,
+    trainingOffers,
+  ])
 
   const matchingOfficialCourses = useMemo(
     () =>
