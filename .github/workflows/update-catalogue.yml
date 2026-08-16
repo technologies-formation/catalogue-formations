@@ -1,0 +1,98 @@
+name: Test catalogue update
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Exécuter sans promotion, commit, push ni déploiement'
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: catalogue-update-test
+  cancel-in-progress: false
+
+jobs:
+  test-catalogue-update:
+    if: ${{ inputs.dry_run }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Import candidate catalogue
+        run: npm run import:catalogue
+
+      - name: Validate candidate and determine changes
+        id: validate
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFile, readFile } from 'node:fs/promises'
+          import {
+            sha256,
+            validateCandidateReport,
+            validateCandidateSnapshot,
+          } from './scripts/promoteOfficialCatalogue.mjs'
+          import { parseCatalogueReport } from './scripts/sendCatalogueUpdateEmail.mjs'
+
+          const snapshotText = await readFile('reports/officialCatalogueSnapshot.candidate.json', 'utf8')
+          const report = await readFile('reports/catalogue-import-report.candidate.md', 'utf8')
+          const candidate = JSON.parse(snapshotText)
+          const metadata = validateCandidateSnapshot(candidate)
+          validateCandidateReport(report, { ...metadata, snapshotHash: sha256(snapshotText) })
+          const metrics = parseCatalogueReport(report)
+          const requiredMetrics = ['added', 'removed', 'modified', 'offerChanges', 'technicalAnomalies']
+          if (requiredMetrics.some((field) => metrics[field] === null)) {
+            throw new Error('Le rapport différentiel ne contient pas tous les indicateurs requis')
+          }
+          const hasChanges = metrics.added + metrics.removed + metrics.modified + metrics.offerChanges > 0
+          await appendFile(process.env.GITHUB_OUTPUT, `has_changes=${hasChanges}\n`)
+          console.log(`${metadata.courseCount} formations candidates valides.`)
+          console.log(hasChanges ? 'Des évolutions métier sont détectées.' : 'Aucun changement métier détecté.')
+          NODE
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Build application
+        run: npm run build
+
+      - name: Upload candidate report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: catalogue-candidate-report
+          path: reports/catalogue-import-report.candidate.md
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Send catalogue result email
+        if: ${{ always() }}
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_SECURE: ${{ secrets.SMTP_SECURE }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          CATALOGUE_STATUS: ${{ job.status == 'success' && (steps.validate.outputs.has_changes == 'true' && 'SUCCESS' || 'NO_CHANGE') || 'ALERT' }}
+          ACTIONS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: npm run mail:catalogue

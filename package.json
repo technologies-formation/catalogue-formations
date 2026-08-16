@@ -8,11 +8,13 @@
     "build": "vite build",
     "import:catalogue": "node scripts/importOfficialCatalogue.mjs",
     "lint": "oxlint",
+    "mail:catalogue": "node scripts/sendCatalogueUpdateEmail.mjs",
     "promote:catalogue": "node scripts/promoteOfficialCatalogue.mjs",
     "test": "node --test",
     "preview": "vite preview"
   },
   "dependencies": {
+    "nodemailer": "^9.0.5",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
