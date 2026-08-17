@@ -20,30 +20,32 @@ const validatedTargetingByCode = new Map(
     ]),
 )
 
-export const fullCatalogueCourses = officialCatalogueSnapshot.map(
-  (snapshotCourse) => {
-    const validatedTargeting = validatedTargetingByCode.get(snapshotCourse.code)
+export function projectSnapshotCourse(snapshotCourse) {
+  const validatedTargeting = validatedTargetingByCode.get(snapshotCourse.code)
 
-    return {
-      code: snapshotCourse.code,
-      sourceUrl: snapshotCourse.sourceUrl,
-      officialData: {
-        titleRaw: snapshotCourse.titleRaw,
-        organizingEntityRaw: snapshotCourse.organizingEntityRaw,
-        domainRaw: snapshotCourse.domainRaw,
-        themeRaw:
-          typeof snapshotCourse.themeRaw === 'string' &&
-          snapshotCourse.themeRaw.trim() !== ''
-            ? snapshotCourse.themeRaw
-            : null,
-        publicRaw: snapshotCourse.publicRaw,
-        publicValue: getCoursePublicValue(snapshotCourse.publicRaw),
-        targetAudienceRaw: snapshotCourse.targetAudienceRaw,
-      },
-      catalogueOffers: snapshotCourse.catalogueOffers,
-      normalizationStatus:
-        validatedTargeting?.normalizationStatus ?? 'needsReview',
-      targeting: validatedTargeting?.targeting ?? null,
-    }
-  },
-)
+  return {
+    code: snapshotCourse.code,
+    sourceUrl: snapshotCourse.sourceUrl,
+    officialData: {
+      titleRaw: snapshotCourse.titleRaw,
+      organizingEntityRaw: snapshotCourse.organizingEntityRaw,
+      domainRaw: snapshotCourse.domainRaw,
+      themeRaw:
+        typeof snapshotCourse.themeRaw === 'string' &&
+        snapshotCourse.themeRaw.trim() !== ''
+          ? snapshotCourse.themeRaw
+          : null,
+      publicRaw: snapshotCourse.publicRaw,
+      publicValue: getCoursePublicValue(snapshotCourse.publicRaw),
+      targetAudienceRaw: snapshotCourse.targetAudienceRaw,
+      hasOpenSession: snapshotCourse.hasOpenSession === true,
+      hasScheduledSession: snapshotCourse.hasScheduledSession === true,
+    },
+    catalogueOffers: snapshotCourse.catalogueOffers,
+    normalizationStatus:
+      validatedTargeting?.normalizationStatus ?? 'needsReview',
+    targeting: validatedTargeting?.targeting ?? null,
+  }
+}
+
+export const fullCatalogueCourses = officialCatalogueSnapshot.map(projectSnapshotCourse)

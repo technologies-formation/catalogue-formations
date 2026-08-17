@@ -5,7 +5,10 @@ import officialCatalogueSnapshot from './officialCatalogueSnapshot.json' with {
   type: 'json',
 }
 import { officialCourseSamples } from './officialCourseSamples.js'
-import { fullCatalogueCourses } from './fullCatalogueCourses.js'
+import {
+  fullCatalogueCourses,
+  projectSnapshotCourse,
+} from './fullCatalogueCourses.js'
 
 const coursesByCode = new Map(
   fullCatalogueCourses.map((course) => [course.code, course]),
@@ -68,8 +71,71 @@ test('les données descriptives projetées proviennent du snapshot', () => {
     publicRaw: snapshotCourse.publicRaw,
     publicValue: snapshotCourse.publicRaw,
     targetAudienceRaw: snapshotCourse.targetAudienceRaw,
+    hasOpenSession: false,
+    hasScheduledSession: false,
   })
   assert.equal(projectedCourse.sourceUrl, snapshotCourse.sourceUrl)
+})
+
+test('les flags Sessions sont projetés comme deux booléens indépendants', () => {
+  const snapshotCourse = snapshotByCode.get('SEM1098')
+  const combinations = [
+    [true, true],
+    [true, false],
+    [false, true],
+    [false, false],
+  ]
+
+  for (const [hasOpenSession, hasScheduledSession] of combinations) {
+    const projected = projectSnapshotCourse({
+      ...snapshotCourse,
+      hasOpenSession,
+      hasScheduledSession,
+    })
+
+    assert.equal(projected.officialData.hasOpenSession, hasOpenSession)
+    assert.equal(projected.officialData.hasScheduledSession, hasScheduledSession)
+  }
+})
+
+test('les flags Sessions absents du snapshot historique deviennent false', () => {
+  const snapshotCourse = snapshotByCode.get('SEM1098')
+  const projected = projectSnapshotCourse(snapshotCourse)
+
+  assert.equal(Object.hasOwn(snapshotCourse, 'hasOpenSession'), false)
+  assert.equal(Object.hasOwn(snapshotCourse, 'hasScheduledSession'), false)
+  assert.equal(projected.officialData.hasOpenSession, false)
+  assert.equal(projected.officialData.hasScheduledSession, false)
+})
+
+test('la projection des flags Sessions ne modifie aucune autre donnée ni le ciblage', () => {
+  const snapshotCourse = snapshotByCode.get('SEM1098')
+  const withoutFlags = projectSnapshotCourse(snapshotCourse)
+  const withFlags = projectSnapshotCourse({
+    ...snapshotCourse,
+    hasOpenSession: true,
+    hasScheduledSession: true,
+  })
+  const { hasOpenSession: ignoredOpen, hasScheduledSession: ignoredScheduled, ...originalData } =
+    withoutFlags.officialData
+  const { hasOpenSession: projectedOpen, hasScheduledSession: projectedScheduled, ...flaggedData } =
+    withFlags.officialData
+
+  assert.equal(ignoredOpen, false)
+  assert.equal(ignoredScheduled, false)
+  assert.equal(projectedOpen, true)
+  assert.equal(projectedScheduled, true)
+  assert.deepEqual(flaggedData, originalData)
+  assert.deepEqual(withFlags.catalogueOffers, withoutFlags.catalogueOffers)
+  assert.equal(withFlags.normalizationStatus, withoutFlags.normalizationStatus)
+  assert.deepEqual(withFlags.targeting, withoutFlags.targeting)
+})
+
+test('chaque cours projeté expose toujours deux booléens de sessions', () => {
+  for (const course of fullCatalogueCourses) {
+    assert.equal(typeof course.officialData.hasOpenSession, 'boolean')
+    assert.equal(typeof course.officialData.hasScheduledSession, 'boolean')
+  }
 })
 
 test('les thèmes sont projetés sans transformation et les valeurs absentes restent nulles', () => {
