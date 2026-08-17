@@ -99,11 +99,21 @@ test('les flags Sessions sont projetés comme deux booléens indépendants', () 
 })
 
 test('les flags Sessions absents du snapshot historique deviennent false', () => {
-  const snapshotCourse = snapshotByCode.get('SEM1098')
-  const projected = projectSnapshotCourse(snapshotCourse)
+  const historicalCourse = {
+    code: 'HISTORIQUE-001',
+    sourceUrl: 'https://example.test/HISTORIQUE-001',
+    titleRaw: 'Cours historique',
+    organizingEntityRaw: 'Entité historique',
+    domainRaw: 'Domaine historique',
+    themeRaw: null,
+    publicRaw: null,
+    targetAudienceRaw: null,
+    catalogueOffers: ['Offre historique'],
+  }
+  const projected = projectSnapshotCourse(historicalCourse)
 
-  assert.equal(Object.hasOwn(snapshotCourse, 'hasOpenSession'), false)
-  assert.equal(Object.hasOwn(snapshotCourse, 'hasScheduledSession'), false)
+  assert.equal(Object.hasOwn(historicalCourse, 'hasOpenSession'), false)
+  assert.equal(Object.hasOwn(historicalCourse, 'hasScheduledSession'), false)
   assert.equal(projected.officialData.hasOpenSession, false)
   assert.equal(projected.officialData.hasScheduledSession, false)
 })
