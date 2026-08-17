@@ -14,7 +14,10 @@ import {
 import {
   filterFacetOptions,
   getFacetValueCounts,
+  hasCourseFacetSelection,
   keepAvailableFacetOptions,
+  matchesCourseSessionFacet,
+  SESSION_FACET_OPTIONS,
 } from './domain/courseFacets.js'
 import {
   COURSE_SORT_OPTIONS,
@@ -58,6 +61,7 @@ function App() {
     parseCourseSearchUrl(window.location.search, fullCatalogueCourses),
   )
   const [officialSearch, setOfficialSearch] = useState(initialSearchState.search)
+  const [sessions, setSessions] = useState([])
   const [trainingOffers, setTrainingOffers] = useState(initialSearchState.offers)
   const [trainingEntities, setTrainingEntities] = useState(initialSearchState.entities)
   const [domains, setDomains] = useState(initialSearchState.domains)
@@ -70,6 +74,13 @@ function App() {
 
   const hasPrimarySelection = trainingOffers.length > 0 || trainingEntities.length > 0
   const hasDomainSelection = domains.length > 0
+  const hasCourseSelection = hasCourseFacetSelection({
+    offers: trainingOffers,
+    entities: trainingEntities,
+    domains,
+    themes,
+    publics,
+  })
 
   const coursesMatchingPrimaryFacets = useMemo(
     () =>
@@ -111,6 +122,7 @@ function App() {
   const currentFacetFilters = useMemo(
     () => ({
       search: officialSearch,
+      sessions,
       offers: trainingOffers,
       entities: trainingEntities,
       domains,
@@ -119,6 +131,7 @@ function App() {
     }),
     [
       officialSearch,
+      sessions,
       trainingOffers,
       trainingEntities,
       domains,
@@ -128,6 +141,11 @@ function App() {
   )
   const facetCounts = useMemo(
     () => ({
+      sessions: getFacetValueCounts(
+        fullCatalogueCourses,
+        currentFacetFilters,
+        'sessions',
+      ),
       offers: getFacetValueCounts(
         fullCatalogueCourses,
         currentFacetFilters,
@@ -204,6 +222,10 @@ function App() {
   }, [hasDomainSelection, themeOptions])
 
   useEffect(() => {
+    if (!hasCourseSelection) setSessions([])
+  }, [hasCourseSelection])
+
+  useEffect(() => {
     const search = serializeCourseSearchState(
       {
         search: officialSearch,
@@ -240,6 +262,7 @@ function App() {
 
         return (
           (!query || searchableText.includes(query)) &&
+          matchesCourseSessionFacet(course, sessions) &&
           (trainingOffers.length === 0 ||
             course.catalogueOffers.some((offer) => trainingOffers.includes(offer))) &&
           (trainingEntities.length === 0 ||
@@ -251,6 +274,7 @@ function App() {
       }),
     [
       officialSearch,
+      sessions,
       trainingOffers,
       trainingEntities,
       domains,
@@ -276,6 +300,7 @@ function App() {
     dispatchPagination({ type: 'criteriaChanged' })
   }, [
     officialSearch,
+    sessions,
     trainingOffers,
     trainingEntities,
     domains,
@@ -289,6 +314,11 @@ function App() {
       label: `Recherche : ${officialSearch.trim()}`,
       clear: () => setOfficialSearch(NO_FILTER),
     },
+    ...sessions.map((value) => ({
+      key: `session-${value}`,
+      label: `Sessions : ${value}`,
+      clear: () => setSessions((selected) => selected.filter((item) => item !== value)),
+    })),
     ...trainingOffers.map((value) => ({
       key: `offer-${value}`,
       label: `Offre : ${value}`,
@@ -318,6 +348,7 @@ function App() {
 
   function resetOfficialFilters() {
     setOfficialSearch(NO_FILTER)
+    setSessions([])
     setTrainingOffers([])
     setTrainingEntities([])
     setDomains([])
@@ -411,17 +442,23 @@ function App() {
             <aside className="official-filter-panel" aria-label="Filtres du catalogue officiel">
               <h2>Affiner les résultats</h2>
 
-              <FacetGroup
-                label="Offre de formation"
+              <section className="filter-section filter-section-courses" aria-labelledby="course-filters-title">
+                <header className="filter-section-heading">
+                  <h3 id="course-filters-title">Cours</h3>
+                  <p>Affiner par caractéristiques de la formation.</p>
+                </header>
+
+                <FacetGroup
+                  label="Offre de formation"
                 help="Catalogue ou offre auxquels la formation est rattachée."
                 options={displayedOfferOptions}
                 counts={facetCounts.offers}
                 selected={trainingOffers}
                 onChange={setTrainingOffers}
                 searchPlaceholder="Rechercher une offre..."
-              />
+                />
 
-              <FacetGroup
+                <FacetGroup
                 label="Entité de formation"
                 help="Entité organisatrice indiquée dans la fiche officielle."
                 options={displayedEntityOptions}
@@ -429,9 +466,9 @@ function App() {
                 selected={trainingEntities}
                 onChange={setTrainingEntities}
                 searchPlaceholder="Rechercher une entité..."
-              />
+                />
 
-              <FacetGroup
+                <FacetGroup
                 label="Domaine"
                 help="Domaine indiqué dans la fiche officielle."
                 options={displayedDomainOptions}
@@ -441,9 +478,9 @@ function App() {
                 searchPlaceholder="Rechercher un domaine..."
                 disabled={!hasPrimarySelection}
                 disabledReason="Sélectionnez d’abord une offre ou une entité."
-              />
+                />
 
-              <FacetGroup
+                <FacetGroup
                 label="Thème"
                 help="Thème indiqué dans la fiche officielle."
                 options={displayedThemeOptions}
@@ -453,9 +490,9 @@ function App() {
                 searchPlaceholder="Rechercher un thème..."
                 disabled={!hasDomainSelection}
                 disabledReason="Sélectionnez d’abord un domaine."
-              />
+                />
 
-              <FacetGroup
+                <FacetGroup
                 label="Public"
                 help="Public indiqué dans la fiche officielle."
                 options={displayedPublicOptions}
@@ -465,7 +502,29 @@ function App() {
                 searchPlaceholder="Rechercher un public..."
                 disabled={!hasPrimarySelection}
                 disabledReason="Sélectionnez d’abord une offre ou une entité."
-              />
+                />
+              </section>
+
+              <section className="filter-section filter-section-sessions" aria-labelledby="session-filters-title">
+                <header className="filter-section-heading">
+                  <h3 id="session-filters-title">Disponibilité des sessions</h3>
+                  <p>Informations de sessions issues de la fiche officielle.</p>
+                </header>
+
+                <FacetGroup
+                  label="Disponibilité des sessions"
+                  options={SESSION_FACET_OPTIONS}
+                  counts={facetCounts.sessions}
+                  selected={sessions}
+                  onChange={setSessions}
+                  defaultOpen
+                  searchable={false}
+                  disabled={!hasCourseSelection}
+                  disabledReason="Disponible après sélection de critères de cours."
+                  showOptionsWhenDisabled
+                  staticDisplay
+                />
+              </section>
 
               <button
                 className="reset-filters"
@@ -589,10 +648,15 @@ function FacetGroup({
   selected,
   onChange,
   searchPlaceholder,
+  defaultOpen = false,
+  searchable = true,
   disabled = false,
   disabledReason,
+  showOptionsWhenDisabled = false,
+  staticDisplay = false,
 }) {
   const [optionSearch, setOptionSearch] = useState('')
+  const [isOpen, setIsOpen] = useState(defaultOpen)
 
   function toggleOption(value) {
     onChange(
@@ -602,7 +666,7 @@ function FacetGroup({
     )
   }
 
-  const filteredOptions = filterFacetOptions(options, optionSearch)
+  const filteredOptions = searchable ? filterFacetOptions(options, optionSearch) : options
 
   const selectionSummary =
     selected.length === 0
@@ -621,7 +685,55 @@ function FacetGroup({
     </>
   )
 
-  if (disabled) {
+  const facetContent = (
+    <div className="facet-dropdown">
+      {help && <p className="field-help">{help}</p>}
+      {disabled && <p className="facet-status">{disabledReason}</p>}
+      {searchable && (
+        <input
+          className="facet-search"
+          type="search"
+          value={optionSearch}
+          onChange={(event) => setOptionSearch(event.target.value)}
+          placeholder={searchPlaceholder}
+          aria-label={`Rechercher dans la facette ${label}`}
+        />
+      )}
+      <div className="facet-options" role="group" aria-label={label}>
+        {filteredOptions.length > 0 ? (
+          filteredOptions.map((option) => (
+            <label key={option} className="facet-option">
+              <input
+                type="checkbox"
+                checked={selected.includes(option)}
+                disabled={disabled}
+                onChange={() => toggleOption(option)}
+              />
+              <span className="facet-option-label">{option}</span>
+              <span
+                className="facet-option-count"
+                aria-label={`${formatFormationCount(counts.get(option) ?? 0)} formations`}
+              >
+                {formatFormationCount(counts.get(option) ?? 0)}
+              </span>
+            </label>
+          ))
+        ) : (
+          <p className="facet-empty-search">Aucune valeur trouvée</p>
+        )}
+      </div>
+    </div>
+  )
+
+  if (staticDisplay) {
+    return (
+      <div className={`facet facet-static${disabled ? ' is-disabled' : ''}`}>
+        {facetContent}
+      </div>
+    )
+  }
+
+  if (disabled && !showOptionsWhenDisabled) {
     return (
       <div className="facet is-disabled" aria-disabled="true">
         <div className="facet-trigger">{triggerContent}</div>
@@ -631,41 +743,13 @@ function FacetGroup({
   }
 
   return (
-    <details className="facet">
+    <details
+      className={`facet${disabled ? ' is-disabled' : ''}`}
+      open={isOpen}
+      onToggle={(event) => setIsOpen(event.currentTarget.open)}
+    >
       <summary className="facet-trigger">{triggerContent}</summary>
-      <div className="facet-dropdown">
-          {help && <p className="field-help">{help}</p>}
-          <input
-            className="facet-search"
-            type="search"
-            value={optionSearch}
-            onChange={(event) => setOptionSearch(event.target.value)}
-            placeholder={searchPlaceholder}
-            aria-label={`Rechercher dans la facette ${label}`}
-          />
-          <div className="facet-options" role="group" aria-label={label}>
-            {filteredOptions.length > 0 ? (
-              filteredOptions.map((option) => (
-                <label key={option} className="facet-option">
-                  <input
-                    type="checkbox"
-                    checked={selected.includes(option)}
-                    onChange={() => toggleOption(option)}
-                  />
-                  <span className="facet-option-label">{option}</span>
-                  <span
-                    className="facet-option-count"
-                    aria-label={`${formatFormationCount(counts.get(option) ?? 0)} formations`}
-                  >
-                    {formatFormationCount(counts.get(option) ?? 0)}
-                  </span>
-                </label>
-              ))
-            ) : (
-              <p className="facet-empty-search">Aucune valeur trouvée</p>
-            )}
-          </div>
-      </div>
+      {facetContent}
     </details>
   )
 }
@@ -689,6 +773,22 @@ function OfficialCourseCard({ course }) {
           <strong>{course.code}</strong>
         </p>
         <h3>{course.officialData.titleRaw ?? unavailable}</h3>
+        {(course.officialData.hasOpenSession || course.officialData.hasScheduledSession) && (
+          <div className="course-session-statuses" aria-label="Statut des sessions">
+            {course.officialData.hasOpenSession && (
+              <span className="course-session-status is-open">
+                <span aria-hidden="true">●</span>
+                Inscriptions ouvertes
+              </span>
+            )}
+            {course.officialData.hasScheduledSession && (
+              <span className="course-session-status is-scheduled">
+                <span aria-hidden="true">◷</span>
+                Ouverture programmée
+              </span>
+            )}
+          </div>
+        )}
       </div>
       <div className="official-course-offers">
         <h4>Offre</h4>

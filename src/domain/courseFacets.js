@@ -1,4 +1,30 @@
+export const SESSION_FACET_OPTIONS = [
+  'Inscriptions ouvertes',
+  'Ouverture programmée',
+]
+
+export function getCourseSessionFacetValues(course) {
+  const values = []
+  if (course.officialData.hasOpenSession === true) values.push(SESSION_FACET_OPTIONS[0])
+  if (course.officialData.hasScheduledSession === true) values.push(SESSION_FACET_OPTIONS[1])
+  return values
+}
+
+export function matchesCourseSessionFacet(course, selectedSessions) {
+  return (
+    selectedSessions.length === 0 ||
+    getCourseSessionFacetValues(course).some((value) => selectedSessions.includes(value))
+  )
+}
+
+export function hasCourseFacetSelection(filters) {
+  return ['offers', 'entities', 'domains', 'themes', 'publics'].some(
+    (facet) => (filters[facet]?.length ?? 0) > 0,
+  )
+}
+
 const FACET_VALUE_READERS = {
+  sessions: getCourseSessionFacetValues,
   offers: (course) => course.catalogueOffers,
   entities: (course) => [course.officialData.organizingEntityRaw],
   domains: (course) => [course.officialData.domainRaw],
@@ -21,10 +47,11 @@ function matchesSearch(course, search) {
 }
 
 function matchesFacet(course, facet, selectedValues) {
+  const values = selectedValues ?? []
   return (
-    selectedValues.length === 0 ||
+    values.length === 0 ||
     getCourseFacetValues(course, facet).some((value) =>
-      selectedValues.includes(value),
+      values.includes(value),
     )
   )
 }
