@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-08-16
+- Date du snapshot : 2026-08-17
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 116.8 secondes
-- Taille du JSON final : 1.98 Mio (2079453 octets)
-- Empreinte SHA-256 du snapshot : `3bdc638e9a94e6218324b1a20e7b0e52890d2a544bd5aaa2ac67fbe3f0241b0c`
+- Durée totale de l’import : 106.4 secondes
+- Taille du JSON final : 2.05 Mio (2145374 octets)
+- Empreinte SHA-256 du snapshot : `39d382914612ead3c93ae03893a77f729b23df6895b12d98026e2abc9e2b36f2`
 
 ## Synthèse
 
@@ -16,82 +16,46 @@
 - Fiches récupérées avec succès : 1055
 - Fiches indisponibles : 0
 
+## Initialisation des informations de sessions
+
+Le snapshot officiel historique ne contient encore aucun flag Sessions. Leur ajout au candidat est traité comme une initialisation et non comme une modification métier.
+
+| Indicateur | Cours |
+| --- | ---: |
+| Cours avec inscriptions ouvertes | 478 |
+| Cours avec sessions programmées | 66 |
+| Cours avec les deux statuts | 21 |
+| Cours sans ces deux statuts | 532 |
+
 ## Comparaison avec le snapshot officiel
 
 Les ajouts, suppressions et modifications sont des évolutions métier à examiner ; ils ne constituent pas automatiquement des anomalies.
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1078 |
+| Cours dans le snapshot officiel | 1055 |
 | Cours dans le candidat | 1055 |
-| Cours ajoutés | 1 |
-| Cours supprimés | 24 |
-| Cours modifiés | 15 |
+| Cours ajoutés | 0 |
+| Cours supprimés | 0 |
+| Cours modifiés | 0 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| EP-100MDAS | La danse Hip-Hop comme outil pédagogique et artistique au Cycle 2 | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Formations spécifiques |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| EO-011 | Atelier batucada (niveau 1) | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II | DGEO/SRH/Secteur de la formation continue EO | Arts |
-| EP-091MDAS | Parkour - approche ludique et créative | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| EP-092MDAS | Gestion de situations complexes en sport | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| EP-975 | Percussions en tout genre | DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-OMP - Offre formation de l'OMP | DGEO/SRH/Secteur de la formation continue EO | Arts |
-| EP-976 | Oser chanter avec sa classe : outils et répertoires | DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-OMP - Offre formation de l'OMP | DGEO/SRH/Secteur de la formation continue EO | Arts |
-| SEM-10104 | EP-CO-ESII-OMP / Linux : l'installer et le configurer sur votre PC / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10111 | CO-ESII / Enseigner avec sa tablette numérique / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10123 | CO-ESII / Utiliser les appareils numériques des élèves en classe / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10205 | EP-CO-ESII-OMP / Traitement de texte : effectuer un publipostage avec LibreOffice / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10257 | EP-CO-ESII-OMP : LibreOffice Impress (cours avancé) / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10461 | CO-ESII / Utiliser sa webcam dans son enseignement à distance ou en présence / Formation autonome en ligne | DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10502 | CO-ESII / Copier des CD/DVD sur une clé usb / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10503 | CO-PO : Colloque PraTIC : la pensée informatique dans le cadre de l'Ecole | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10531 | CO-ESII / Utiliser aisément des vidéos en classe à des fins pédagogiques, le b.a-ba des gestes techniques / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10542 | CO-ESII / L'écriture collaborative numérique / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10547 | ESII / Gérer facilement les ressources bibliographiques avec Zotero et ZoteroBib / Formation autonome en ligne | DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10804 | CO-ESII / Linux : programmation de scripts - niveau 1 / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10807 | CO-ESII / Python : les bases de la programmation / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10809 | CO-ESII / Python et interfaces graphiques / NOUVEAU / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10810 | ESII / Enseigner l'algorithmique et la programmation selon le nouveau PEC de l'École de Culture Générale / Formation autonome en ligne | DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10811 | CO-ESII / RaspberryPi : Piloter un objet à distance (domotique) / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10812 | CO-ESII / RaspberryPi : Créer un timelapse / Formation autonome en ligne | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10927 | CO-ESII / RaspberryPi : Rendre accessible votre site web sans adresse fixe / Formation 100% en ligne / NOUVEAU | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-P1552 | EP-OMP / Utiliser la webcam dans la salle de classe EP / Formation autonome en ligne | DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
-| Code | Intitulé candidat | Changements |
-| --- | --- | --- |
-| EP-1049 | Mettre en oeuvre une pédagogie différenciée réaliste dans ma classe | `titleRaw` : « Mettre en ½uvre une pédagogie différenciée réaliste dans ma classe » → « Mettre en oeuvre une pédagogie différenciée réaliste dans ma classe » |
-| OMP-002MER | Ateliers Primaire MER de Français | `titleRaw` : « Ateliers Primaire MER Français » → « Ateliers Primaire MER de Français » |
-| OMP-003MER | Ateliers SI & SII MER de Français | `titleRaw` : « Ateliers SI & SII MER Français » → « Ateliers SI & SII MER de Français » |
-| OMP-019TSA | Prévention et gestion des crises comportementales | `targetAudienceRaw` : « Personnel pédagogique travaillant avec des élèves avec autisme. Les inscriptions seront effectuées par fc-omp sur la base d'une liste de participants donnée par les DESI en août. » → « Personnel pédagogique travaillant avec des élèves avec autisme. » |
+Aucun champ visible ou utilisé n’a changé.
 
 ### Cours modifiés — champs descriptifs longs
 
-| Code | Intitulé candidat | Champs modifiés |
-| --- | --- | --- |
-| EP-005ADMI | Prévention et sécurité incendie | `objectivesRaw`, `contentRaw` |
-| EP-093MDAS | Circle Song et improvisation méthode sonoga© | `objectivesRaw` |
-| EP-1044 | Entrée dans le langage écrit : troubles des apprentissages du langage écrit et différenciation pédagogique | `objectivesRaw` |
-| EP-1053 | Éditer et relier un livre avec les moyens du bord CM | `contentRaw` |
-| EP-1059 | Intégrer les capacités transversales dans son enseignement | `objectivesRaw` |
-| EP-489 | Apprendre par le corps en classe et hors de la classe | `contentRaw` |
-| EP-730 | Les corridors biologiques : séquence interdisciplinaire 7P-8P | `objectivesRaw` |
-| EP-739 | Collaboration (multi)professionnelle dans les établissements scolaires : comprendre, analyser, agir | `objectivesRaw` |
-| EP-977 | Percussion corporelle et danse afro-brésilienne : des outils pour stimuler la capacité d'attention des élèves | `objectivesRaw` |
-| EP-994 | Improvisation au piano pour accompagner et inciter au mouvement durant les leçons de musique/mouvement | `contentRaw` |
-| OMP-002MER | Ateliers Primaire MER de Français | `objectivesRaw`, `prerequisitesRaw` |
-| OMP-003MER | Ateliers SI & SII MER de Français | `objectivesRaw`, `prerequisitesRaw` |
-| OMP-019TSA | Prévention et gestion des crises comportementales | `objectivesRaw`, `contentRaw` |
-| S2-ORFO303 | FC3-Excel_Base de donnée | `objectivesRaw`, `contentRaw` |
+Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
@@ -178,11 +142,11 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
-- TRT024 — Informations complémentaires (`additionalInformationRaw`)
-- EP-373FEX — Généralités (`generalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
+- EP-373FEX — Généralités (`generalInformationRaw`)
 - EP-002ANG — Pré-requis (`prerequisitesRaw`)
 - FP254 — Informations complémentaires (`additionalInformationRaw`)
 - FP208 — Généralités (`generalInformationRaw`)
@@ -223,7 +187,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-08-16T13:34:58.811Z
-- Snapshot candidat validé : 2026-08-16
-- Empreinte SHA-256 : `3bdc638e9a94e6218324b1a20e7b0e52890d2a544bd5aaa2ac67fbe3f0241b0c`
+- Date et heure de promotion : 2026-08-17T10:52:31.944Z
+- Snapshot candidat validé : 2026-08-17
+- Empreinte SHA-256 : `39d382914612ead3c93ae03893a77f729b23df6895b12d98026e2abc9e2b36f2`
 - Promotion manuelle confirmée.
