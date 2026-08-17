@@ -6,6 +6,8 @@ export const visibleCourseFields = [
   'themeRaw',
   'publicRaw',
   'targetAudienceRaw',
+  'hasOpenSession',
+  'hasScheduledSession',
 ]
 
 export const longCourseFields = [
@@ -18,6 +20,31 @@ export const longCourseFields = [
 ]
 
 const compareCodes = (left, right) => left.code.localeCompare(right.code, 'fr-CH')
+const sessionFlagFields = ['hasOpenSession', 'hasScheduledSession']
+
+function sessionFlagsState(courses) {
+  const isLegacy =
+    courses.length > 0 &&
+    courses.every((course) => sessionFlagFields.every((field) => !Object.hasOwn(course, field)))
+  const isComplete = courses.every((course) =>
+    sessionFlagFields.every((field) => typeof course?.[field] === 'boolean'),
+  )
+  return { isLegacy, isComplete }
+}
+
+function sessionInitializationStatistics(courses) {
+  return {
+    openCourses: courses.filter(({ hasOpenSession }) => hasOpenSession === true).length,
+    scheduledCourses: courses.filter(({ hasScheduledSession }) => hasScheduledSession === true)
+      .length,
+    bothStatuses: courses.filter(
+      ({ hasOpenSession, hasScheduledSession }) => hasOpenSession && hasScheduledSession,
+    ).length,
+    neitherStatus: courses.filter(
+      ({ hasOpenSession, hasScheduledSession }) => !hasOpenSession && !hasScheduledSession,
+    ).length,
+  }
+}
 
 function indexCourses(courses, source, technicalAnomalies) {
   if (!Array.isArray(courses)) {
@@ -88,6 +115,25 @@ export function compareCatalogueSnapshots(officialCourses, candidateCourses) {
   const technicalAnomalies = []
   const officialByCode = indexCourses(officialCourses, 'officiel', technicalAnomalies)
   const candidateByCode = indexCourses(candidateCourses, 'candidat', technicalAnomalies)
+  const officialSessionFlags = sessionFlagsState(officialCourses)
+  const candidateSessionFlags = sessionFlagsState(candidateCourses)
+  const initializesSessionFlags = officialSessionFlags.isLegacy
+
+  if (!officialSessionFlags.isLegacy && !officialSessionFlags.isComplete) {
+    technicalAnomalies.push({
+      type: 'structure',
+      code: null,
+      detail: 'officiel: initialisation partielle ou incohérente des flags Sessions',
+    })
+  }
+  if (!candidateSessionFlags.isComplete) {
+    technicalAnomalies.push({
+      type: 'structure',
+      code: null,
+      detail: 'candidat: flags Sessions absents ou invalides',
+    })
+  }
+
   const added = [...candidateByCode.values()]
     .filter((course) => !officialByCode.has(course.code))
     .sort(compareCodes)
@@ -101,7 +147,10 @@ export function compareCatalogueSnapshots(officialCourses, candidateCourses) {
     const candidateCourse = candidateByCode.get(code)
     if (!candidateCourse) continue
 
-    const visibleChanges = visibleCourseFields
+    const comparedVisibleFields = initializesSessionFlags
+      ? visibleCourseFields.filter((field) => !sessionFlagFields.includes(field))
+      : visibleCourseFields
+    const visibleChanges = comparedVisibleFields
       .filter((field) => officialCourse[field] !== candidateCourse[field])
       .map((field) => ({
         field,
@@ -141,6 +190,9 @@ export function compareCatalogueSnapshots(officialCourses, candidateCourses) {
     modified,
     offerChanges,
     technicalAnomalies,
+    sessionFlagsInitialization: initializesSessionFlags
+      ? sessionInitializationStatistics(candidateCourses)
+      : null,
     summary: {
       officialCourses: officialCourses.length,
       candidateCourses: candidateCourses.length,

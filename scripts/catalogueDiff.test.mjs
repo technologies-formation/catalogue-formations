@@ -12,6 +12,8 @@ function course(code, overrides = {}) {
     themeRaw: 'Thème',
     publicRaw: 'Public',
     targetAudienceRaw: 'Public visé',
+    hasOpenSession: false,
+    hasScheduledSession: false,
     durationRaw: '1 Jour(s)',
     generalInformationRaw: null,
     objectivesRaw: 'Objectifs',
@@ -23,6 +25,13 @@ function course(code, overrides = {}) {
     sourceSnapshotDate: '2026-08-13',
     ...overrides,
   }
+}
+
+function legacyCourse(code, overrides = {}) {
+  const result = course(code, overrides)
+  delete result.hasOpenSession
+  delete result.hasScheduledSession
+  return result
 }
 
 test('détecte les ajouts et suppressions et les trie par code', () => {
@@ -127,6 +136,89 @@ test('détecte les passages entre null et une valeur', () => {
     { field: 'themeRaw', oldValue: null, newValue: 'Thème' },
   ])
   assert.deepEqual(result.modified[0].longFields, ['prerequisitesRaw'])
+})
+
+test('traite les changements de flags de sessions comme des évolutions métier visibles', () => {
+  const result = compareCatalogueSnapshots(
+    [course('A', { hasOpenSession: false, hasScheduledSession: true })],
+    [course('A', { hasOpenSession: true, hasScheduledSession: false })],
+  )
+
+  assert.deepEqual(result.modified[0].visibleChanges, [
+    { field: 'hasOpenSession', oldValue: false, newValue: true },
+    { field: 'hasScheduledSession', oldValue: true, newValue: false },
+  ])
+  assert.equal(result.summary.modifiedCourses, 1)
+  assert.equal(result.summary.technicalAnomalies, 0)
+})
+
+test('initialise les flags Sessions quand ils sont absents de tout le snapshot officiel', () => {
+  const result = compareCatalogueSnapshots(
+    [legacyCourse('A'), legacyCourse('B'), legacyCourse('C'), legacyCourse('D')],
+    [
+      course('A', { hasOpenSession: true, hasScheduledSession: false }),
+      course('B', { hasOpenSession: false, hasScheduledSession: true }),
+      course('C', { hasOpenSession: true, hasScheduledSession: true }),
+      course('D'),
+    ],
+  )
+
+  assert.deepEqual(result.modified, [])
+  assert.equal(result.summary.modifiedCourses, 0)
+  assert.deepEqual(result.sessionFlagsInitialization, {
+    openCourses: 2,
+    scheduledCourses: 2,
+    bothStatuses: 1,
+    neitherStatus: 1,
+  })
+})
+
+test('conserve les autres modifications métier pendant initialisation des flags Sessions', () => {
+  const result = compareCatalogueSnapshots(
+    [legacyCourse('A')],
+    [course('A', { hasOpenSession: true, titleRaw: 'Titre modifié' })],
+  )
+
+  assert.equal(result.summary.modifiedCourses, 1)
+  assert.deepEqual(result.modified[0].visibleChanges, [
+    { field: 'titleRaw', oldValue: 'Cours A', newValue: 'Titre modifié' },
+  ])
+})
+
+test('signale normalement false vers true après migration', () => {
+  const result = compareCatalogueSnapshots(
+    [course('A', { hasOpenSession: false })],
+    [course('A', { hasOpenSession: true })],
+  )
+
+  assert.equal(result.sessionFlagsInitialization, null)
+  assert.deepEqual(result.modified[0].visibleChanges, [
+    { field: 'hasOpenSession', oldValue: false, newValue: true },
+  ])
+})
+
+test('signale normalement true vers false après migration', () => {
+  const result = compareCatalogueSnapshots(
+    [course('A', { hasScheduledSession: true })],
+    [course('A', { hasScheduledSession: false })],
+  )
+
+  assert.equal(result.sessionFlagsInitialization, null)
+  assert.deepEqual(result.modified[0].visibleChanges, [
+    { field: 'hasScheduledSession', oldValue: true, newValue: false },
+  ])
+})
+
+test('une migration partielle du snapshot officiel est une anomalie et non une initialisation', () => {
+  const result = compareCatalogueSnapshots(
+    [legacyCourse('A'), course('B')],
+    [course('A'), course('B')],
+  )
+
+  assert.equal(result.sessionFlagsInitialization, null)
+  assert.ok(
+    result.technicalAnomalies.some(({ detail }) => detail.includes('initialisation partielle')),
+  )
 })
 
 test('refuse un snapshot qui n’est pas un tableau', () => {

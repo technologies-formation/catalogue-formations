@@ -212,6 +212,43 @@ function firstText(html, pattern) {
   return match ? htmlToText(match[1]) || null : null
 }
 
+function imageBasename(source) {
+  return decodeHtml(source)
+    .split(/[?#]/, 1)[0]
+    .replaceAll('\\', '/')
+    .split('/')
+    .at(-1)
+    .toLowerCase()
+}
+
+export function parseSessionFlags(html) {
+  let sessionsStart = -1
+  for (const heading of html.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/gi)) {
+    if (normalizeLabel(htmlToText(heading[1])) === 'liste des sessions') {
+      sessionsStart = heading.index + heading[0].length
+      break
+    }
+  }
+
+  if (sessionsStart === -1) {
+    return { hasOpenSession: false, hasScheduledSession: false }
+  }
+
+  const remainingHtml = html.slice(sessionsStart)
+  const nextHeadingIndex = remainingHtml.search(/<h[1-3]\b/i)
+  const sessionsSection = nextHeadingIndex === -1 ? remainingHtml : remainingHtml.slice(0, nextHeadingIndex)
+  const sessionsTable = sessionsSection.match(/<table\b[^>]*>([\s\S]*?)<\/table>/i)?.[1] ?? ''
+  const statusImages = new Set()
+  for (const image of sessionsTable.matchAll(/<img\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*>/gi)) {
+    statusImages.add(imageBasename(image[1]))
+  }
+
+  return {
+    hasOpenSession: statusImages.has('icon_vert.png'),
+    hasScheduledSession: statusImages.has('icon_timer.png'),
+  }
+}
+
 export function parseCourseDetail(html) {
   const h1 = firstText(html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i)
   const detailCode = h1?.match(/^COURS\s+(.+?)\s+-\s+/i)?.[1]?.trim() ?? null
@@ -223,6 +260,7 @@ export function parseCourseDetail(html) {
     ? firstText(organizerTable[1], /<b\b[^>]*>([\s\S]*?)<\/b>/i)
     : null
   const metadata = { domainRaw: null, themeRaw: null, publicRaw: null, durationRaw: null }
+  const sessionFlags = parseSessionFlags(html)
   const metadataFields = { domaine: 'domainRaw', theme: 'themeRaw', public: 'publicRaw', duree: 'durationRaw' }
 
   for (const row of html.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
@@ -258,6 +296,7 @@ export function parseCourseDetail(html) {
     detailCode,
     titleRaw,
     organizingEntityRaw,
+    ...sessionFlags,
     ...metadata,
     targetAudienceRaw: sections.targetAudienceRaw ?? null,
     generalInformationRaw: sections.generalInformationRaw ?? null,
@@ -341,7 +380,26 @@ function courseSummaryRow(course) {
 function buildCatalogueDiffLines(catalogueDiff, technicalAnomalies) {
   const visibleModified = catalogueDiff.modified.filter(({ visibleChanges }) => visibleChanges.length > 0)
   const longModified = catalogueDiff.modified.filter(({ longFields }) => longFields.length > 0)
-  const lines = [
+  const lines = []
+
+  if (catalogueDiff.sessionFlagsInitialization) {
+    const statistics = catalogueDiff.sessionFlagsInitialization
+    lines.push(
+      '## Initialisation des informations de sessions',
+      '',
+      'Le snapshot officiel historique ne contient encore aucun flag Sessions. Leur ajout au candidat est traité comme une initialisation et non comme une modification métier.',
+      '',
+      '| Indicateur | Cours |',
+      '| --- | ---: |',
+      `| Cours avec inscriptions ouvertes | ${statistics.openCourses} |`,
+      `| Cours avec sessions programmées | ${statistics.scheduledCourses} |`,
+      `| Cours avec les deux statuts | ${statistics.bothStatuses} |`,
+      `| Cours sans ces deux statuts | ${statistics.neitherStatus} |`,
+      '',
+    )
+  }
+
+  lines.push(
     '## Comparaison avec le snapshot officiel',
     '',
     'Les ajouts, suppressions et modifications sont des évolutions métier à examiner ; ils ne constituent pas automatiquement des anomalies.',
@@ -358,7 +416,7 @@ function buildCatalogueDiffLines(catalogueDiff, technicalAnomalies) {
     '',
     '### Cours ajoutés',
     '',
-  ]
+  )
 
   if (catalogueDiff.added.length === 0) {
     lines.push('Aucun cours ajouté.', '')
@@ -686,6 +744,8 @@ async function main() {
         sourceUrl: indexedCourse.sourceUrl,
         titleRaw: parsed?.titleRaw ?? indexedCourse.titlesFromIndex[0] ?? null,
         ...Object.fromEntries(detailFields.map((field) => [field, parsed?.[field] ?? null])),
+        hasOpenSession: parsed?.hasOpenSession ?? null,
+        hasScheduledSession: parsed?.hasScheduledSession ?? null,
         catalogueOffers: indexedCourse.catalogueOffers,
         fetchStatus,
         sourceSnapshotDate: SNAPSHOT_DATE,
@@ -784,7 +844,10 @@ async function main() {
   )
 }
 
-main().catch((error) => {
-  console.error(error)
-  process.exitCode = 1
-})
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
+if (isMain) {
+  main().catch((error) => {
+    console.error(error)
+    process.exitCode = 1
+  })
+}
