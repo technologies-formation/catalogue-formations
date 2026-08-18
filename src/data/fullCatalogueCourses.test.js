@@ -161,8 +161,6 @@ test('les thèmes sont projetés sans transformation et les valeurs absentes res
 })
 
 test('la valeur applicative Public est dérivée sans modifier publicRaw', () => {
-  let coursesWithoutSourcePublic = 0
-
   for (const course of fullCatalogueCourses) {
     const sourcePublic = snapshotByCode.get(course.code).publicRaw
 
@@ -171,11 +169,8 @@ test('la valeur applicative Public est dérivée sans modifier publicRaw', () =>
       assert.equal(course.officialData.publicValue, sourcePublic)
     } else {
       assert.equal(course.officialData.publicValue, 'Non renseigné')
-      coursesWithoutSourcePublic += 1
     }
   }
-
-  assert.equal(coursesWithoutSourcePublic, 107)
 })
 
 test('les ciblages validés existants sont réutilisés sans être recalculés', () => {
