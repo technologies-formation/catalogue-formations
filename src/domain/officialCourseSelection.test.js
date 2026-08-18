@@ -6,6 +6,64 @@ import { getFilteredOfficialCourses } from './officialCourseSelection.js'
 
 const expectedCodes = officialCourseSamples.map((course) => course.code)
 
+function syntheticCourse({
+  code,
+  title,
+  organizingEntity,
+  domain,
+  catalogueOffers = ['Offre synthétique'],
+  normalizationStatus = 'needsReview',
+  targeting = null,
+}) {
+  return {
+    code,
+    catalogueOffers,
+    officialData: {
+      titleRaw: title,
+      organizingEntityRaw: organizingEntity,
+      domainRaw: domain,
+    },
+    normalizationStatus,
+    targeting,
+  }
+}
+
+const needsReviewCourses = [
+  syntheticCourse({
+    code: 'SYNTH-REVIEW',
+    title: 'Exécution des sanctions synthétiques',
+    organizingEntity: 'Entité de test',
+    domain: 'Domaine de test',
+  }),
+]
+
+const pairedTargetingCourses = [
+  syntheticCourse({
+    code: 'SYNTH-TARGET',
+    title: 'Ciblage synthétique',
+    organizingEntity: 'Entité de test',
+    domain: 'Domaine de test',
+    normalizationStatus: 'validated',
+    targeting: {
+      targets: [
+        { category: 'PEN', entity: 'OCD' },
+        { category: 'PAT', entity: 'POLICE' },
+      ],
+      targetingSource: 'explicit',
+    },
+  }),
+]
+
+const multiOfferCourses = [
+  syntheticCourse({
+    code: 'SYNTH-MULTI',
+    title: 'Formation synthétique multi-offres',
+    organizingEntity: 'Entité de test',
+    domain: 'Domaine de test',
+    catalogueOffers: ['Offre A', 'Offre B', 'Offre C'],
+  }),
+]
+
 const selectionCases = [
   [
     'PAT + DIP',
@@ -312,41 +370,41 @@ test('le catalogue complet retourne toutes ses formations uniques sans filtre', 
 })
 
 test('une formation à revoir reste trouvable par son code', () => {
-  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
-    search: '  ocd371  ',
+  const courses = getFilteredOfficialCourses(needsReviewCourses, {
+    search: '  synth-review  ',
   })
 
-  assert.deepEqual(courses.map((course) => course.code), ['OCD371'])
+  assert.deepEqual(courses.map((course) => course.code), ['SYNTH-REVIEW'])
   assert.equal(courses[0].normalizationStatus, 'needsReview')
 })
 
 test('une formation à revoir reste trouvable par son intitulé', () => {
-  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
-    search: 'execution des sanctions penales',
+  const courses = getFilteredOfficialCourses(needsReviewCourses, {
+    search: 'execution des sanctions synthetiques',
   })
 
-  assert.ok(courses.some((course) => course.code === 'OCD371'))
+  assert.deepEqual(courses.map((course) => course.code), ['SYNTH-REVIEW'])
 })
 
 test('une formation à revoir reste sélectionnable par son organisateur', () => {
-  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
-    organizingEntity: "Centre de formation de l'OCD",
+  const courses = getFilteredOfficialCourses(needsReviewCourses, {
+    organizingEntity: 'Entité de test',
   })
 
-  assert.ok(courses.some((course) => course.code === 'OCD371'))
+  assert.deepEqual(courses.map((course) => course.code), ['SYNTH-REVIEW'])
 })
 
 test('une formation à revoir reste sélectionnable par son domaine', () => {
-  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
-    domain: 'Collaboration & auto-gestion',
+  const courses = getFilteredOfficialCourses(needsReviewCourses, {
+    domain: 'Domaine de test',
   })
 
-  assert.ok(courses.some((course) => course.code === 'OCD371'))
+  assert.deepEqual(courses.map((course) => course.code), ['SYNTH-REVIEW'])
 })
 
 test('une catégorie exclut les formations à revoir sans ciblage', () => {
-  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
-    search: 'OCD371',
+  const courses = getFilteredOfficialCourses(needsReviewCourses, {
+    search: 'SYNTH-REVIEW',
     personnelCategory: 'PEN',
   })
 
@@ -354,8 +412,8 @@ test('une catégorie exclut les formations à revoir sans ciblage', () => {
 })
 
 test('une appartenance exclut les formations à revoir sans ciblage', () => {
-  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
-    search: 'OCD371',
+  const courses = getFilteredOfficialCourses(needsReviewCourses, {
+    search: 'SYNTH-REVIEW',
     entity: 'OCD',
   })
 
@@ -363,8 +421,8 @@ test('une appartenance exclut les formations à revoir sans ciblage', () => {
 })
 
 test('catégorie et appartenance doivent correspondre dans un même couple', () => {
-  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
-    search: 'FP203',
+  const courses = getFilteredOfficialCourses(pairedTargetingCourses, {
+    search: 'SYNTH-TARGET',
     personnelCategory: 'PEN',
     entity: 'POLICE',
   })
@@ -373,22 +431,23 @@ test('catégorie et appartenance doivent correspondre dans un même couple', () 
 })
 
 test('un ciblage validé compatible reste sélectionnable', () => {
-  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
-    search: 'FP203',
+  const courses = getFilteredOfficialCourses(pairedTargetingCourses, {
+    search: 'SYNTH-TARGET',
     personnelCategory: 'PEN',
     entity: 'OCD',
   })
 
-  assert.deepEqual(courses.map((course) => course.code), ['FP203'])
+  assert.deepEqual(courses.map((course) => course.code), ['SYNTH-TARGET'])
 })
 
-test('une formation rattachée à cinq offres reste un résultat unique', () => {
-  const courses = getFilteredOfficialCourses(fullCatalogueCourses, {
-    search: 'SEM-10204',
+test('une formation multi-offres reste un résultat unique', () => {
+  const courses = getFilteredOfficialCourses(multiOfferCourses, {
+    search: 'SYNTH-MULTI',
   })
 
   assert.equal(courses.length, 1)
-  assert.equal(courses[0].catalogueOffers.length, 5)
+  assert.deepEqual(courses[0].catalogueOffers, ['Offre A', 'Offre B', 'Offre C'])
+  assert.equal(new Set(courses[0].catalogueOffers).size, courses[0].catalogueOffers.length)
 })
 
 test('la réinitialisation retourne toutes les formations du catalogue complet', () => {
