@@ -1,31 +1,20 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-08-17
+- Date du snapshot : 2026-08-18
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 106.4 secondes
-- Taille du JSON final : 2.05 Mio (2145374 octets)
-- Empreinte SHA-256 du snapshot : `39d382914612ead3c93ae03893a77f729b23df6895b12d98026e2abc9e2b36f2`
+- Durée totale de l’import : 138.4 secondes
+- Taille du JSON final : 2.05 Mio (2146217 octets)
+- Empreinte SHA-256 du snapshot : `13940cd53eca720f0da8b25b92c5fa1735b086400a15278f47bd963be3a21a2c`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1646
-- Codes uniques : 1055
+- Occurrences détectées dans l’index : 1648
+- Codes uniques : 1057
 - Occurrences éliminées par déduplication : 591
 - Formations présentes dans plusieurs offres : 299
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1055
+- Fiches récupérées avec succès : 1057
 - Fiches indisponibles : 0
-
-## Initialisation des informations de sessions
-
-Le snapshot officiel historique ne contient encore aucun flag Sessions. Leur ajout au candidat est traité comme une initialisation et non comme une modification métier.
-
-| Indicateur | Cours |
-| --- | ---: |
-| Cours avec inscriptions ouvertes | 478 |
-| Cours avec sessions programmées | 66 |
-| Cours avec les deux statuts | 21 |
-| Cours sans ces deux statuts | 532 |
 
 ## Comparaison avec le snapshot officiel
 
@@ -34,28 +23,49 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | Indicateur | Valeur |
 | --- | ---: |
 | Cours dans le snapshot officiel | 1055 |
-| Cours dans le candidat | 1055 |
-| Cours ajoutés | 0 |
-| Cours supprimés | 0 |
-| Cours modifiés | 0 |
+| Cours dans le candidat | 1057 |
+| Cours ajoutés | 3 |
+| Cours supprimés | 1 |
+| Cours modifiés | 13 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-Aucun cours ajouté.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| EP-090EVEN | Construire les bases de la réussite scolaire dès le cycle élémentaire : enjeux, apports et pistes - présentiel | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Capacités transversales |
+| OMP-119TSA | Journée refresh prévention et gestion des crises comportementales | DIP-OMP - Offre formation de l'OMP | DGOMP/SRH | Formations spécifiques |
+| TRT3016E | Maîtriser les fondamentaux du Numérique Responsable \| E-Learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | NUMERIQUE A L'ETAT |
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| SEM000 | (intitulé \| POS1) Améliorer l'expérience utilisateur dans l'Espace de formation (Intitulé : Zéphir) | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | Informatique Bureautique |
 
 ### Cours modifiés — champs visibles ou utilisés
 
-Aucun champ visible ou utilisé n’a changé.
+| Code | Intitulé candidat | Changements |
+| --- | --- | --- |
+| EP-489 | Apprendre par le corps en classe et hors de la classe | `hasOpenSession` : « true » → « false » |
+| EP-699 | Introduction aux fonctions exécutives et attentionnelles à l'école primaire | `hasOpenSession` : « true » → « false » |
+| EP-974 | L'éducation nutritionnelle et sensorielle au cycle élémentaire | `hasOpenSession` : « true » → « false » |
+| S2-117 | Dessin d'observation : vision et posture | `hasOpenSession` : « true » → « false » |
+| SEM-10244 | CO-ESII / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « false » → « true » |
+| SEM-10605 | CO-ESII / L'image et la représentation du réel dans le cinéma documentaire aujourd'hui avec le Festival Visions du Réel | `hasOpenSession` : « true » → « false » |
+| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | `hasOpenSession` : « false » → « true » |
+| SEM0056 | Principes généraux du droit administratif | `hasOpenSession` : « true » → « false » |
+| SEM1089 | Le management transversal | `hasOpenSession` : « true » → « false » |
+| SEM1171 | Comment collaborer au sein d'une équipe intergénérationnelle | `hasOpenSession` : « true » → « false » |
+| SEM1215 | Les neurosciences au service du management | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-Aucun champ descriptif long n’a changé.
+| Code | Intitulé candidat | Champs modifiés |
+| --- | --- | --- |
+| S2-FIO002A | Enseignement par compétences, pédagogie différenciée, évaluation | `objectivesRaw` |
+| SEM-10755 | ESII : Prise de notes et journal de lecture avec Keep / NOUVEAU / Formation autonome en ligne | `contentRaw` |
 
 ### Changements d’offres
 
@@ -73,9 +83,9 @@ Aucune anomalie technique.
 | DF-OPE - L'offre de formation de l'OPE | 169 | 169 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 226 | 226 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 291 | 291 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 292 | 292 |
 | DIP-ES II - Offre de formation de l'ES II | 236 | 236 |
-| DIP-OMP - Offre formation de l'OMP | 231 | 231 |
+| DIP-OMP - Offre formation de l'OMP | 232 | 232 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 153 | 153 |
 | PJ - Offre de formation du pouvoir judiciaire | 56 | 56 |
 | POLICE - CFPS - Centre de Formation de la Police | 210 | 210 |
@@ -84,17 +94,17 @@ Aucune anomalie technique.
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1055/1055 | 100.0 % |
-| `domainRaw` | 1055/1055 | 100.0 % |
-| `themeRaw` | 976/1055 | 92.5 % |
-| `publicRaw` | 948/1055 | 89.9 % |
-| `durationRaw` | 1040/1055 | 98.6 % |
-| `targetAudienceRaw` | 940/1055 | 89.1 % |
-| `generalInformationRaw` | 548/1055 | 51.9 % |
-| `objectivesRaw` | 1005/1055 | 95.3 % |
-| `contentRaw` | 950/1055 | 90.0 % |
-| `prerequisitesRaw` | 399/1055 | 37.8 % |
-| `additionalInformationRaw` | 357/1055 | 33.8 % |
+| `organizingEntityRaw` | 1057/1057 | 100.0 % |
+| `domainRaw` | 1057/1057 | 100.0 % |
+| `themeRaw` | 978/1057 | 92.5 % |
+| `publicRaw` | 949/1057 | 89.8 % |
+| `durationRaw` | 1042/1057 | 98.6 % |
+| `targetAudienceRaw` | 941/1057 | 89.0 % |
+| `generalInformationRaw` | 548/1057 | 51.8 % |
+| `objectivesRaw` | 1007/1057 | 95.3 % |
+| `contentRaw` | 952/1057 | 90.1 % |
+| `prerequisitesRaw` | 400/1057 | 37.8 % |
+| `additionalInformationRaw` | 356/1057 | 33.7 % |
 
 ### Correspondance des libellés officiels
 
@@ -139,12 +149,12 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
-- TRT011 — Informations complémentaires (`additionalInformationRaw`)
-- TRT024 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
+- TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
+- TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
 - EP-002ANG — Pré-requis (`prerequisitesRaw`)
@@ -187,7 +197,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-08-17T10:52:31.944Z
-- Snapshot candidat validé : 2026-08-17
-- Empreinte SHA-256 : `39d382914612ead3c93ae03893a77f729b23df6895b12d98026e2abc9e2b36f2`
+- Date et heure de promotion : 2026-08-18T07:08:54.731Z
+- Snapshot candidat validé : 2026-08-18
+- Empreinte SHA-256 : `13940cd53eca720f0da8b25b92c5fa1735b086400a15278f47bd963be3a21a2c`
 - Promotion manuelle confirmée.
