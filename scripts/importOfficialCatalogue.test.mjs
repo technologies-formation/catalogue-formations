@@ -1,6 +1,46 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { parseCourseDetail, parseSessionFlags } from './importOfficialCatalogue.mjs'
+import { officialCourseSamples } from '../src/data/officialCourseSamples.js'
+import {
+  buildReferenceMonitoringLines,
+  monitorValidatedReferences,
+  parseCourseDetail,
+  parseSessionFlags,
+} from './importOfficialCatalogue.mjs'
+
+const referenceFields = [
+  'titleRaw',
+  'organizingEntityRaw',
+  'publicRaw',
+  'targetAudienceRaw',
+  'domainRaw',
+]
+
+function reference(code = 'REF-001', overrides = {}) {
+  return {
+    code,
+    officialData: {
+      titleRaw: 'Titre de référence',
+      organizingEntityRaw: 'Entité de référence',
+      publicRaw: 'Public de référence',
+      targetAudienceRaw: 'Public visé de référence',
+      domainRaw: 'Domaine de référence',
+      ...overrides,
+    },
+  }
+}
+
+function candidateFromReference(sample, overrides = {}) {
+  return {
+    code: sample.code,
+    ...Object.fromEntries(referenceFields.map((field) => [field, sample.officialData[field]])),
+    ...overrides,
+  }
+}
+
+function monitor(overrides = {}, sample = reference()) {
+  return monitorValidatedReferences([sample], [candidateFromReference(sample, overrides)])
+}
 
 function page(sessionContent = '', outsideImages = '') {
   return `
@@ -83,4 +123,91 @@ test('parseCourseDetail expose toujours les deux booléens pour une fiche récup
   assert.equal(parsed.detailCode, 'TEST-001')
   assert.equal(parsed.hasOpenSession, true)
   assert.equal(parsed.hasScheduledSession, false)
+})
+
+test('dérive automatiquement les vingt-quatre références de officialCourseSamples', () => {
+  const snapshot = officialCourseSamples.map((sample) => candidateFromReference(sample))
+  const result = monitorValidatedReferences(officialCourseSamples, snapshot)
+
+  assert.equal(result.summary.checked, 24)
+  assert.equal(result.summary.present, 24)
+  assert.equal(result.summary.identical, 24)
+  assert.deepEqual(result.differences, [])
+})
+
+test('une référence identique ne produit aucune alerte', () => {
+  assert.deepEqual(monitor().differences, [])
+})
+
+for (const [name, overrides, field, category] of [
+  ['public modifié', { publicRaw: 'Autre public' }, 'publicRaw', 'REVUE MÉTIER PRIORITAIRE'],
+  ['public supprimé', { publicRaw: null }, 'publicRaw', 'REVUE MÉTIER PRIORITAIRE'],
+  ['entité modifiée', { organizingEntityRaw: 'Autre entité' }, 'organizingEntityRaw', 'REVUE MÉTIER'],
+  ['public visé modifié', { targetAudienceRaw: 'Autre public visé' }, 'targetAudienceRaw', 'INFORMATION À EXAMINER'],
+  ['titre modifié', { titleRaw: 'Autre titre' }, 'titleRaw', 'ÉVOLUTION CONTEXTUELLE'],
+  ['domaine modifié', { domainRaw: 'Autre domaine' }, 'domainRaw', 'ÉVOLUTION CONTEXTUELLE'],
+]) {
+  test(`${name} reçoit la classification informative attendue`, () => {
+    assert.deepEqual(monitor(overrides).differences, [
+      {
+        code: 'REF-001',
+        category,
+        field,
+        referenceValue: reference().officialData[field],
+        currentValue: overrides[field],
+      },
+    ])
+  })
+}
+
+test('null vers valeur est classé comme enrichissement', () => {
+  const sample = reference('REF-NULL', { targetAudienceRaw: null })
+  assert.equal(
+    monitor({ targetAudienceRaw: 'Public nouvellement renseigné' }, sample).differences[0].category,
+    'ENRICHISSEMENT',
+  )
+})
+
+test('une référence absente est signalée sans être réinjectée', () => {
+  const result = monitorValidatedReferences([reference()], [])
+  assert.equal(result.summary.absent, 1)
+  assert.deepEqual(result.differences, [
+    {
+      code: 'REF-001',
+      category: 'RÉFÉRENCE ABSENTE',
+      field: 'présence',
+      referenceValue: 'présente',
+      currentValue: 'absente',
+    },
+  ])
+})
+
+test('neutralise trim, espaces multiples et retours de ligne', () => {
+  const result = monitor({
+    titleRaw: '  Titre   de\n référence  ',
+    organizingEntityRaw: 'Entité\r\n de   référence',
+  })
+  assert.deepEqual(result.differences, [])
+})
+
+test('classe une différence de casse comme purement typographique', () => {
+  assert.equal(
+    monitor({ titleRaw: 'TITRE DE RÉFÉRENCE' }).differences[0].category,
+    'DIFFÉRENCE TYPOGRAPHIQUE',
+  )
+})
+
+test('les divergences métier restent distinctes des anomalies techniques', () => {
+  const result = monitor({ publicRaw: 'Autre public' })
+  assert.equal(result.summary.businessReviewReferences, 1)
+  assert.equal(Object.hasOwn(result.summary, 'technicalAnomalies'), false)
+  assert.doesNotMatch(buildReferenceMonitoringLines(result).join('\n'), /anomalie technique/i)
+})
+
+test('le rapport de surveillance reste valide sans divergence', () => {
+  const lines = buildReferenceMonitoringLines(monitor())
+  assert.match(lines.join('\n'), /Références contrôlées \| 1/)
+  assert.match(lines.join('\n'), /Références identiques \| 1/)
+  assert.match(lines.join('\n'), /Aucun écart ni absence détecté/)
+  assert.doesNotMatch(lines.join('\n'), /\| REF-001 \|/)
 })

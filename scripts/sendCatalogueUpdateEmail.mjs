@@ -28,6 +28,10 @@ export function parseCatalogueReport(report) {
     modified: reportNumber(report, 'Cours modifiés'),
     offerChanges: reportNumber(report, 'Cours dont les offres ont changé'),
     technicalAnomalies: reportNumber(report, 'Anomalies techniques'),
+    businessReviewReferences: reportNumber(
+      report,
+      'Références nécessitant une revue métier',
+    ),
   }
 }
 
@@ -93,6 +97,11 @@ export function buildCatalogueEmail({ status, metrics, runUrl, now = new Date(),
     `Modifications : ${displayMetric(metrics.modified)}`,
     `Changements d’offres : ${displayMetric(metrics.offerChanges)}`,
     `Anomalies techniques : ${displayMetric(metrics.technicalAnomalies)}`,
+    ...(['SUCCESS', 'NO_CHANGE'].includes(status) && metrics.businessReviewReferences > 0
+      ? [
+          `${metrics.businessReviewReferences} référence${metrics.businessReviewReferences > 1 ? 's' : ''} validée${metrics.businessReviewReferences > 1 ? 's' : ''} nécessite${metrics.businessReviewReferences > 1 ? 'nt' : ''} une revue métier`,
+        ]
+      : []),
     `Exécution GitHub Actions : ${runUrl || 'indisponible'}`,
   ]
 
@@ -127,6 +136,7 @@ export async function prepareCatalogueEmail({ env = process.env, reportPath = de
         modified: null,
         offerChanges: null,
         technicalAnomalies: null,
+        businessReviewReferences: null,
       }
 
   return buildCatalogueEmail({

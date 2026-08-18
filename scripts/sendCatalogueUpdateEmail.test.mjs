@@ -25,6 +25,7 @@ const report = [
   '| Cours modifiés | 4 |',
   '| Cours dont les offres ont changé | 5 |',
   '| Anomalies techniques | 0 |',
+  '| Références nécessitant une revue métier | 2 |',
   '',
 ].join('\n')
 
@@ -49,6 +50,7 @@ test('lit correctement les indicateurs du rapport', () => {
     modified: 4,
     offerChanges: 5,
     technicalAnomalies: 0,
+    businessReviewReferences: 2,
   })
 })
 
@@ -59,6 +61,49 @@ test('gère les statuts succès, aucun changement et alerte', () => {
   assert.match(buildCatalogueEmail({ status: 'SUCCESS', metrics }).subject, /SUCCÈS/)
   assert.match(buildCatalogueEmail({ status: 'NO_CHANGE', metrics }).subject, /AUCUN CHANGEMENT/)
   assert.match(buildCatalogueEmail({ status: 'ALERT', metrics }).subject, /ALERTE/)
+})
+
+test('un e-mail SUCCESS mentionne les références nécessitant une revue métier', () => {
+  const email = buildCatalogueEmail({ status: 'SUCCESS', metrics })
+
+  assert.match(email.subject, /SUCCÈS/)
+  assert.match(email.text, /2 références validées nécessitent une revue métier/)
+})
+
+test('un e-mail NO_CHANGE mentionne les références nécessitant une revue métier', () => {
+  const email = buildCatalogueEmail({ status: 'NO_CHANGE', metrics })
+
+  assert.match(email.subject, /AUCUN CHANGEMENT/)
+  assert.match(email.text, /2 références validées nécessitent une revue métier/)
+})
+
+test('un e-mail NO_CHANGE sans revue métier conserve son comportement actuel', () => {
+  const email = buildCatalogueEmail({
+    status: 'NO_CHANGE',
+    metrics: { ...metrics, businessReviewReferences: 0 },
+  })
+
+  assert.match(email.subject, /AUCUN CHANGEMENT/)
+  assert.doesNotMatch(email.text, /référence.*validée.*revue métier/)
+})
+
+test('une information à examiner seule ne produit pas de résumé de revue métier', () => {
+  const email = buildCatalogueEmail({
+    status: 'NO_CHANGE',
+    metrics: { ...metrics, businessReviewReferences: 0, informationToReview: 1 },
+  })
+
+  assert.match(email.subject, /AUCUN CHANGEMENT/)
+  assert.doesNotMatch(email.text, /revue métier/)
+})
+
+test('une revue métier ne transforme pas un succès en alerte', () => {
+  const successEmail = buildCatalogueEmail({ status: 'SUCCESS', metrics })
+  const alertEmail = buildCatalogueEmail({ status: 'ALERT', metrics })
+
+  assert.doesNotMatch(successEmail.subject, /ALERTE/)
+  assert.match(alertEmail.subject, /ALERTE/)
+  assert.doesNotMatch(alertEmail.text, /références validées nécessitent une revue métier/)
 })
 
 test('reste préparable sans rapport ni pièce jointe', async () => {

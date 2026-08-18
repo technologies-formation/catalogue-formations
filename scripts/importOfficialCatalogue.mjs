@@ -36,13 +36,13 @@ const detailFields = [
   'additionalInformationRaw',
 ]
 
-const references = {
-  OPE: ['SEM1098', 'SEM0735', 'SEM1080'],
-  DIP: ['DIP-002', 'EP-520', 'SEM-P1575'],
-  Police: ['FP173', 'FP203'],
-  OCD: ['OCD151', 'OCD207'],
-  'Pouvoir judiciaire': ['PJ-0001', 'PJ-0026'],
-}
+const monitoredReferenceFields = [
+  'titleRaw',
+  'organizingEntityRaw',
+  'publicRaw',
+  'targetAudienceRaw',
+  'domainRaw',
+]
 
 const sectionFields = new Map([
   ['public vise', 'targetAudienceRaw'],
@@ -328,38 +328,95 @@ function validateSnapshot(snapshot, indexData, processedCodes) {
   return failures
 }
 
-async function compareReferences(snapshot) {
-  const moduleUrl = new URL(`../src/data/officialCourseSamples.js?time=${Date.now()}`, import.meta.url)
-  const { officialCourseSamples } = await import(moduleUrl.href)
-  const importedByCode = new Map(snapshot.map((course) => [course.code, course]))
-  const sampleByCode = new Map(officialCourseSamples.map((course) => [course.code, course]))
-  const fields = ['titleRaw', 'organizingEntityRaw', 'domainRaw', 'publicRaw', 'targetAudienceRaw']
-  const divergences = []
+function normalizedReferenceValue(value) {
+  if (value === null || value === undefined) return null
+  const normalized = String(value).trim().replace(/\s+/g, ' ')
+  return normalized || null
+}
 
-  for (const [group, codes] of Object.entries(references)) {
-    for (const code of codes) {
-      const imported = importedByCode.get(code)
-      const sample = sampleByCode.get(code)
-      if (!imported || !sample) {
-        divergences.push({
-          group,
-          code,
-          field: 'présence',
-          currentValue: sample ? 'présent' : 'absent',
-          importedValue: imported ? 'présent' : 'absent',
+function referenceDifferenceCategory(field, referenceValue, currentValue) {
+  if (referenceValue === null && currentValue !== null) return 'ENRICHISSEMENT'
+  if (
+    referenceValue !== null &&
+    currentValue !== null &&
+    referenceValue.toLocaleLowerCase('fr') === currentValue.toLocaleLowerCase('fr')
+  ) {
+    return 'DIFFÉRENCE TYPOGRAPHIQUE'
+  }
+  if (field === 'publicRaw') return 'REVUE MÉTIER PRIORITAIRE'
+  if (field === 'organizingEntityRaw') return 'REVUE MÉTIER'
+  if (field === 'targetAudienceRaw') return 'INFORMATION À EXAMINER'
+  return 'ÉVOLUTION CONTEXTUELLE'
+}
+
+export function monitorValidatedReferences(officialCourseSamples, snapshot) {
+  const importedByCode = new Map(snapshot.map((course) => [course.code, course]))
+  const differences = []
+  const presentCodes = new Set()
+
+  for (const sample of officialCourseSamples) {
+    const imported = importedByCode.get(sample.code)
+    if (!imported) {
+      differences.push({
+        code: sample.code,
+        category: 'RÉFÉRENCE ABSENTE',
+        field: 'présence',
+        referenceValue: 'présente',
+        currentValue: 'absente',
+      })
+      continue
+    }
+    presentCodes.add(sample.code)
+    for (const field of monitoredReferenceFields) {
+      const referenceValue = normalizedReferenceValue(sample.officialData[field])
+      const currentValue = normalizedReferenceValue(imported[field])
+      if (referenceValue !== currentValue) {
+        differences.push({
+          code: sample.code,
+          category: referenceDifferenceCategory(field, referenceValue, currentValue),
+          field,
+          referenceValue: sample.officialData[field] ?? null,
+          currentValue: imported[field] ?? null,
         })
-        continue
-      }
-      for (const field of fields) {
-        const currentValue = sample.officialData[field] ?? null
-        const importedValue = imported[field] ?? null
-        if (currentValue !== importedValue) {
-          divergences.push({ group, code, field, currentValue, importedValue })
-        }
       }
     }
   }
-  return divergences
+
+  const codesByCategory = new Map()
+  for (const difference of differences) {
+    const codes = codesByCategory.get(difference.category) ?? new Set()
+    codes.add(difference.code)
+    codesByCategory.set(difference.category, codes)
+  }
+  const differingCodes = new Set(differences.map(({ code }) => code))
+  const categoryCount = (category) => codesByCategory.get(category)?.size ?? 0
+  const businessReviewCodes = new Set([
+    ...(codesByCategory.get('REVUE MÉTIER PRIORITAIRE') ?? []),
+    ...(codesByCategory.get('REVUE MÉTIER') ?? []),
+  ])
+
+  return {
+    differences,
+    summary: {
+      checked: officialCourseSamples.length,
+      present: presentCodes.size,
+      absent: officialCourseSamples.length - presentCodes.size,
+      identical: officialCourseSamples.length - differingCodes.size,
+      priorityBusinessReviews: categoryCount('REVUE MÉTIER PRIORITAIRE'),
+      businessReviews: categoryCount('REVUE MÉTIER'),
+      businessReviewReferences: businessReviewCodes.size,
+      informationToReview: categoryCount('INFORMATION À EXAMINER'),
+      enrichments: categoryCount('ENRICHISSEMENT'),
+      contextualEvolutions: categoryCount('ÉVOLUTION CONTEXTUELLE'),
+      typographicalDifferences: categoryCount('DIFFÉRENCE TYPOGRAPHIQUE'),
+    },
+  }
+}
+
+async function monitorOfficialReferences(snapshot) {
+  const moduleUrl = new URL(`../src/data/officialCourseSamples.js?time=${Date.now()}`, import.meta.url)
+  const { officialCourseSamples } = await import(moduleUrl.href)
+  return monitorValidatedReferences(officialCourseSamples, snapshot)
 }
 
 function percentage(count, total) {
@@ -497,6 +554,46 @@ function buildCatalogueDiffLines(catalogueDiff, technicalAnomalies) {
   return lines
 }
 
+export function buildReferenceMonitoringLines(referenceMonitoring) {
+  const { differences, summary } = referenceMonitoring
+  const lines = [
+    '## Surveillance des références validées',
+    '',
+    'Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni le statut de validation.',
+    '',
+    '| Indicateur | Références |',
+    '| --- | ---: |',
+    `| Références contrôlées | ${summary.checked} |`,
+    `| Références présentes | ${summary.present} |`,
+    `| Références absentes | ${summary.absent} |`,
+    `| Références identiques | ${summary.identical} |`,
+    `| Revues métier prioritaires | ${summary.priorityBusinessReviews} |`,
+    `| Revues métier | ${summary.businessReviews} |`,
+    `| Références nécessitant une revue métier | ${summary.businessReviewReferences} |`,
+    `| Informations à examiner | ${summary.informationToReview} |`,
+    `| Enrichissements | ${summary.enrichments} |`,
+    `| Évolutions contextuelles | ${summary.contextualEvolutions} |`,
+    `| Différences typographiques | ${summary.typographicalDifferences} |`,
+    '',
+  ]
+
+  if (differences.length === 0) {
+    lines.push('Aucun écart ni absence détecté.', '')
+  } else {
+    lines.push(
+      '| Code | Catégorie d’écart | Champ | Valeur de référence | Valeur actuelle |',
+      '| --- | --- | --- | --- | --- |',
+      ...differences.map(
+        ({ code, category, field, referenceValue, currentValue }) =>
+          `| ${code} | ${category} | \`${field}\` | ${markdownValue(referenceValue)} | ${markdownValue(currentValue)} |`,
+      ),
+      '',
+    )
+  }
+
+  return lines
+}
+
 function buildReport(context) {
   const {
     catalogueDiff,
@@ -504,7 +601,7 @@ function buildReport(context) {
     errors,
     indexData,
     integrityFailures,
-    divergences,
+    referenceMonitoring,
     sectionLabels,
     securityIssues,
     snapshot,
@@ -548,6 +645,7 @@ function buildReport(context) {
     `- Fiches indisponibles : ${unavailable}`,
     '',
     ...buildCatalogueDiffLines(catalogueDiff, technicalAnomalies),
+    ...buildReferenceMonitoringLines(referenceMonitoring),
     '## Offres détectées',
     '',
     '| Offre | Occurrences | Formations uniques |',
@@ -633,21 +731,6 @@ function buildReport(context) {
   } else {
     lines.push('| Code | URL | Type d’erreur |', '| --- | --- | --- |')
     lines.push(...errors.map(({ code, sourceUrl, error }) => `| ${code} | ${sourceUrl} | ${markdown(error)} |`), '')
-  }
-
-  lines.push('## Comparaison avec les formations de référence', '')
-  if (divergences.length === 0) {
-    lines.push('Aucune différence significative détectée.', '')
-  } else {
-    lines.push(
-      '| Groupe | Code | Champ | Valeur de l’échantillon V1.1 | Valeur importée |',
-      '| --- | --- | --- | --- | --- |',
-      ...divergences.map(
-        ({ group, code, field, currentValue, importedValue }) =>
-          `| ${markdown(group)} | ${code} | \`${field}\` | ${markdownValue(currentValue)} | ${markdownValue(importedValue)} |`,
-      ),
-      '',
-    )
   }
 
   lines.push(
@@ -765,7 +848,7 @@ async function main() {
   if (integrityFailures.length > 0) {
     throw new Error(`Contrôles d’intégrité en échec : ${integrityFailures.join('; ')}`)
   }
-  const divergences = await compareReferences(snapshot)
+  const referenceMonitoring = await monitorOfficialReferences(snapshot)
   const officialSnapshot = JSON.parse(await readFile(officialSnapshotPath, 'utf8'))
   const catalogueDiff = compareCatalogueSnapshots(officialSnapshot, snapshot)
   const technicalAnomalies = [
@@ -803,7 +886,7 @@ async function main() {
     errors,
     indexData,
     integrityFailures,
-    divergences,
+    referenceMonitoring,
     sectionLabels,
     snapshot,
     snapshotBytes: Buffer.byteLength(snapshotText),
