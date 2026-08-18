@@ -45,7 +45,7 @@ const expectedOfficialDisplayData = new Map([
   ],
   ['FP173', ['Traversée de la Rade - Prérequis.', '01. FORMATION INITIALE Police']],
   ['OCD151', ['CAS Violences plurielles', 'Collaboration & auto-gestion']],
-  ['OCD425', [null, null]],
+  ['OCD425', ['La communication au quotidien', 'Collaboration & auto-gestion']],
   [
     'PJ-1001',
     [
@@ -53,7 +53,10 @@ const expectedOfficialDisplayData = new Map([
       'FORMATION COLLABORATEURS',
     ],
   ],
-  ['PJ-0028', [null, null]],
+  [
+    'PJ-0028',
+    ['Rédaction de décisions judiciaires - filière administrative', 'FORMATION MAGISTRATS'],
+  ],
   ['SEM1098', ["Les clés d'une communication efficace", 'COMMUNIQUER ET TRANSMETTRE']],
   [
     'S2-590',
@@ -163,21 +166,65 @@ test('les intitulés et domaines officiels sont renseignés ou explicitement nul
   }
 })
 
-test('les champs bruts non vérifiables restent nuls', () => {
+test('les métadonnées descriptives stabilisées correspondent au snapshot officiel', () => {
+  assert.deepEqual(coursesByCode.get('OCD425').officialData, {
+    titleRaw: 'La communication au quotidien',
+    domainRaw: 'Collaboration & auto-gestion',
+    organizingEntityRaw: "Centre de formation de l'OCD",
+    publicRaw: 'Personnel Pénitentiaire',
+    targetAudienceRaw:
+      "Le personnel des établissements de privation de liberté, des autorités de probation, de placement et d'exécution qui mènent régulièrement des entretiens avec les détenu·e·s.",
+  })
+
+  assert.deepEqual(coursesByCode.get('PJ-0028').officialData, {
+    titleRaw: 'Rédaction de décisions judiciaires - filière administrative',
+    domainRaw: 'FORMATION MAGISTRATS',
+    organizingEntityRaw: 'Secteur formation du Pouvoir judiciaire',
+    publicRaw: 'Magistrats',
+    targetAudienceRaw: 'Magistrats de la filière administrative',
+  })
+
+  assert.equal(
+    coursesByCode.get('S2-590').officialData.organizingEntityRaw,
+    "Direction générale de l'enseig. secondaire II",
+  )
+})
+
+test('les ciblages explicitement validés conservent leur provenance', () => {
   for (const code of ['OCD425', 'PJ-0028']) {
-    assert.deepEqual(coursesByCode.get(code).officialData, {
-      titleRaw: null,
-      domainRaw: null,
-      organizingEntityRaw: null,
-      publicRaw: null,
-      targetAudienceRaw: null,
-    })
+    assert.equal(coursesByCode.get(code).targeting.targetingSource, 'explicit')
   }
 })
 
-test('les ciblages validés sans champs bruts ont une provenance explicite', () => {
-  for (const code of ['OCD425', 'PJ-0028']) {
-    assert.equal(coursesByCode.get(code).targeting.targetingSource, 'explicit')
+test('la stabilisation descriptive ne modifie pas les ciblages validés', () => {
+  const expectedTargeting = new Map([
+    [
+      'S2-590',
+      {
+        targets: [{ category: 'PE', entity: 'DIP' }],
+        targetingSource: 'publicDetail',
+      },
+    ],
+    [
+      'OCD425',
+      {
+        targets: [{ category: 'PEN', entity: 'OCD' }],
+        targetingSource: 'explicit',
+      },
+    ],
+    [
+      'PJ-0028',
+      {
+        targets: [{ category: 'MAG', entity: 'PJ' }],
+        targetingSource: 'explicit',
+      },
+    ],
+  ])
+
+  for (const [code, targeting] of expectedTargeting) {
+    const course = coursesByCode.get(code)
+    assert.equal(course.normalizationStatus, 'validated')
+    assert.deepEqual(course.targeting, targeting)
   }
 })
 

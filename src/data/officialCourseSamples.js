@@ -70,11 +70,12 @@ Dans certains cas, des auxiliaires peuvent également être invitées et invité
     sourceUrl:
       'https://outils.ge.ch/referentiel/formation/CatalogueDescription/OCD425.html',
     officialData: {
-      titleRaw: null,
-      domainRaw: null,
-      organizingEntityRaw: null,
-      publicRaw: null,
-      targetAudienceRaw: null,
+      titleRaw: 'La communication au quotidien',
+      domainRaw: 'Collaboration & auto-gestion',
+      organizingEntityRaw: "Centre de formation de l'OCD",
+      publicRaw: 'Personnel Pénitentiaire',
+      targetAudienceRaw:
+        "Le personnel des établissements de privation de liberté, des autorités de probation, de placement et d'exécution qui mènent régulièrement des entretiens avec les détenu·e·s.",
     },
     normalizationStatus: 'validated',
     targeting: {
@@ -106,11 +107,11 @@ Dans certains cas, des auxiliaires peuvent également être invitées et invité
     sourceUrl:
       'https://outils.ge.ch/referentiel/formation/CatalogueDescription/PJ-0028.html',
     officialData: {
-      titleRaw: null,
-      domainRaw: null,
-      organizingEntityRaw: null,
-      publicRaw: null,
-      targetAudienceRaw: null,
+      titleRaw: 'Rédaction de décisions judiciaires - filière administrative',
+      domainRaw: 'FORMATION MAGISTRATS',
+      organizingEntityRaw: 'Secteur formation du Pouvoir judiciaire',
+      publicRaw: 'Magistrats',
+      targetAudienceRaw: 'Magistrats de la filière administrative',
     },
     normalizationStatus: 'validated',
     targeting: {
@@ -149,8 +150,7 @@ Dans certains cas, des auxiliaires peuvent également être invitées et invité
     officialData: {
       titleRaw: 'Modéliser le réel : le dialogue entre mathématiques et physique',
       domainRaw: 'Mathématiques',
-      organizingEntityRaw:
-        "Direction générale de l'enseig. secondaire II / Service formation continue de l' ES II",
+      organizingEntityRaw: "Direction générale de l'enseig. secondaire II",
       publicRaw: 'Enseignants du PO',
       targetAudienceRaw:
         "Personnes qui, dans l'ES II, sont enseignantes de mathématiques et/ou physique.",
