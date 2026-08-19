@@ -38,14 +38,6 @@ function getCourseFacetValues(course, facet) {
   )
 }
 
-function matchesSearch(course, search) {
-  const query = search.trim().toLocaleLowerCase('fr-CH')
-  const searchableText = `${course.code} ${course.officialData.titleRaw ?? ''}`
-    .toLocaleLowerCase('fr-CH')
-
-  return !query || searchableText.includes(query)
-}
-
 function matchesFacet(course, facet, selectedValues) {
   const values = selectedValues ?? []
   return (
@@ -60,8 +52,6 @@ export function getFacetValueCounts(courses, filters, omittedFacet) {
   const counts = new Map()
 
   for (const course of courses) {
-    if (!matchesSearch(course, filters.search)) continue
-
     const matchesOtherFacets = Object.keys(FACET_VALUE_READERS).every(
       (facet) =>
         facet === omittedFacet || matchesFacet(course, facet, filters[facet]),

@@ -27,6 +27,7 @@ import {
   parseCourseSearchUrl,
   serializeCourseSearchState,
 } from './domain/courseSearchUrl.js'
+import { searchCourses } from './domain/courseSearch.js'
 
 const NO_FILTER = ''
 const LONG_TARGET_AUDIENCE_THRESHOLD = 240
@@ -139,40 +140,45 @@ function App() {
       publics,
     ],
   )
+  const hasTextSearch = officialSearch.trim() !== ''
+  const searchedOfficialCourses = useMemo(
+    () => searchCourses(fullCatalogueCourses, officialSearch),
+    [officialSearch],
+  )
   const facetCounts = useMemo(
     () => ({
       sessions: getFacetValueCounts(
-        fullCatalogueCourses,
+        searchedOfficialCourses,
         currentFacetFilters,
         'sessions',
       ),
       offers: getFacetValueCounts(
-        fullCatalogueCourses,
+        searchedOfficialCourses,
         currentFacetFilters,
         'offers',
       ),
       entities: getFacetValueCounts(
-        fullCatalogueCourses,
+        searchedOfficialCourses,
         currentFacetFilters,
         'entities',
       ),
       domains: getFacetValueCounts(
-        fullCatalogueCourses,
+        searchedOfficialCourses,
         currentFacetFilters,
         'domains',
       ),
       themes: getFacetValueCounts(
-        fullCatalogueCourses,
+        searchedOfficialCourses,
         currentFacetFilters,
         'themes',
       ),
       publics: getFacetValueCounts(
-        fullCatalogueCourses,
+        searchedOfficialCourses,
         currentFacetFilters,
         'publics',
       ),
     }),
-    [currentFacetFilters],
+    [currentFacetFilters, searchedOfficialCourses],
   )
 
   const displayedOfferOptions = keepAvailableFacetOptions(
@@ -255,13 +261,8 @@ function App() {
 
   const matchingOfficialCourses = useMemo(
     () =>
-      fullCatalogueCourses.filter((course) => {
-        const query = officialSearch.trim().toLocaleLowerCase('fr-CH')
-        const searchableText = `${course.code} ${course.officialData.titleRaw ?? ''}`
-          .toLocaleLowerCase('fr-CH')
-
-        return (
-          (!query || searchableText.includes(query)) &&
+      searchedOfficialCourses.filter(
+        (course) =>
           matchesCourseSessionFacet(course, sessions) &&
           (trainingOffers.length === 0 ||
             course.catalogueOffers.some((offer) => trainingOffers.includes(offer))) &&
@@ -269,11 +270,10 @@ function App() {
             trainingEntities.includes(course.officialData.organizingEntityRaw)) &&
           (domains.length === 0 || domains.includes(course.officialData.domainRaw)) &&
           (themes.length === 0 || themes.includes(course.officialData.themeRaw)) &&
-          matchesPublicFacet(course, publics)
-        )
-      }),
+          matchesPublicFacet(course, publics),
+      ),
     [
-      officialSearch,
+      searchedOfficialCourses,
       sessions,
       trainingOffers,
       trainingEntities,
@@ -284,8 +284,11 @@ function App() {
   )
 
   const sortedOfficialCourses = useMemo(
-    () => sortCourses(matchingOfficialCourses, courseSort),
-    [courseSort, matchingOfficialCourses],
+    () =>
+      hasTextSearch
+        ? matchingOfficialCourses
+        : sortCourses(matchingOfficialCourses, courseSort),
+    [courseSort, hasTextSearch, matchingOfficialCourses],
   )
 
   const pageCount = getPageCount(matchingOfficialCourses.length)
@@ -543,16 +546,20 @@ function App() {
                     {matchingOfficialCourses.length !== 1 ? 's' : ''} trouvée
                     {matchingOfficialCourses.length !== 1 ? 's' : ''}
                   </h2>
-                  <label className="course-sort-control">
-                    <span>Trier par</span>
-                    <select value={courseSort} onChange={changeCourseSort}>
-                      {COURSE_SORT_OPTIONS.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
+                  {hasTextSearch ? (
+                    <div className="course-sort-control">Tri : Pertinence</div>
+                  ) : (
+                    <label className="course-sort-control">
+                      <span>Trier par</span>
+                      <select value={courseSort} onChange={changeCourseSort}>
+                        {COURSE_SORT_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  )}
                 </div>
                 {activeOfficialFilters.length > 0 && (
                   <div className="active-filters" aria-label="Filtres actifs">

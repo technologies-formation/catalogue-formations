@@ -8,6 +8,9 @@ import {
   matchesCourseSessionFacet,
   SESSION_FACET_OPTIONS,
 } from './courseFacets.js'
+import { getPageResults } from './coursePagination.js'
+import { searchCourses } from './courseSearch.js'
+import { sortCourses } from './courseSorting.js'
 
 function course({
   code,
@@ -112,6 +115,67 @@ test('les compteurs conservent le OU interne et le ET entre facettes', () => {
 
   assert.equal(counts.get('Entité 1'), 2)
   assert.equal(counts.has('Entité 2'), false)
+})
+
+test('les compteurs utilisent le sous-ensemble produit par la recherche enrichie', () => {
+  const searchedCourses = searchCourses(searchIntegrationCourses, 'tableur')
+  const counts = getFacetValueCounts(searchedCourses, emptyFilters, 'offers')
+
+  assert.deepEqual(Object.fromEntries(counts), {
+    'Offre Bureautique': 2,
+  })
+})
+
+test('une facette filtre les résultats sans perdre leur ordre de pertinence', () => {
+  const searchedCourses = searchCourses(searchIntegrationCourses, 'prise de parole')
+  const filteredCourses = searchedCourses.filter(
+    (item) => item.officialData.domainRaw === 'Communication',
+  )
+
+  assert.ok(filteredCourses.some((item) => item.code === 'SEM1108'))
+  assert.deepEqual(
+    filteredCourses.map(({ code }) => code),
+    searchedCourses
+      .filter((item) => item.officialData.domainRaw === 'Communication')
+      .map(({ code }) => code),
+  )
+  assert.ok(
+    filteredCourses.every(
+      (item) => item.officialData.domainRaw === 'Communication',
+    ),
+  )
+})
+
+test('Sessions se combine avec le sous-ensemble produit par la recherche', () => {
+  const searchedCourses = searchCourses(searchIntegrationCourses, 'tableur')
+  const openCourses = searchedCourses.filter((item) =>
+    matchesCourseSessionFacet(item, ['Inscriptions ouvertes']),
+  )
+
+  assert.deepEqual(openCourses.map(({ code }) => code), ['EXCEL-TITRE'])
+})
+
+test('effacer la recherche permet de restaurer le tri utilisateur', () => {
+  const searchedCourses = searchCourses(searchIntegrationCourses, 'tableur')
+  assert.equal(searchedCourses[0].code, 'EXCEL-TITRE')
+
+  const allCourses = searchCourses(searchIntegrationCourses, '')
+  assert.deepEqual(
+    sortCourses(allCourses, 'code-desc').map(({ code }) => code),
+    ['SEM1108', 'PAROLE-SECONDAIRE', 'EXCEL-TITRE', 'EXCEL-PUBLIC'],
+  )
+})
+
+test('la pagination intervient après la recherche et les facettes', () => {
+  const searchedCourses = searchCourses(paginationSearchCourses, 'excel')
+  const filteredCourses = searchedCourses.filter(
+    (item) => item.officialData.domainRaw === 'Bureautique',
+  )
+
+  assert.equal(searchedCourses.length, 24)
+  assert.equal(filteredCourses.length, 22)
+  assert.equal(getPageResults(filteredCourses, 1).length, 20)
+  assert.equal(getPageResults(filteredCourses, 2).length, 2)
 })
 
 test('dérive les valeurs Sessions sans doublon et exclut un cours sans flag', () => {
@@ -259,3 +323,61 @@ test('le reset général désactive Sessions', () => {
     [],
   )
 })
+
+const searchIntegrationCourses = [
+  searchCourse('EXCEL-TITRE', 'Excel : fonctions essentielles', {
+    offer: 'Offre Bureautique',
+    domain: 'Bureautique',
+    hasOpenSession: true,
+  }),
+  searchCourse('EXCEL-PUBLIC', 'Analyser des données', {
+    offer: 'Offre Bureautique',
+    domain: 'Bureautique',
+    targetAudienceRaw: 'Personnes utilisant Excel',
+    hasScheduledSession: true,
+  }),
+  searchCourse('SEM1108', 'Prise de parole en public', {
+    offer: 'Offre Communication',
+    domain: 'Communication',
+  }),
+  searchCourse('PAROLE-SECONDAIRE', 'Communication professionnelle', {
+    offer: 'Offre Communication',
+    domain: 'Communication',
+    targetAudienceRaw: 'Personnes préparant une prise de parole',
+  }),
+]
+
+const paginationSearchCourses = Array.from({ length: 24 }, (_, index) =>
+  searchCourse(`EXCEL-${String(index + 1).padStart(2, '0')}`, `Excel niveau ${index + 1}`, {
+    offer: 'Offre Bureautique',
+    domain: index < 22 ? 'Bureautique' : 'Autre domaine',
+  }),
+)
+
+function searchCourse(
+  code,
+  titleRaw,
+  {
+    offer,
+    domain,
+    targetAudienceRaw = '',
+    hasOpenSession = false,
+    hasScheduledSession = false,
+  },
+) {
+  return {
+    code,
+    catalogueOffers: [offer],
+    officialData: {
+      titleRaw,
+      organizingEntityRaw: 'Entité de test',
+      domainRaw: domain,
+      themeRaw: 'Thème de test',
+      publicRaw: 'Tout public',
+      publicValue: 'Tout public',
+      targetAudienceRaw,
+      hasOpenSession,
+      hasScheduledSession,
+    },
+  }
+}
