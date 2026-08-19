@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-08-18
+- Date du snapshot : 2026-08-19
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 138.4 secondes
-- Taille du JSON final : 2.05 Mio (2146217 octets)
-- Empreinte SHA-256 du snapshot : `13940cd53eca720f0da8b25b92c5fa1735b086400a15278f47bd963be3a21a2c`
+- Durée totale de l’import : 118.0 secondes
+- Taille du JSON final : 2.05 Mio (2148685 octets)
+- Empreinte SHA-256 du snapshot : `3d23d51d9bbababf5f358efbac0496cec840f5268e8079cc3bdc6983ceab6545`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1648
-- Codes uniques : 1057
+- Occurrences détectées dans l’index : 1647
+- Codes uniques : 1056
 - Occurrences éliminées par déduplication : 591
 - Formations présentes dans plusieurs offres : 299
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1057
+- Fiches récupérées avec succès : 1056
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1055 |
-| Cours dans le candidat | 1057 |
-| Cours ajoutés | 3 |
-| Cours supprimés | 1 |
-| Cours modifiés | 13 |
+| Cours dans le snapshot officiel | 1057 |
+| Cours dans le candidat | 1056 |
+| Cours ajoutés | 4 |
+| Cours supprimés | 5 |
+| Cours modifiés | 11 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,38 +34,42 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| EP-090EVEN | Construire les bases de la réussite scolaire dès le cycle élémentaire : enjeux, apports et pistes - présentiel | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Capacités transversales |
-| OMP-119TSA | Journée refresh prévention et gestion des crises comportementales | DIP-OMP - Offre formation de l'OMP | DGOMP/SRH | Formations spécifiques |
-| TRT3016E | Maîtriser les fondamentaux du Numérique Responsable \| E-Learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | NUMERIQUE A L'ETAT |
+| EP-091EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - live streaming | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Capacités transversales |
+| EP-092EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - différé | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Capacités transversales |
+| OMP-111 | Des jeux de société pour construire l?attention, la mémoire, la compréhension et le raisonnement | DIP-OMP - Offre formation de l'OMP | DGOMP/SRH | Développement professionnel |
+| SEM000 | (intitulé \| POS1) Améliorer l'expérience utilisateur dans l'Espace de formation (Intitulé : Zéphir) | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | Informatique Bureautique |
 
 ### Cours supprimés
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| SEM000 | (intitulé \| POS1) Améliorer l'expérience utilisateur dans l'Espace de formation (Intitulé : Zéphir) | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | Informatique Bureautique |
+| OCD014 | Experte et Expert en management du domaine des privations de liberté | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
+| OCD179 | FOP II - Conduite d'intervention en milieu carcéral (Dir., Off. sup., Off.) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
+| OCD332 | FOP I - Conduite d'intervention en milieu carcéral | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
+| OCD374 | Prévenir l'épuisement professionnel - cadres | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
+| OCD423 | Gestion de crise pour les cadres des services pénitentiaires - Compétences de bases | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-489 | Apprendre par le corps en classe et hors de la classe | `hasOpenSession` : « true » → « false » |
-| EP-699 | Introduction aux fonctions exécutives et attentionnelles à l'école primaire | `hasOpenSession` : « true » → « false » |
-| EP-974 | L'éducation nutritionnelle et sensorielle au cycle élémentaire | `hasOpenSession` : « true » → « false » |
-| S2-117 | Dessin d'observation : vision et posture | `hasOpenSession` : « true » → « false » |
-| SEM-10244 | CO-ESII / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « false » → « true » |
-| SEM-10605 | CO-ESII / L'image et la représentation du réel dans le cinéma documentaire aujourd'hui avec le Festival Visions du Réel | `hasOpenSession` : « true » → « false » |
-| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | `hasOpenSession` : « false » → « true » |
-| SEM0056 | Principes généraux du droit administratif | `hasOpenSession` : « true » → « false » |
-| SEM1089 | Le management transversal | `hasOpenSession` : « true » → « false » |
-| SEM1171 | Comment collaborer au sein d'une équipe intergénérationnelle | `hasOpenSession` : « true » → « false » |
-| SEM1215 | Les neurosciences au service du management | `hasOpenSession` : « true » → « false » |
+| CO-01687 | La pédagogie de la Classe Autonome | `hasOpenSession` : « true » → « false » |
+| EP-090EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - présentiel | `titleRaw` : « Construire les bases de la réussite scolaire dès le cycle élémentaire : enjeux, apports et pistes - présentiel » → « Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - présentiel » |
+| EP-095MDAS | Comprendre et gérer les conflits en EPS : stratégies d'autorégulation | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| EP-099MDAS | Ultimate en contexte scolaire MDAS | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| EP-101MDAS | Comprendre et gérer les conflits en EPS : stratégies d'autorégulation - niveau II | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| FP255 | Sport et Santé - Bilan fonctionnel | `hasOpenSession` : « true » → « false » |
+| S2-FIO002A | Enseignement, différenciation pédagogique et évaluation dans une approche orientée vers les compétences opérationnelles (OCO): préparer, délivrer et évaluer | `titleRaw` : « Enseignement par compétences, pédagogie différenciée, évaluation » → « Enseignement, différenciation pédagogique et évaluation dans une approche orientée vers les compétences opérationnelles (OCO): préparer, délivrer et évaluer » |
+| S2-FIO002B | Enseignement, différenciation pédagogique et évaluation dans une approche orientée vers les compétences opérationnelles (OCO): préparer, délivrer et évaluer | `titleRaw` : « Enseignement par compétences, pédagogie différenciée, évaluation » → « Enseignement, différenciation pédagogique et évaluation dans une approche orientée vers les compétences opérationnelles (OCO): préparer, délivrer et évaluer » |
+| SEM1193 | Prendre et assumer son rôle | `hasOpenSession` : « false » → « true » |
+| SEM1214 | Charge mentale au travail: s'en décharger avant d'être surchargé.e | `hasOpenSession` : « true » → « false » |
+| SEM1247 | Les discriminations: comprendre, prévenir et prendre en charge | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| S2-FIO002A | Enseignement par compétences, pédagogie différenciée, évaluation | `objectivesRaw` |
-| SEM-10755 | ESII : Prise de notes et journal de lecture avec Keep / NOUVEAU / Formation autonome en ligne | `contentRaw` |
+| EP-090EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - présentiel | `objectivesRaw`, `contentRaw` |
 
 ### Changements d’offres
 
@@ -75,17 +79,41 @@ Aucun rattachement à une offre n’a changé.
 
 Aucune anomalie technique.
 
+## Surveillance des références validées
+
+Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni le statut de validation.
+
+| Indicateur | Références |
+| --- | ---: |
+| Références contrôlées | 24 |
+| Références présentes | 22 |
+| Références absentes | 2 |
+| Références identiques | 21 |
+| Revues métier prioritaires | 0 |
+| Revues métier | 0 |
+| Références nécessitant une revue métier | 0 |
+| Informations à examiner | 1 |
+| Enrichissements | 0 |
+| Évolutions contextuelles | 0 |
+| Différences typographiques | 0 |
+
+| Code | Catégorie d’écart | Champ | Valeur de référence | Valeur actuelle |
+| --- | --- | --- | --- | --- |
+| CO-01660 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
+| EP-520 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
+| CO-01686 | INFORMATION À EXAMINER | `targetAudienceRaw` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP<br>Les participants identifient quelques-unes des préoccupations majeures des élèves, de leurs familles et des enseignants qui les côtoient à travers une expérience rapportée du terrain ;<br>A la fin de la séance, les participants sont capables d'identifier les défis pour ces familles et, en collaboration avec les personnes ressources de leur établissement (conseillères et conseillers sociaux, éducatrices et éducateurs), de mieux les orienter.` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP` |
+
 ## Offres détectées
 
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
-| Détention - Offre de formation de l'OCD | 71 | 71 |
-| DF-OPE - L'offre de formation de l'OPE | 169 | 169 |
+| Détention - Offre de formation de l'OCD | 66 | 66 |
+| DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 226 | 226 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 292 | 292 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 294 | 294 |
 | DIP-ES II - Offre de formation de l'ES II | 236 | 236 |
-| DIP-OMP - Offre formation de l'OMP | 232 | 232 |
+| DIP-OMP - Offre formation de l'OMP | 233 | 233 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 153 | 153 |
 | PJ - Offre de formation du pouvoir judiciaire | 56 | 56 |
 | POLICE - CFPS - Centre de Formation de la Police | 210 | 210 |
@@ -94,17 +122,17 @@ Aucune anomalie technique.
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1057/1057 | 100.0 % |
-| `domainRaw` | 1057/1057 | 100.0 % |
-| `themeRaw` | 978/1057 | 92.5 % |
-| `publicRaw` | 949/1057 | 89.8 % |
-| `durationRaw` | 1042/1057 | 98.6 % |
-| `targetAudienceRaw` | 941/1057 | 89.0 % |
-| `generalInformationRaw` | 548/1057 | 51.8 % |
-| `objectivesRaw` | 1007/1057 | 95.3 % |
-| `contentRaw` | 952/1057 | 90.1 % |
-| `prerequisitesRaw` | 400/1057 | 37.8 % |
-| `additionalInformationRaw` | 356/1057 | 33.7 % |
+| `organizingEntityRaw` | 1056/1056 | 100.0 % |
+| `domainRaw` | 1056/1056 | 100.0 % |
+| `themeRaw` | 982/1056 | 93.0 % |
+| `publicRaw` | 947/1056 | 89.7 % |
+| `durationRaw` | 1041/1056 | 98.6 % |
+| `targetAudienceRaw` | 939/1056 | 88.9 % |
+| `generalInformationRaw` | 544/1056 | 51.5 % |
+| `objectivesRaw` | 1006/1056 | 95.3 % |
+| `contentRaw` | 951/1056 | 90.1 % |
+| `prerequisitesRaw` | 401/1056 | 38.0 % |
+| `additionalInformationRaw` | 357/1056 | 33.8 % |
 
 ### Correspondance des libellés officiels
 
@@ -149,10 +177,10 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
-- TRT012 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
@@ -168,16 +196,6 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 ## Erreurs de récupération
 
 Aucune erreur.
-
-## Comparaison avec les formations de référence
-
-| Groupe | Code | Champ | Valeur de l’échantillon V1.1 | Valeur importée |
-| --- | --- | --- | --- | --- |
-| DIP | DIP-002 | `targetAudienceRaw` | `Cette séance d'accueil s'adresse aux personnes nouvellement engagées au sein du DIP, répondant aux critères suivants :<br><br>- le personnel administratif et technique<br>- les apprenties et apprentis<br>- le personnel enseignant engagé en cours d'année scolaire, n'ayant pas bénéficié d'une séance d'accueil organisée par sa direction générale<br><br>Dans certains cas, des auxiliaires peuvent également être invitées et invités à y prendre part.` | `Cette séance d'accueil s'adresse aux personnes nouvellement engagées au sein du DIP, répondant aux critères suivants :<br>- le personnel administratif et technique<br>- les apprenties et apprentis<br>- le personnel enseignant engagé en cours d'année scolaire, n'ayant pas bénéficié d'une séance d'accueil organisée par sa direction générale<br>Dans certains cas, des auxiliaires peuvent également être invitées et invités à y prendre part.` |
-| DIP | EP-520 | `présence` | `présent` | `absent` |
-| Police | FP173 | `targetAudienceRaw` | `Cette manifestation sportive est ouverte à l'ensemble du personnel de la police genevoise (ADM, ASP, policière/policier) sous réserve de disponibilité des places. Les policiers en formation concernés par l'événement seront mobilisés directement par l'organisation.` | `Cette manifestation sportive est ouverte à l'ensemble du personnel de la police genevoise (ADM, ASP, policière/policier) sous réserve de disponibilité des places.<br>Les policiers en formation concernés par l'événement seront mobilisés directement par l'organisation.` |
-| OCD | OCD151 | `targetAudienceRaw` | `Le personnel du travail social en institution et hors murs, de la santé, de l'enseignement, de l'administration, de la police et des champs apparentés; exerçant dans les champs de la précarité, de la probation, du milieu carcéral, de la santé mentale et des services sociaux et de protection de l'adulte et de l'enfant. Formation destinée aux fonctionnaires en lien direct avec les bénéficiaires et/ou occupant des fonctions d'encadrement d'équipe.` | `Le personnel du travail social en institution et hors murs, de la santé, de l'enseignement, de l'administration, de la police et des champs apparentés; exerçant dans les champs de la précarité, de la probation, du milieu carcéral, de la santé mentale et des services sociaux et de protection de l'adulte et de l'enfant.<br>Formation destinée aux fonctionnaires en lien direct avec les bénéficiaires et/ou occupant des fonctions d'encadrement d'équipe.` |
-| Pouvoir judiciaire | PJ-0001 | `titleRaw` | `Accueil des nouveaux collaborateurs. La convocation est directement adressée aux collaboratrices et collaborateurs par RH-Formation` | `Accueil des nouveaux collaborateurs.<br>La convocation est directement adressée aux collaboratrices et collaborateurs par RH-Formation` |
 
 ## Contrôles d’unicité
 
@@ -197,7 +215,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-08-18T07:08:54.731Z
-- Snapshot candidat validé : 2026-08-18
-- Empreinte SHA-256 : `13940cd53eca720f0da8b25b92c5fa1735b086400a15278f47bd963be3a21a2c`
+- Date et heure de promotion : 2026-08-19T04:59:53.407Z
+- Snapshot candidat validé : 2026-08-19
+- Empreinte SHA-256 : `3d23d51d9bbababf5f358efbac0496cec840f5268e8079cc3bdc6983ceab6545`
 - Promotion manuelle confirmée.
