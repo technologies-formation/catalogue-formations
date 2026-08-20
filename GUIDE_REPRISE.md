@@ -218,6 +218,24 @@ La recherche sémantique n’est donc pas intégrée et ne constitue pas une pro
 - Ne pas recalibrer quotidiennement les poids ou seuils ; les petites évolutions quotidiennes du catalogue sont supportées.
 - Réévaluer le moteur seulement en cas d’évolution importante du catalogue ou de ses champs, ou lorsque des problèmes utilisateurs observés le justifient.
 
+### Audit métier complémentaire du 20 août 2026
+
+Un audit de 50 recherches représentatives a mesuré 28 résultats `BON` (56 %), 11 `ACCEPTABLE` (22 %), 3 `MAUVAIS` (6 %) et 8 `AUCUN` (16 %). L’examen métier des cas en échec a montré que six recherches sans résultat étaient de bonnes abstentions, car aucune formation réellement pertinente n’existait dans le catalogue. Quatre lacunes lexicales ou métier réelles et un cas de bruit lexical ont été identifiés.
+
+Le comportement considéré comme correct lors de cet audit était donc de **45 recherches sur 50, soit 90 %**. Ce taux comprend les recherches pertinentes retrouvées et les bonnes abstentions lorsque le catalogue ne contient réellement aucune réponse adaptée. Il s’agit d’un constat daté, et non d’une garantie permanente du moteur.
+
+Trois corrections lexicales ont ensuite été expérimentées temporairement :
+
+- « accueillir un nouveau collaborateur » vers `DIP-002` ;
+- « écrire un courrier professionnel » vers `SEM1033` ;
+- « développement durable » vers `SEM-10647`.
+
+Sur les formulations ayant servi à concevoir ces règles, le taux utilisable apparent passait de 78 % à 84 % et le comportement correct de 90 % à 96 %. Un hold-out indépendant, composé de formulations nouvelles, n’a toutefois obtenu qu’une paraphrase réussie sur cinq pour l’accueil, une sur cinq pour le courrier professionnel et deux sur cinq pour le développement durable. Les contrôles négatifs n’ont pas révélé de nouveau bruit important et les 47 autres requêtes historiques sont restées inchangées, mais aucune règle n’a atteint le niveau minimal de généralisation attendu.
+
+La décision est donc de **conserver V1.2 sans intégrer ces trois corrections**. Leur gain apparent dépendait trop des formulations utilisées pour les concevoir. Enrichir artificiellement le dictionnaire dans ces conditions complexifierait la maintenance, risquerait d’introduire du bruit et suradapterait le moteur aux tests sans démontrer un bénéfice général pour les utilisateurs.
+
+Les futures adaptations doivent être fondées prioritairement sur des recherches réellement effectuées par les utilisateurs, des échecs récurrents observés et des besoins métier démontrés, puis validées sur un jeu de tests indépendant avant intégration. Ne pas enrichir le moteur à partir de quelques exemples fabriqués. Aucune solution technique de suivi des utilisateurs ou d’analytics n’est décidée à ce stade ; ce sujet doit être étudié séparément.
+
 ## Principe de décision du projet
 
 Avant de valider une orientation importante, examiner explicitement :
