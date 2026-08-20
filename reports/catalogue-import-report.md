@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-08-19
+- Date du snapshot : 2026-08-20
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 118.0 secondes
-- Taille du JSON final : 2.05 Mio (2148685 octets)
-- Empreinte SHA-256 du snapshot : `3d23d51d9bbababf5f358efbac0496cec840f5268e8079cc3bdc6983ceab6545`
+- Durée totale de l’import : 114.4 secondes
+- Taille du JSON final : 2.05 Mio (2148691 octets)
+- Empreinte SHA-256 du snapshot : `7385ee1f7294ed454f3e5788e3c0178ad22622744a80234bf023f316932971f1`
 
 ## Synthèse
 
@@ -22,54 +22,43 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1057 |
+| Cours dans le snapshot officiel | 1056 |
 | Cours dans le candidat | 1056 |
-| Cours ajoutés | 4 |
-| Cours supprimés | 5 |
-| Cours modifiés | 11 |
+| Cours ajoutés | 0 |
+| Cours supprimés | 0 |
+| Cours modifiés | 12 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| EP-091EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - live streaming | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Capacités transversales |
-| EP-092EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - différé | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Capacités transversales |
-| OMP-111 | Des jeux de société pour construire l?attention, la mémoire, la compréhension et le raisonnement | DIP-OMP - Offre formation de l'OMP | DGOMP/SRH | Développement professionnel |
-| SEM000 | (intitulé \| POS1) Améliorer l'expérience utilisateur dans l'Espace de formation (Intitulé : Zéphir) | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | Informatique Bureautique |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| OCD014 | Experte et Expert en management du domaine des privations de liberté | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
-| OCD179 | FOP II - Conduite d'intervention en milieu carcéral (Dir., Off. sup., Off.) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
-| OCD332 | FOP I - Conduite d'intervention en milieu carcéral | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
-| OCD374 | Prévenir l'épuisement professionnel - cadres | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
-| OCD423 | Gestion de crise pour les cadres des services pénitentiaires - Compétences de bases | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01687 | La pédagogie de la Classe Autonome | `hasOpenSession` : « true » → « false » |
-| EP-090EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - présentiel | `titleRaw` : « Construire les bases de la réussite scolaire dès le cycle élémentaire : enjeux, apports et pistes - présentiel » → « Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - présentiel » |
-| EP-095MDAS | Comprendre et gérer les conflits en EPS : stratégies d'autorégulation | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| EP-099MDAS | Ultimate en contexte scolaire MDAS | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| EP-101MDAS | Comprendre et gérer les conflits en EPS : stratégies d'autorégulation - niveau II | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| FP255 | Sport et Santé - Bilan fonctionnel | `hasOpenSession` : « true » → « false » |
-| S2-FIO002A | Enseignement, différenciation pédagogique et évaluation dans une approche orientée vers les compétences opérationnelles (OCO): préparer, délivrer et évaluer | `titleRaw` : « Enseignement par compétences, pédagogie différenciée, évaluation » → « Enseignement, différenciation pédagogique et évaluation dans une approche orientée vers les compétences opérationnelles (OCO): préparer, délivrer et évaluer » |
-| S2-FIO002B | Enseignement, différenciation pédagogique et évaluation dans une approche orientée vers les compétences opérationnelles (OCO): préparer, délivrer et évaluer | `titleRaw` : « Enseignement par compétences, pédagogie différenciée, évaluation » → « Enseignement, différenciation pédagogique et évaluation dans une approche orientée vers les compétences opérationnelles (OCO): préparer, délivrer et évaluer » |
-| SEM1193 | Prendre et assumer son rôle | `hasOpenSession` : « false » → « true » |
-| SEM1214 | Charge mentale au travail: s'en décharger avant d'être surchargé.e | `hasOpenSession` : « true » → « false » |
-| SEM1247 | Les discriminations: comprendre, prévenir et prendre en charge | `hasOpenSession` : « true » → « false » |
+| EP-517 | Appropriation du MER Français 1re-2e | `hasOpenSession` : « true » → « false » |
+| EP-973 | « Zélie-Chansons 6 » : nouveau support et pistes d'enseignement | `hasOpenSession` : « true » → « false » |
+| EP-981 | Modelage et construction au cycle élémentaire | `hasOpenSession` : « true » → « false » |
+| PJ-0102 | Gestion des pièces à conviction - Personnel SFPJ et GPC | `hasOpenSession` : « true » → « false » |
+| S2-433 | Evaluation HSE des risques au laboratoire (I) | `hasOpenSession` : « true » → « false » |
+| S2-435 | Intelligence artificielle pour l'enseignement de la chimie | `hasOpenSession` : « true » → « false » |
+| SEM-P1562 | EP-OMP / Atelier découpeuse numérique : fabrication de lettres rugueuses | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| EP-090EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - présentiel | `objectivesRaw`, `contentRaw` |
+| EP-090EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - présentiel | `contentRaw` |
+| EP-091EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - live streaming | `contentRaw` |
+| EP-092EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - différé | `contentRaw` |
+| OMP-109 | Appropriation des nouveaux moyens d'enseignement de français - enseignement spécialisé secondaire | `objectivesRaw` |
+| OMP-111 | Des jeux de société pour construire l?attention, la mémoire, la compréhension et le raisonnement | `objectivesRaw`, `contentRaw` |
 
 ### Changements d’offres
 
@@ -177,9 +166,9 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
@@ -215,7 +204,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-08-19T04:59:53.407Z
-- Snapshot candidat validé : 2026-08-19
-- Empreinte SHA-256 : `3d23d51d9bbababf5f358efbac0496cec840f5268e8079cc3bdc6983ceab6545`
+- Date et heure de promotion : 2026-08-20T05:06:13.498Z
+- Snapshot candidat validé : 2026-08-20
+- Empreinte SHA-256 : `7385ee1f7294ed454f3e5788e3c0178ad22622744a80234bf023f316932971f1`
 - Promotion manuelle confirmée.
