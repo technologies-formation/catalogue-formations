@@ -8,9 +8,9 @@ Ce document est la référence technique et opérationnelle pour reprendre le pr
 - Branche principale : `main`.
 - Dépôt distant : [github.com/technologies-formation/catalogue-formations](https://github.com/technologies-formation/catalogue-formations).
 - URL publique : [technologies-formation.github.io/catalogue-formations](https://technologies-formation.github.io/catalogue-formations/).
-- HEAD documentaire au 18 août 2026 : `c1d674e2406d4bc0e5e3473ce0b47d37e6466d78`.
-- Tag stable : `projet-2-public-v1.3-2026-08-17` (commit `3790db9805c2d93f197641e024abcd28f88ce0a2`).
-- Snapshot officiel actuellement publié : 1 057 formations.
+- État de référence au 20 août 2026 : `98122d9bd766aef207ede4129bfd3eec90071abb`.
+- Tag stable : `projet-2-public-v1.4-2026-08-20`.
+- Snapshot officiel actuellement publié : 1 056 formations. Cette volumétrie peut évoluer avec les mises à jour quotidiennes.
 
 Avant toute intervention, vérifier :
 
@@ -33,9 +33,13 @@ La base technique utilise React et Vite 8.2.1. Le chemin Vite est `/catalogue-fo
 
 ## Architecture fonctionnelle
 
-### Recherche et facettes Cours
+### Recherche V1.2 et facettes Cours
 
-L’application propose une recherche par intitulé ou code et cinq facettes multi-sélection :
+Le moteur de production est défini dans `src/domain/courseSearch.js`. Son API principale est `searchCourses(courses, query)`. Une requête vide retourne le catalogue dans son ordre d’entrée, sans classement V1.2. Une requête active retourne les cours acceptés, classés par pertinence.
+
+La recherche utilise le code, `titleRaw`, `domainRaw`, `themeRaw`, `publicRaw`, `targetAudienceRaw` et `catalogueOffers`. Elle normalise notamment les accents, apostrophes et tirets, traite des pluriels simples, reconnaît les acronymes IA, SI et RH ainsi qu’un dictionnaire métier volontairement limité. Le classement combine pondération des champs, IDF, couverture informative et preuves minimales ; le moteur peut s’abstenir lorsque les preuves sont insuffisantes.
+
+Cette architecture n’ajoute aucune dépendance, n’appelle aucun service externe et n’utilise ni modèle IA, ni token, ni API. L’application propose en complément cinq facettes multi-sélection :
 
 1. Offre de formation ;
 2. Entité de formation ;
@@ -45,7 +49,9 @@ L’application propose une recherche par intitulé ou code et cinq facettes mul
 
 Les valeurs d’une même facette sont combinées par OU ; les facettes sont combinées par ET. Domaine devient disponible après sélection d’une offre ou d’une entité. Thème dépend ensuite d’un domaine et tient compte du Public sélectionné.
 
-Le tri porte sur l’intitulé ou le code, dans les deux ordres. La pagination affiche 20 résultats par page.
+Sans recherche active, les quatre tris habituels restent disponibles : intitulé ou code, dans les deux ordres. Avec une recherche active, l’interface affiche **Tri : Pertinence** et conserve l’ordre produit par V1.2. Ce mode n’ajoute aucun état dans l’URL ; le tri précédemment choisi est restauré après effacement de la recherche. La pagination affiche 20 résultats par page.
+
+Dans `App.jsx`, `searchCourses` est appelé une seule fois et `searchedOfficialCourses` devient la source de vérité pour les facettes, leurs compteurs, les Sessions et la pagination. L’ancien filtrage textuel par `includes()` n’est plus utilisé et ne doit pas être réintroduit dans `courseFacets.js`.
 
 Le champ `publicRaw` alimente la valeur structurée Public et sa facette. Une valeur vide devient **Non renseigné**. `targetAudienceRaw` correspond au texte libre **Public visé** affiché sur la carte ; il ne doit pas être confondu avec la facette Public.
 
@@ -56,11 +62,11 @@ Les Sessions forment un bloc séparé des cinq facettes Cours :
 - **Inscriptions ouvertes** correspond à `hasOpenSession` ;
 - **Ouverture programmée** correspond à `hasScheduledSession`.
 
-Les deux booléens sont indépendants et peuvent être vrais simultanément. Une sélection Sessions est utilisable avec un critère Cours actif. Quand le dernier critère Cours est supprimé, les sélections Sessions sont également supprimées.
+Les deux booléens sont indépendants et peuvent être vrais simultanément. Une sélection Sessions est utilisable avec un critère Cours actif. La recherche texte seule ne constitue pas un critère permettant d’activer les filtres Sessions. Quand le dernier critère Cours est supprimé, les sélections Sessions sont également supprimées.
 
 ### URL partageables
 
-La recherche, les offres, entités, domaines, thèmes, publics et le tri sont sérialisés dans l’URL. La pagination ne l’est pas.
+Les paramètres `q`, `offer`, `entity`, `domain`, `theme`, `public` et `sort` sont sérialisés dans l’URL. La pagination ne l’est pas. Aucun paramètre « pertinence » n’est ajouté.
 
 Les Sessions sont volontairement exclues des URL partageables. Leur état est dynamique et peut évoluer quotidiennement ; persister ce filtre pourrait donner un résultat différent ou trompeur lors d’une consultation ultérieure.
 
@@ -76,7 +82,7 @@ Les Sessions sont volontairement exclues des URL partageables. Leur état est dy
 
 Le candidat et le rapport candidat partagent une date de snapshot. Une empreinte SHA-256 lie le JSON candidat au rapport et est revérifiée lors de la promotion.
 
-`reports/catalogue-import-report.md` est généré automatiquement : il ne doit pas être corrigé manuellement. Il peut temporairement refléter le format du dernier snapshot effectivement promu. La surveillance 24/24 déjà présente dans le code apparaîtra dans ce rapport versionné lors d’une future promotion produisant un nouveau rapport officiel.
+`reports/catalogue-import-report.md` est généré automatiquement : il ne doit pas être corrigé manuellement. Il reflète le dernier snapshot effectivement promu et comprend la surveillance des 24 références validées.
 
 ## Import sécurisé
 
@@ -169,7 +175,7 @@ Chaque référence validée peut contenir :
 
 `normalizationStatus: 'validated'` avec un objet `targeting` rend le ciblage utilisable. `needsReview` indique qu’aucun ciblage métier validé n’est disponible. Un cours `needsReview` reste présent et recherchable par les critères qui n’exigent pas de ciblage validé, notamment code, intitulé, organisateur ou domaine ; il est exclu d’une sélection qui exige une catégorie ou une appartenance métier.
 
-Le référentiel contient actuellement **24 ciblages validés**. Le contrôle du 18 août 2026 observait 22 références présentes et 2 absentes ; ce chiffre est un constat daté, pas une constante métier.
+Le référentiel contient actuellement **24 ciblages validés**. Le contrôle du 20 août 2026 observait 22 références présentes et 2 absentes ; ce chiffre est un constat daté, pas une constante métier.
 
 ## Surveillance 24/24 et robustesse
 
@@ -189,6 +195,29 @@ Ces signaux sont non bloquants et ne modifient jamais automatiquement `targeting
 
 Les tests de robustesse évitent désormais de dépendre d’une volumétrie métier fixe. Les tests structurels contrôlent les invariants ; les scénarios synthétiques couvrent les comportements ; les références validées sont contrôlées séparément du catalogue vivant.
 
+## Validation de production de V1.2
+
+Le 20 août 2026, la recherche V1.2 a été validée sur l’application publique avec les contrôles manuels suivants :
+
+- « prise de parole » : OK ;
+- « tableur » : OK ;
+- « IA » : OK ;
+- effacement de la recherche : retour aux 1 056 formations, OK.
+
+Lors de cette validation, les 272 tests techniques réussissaient, ainsi que le lint et le build. Le nombre de tests est un constat daté et non une constante future.
+
+## Décision sur la recherche sémantique
+
+Une approche sémantique fondée sur des embeddings multilingues a été expérimentée, ainsi qu’un hybride utilisant V1.2 avec un secours sémantique. Sur le test indépendant final, l’hybride n’a apporté aucun gain mesurable par rapport à V1.2. Le modèle aurait en outre ajouté une charge importante côté client et accru la complexité de l’architecture.
+
+La recherche sémantique n’est donc pas intégrée et ne constitue pas une prochaine étape déjà décidée. V1.2 reste la solution de référence. Les branches expérimentales peuvent être conservées comme trace, mais elles ne font pas partie de `main`.
+
+## Maintenance de V1.2
+
+- Ne pas enrichir le dictionnaire par réflexe : ajouter un synonyme seulement lorsqu’un besoin utilisateur démontré le justifie.
+- Ne pas recalibrer quotidiennement les poids ou seuils ; les petites évolutions quotidiennes du catalogue sont supportées.
+- Réévaluer le moteur seulement en cas d’évolution importante du catalogue ou de ses champs, ou lorsque des problèmes utilisateurs observés le justifient.
+
 ## Principe de décision du projet
 
 Avant de valider une orientation importante, examiner explicitement :
@@ -202,7 +231,7 @@ Avant de valider une orientation importante, examiner explicitement :
 - la cohérence métier ;
 - la cohérence avec l’architecture existante.
 
-Ne pas implémenter une fonctionnalité uniquement parce qu’elle est techniquement possible.
+Ne pas implémenter une fonctionnalité uniquement parce qu’elle est techniquement possible. À bénéfice comparable, préférer systématiquement la solution la plus simple à utiliser et à maintenir.
 
 ## Contrôles avant commit
 
@@ -227,4 +256,4 @@ git add -- chemin/du/fichier1 chemin/du/fichier2
 - Ne jamais modifier le dépôt du Projet n°1 depuis ce dossier.
 - Ne jamais versionner de secret, mot de passe, jeton, fichier `.env`, clé privée ou configuration propre au poste.
 - Configurer l’identité Git localement au dépôt si nécessaire, jamais globalement sans décision explicite.
-- La recherche sémantique / IA est une évolution future à étudier après stabilisation du socle actuel ; aucune architecture IA n’est décidée.
+- V1.2 n’utilise aucun service externe, modèle IA, token ou API. Toute évolution de la recherche doit préserver les règles de sécurité et être justifiée par un besoin mesuré.

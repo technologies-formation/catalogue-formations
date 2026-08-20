@@ -2,11 +2,13 @@
 
 > **Prototype de démonstration non officiel — ne constitue pas le catalogue officiel de formation de l’État de Genève.**
 
-Cette application React/Vite permet de consulter les **1 057 formations** du snapshot officiel actuellement publié. Elle est accessible à l’adresse [technologies-formation.github.io/catalogue-formations](https://technologies-formation.github.io/catalogue-formations/).
+Cette application React/Vite permet de consulter les **1 056 formations** du snapshot officiel actuellement publié au 20 août 2026. Cette volumétrie issue du snapshot courant peut évoluer avec les mises à jour quotidiennes. L’application est accessible à l’adresse [technologies-formation.github.io/catalogue-formations](https://technologies-formation.github.io/catalogue-formations/).
 
 ## Fonctionnalités
 
-- recherche textuelle par intitulé ou code, insensible à la casse et aux accents ;
+- recherche lexicale enrichie sur le code, l’intitulé, le domaine, le thème, le Public, le Public visé et les offres de formation ;
+- normalisation des accents et des variations simples, avec reconnaissance de certains acronymes et synonymes métier validés ;
+- classement par pertinence lorsqu’une recherche est active, tout en conservant les tris habituels lorsque la recherche est vide ;
 - cinq facettes **Cours** multi-sélection : **Offre de formation**, **Entité de formation**, **Domaine**, **Thème** et **Public** ;
 - logique OU entre les valeurs d’une même facette et ET entre les facettes ;
 - activation de Domaine après sélection d’une offre ou d’une entité, puis de Thème après sélection d’un domaine ;
@@ -58,6 +60,6 @@ git diff --check
 
 Le contenu statique est publié sur GitHub Pages. Un push direct sur `main` déclenche `.github/workflows/deploy.yml`. Les mises à jour automatiques du catalogue sont validées, promues et déployées par `.github/workflows/update-catalogue.yml`.
 
-## Évolution future à étudier
+## Choix de recherche
 
-Recherche sémantique / IA — évolution future à étudier après stabilisation du socle actuel.
+Une recherche sémantique a été expérimentée, mais elle n’est pas retenue dans l’architecture actuelle : les essais n’ont pas démontré un gain suffisant au regard de la complexité technique supplémentaire. La recherche lexicale enrichie V1.2 reste la solution de référence afin de préserver la simplicité, les performances et la maintenance.
