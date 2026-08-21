@@ -103,11 +103,13 @@ function markdownValue(value) {
   return value === null ? '`null`' : `\`${markdown(value)}\``
 }
 
-function hasContactDetails(value) {
+const EMAIL_PATTERN = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i
+const PHONE_PATTERN = /(?:\+41|0041|0\d{2})[\s./-]*\d{3}[\s./-]*\d{2}[\s./-]*\d{2}/
+
+export function hasContactDetails(value) {
   return Boolean(
     value &&
-      (/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i.test(value) ||
-        /(?:\+41|0041|0\d{2})[\s./-]*\d{3}[\s./-]*\d{2}[\s./-]*\d{2}/.test(value)),
+      (EMAIL_PATTERN.test(value) || PHONE_PATTERN.test(value)),
   )
 }
 
@@ -764,14 +766,15 @@ function buildReport(context) {
   return `${lines.join('\n')}\n`
 }
 
-function auditGeneratedText(snapshotText, reportText) {
+export function auditGeneratedText(snapshotText, reportText) {
   const combined = `${snapshotText}\n${reportText}`
   const checks = [
     ['chemin Windows personnel', /[A-Z]:\\Users\\/i],
     ['clé privée', /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/i],
     ['secret déclaré', /\b(?:api[_-]?key|client[_-]?secret|password|passwd|bearer)\b\s*[:=]/i],
     ['jeton GitHub', /\b(?:ghp|github_pat)_[A-Za-z0-9_]{20,}\b/],
-    ['adresse électronique', /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i],
+    ['adresse électronique', EMAIL_PATTERN],
+    ['numéro de téléphone', PHONE_PATTERN],
   ]
   return checks.filter(([, pattern]) => pattern.test(combined)).map(([label]) => label)
 }

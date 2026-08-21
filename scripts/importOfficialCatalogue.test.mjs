@@ -2,11 +2,52 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { officialCourseSamples } from '../src/data/officialCourseSamples.js'
 import {
+  auditGeneratedText,
   buildReferenceMonitoringLines,
+  hasContactDetails,
   monitorValidatedReferences,
   parseCourseDetail,
   parseSessionFlags,
 } from './importOfficialCatalogue.mjs'
+
+test('détecte les coordonnées dans les sections descriptives', () => {
+  assert.equal(hasContactDetails('Contact : formation@example.ch'), true)
+  assert.equal(hasContactDetails('Contact : 079 123 45 67'), true)
+  assert.equal(hasContactDetails('Contact : +41 791 23 45 67'), true)
+})
+
+test('conserve la suppression d’une section descriptive contenant un téléphone', () => {
+  const parsed = parseCourseDetail(page(`
+    <div><p><b>Généralités</b></p><p class="pComment">Contact : 079 123 45 67</p></div>
+  `))
+  assert.equal(parsed.generalInformationRaw, null)
+  assert.deepEqual(parsed.suppressedContactSections, [
+    { field: 'generalInformationRaw', sourceLabel: 'Généralités' },
+  ])
+})
+
+test('l’audit final bloque les coordonnées résiduelles dans tout champ généré', () => {
+  assert.deepEqual(auditGeneratedText('{"organizer":"formation@example.ch"}', ''), ['adresse électronique'])
+  assert.deepEqual(auditGeneratedText('{"otherField":"079 123 45 67"}', ''), ['numéro de téléphone'])
+  assert.deepEqual(auditGeneratedText('', 'Téléphone : 0041 791 23 45 67'), ['numéro de téléphone'])
+})
+
+test('l’audit final accepte les valeurs numériques métier non téléphoniques', () => {
+  for (const value of [
+    'Année 2026',
+    'Durée 90 minutes',
+    'Code SEM1108',
+    'Catalogue 1057 formations',
+    'Version 1.2',
+    'Identifiant 123456',
+  ]) {
+    assert.deepEqual(auditGeneratedText(`{"value":"${value}"}`, ''), [], value)
+  }
+})
+
+test('un artefact sans donnée de contact conserve un audit vide', () => {
+  assert.deepEqual(auditGeneratedText('{"title":"Formation continue"}', 'Rapport valide'), [])
+})
 
 const referenceFields = [
   'titleRaw',
