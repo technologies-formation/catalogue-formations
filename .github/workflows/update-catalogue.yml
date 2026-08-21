@@ -12,6 +12,11 @@ on:
         required: true
         default: true
         type: boolean
+      allow_large_catalogue_drop:
+        description: 'Autoriser exceptionnellement une baisse du catalogue supérieure ou égale à 5 %'
+        required: true
+        default: false
+        type: boolean
 
 concurrency:
   group: catalogue-update
@@ -41,6 +46,7 @@ jobs:
         id: validate
         env:
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+          ALLOW_LARGE_CATALOGUE_DROP: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_large_catalogue_drop || false }}
         run: node scripts/catalogueWorkflow.mjs
       - name: Run tests
         run: npm test
@@ -59,6 +65,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
       - name: Upload candidate snapshot
+        if: ${{ always() }}
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: catalogue-candidate-snapshot

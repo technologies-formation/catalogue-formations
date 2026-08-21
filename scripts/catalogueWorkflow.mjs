@@ -9,6 +9,10 @@ export const allowedCommitFiles = [
   'src/data/officialCatalogueSnapshot.json',
 ]
 
+// Seuil provisoire fondé sur l'historique disponible au 21 août 2026.
+// À réévaluer après plusieurs semaines ou mois de mises à jour automatiques.
+export const MAX_AUTOMATIC_CATALOGUE_DROP_RATIO = 0.05
+
 function booleanEnvironmentValue(value, name) {
   if (value === 'true' || value === true) return true
   if (value === 'false' || value === false) return false
@@ -34,6 +38,37 @@ export function determineCatalogueAction({ dryRun, metrics }) {
   }
 }
 
+export function assessCatalogueVolume({
+  officialCount,
+  candidateCount,
+  allowLargeCatalogueDrop = false,
+}) {
+  if (!Number.isInteger(officialCount) || officialCount <= 0) {
+    throw new Error('Le snapshot officiel doit contenir au moins une formation')
+  }
+  if (!Number.isInteger(candidateCount) || candidateCount <= 0) {
+    throw new Error('Le snapshot candidat doit contenir au moins une formation')
+  }
+  if (typeof allowLargeCatalogueDrop !== 'boolean') {
+    throw new Error('ALLOW_LARGE_CATALOGUE_DROP doit valoir true ou false')
+  }
+
+  const dropRatio = candidateCount < officialCount
+    ? (officialCount - candidateCount) / officialCount
+    : 0
+  const largeDrop = dropRatio >= MAX_AUTOMATIC_CATALOGUE_DROP_RATIO
+
+  if (largeDrop && !allowLargeCatalogueDrop) {
+    throw new Error(
+      `Chute anormale du catalogue : ${candidateCount} formations candidates contre ${officialCount} officielles ` +
+      `(baisse de ${(dropRatio * 100).toFixed(2)} %, seuil provisoire de ${MAX_AUTOMATIC_CATALOGUE_DROP_RATIO * 100} %). ` +
+      'Une validation humaine explicite est requise.',
+    )
+  }
+
+  return { officialCount, candidateCount, dropRatio, largeDrop }
+}
+
 export function determineNotificationStatus({ dryRun, hasChanges, validationResult, publicationResult }) {
   if (validationResult !== 'success') return 'ALERT'
   if (!dryRun && hasChanges && publicationResult !== 'success') return 'ALERT'
@@ -52,18 +87,32 @@ export function assertAllowedCommitFiles(files) {
 
 export async function validateWorkflowCandidate({
   dryRun,
+  allowLargeCatalogueDrop = false,
   snapshotPath = 'reports/officialCatalogueSnapshot.candidate.json',
   reportPath = 'reports/catalogue-import-report.candidate.md',
+  officialSnapshotPath = 'src/data/officialCatalogueSnapshot.json',
 } = {}) {
-  const [snapshotText, report] = await Promise.all([
+  const [snapshotText, report, officialSnapshotText] = await Promise.all([
     readFile(snapshotPath, 'utf8'),
     readFile(reportPath, 'utf8'),
+    readFile(officialSnapshotPath, 'utf8'),
   ])
   const candidate = JSON.parse(snapshotText)
+  const officialSnapshot = JSON.parse(officialSnapshotText)
   const metadata = validateCandidateSnapshot(candidate)
   validateCandidateReport(report, { ...metadata, snapshotHash: sha256(snapshotText) })
+  const volumeAssessment = assessCatalogueVolume({
+    officialCount: Array.isArray(officialSnapshot) ? officialSnapshot.length : null,
+    candidateCount: metadata.courseCount,
+    allowLargeCatalogueDrop,
+  })
   const metrics = parseCatalogueReport(report)
-  return { ...metadata, metrics, ...determineCatalogueAction({ dryRun, metrics }) }
+  return {
+    ...metadata,
+    ...volumeAssessment,
+    metrics,
+    ...determineCatalogueAction({ dryRun, metrics }),
+  }
 }
 
 async function writeOutputs(outputs) {
@@ -84,7 +133,13 @@ if (isMain) {
           publicationResult: process.env.PUBLICATION_RESULT,
         }),
       })
-    : validateWorkflowCandidate({ dryRun: booleanEnvironmentValue(process.env.DRY_RUN, 'DRY_RUN') })
+    : validateWorkflowCandidate({
+        dryRun: booleanEnvironmentValue(process.env.DRY_RUN, 'DRY_RUN'),
+        allowLargeCatalogueDrop: booleanEnvironmentValue(
+          process.env.ALLOW_LARGE_CATALOGUE_DROP ?? 'false',
+          'ALLOW_LARGE_CATALOGUE_DROP',
+        ),
+      })
         .then(async (result) => {
           await writeOutputs({ has_changes: result.hasChanges, snapshot_date: result.snapshotDate })
           console.log(`${result.courseCount} formations candidates valides.`)
