@@ -151,6 +151,20 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128
+      - name: Verify public deployment
+        shell: bash
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            if curl --fail --silent --show-error --location --connect-timeout 5 --max-time 5 --output /dev/null "$PAGE_URL"; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 6 ]; then
+              sleep 6
+            fi
+          done
+          exit 1
 
   notify:
     needs: [validate, publish]
