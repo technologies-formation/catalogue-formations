@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-08-20
+- Date du snapshot : 2026-08-21
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 114.4 secondes
-- Taille du JSON final : 2.05 Mio (2148691 octets)
-- Empreinte SHA-256 du snapshot : `7385ee1f7294ed454f3e5788e3c0178ad22622744a80234bf023f316932971f1`
+- Durée totale de l’import : 134.6 secondes
+- Taille du JSON final : 2.05 Mio (2153936 octets)
+- Empreinte SHA-256 du snapshot : `ac13e93f243619e1ad54ce0c5812f999a2430ecd1f8adc6731739a3dc91c3734`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1647
-- Codes uniques : 1056
+- Occurrences détectées dans l’index : 1648
+- Codes uniques : 1057
 - Occurrences éliminées par déduplication : 591
 - Formations présentes dans plusieurs offres : 299
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1056
+- Fiches récupérées avec succès : 1057
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -23,42 +23,56 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | Indicateur | Valeur |
 | --- | ---: |
 | Cours dans le snapshot officiel | 1056 |
-| Cours dans le candidat | 1056 |
-| Cours ajoutés | 0 |
-| Cours supprimés | 0 |
-| Cours modifiés | 12 |
+| Cours dans le candidat | 1057 |
+| Cours ajoutés | 6 |
+| Cours supprimés | 5 |
+| Cours modifiés | 13 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-Aucun cours ajouté.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| OCD014 | Experte et Expert en management du domaine des privations de liberté | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
+| OCD179 | FOP II - Conduite d'intervention en milieu carcéral (Dir., Off. sup., Off.) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
+| OCD332 | FOP I - Conduite d'intervention en milieu carcéral | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
+| OCD374 | Prévenir l'épuisement professionnel - cadres | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
+| OCD423 | Gestion de crise pour les cadres des services pénitentiaires - Compétences de bases | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
+| OMP-112 | Enseigner et soutenir l'autorégulation : stratégies transversales d'apprentissage pour les élèves en difficulté | DIP-OMP - Offre formation de l'OMP | DGOMP/SRH | Capacités transversales |
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| FP058 | Plongeur niveau 1 | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+| FP059 | Plongeur niveau 2 | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+| FP060 | Plongeur niveau 3 | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+| FP061 | Plongeur sous-glace | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+| FP065 | Plongeur trimix | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-517 | Appropriation du MER Français 1re-2e | `hasOpenSession` : « true » → « false » |
-| EP-973 | « Zélie-Chansons 6 » : nouveau support et pistes d'enseignement | `hasOpenSession` : « true » → « false » |
-| EP-981 | Modelage et construction au cycle élémentaire | `hasOpenSession` : « true » → « false » |
-| PJ-0102 | Gestion des pièces à conviction - Personnel SFPJ et GPC | `hasOpenSession` : « true » → « false » |
-| S2-433 | Evaluation HSE des risques au laboratoire (I) | `hasOpenSession` : « true » → « false » |
-| S2-435 | Intelligence artificielle pour l'enseignement de la chimie | `hasOpenSession` : « true » → « false » |
-| SEM-P1562 | EP-OMP / Atelier découpeuse numérique : fabrication de lettres rugueuses | `hasOpenSession` : « true » → « false » |
+| EP-1058 | Le mouvement pour apprendre : investir la salle de jeux au quotidien | `hasOpenSession` : « true » → « false » |
+| EP-971 | Petits et grands jeux de collaboration/coopération | `hasOpenSession` : « true » → « false » |
+| OMP-025 | Cours de langue des signes niveau débutant | `hasOpenSession` : « true » → « false » |
+| OMP-106 | La danse au service des élèves à besoins éducatifs particuliers | `hasOpenSession` : « false » → « true » |
+| OMP-111 | Des jeux de société pour construire l'attention, la mémoire, la compréhension et le raisonnement | `titleRaw` : « Des jeux de société pour construire l?attention, la mémoire, la compréhension et le raisonnement » → « Des jeux de société pour construire l'attention, la mémoire, la compréhension et le raisonnement »<br>`domainRaw` : « Développement professionnel » → « Capacités transversales »<br>`themeRaw` : « Développement personnel » → « Stratégie d'apprentissage »<br>`targetAudienceRaw` : `null` → « Personnel pédagogique OMP + personnel enseignant EP » |
+| S2-433 | Evaluation HSE des risques au laboratoire (I) | `hasOpenSession` : « false » → « true » |
+| S2-435 | Intelligence artificielle pour l'enseignement de la chimie | `hasOpenSession` : « false » → « true » |
+| S2-454 | Enseigner les questions socialement vives (QSV) en mobilisant la nature des sciences (NOS), pour des décisions éclairées | `hasOpenSession` : « true » → « false » |
+| SEM-P1566 | EP-CO-ESII-OMP / La formation de l'image photographique ; construire un sténopé en classe avec une boîte à chaussures | `titleRaw` : « EP-CO-ESII-OMP / La formation de l'image photographique; construire un stenopé en classe avec une boîte à chaussure » → « EP-CO-ESII-OMP / La formation de l'image photographique ; construire un sténopé en classe avec une boîte à chaussures » |
+| SEM-P4011 | OMP / Formation institutionnelle obligatoire science informatique pour l'OMP Primaire | `titleRaw` : « OMP / Formation institutionnelle obligatoire pour l'OMP Primaire » → « OMP / Formation institutionnelle obligatoire science informatique pour l'OMP Primaire » |
+| SEM1122 | Ajuster sa voix et son comportement non verbal, force d'influence | `hasOpenSession` : « false » → « true » |
+| SEM1171 | Comment collaborer au sein d'une équipe intergénérationnelle | `hasOpenSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| EP-090EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - présentiel | `contentRaw` |
-| EP-091EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - live streaming | `contentRaw` |
-| EP-092EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - différé | `contentRaw` |
-| OMP-109 | Appropriation des nouveaux moyens d'enseignement de français - enseignement spécialisé secondaire | `objectivesRaw` |
-| OMP-111 | Des jeux de société pour construire l?attention, la mémoire, la compréhension et le raisonnement | `objectivesRaw`, `contentRaw` |
+| FP070 | Moniteur de plongée niveau 1 | `durationRaw` |
 
 ### Changements d’offres
 
@@ -96,32 +110,32 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
-| Détention - Offre de formation de l'OCD | 66 | 66 |
+| Détention - Offre de formation de l'OCD | 71 | 71 |
 | DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 226 | 226 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 294 | 294 |
 | DIP-ES II - Offre de formation de l'ES II | 236 | 236 |
-| DIP-OMP - Offre formation de l'OMP | 233 | 233 |
+| DIP-OMP - Offre formation de l'OMP | 234 | 234 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 153 | 153 |
 | PJ - Offre de formation du pouvoir judiciaire | 56 | 56 |
-| POLICE - CFPS - Centre de Formation de la Police | 210 | 210 |
+| POLICE - CFPS - Centre de Formation de la Police | 205 | 205 |
 
 ## Disponibilité des champs
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1056/1056 | 100.0 % |
-| `domainRaw` | 1056/1056 | 100.0 % |
-| `themeRaw` | 982/1056 | 93.0 % |
-| `publicRaw` | 947/1056 | 89.7 % |
-| `durationRaw` | 1041/1056 | 98.6 % |
-| `targetAudienceRaw` | 939/1056 | 88.9 % |
-| `generalInformationRaw` | 544/1056 | 51.5 % |
-| `objectivesRaw` | 1006/1056 | 95.3 % |
-| `contentRaw` | 951/1056 | 90.1 % |
-| `prerequisitesRaw` | 401/1056 | 38.0 % |
-| `additionalInformationRaw` | 357/1056 | 33.8 % |
+| `organizingEntityRaw` | 1057/1057 | 100.0 % |
+| `domainRaw` | 1057/1057 | 100.0 % |
+| `themeRaw` | 978/1057 | 92.5 % |
+| `publicRaw` | 947/1057 | 89.6 % |
+| `durationRaw` | 1042/1057 | 98.6 % |
+| `targetAudienceRaw` | 941/1057 | 89.0 % |
+| `generalInformationRaw` | 544/1057 | 51.5 % |
+| `objectivesRaw` | 1007/1057 | 95.3 % |
+| `contentRaw` | 952/1057 | 90.1 % |
+| `prerequisitesRaw` | 396/1057 | 37.5 % |
+| `additionalInformationRaw` | 354/1057 | 33.5 % |
 
 ### Correspondance des libellés officiels
 
@@ -166,14 +180,14 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
-- EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
+- EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-002ANG — Pré-requis (`prerequisitesRaw`)
 - FP254 — Informations complémentaires (`additionalInformationRaw`)
 - FP208 — Généralités (`generalInformationRaw`)
@@ -204,7 +218,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-08-20T05:06:13.498Z
-- Snapshot candidat validé : 2026-08-20
-- Empreinte SHA-256 : `7385ee1f7294ed454f3e5788e3c0178ad22622744a80234bf023f316932971f1`
+- Date et heure de promotion : 2026-08-21T05:07:45.612Z
+- Snapshot candidat validé : 2026-08-21
+- Empreinte SHA-256 : `ac13e93f243619e1ad54ce0c5812f999a2430ecd1f8adc6731739a3dc91c3734`
 - Promotion manuelle confirmée.
