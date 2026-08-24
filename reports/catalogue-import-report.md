@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-08-21
+- Date du snapshot : 2026-08-24
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 134.6 secondes
-- Taille du JSON final : 2.05 Mio (2153936 octets)
-- Empreinte SHA-256 du snapshot : `ac13e93f243619e1ad54ce0c5812f999a2430ecd1f8adc6731739a3dc91c3734`
+- Durée totale de l’import : 135.2 secondes
+- Taille du JSON final : 2.06 Mio (2156556 octets)
+- Empreinte SHA-256 du snapshot : `f9b43a260d97e472e67b028f0aad13003ac1cab145212d6fb5f6744b2427dcd7`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1648
-- Codes uniques : 1057
+- Occurrences détectées dans l’index : 1649
+- Codes uniques : 1058
 - Occurrences éliminées par déduplication : 591
 - Formations présentes dans plusieurs offres : 299
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1057
+- Fiches récupérées avec succès : 1058
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1056 |
-| Cours dans le candidat | 1057 |
-| Cours ajoutés | 6 |
-| Cours supprimés | 5 |
-| Cours modifiés | 13 |
+| Cours dans le snapshot officiel | 1057 |
+| Cours dans le candidat | 1058 |
+| Cours ajoutés | 1 |
+| Cours supprimés | 0 |
+| Cours modifiés | 7 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,45 +34,27 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| OCD014 | Experte et Expert en management du domaine des privations de liberté | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
-| OCD179 | FOP II - Conduite d'intervention en milieu carcéral (Dir., Off. sup., Off.) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
-| OCD332 | FOP I - Conduite d'intervention en milieu carcéral | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
-| OCD374 | Prévenir l'épuisement professionnel - cadres | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
-| OCD423 | Gestion de crise pour les cadres des services pénitentiaires - Compétences de bases | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formation des cadres |
-| OMP-112 | Enseigner et soutenir l'autorégulation : stratégies transversales d'apprentissage pour les élèves en difficulté | DIP-OMP - Offre formation de l'OMP | DGOMP/SRH | Capacités transversales |
+| SEM1258 | La santé mentale au travail : le rôle clé des managers et de la filière RH | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | SANTE ET SECURITE AU TRAVAIL |
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| FP058 | Plongeur niveau 1 | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
-| FP059 | Plongeur niveau 2 | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
-| FP060 | Plongeur niveau 3 | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
-| FP061 | Plongeur sous-glace | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
-| FP065 | Plongeur trimix | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-1058 | Le mouvement pour apprendre : investir la salle de jeux au quotidien | `hasOpenSession` : « true » → « false » |
-| EP-971 | Petits et grands jeux de collaboration/coopération | `hasOpenSession` : « true » → « false » |
-| OMP-025 | Cours de langue des signes niveau débutant | `hasOpenSession` : « true » → « false » |
-| OMP-106 | La danse au service des élèves à besoins éducatifs particuliers | `hasOpenSession` : « false » → « true » |
-| OMP-111 | Des jeux de société pour construire l'attention, la mémoire, la compréhension et le raisonnement | `titleRaw` : « Des jeux de société pour construire l?attention, la mémoire, la compréhension et le raisonnement » → « Des jeux de société pour construire l'attention, la mémoire, la compréhension et le raisonnement »<br>`domainRaw` : « Développement professionnel » → « Capacités transversales »<br>`themeRaw` : « Développement personnel » → « Stratégie d'apprentissage »<br>`targetAudienceRaw` : `null` → « Personnel pédagogique OMP + personnel enseignant EP » |
-| S2-433 | Evaluation HSE des risques au laboratoire (I) | `hasOpenSession` : « false » → « true » |
-| S2-435 | Intelligence artificielle pour l'enseignement de la chimie | `hasOpenSession` : « false » → « true » |
-| S2-454 | Enseigner les questions socialement vives (QSV) en mobilisant la nature des sciences (NOS), pour des décisions éclairées | `hasOpenSession` : « true » → « false » |
-| SEM-P1566 | EP-CO-ESII-OMP / La formation de l'image photographique ; construire un sténopé en classe avec une boîte à chaussures | `titleRaw` : « EP-CO-ESII-OMP / La formation de l'image photographique; construire un stenopé en classe avec une boîte à chaussure » → « EP-CO-ESII-OMP / La formation de l'image photographique ; construire un sténopé en classe avec une boîte à chaussures » |
-| SEM-P4011 | OMP / Formation institutionnelle obligatoire science informatique pour l'OMP Primaire | `titleRaw` : « OMP / Formation institutionnelle obligatoire pour l'OMP Primaire » → « OMP / Formation institutionnelle obligatoire science informatique pour l'OMP Primaire » |
-| SEM1122 | Ajuster sa voix et son comportement non verbal, force d'influence | `hasOpenSession` : « false » → « true » |
-| SEM1171 | Comment collaborer au sein d'une équipe intergénérationnelle | `hasOpenSession` : « false » → « true » |
+| CO-01649 | Du jeu théâtral à l'oralité : découverte d'outils pour la classe d'accueil (DIAC) | `hasOpenSession` : « true » → « false » |
+| CO-01682 | Maîtrise de classe : faire grandir son groupe classe, vers une autonomie sereine et collaborative (module 1) | `hasOpenSession` : « true » → « false » |
+| CO-01697 | Quelle place pour la lecture dans votre classe ou au sein de l'établissement ? Développer des projets autour du livre | `hasOpenSession` : « true » → « false » |
+| CO-01699 | Evaluer efficacement en latin : conception d'évaluation et stratégies de révision | `hasOpenSession` : « true » → « false » |
+| S2-733 | Relever les défis de l'enseignement aux générations Z et Alpha | `hasOpenSession` : « true » → « false » |
+| S2-EPS13 | Enseigner le tir à l'arc en toute sécurité | `hasOpenSession` : « true » → « false » |
+| SEM-10244 | CO-ESII / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-| Code | Intitulé candidat | Champs modifiés |
-| --- | --- | --- |
-| FP070 | Moniteur de plongée niveau 1 | `durationRaw` |
+Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
@@ -111,7 +93,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 71 | 71 |
-| DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
+| DF-OPE - L'offre de formation de l'OPE | 171 | 171 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 226 | 226 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 294 | 294 |
@@ -125,17 +107,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1057/1057 | 100.0 % |
-| `domainRaw` | 1057/1057 | 100.0 % |
-| `themeRaw` | 978/1057 | 92.5 % |
-| `publicRaw` | 947/1057 | 89.6 % |
-| `durationRaw` | 1042/1057 | 98.6 % |
-| `targetAudienceRaw` | 941/1057 | 89.0 % |
-| `generalInformationRaw` | 544/1057 | 51.5 % |
-| `objectivesRaw` | 1007/1057 | 95.3 % |
-| `contentRaw` | 952/1057 | 90.1 % |
-| `prerequisitesRaw` | 396/1057 | 37.5 % |
-| `additionalInformationRaw` | 354/1057 | 33.5 % |
+| `organizingEntityRaw` | 1058/1058 | 100.0 % |
+| `domainRaw` | 1058/1058 | 100.0 % |
+| `themeRaw` | 979/1058 | 92.5 % |
+| `publicRaw` | 947/1058 | 89.5 % |
+| `durationRaw` | 1043/1058 | 98.6 % |
+| `targetAudienceRaw` | 942/1058 | 89.0 % |
+| `generalInformationRaw` | 545/1058 | 51.5 % |
+| `objectivesRaw` | 1008/1058 | 95.3 % |
+| `contentRaw` | 953/1058 | 90.1 % |
+| `prerequisitesRaw` | 396/1058 | 37.4 % |
+| `additionalInformationRaw` | 354/1058 | 33.5 % |
 
 ### Correspondance des libellés officiels
 
@@ -175,8 +157,8 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
+- TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
@@ -186,8 +168,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
-- EP-373FEX — Généralités (`generalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
+- EP-373FEX — Généralités (`generalInformationRaw`)
 - EP-002ANG — Pré-requis (`prerequisitesRaw`)
 - FP254 — Informations complémentaires (`additionalInformationRaw`)
 - FP208 — Généralités (`generalInformationRaw`)
@@ -218,7 +200,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-08-21T05:07:45.612Z
-- Snapshot candidat validé : 2026-08-21
-- Empreinte SHA-256 : `ac13e93f243619e1ad54ce0c5812f999a2430ecd1f8adc6731739a3dc91c3734`
+- Date et heure de promotion : 2026-08-24T05:27:36.340Z
+- Snapshot candidat validé : 2026-08-24
+- Empreinte SHA-256 : `f9b43a260d97e472e67b028f0aad13003ac1cab145212d6fb5f6744b2427dcd7`
 - Promotion manuelle confirmée.
