@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-08-24
+- Date du snapshot : 2026-08-25
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 135.2 secondes
-- Taille du JSON final : 2.06 Mio (2156556 octets)
-- Empreinte SHA-256 du snapshot : `f9b43a260d97e472e67b028f0aad13003ac1cab145212d6fb5f6744b2427dcd7`
+- Durée totale de l’import : 119.5 secondes
+- Taille du JSON final : 2.05 Mio (2151685 octets)
+- Empreinte SHA-256 du snapshot : `e710421267dc437939cac128cee13a60a36b138914a7a58fa19823e1eac9084f`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1649
-- Codes uniques : 1058
+- Occurrences détectées dans l’index : 1647
+- Codes uniques : 1056
 - Occurrences éliminées par déduplication : 591
 - Formations présentes dans plusieurs offres : 299
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1058
+- Fiches récupérées avec succès : 1056
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,35 +22,39 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1057 |
-| Cours dans le candidat | 1058 |
-| Cours ajoutés | 1 |
-| Cours supprimés | 0 |
-| Cours modifiés | 7 |
+| Cours dans le snapshot officiel | 1058 |
+| Cours dans le candidat | 1056 |
+| Cours ajoutés | 0 |
+| Cours supprimés | 2 |
+| Cours modifiés | 10 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| SEM1258 | La santé mentale au travail : le rôle clé des managers et de la filière RH | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | SANTE ET SECURITE AU TRAVAIL |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| FP063 | Plongeur trimix avancé | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+| TRT3016E | Maîtriser les fondamentaux du Numérique Responsable \| E-Learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | NUMERIQUE A L'ETAT |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01649 | Du jeu théâtral à l'oralité : découverte d'outils pour la classe d'accueil (DIAC) | `hasOpenSession` : « true » → « false » |
-| CO-01682 | Maîtrise de classe : faire grandir son groupe classe, vers une autonomie sereine et collaborative (module 1) | `hasOpenSession` : « true » → « false » |
-| CO-01697 | Quelle place pour la lecture dans votre classe ou au sein de l'établissement ? Développer des projets autour du livre | `hasOpenSession` : « true » → « false » |
-| CO-01699 | Evaluer efficacement en latin : conception d'évaluation et stratégies de révision | `hasOpenSession` : « true » → « false » |
-| S2-733 | Relever les défis de l'enseignement aux générations Z et Alpha | `hasOpenSession` : « true » → « false » |
-| S2-EPS13 | Enseigner le tir à l'arc en toute sécurité | `hasOpenSession` : « true » → « false » |
-| SEM-10244 | CO-ESII / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « true » → « false » |
+| CO-01699 | Evaluer efficacement en latin : conception d'évaluation et stratégies de révision | `hasOpenSession` : « false » → « true » |
+| EP-101MDAS | Comprendre et gérer les conflits en EPS : stratégies d'autorégulation - niveau II | `hasOpenSession` : « true » → « false » |
+| EP-1042 | Développement de la communication et du langage oral, TDL, défis langagiers et stratégies pédagogiques (1P-2P) | `hasOpenSession` : « true » → « false » |
+| EP-580 | Initiation à l'observation et à la détermination des oiseaux communs avec une classe | `hasOpenSession` : « true » → « false » |
+| FP249 | Formation Initiale Sentinelle milicien/milicienne | `hasOpenSession` : « true » → « false » |
+| OMP-008TSA | Comprendre et répondre aux comportements défis | `hasOpenSession` : « true » → « false » |
+| SEM-P1565 | EP-OMP / Apprendre l'analyse des vidéos publicitaires avec ses élèves / Formation autonome en ligne | `publicRaw` : « Enseignants de l' EP- CO -OMP » → « Enseignants EP - OMP » |
+| SEM1040 | Mindmap : une méthode pour organiser ses idées et ses informations | `hasOpenSession` : « false » → « true » |
+| SEM1193 | Prendre et assumer son rôle | `hasOpenSession` : « true » → « false » |
+| SEM1200 | Moi, manager et négociateur ! | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
@@ -93,7 +97,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 71 | 71 |
-| DF-OPE - L'offre de formation de l'OPE | 171 | 171 |
+| DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 226 | 226 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 294 | 294 |
@@ -101,23 +105,23 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DIP-OMP - Offre formation de l'OMP | 234 | 234 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 153 | 153 |
 | PJ - Offre de formation du pouvoir judiciaire | 56 | 56 |
-| POLICE - CFPS - Centre de Formation de la Police | 205 | 205 |
+| POLICE - CFPS - Centre de Formation de la Police | 204 | 204 |
 
 ## Disponibilité des champs
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1058/1058 | 100.0 % |
-| `domainRaw` | 1058/1058 | 100.0 % |
-| `themeRaw` | 979/1058 | 92.5 % |
-| `publicRaw` | 947/1058 | 89.5 % |
-| `durationRaw` | 1043/1058 | 98.6 % |
-| `targetAudienceRaw` | 942/1058 | 89.0 % |
-| `generalInformationRaw` | 545/1058 | 51.5 % |
-| `objectivesRaw` | 1008/1058 | 95.3 % |
-| `contentRaw` | 953/1058 | 90.1 % |
-| `prerequisitesRaw` | 396/1058 | 37.4 % |
-| `additionalInformationRaw` | 354/1058 | 33.5 % |
+| `organizingEntityRaw` | 1056/1056 | 100.0 % |
+| `domainRaw` | 1056/1056 | 100.0 % |
+| `themeRaw` | 977/1056 | 92.5 % |
+| `publicRaw` | 945/1056 | 89.5 % |
+| `durationRaw` | 1041/1056 | 98.6 % |
+| `targetAudienceRaw` | 941/1056 | 89.1 % |
+| `generalInformationRaw` | 543/1056 | 51.4 % |
+| `objectivesRaw` | 1006/1056 | 95.3 % |
+| `contentRaw` | 951/1056 | 90.1 % |
+| `prerequisitesRaw` | 394/1056 | 37.3 % |
+| `additionalInformationRaw` | 353/1056 | 33.4 % |
 
 ### Correspondance des libellés officiels
 
@@ -157,8 +161,8 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
+- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
@@ -200,7 +204,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-08-24T05:27:36.340Z
-- Snapshot candidat validé : 2026-08-24
-- Empreinte SHA-256 : `f9b43a260d97e472e67b028f0aad13003ac1cab145212d6fb5f6744b2427dcd7`
+- Date et heure de promotion : 2026-08-25T05:08:16.265Z
+- Snapshot candidat validé : 2026-08-25
+- Empreinte SHA-256 : `e710421267dc437939cac128cee13a60a36b138914a7a58fa19823e1eac9084f`
 - Promotion manuelle confirmée.
