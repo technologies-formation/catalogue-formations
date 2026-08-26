@@ -1,0 +1,4909 @@
+{
+  "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+  "revision": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+  "threshold": 0.6,
+  "summary": {
+    "sameRaw": {
+      "success": 10,
+      "total": 30,
+      "bySegment": {
+        "natural_positive": {
+          "success": 5,
+          "total": 14
+        },
+        "context_restriction": {
+          "success": 5,
+          "total": 6
+        },
+        "multi_intent": {
+          "success": 0,
+          "total": 5
+        },
+        "abstention": {
+          "success": 0,
+          "total": 5
+        }
+      },
+      "successfulCases": [
+        "SEM-NL-001",
+        "SEM-NL-007",
+        "SEM-NL-008",
+        "SEM-NL-009",
+        "SEM-NL-010",
+        "SEM-NL-014",
+        "SEM-CTX-022",
+        "SEM-CTX-023",
+        "SEM-CTX-024",
+        "SEM-CTX-025"
+      ],
+      "failedCases": [
+        "SEM-NL-002",
+        "SEM-NL-003",
+        "SEM-NL-004",
+        "SEM-NL-005",
+        "SEM-NL-006",
+        "SEM-NL-011",
+        "SEM-NL-012",
+        "SEM-NL-013",
+        "SEM-NL-015",
+        "SEM-MI-016",
+        "SEM-MI-017",
+        "SEM-MI-018",
+        "SEM-MI-019",
+        "SEM-MI-020",
+        "SEM-CTX-021",
+        "SEM-ABS-026",
+        "SEM-ABS-027",
+        "SEM-ABS-028",
+        "SEM-ABS-029",
+        "SEM-ABS-030"
+      ]
+    },
+    "same060": {
+      "success": 6,
+      "total": 30,
+      "bySegment": {
+        "natural_positive": {
+          "success": 0,
+          "total": 14
+        },
+        "context_restriction": {
+          "success": 1,
+          "total": 6
+        },
+        "multi_intent": {
+          "success": 0,
+          "total": 5
+        },
+        "abstention": {
+          "success": 5,
+          "total": 5
+        }
+      },
+      "successfulCases": [
+        "SEM-CTX-023",
+        "SEM-ABS-026",
+        "SEM-ABS-027",
+        "SEM-ABS-028",
+        "SEM-ABS-029",
+        "SEM-ABS-030"
+      ],
+      "failedCases": [
+        "SEM-NL-001",
+        "SEM-NL-002",
+        "SEM-NL-003",
+        "SEM-NL-004",
+        "SEM-NL-005",
+        "SEM-NL-006",
+        "SEM-NL-007",
+        "SEM-NL-008",
+        "SEM-NL-009",
+        "SEM-NL-010",
+        "SEM-NL-011",
+        "SEM-NL-012",
+        "SEM-NL-013",
+        "SEM-NL-014",
+        "SEM-NL-015",
+        "SEM-MI-016",
+        "SEM-MI-017",
+        "SEM-MI-018",
+        "SEM-MI-019",
+        "SEM-MI-020",
+        "SEM-CTX-021",
+        "SEM-CTX-022",
+        "SEM-CTX-024",
+        "SEM-CTX-025"
+      ]
+    },
+    "enrichedRaw": {
+      "success": 9,
+      "total": 30,
+      "bySegment": {
+        "natural_positive": {
+          "success": 7,
+          "total": 14
+        },
+        "context_restriction": {
+          "success": 2,
+          "total": 6
+        },
+        "multi_intent": {
+          "success": 0,
+          "total": 5
+        },
+        "abstention": {
+          "success": 0,
+          "total": 5
+        }
+      },
+      "successfulCases": [
+        "SEM-NL-003",
+        "SEM-NL-004",
+        "SEM-NL-005",
+        "SEM-NL-007",
+        "SEM-NL-009",
+        "SEM-NL-012",
+        "SEM-NL-013",
+        "SEM-CTX-022",
+        "SEM-CTX-025"
+      ],
+      "failedCases": [
+        "SEM-NL-001",
+        "SEM-NL-002",
+        "SEM-NL-006",
+        "SEM-NL-008",
+        "SEM-NL-010",
+        "SEM-NL-011",
+        "SEM-NL-014",
+        "SEM-NL-015",
+        "SEM-MI-016",
+        "SEM-MI-017",
+        "SEM-MI-018",
+        "SEM-MI-019",
+        "SEM-MI-020",
+        "SEM-CTX-021",
+        "SEM-CTX-023",
+        "SEM-CTX-024",
+        "SEM-ABS-026",
+        "SEM-ABS-027",
+        "SEM-ABS-028",
+        "SEM-ABS-029",
+        "SEM-ABS-030"
+      ]
+    },
+    "enriched060": {
+      "success": 7,
+      "total": 30,
+      "bySegment": {
+        "natural_positive": {
+          "success": 1,
+          "total": 14
+        },
+        "context_restriction": {
+          "success": 1,
+          "total": 6
+        },
+        "multi_intent": {
+          "success": 0,
+          "total": 5
+        },
+        "abstention": {
+          "success": 5,
+          "total": 5
+        }
+      },
+      "successfulCases": [
+        "SEM-NL-009",
+        "SEM-CTX-025",
+        "SEM-ABS-026",
+        "SEM-ABS-027",
+        "SEM-ABS-028",
+        "SEM-ABS-029",
+        "SEM-ABS-030"
+      ],
+      "failedCases": [
+        "SEM-NL-001",
+        "SEM-NL-002",
+        "SEM-NL-003",
+        "SEM-NL-004",
+        "SEM-NL-005",
+        "SEM-NL-006",
+        "SEM-NL-007",
+        "SEM-NL-008",
+        "SEM-NL-010",
+        "SEM-NL-011",
+        "SEM-NL-012",
+        "SEM-NL-013",
+        "SEM-NL-014",
+        "SEM-NL-015",
+        "SEM-MI-016",
+        "SEM-MI-017",
+        "SEM-MI-018",
+        "SEM-MI-019",
+        "SEM-MI-020",
+        "SEM-CTX-021",
+        "SEM-CTX-022",
+        "SEM-CTX-023",
+        "SEM-CTX-024"
+      ]
+    }
+  },
+  "results": {
+    "sameRaw": [
+      {
+        "id": "SEM-NL-001",
+        "segment": "natural_positive",
+        "query": "J’ai beaucoup de chiffres à suivre dans mon activité et je voudrais que mon collaborateur puisse en tirer rapidement les informations importantes pour m’aider à prendre des décisions.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "similarity": 0.44196356041410545
+          },
+          {
+            "code": "SEM1040",
+            "title": "Mindmap : une méthode pour organiser ses idées et ses informations",
+            "similarity": 0.43648687809632264
+          },
+          {
+            "code": "TRT1009",
+            "title": "Excel 365 Analyse de données",
+            "similarity": 0.42936921472324413
+          },
+          {
+            "code": "S2-952",
+            "title": "Au-delà des faits : comment évaluer l'information et raisonner sous incertitude",
+            "similarity": 0.4262692450271552
+          },
+          {
+            "code": "SEM0872",
+            "title": "Gestion du temps et des priorités",
+            "similarity": 0.41702609946706803
+          },
+          {
+            "code": "SEM1237",
+            "title": "Comment acquérir une vision synthétique et objective d'une situation ?",
+            "similarity": 0.41421101022625456
+          },
+          {
+            "code": "TRT1010",
+            "title": "Excel 365 Gagner en efficacité",
+            "similarity": 0.4009186596697851
+          },
+          {
+            "code": "SEM0651",
+            "title": "Comment augmenter l'efficacité d'une séance ou d'un groupe de travail ?",
+            "similarity": 0.39828678320047883
+          },
+          {
+            "code": "SEM1198",
+            "title": "Prendre soin de soi pour un meilleur équilibre au travail : intégrer les TOP dans son quotidien",
+            "similarity": 0.39657011134826986
+          },
+          {
+            "code": "PJ-0054",
+            "title": "Excel 2016",
+            "similarity": 0.3957997656699685
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-002",
+        "segment": "natural_positive",
+        "query": "Je dois comparer plusieurs hypothèses et voir rapidement l’impact de différents scénarios à partir de mes données.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "S2-433",
+            "title": "Evaluation HSE des risques au laboratoire (I)",
+            "similarity": 0.354275674186936
+          },
+          {
+            "code": "S2-434",
+            "title": "Evaluation HSE des risques au laboratoire (II)",
+            "similarity": 0.3514288452413883
+          },
+          {
+            "code": "OCD130",
+            "title": "Troubles mentaux - Module 3 : troubles de la personnalité",
+            "similarity": 0.33353838124702484
+          },
+          {
+            "code": "S2-952",
+            "title": "Au-delà des faits : comment évaluer l'information et raisonner sous incertitude",
+            "similarity": 0.3091110966056129
+          },
+          {
+            "code": "SEM1074",
+            "title": "Médiation 2: approfondissement",
+            "similarity": 0.303826255710593
+          },
+          {
+            "code": "OCD131",
+            "title": "Troubles mentaux - Module 4 : dépendances",
+            "similarity": 0.2980486963629737
+          },
+          {
+            "code": "OCD428",
+            "title": "Le stress: les causes, les conséquences et les contre-mesures",
+            "similarity": 0.29349016742089207
+          },
+          {
+            "code": "OCD413",
+            "title": "PLESORR - Module 3 : l'évaluation",
+            "similarity": 0.2904348050232226
+          },
+          {
+            "code": "CO-01646",
+            "title": "À quels risques sommes-nous exposés à Genève ?",
+            "similarity": 0.28740817847080724
+          },
+          {
+            "code": "OCD128",
+            "title": "Troubles mentaux - Module 1 : Stress, dépression et tendances suicidaires",
+            "similarity": 0.2747417715151074
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-003",
+        "segment": "natural_positive",
+        "query": "Quand un dossier devient complexe, j’ai besoin d’une méthode pour distinguer les faits, prendre du recul et construire une vue d’ensemble avant de décider.",
+        "expectedRelevantCodes": [
+          "SEM1237"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "S2-952",
+            "title": "Au-delà des faits : comment évaluer l'information et raisonner sous incertitude",
+            "similarity": 0.3863771611311222
+          },
+          {
+            "code": "SEM1165",
+            "title": "Design Thinking: des solutions créatives qui prennent l'humain en compte",
+            "similarity": 0.36551164074329723
+          },
+          {
+            "code": "OCD346",
+            "title": "Fouilles et astuces - Compétences de base",
+            "similarity": 0.35004542013687084
+          },
+          {
+            "code": "PJ-1101",
+            "title": "Décoder les comportements de ses interlocuteurs pour ajuster sa communication",
+            "similarity": 0.3461690763581466
+          },
+          {
+            "code": "OCD404",
+            "title": "Formation initiale aux techniques d'optimisation du potentiel (FI-TOP)",
+            "similarity": 0.34078617532450206
+          },
+          {
+            "code": "OCD413",
+            "title": "PLESORR - Module 3 : l'évaluation",
+            "similarity": 0.3310599487421175
+          },
+          {
+            "code": "PJ-0092",
+            "title": "Recherche dans la législation et la jurisprudence",
+            "similarity": 0.32518644565752586
+          },
+          {
+            "code": "SEM0828",
+            "title": "Développer sa créativité pour aborder et résoudre autrement les problèmes",
+            "similarity": 0.3228490854435299
+          },
+          {
+            "code": "OCD130",
+            "title": "Troubles mentaux - Module 3 : troubles de la personnalité",
+            "similarity": 0.32196179851008205
+          },
+          {
+            "code": "PJ-0042",
+            "title": "Introduction aux systèmes d'information\nLa convocation est directement adressée aux collaboratrices et collaborateurs par RH-Formation",
+            "similarity": 0.31892326259034
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-004",
+        "segment": "natural_positive",
+        "query": "Je rédige des messages destinés à des publics très différents et je voudrais éviter les formulations qui excluent ou renforcent des stéréotypes.",
+        "expectedRelevantCodes": [
+          "SEM1245"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1033",
+            "title": "Répondre avec tact aux plaintes écrites",
+            "similarity": 0.5473866069129169
+          },
+          {
+            "code": "SEM1122",
+            "title": "Ajuster sa voix et son comportement non verbal, force d'influence",
+            "similarity": 0.4914975916446138
+          },
+          {
+            "code": "SEM1095",
+            "title": "Prévenir et gérer les comportements agressifs",
+            "similarity": 0.47111236012484214
+          },
+          {
+            "code": "SEM0518",
+            "title": "Prévenir les tensions dans ses relations par une bonne communication",
+            "similarity": 0.4657429635650096
+          },
+          {
+            "code": "SEM1173",
+            "title": "Comment varier son vocabulaire à l'écrit ?",
+            "similarity": 0.45995449272012134
+          },
+          {
+            "code": "SEM1151",
+            "title": "Sensibilisation à la Communication NonViolente (CNV©)",
+            "similarity": 0.4595593397679813
+          },
+          {
+            "code": "SEM1108",
+            "title": "Parler en public",
+            "similarity": 0.45777617318100855
+          },
+          {
+            "code": "SEM1099",
+            "title": "Optimiser l'impact de vos présentations projetées",
+            "similarity": 0.4566517689737733
+          },
+          {
+            "code": "SEM1098",
+            "title": "Les clés d'une communication efficace",
+            "similarity": 0.45082542638012274
+          },
+          {
+            "code": "SEM1245",
+            "title": "La communication inclusive",
+            "similarity": 0.4402037480440119
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-005",
+        "segment": "natural_positive",
+        "query": "Après plusieurs heures à mon bureau, j’ai mal au dos et aux épaules ; je voudrais régler mon poste et adopter de meilleures habitudes.",
+        "expectedRelevantCodes": [
+          "SEM0733"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0052",
+            "title": "Manager : gérer les tensions au sein de son équipe",
+            "similarity": 0.3856590113031985
+          },
+          {
+            "code": "SEM0815",
+            "title": "Dynamiser sa seconde partie de carrière et de vie",
+            "similarity": 0.37836329342615466
+          },
+          {
+            "code": "CO-01709",
+            "title": "Prévention de la fatigue compassionnelle (DIAC)",
+            "similarity": 0.37618591493070214
+          },
+          {
+            "code": "SEM1198",
+            "title": "Prendre soin de soi pour un meilleur équilibre au travail : intégrer les TOP dans son quotidien",
+            "similarity": 0.372094156042676
+          },
+          {
+            "code": "SEM1117",
+            "title": "Stress et préoccupations : maintenir et améliorer son équilibre au travail",
+            "similarity": 0.35565103030633044
+          },
+          {
+            "code": "CO-01653",
+            "title": "Apprendre à gérer le stress par le corps : concevoir des ateliers avec les élèves",
+            "similarity": 0.35161844867228803
+          },
+          {
+            "code": "SEM1258",
+            "title": "La santé mentale au travail : le rôle clé des managers et de la filière RH",
+            "similarity": 0.3325583587845434
+          },
+          {
+            "code": "SEM1162",
+            "title": "Comment concilier équilibre personnel et efficacité professionnelle ?",
+            "similarity": 0.32438715443434746
+          },
+          {
+            "code": "SEM1141",
+            "title": "La roue de l'équilibre de vie au travail",
+            "similarity": 0.3233856379377059
+          },
+          {
+            "code": "SEM1183",
+            "title": "Prendre soin de soi pour rester performant : intégrer les TOP dans son management",
+            "similarity": 0.318096864035341
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-006",
+        "segment": "natural_positive",
+        "query": "Je saisis des écritures pour l’État et je dois comprendre la structure des comptes harmonisés utilisée par les collectivités publiques.",
+        "expectedRelevantCodes": [
+          "SEM1129E"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1087",
+            "title": "Gestion des investissements et des immobilisations",
+            "similarity": 0.501515139831862
+          },
+          {
+            "code": "SEM1086",
+            "title": "Budget et planification financière",
+            "similarity": 0.49358637939288913
+          },
+          {
+            "code": "PJ-1102",
+            "title": "Les bases de la comptabilité - Module 1",
+            "similarity": 0.48651880337753284
+          },
+          {
+            "code": "SEM1256",
+            "title": "Gestion des investissements",
+            "similarity": 0.4841667047746259
+          },
+          {
+            "code": "PJ-0092",
+            "title": "Recherche dans la législation et la jurisprudence",
+            "similarity": 0.48291863914994276
+          },
+          {
+            "code": "PJ-1054",
+            "title": "Formation pour formateurs référents PJ",
+            "similarity": 0.4811725803735109
+          },
+          {
+            "code": "SEM1235",
+            "title": "Gestion de l'information, des documents et des archives de l'administration (GIDA)",
+            "similarity": 0.48115419396100895
+          },
+          {
+            "code": "SEM1129E",
+            "title": "Formation au plan comptable MCH2 de l'Etat de Genève - E-learning",
+            "similarity": 0.4784595034392867
+          },
+          {
+            "code": "PJ-0054",
+            "title": "Excel 2016",
+            "similarity": 0.47650357464363857
+          },
+          {
+            "code": "SEM1084",
+            "title": "Finances publiques: introduction",
+            "similarity": 0.4737588122271392
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-007",
+        "segment": "natural_positive",
+        "query": "Notre service accumule des dossiers papier et numériques ; je dois savoir lesquels conserver, combien de temps et comment organiser leur archivage.",
+        "expectedRelevantCodes": [
+          "SEM1235"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0707",
+            "title": "Techniques d'élaboration des documents écrits",
+            "similarity": 0.5069535246197898
+          },
+          {
+            "code": "TRT1009",
+            "title": "Excel 365 Analyse de données",
+            "similarity": 0.5049920789862989
+          },
+          {
+            "code": "SEM1235",
+            "title": "Gestion de l'information, des documents et des archives de l'administration (GIDA)",
+            "similarity": 0.49071221969651696
+          },
+          {
+            "code": "PJ-1065",
+            "title": "Art du PV, du rapport et du compte-rendu",
+            "similarity": 0.4811433468200159
+          },
+          {
+            "code": "TRT1018",
+            "title": "Word 365 Longs documents",
+            "similarity": 0.4763874228445376
+          },
+          {
+            "code": "SEM-P4008",
+            "title": "EP / Formation recyclage TBI (Base) pour le Cycle 1",
+            "similarity": 0.4703408017094437
+          },
+          {
+            "code": "SEM0872",
+            "title": "Gestion du temps et des priorités",
+            "similarity": 0.466728237113454
+          },
+          {
+            "code": "SEM0631",
+            "title": "L'art du PV, du rapport et du compte-rendu",
+            "similarity": 0.46515096272993656
+          },
+          {
+            "code": "SEM1138E",
+            "title": "Les objets du Conseil d'Etat - E-learning",
+            "similarity": 0.4631878825551745
+          },
+          {
+            "code": "PJ-0054",
+            "title": "Excel 2016",
+            "similarity": 0.4517757224074208
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-008",
+        "segment": "natural_positive",
+        "query": "Un journaliste va m’interroger au nom de mon service et je veux apprendre à répondre clairement sans perdre la maîtrise du message.",
+        "expectedRelevantCodes": [
+          "SEM0746"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0746",
+            "title": "Communiquer efficacement avec les médias",
+            "similarity": 0.5823730903567765
+          },
+          {
+            "code": "SEM1033",
+            "title": "Répondre avec tact aux plaintes écrites",
+            "similarity": 0.5804303947841076
+          },
+          {
+            "code": "SEM1098",
+            "title": "Les clés d'une communication efficace",
+            "similarity": 0.4874156667923936
+          },
+          {
+            "code": "SEM0518",
+            "title": "Prévenir les tensions dans ses relations par une bonne communication",
+            "similarity": 0.4795023871880109
+          },
+          {
+            "code": "SEM1151",
+            "title": "Sensibilisation à la Communication NonViolente (CNV©)",
+            "similarity": 0.47550454665781966
+          },
+          {
+            "code": "SEM1074",
+            "title": "Médiation 2: approfondissement",
+            "similarity": 0.4666155641469364
+          },
+          {
+            "code": "SEM1037",
+            "title": "Médiation 1: les bases pratiques",
+            "similarity": 0.45533985001585364
+          },
+          {
+            "code": "S2-553",
+            "title": "W3 : Maîtriser le prompt : dialoguer avec l?IA sans perdre son intention pédagogique",
+            "similarity": 0.4545627280505393
+          },
+          {
+            "code": "SEM1122",
+            "title": "Ajuster sa voix et son comportement non verbal, force d'influence",
+            "similarity": 0.45413082007256295
+          },
+          {
+            "code": "SEM1220",
+            "title": "Adapter sa manière de communiquer pour des relations professionnelles efficaces (PCM)",
+            "similarity": 0.4531248892286301
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-009",
+        "segment": "natural_positive",
+        "query": "En tant que manager, une collègue me signale un traitement discriminatoire au travail et je dois savoir reconnaître la situation, réagir et l’orienter correctement.",
+        "expectedRelevantCodes": [
+          "SEM1247"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1247",
+            "title": "Les discriminations: comprendre, prévenir et prendre en charge",
+            "similarity": 0.5904738593149446
+          },
+          {
+            "code": "SEM0052",
+            "title": "Manager : gérer les tensions au sein de son équipe",
+            "similarity": 0.5819488079232645
+          },
+          {
+            "code": "SEM1258",
+            "title": "La santé mentale au travail : le rôle clé des managers et de la filière RH",
+            "similarity": 0.5476507242950664
+          },
+          {
+            "code": "SEM1248",
+            "title": "Les discriminations: comprendre pour agir",
+            "similarity": 0.5222398164889109
+          },
+          {
+            "code": "SEM1076",
+            "title": "Gestion de la charge de travail dans les équipes",
+            "similarity": 0.501154128269357
+          },
+          {
+            "code": "SEM1214",
+            "title": "Charge mentale au travail: s'en décharger avant d'être surchargé.e",
+            "similarity": 0.4916464426547054
+          },
+          {
+            "code": "SEM1166",
+            "title": "L'intelligence émotionnelle au service de la conduite d'équipe",
+            "similarity": 0.48954393686684133
+          },
+          {
+            "code": "SEM1161",
+            "title": "Sensibilisation à la pleine-conscience au travail",
+            "similarity": 0.48734713310765004
+          },
+          {
+            "code": "SEM0518",
+            "title": "Prévenir les tensions dans ses relations par une bonne communication",
+            "similarity": 0.46841011156310636
+          },
+          {
+            "code": "FP178",
+            "title": "Manager : gérer les tensions au sein de son équipe",
+            "similarity": 0.4666864085334555
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-010",
+        "segment": "natural_positive",
+        "query": "Je ne vois plus très bien ce qui donne du sens à mon travail et je cherche à retrouver des sources de motivation durables dans mon activité.",
+        "expectedRelevantCodes": [
+          "SEM1213"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1141",
+            "title": "La roue de l'équilibre de vie au travail",
+            "similarity": 0.4225896245227051
+          },
+          {
+            "code": "SEM1213",
+            "title": "Comment entretenir le sens et la motivation dans son activité professionnelle",
+            "similarity": 0.413914481157068
+          },
+          {
+            "code": "SEM1211",
+            "title": "L'incertitude dans le monde du travail: comment l'apprivoiser ?",
+            "similarity": 0.3892448758169179
+          },
+          {
+            "code": "SEM1043",
+            "title": "Comment aborder sereinement la complexité et l'ambiguïté du monde du travail ?",
+            "similarity": 0.3763850756573924
+          },
+          {
+            "code": "SEM1214",
+            "title": "Charge mentale au travail: s'en décharger avant d'être surchargé.e",
+            "similarity": 0.357763820545111
+          },
+          {
+            "code": "SEM1127",
+            "title": "Gestion de l'absence et de la qualité de vie au travail - Théâtre forum",
+            "similarity": 0.3438114167126222
+          },
+          {
+            "code": "SEM0815",
+            "title": "Dynamiser sa seconde partie de carrière et de vie",
+            "similarity": 0.3386588358425711
+          },
+          {
+            "code": "SEM1198",
+            "title": "Prendre soin de soi pour un meilleur équilibre au travail : intégrer les TOP dans son quotidien",
+            "similarity": 0.33367634153502324
+          },
+          {
+            "code": "SEM1161",
+            "title": "Sensibilisation à la pleine-conscience au travail",
+            "similarity": 0.320407135159064
+          },
+          {
+            "code": "SEM1237",
+            "title": "Comment acquérir une vision synthétique et objective d'une situation ?",
+            "similarity": 0.31972468266449117
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-011",
+        "segment": "natural_positive",
+        "query": "Je dois préparer et mener des entretiens avec mes collaboratrices et collaborateurs, y compris lorsque la discussion est délicate.",
+        "expectedRelevantCodes": [
+          "SEM1203"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0518",
+            "title": "Prévenir les tensions dans ses relations par une bonne communication",
+            "similarity": 0.5359062611322313
+          },
+          {
+            "code": "PJ-1095",
+            "title": "Communication interpersonnelle - Collaboratrices et Collaborateurs",
+            "similarity": 0.5257643058636335
+          },
+          {
+            "code": "SEM1074",
+            "title": "Médiation 2: approfondissement",
+            "similarity": 0.524636215263655
+          },
+          {
+            "code": "SEM0052",
+            "title": "Manager : gérer les tensions au sein de son équipe",
+            "similarity": 0.47826856472223345
+          },
+          {
+            "code": "SEM1037",
+            "title": "Médiation 1: les bases pratiques",
+            "similarity": 0.4775816950618948
+          },
+          {
+            "code": "SEM1095",
+            "title": "Prévenir et gérer les comportements agressifs",
+            "similarity": 0.46562801799150944
+          },
+          {
+            "code": "OMP-009EVN",
+            "title": "Rôles, autorité, pouvoir et dynamique de groupes dans la collaboration interprofessionnelle en milieu pédagogique",
+            "similarity": 0.4646300103330951
+          },
+          {
+            "code": "SEM1145",
+            "title": "Mener des concertations avec des partenaires de projet",
+            "similarity": 0.46291587440755594
+          },
+          {
+            "code": "SEM0651",
+            "title": "Comment augmenter l'efficacité d'une séance ou d'un groupe de travail ?",
+            "similarity": 0.46240290080738317
+          },
+          {
+            "code": "PJ-1093",
+            "title": "Sensibilisation au flow et à la pleine conscience au travail",
+            "similarity": 0.456986140892214
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-012",
+        "segment": "natural_positive",
+        "query": "J’ai trop d’idées et d’informations dispersées ; je voudrais une méthode visuelle pour les structurer et faire apparaître les liens.",
+        "expectedRelevantCodes": [
+          "SEM1040"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM-10924",
+            "title": "CO-ESII / Créer un récit cartographique avec StoryMapJS / Formation autonome en ligne",
+            "similarity": 0.4352480312446776
+          },
+          {
+            "code": "SEM1165",
+            "title": "Design Thinking: des solutions créatives qui prennent l'humain en compte",
+            "similarity": 0.4019855776837249
+          },
+          {
+            "code": "SEM-10550",
+            "title": "ESII / Créer facilement une bibliographie avec ZoteroBib / NOUVEAU / Formation autonome en ligne",
+            "similarity": 0.4007724264380679
+          },
+          {
+            "code": "SEM1232E",
+            "title": "Titan - Apprendre à motiver une équipe",
+            "similarity": 0.4003801963260869
+          },
+          {
+            "code": "SEM-10901",
+            "title": "CO-ESII / Moodle : Organiser des ressources sur un site statique / Formation autonome en ligne",
+            "similarity": 0.38625351445031225
+          },
+          {
+            "code": "SEM-10548",
+            "title": "CO-ESII / Des outils numériques pour accompagner des TP en Sciences / Formation autonome en ligne",
+            "similarity": 0.38571457757843386
+          },
+          {
+            "code": "SEM-10929",
+            "title": "EP-OMP-CO-ESII / Créer une vidéo interactive avec H5P / NOUVEAU / Formation autonome en ligne",
+            "similarity": 0.38491537834266487
+          },
+          {
+            "code": "SEM-10925",
+            "title": "CO-ESII / Comparer des images avec JuxtaposeJS / Formation autonome en ligne",
+            "similarity": 0.3812403843031184
+          },
+          {
+            "code": "EP-083MDAS",
+            "title": "Conférences l'illustration contemporaine: diversité créative",
+            "similarity": 0.3803403564217962
+          },
+          {
+            "code": "EP-097MDAS",
+            "title": "Enseigner une séquence d'arts visuels au primaire avec Procreate (iPad)",
+            "similarity": 0.37560535026691666
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-013",
+        "segment": "natural_positive",
+        "query": "Je dois produire des cartes professionnelles à partir de données géographiques et apprendre à organiser les couches, les symboles et les mises en page.",
+        "expectedRelevantCodes": [
+          "TRT051"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "S2-ORFO303",
+            "title": "FC3-Excel_Base de donnée",
+            "similarity": 0.4680093219811594
+          },
+          {
+            "code": "SEM0707",
+            "title": "Techniques d'élaboration des documents écrits",
+            "similarity": 0.4499248874862275
+          },
+          {
+            "code": "SEM-10550",
+            "title": "ESII / Créer facilement une bibliographie avec ZoteroBib / NOUVEAU / Formation autonome en ligne",
+            "similarity": 0.44356993292061214
+          },
+          {
+            "code": "EP-1057",
+            "title": "Stratégies pour enseigner l'orthographe aux élèves faibles en orthographe ou dysorthographiques",
+            "similarity": 0.44330777883604616
+          },
+          {
+            "code": "SEM-10417",
+            "title": "EP-CO-ESII / Initiation au dessin vectoriel avec Inkscape / Formation autonome en ligne",
+            "similarity": 0.44138206040225175
+          },
+          {
+            "code": "EP-995",
+            "title": "Découverte d'une approche créative de la céramique au CM",
+            "similarity": 0.43888263019024304
+          },
+          {
+            "code": "EP-984",
+            "title": "Peinture et graphisme au cycle moyen",
+            "similarity": 0.43596810688345083
+          },
+          {
+            "code": "S2-850",
+            "title": "Apprendre à apprendre : optimiser les méthodes de travail de mes élèves",
+            "similarity": 0.4357431817762414
+          },
+          {
+            "code": "EP-979",
+            "title": "Créer et relier un livre avec les moyens du bord (CE)",
+            "similarity": 0.4341470695642663
+          },
+          {
+            "code": "SEM-10924",
+            "title": "CO-ESII / Créer un récit cartographique avec StoryMapJS / Formation autonome en ligne",
+            "similarity": 0.43179062446920496
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-014",
+        "segment": "context_restriction",
+        "query": "Je travaille dans l’administration du DIP et certaines factures adressées par notre service restent impayées ; je dois savoir quelles relances et démarches entreprendre pour recouvrer les montants dus.",
+        "expectedRelevantCodes": [
+          "SFIN-001"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SFIN-001",
+            "title": "Gestion des débiteurs : les actions à entreprendre afin d'avoir un recouvrement des créances optimal",
+            "similarity": 0.5201941273652293
+          },
+          {
+            "code": "SEM1086",
+            "title": "Budget et planification financière",
+            "similarity": 0.4872485675536846
+          },
+          {
+            "code": "SEM1087",
+            "title": "Gestion des investissements et des immobilisations",
+            "similarity": 0.4650973779333994
+          },
+          {
+            "code": "DIP-003",
+            "title": "Construire ensemble la charte de la formation continue du DIP",
+            "similarity": 0.4584508420619727
+          },
+          {
+            "code": "SEM1129E",
+            "title": "Formation au plan comptable MCH2 de l'Etat de Genève - E-learning",
+            "similarity": 0.45616309605635874
+          },
+          {
+            "code": "SFIN-003",
+            "title": "Mon rôle comptable et financier au sein du DIP",
+            "similarity": 0.4531527262919485
+          },
+          {
+            "code": "SEM1256",
+            "title": "Gestion des investissements",
+            "similarity": 0.44565648636037597
+          },
+          {
+            "code": "SEM1085",
+            "title": "Finances et comptabilité",
+            "similarity": 0.43899556014601954
+          },
+          {
+            "code": "TRT011",
+            "title": "CFI - Débiteurs: consultation des transactions débiteurs",
+            "similarity": 0.42330841541013353
+          },
+          {
+            "code": "SEM1084",
+            "title": "Finances publiques: introduction",
+            "similarity": 0.4144578557196727
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-015",
+        "segment": "natural_positive",
+        "query": "Je reçois de longs rapports à parcourir et je voudrais en repérer plus vite la structure, les arguments et les informations essentielles sans perdre en compréhension.",
+        "expectedRelevantCodes": [
+          "SEM1216"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1033",
+            "title": "Répondre avec tact aux plaintes écrites",
+            "similarity": 0.5026790776205631
+          },
+          {
+            "code": "S2-952",
+            "title": "Au-delà des faits : comment évaluer l'information et raisonner sous incertitude",
+            "similarity": 0.48013907721313726
+          },
+          {
+            "code": "SEM0707",
+            "title": "Techniques d'élaboration des documents écrits",
+            "similarity": 0.4752482380834435
+          },
+          {
+            "code": "SEM1074",
+            "title": "Médiation 2: approfondissement",
+            "similarity": 0.4718621487815065
+          },
+          {
+            "code": "SEM1138E",
+            "title": "Les objets du Conseil d'Etat - E-learning",
+            "similarity": 0.4674994266111779
+          },
+          {
+            "code": "PJ-0042",
+            "title": "Introduction aux systèmes d'information\nLa convocation est directement adressée aux collaboratrices et collaborateurs par RH-Formation",
+            "similarity": 0.4617228910453854
+          },
+          {
+            "code": "PJ-0107",
+            "title": "IntraPJ Sharepoint - Edition de contenus et tutoriel",
+            "similarity": 0.46024981700027223
+          },
+          {
+            "code": "SEM1199",
+            "title": "Atelier de résolution de conflits",
+            "similarity": 0.44839963512420433
+          },
+          {
+            "code": "PJ-0106",
+            "title": "IntraPJ Sharepoint - Edition de contenus",
+            "similarity": 0.4423120033087343
+          },
+          {
+            "code": "SEM1222",
+            "title": "Gestion des crises majeures",
+            "similarity": 0.4408099381329275
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-016",
+        "segment": "multi_intent",
+        "query": "Je veux apprendre à analyser mes chiffres puis à les présenter de façon claire et visuelle à ma hiérarchie.",
+        "expectedRelevantCodes": [
+          "TRT1009",
+          "TRT1008"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "EP-576",
+            "title": "Enseigner les mathématiques au cycle moyen",
+            "similarity": 0.39314288854699775
+          },
+          {
+            "code": "TRT1009",
+            "title": "Excel 365 Analyse de données",
+            "similarity": 0.37492131421125785
+          },
+          {
+            "code": "EP-575",
+            "title": "Enseigner les mathématiques au cycle élémentaire",
+            "similarity": 0.37285735986463636
+          },
+          {
+            "code": "S2-ORFO303",
+            "title": "FC3-Excel_Base de donnée",
+            "similarity": 0.3634019600018592
+          },
+          {
+            "code": "EP-998",
+            "title": "Capter l'attention des élèves pour apprendre différemment",
+            "similarity": 0.36070517169510957
+          },
+          {
+            "code": "SEM-10538",
+            "title": "CO-ESII / Vidéos pédagogiques dans l'enseignement des mathématiques / Formation autonome en ligne",
+            "similarity": 0.3592331068549858
+          },
+          {
+            "code": "S2-952",
+            "title": "Au-delà des faits : comment évaluer l'information et raisonner sous incertitude",
+            "similarity": 0.3514086555792941
+          },
+          {
+            "code": "S2-FIO002A",
+            "title": "Enseignement, différenciation pédagogique et évaluation dans une approche orientée vers les compétences opérationnelles (OCO): préparer, délivrer et évaluer",
+            "similarity": 0.3494572480448024
+          },
+          {
+            "code": "SEM-10924",
+            "title": "CO-ESII / Créer un récit cartographique avec StoryMapJS / Formation autonome en ligne",
+            "similarity": 0.34674402799604875
+          },
+          {
+            "code": "EP-019EVEN",
+            "title": "Mathématiques 5P-6P - Nouveaux moyens d'enseignement romands (e-learning)",
+            "similarity": 0.34635261714255494
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-017",
+        "segment": "multi_intent",
+        "query": "Je dois améliorer mes supports de présentation mais aussi être plus convaincant quand je les présente devant un groupe.",
+        "expectedRelevantCodes": [
+          "TRT1014",
+          "SEM1108"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0518",
+            "title": "Prévenir les tensions dans ses relations par une bonne communication",
+            "similarity": 0.540365833958579
+          },
+          {
+            "code": "SEM0651",
+            "title": "Comment augmenter l'efficacité d'une séance ou d'un groupe de travail ?",
+            "similarity": 0.5081084120373582
+          },
+          {
+            "code": "SEM1099",
+            "title": "Optimiser l'impact de vos présentations projetées",
+            "similarity": 0.5042033523074908
+          },
+          {
+            "code": "SEM0830",
+            "title": "Accroître et dynamiser sa performance",
+            "similarity": 0.4820057553075933
+          },
+          {
+            "code": "SEM1074",
+            "title": "Médiation 2: approfondissement",
+            "similarity": 0.47014683711340877
+          },
+          {
+            "code": "SEM1095",
+            "title": "Prévenir et gérer les comportements agressifs",
+            "similarity": 0.46465138270203943
+          },
+          {
+            "code": "TRT3008E",
+            "title": "OneNote 2016 : Créez et partagez vos notes | E-LEARNING",
+            "similarity": 0.458391341486569
+          },
+          {
+            "code": "SEM1098",
+            "title": "Les clés d'une communication efficace",
+            "similarity": 0.45169287783025025
+          },
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "similarity": 0.44474986084932067
+          },
+          {
+            "code": "PJ-1093",
+            "title": "Sensibilisation au flow et à la pleine conscience au travail",
+            "similarity": 0.44122185530277347
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-018",
+        "segment": "multi_intent",
+        "query": "Je débute dans la gestion de projet et je dois aussi apprendre à identifier les risques avant qu’ils ne deviennent des problèmes.",
+        "expectedRelevantCodes": [
+          "SEM0737",
+          "SEM1080"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1080",
+            "title": "Identifier et gérer les risques d'un projet",
+            "similarity": 0.5762648657770811
+          },
+          {
+            "code": "SEM1176",
+            "title": "Prise en main de l'outil de gestion des risques Etat",
+            "similarity": 0.5568280645779851
+          },
+          {
+            "code": "SEM1222",
+            "title": "Gestion des crises majeures",
+            "similarity": 0.454404491154884
+          },
+          {
+            "code": "PJ-0094",
+            "title": "Fondamentaux Gestion de projet (volet 2)",
+            "similarity": 0.44375784167199794
+          },
+          {
+            "code": "S2-433",
+            "title": "Evaluation HSE des risques au laboratoire (I)",
+            "similarity": 0.43592365785570164
+          },
+          {
+            "code": "S2-434",
+            "title": "Evaluation HSE des risques au laboratoire (II)",
+            "similarity": 0.4173369320572202
+          },
+          {
+            "code": "OMP-001HY",
+            "title": "Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire",
+            "similarity": 0.40141293875486683
+          },
+          {
+            "code": "SEM1145",
+            "title": "Mener des concertations avec des partenaires de projet",
+            "similarity": 0.3793704021738489
+          },
+          {
+            "code": "SEM1239",
+            "title": "Maîtriser ses activités: principes et outils pratiques",
+            "similarity": 0.3734986810545391
+          },
+          {
+            "code": "SEM1221",
+            "title": "Gestion des risques",
+            "similarity": 0.3731568763215082
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-019",
+        "segment": "multi_intent",
+        "query": "Comme manager, je dois mieux négocier avec mon équipe et mieux conduire les entretiens individuels.",
+        "expectedRelevantCodes": [
+          "SEM1200",
+          "SEM1203"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0052",
+            "title": "Manager : gérer les tensions au sein de son équipe",
+            "similarity": 0.6188484757251984
+          },
+          {
+            "code": "SEM1076",
+            "title": "Gestion de la charge de travail dans les équipes",
+            "similarity": 0.5436317251559623
+          },
+          {
+            "code": "SEM0518",
+            "title": "Prévenir les tensions dans ses relations par une bonne communication",
+            "similarity": 0.5308979205496669
+          },
+          {
+            "code": "SEM1244",
+            "title": "Comment manager les équipes intergénérationnelles",
+            "similarity": 0.5256598832354681
+          },
+          {
+            "code": "SEM1177",
+            "title": "Créer une dynamique collaborative au sein de son équipe",
+            "similarity": 0.5002129129505649
+          },
+          {
+            "code": "SEM1166",
+            "title": "L'intelligence émotionnelle au service de la conduite d'équipe",
+            "similarity": 0.49970924604512246
+          },
+          {
+            "code": "SEM1223",
+            "title": "L'alignement stratégique dans la conduite d'équipe",
+            "similarity": 0.49573642597886225
+          },
+          {
+            "code": "FP178",
+            "title": "Manager : gérer les tensions au sein de son équipe",
+            "similarity": 0.4918585271971707
+          },
+          {
+            "code": "SEM1174",
+            "title": "Pacific : Leadership et gestion d'équipe",
+            "similarity": 0.47908706440535853
+          },
+          {
+            "code": "SEM1183",
+            "title": "Prendre soin de soi pour rester performant : intégrer les TOP dans son management",
+            "similarity": 0.4738700032066411
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-020",
+        "segment": "multi_intent",
+        "query": "Je voudrais automatiser certaines tâches répétitives dans mes tableaux tout en comprenant ce que l’intelligence artificielle peut réellement faire ou non.",
+        "expectedRelevantCodes": [
+          "TRT1010",
+          "SEM1246"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM-10617",
+            "title": "CO-PO / Générer des images avec l'intelligence artificielle / NOUVEAU",
+            "similarity": 0.522129373450701
+          },
+          {
+            "code": "SEM-10344",
+            "title": "CO-ESII / : Intelligence artificielle non générative / Formation autonome en ligne",
+            "similarity": 0.5173486138938951
+          },
+          {
+            "code": "SEM1246",
+            "title": "Renforcer son esprit critique à l'ère de l'IA et de la désinformation",
+            "similarity": 0.5040955412649306
+          },
+          {
+            "code": "SEM-10307",
+            "title": "CO-ESII / Faire un site web eduge pour ses élèves en 4h / Formation autonome en ligne",
+            "similarity": 0.48668473188809874
+          },
+          {
+            "code": "PO-009PATC",
+            "title": "Défis de l'IA dans le domaine des compétences informationnelles",
+            "similarity": 0.48231533465708726
+          },
+          {
+            "code": "SEM-10251",
+            "title": "CO-ESII / Apprendre à créer un jeu avec Blockly en 4h / Formation autonome en ligne",
+            "similarity": 0.48108914023551896
+          },
+          {
+            "code": "SEM-10350",
+            "title": "CO-ESII / Activités autour de l'IA pour les élèves / NOUVEAU",
+            "similarity": 0.48042232678716706
+          },
+          {
+            "code": "SEM-10904",
+            "title": "CO-ESII / Moodle : Devenir autonome - créer des évaluations automatisées - niveau 1 / Formation autonome en ligne",
+            "similarity": 0.4744901996253098
+          },
+          {
+            "code": "SEM-10415",
+            "title": "EP-CO-ESII-OMP / Découverte de la Conception Assistée par Ordinateur (CAO) 3D/ Formation autonome en ligne",
+            "similarity": 0.4732760665451673
+          },
+          {
+            "code": "SEM-10454",
+            "title": "EP-CO-ESII-OMP / Impression 3D, la base pour créer des objets 3D et les imprimer / Formation hybride",
+            "similarity": 0.46941380907615093
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-021",
+        "segment": "context_restriction",
+        "query": "Je suis enseignant au primaire et je voudrais découvrir comment utiliser l’IA pour préparer ou adapter des contenus pédagogiques.",
+        "expectedRelevantCodes": [
+          "SEM-P1575"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM-10350",
+            "title": "CO-ESII / Activités autour de l'IA pour les élèves / NOUVEAU",
+            "similarity": 0.6249597965737754
+          },
+          {
+            "code": "PO-009PATC",
+            "title": "Défis de l'IA dans le domaine des compétences informationnelles",
+            "similarity": 0.6087742153947907
+          },
+          {
+            "code": "S2-557",
+            "title": "W7 : Construire un écosystème IA éducatif : pratiques, outils, règles et culture commune",
+            "similarity": 0.6064072030289054
+          },
+          {
+            "code": "SEM-4009",
+            "title": "Formation IA et ORFO pour les enseignants AFP",
+            "similarity": 0.6058002332053858
+          },
+          {
+            "code": "SEM-10538",
+            "title": "CO-ESII / Vidéos pédagogiques dans l'enseignement des mathématiques / Formation autonome en ligne",
+            "similarity": 0.5763706892453018
+          },
+          {
+            "code": "SEM-10540",
+            "title": "CO-ESII / Augmenter la participation de vos élèves en classe / Formation autonome en ligne",
+            "similarity": 0.5724698254033523
+          },
+          {
+            "code": "SEM-10307",
+            "title": "CO-ESII / Faire un site web eduge pour ses élèves en 4h / Formation autonome en ligne",
+            "similarity": 0.5685875051840146
+          },
+          {
+            "code": "OMP-110",
+            "title": "Educatrices et Educateurs : Animer des activités de science informatique : du débranché à la robotique",
+            "similarity": 0.5675017740801945
+          },
+          {
+            "code": "SEM-10904",
+            "title": "CO-ESII / Moodle : Devenir autonome - créer des évaluations automatisées - niveau 1 / Formation autonome en ligne",
+            "similarity": 0.5656025888608937
+          },
+          {
+            "code": "SEM-P1511",
+            "title": "EP-OMP / Introduction à Thymio : observer, comprendre et relever des défis autour des concepts de la robotique",
+            "similarity": 0.5640641971969721
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-022",
+        "segment": "context_restriction",
+        "query": "J’enseigne la chimie au secondaire et je dois évaluer les dangers d’une expérience avant de faire travailler mes élèves au laboratoire.",
+        "expectedRelevantCodes": [
+          "S2-433"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "S2-435",
+            "title": "Intelligence artificielle pour l'enseignement de la chimie",
+            "similarity": 0.5953249313892862
+          },
+          {
+            "code": "S2-433",
+            "title": "Evaluation HSE des risques au laboratoire (I)",
+            "similarity": 0.5904910212506828
+          },
+          {
+            "code": "S2-434",
+            "title": "Evaluation HSE des risques au laboratoire (II)",
+            "similarity": 0.5774857004866636
+          },
+          {
+            "code": "S2-453",
+            "title": "Enseigner l'épistémologie des sciences : outils en classe",
+            "similarity": 0.5257640979828535
+          },
+          {
+            "code": "S2-454",
+            "title": "Enseigner les questions socialement vives (QSV) en mobilisant la nature des sciences (NOS), pour des décisions éclairées",
+            "similarity": 0.521405520372187
+          },
+          {
+            "code": "S2-443",
+            "title": "Au c½ur de la science : explorez l'offre éducative du CERN Science Gateway !",
+            "similarity": 0.4954658138759007
+          },
+          {
+            "code": "EP-266EVEN",
+            "title": "Dans la peau de scientifiques",
+            "similarity": 0.4754952832589333
+          },
+          {
+            "code": "CO-01708",
+            "title": "Ecrire pour apprendre en biologie. Quels écrits, quelle progressivité pour quelles démarches ?",
+            "similarity": 0.47316082428585116
+          },
+          {
+            "code": "CO-01646",
+            "title": "À quels risques sommes-nous exposés à Genève ?",
+            "similarity": 0.46265482426844035
+          },
+          {
+            "code": "CO-01079",
+            "title": "Approches non linéaires en physique - RDV annuel de physique avec l'UNIGE",
+            "similarity": 0.4589140902112555
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-023",
+        "segment": "context_restriction",
+        "query": "J’enseigne en primaire et je voudrais organiser des sorties régulières dans la nature avec ma classe sans devoir faire venir un spécialiste à chaque fois.",
+        "expectedRelevantCodes": [
+          "EP-570"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "EP-570",
+            "title": "Proposer des sorties dans la nature avec sa classe sans la présence de spécialistes",
+            "similarity": 0.6608812569968079
+          },
+          {
+            "code": "CO-01715",
+            "title": "Cultures potagères en milieu scolaire : planification et associations de plantes",
+            "similarity": 0.5899204760083329
+          },
+          {
+            "code": "S2-453",
+            "title": "Enseigner l'épistémologie des sciences : outils en classe",
+            "similarity": 0.5396095522783558
+          },
+          {
+            "code": "EP-579",
+            "title": "Découverte des abeilles sauvages et domestiques",
+            "similarity": 0.5290568399841011
+          },
+          {
+            "code": "EP-580",
+            "title": "Initiation à l'observation et à la détermination des oiseaux communs avec une classe",
+            "similarity": 0.5268823562015723
+          },
+          {
+            "code": "EP-266EVEN",
+            "title": "Dans la peau de scientifiques",
+            "similarity": 0.5247327285138075
+          },
+          {
+            "code": "EP-01APPCO",
+            "title": "Ateliers de pratique professionnelle en contexte de co-intervention (APP CO)",
+            "similarity": 0.5208213003479646
+          },
+          {
+            "code": "EP-1046",
+            "title": "Apprendre à glisser sans stress : encadrer une sortie scolaire à la patinoire",
+            "similarity": 0.5186441721578552
+          },
+          {
+            "code": "EP-092EVEN",
+            "title": "Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - différé",
+            "similarity": 0.5164883851198243
+          },
+          {
+            "code": "EP-957SSEJ",
+            "title": "Premiers secours : rafraîchissement - Ecole Climatique de Boveau",
+            "similarity": 0.512780139295702
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-024",
+        "segment": "context_restriction",
+        "query": "Je travaille en détention et je dois mieux comprendre comment les appartenances culturelles et religieuses peuvent influencer la vie quotidienne des personnes incarcérées.",
+        "expectedRelevantCodes": [
+          "OCD424"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "OCD424",
+            "title": "Cultures et religions",
+            "similarity": 0.584714605041409
+          },
+          {
+            "code": "OCD027",
+            "title": "Radicalisation en milieu pénitentiaire : comprendre pour mieux détecter",
+            "similarity": 0.5705215064616306
+          },
+          {
+            "code": "OCD370",
+            "title": "CAS Santé en milieu pénitentiaire",
+            "similarity": 0.5383602257171723
+          },
+          {
+            "code": "OCD426",
+            "title": "La communication au quotidien - Approfondissement",
+            "similarity": 0.5253530656618883
+          },
+          {
+            "code": "OCD423",
+            "title": "Gestion de crise pour les cadres des services pénitentiaires - Compétences de bases",
+            "similarity": 0.5097676379955408
+          },
+          {
+            "code": "OCD130",
+            "title": "Troubles mentaux - Module 3 : troubles de la personnalité",
+            "similarity": 0.5070169165587315
+          },
+          {
+            "code": "OCD373",
+            "title": "Accompagnement des stagiaires - Refresh",
+            "similarity": 0.5035295258813267
+          },
+          {
+            "code": "OCD332",
+            "title": "FOP I - Conduite d'intervention en milieu carcéral",
+            "similarity": 0.49203339565687765
+          },
+          {
+            "code": "OCD018",
+            "title": "Gérer les personnalités difficiles",
+            "similarity": 0.48538491482341595
+          },
+          {
+            "code": "EP-045WEB",
+            "title": "Accueil des élèves et des familles relevant du domaine de l'asile",
+            "similarity": 0.4711500565117493
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-025",
+        "segment": "context_restriction",
+        "query": "Dans mon travail je dois prendre ou revoir des décisions administratives et je voudrais mieux maîtriser le raisonnement juridique qui les encadre.",
+        "expectedRelevantCodes": [
+          "SEM0056"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0056",
+            "title": "Principes généraux du droit administratif",
+            "similarity": 0.5962524214826819
+          },
+          {
+            "code": "PJ-0093",
+            "title": "Introduction à la gestion de projet au Pouvoir judiciaire (volet 1)",
+            "similarity": 0.5522691941255673
+          },
+          {
+            "code": "SEM0886",
+            "title": "Processus législatif et réglementaire",
+            "similarity": 0.5382905268500146
+          },
+          {
+            "code": "PJ-0028",
+            "title": "Rédaction de décisions judiciaires - filière administrative",
+            "similarity": 0.5382335709839816
+          },
+          {
+            "code": "SEM0720",
+            "title": "Méthode et rédaction législative",
+            "similarity": 0.5290380856068331
+          },
+          {
+            "code": "PJ-0088",
+            "title": "Référents SI Métier - Module 3 - Civil et Administratif",
+            "similarity": 0.5246027424298723
+          },
+          {
+            "code": "PJ-0092",
+            "title": "Recherche dans la législation et la jurisprudence",
+            "similarity": 0.5128078795988898
+          },
+          {
+            "code": "PJ-1094",
+            "title": "Communication interpersonnelle - Responsables de secteur et référents",
+            "similarity": 0.50569370500961
+          },
+          {
+            "code": "PJ-0027",
+            "title": "Rédaction de décisions judiciaires - filière civile",
+            "similarity": 0.4979485780966005
+          },
+          {
+            "code": "SEM0857",
+            "title": "Faire face au changement : leadership et pilotage",
+            "similarity": 0.47857416447329193
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-026",
+        "segment": "abstention",
+        "query": "Je rénove ma salle de bains et je voudrais apprendre à poser du carrelage mural et à refaire correctement l’étanchéité de la douche.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "EP-999",
+            "title": "Tresser le vivant : vannerie sauvage, un artisanat durable et sensible",
+            "similarity": 0.2765979242607972
+          },
+          {
+            "code": "EP-985",
+            "title": "Crayons de couleur et pastels Neocolor : techniques et application en Arts visuels",
+            "similarity": 0.24900310058977698
+          },
+          {
+            "code": "OMP-001HY",
+            "title": "Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire",
+            "similarity": 0.23377591615359555
+          },
+          {
+            "code": "SEM-P4008",
+            "title": "EP / Formation recyclage TBI (Base) pour le Cycle 1",
+            "similarity": 0.23119741452143927
+          },
+          {
+            "code": "SEM1165",
+            "title": "Design Thinking: des solutions créatives qui prennent l'humain en compte",
+            "similarity": 0.2262413740473791
+          },
+          {
+            "code": "EO-010",
+            "title": "Histoire sans chute ou comment repenser le travail du textile dans nos ateliers",
+            "similarity": 0.22244228624647006
+          },
+          {
+            "code": "CO-007MDAS",
+            "title": "Recyclage du brevet de sauvetage \"Plus Pool\" (SSS)",
+            "similarity": 0.21463315664862215
+          },
+          {
+            "code": "EP-984",
+            "title": "Peinture et graphisme au cycle moyen",
+            "similarity": 0.2024529553778954
+          },
+          {
+            "code": "SEM0828",
+            "title": "Développer sa créativité pour aborder et résoudre autrement les problèmes",
+            "similarity": 0.20153525812169257
+          },
+          {
+            "code": "EP-013SUPP",
+            "title": "Ateliers de pratique professionnelle suppléantes et suppléants (SUPP) An 1 MDAS AC&M et AV",
+            "similarity": 0.20147454835895737
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-027",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre la soudure TIG pour fabriquer des meubles métalliques.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "CO-01710",
+            "title": "Pratiquer la broderie avec ses élèves",
+            "similarity": 0.47337092294474453
+          },
+          {
+            "code": "S2-646",
+            "title": "Un T-shirt en filature : enseigner l'interdépendance à partir du textile par une approche systémique et concrète",
+            "similarity": 0.4599279425488729
+          },
+          {
+            "code": "EO-010",
+            "title": "Histoire sans chute ou comment repenser le travail du textile dans nos ateliers",
+            "similarity": 0.4124092553418058
+          },
+          {
+            "code": "CO-01079",
+            "title": "Approches non linéaires en physique - RDV annuel de physique avec l'UNIGE",
+            "similarity": 0.40611236312307086
+          },
+          {
+            "code": "SEM-10538",
+            "title": "CO-ESII / Vidéos pédagogiques dans l'enseignement des mathématiques / Formation autonome en ligne",
+            "similarity": 0.4019783020139059
+          },
+          {
+            "code": "SEM-10416",
+            "title": "EP-CO-ESII / Inkscape dans la fabrication numérique / Formation autonome en ligne",
+            "similarity": 0.39385334178823594
+          },
+          {
+            "code": "SEM-10465",
+            "title": "EP-CO-ESII / Utiliser la découpeuse vinyle du FabLab du SEM / NOUVEAU",
+            "similarity": 0.3774496809593472
+          },
+          {
+            "code": "SEM-10464",
+            "title": "EP-CO-ESII / Utiliser les imprimantes 3D du FabLab du SEM / NOUVEAU",
+            "similarity": 0.3765019434640807
+          },
+          {
+            "code": "SEM1232E",
+            "title": "Titan - Apprendre à motiver une équipe",
+            "similarity": 0.370426197831948
+          },
+          {
+            "code": "SEM-10548",
+            "title": "CO-ESII / Des outils numériques pour accompagner des TP en Sciences / Formation autonome en ligne",
+            "similarity": 0.369980050956734
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-028",
+        "segment": "abstention",
+        "query": "Je cherche une formation de barista pour apprendre à préparer des cafés professionnels.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "EP-013SUPP",
+            "title": "Ateliers de pratique professionnelle suppléantes et suppléants (SUPP) An 1 MDAS AC&M et AV",
+            "similarity": 0.38947680140682717
+          },
+          {
+            "code": "EP-006EPP",
+            "title": "Ateliers de pratique professionnelle EPP MGEN An 1",
+            "similarity": 0.3825814792406985
+          },
+          {
+            "code": "EP-01APPCO",
+            "title": "Ateliers de pratique professionnelle en contexte de co-intervention (APP CO)",
+            "similarity": 0.37972336234370757
+          },
+          {
+            "code": "EP-016SUPP",
+            "title": "Ateliers de pratique professionnelle suppléantes et suppléants (SUPP) An 2 MDAS AC&M et AV",
+            "similarity": 0.3753167369835061
+          },
+          {
+            "code": "EP-103CP-E",
+            "title": "Journée 2 : L'accompagnement du développement professionnemicrocertificationl individuel des enseignantes et enseignants débutants - Sans certification",
+            "similarity": 0.34343676011205104
+          },
+          {
+            "code": "EP-102CP-E",
+            "title": "Journée 2 : L'accompagnement du développement professionnel individuel des enseignantes et enseignants débutants - Avec microcertification",
+            "similarity": 0.3374596655069508
+          },
+          {
+            "code": "EP-739",
+            "title": "Collaboration (multi)professionnelle dans les établissements scolaires : comprendre, analyser, agir",
+            "similarity": 0.33683377310895546
+          },
+          {
+            "code": "EP-984",
+            "title": "Peinture et graphisme au cycle moyen",
+            "similarity": 0.3331646322130948
+          },
+          {
+            "code": "EP-995",
+            "title": "Découverte d'une approche créative de la céramique au CM",
+            "similarity": 0.33240625713255023
+          },
+          {
+            "code": "S2-844",
+            "title": "Organiser des ateliers de méthodes de travail",
+            "similarity": 0.3258901119949695
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-029",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre à construire et entretenir des piscines privées, notamment le traitement de l’eau et les systèmes de filtration.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "OMP-19SSS",
+            "title": "Brevet Base Pool - OMP",
+            "similarity": 0.4775182724723848
+          },
+          {
+            "code": "CO-007MDAS",
+            "title": "Recyclage du brevet de sauvetage \"Plus Pool\" (SSS)",
+            "similarity": 0.43491550893123165
+          },
+          {
+            "code": "OMP-063FE",
+            "title": "Brevet Plus pool",
+            "similarity": 0.39736345277253776
+          },
+          {
+            "code": "EP-105CP-E",
+            "title": "Concevoir des dispositifs et des ressources de formation - Sans microcertification",
+            "similarity": 0.3792402154912565
+          },
+          {
+            "code": "OMP-001HY",
+            "title": "Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire",
+            "similarity": 0.3784035840174483
+          },
+          {
+            "code": "EP-999",
+            "title": "Tresser le vivant : vannerie sauvage, un artisanat durable et sensible",
+            "similarity": 0.36608881986432484
+          },
+          {
+            "code": "EP-104CP-E",
+            "title": "Concevoir des dispositifs et des ressources de formation - Avec microcertification",
+            "similarity": 0.35962876172936287
+          },
+          {
+            "code": "EP-018SUPP",
+            "title": "Ateliers de pratique professionnelle suppléantes et suppléants (SUPP) An 2 MDAS EPS",
+            "similarity": 0.3410245725095844
+          },
+          {
+            "code": "EP-022MA",
+            "title": "Climat scolaire",
+            "similarity": 0.3408704219346388
+          },
+          {
+            "code": "EP-007MDAS",
+            "title": "Recyclage du brevet de sauvetage \"Plus Pool\" (SSS)",
+            "similarity": 0.3365651909644065
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-030",
+        "segment": "abstention",
+        "query": "Je cherche une formation pour utiliser une IA autonome afin d’automatiser complètement le traitement des dossiers administratifs de mon service.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "S2-556",
+            "title": "W6 : Agents IA pour l?éducation : concevoir des assistants pédagogiques contrôlés",
+            "similarity": 0.5518643520370757
+          },
+          {
+            "code": "SEM-10904",
+            "title": "CO-ESII / Moodle : Devenir autonome - créer des évaluations automatisées - niveau 1 / Formation autonome en ligne",
+            "similarity": 0.5513890783310701
+          },
+          {
+            "code": "SEM-10307",
+            "title": "CO-ESII / Faire un site web eduge pour ses élèves en 4h / Formation autonome en ligne",
+            "similarity": 0.5502107777414046
+          },
+          {
+            "code": "SEM-10344",
+            "title": "CO-ESII / : Intelligence artificielle non générative / Formation autonome en ligne",
+            "similarity": 0.5461331410534496
+          },
+          {
+            "code": "SEM-P1579",
+            "title": "EP-OMP / Intégrer l'Intelligence Artificielle dans sa pratique pédagogique / NOUVEAU / Formation autonome en ligne",
+            "similarity": 0.5408096955059383
+          },
+          {
+            "code": "SEM-10447",
+            "title": "EP-CO-ESII / S'organiser pour réduire son stress avec un logiciel de prise de notes / Formation autonome en ligne",
+            "similarity": 0.5383940746384099
+          },
+          {
+            "code": "SEM-10808",
+            "title": "CO-ESII / Introduction à la programmation / Formation autonome en ligne",
+            "similarity": 0.5317831038041353
+          },
+          {
+            "code": "SEM-P1555",
+            "title": "EP-OMP / Un futur en forme de robot / Formation autonome en ligne",
+            "similarity": 0.5313329578517638
+          },
+          {
+            "code": "PO-009PATC",
+            "title": "Défis de l'IA dans le domaine des compétences informationnelles",
+            "similarity": 0.5167260723730757
+          },
+          {
+            "code": "SEM-10541",
+            "title": "CO-ESII / Créer des questionnaires avec Google Forms / Formation autonome en ligne",
+            "similarity": 0.5122860556318183
+          }
+        ]
+      }
+    ],
+    "same060": [
+      {
+        "id": "SEM-NL-001",
+        "segment": "natural_positive",
+        "query": "J’ai beaucoup de chiffres à suivre dans mon activité et je voudrais que mon collaborateur puisse en tirer rapidement les informations importantes pour m’aider à prendre des décisions.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-002",
+        "segment": "natural_positive",
+        "query": "Je dois comparer plusieurs hypothèses et voir rapidement l’impact de différents scénarios à partir de mes données.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-003",
+        "segment": "natural_positive",
+        "query": "Quand un dossier devient complexe, j’ai besoin d’une méthode pour distinguer les faits, prendre du recul et construire une vue d’ensemble avant de décider.",
+        "expectedRelevantCodes": [
+          "SEM1237"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-004",
+        "segment": "natural_positive",
+        "query": "Je rédige des messages destinés à des publics très différents et je voudrais éviter les formulations qui excluent ou renforcent des stéréotypes.",
+        "expectedRelevantCodes": [
+          "SEM1245"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-005",
+        "segment": "natural_positive",
+        "query": "Après plusieurs heures à mon bureau, j’ai mal au dos et aux épaules ; je voudrais régler mon poste et adopter de meilleures habitudes.",
+        "expectedRelevantCodes": [
+          "SEM0733"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-006",
+        "segment": "natural_positive",
+        "query": "Je saisis des écritures pour l’État et je dois comprendre la structure des comptes harmonisés utilisée par les collectivités publiques.",
+        "expectedRelevantCodes": [
+          "SEM1129E"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-007",
+        "segment": "natural_positive",
+        "query": "Notre service accumule des dossiers papier et numériques ; je dois savoir lesquels conserver, combien de temps et comment organiser leur archivage.",
+        "expectedRelevantCodes": [
+          "SEM1235"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-008",
+        "segment": "natural_positive",
+        "query": "Un journaliste va m’interroger au nom de mon service et je veux apprendre à répondre clairement sans perdre la maîtrise du message.",
+        "expectedRelevantCodes": [
+          "SEM0746"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-009",
+        "segment": "natural_positive",
+        "query": "En tant que manager, une collègue me signale un traitement discriminatoire au travail et je dois savoir reconnaître la situation, réagir et l’orienter correctement.",
+        "expectedRelevantCodes": [
+          "SEM1247"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-010",
+        "segment": "natural_positive",
+        "query": "Je ne vois plus très bien ce qui donne du sens à mon travail et je cherche à retrouver des sources de motivation durables dans mon activité.",
+        "expectedRelevantCodes": [
+          "SEM1213"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-011",
+        "segment": "natural_positive",
+        "query": "Je dois préparer et mener des entretiens avec mes collaboratrices et collaborateurs, y compris lorsque la discussion est délicate.",
+        "expectedRelevantCodes": [
+          "SEM1203"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-012",
+        "segment": "natural_positive",
+        "query": "J’ai trop d’idées et d’informations dispersées ; je voudrais une méthode visuelle pour les structurer et faire apparaître les liens.",
+        "expectedRelevantCodes": [
+          "SEM1040"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-013",
+        "segment": "natural_positive",
+        "query": "Je dois produire des cartes professionnelles à partir de données géographiques et apprendre à organiser les couches, les symboles et les mises en page.",
+        "expectedRelevantCodes": [
+          "TRT051"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-014",
+        "segment": "context_restriction",
+        "query": "Je travaille dans l’administration du DIP et certaines factures adressées par notre service restent impayées ; je dois savoir quelles relances et démarches entreprendre pour recouvrer les montants dus.",
+        "expectedRelevantCodes": [
+          "SFIN-001"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-015",
+        "segment": "natural_positive",
+        "query": "Je reçois de longs rapports à parcourir et je voudrais en repérer plus vite la structure, les arguments et les informations essentielles sans perdre en compréhension.",
+        "expectedRelevantCodes": [
+          "SEM1216"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-016",
+        "segment": "multi_intent",
+        "query": "Je veux apprendre à analyser mes chiffres puis à les présenter de façon claire et visuelle à ma hiérarchie.",
+        "expectedRelevantCodes": [
+          "TRT1009",
+          "TRT1008"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-017",
+        "segment": "multi_intent",
+        "query": "Je dois améliorer mes supports de présentation mais aussi être plus convaincant quand je les présente devant un groupe.",
+        "expectedRelevantCodes": [
+          "TRT1014",
+          "SEM1108"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-018",
+        "segment": "multi_intent",
+        "query": "Je débute dans la gestion de projet et je dois aussi apprendre à identifier les risques avant qu’ils ne deviennent des problèmes.",
+        "expectedRelevantCodes": [
+          "SEM0737",
+          "SEM1080"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-019",
+        "segment": "multi_intent",
+        "query": "Comme manager, je dois mieux négocier avec mon équipe et mieux conduire les entretiens individuels.",
+        "expectedRelevantCodes": [
+          "SEM1200",
+          "SEM1203"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM0052",
+            "title": "Manager : gérer les tensions au sein de son équipe",
+            "similarity": 0.6188484757251984
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-020",
+        "segment": "multi_intent",
+        "query": "Je voudrais automatiser certaines tâches répétitives dans mes tableaux tout en comprenant ce que l’intelligence artificielle peut réellement faire ou non.",
+        "expectedRelevantCodes": [
+          "TRT1010",
+          "SEM1246"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-CTX-021",
+        "segment": "context_restriction",
+        "query": "Je suis enseignant au primaire et je voudrais découvrir comment utiliser l’IA pour préparer ou adapter des contenus pédagogiques.",
+        "expectedRelevantCodes": [
+          "SEM-P1575"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 4,
+        "top10": [
+          {
+            "code": "SEM-10350",
+            "title": "CO-ESII / Activités autour de l'IA pour les élèves / NOUVEAU",
+            "similarity": 0.6249597965737754
+          },
+          {
+            "code": "PO-009PATC",
+            "title": "Défis de l'IA dans le domaine des compétences informationnelles",
+            "similarity": 0.6087742153947907
+          },
+          {
+            "code": "S2-557",
+            "title": "W7 : Construire un écosystème IA éducatif : pratiques, outils, règles et culture commune",
+            "similarity": 0.6064072030289054
+          },
+          {
+            "code": "SEM-4009",
+            "title": "Formation IA et ORFO pour les enseignants AFP",
+            "similarity": 0.6058002332053858
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-022",
+        "segment": "context_restriction",
+        "query": "J’enseigne la chimie au secondaire et je dois évaluer les dangers d’une expérience avant de faire travailler mes élèves au laboratoire.",
+        "expectedRelevantCodes": [
+          "S2-433"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-CTX-023",
+        "segment": "context_restriction",
+        "query": "J’enseigne en primaire et je voudrais organiser des sorties régulières dans la nature avec ma classe sans devoir faire venir un spécialiste à chaque fois.",
+        "expectedRelevantCodes": [
+          "EP-570"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1,
+        "top10": [
+          {
+            "code": "EP-570",
+            "title": "Proposer des sorties dans la nature avec sa classe sans la présence de spécialistes",
+            "similarity": 0.6608812569968079
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-024",
+        "segment": "context_restriction",
+        "query": "Je travaille en détention et je dois mieux comprendre comment les appartenances culturelles et religieuses peuvent influencer la vie quotidienne des personnes incarcérées.",
+        "expectedRelevantCodes": [
+          "OCD424"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-CTX-025",
+        "segment": "context_restriction",
+        "query": "Dans mon travail je dois prendre ou revoir des décisions administratives et je voudrais mieux maîtriser le raisonnement juridique qui les encadre.",
+        "expectedRelevantCodes": [
+          "SEM0056"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-026",
+        "segment": "abstention",
+        "query": "Je rénove ma salle de bains et je voudrais apprendre à poser du carrelage mural et à refaire correctement l’étanchéité de la douche.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-027",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre la soudure TIG pour fabriquer des meubles métalliques.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-028",
+        "segment": "abstention",
+        "query": "Je cherche une formation de barista pour apprendre à préparer des cafés professionnels.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-029",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre à construire et entretenir des piscines privées, notamment le traitement de l’eau et les systèmes de filtration.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-030",
+        "segment": "abstention",
+        "query": "Je cherche une formation pour utiliser une IA autonome afin d’automatiser complètement le traitement des dossiers administratifs de mon service.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      }
+    ],
+    "enrichedRaw": [
+      {
+        "id": "SEM-NL-001",
+        "segment": "natural_positive",
+        "query": "J’ai beaucoup de chiffres à suivre dans mon activité et je voudrais que mon collaborateur puisse en tirer rapidement les informations importantes pour m’aider à prendre des décisions.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1033",
+            "title": "Répondre avec tact aux plaintes écrites",
+            "similarity": 0.4973676273117269
+          },
+          {
+            "code": "SEM0872",
+            "title": "Gestion du temps et des priorités",
+            "similarity": 0.4955412321054892
+          },
+          {
+            "code": "PJ-1065",
+            "title": "Art du PV, du rapport et du compte-rendu",
+            "similarity": 0.48808801446974936
+          },
+          {
+            "code": "SEM0707",
+            "title": "Techniques d'élaboration des documents écrits",
+            "similarity": 0.4771851935063878
+          },
+          {
+            "code": "TRT452",
+            "title": "Cockpit Formation",
+            "similarity": 0.47620300771398677
+          },
+          {
+            "code": "SFIN-003",
+            "title": "Mon rôle comptable et financier au sein du DIP",
+            "similarity": 0.4731628480425923
+          },
+          {
+            "code": "SEM0647",
+            "title": "Bilan de mes ressources et de mes intérêts : première approche",
+            "similarity": 0.46721134933117003
+          },
+          {
+            "code": "SEM1211",
+            "title": "L'incertitude dans le monde du travail: comment l'apprivoiser ?",
+            "similarity": 0.4643321934093305
+          },
+          {
+            "code": "FP253",
+            "title": "Formation continue pour évaluateurs-trices EC",
+            "similarity": 0.4579977923310625
+          },
+          {
+            "code": "SFIN-002",
+            "title": "Gestion des achats - Suivi comptable",
+            "similarity": 0.45633318240899645
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-002",
+        "segment": "natural_positive",
+        "query": "Je dois comparer plusieurs hypothèses et voir rapidement l’impact de différents scénarios à partir de mes données.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "S2-434",
+            "title": "Evaluation HSE des risques au laboratoire (II)",
+            "similarity": 0.4574378352446483
+          },
+          {
+            "code": "SEM1080",
+            "title": "Identifier et gérer les risques d'un projet",
+            "similarity": 0.4429220333545715
+          },
+          {
+            "code": "SEM1196",
+            "title": "Accompagner et vivre le changement",
+            "similarity": 0.4291237594942042
+          },
+          {
+            "code": "OMP-097",
+            "title": "Les troubles des apprentissages chez l'enfant : théorie et implications pédagogiques",
+            "similarity": 0.42144147047459324
+          },
+          {
+            "code": "EP-020MA",
+            "title": "Forum final de clôture",
+            "similarity": 0.4196991089211902
+          },
+          {
+            "code": "FP253",
+            "title": "Formation continue pour évaluateurs-trices EC",
+            "similarity": 0.4187885326523212
+          },
+          {
+            "code": "SEM1222",
+            "title": "Gestion des crises majeures",
+            "similarity": 0.4172343080519102
+          },
+          {
+            "code": "CO-01646",
+            "title": "À quels risques sommes-nous exposés à Genève ?",
+            "similarity": 0.4135719805132563
+          },
+          {
+            "code": "OMP-007TSA",
+            "title": "Les troubles du traitement de l'information sensorielle: de l'évaluation aux interventions",
+            "similarity": 0.40535331135836195
+          },
+          {
+            "code": "OCD428",
+            "title": "Le stress: les causes, les conséquences et les contre-mesures",
+            "similarity": 0.40470977684677245
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-003",
+        "segment": "natural_positive",
+        "query": "Quand un dossier devient complexe, j’ai besoin d’une méthode pour distinguer les faits, prendre du recul et construire une vue d’ensemble avant de décider.",
+        "expectedRelevantCodes": [
+          "SEM1237"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0707",
+            "title": "Techniques d'élaboration des documents écrits",
+            "similarity": 0.4647311687368414
+          },
+          {
+            "code": "SEM1237",
+            "title": "Comment acquérir une vision synthétique et objective d'une situation ?",
+            "similarity": 0.4607087075062849
+          },
+          {
+            "code": "SEM1040",
+            "title": "Mindmap : une méthode pour organiser ses idées et ses informations",
+            "similarity": 0.45822049023584355
+          },
+          {
+            "code": "OCD153",
+            "title": "Papillon - Harmonisation",
+            "similarity": 0.4544834311720398
+          },
+          {
+            "code": "FP182",
+            "title": "Utilisation guichet cartographique",
+            "similarity": 0.4479834372260282
+          },
+          {
+            "code": "TRT452",
+            "title": "Cockpit Formation",
+            "similarity": 0.4299412493964933
+          },
+          {
+            "code": "PJ-0029",
+            "title": "Rédaction de décisions judiciaires - filière pénale",
+            "similarity": 0.42269343767889644
+          },
+          {
+            "code": "PJ-1105",
+            "title": "Evaluation d'une entreprise - Module 4",
+            "similarity": 0.41299799699618467
+          },
+          {
+            "code": "SEM-10640",
+            "title": "CO-ESII : Transhumanisme / Formation autonome en ligne",
+            "similarity": 0.40771371539773676
+          },
+          {
+            "code": "PJ-0028",
+            "title": "Rédaction de décisions judiciaires - filière administrative",
+            "similarity": 0.4037078873902332
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-004",
+        "segment": "natural_positive",
+        "query": "Je rédige des messages destinés à des publics très différents et je voudrais éviter les formulations qui excluent ou renforcent des stéréotypes.",
+        "expectedRelevantCodes": [
+          "SEM1245"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1033",
+            "title": "Répondre avec tact aux plaintes écrites",
+            "similarity": 0.5409010721941284
+          },
+          {
+            "code": "SEM1245",
+            "title": "La communication inclusive",
+            "similarity": 0.5172891672925437
+          },
+          {
+            "code": "SEM-10640",
+            "title": "CO-ESII : Transhumanisme / Formation autonome en ligne",
+            "similarity": 0.5005708345632728
+          },
+          {
+            "code": "SEM1108",
+            "title": "Parler en public",
+            "similarity": 0.48953054499448273
+          },
+          {
+            "code": "SEM1155",
+            "title": "Assurer des relations de qualité avec le public : au quotidien et en situations difficiles",
+            "similarity": 0.48719525769896077
+          },
+          {
+            "code": "SEM1095",
+            "title": "Prévenir et gérer les comportements agressifs",
+            "similarity": 0.48402719822953416
+          },
+          {
+            "code": "SEM1248",
+            "title": "Les discriminations: comprendre pour agir",
+            "similarity": 0.4775158580678313
+          },
+          {
+            "code": "OMP-012TSA",
+            "title": "Les émotions chez les personnes avec autisme",
+            "similarity": 0.4765520916269011
+          },
+          {
+            "code": "SEM1195",
+            "title": "Communication et feed-back constructif",
+            "similarity": 0.47616637476515505
+          },
+          {
+            "code": "SEM1173",
+            "title": "Comment varier son vocabulaire à l'écrit ?",
+            "similarity": 0.4741284746308165
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-005",
+        "segment": "natural_positive",
+        "query": "Après plusieurs heures à mon bureau, j’ai mal au dos et aux épaules ; je voudrais régler mon poste et adopter de meilleures habitudes.",
+        "expectedRelevantCodes": [
+          "SEM0733"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0733",
+            "title": "Améliorer l'ergonomie de son poste de travail",
+            "similarity": 0.4456500191132655
+          },
+          {
+            "code": "SEM1162",
+            "title": "Comment concilier équilibre personnel et efficacité professionnelle ?",
+            "similarity": 0.41634932915944983
+          },
+          {
+            "code": "SEM0872",
+            "title": "Gestion du temps et des priorités",
+            "similarity": 0.39848610752965724
+          },
+          {
+            "code": "CO-01653",
+            "title": "Apprendre à gérer le stress par le corps : concevoir des ateliers avec les élèves",
+            "similarity": 0.39288463863943224
+          },
+          {
+            "code": "SEM0831",
+            "title": "Attitude professionnelle proactive",
+            "similarity": 0.39211834528771466
+          },
+          {
+            "code": "SEM1043",
+            "title": "Comment aborder sereinement la complexité et l'ambiguïté du monde du travail ?",
+            "similarity": 0.38471215438424
+          },
+          {
+            "code": "SEM0815",
+            "title": "Dynamiser sa seconde partie de carrière et de vie",
+            "similarity": 0.3647592405650628
+          },
+          {
+            "code": "SEM1161",
+            "title": "Sensibilisation à la pleine-conscience au travail",
+            "similarity": 0.3581563691783583
+          },
+          {
+            "code": "SEM1183",
+            "title": "Prendre soin de soi pour rester performant : intégrer les TOP dans son management",
+            "similarity": 0.3549896777531965
+          },
+          {
+            "code": "SEM1117",
+            "title": "Stress et préoccupations : maintenir et améliorer son équilibre au travail",
+            "similarity": 0.3521018067829514
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-006",
+        "segment": "natural_positive",
+        "query": "Je saisis des écritures pour l’État et je dois comprendre la structure des comptes harmonisés utilisée par les collectivités publiques.",
+        "expectedRelevantCodes": [
+          "SEM1129E"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "PJ-1102",
+            "title": "Les bases de la comptabilité - Module 1",
+            "similarity": 0.5280412724347661
+          },
+          {
+            "code": "SEM0886",
+            "title": "Processus législatif et réglementaire",
+            "similarity": 0.49585507292957814
+          },
+          {
+            "code": "PJ-0092",
+            "title": "Recherche dans la législation et la jurisprudence",
+            "similarity": 0.4869835766181724
+          },
+          {
+            "code": "EP-003ADMI",
+            "title": "Gestion du budget d'école et tenue des comptes à l'enseignement primaire",
+            "similarity": 0.4747113606911532
+          },
+          {
+            "code": "TRT039",
+            "title": "Consultation et saisie dans Ge-Invest",
+            "similarity": 0.4709727443133245
+          },
+          {
+            "code": "SEM1084",
+            "title": "Finances publiques: introduction",
+            "similarity": 0.47069089138101283
+          },
+          {
+            "code": "SEM0056",
+            "title": "Principes généraux du droit administratif",
+            "similarity": 0.4684677144484786
+          },
+          {
+            "code": "SEM0735",
+            "title": "Ethique et déontologie de la fonction publique",
+            "similarity": 0.4675006982116612
+          },
+          {
+            "code": "SFIN-003",
+            "title": "Mon rôle comptable et financier au sein du DIP",
+            "similarity": 0.46583395122352533
+          },
+          {
+            "code": "SEM0487",
+            "title": "Approche institutionnelle de l'administration cantonale",
+            "similarity": 0.46282146055125123
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-007",
+        "segment": "natural_positive",
+        "query": "Notre service accumule des dossiers papier et numériques ; je dois savoir lesquels conserver, combien de temps et comment organiser leur archivage.",
+        "expectedRelevantCodes": [
+          "SEM1235"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "PJ-1065",
+            "title": "Art du PV, du rapport et du compte-rendu",
+            "similarity": 0.5570053089125011
+          },
+          {
+            "code": "PJ-0095",
+            "title": "Les outils de la bibliothèque et les ressources juridiques en ligne en format capsule",
+            "similarity": 0.504148938335113
+          },
+          {
+            "code": "SEM1235",
+            "title": "Gestion de l'information, des documents et des archives de l'administration (GIDA)",
+            "similarity": 0.4876303346068172
+          },
+          {
+            "code": "SEM1202",
+            "title": "Hermes Edition 2022: application et scénarios IT",
+            "similarity": 0.47714617232112133
+          },
+          {
+            "code": "TRT450",
+            "title": "Cockpit RH",
+            "similarity": 0.47583017393711424
+          },
+          {
+            "code": "SEM0631",
+            "title": "L'art du PV, du rapport et du compte-rendu",
+            "similarity": 0.474336089162446
+          },
+          {
+            "code": "SFIN-003",
+            "title": "Mon rôle comptable et financier au sein du DIP",
+            "similarity": 0.4607793077582002
+          },
+          {
+            "code": "TRT051",
+            "title": "ArcGIS Pro niveau I",
+            "similarity": 0.4561021793296282
+          },
+          {
+            "code": "PJ-0068",
+            "title": "Sensibilisation à la sécurité du système d'information",
+            "similarity": 0.4502297683749643
+          },
+          {
+            "code": "TRT452",
+            "title": "Cockpit Formation",
+            "similarity": 0.4465695820605544
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-008",
+        "segment": "natural_positive",
+        "query": "Un journaliste va m’interroger au nom de mon service et je veux apprendre à répondre clairement sans perdre la maîtrise du message.",
+        "expectedRelevantCodes": [
+          "SEM0746"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1033",
+            "title": "Répondre avec tact aux plaintes écrites",
+            "similarity": 0.5774414907427828
+          },
+          {
+            "code": "SEM1108",
+            "title": "Parler en public",
+            "similarity": 0.5588897416594977
+          },
+          {
+            "code": "PJ-1003",
+            "title": "Communiquer avec les médias",
+            "similarity": 0.5372065409789847
+          },
+          {
+            "code": "SEM1195",
+            "title": "Communication et feed-back constructif",
+            "similarity": 0.4766766547626434
+          },
+          {
+            "code": "SEM1155",
+            "title": "Assurer des relations de qualité avec le public : au quotidien et en situations difficiles",
+            "similarity": 0.46971360180650645
+          },
+          {
+            "code": "SEM1209",
+            "title": "Assertivité et confiance en soi en situation de travail",
+            "similarity": 0.4356007998898349
+          },
+          {
+            "code": "SEM0631",
+            "title": "L'art du PV, du rapport et du compte-rendu",
+            "similarity": 0.4337196282621446
+          },
+          {
+            "code": "FP264",
+            "title": "Soutien d'urgence en entreprises et institutions",
+            "similarity": 0.4225159102683541
+          },
+          {
+            "code": "FP275",
+            "title": "Workshop EC",
+            "similarity": 0.4217815079934
+          },
+          {
+            "code": "SEM0647",
+            "title": "Bilan de mes ressources et de mes intérêts : première approche",
+            "similarity": 0.41699084879849185
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-009",
+        "segment": "natural_positive",
+        "query": "En tant que manager, une collègue me signale un traitement discriminatoire au travail et je dois savoir reconnaître la situation, réagir et l’orienter correctement.",
+        "expectedRelevantCodes": [
+          "SEM1247"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1247",
+            "title": "Les discriminations: comprendre, prévenir et prendre en charge",
+            "similarity": 0.6201002619405195
+          },
+          {
+            "code": "PJ-1094",
+            "title": "Communication interpersonnelle - Responsables de secteur et référents",
+            "similarity": 0.5635939395985994
+          },
+          {
+            "code": "SEM1248",
+            "title": "Les discriminations: comprendre pour agir",
+            "similarity": 0.5587382314150848
+          },
+          {
+            "code": "PJ-0074",
+            "title": "Le rôle du référent métier au PJ",
+            "similarity": 0.554488292781457
+          },
+          {
+            "code": "PJ-1055",
+            "title": "Posture managériale",
+            "similarity": 0.5419587683810704
+          },
+          {
+            "code": "SEM0831",
+            "title": "Attitude professionnelle proactive",
+            "similarity": 0.533217750116577
+          },
+          {
+            "code": "SEM1043",
+            "title": "Comment aborder sereinement la complexité et l'ambiguïté du monde du travail ?",
+            "similarity": 0.5288799366257999
+          },
+          {
+            "code": "FP178",
+            "title": "Manager : gérer les tensions au sein de son équipe",
+            "similarity": 0.49765532040198435
+          },
+          {
+            "code": "SEM0647",
+            "title": "Bilan de mes ressources et de mes intérêts : première approche",
+            "similarity": 0.47695788139383
+          },
+          {
+            "code": "SEM1118",
+            "title": "Gérer ses émotions dans ses relations professionnelles",
+            "similarity": 0.4728720053528253
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-010",
+        "segment": "natural_positive",
+        "query": "Je ne vois plus très bien ce qui donne du sens à mon travail et je cherche à retrouver des sources de motivation durables dans mon activité.",
+        "expectedRelevantCodes": [
+          "SEM1213"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0831",
+            "title": "Attitude professionnelle proactive",
+            "similarity": 0.501471809373841
+          },
+          {
+            "code": "SEM0815",
+            "title": "Dynamiser sa seconde partie de carrière et de vie",
+            "similarity": 0.48627731022033527
+          },
+          {
+            "code": "SEM1141",
+            "title": "La roue de l'équilibre de vie au travail",
+            "similarity": 0.45506457157828256
+          },
+          {
+            "code": "SEM1162",
+            "title": "Comment concilier équilibre personnel et efficacité professionnelle ?",
+            "similarity": 0.4331612000579544
+          },
+          {
+            "code": "SEM0647",
+            "title": "Bilan de mes ressources et de mes intérêts : première approche",
+            "similarity": 0.4255992830378169
+          },
+          {
+            "code": "SEM1043",
+            "title": "Comment aborder sereinement la complexité et l'ambiguïté du monde du travail ?",
+            "similarity": 0.4226570250459313
+          },
+          {
+            "code": "PJ-1093",
+            "title": "Sensibilisation au flow et à la pleine conscience au travail",
+            "similarity": 0.4189717145825544
+          },
+          {
+            "code": "SEM1211",
+            "title": "L'incertitude dans le monde du travail: comment l'apprivoiser ?",
+            "similarity": 0.41608901896117345
+          },
+          {
+            "code": "SEM0830",
+            "title": "Accroître et dynamiser sa performance",
+            "similarity": 0.4072839769888225
+          },
+          {
+            "code": "EP-01APPCO",
+            "title": "Ateliers de pratique professionnelle en contexte de co-intervention (APP CO)",
+            "similarity": 0.4072036630097643
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-011",
+        "segment": "natural_positive",
+        "query": "Je dois préparer et mener des entretiens avec mes collaboratrices et collaborateurs, y compris lorsque la discussion est délicate.",
+        "expectedRelevantCodes": [
+          "SEM1203"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "EP-025MA",
+            "title": "Atelier de pratique professionnelle MA : mener un entretien ou réseau",
+            "similarity": 0.6070358501185856
+          },
+          {
+            "code": "SEM1149",
+            "title": "La négociation entre stratégie et relation",
+            "similarity": 0.5897258420971607
+          },
+          {
+            "code": "SEM1130",
+            "title": "L'improvisation au service de l'interaction",
+            "similarity": 0.5721917186345437
+          },
+          {
+            "code": "SEM1108",
+            "title": "Parler en public",
+            "similarity": 0.5719749293285543
+          },
+          {
+            "code": "SEM0651",
+            "title": "Comment augmenter l'efficacité d'une séance ou d'un groupe de travail ?",
+            "similarity": 0.5711501857876979
+          },
+          {
+            "code": "EP-016MA",
+            "title": "Co-construction du collectif",
+            "similarity": 0.5618036258508029
+          },
+          {
+            "code": "OMP-009EVN",
+            "title": "Rôles, autorité, pouvoir et dynamique de groupes dans la collaboration interprofessionnelle en milieu pédagogique",
+            "similarity": 0.554386676562514
+          },
+          {
+            "code": "PJ-1095",
+            "title": "Communication interpersonnelle - Collaboratrices et Collaborateurs",
+            "similarity": 0.547814806275843
+          },
+          {
+            "code": "PJ-1094",
+            "title": "Communication interpersonnelle - Responsables de secteur et référents",
+            "similarity": 0.542895560304661
+          },
+          {
+            "code": "SEM1155",
+            "title": "Assurer des relations de qualité avec le public : au quotidien et en situations difficiles",
+            "similarity": 0.5309705328833706
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-012",
+        "segment": "natural_positive",
+        "query": "J’ai trop d’idées et d’informations dispersées ; je voudrais une méthode visuelle pour les structurer et faire apparaître les liens.",
+        "expectedRelevantCodes": [
+          "SEM1040"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1040",
+            "title": "Mindmap : une méthode pour organiser ses idées et ses informations",
+            "similarity": 0.46386239247613015
+          },
+          {
+            "code": "SEM0707",
+            "title": "Techniques d'élaboration des documents écrits",
+            "similarity": 0.43651635162687985
+          },
+          {
+            "code": "SEM-10617",
+            "title": "CO-PO / Générer des images avec l'intelligence artificielle / NOUVEAU",
+            "similarity": 0.4222155274707658
+          },
+          {
+            "code": "SEM-10640",
+            "title": "CO-ESII : Transhumanisme / Formation autonome en ligne",
+            "similarity": 0.4204297468413524
+          },
+          {
+            "code": "EP-075MDAS",
+            "title": "Atelier : Dynamiser les visites guidées scolaires",
+            "similarity": 0.388175656348024
+          },
+          {
+            "code": "TRT452",
+            "title": "Cockpit Formation",
+            "similarity": 0.3816250072576918
+          },
+          {
+            "code": "OCD001E",
+            "title": "Sécurité dynamique - E-learning",
+            "similarity": 0.3796524875873241
+          },
+          {
+            "code": "S2-843",
+            "title": "Animation d'ateliers pour élèves dyslexiques et dysorthographiques au secondaire II",
+            "similarity": 0.37897275317411183
+          },
+          {
+            "code": "TRT051",
+            "title": "ArcGIS Pro niveau I",
+            "similarity": 0.37890432257170265
+          },
+          {
+            "code": "TRT450",
+            "title": "Cockpit RH",
+            "similarity": 0.3760805462506456
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-013",
+        "segment": "natural_positive",
+        "query": "Je dois produire des cartes professionnelles à partir de données géographiques et apprendre à organiser les couches, les symboles et les mises en page.",
+        "expectedRelevantCodes": [
+          "TRT051"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "TRT051",
+            "title": "ArcGIS Pro niveau I",
+            "similarity": 0.5114892387679157
+          },
+          {
+            "code": "SEM1040",
+            "title": "Mindmap : une méthode pour organiser ses idées et ses informations",
+            "similarity": 0.489155447868335
+          },
+          {
+            "code": "SEM0707",
+            "title": "Techniques d'élaboration des documents écrits",
+            "similarity": 0.47845765705505305
+          },
+          {
+            "code": "PO-ORFO001",
+            "title": "Réussir sa prise de poste : kit d'outils et bonnes pratiques (E Learning et Tutoriel plateformes )",
+            "similarity": 0.47326547223852883
+          },
+          {
+            "code": "PJ-1065",
+            "title": "Art du PV, du rapport et du compte-rendu",
+            "similarity": 0.472683906810756
+          },
+          {
+            "code": "TRT452",
+            "title": "Cockpit Formation",
+            "similarity": 0.4695725201523661
+          },
+          {
+            "code": "SEM0631",
+            "title": "L'art du PV, du rapport et du compte-rendu",
+            "similarity": 0.45779367154340084
+          },
+          {
+            "code": "FP182",
+            "title": "Utilisation guichet cartographique",
+            "similarity": 0.4556148857388438
+          },
+          {
+            "code": "PJ-0095",
+            "title": "Les outils de la bibliothèque et les ressources juridiques en ligne en format capsule",
+            "similarity": 0.45471005914204227
+          },
+          {
+            "code": "FP220",
+            "title": "Formation Excel Cadres Proximité",
+            "similarity": 0.4541866602587509
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-014",
+        "segment": "context_restriction",
+        "query": "Je travaille dans l’administration du DIP et certaines factures adressées par notre service restent impayées ; je dois savoir quelles relances et démarches entreprendre pour recouvrer les montants dus.",
+        "expectedRelevantCodes": [
+          "SFIN-001"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SFIN-003",
+            "title": "Mon rôle comptable et financier au sein du DIP",
+            "similarity": 0.5307583516028606
+          },
+          {
+            "code": "PJ-1104",
+            "title": "Lecture approfondie des bilans déficitaires - Module 3",
+            "similarity": 0.5121042272805337
+          },
+          {
+            "code": "SEM1256",
+            "title": "Gestion des investissements",
+            "similarity": 0.48078486443505963
+          },
+          {
+            "code": "SFIN-002",
+            "title": "Gestion des achats - Suivi comptable",
+            "similarity": 0.47811580929189024
+          },
+          {
+            "code": "PJ-1065",
+            "title": "Art du PV, du rapport et du compte-rendu",
+            "similarity": 0.4413100296730769
+          },
+          {
+            "code": "TRT011",
+            "title": "CFI - Débiteurs: consultation des transactions débiteurs",
+            "similarity": 0.4390628089916767
+          },
+          {
+            "code": "SEM0872",
+            "title": "Gestion du temps et des priorités",
+            "similarity": 0.43702779125370733
+          },
+          {
+            "code": "SEM1257",
+            "title": "Projets d'investissement et immobilisations",
+            "similarity": 0.4332541667121052
+          },
+          {
+            "code": "PJ-0102",
+            "title": "Gestion des pièces à conviction - Personnel SFPJ et GPC",
+            "similarity": 0.4285942990192628
+          },
+          {
+            "code": "SEM1086",
+            "title": "Budget et planification financière",
+            "similarity": 0.4223780488266234
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-015",
+        "segment": "natural_positive",
+        "query": "Je reçois de longs rapports à parcourir et je voudrais en repérer plus vite la structure, les arguments et les informations essentielles sans perdre en compréhension.",
+        "expectedRelevantCodes": [
+          "SEM1216"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0707",
+            "title": "Techniques d'élaboration des documents écrits",
+            "similarity": 0.575531533109674
+          },
+          {
+            "code": "SEM0631",
+            "title": "L'art du PV, du rapport et du compte-rendu",
+            "similarity": 0.5576107008639368
+          },
+          {
+            "code": "PJ-1065",
+            "title": "Art du PV, du rapport et du compte-rendu",
+            "similarity": 0.5318092890406204
+          },
+          {
+            "code": "FP253",
+            "title": "Formation continue pour évaluateurs-trices EC",
+            "similarity": 0.522924326699377
+          },
+          {
+            "code": "SEM1145",
+            "title": "Mener des concertations avec des partenaires de projet",
+            "similarity": 0.519110601059133
+          },
+          {
+            "code": "EP-020MA",
+            "title": "Forum final de clôture",
+            "similarity": 0.509664602185474
+          },
+          {
+            "code": "SEM1216",
+            "title": "Lecture rapide à l'ère numérique",
+            "similarity": 0.5091547303722159
+          },
+          {
+            "code": "TRT3001E",
+            "title": "Outlook 2016 : Fondamentaux au perfectionnement | E-LEARNING",
+            "similarity": 0.5027007157351495
+          },
+          {
+            "code": "CO-01479",
+            "title": "Untis - Cours de base CO",
+            "similarity": 0.4980052217691346
+          },
+          {
+            "code": "SEM1033",
+            "title": "Répondre avec tact aux plaintes écrites",
+            "similarity": 0.49716394480234216
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-016",
+        "segment": "multi_intent",
+        "query": "Je veux apprendre à analyser mes chiffres puis à les présenter de façon claire et visuelle à ma hiérarchie.",
+        "expectedRelevantCodes": [
+          "TRT1009",
+          "TRT1008"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "TRT450",
+            "title": "Cockpit RH",
+            "similarity": 0.4945527167435731
+          },
+          {
+            "code": "TRT452",
+            "title": "Cockpit Formation",
+            "similarity": 0.45171436593523817
+          },
+          {
+            "code": "CO-01479",
+            "title": "Untis - Cours de base CO",
+            "similarity": 0.4296896149616044
+          },
+          {
+            "code": "PJ-1102",
+            "title": "Les bases de la comptabilité - Module 1",
+            "similarity": 0.41968539379826864
+          },
+          {
+            "code": "PJ-1065",
+            "title": "Art du PV, du rapport et du compte-rendu",
+            "similarity": 0.40902115646060627
+          },
+          {
+            "code": "PJ-0054",
+            "title": "Excel 2016",
+            "similarity": 0.4019101225647522
+          },
+          {
+            "code": "FP220",
+            "title": "Formation Excel Cadres Proximité",
+            "similarity": 0.39109580337795213
+          },
+          {
+            "code": "TRT451",
+            "title": "Cockpit Paie",
+            "similarity": 0.39003978733474864
+          },
+          {
+            "code": "SEM0707",
+            "title": "Techniques d'élaboration des documents écrits",
+            "similarity": 0.3897845040619979
+          },
+          {
+            "code": "S2-117",
+            "title": "Dessin d'observation : vision et posture",
+            "similarity": 0.3891635648841912
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-017",
+        "segment": "multi_intent",
+        "query": "Je dois améliorer mes supports de présentation mais aussi être plus convaincant quand je les présente devant un groupe.",
+        "expectedRelevantCodes": [
+          "TRT1014",
+          "SEM1108"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1108",
+            "title": "Parler en public",
+            "similarity": 0.6007610186335843
+          },
+          {
+            "code": "SEM0651",
+            "title": "Comment augmenter l'efficacité d'une séance ou d'un groupe de travail ?",
+            "similarity": 0.5714371886067079
+          },
+          {
+            "code": "SEM1209",
+            "title": "Assertivité et confiance en soi en situation de travail",
+            "similarity": 0.5518550166391113
+          },
+          {
+            "code": "SEM1130",
+            "title": "L'improvisation au service de l'interaction",
+            "similarity": 0.5380940694116173
+          },
+          {
+            "code": "SEM1237",
+            "title": "Comment acquérir une vision synthétique et objective d'une situation ?",
+            "similarity": 0.5318575907109363
+          },
+          {
+            "code": "SEM0518",
+            "title": "Prévenir les tensions dans ses relations par une bonne communication",
+            "similarity": 0.5251616407847257
+          },
+          {
+            "code": "SEM1149",
+            "title": "La négociation entre stratégie et relation",
+            "similarity": 0.5237965321829818
+          },
+          {
+            "code": "OMP-009EVN",
+            "title": "Rôles, autorité, pouvoir et dynamique de groupes dans la collaboration interprofessionnelle en milieu pédagogique",
+            "similarity": 0.5173537840816395
+          },
+          {
+            "code": "SEM1212",
+            "title": "Améliorer et apaiser ses relations professionnelles",
+            "similarity": 0.512217122431894
+          },
+          {
+            "code": "SEM1197",
+            "title": "Formateurs occasionnels: construire et animer une formation",
+            "similarity": 0.5103947422543774
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-018",
+        "segment": "multi_intent",
+        "query": "Je débute dans la gestion de projet et je dois aussi apprendre à identifier les risques avant qu’ils ne deviennent des problèmes.",
+        "expectedRelevantCodes": [
+          "SEM0737",
+          "SEM1080"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM1176",
+            "title": "Prise en main de l'outil de gestion des risques Etat",
+            "similarity": 0.5876064880181057
+          },
+          {
+            "code": "SEM1221",
+            "title": "Gestion des risques",
+            "similarity": 0.5191173193467147
+          },
+          {
+            "code": "SEM1080",
+            "title": "Identifier et gérer les risques d'un projet",
+            "similarity": 0.5107076691674268
+          },
+          {
+            "code": "EP-104CP-E",
+            "title": "Concevoir des dispositifs et des ressources de formation - Avec microcertification",
+            "similarity": 0.485871593556516
+          },
+          {
+            "code": "PJ-0094",
+            "title": "Fondamentaux Gestion de projet (volet 2)",
+            "similarity": 0.4847307835343435
+          },
+          {
+            "code": "PJ-0093",
+            "title": "Introduction à la gestion de projet au Pouvoir judiciaire (volet 1)",
+            "similarity": 0.47412272055281
+          },
+          {
+            "code": "EP-105CP-E",
+            "title": "Concevoir des dispositifs et des ressources de formation - Sans microcertification",
+            "similarity": 0.4731048278994464
+          },
+          {
+            "code": "S2-433",
+            "title": "Evaluation HSE des risques au laboratoire (I)",
+            "similarity": 0.4557893933765409
+          },
+          {
+            "code": "SEM1211",
+            "title": "L'incertitude dans le monde du travail: comment l'apprivoiser ?",
+            "similarity": 0.4535079786117635
+          },
+          {
+            "code": "SEM1257",
+            "title": "Projets d'investissement et immobilisations",
+            "similarity": 0.44768229585775854
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-019",
+        "segment": "multi_intent",
+        "query": "Comme manager, je dois mieux négocier avec mon équipe et mieux conduire les entretiens individuels.",
+        "expectedRelevantCodes": [
+          "SEM1200",
+          "SEM1203"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "PJ-1094",
+            "title": "Communication interpersonnelle - Responsables de secteur et référents",
+            "similarity": 0.5704934831050094
+          },
+          {
+            "code": "SEM0651",
+            "title": "Comment augmenter l'efficacité d'une séance ou d'un groupe de travail ?",
+            "similarity": 0.5506417895506545
+          },
+          {
+            "code": "SEM1223",
+            "title": "L'alignement stratégique dans la conduite d'équipe",
+            "similarity": 0.5482584672432134
+          },
+          {
+            "code": "SEM1149",
+            "title": "La négociation entre stratégie et relation",
+            "similarity": 0.5421469451560268
+          },
+          {
+            "code": "SEM1089",
+            "title": "Le management transversal",
+            "similarity": 0.5242839238192508
+          },
+          {
+            "code": "SEM1043",
+            "title": "Comment aborder sereinement la complexité et l'ambiguïté du monde du travail ?",
+            "similarity": 0.5224432723972469
+          },
+          {
+            "code": "SEM1130",
+            "title": "L'improvisation au service de l'interaction",
+            "similarity": 0.5204188705966597
+          },
+          {
+            "code": "PJ-1055",
+            "title": "Posture managériale",
+            "similarity": 0.5084098803599245
+          },
+          {
+            "code": "SEM1034",
+            "title": "Bien vivre l'équipe et sa dynamique",
+            "similarity": 0.5021586647134618
+          },
+          {
+            "code": "EP-025MA",
+            "title": "Atelier de pratique professionnelle MA : mener un entretien ou réseau",
+            "similarity": 0.4986767860558286
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-020",
+        "segment": "multi_intent",
+        "query": "Je voudrais automatiser certaines tâches répétitives dans mes tableaux tout en comprenant ce que l’intelligence artificielle peut réellement faire ou non.",
+        "expectedRelevantCodes": [
+          "TRT1010",
+          "SEM1246"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM-10617",
+            "title": "CO-PO / Générer des images avec l'intelligence artificielle / NOUVEAU",
+            "similarity": 0.5726070679437709
+          },
+          {
+            "code": "SEM-P1573",
+            "title": "EP-OMP / Blue-Bot en classe : une démarche pluridisciplinaire / Nouveau",
+            "similarity": 0.504535157319969
+          },
+          {
+            "code": "S2-843",
+            "title": "Animation d'ateliers pour élèves dyslexiques et dysorthographiques au secondaire II",
+            "similarity": 0.49729806962620937
+          },
+          {
+            "code": "EP-075MDAS",
+            "title": "Atelier : Dynamiser les visites guidées scolaires",
+            "similarity": 0.4933804715879325
+          },
+          {
+            "code": "SEM-10441",
+            "title": "EP-CO-ESII / Modélisation et réalisation d'objet en 3D",
+            "similarity": 0.4869821571712098
+          },
+          {
+            "code": "SEM-P1570",
+            "title": "EP-OMP / Didactique de l'informatique : Scratch Jr, Scratch et Bluebot / Nouveau",
+            "similarity": 0.48436434271860096
+          },
+          {
+            "code": "SEM-10449",
+            "title": "CO-ESII / Introduire un peu de classe inversée dans mes cours / NOUVEAU / Formation autonome en ligne",
+            "similarity": 0.4826309331091872
+          },
+          {
+            "code": "SEM-10507",
+            "title": "CO-ESII / Créer des vidéos pédagogiques en direct avec incrustation avec le logiciel OBS Studio / Formation autonome en ligne",
+            "similarity": 0.4731738458151676
+          },
+          {
+            "code": "CO-01445",
+            "title": "Initiation au papier découpé",
+            "similarity": 0.46654799599441427
+          },
+          {
+            "code": "SEM-10919",
+            "title": "EP-CO-ESII-OMP / Impression 3D : quel potentiel pour la classe ? / Formation autonome en ligne",
+            "similarity": 0.46535866752323374
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-021",
+        "segment": "context_restriction",
+        "query": "Je suis enseignant au primaire et je voudrais découvrir comment utiliser l’IA pour préparer ou adapter des contenus pédagogiques.",
+        "expectedRelevantCodes": [
+          "SEM-P1575"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM-10449",
+            "title": "CO-ESII / Introduire un peu de classe inversée dans mes cours / NOUVEAU / Formation autonome en ligne",
+            "similarity": 0.601723319777693
+          },
+          {
+            "code": "S2-843",
+            "title": "Animation d'ateliers pour élèves dyslexiques et dysorthographiques au secondaire II",
+            "similarity": 0.5984684544543446
+          },
+          {
+            "code": "EP-087MDAS",
+            "title": "Atelier IA, Bibliothèque générative",
+            "similarity": 0.5855292210712364
+          },
+          {
+            "code": "PO-0001FO",
+            "title": "Cursus d'harmonisation des connaissances en science informatique",
+            "similarity": 0.5743687318297719
+          },
+          {
+            "code": "CO-01517",
+            "title": "Initiation à la gravure",
+            "similarity": 0.571163410015077
+          },
+          {
+            "code": "EP-075MDAS",
+            "title": "Atelier : Dynamiser les visites guidées scolaires",
+            "similarity": 0.5685154726448718
+          },
+          {
+            "code": "SEM-10930",
+            "title": "CO-ESII / Débuter avec moodle / NOUVEAU",
+            "similarity": 0.5628902329573263
+          },
+          {
+            "code": "OMP-011EVN",
+            "title": "Lancement éducation numérique OMP SI & SII",
+            "similarity": 0.5550966988878375
+          },
+          {
+            "code": "OMP-066",
+            "title": "Le projet éducatif (P.E.I.) de l'évaluation à la rédaction",
+            "similarity": 0.5525313883635034
+          },
+          {
+            "code": "SEM-10617",
+            "title": "CO-PO / Générer des images avec l'intelligence artificielle / NOUVEAU",
+            "similarity": 0.5522402916455247
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-022",
+        "segment": "context_restriction",
+        "query": "J’enseigne la chimie au secondaire et je dois évaluer les dangers d’une expérience avant de faire travailler mes élèves au laboratoire.",
+        "expectedRelevantCodes": [
+          "S2-433"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "S2-453",
+            "title": "Enseigner l'épistémologie des sciences : outils en classe",
+            "similarity": 0.5124272613534833
+          },
+          {
+            "code": "S2-433",
+            "title": "Evaluation HSE des risques au laboratoire (I)",
+            "similarity": 0.5106492098475748
+          },
+          {
+            "code": "PO-0001FO",
+            "title": "Cursus d'harmonisation des connaissances en science informatique",
+            "similarity": 0.509915791514066
+          },
+          {
+            "code": "S2-434",
+            "title": "Evaluation HSE des risques au laboratoire (II)",
+            "similarity": 0.49796447607531596
+          },
+          {
+            "code": "S2-443",
+            "title": "Au c½ur de la science : explorez l'offre éducative du CERN Science Gateway !",
+            "similarity": 0.4506116243928399
+          },
+          {
+            "code": "CO-01708",
+            "title": "Ecrire pour apprendre en biologie. Quels écrits, quelle progressivité pour quelles démarches ?",
+            "similarity": 0.4403510735978465
+          },
+          {
+            "code": "SEM-10350",
+            "title": "CO-ESII / Activités autour de l'IA pour les élèves / NOUVEAU",
+            "similarity": 0.437651138966162
+          },
+          {
+            "code": "SEM1176",
+            "title": "Prise en main de l'outil de gestion des risques Etat",
+            "similarity": 0.437135381139031
+          },
+          {
+            "code": "OMP-097",
+            "title": "Les troubles des apprentissages chez l'enfant : théorie et implications pédagogiques",
+            "similarity": 0.41629594953019344
+          },
+          {
+            "code": "SEM-10930",
+            "title": "CO-ESII / Débuter avec moodle / NOUVEAU",
+            "similarity": 0.4127517750306543
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-023",
+        "segment": "context_restriction",
+        "query": "J’enseigne en primaire et je voudrais organiser des sorties régulières dans la nature avec ma classe sans devoir faire venir un spécialiste à chaque fois.",
+        "expectedRelevantCodes": [
+          "EP-570"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "CO-01701",
+            "title": "Enseigner l'Ultimate-frisbee : présentation d'un projet pour le CO",
+            "similarity": 0.5867186670624966
+          },
+          {
+            "code": "EP-999",
+            "title": "Tresser le vivant : vannerie sauvage, un artisanat durable et sensible",
+            "similarity": 0.5124335754829139
+          },
+          {
+            "code": "EP-067EVEN",
+            "title": "Co-intervention : table ronde autour de témoignages du terrain",
+            "similarity": 0.5074720085361866
+          },
+          {
+            "code": "EP-580",
+            "title": "Initiation à l'observation et à la détermination des oiseaux communs avec une classe",
+            "similarity": 0.4976780054732335
+          },
+          {
+            "code": "OMP-066",
+            "title": "Le projet éducatif (P.E.I.) de l'évaluation à la rédaction",
+            "similarity": 0.49126595051418565
+          },
+          {
+            "code": "EP-372FEX",
+            "title": "Initiation, méthodologie et sécurité dans les snowparks",
+            "similarity": 0.49121586150622554
+          },
+          {
+            "code": "PO-ORFO001",
+            "title": "Réussir sa prise de poste : kit d'outils et bonnes pratiques (E Learning et Tutoriel plateformes )",
+            "similarity": 0.4848343143266733
+          },
+          {
+            "code": "S2-453",
+            "title": "Enseigner l'épistémologie des sciences : outils en classe",
+            "similarity": 0.48036541374090463
+          },
+          {
+            "code": "CO-01517",
+            "title": "Initiation à la gravure",
+            "similarity": 0.4763102901669036
+          },
+          {
+            "code": "EP-052MDAS",
+            "title": "Initier les élèves au rugby en milieu scolaire : pratiques adaptées pour l'éducation physique",
+            "similarity": 0.47061946487697154
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-024",
+        "segment": "context_restriction",
+        "query": "Je travaille en détention et je dois mieux comprendre comment les appartenances culturelles et religieuses peuvent influencer la vie quotidienne des personnes incarcérées.",
+        "expectedRelevantCodes": [
+          "OCD424"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "OCD001E",
+            "title": "Sécurité dynamique - E-learning",
+            "similarity": 0.45581833605091004
+          },
+          {
+            "code": "PJ-1093",
+            "title": "Sensibilisation au flow et à la pleine conscience au travail",
+            "similarity": 0.4390018952999621
+          },
+          {
+            "code": "OCD007E",
+            "title": "Introduction à la privation de liberté en Suisse - E-learning",
+            "similarity": 0.4229793877621605
+          },
+          {
+            "code": "OCD152",
+            "title": "Rotation de Tir - Module 1",
+            "similarity": 0.41979450472502094
+          },
+          {
+            "code": "FP264",
+            "title": "Soutien d'urgence en entreprises et institutions",
+            "similarity": 0.4183796573622127
+          },
+          {
+            "code": "OCD373",
+            "title": "Accompagnement des stagiaires - Refresh",
+            "similarity": 0.4117052538746648
+          },
+          {
+            "code": "OCD079",
+            "title": "Droit pénal - L'exécution des peines et des mesures",
+            "similarity": 0.4015172285515142
+          },
+          {
+            "code": "FP191",
+            "title": "Ethique & déontologie",
+            "similarity": 0.40114697102445707
+          },
+          {
+            "code": "PJ-0062",
+            "title": "AJ pénale et indemnisation des avocats",
+            "similarity": 0.3983649302270989
+          },
+          {
+            "code": "SEM0735",
+            "title": "Ethique et déontologie de la fonction publique",
+            "similarity": 0.3933168430280728
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-025",
+        "segment": "context_restriction",
+        "query": "Dans mon travail je dois prendre ou revoir des décisions administratives et je voudrais mieux maîtriser le raisonnement juridique qui les encadre.",
+        "expectedRelevantCodes": [
+          "SEM0056"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "SEM0056",
+            "title": "Principes généraux du droit administratif",
+            "similarity": 0.7322138528573849
+          },
+          {
+            "code": "PJ-0028",
+            "title": "Rédaction de décisions judiciaires - filière administrative",
+            "similarity": 0.667461607816174
+          },
+          {
+            "code": "SEM1239",
+            "title": "Maîtriser ses activités: principes et outils pratiques",
+            "similarity": 0.592106708822381
+          },
+          {
+            "code": "PJ-0027",
+            "title": "Rédaction de décisions judiciaires - filière civile",
+            "similarity": 0.5916122419291443
+          },
+          {
+            "code": "PJ-0093",
+            "title": "Introduction à la gestion de projet au Pouvoir judiciaire (volet 1)",
+            "similarity": 0.5635604822821154
+          },
+          {
+            "code": "SEM0720",
+            "title": "Méthode et rédaction législative",
+            "similarity": 0.5526695443868126
+          },
+          {
+            "code": "SEM0886",
+            "title": "Processus législatif et réglementaire",
+            "similarity": 0.5493736629141355
+          },
+          {
+            "code": "PJ-1055",
+            "title": "Posture managériale",
+            "similarity": 0.5450881328709922
+          },
+          {
+            "code": "SEM1145",
+            "title": "Mener des concertations avec des partenaires de projet",
+            "similarity": 0.5430246238183971
+          },
+          {
+            "code": "PJ-0029",
+            "title": "Rédaction de décisions judiciaires - filière pénale",
+            "similarity": 0.5406332021526171
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-026",
+        "segment": "abstention",
+        "query": "Je rénove ma salle de bains et je voudrais apprendre à poser du carrelage mural et à refaire correctement l’étanchéité de la douche.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "CO-01445",
+            "title": "Initiation au papier découpé",
+            "similarity": 0.2906079510334104
+          },
+          {
+            "code": "SEM-10617",
+            "title": "CO-PO / Générer des images avec l'intelligence artificielle / NOUVEAU",
+            "similarity": 0.2723455655760311
+          },
+          {
+            "code": "SEM0828",
+            "title": "Développer sa créativité pour aborder et résoudre autrement les problèmes",
+            "similarity": 0.25930819667282384
+          },
+          {
+            "code": "OMP-19SSS",
+            "title": "Brevet Base Pool - OMP",
+            "similarity": 0.2572858678816193
+          },
+          {
+            "code": "S2-843",
+            "title": "Animation d'ateliers pour élèves dyslexiques et dysorthographiques au secondaire II",
+            "similarity": 0.25248777188731986
+          },
+          {
+            "code": "EP-985",
+            "title": "Crayons de couleur et pastels Neocolor : techniques et application en Arts visuels",
+            "similarity": 0.251982292910539
+          },
+          {
+            "code": "PJ-1065",
+            "title": "Art du PV, du rapport et du compte-rendu",
+            "similarity": 0.24190201677803277
+          },
+          {
+            "code": "CO-01710",
+            "title": "Pratiquer la broderie avec ses élèves",
+            "similarity": 0.24151665444191728
+          },
+          {
+            "code": "CO-01517",
+            "title": "Initiation à la gravure",
+            "similarity": 0.23354393946104215
+          },
+          {
+            "code": "SEM-10507",
+            "title": "CO-ESII / Créer des vidéos pédagogiques en direct avec incrustation avec le logiciel OBS Studio / Formation autonome en ligne",
+            "similarity": 0.22826725069742507
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-027",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre la soudure TIG pour fabriquer des meubles métalliques.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "CO-01710",
+            "title": "Pratiquer la broderie avec ses élèves",
+            "similarity": 0.5568022198603747
+          },
+          {
+            "code": "EP-086MDAS",
+            "title": "Atelier Gravure",
+            "similarity": 0.4329860608321276
+          },
+          {
+            "code": "CO-01445",
+            "title": "Initiation au papier découpé",
+            "similarity": 0.41009323021979904
+          },
+          {
+            "code": "EP-084MDAS",
+            "title": "Atelier Sérigraphie facile",
+            "similarity": 0.3882559255275314
+          },
+          {
+            "code": "S2-EPS02",
+            "title": "Escalade murs et zones blocs (I)",
+            "similarity": 0.3828033450082938
+          },
+          {
+            "code": "CO-01691",
+            "title": "Badminton",
+            "similarity": 0.3779685326419395
+          },
+          {
+            "code": "PO-ETBNOVA",
+            "title": "Plateforme NOVAPRO usages et pratiques",
+            "similarity": 0.37160079784873135
+          },
+          {
+            "code": "S2-843",
+            "title": "Animation d'ateliers pour élèves dyslexiques et dysorthographiques au secondaire II",
+            "similarity": 0.36845609078305946
+          },
+          {
+            "code": "CO-01517",
+            "title": "Initiation à la gravure",
+            "similarity": 0.36811647065027653
+          },
+          {
+            "code": "SEM-10439",
+            "title": "CO-ESII / Dessiner avec LibreOffice.Draw / Formation autonome en ligne",
+            "similarity": 0.36673488945648597
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-028",
+        "segment": "abstention",
+        "query": "Je cherche une formation de barista pour apprendre à préparer des cafés professionnels.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "CO-01710",
+            "title": "Pratiquer la broderie avec ses élèves",
+            "similarity": 0.35212625521248975
+          },
+          {
+            "code": "EP-01APPCO",
+            "title": "Ateliers de pratique professionnelle en contexte de co-intervention (APP CO)",
+            "similarity": 0.3374072175430699
+          },
+          {
+            "code": "EP-104CP-E",
+            "title": "Concevoir des dispositifs et des ressources de formation - Avec microcertification",
+            "similarity": 0.3365858933466221
+          },
+          {
+            "code": "EP-006CFA",
+            "title": "Rencontre(s) pédagogique(s) CFA romands",
+            "similarity": 0.3325573287791419
+          },
+          {
+            "code": "EP-105CP-E",
+            "title": "Concevoir des dispositifs et des ressources de formation - Sans microcertification",
+            "similarity": 0.33023320353423913
+          },
+          {
+            "code": "EP-006EPP",
+            "title": "Ateliers de pratique professionnelle EPP MGEN An 1",
+            "similarity": 0.32247847875339736
+          },
+          {
+            "code": "PO-ETBNOVA",
+            "title": "Plateforme NOVAPRO usages et pratiques",
+            "similarity": 0.32207751149437747
+          },
+          {
+            "code": "EP-025MA",
+            "title": "Atelier de pratique professionnelle MA : mener un entretien ou réseau",
+            "similarity": 0.31625328366510064
+          },
+          {
+            "code": "PJ-0099",
+            "title": "Gestion des pièces à conviction - Greffiers-juristes référents",
+            "similarity": 0.31371155384996263
+          },
+          {
+            "code": "CO-01711",
+            "title": "La vie quotidienne des Romains",
+            "similarity": 0.3119720787242197
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-029",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre à construire et entretenir des piscines privées, notamment le traitement de l’eau et les systèmes de filtration.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "OMP-19SSS",
+            "title": "Brevet Base Pool - OMP",
+            "similarity": 0.39797639871923357
+          },
+          {
+            "code": "S2-EPS13",
+            "title": "Enseigner le tir à l'arc en toute sécurité",
+            "similarity": 0.3581353924629452
+          },
+          {
+            "code": "EP-372FEX",
+            "title": "Initiation, méthodologie et sécurité dans les snowparks",
+            "similarity": 0.35578971037417256
+          },
+          {
+            "code": "CO-01701",
+            "title": "Enseigner l'Ultimate-frisbee : présentation d'un projet pour le CO",
+            "similarity": 0.349227595955737
+          },
+          {
+            "code": "EP-580",
+            "title": "Initiation à l'observation et à la détermination des oiseaux communs avec une classe",
+            "similarity": 0.3484333516083684
+          },
+          {
+            "code": "EP-105CP-E",
+            "title": "Concevoir des dispositifs et des ressources de formation - Sans microcertification",
+            "similarity": 0.3458715320448752
+          },
+          {
+            "code": "EP-104CP-E",
+            "title": "Concevoir des dispositifs et des ressources de formation - Avec microcertification",
+            "similarity": 0.3439161655022691
+          },
+          {
+            "code": "OMP-063FE",
+            "title": "Brevet Plus pool",
+            "similarity": 0.33361501626268925
+          },
+          {
+            "code": "EP-052MDAS",
+            "title": "Initier les élèves au rugby en milieu scolaire : pratiques adaptées pour l'éducation physique",
+            "similarity": 0.3299636338109262
+          },
+          {
+            "code": "EP-004EPP",
+            "title": "Encadrer, planifier et sécuriser les activités scolaires (anciennement prévention des accidents)",
+            "similarity": 0.3252915135997604
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-030",
+        "segment": "abstention",
+        "query": "Je cherche une formation pour utiliser une IA autonome afin d’automatiser complètement le traitement des dossiers administratifs de mon service.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1058,
+        "top10": [
+          {
+            "code": "EP-087MDAS",
+            "title": "Atelier IA, Bibliothèque générative",
+            "similarity": 0.5364600412167906
+          },
+          {
+            "code": "PO-ORFO001",
+            "title": "Réussir sa prise de poste : kit d'outils et bonnes pratiques (E Learning et Tutoriel plateformes )",
+            "similarity": 0.4948389931739999
+          },
+          {
+            "code": "PJ-0086",
+            "title": "Référents SI métier - Module 1",
+            "similarity": 0.49371209198827126
+          },
+          {
+            "code": "EP-104CP-E",
+            "title": "Concevoir des dispositifs et des ressources de formation - Avec microcertification",
+            "similarity": 0.4928496536131779
+          },
+          {
+            "code": "EP-105CP-E",
+            "title": "Concevoir des dispositifs et des ressources de formation - Sans microcertification",
+            "similarity": 0.48696285439624115
+          },
+          {
+            "code": "PO-0001FO",
+            "title": "Cursus d'harmonisation des connaissances en science informatique",
+            "similarity": 0.4858828396940165
+          },
+          {
+            "code": "SEM1176",
+            "title": "Prise en main de l'outil de gestion des risques Etat",
+            "similarity": 0.4778722411841998
+          },
+          {
+            "code": "SEM-P1573",
+            "title": "EP-OMP / Blue-Bot en classe : une démarche pluridisciplinaire / Nouveau",
+            "similarity": 0.46575879515740753
+          },
+          {
+            "code": "OMP-066",
+            "title": "Le projet éducatif (P.E.I.) de l'évaluation à la rédaction",
+            "similarity": 0.46158950011076894
+          },
+          {
+            "code": "TRT382",
+            "title": "SIRH Suite 9: Actes par étapes",
+            "similarity": 0.4600002740272583
+          }
+        ]
+      }
+    ],
+    "enriched060": [
+      {
+        "id": "SEM-NL-001",
+        "segment": "natural_positive",
+        "query": "J’ai beaucoup de chiffres à suivre dans mon activité et je voudrais que mon collaborateur puisse en tirer rapidement les informations importantes pour m’aider à prendre des décisions.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-002",
+        "segment": "natural_positive",
+        "query": "Je dois comparer plusieurs hypothèses et voir rapidement l’impact de différents scénarios à partir de mes données.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-003",
+        "segment": "natural_positive",
+        "query": "Quand un dossier devient complexe, j’ai besoin d’une méthode pour distinguer les faits, prendre du recul et construire une vue d’ensemble avant de décider.",
+        "expectedRelevantCodes": [
+          "SEM1237"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-004",
+        "segment": "natural_positive",
+        "query": "Je rédige des messages destinés à des publics très différents et je voudrais éviter les formulations qui excluent ou renforcent des stéréotypes.",
+        "expectedRelevantCodes": [
+          "SEM1245"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-005",
+        "segment": "natural_positive",
+        "query": "Après plusieurs heures à mon bureau, j’ai mal au dos et aux épaules ; je voudrais régler mon poste et adopter de meilleures habitudes.",
+        "expectedRelevantCodes": [
+          "SEM0733"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-006",
+        "segment": "natural_positive",
+        "query": "Je saisis des écritures pour l’État et je dois comprendre la structure des comptes harmonisés utilisée par les collectivités publiques.",
+        "expectedRelevantCodes": [
+          "SEM1129E"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-007",
+        "segment": "natural_positive",
+        "query": "Notre service accumule des dossiers papier et numériques ; je dois savoir lesquels conserver, combien de temps et comment organiser leur archivage.",
+        "expectedRelevantCodes": [
+          "SEM1235"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-008",
+        "segment": "natural_positive",
+        "query": "Un journaliste va m’interroger au nom de mon service et je veux apprendre à répondre clairement sans perdre la maîtrise du message.",
+        "expectedRelevantCodes": [
+          "SEM0746"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-009",
+        "segment": "natural_positive",
+        "query": "En tant que manager, une collègue me signale un traitement discriminatoire au travail et je dois savoir reconnaître la situation, réagir et l’orienter correctement.",
+        "expectedRelevantCodes": [
+          "SEM1247"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1247",
+            "title": "Les discriminations: comprendre, prévenir et prendre en charge",
+            "similarity": 0.6201002619405195
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-010",
+        "segment": "natural_positive",
+        "query": "Je ne vois plus très bien ce qui donne du sens à mon travail et je cherche à retrouver des sources de motivation durables dans mon activité.",
+        "expectedRelevantCodes": [
+          "SEM1213"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-011",
+        "segment": "natural_positive",
+        "query": "Je dois préparer et mener des entretiens avec mes collaboratrices et collaborateurs, y compris lorsque la discussion est délicate.",
+        "expectedRelevantCodes": [
+          "SEM1203"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "EP-025MA",
+            "title": "Atelier de pratique professionnelle MA : mener un entretien ou réseau",
+            "similarity": 0.6070358501185856
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-012",
+        "segment": "natural_positive",
+        "query": "J’ai trop d’idées et d’informations dispersées ; je voudrais une méthode visuelle pour les structurer et faire apparaître les liens.",
+        "expectedRelevantCodes": [
+          "SEM1040"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-013",
+        "segment": "natural_positive",
+        "query": "Je dois produire des cartes professionnelles à partir de données géographiques et apprendre à organiser les couches, les symboles et les mises en page.",
+        "expectedRelevantCodes": [
+          "TRT051"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-014",
+        "segment": "context_restriction",
+        "query": "Je travaille dans l’administration du DIP et certaines factures adressées par notre service restent impayées ; je dois savoir quelles relances et démarches entreprendre pour recouvrer les montants dus.",
+        "expectedRelevantCodes": [
+          "SFIN-001"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-015",
+        "segment": "natural_positive",
+        "query": "Je reçois de longs rapports à parcourir et je voudrais en repérer plus vite la structure, les arguments et les informations essentielles sans perdre en compréhension.",
+        "expectedRelevantCodes": [
+          "SEM1216"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-016",
+        "segment": "multi_intent",
+        "query": "Je veux apprendre à analyser mes chiffres puis à les présenter de façon claire et visuelle à ma hiérarchie.",
+        "expectedRelevantCodes": [
+          "TRT1009",
+          "TRT1008"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-017",
+        "segment": "multi_intent",
+        "query": "Je dois améliorer mes supports de présentation mais aussi être plus convaincant quand je les présente devant un groupe.",
+        "expectedRelevantCodes": [
+          "TRT1014",
+          "SEM1108"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1108",
+            "title": "Parler en public",
+            "similarity": 0.6007610186335843
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-018",
+        "segment": "multi_intent",
+        "query": "Je débute dans la gestion de projet et je dois aussi apprendre à identifier les risques avant qu’ils ne deviennent des problèmes.",
+        "expectedRelevantCodes": [
+          "SEM0737",
+          "SEM1080"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-019",
+        "segment": "multi_intent",
+        "query": "Comme manager, je dois mieux négocier avec mon équipe et mieux conduire les entretiens individuels.",
+        "expectedRelevantCodes": [
+          "SEM1200",
+          "SEM1203"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-020",
+        "segment": "multi_intent",
+        "query": "Je voudrais automatiser certaines tâches répétitives dans mes tableaux tout en comprenant ce que l’intelligence artificielle peut réellement faire ou non.",
+        "expectedRelevantCodes": [
+          "TRT1010",
+          "SEM1246"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-CTX-021",
+        "segment": "context_restriction",
+        "query": "Je suis enseignant au primaire et je voudrais découvrir comment utiliser l’IA pour préparer ou adapter des contenus pédagogiques.",
+        "expectedRelevantCodes": [
+          "SEM-P1575"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM-10449",
+            "title": "CO-ESII / Introduire un peu de classe inversée dans mes cours / NOUVEAU / Formation autonome en ligne",
+            "similarity": 0.601723319777693
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-022",
+        "segment": "context_restriction",
+        "query": "J’enseigne la chimie au secondaire et je dois évaluer les dangers d’une expérience avant de faire travailler mes élèves au laboratoire.",
+        "expectedRelevantCodes": [
+          "S2-433"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-CTX-023",
+        "segment": "context_restriction",
+        "query": "J’enseigne en primaire et je voudrais organiser des sorties régulières dans la nature avec ma classe sans devoir faire venir un spécialiste à chaque fois.",
+        "expectedRelevantCodes": [
+          "EP-570"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-CTX-024",
+        "segment": "context_restriction",
+        "query": "Je travaille en détention et je dois mieux comprendre comment les appartenances culturelles et religieuses peuvent influencer la vie quotidienne des personnes incarcérées.",
+        "expectedRelevantCodes": [
+          "OCD424"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-CTX-025",
+        "segment": "context_restriction",
+        "query": "Dans mon travail je dois prendre ou revoir des décisions administratives et je voudrais mieux maîtriser le raisonnement juridique qui les encadre.",
+        "expectedRelevantCodes": [
+          "SEM0056"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 2,
+        "top10": [
+          {
+            "code": "SEM0056",
+            "title": "Principes généraux du droit administratif",
+            "similarity": 0.7322138528573849
+          },
+          {
+            "code": "PJ-0028",
+            "title": "Rédaction de décisions judiciaires - filière administrative",
+            "similarity": 0.667461607816174
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-026",
+        "segment": "abstention",
+        "query": "Je rénove ma salle de bains et je voudrais apprendre à poser du carrelage mural et à refaire correctement l’étanchéité de la douche.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-027",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre la soudure TIG pour fabriquer des meubles métalliques.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-028",
+        "segment": "abstention",
+        "query": "Je cherche une formation de barista pour apprendre à préparer des cafés professionnels.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-029",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre à construire et entretenir des piscines privées, notamment le traitement de l’eau et les systèmes de filtration.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-030",
+        "segment": "abstention",
+        "query": "Je cherche une formation pour utiliser une IA autonome afin d’automatiser complètement le traitement des dossiers administratifs de mon service.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      }
+    ]
+  }
+}
