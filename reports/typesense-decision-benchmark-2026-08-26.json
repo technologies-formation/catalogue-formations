@@ -1,0 +1,1311 @@
+{
+  "summary": {
+    "previous": {
+      "v12": 5,
+      "lexical": 0,
+      "semanticRaw": 9,
+      "hybridRaw": 6
+    },
+    "semanticThreshold": {
+      "success": 6,
+      "total": 30,
+      "bySegment": {
+        "natural_positive": {
+          "success": 0,
+          "total": 14
+        },
+        "context_restriction": {
+          "success": 1,
+          "total": 6
+        },
+        "multi_intent": {
+          "success": 0,
+          "total": 5
+        },
+        "abstention": {
+          "success": 5,
+          "total": 5
+        }
+      },
+      "successfulCases": [
+        "SEM-CTX-023",
+        "SEM-ABS-026",
+        "SEM-ABS-027",
+        "SEM-ABS-028",
+        "SEM-ABS-029",
+        "SEM-ABS-030"
+      ],
+      "failedCases": [
+        "SEM-NL-001",
+        "SEM-NL-002",
+        "SEM-NL-003",
+        "SEM-NL-004",
+        "SEM-NL-005",
+        "SEM-NL-006",
+        "SEM-NL-007",
+        "SEM-NL-008",
+        "SEM-NL-009",
+        "SEM-NL-010",
+        "SEM-NL-011",
+        "SEM-NL-012",
+        "SEM-NL-013",
+        "SEM-NL-014",
+        "SEM-NL-015",
+        "SEM-MI-016",
+        "SEM-MI-017",
+        "SEM-MI-018",
+        "SEM-MI-019",
+        "SEM-MI-020",
+        "SEM-CTX-021",
+        "SEM-CTX-022",
+        "SEM-CTX-024",
+        "SEM-CTX-025"
+      ]
+    },
+    "hybridCalibrated": {
+      "success": 1,
+      "total": 30,
+      "bySegment": {
+        "natural_positive": {
+          "success": 0,
+          "total": 14
+        },
+        "context_restriction": {
+          "success": 1,
+          "total": 6
+        },
+        "multi_intent": {
+          "success": 0,
+          "total": 5
+        },
+        "abstention": {
+          "success": 0,
+          "total": 5
+        }
+      },
+      "successfulCases": [
+        "SEM-CTX-023"
+      ],
+      "failedCases": [
+        "SEM-NL-001",
+        "SEM-NL-002",
+        "SEM-NL-003",
+        "SEM-NL-004",
+        "SEM-NL-005",
+        "SEM-NL-006",
+        "SEM-NL-007",
+        "SEM-NL-008",
+        "SEM-NL-009",
+        "SEM-NL-010",
+        "SEM-NL-011",
+        "SEM-NL-012",
+        "SEM-NL-013",
+        "SEM-NL-014",
+        "SEM-NL-015",
+        "SEM-MI-016",
+        "SEM-MI-017",
+        "SEM-MI-018",
+        "SEM-MI-019",
+        "SEM-MI-020",
+        "SEM-CTX-021",
+        "SEM-CTX-022",
+        "SEM-CTX-024",
+        "SEM-CTX-025",
+        "SEM-ABS-026",
+        "SEM-ABS-027",
+        "SEM-ABS-028",
+        "SEM-ABS-029",
+        "SEM-ABS-030"
+      ]
+    }
+  },
+  "results": {
+    "semanticThreshold": [
+      {
+        "id": "SEM-NL-001",
+        "segment": "natural_positive",
+        "query": "J’ai beaucoup de chiffres à suivre dans mon activité et je voudrais que mon collaborateur puisse en tirer rapidement les informations importantes pour m’aider à prendre des décisions.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-002",
+        "segment": "natural_positive",
+        "query": "Je dois comparer plusieurs hypothèses et voir rapidement l’impact de différents scénarios à partir de mes données.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-003",
+        "segment": "natural_positive",
+        "query": "Quand un dossier devient complexe, j’ai besoin d’une méthode pour distinguer les faits, prendre du recul et construire une vue d’ensemble avant de décider.",
+        "expectedRelevantCodes": [
+          "SEM1237"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-004",
+        "segment": "natural_positive",
+        "query": "Je rédige des messages destinés à des publics très différents et je voudrais éviter les formulations qui excluent ou renforcent des stéréotypes.",
+        "expectedRelevantCodes": [
+          "SEM1245"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-005",
+        "segment": "natural_positive",
+        "query": "Après plusieurs heures à mon bureau, j’ai mal au dos et aux épaules ; je voudrais régler mon poste et adopter de meilleures habitudes.",
+        "expectedRelevantCodes": [
+          "SEM0733"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-006",
+        "segment": "natural_positive",
+        "query": "Je saisis des écritures pour l’État et je dois comprendre la structure des comptes harmonisés utilisée par les collectivités publiques.",
+        "expectedRelevantCodes": [
+          "SEM1129E"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-007",
+        "segment": "natural_positive",
+        "query": "Notre service accumule des dossiers papier et numériques ; je dois savoir lesquels conserver, combien de temps et comment organiser leur archivage.",
+        "expectedRelevantCodes": [
+          "SEM1235"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-008",
+        "segment": "natural_positive",
+        "query": "Un journaliste va m’interroger au nom de mon service et je veux apprendre à répondre clairement sans perdre la maîtrise du message.",
+        "expectedRelevantCodes": [
+          "SEM0746"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-009",
+        "segment": "natural_positive",
+        "query": "En tant que manager, une collègue me signale un traitement discriminatoire au travail et je dois savoir reconnaître la situation, réagir et l’orienter correctement.",
+        "expectedRelevantCodes": [
+          "SEM1247"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-010",
+        "segment": "natural_positive",
+        "query": "Je ne vois plus très bien ce qui donne du sens à mon travail et je cherche à retrouver des sources de motivation durables dans mon activité.",
+        "expectedRelevantCodes": [
+          "SEM1213"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-011",
+        "segment": "natural_positive",
+        "query": "Je dois préparer et mener des entretiens avec mes collaboratrices et collaborateurs, y compris lorsque la discussion est délicate.",
+        "expectedRelevantCodes": [
+          "SEM1203"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-012",
+        "segment": "natural_positive",
+        "query": "J’ai trop d’idées et d’informations dispersées ; je voudrais une méthode visuelle pour les structurer et faire apparaître les liens.",
+        "expectedRelevantCodes": [
+          "SEM1040"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-013",
+        "segment": "natural_positive",
+        "query": "Je dois produire des cartes professionnelles à partir de données géographiques et apprendre à organiser les couches, les symboles et les mises en page.",
+        "expectedRelevantCodes": [
+          "TRT051"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-014",
+        "segment": "context_restriction",
+        "query": "Je travaille dans l’administration du DIP et certaines factures adressées par notre service restent impayées ; je dois savoir quelles relances et démarches entreprendre pour recouvrer les montants dus.",
+        "expectedRelevantCodes": [
+          "SFIN-001"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-NL-015",
+        "segment": "natural_positive",
+        "query": "Je reçois de longs rapports à parcourir et je voudrais en repérer plus vite la structure, les arguments et les informations essentielles sans perdre en compréhension.",
+        "expectedRelevantCodes": [
+          "SEM1216"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-016",
+        "segment": "multi_intent",
+        "query": "Je veux apprendre à analyser mes chiffres puis à les présenter de façon claire et visuelle à ma hiérarchie.",
+        "expectedRelevantCodes": [
+          "TRT1009",
+          "TRT1008"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-017",
+        "segment": "multi_intent",
+        "query": "Je dois améliorer mes supports de présentation mais aussi être plus convaincant quand je les présente devant un groupe.",
+        "expectedRelevantCodes": [
+          "TRT1014",
+          "SEM1108"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-018",
+        "segment": "multi_intent",
+        "query": "Je débute dans la gestion de projet et je dois aussi apprendre à identifier les risques avant qu’ils ne deviennent des problèmes.",
+        "expectedRelevantCodes": [
+          "SEM0737",
+          "SEM1080"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-MI-019",
+        "segment": "multi_intent",
+        "query": "Comme manager, je dois mieux négocier avec mon équipe et mieux conduire les entretiens individuels.",
+        "expectedRelevantCodes": [
+          "SEM1200",
+          "SEM1203"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM0052",
+            "title": "Manager : gérer les tensions au sein de son équipe",
+            "vector_distance": 0.3811512589454651
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-020",
+        "segment": "multi_intent",
+        "query": "Je voudrais automatiser certaines tâches répétitives dans mes tableaux tout en comprenant ce que l’intelligence artificielle peut réellement faire ou non.",
+        "expectedRelevantCodes": [
+          "TRT1010",
+          "SEM1246"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-CTX-021",
+        "segment": "context_restriction",
+        "query": "Je suis enseignant au primaire et je voudrais découvrir comment utiliser l’IA pour préparer ou adapter des contenus pédagogiques.",
+        "expectedRelevantCodes": [
+          "SEM-P1575"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 4,
+        "top10": [
+          {
+            "code": "SEM-10350",
+            "title": "CO-ESII / Activités autour de l'IA pour les élèves / NOUVEAU",
+            "vector_distance": 0.3750406503677368
+          },
+          {
+            "code": "PO-009PATC",
+            "title": "Défis de l'IA dans le domaine des compétences informationnelles",
+            "vector_distance": 0.3912258744239807
+          },
+          {
+            "code": "S2-557",
+            "title": "W7 : Construire un écosystème IA éducatif : pratiques, outils, règles et culture commune",
+            "vector_distance": 0.39359283447265625
+          },
+          {
+            "code": "SEM-4009",
+            "title": "Formation IA et ORFO pour les enseignants AFP",
+            "vector_distance": 0.39420002698898315
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-022",
+        "segment": "context_restriction",
+        "query": "J’enseigne la chimie au secondaire et je dois évaluer les dangers d’une expérience avant de faire travailler mes élèves au laboratoire.",
+        "expectedRelevantCodes": [
+          "S2-433"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-CTX-023",
+        "segment": "context_restriction",
+        "query": "J’enseigne en primaire et je voudrais organiser des sorties régulières dans la nature avec ma classe sans devoir faire venir un spécialiste à chaque fois.",
+        "expectedRelevantCodes": [
+          "EP-570"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 1,
+        "top10": [
+          {
+            "code": "EP-570",
+            "title": "Proposer des sorties dans la nature avec sa classe sans la présence de spécialistes",
+            "vector_distance": 0.33911871910095215
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-024",
+        "segment": "context_restriction",
+        "query": "Je travaille en détention et je dois mieux comprendre comment les appartenances culturelles et religieuses peuvent influencer la vie quotidienne des personnes incarcérées.",
+        "expectedRelevantCodes": [
+          "OCD424"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-CTX-025",
+        "segment": "context_restriction",
+        "query": "Dans mon travail je dois prendre ou revoir des décisions administratives et je voudrais mieux maîtriser le raisonnement juridique qui les encadre.",
+        "expectedRelevantCodes": [
+          "SEM0056"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-026",
+        "segment": "abstention",
+        "query": "Je rénove ma salle de bains et je voudrais apprendre à poser du carrelage mural et à refaire correctement l’étanchéité de la douche.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-027",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre la soudure TIG pour fabriquer des meubles métalliques.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-028",
+        "segment": "abstention",
+        "query": "Je cherche une formation de barista pour apprendre à préparer des cafés professionnels.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-029",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre à construire et entretenir des piscines privées, notamment le traitement de l’eau et les systèmes de filtration.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      },
+      {
+        "id": "SEM-ABS-030",
+        "segment": "abstention",
+        "query": "Je cherche une formation pour utiliser une IA autonome afin d’automatiser complètement le traitement des dossiers administratifs de mon service.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": true,
+        "found": 0,
+        "top10": []
+      }
+    ],
+    "hybridCalibrated": [
+      {
+        "id": "SEM-NL-001",
+        "segment": "natural_positive",
+        "query": "J’ai beaucoup de chiffres à suivre dans mon activité et je voudrais que mon collaborateur puisse en tirer rapidement les informations importantes pour m’aider à prendre des décisions.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "S2-951",
+            "title": "Les biais cognitifs, ou pourquoi j'ai toujours raison !",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-002",
+        "segment": "natural_positive",
+        "query": "Je dois comparer plusieurs hypothèses et voir rapidement l’impact de différents scénarios à partir de mes données.",
+        "expectedRelevantCodes": [
+          "TRT1009"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-003",
+        "segment": "natural_positive",
+        "query": "Quand un dossier devient complexe, j’ai besoin d’une méthode pour distinguer les faits, prendre du recul et construire une vue d’ensemble avant de décider.",
+        "expectedRelevantCodes": [
+          "SEM1237"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM-4009",
+            "title": "Formation IA et ORFO pour les enseignants AFP",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-004",
+        "segment": "natural_positive",
+        "query": "Je rédige des messages destinés à des publics très différents et je voudrais éviter les formulations qui excluent ou renforcent des stéréotypes.",
+        "expectedRelevantCodes": [
+          "SEM1245"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-005",
+        "segment": "natural_positive",
+        "query": "Après plusieurs heures à mon bureau, j’ai mal au dos et aux épaules ; je voudrais régler mon poste et adopter de meilleures habitudes.",
+        "expectedRelevantCodes": [
+          "SEM0733"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "EP-082EVEN",
+            "title": "Séance de travail relais pédagogiques - Maîtrise de la langue française à l'école",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-006",
+        "segment": "natural_positive",
+        "query": "Je saisis des écritures pour l’État et je dois comprendre la structure des comptes harmonisés utilisée par les collectivités publiques.",
+        "expectedRelevantCodes": [
+          "SEM1129E"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-007",
+        "segment": "natural_positive",
+        "query": "Notre service accumule des dossiers papier et numériques ; je dois savoir lesquels conserver, combien de temps et comment organiser leur archivage.",
+        "expectedRelevantCodes": [
+          "SEM1235"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 6,
+        "top10": [
+          {
+            "code": "TRT701",
+            "title": "SharePoint 2019 : Formation administratrice et administrateur d'un site standard de type \"Modern\"",
+            "vector_distance": null
+          },
+          {
+            "code": "TRT700",
+            "title": "SharePoint 2019 : Formation utilisatrice et utilisateur d'un site standard de type \"Modern\"",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM1074",
+            "title": "Médiation 2: approfondissement",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM-P1083",
+            "title": "EP-OMP-CO-ESII / Et si votre classe réalisait un court film ! / Formation hybride",
+            "vector_distance": null
+          },
+          {
+            "code": "TRT703",
+            "title": "Workflow Générique",
+            "vector_distance": null
+          },
+          {
+            "code": "TRT702",
+            "title": "Nintex Forms",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-008",
+        "segment": "natural_positive",
+        "query": "Un journaliste va m’interroger au nom de mon service et je veux apprendre à répondre clairement sans perdre la maîtrise du message.",
+        "expectedRelevantCodes": [
+          "SEM0746"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 69,
+        "top10": [
+          {
+            "code": "SEM1119",
+            "title": "Formation pour les formatrices et formateurs des personnes en apprentissage de la branche \"administration publique\"",
+            "vector_distance": null
+          },
+          {
+            "code": "TRT701",
+            "title": "SharePoint 2019 : Formation administratrice et administrateur d'un site standard de type \"Modern\"",
+            "vector_distance": null
+          },
+          {
+            "code": "TRT700",
+            "title": "SharePoint 2019 : Formation utilisatrice et utilisateur d'un site standard de type \"Modern\"",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM1258",
+            "title": "La santé mentale au travail : le rôle clé des managers et de la filière RH",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM0052",
+            "title": "Manager : gérer les tensions au sein de son équipe",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM1085",
+            "title": "Finances et comptabilité",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM0518",
+            "title": "Prévenir les tensions dans ses relations par une bonne communication",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM-P1566",
+            "title": "EP-CO-ESII-OMP / La formation de l'image photographique ; construire un sténopé en classe avec une boîte à chaussures",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM-4009",
+            "title": "Formation IA et ORFO pour les enseignants AFP",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM-10251",
+            "title": "CO-ESII / Apprendre à créer un jeu avec Blockly en 4h / Formation autonome en ligne",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-009",
+        "segment": "natural_positive",
+        "query": "En tant que manager, une collègue me signale un traitement discriminatoire au travail et je dois savoir reconnaître la situation, réagir et l’orienter correctement.",
+        "expectedRelevantCodes": [
+          "SEM1247"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 7,
+        "top10": [
+          {
+            "code": "OCD207",
+            "title": "BFFA - M1 : Animer des sessions de formation pour des groupes d'adultes (FFA CF-AF).",
+            "vector_distance": null
+          },
+          {
+            "code": "OCD133",
+            "title": "Troubles mentaux - Module 6 : traumatismes et troubles post-traumatiques",
+            "vector_distance": null
+          },
+          {
+            "code": "OCD130",
+            "title": "Troubles mentaux - Module 3 : troubles de la personnalité",
+            "vector_distance": null
+          },
+          {
+            "code": "OCD129",
+            "title": "Troubles mentaux - Module 2 : psychoses, troubles délirants et schizophrénie",
+            "vector_distance": null
+          },
+          {
+            "code": "OCD128",
+            "title": "Troubles mentaux - Module 1 : Stress, dépression et tendances suicidaires",
+            "vector_distance": null
+          },
+          {
+            "code": "OCD132",
+            "title": "Troubles mentaux - Module 5 : paraphilies",
+            "vector_distance": null
+          },
+          {
+            "code": "OCD131",
+            "title": "Troubles mentaux - Module 4 : dépendances",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-010",
+        "segment": "natural_positive",
+        "query": "Je ne vois plus très bien ce qui donne du sens à mon travail et je cherche à retrouver des sources de motivation durables dans mon activité.",
+        "expectedRelevantCodes": [
+          "SEM1213"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-011",
+        "segment": "natural_positive",
+        "query": "Je dois préparer et mener des entretiens avec mes collaboratrices et collaborateurs, y compris lorsque la discussion est délicate.",
+        "expectedRelevantCodes": [
+          "SEM1203"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-012",
+        "segment": "natural_positive",
+        "query": "J’ai trop d’idées et d’informations dispersées ; je voudrais une méthode visuelle pour les structurer et faire apparaître les liens.",
+        "expectedRelevantCodes": [
+          "SEM1040"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "S2-951",
+            "title": "Les biais cognitifs, ou pourquoi j'ai toujours raison !",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-013",
+        "segment": "natural_positive",
+        "query": "Je dois produire des cartes professionnelles à partir de données géographiques et apprendre à organiser les couches, les symboles et les mises en page.",
+        "expectedRelevantCodes": [
+          "TRT051"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-014",
+        "segment": "context_restriction",
+        "query": "Je travaille dans l’administration du DIP et certaines factures adressées par notre service restent impayées ; je dois savoir quelles relances et démarches entreprendre pour recouvrer les montants dus.",
+        "expectedRelevantCodes": [
+          "SFIN-001"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-NL-015",
+        "segment": "natural_positive",
+        "query": "Je reçois de longs rapports à parcourir et je voudrais en repérer plus vite la structure, les arguments et les informations essentielles sans perdre en compréhension.",
+        "expectedRelevantCodes": [
+          "SEM1216"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-016",
+        "segment": "multi_intent",
+        "query": "Je veux apprendre à analyser mes chiffres puis à les présenter de façon claire et visuelle à ma hiérarchie.",
+        "expectedRelevantCodes": [
+          "TRT1009",
+          "TRT1008"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-017",
+        "segment": "multi_intent",
+        "query": "Je dois améliorer mes supports de présentation mais aussi être plus convaincant quand je les présente devant un groupe.",
+        "expectedRelevantCodes": [
+          "TRT1014",
+          "SEM1108"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-018",
+        "segment": "multi_intent",
+        "query": "Je débute dans la gestion de projet et je dois aussi apprendre à identifier les risques avant qu’ils ne deviennent des problèmes.",
+        "expectedRelevantCodes": [
+          "SEM0737",
+          "SEM1080"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-019",
+        "segment": "multi_intent",
+        "query": "Comme manager, je dois mieux négocier avec mon équipe et mieux conduire les entretiens individuels.",
+        "expectedRelevantCodes": [
+          "SEM1200",
+          "SEM1203"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 7,
+        "top10": [
+          {
+            "code": "SEM0052",
+            "title": "Manager : gérer les tensions au sein de son équipe",
+            "vector_distance": 0.3811512589454651
+          },
+          {
+            "code": "SEM-10647",
+            "title": "CO-ESII / Préservation de l'environnement et enjeux climatiques, le film comme support de cette prise de conscience avec le Festival du film vert",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM-P1567",
+            "title": "EP-CO-ESII-OMP / L'animation filmique comme vecteur de la compréhension du monde avec le festival Animatou",
+            "vector_distance": null
+          },
+          {
+            "code": "EP-100MDAS",
+            "title": "La danse Hip-Hop comme outil pédagogique et artistique au Cycle 2",
+            "vector_distance": null
+          },
+          {
+            "code": "OMP-004EVN",
+            "title": "Table ronde: Le jeu comme intégrateur de l'hétérogénéité du développement dans les premières années de scolarité",
+            "vector_distance": null
+          },
+          {
+            "code": "OMP-017EVN",
+            "title": "Le théâtre comme outil de médiation",
+            "vector_distance": null
+          },
+          {
+            "code": "OCD240",
+            "title": "Coach FOI",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-MI-020",
+        "segment": "multi_intent",
+        "query": "Je voudrais automatiser certaines tâches répétitives dans mes tableaux tout en comprenant ce que l’intelligence artificielle peut réellement faire ou non.",
+        "expectedRelevantCodes": [
+          "TRT1010",
+          "SEM1246"
+        ],
+        "expectedTopK": 10,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-021",
+        "segment": "context_restriction",
+        "query": "Je suis enseignant au primaire et je voudrais découvrir comment utiliser l’IA pour préparer ou adapter des contenus pédagogiques.",
+        "expectedRelevantCodes": [
+          "SEM-P1575"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 5,
+        "top10": [
+          {
+            "code": "SEM-10350",
+            "title": "CO-ESII / Activités autour de l'IA pour les élèves / NOUVEAU",
+            "vector_distance": 0.3750406503677368
+          },
+          {
+            "code": "PO-009PATC",
+            "title": "Défis de l'IA dans le domaine des compétences informationnelles",
+            "vector_distance": 0.3912258744239807
+          },
+          {
+            "code": "S2-557",
+            "title": "W7 : Construire un écosystème IA éducatif : pratiques, outils, règles et culture commune",
+            "vector_distance": 0.39359283447265625
+          },
+          {
+            "code": "SEM-4009",
+            "title": "Formation IA et ORFO pour les enseignants AFP",
+            "vector_distance": 0.39420002698898315
+          },
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-022",
+        "segment": "context_restriction",
+        "query": "J’enseigne la chimie au secondaire et je dois évaluer les dangers d’une expérience avant de faire travailler mes élèves au laboratoire.",
+        "expectedRelevantCodes": [
+          "S2-433"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "S2-454",
+            "title": "Enseigner les questions socialement vives (QSV) en mobilisant la nature des sciences (NOS), pour des décisions éclairées",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-023",
+        "segment": "context_restriction",
+        "query": "J’enseigne en primaire et je voudrais organiser des sorties régulières dans la nature avec ma classe sans devoir faire venir un spécialiste à chaque fois.",
+        "expectedRelevantCodes": [
+          "EP-570"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": true,
+        "found": 2,
+        "top10": [
+          {
+            "code": "EP-570",
+            "title": "Proposer des sorties dans la nature avec sa classe sans la présence de spécialistes",
+            "vector_distance": 0.33911871910095215
+          },
+          {
+            "code": "SEM-10305",
+            "title": "EP-CO-ESII : L'image n'enseigne pas ! Usages des images fixes et animées dans l'enseignement des sciences / Formation autonome en ligne",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-024",
+        "segment": "context_restriction",
+        "query": "Je travaille en détention et je dois mieux comprendre comment les appartenances culturelles et religieuses peuvent influencer la vie quotidienne des personnes incarcérées.",
+        "expectedRelevantCodes": [
+          "OCD424"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-CTX-025",
+        "segment": "context_restriction",
+        "query": "Dans mon travail je dois prendre ou revoir des décisions administratives et je voudrais mieux maîtriser le raisonnement juridique qui les encadre.",
+        "expectedRelevantCodes": [
+          "SEM0056"
+        ],
+        "expectedTopK": 3,
+        "expectedExactAbstention": false,
+        "success": false,
+        "found": 110,
+        "top10": [
+          {
+            "code": "TRT3008E",
+            "title": "OneNote 2016 : Créez et partagez vos notes | E-LEARNING",
+            "vector_distance": null
+          },
+          {
+            "code": "EP-051EVEN",
+            "title": "Formation institutionnelle obligatoire Mathématiques 7P (Temps 1) - Nouveau moyen d'enseignement romand (VERSION B)",
+            "vector_distance": null
+          },
+          {
+            "code": "EP-050EVEN",
+            "title": "Formation institutionnelle obligatoire Mathématiques 7P (Temps 1) - Nouveau moyen d'enseignement romand (VERSION A)",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM0518",
+            "title": "Prévenir les tensions dans ses relations par une bonne communication",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM0815",
+            "title": "Dynamiser sa seconde partie de carrière et de vie",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM1119",
+            "title": "Formation pour les formatrices et formateurs des personnes en apprentissage de la branche \"administration publique\"",
+            "vector_distance": null
+          },
+          {
+            "code": "DIP-002",
+            "title": "Séance d'accueil destinée aux nouvelles et nouveaux collaborateurs - DIP",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM1165",
+            "title": "Design Thinking: des solutions créatives qui prennent l'humain en compte",
+            "vector_distance": null
+          },
+          {
+            "code": "S2-454",
+            "title": "Enseigner les questions socialement vives (QSV) en mobilisant la nature des sciences (NOS), pour des décisions éclairées",
+            "vector_distance": null
+          },
+          {
+            "code": "SEM1085",
+            "title": "Finances et comptabilité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-026",
+        "segment": "abstention",
+        "query": "Je rénove ma salle de bains et je voudrais apprendre à poser du carrelage mural et à refaire correctement l’étanchéité de la douche.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-027",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre la soudure TIG pour fabriquer des meubles métalliques.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-028",
+        "segment": "abstention",
+        "query": "Je cherche une formation de barista pour apprendre à préparer des cafés professionnels.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-029",
+        "segment": "abstention",
+        "query": "Je voudrais apprendre à construire et entretenir des piscines privées, notamment le traitement de l’eau et les systèmes de filtration.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      },
+      {
+        "id": "SEM-ABS-030",
+        "segment": "abstention",
+        "query": "Je cherche une formation pour utiliser une IA autonome afin d’automatiser complètement le traitement des dossiers administratifs de mon service.",
+        "expectedRelevantCodes": [],
+        "expectedTopK": null,
+        "expectedExactAbstention": true,
+        "success": false,
+        "found": 1,
+        "top10": [
+          {
+            "code": "SEM1113",
+            "title": "De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité",
+            "vector_distance": null
+          }
+        ]
+      }
+    ]
+  }
+}
