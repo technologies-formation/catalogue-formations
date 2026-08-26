@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-08-25
+- Date du snapshot : 2026-08-26
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 119.5 secondes
-- Taille du JSON final : 2.05 Mio (2151685 octets)
-- Empreinte SHA-256 du snapshot : `e710421267dc437939cac128cee13a60a36b138914a7a58fa19823e1eac9084f`
+- Durée totale de l’import : 129.9 secondes
+- Taille du JSON final : 2.05 Mio (2151683 octets)
+- Empreinte SHA-256 du snapshot : `856c7b3773f393cd960f10e47cd6028d1bae4d9973b84ff8a33216edcb20c29a`
 
 ## Synthèse
 
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1058 |
+| Cours dans le snapshot officiel | 1056 |
 | Cours dans le candidat | 1056 |
 | Cours ajoutés | 0 |
-| Cours supprimés | 2 |
-| Cours modifiés | 10 |
+| Cours supprimés | 0 |
+| Cours modifiés | 9 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -36,25 +36,21 @@ Aucun cours ajouté.
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| FP063 | Plongeur trimix avancé | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
-| TRT3016E | Maîtriser les fondamentaux du Numérique Responsable \| E-Learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | NUMERIQUE A L'ETAT |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01699 | Evaluer efficacement en latin : conception d'évaluation et stratégies de révision | `hasOpenSession` : « false » → « true » |
-| EP-101MDAS | Comprendre et gérer les conflits en EPS : stratégies d'autorégulation - niveau II | `hasOpenSession` : « true » → « false » |
-| EP-1042 | Développement de la communication et du langage oral, TDL, défis langagiers et stratégies pédagogiques (1P-2P) | `hasOpenSession` : « true » → « false » |
-| EP-580 | Initiation à l'observation et à la détermination des oiseaux communs avec une classe | `hasOpenSession` : « true » → « false » |
-| FP249 | Formation Initiale Sentinelle milicien/milicienne | `hasOpenSession` : « true » → « false » |
-| OMP-008TSA | Comprendre et répondre aux comportements défis | `hasOpenSession` : « true » → « false » |
-| SEM-P1565 | EP-OMP / Apprendre l'analyse des vidéos publicitaires avec ses élèves / Formation autonome en ligne | `publicRaw` : « Enseignants de l' EP- CO -OMP » → « Enseignants EP - OMP » |
-| SEM1040 | Mindmap : une méthode pour organiser ses idées et ses informations | `hasOpenSession` : « false » → « true » |
-| SEM1193 | Prendre et assumer son rôle | `hasOpenSession` : « true » → « false » |
-| SEM1200 | Moi, manager et négociateur ! | `hasOpenSession` : « true » → « false » |
+| CO-01697 | Quelle place pour la lecture dans votre classe ou au sein de l'établissement ? Développer des projets autour du livre | `hasOpenSession` : « false » → « true » |
+| EP-1051 | Enseigner la musique au CE en articulant activités clés en main et objectifs PER | `targetAudienceRaw` : « Personnel enseignant CE (MGEN*, ECSP, ECA, MDAS) *maitresses et maitres généralistes titulaires de classe » → « Personnel enseignant CE (MGEN*, ECSP et ECA) *maitresses et maitres généralistes titulaires de classe » |
+| EP-964 | Motricité et coordination, des outils pour développer la collaboration et les stratégies d'apprentissage | `hasOpenSession` : « true » → « false » |
+| OMP-002TSA | Autisme et enseignement structuré suivant le TEACCH Programme | `hasOpenSession` : « true » → « false » |
+| OMP-106 | La danse au service des élèves à besoins éducatifs particuliers | `hasOpenSession` : « true » → « false » |
+| PJ-0100 | Gestion des pièces à conviction - Personnel du MP titulaire d'une licence | `hasOpenSession` : « true » → « false » |
+| SEM1095 | Prévenir et gérer les comportements agressifs | `hasOpenSession` : « false » → « true » |
+| SEM1247 | Les discriminations: comprendre, prévenir et prendre en charge | `hasOpenSession` : « false » → « true » |
+| TRT3004H | Transformation Numérique | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
@@ -162,15 +158,15 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
-- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
-- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
+- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
@@ -204,7 +200,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-08-25T05:08:16.265Z
-- Snapshot candidat validé : 2026-08-25
-- Empreinte SHA-256 : `e710421267dc437939cac128cee13a60a36b138914a7a58fa19823e1eac9084f`
+- Date et heure de promotion : 2026-08-26T05:08:44.780Z
+- Snapshot candidat validé : 2026-08-26
+- Empreinte SHA-256 : `856c7b3773f393cd960f10e47cd6028d1bae4d9973b84ff8a33216edcb20c29a`
 - Promotion manuelle confirmée.
