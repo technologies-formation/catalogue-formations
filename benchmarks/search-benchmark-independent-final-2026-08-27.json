@@ -1,0 +1,316 @@
+{
+  "name": "Independent final LLM search benchmark",
+  "date": "2026-08-27",
+  "status": "frozen-before-execution",
+  "corpusSize": 1058,
+  "methodology": {
+    "purpose": "Validation indépendante de l’architecture LLM en deux passes",
+    "priorBenchmarkConsumed": true,
+    "casesUsedForTuning": false,
+    "noLLMUsedToCreateBenchmark": true,
+    "scoring": {
+      "natural_positive": "Tous les expectedRelevantCodes doivent apparaître dans expectedTopK",
+      "multi_intent": "Tous les expectedRelevantCodes doivent apparaître dans expectedTopK",
+      "context_restriction": "Tous les expectedRelevantCodes doivent apparaître dans expectedTopK",
+      "abstention": "Aucun code retourné et abstention explicite"
+    }
+  },
+  "cases": [
+    {
+      "id": "FINAL-NL-001",
+      "segment": "natural_positive",
+      "query": "Je dois préparer régulièrement des documents Word assez volumineux avec une table des matières, des renvois et des notes. Je voudrais apprendre à les structurer proprement.",
+      "expectedRelevantCodes": [
+        "TRT1018"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-002",
+      "segment": "natural_positive",
+      "query": "Dans mon nouveau rôle, je dois mieux comprendre comment se construit et se pilote le budget de l’État et quels sont les différents acteurs impliqués.",
+      "expectedRelevantCodes": [
+        "SEM1086"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-003",
+      "segment": "natural_positive",
+      "query": "Les échanges deviennent parfois tendus dans mon équipe et j’aimerais apprendre à désamorcer les situations avant qu’elles ne se transforment en conflit.",
+      "expectedRelevantCodes": [
+        "SEM0518"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-004",
+      "segment": "natural_positive",
+      "query": "Je manage une équipe et je voudrais mieux comprendre certains mécanismes cognitifs et biais qui influencent nos décisions et nos relations au travail.",
+      "expectedRelevantCodes": [
+        "SEM1215"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-005",
+      "segment": "natural_positive",
+      "query": "Mon service va connaître plusieurs changements importants et je cherche des méthodes pour aider les collaborateurs à traverser cette période et limiter les résistances.",
+      "expectedRelevantCodes": [
+        "SEM1196"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-006",
+      "segment": "natural_positive",
+      "query": "Pendant les séances, j’ai du mal à prendre suffisamment de notes tout en suivant les échanges. Je voudrais ensuite pouvoir rédiger des comptes rendus clairs, neutres et synthétiques.",
+      "expectedRelevantCodes": [
+        "SEM0631"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-007",
+      "segment": "natural_positive",
+      "query": "Je voudrais utiliser davantage d’images et de petites animations dans mes cours de sciences, mais en sachant quand elles apportent réellement quelque chose aux apprentissages.",
+      "expectedRelevantCodes": [
+        "SEM-10305"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-008",
+      "segment": "natural_positive",
+      "query": "Je souhaite faire progresser mes élèves en français, mais surtout identifier les leviers qui permettent de mieux les engager et de réduire les écarts entre eux.",
+      "expectedRelevantCodes": [
+        "EP-081EVEN"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-009",
+      "segment": "natural_positive",
+      "query": "Je voudrais utiliser des tablettes en classe, mais pas seulement pour remplacer le papier : je cherche des idées d’activités où elles ont une vraie valeur pédagogique.",
+      "expectedRelevantCodes": [
+        "SEM-P1535"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-010",
+      "segment": "natural_positive",
+      "query": "Je dois conduire dans des situations opérationnelles où le stress peut être important. Je voudrais mieux maîtriser mon véhicule et connaître mes propres limites dans ces conditions.",
+      "expectedRelevantCodes": [
+        "FP020"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-011",
+      "segment": "natural_positive",
+      "query": "Je vais participer à des recrutements et je dois apprendre à conduire les entretiens de manière structurée et à évaluer les candidats avec les outils prévus.",
+      "expectedRelevantCodes": [
+        "FP291"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-012",
+      "segment": "natural_positive",
+      "query": "Je vais prendre des responsabilités d’encadrement dans un établissement de détention et je cherche une formation complète pour apprendre à diriger un secteur, conduire une équipe et réfléchir à ma posture de cadre.",
+      "expectedRelevantCodes": [
+        "OCD014"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-013",
+      "segment": "natural_positive",
+      "query": "Je dois alimenter et maintenir les pages SharePoint de ma direction, publier des procédures et organiser les documents et la navigation du site.",
+      "expectedRelevantCodes": [
+        "PJ-0106"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-NL-014",
+      "segment": "natural_positive",
+      "query": "Je rencontre régulièrement des parents d’élèves et je voudrais mieux préparer et conduire ces entretiens afin d’instaurer un climat de confiance et une collaboration constructive.",
+      "expectedRelevantCodes": [
+        "EO-008"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-MI-015",
+      "segment": "multi_intent",
+      "query": "Je dois d’abord analyser les besoins d’une équipe pour concevoir une formation, puis être capable de construire dans Moodle une évaluation avec des critères explicites.",
+      "expectedRelevantCodes": [
+        "EP-105CP-E",
+        "SEM-10906"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-MI-016",
+      "segment": "multi_intent",
+      "query": "Dans mes fonctions de moniteur de plongée, je dois pouvoir former des plongeurs aussi bien au nitrox qu’aux conditions particulières de la plongée sous glace.",
+      "expectedRelevantCodes": [
+        "FP074",
+        "FP072"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-MI-017",
+      "segment": "multi_intent",
+      "query": "Comme manager au Pouvoir judiciaire, je voudrais à la fois renforcer ma posture managériale et devenir plus efficace pour retrouver la législation et la jurisprudence nécessaires à mon activité.",
+      "expectedRelevantCodes": [
+        "PJ-1055",
+        "PJ-0092"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-MI-018",
+      "segment": "multi_intent",
+      "query": "Je voudrais être mieux préparé à réagir aux situations de discrimination au travail et, lorsqu’un conflit est déjà installé, disposer aussi de méthodes pour aider les personnes à retrouver un dialogue.",
+      "expectedRelevantCodes": [
+        "SEM1248",
+        "SEM1074"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-MI-019",
+      "segment": "multi_intent",
+      "query": "Pour mes élèves, je voudrais mieux intégrer l’éducation numérique dans mes activités et être capable de créer moi-même des supports pédagogiques visuels avec les outils disponibles.",
+      "expectedRelevantCodes": [
+        "SEM-P1304",
+        "SEM-P1514"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-CTX-020",
+      "segment": "context_restriction",
+      "query": "Je dois préparer des dossiers destinés au Conseil d’État mais je connais mal le circuit, les responsabilités de chacun et la manière dont ces objets sont élaborés.",
+      "expectedRelevantCodes": [
+        "SEM1138E"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-CTX-021",
+      "segment": "context_restriction",
+      "query": "Lorsqu’une personne de mon équipe est absente longtemps, je ne suis pas toujours à l’aise sur la façon de maintenir le lien, informer l’équipe et préparer son retour.",
+      "expectedRelevantCodes": [
+        "SEM1127"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-CTX-022",
+      "segment": "context_restriction",
+      "query": "J’enseigne les mathématiques à des élèves qui maîtrisent encore mal le français. Je voudrais mieux comprendre ce qui relève de la langue et ce qui relève réellement des mathématiques afin d’adapter mes pratiques.",
+      "expectedRelevantCodes": [
+        "CO-01665"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-CTX-023",
+      "segment": "context_restriction",
+      "query": "J’accompagne des jeunes avec autisme et je cherche des repères pour aborder avec eux les questions liées au corps, à l’intimité et à la sexualité de façon adaptée.",
+      "expectedRelevantCodes": [
+        "OMP-018TSA"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-CTX-024",
+      "segment": "context_restriction",
+      "query": "Je voudrais proposer à mes élèves allophones un projet d’écriture qui leur permette aussi de valoriser les différentes langues qu’ils parlent.",
+      "expectedRelevantCodes": [
+        "CO-01700"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-CTX-025",
+      "segment": "context_restriction",
+      "query": "Je travaille en détention et je voudrais mieux communiquer avec les personnes détenues, notamment dans les échanges difficiles, en utilisant davantage l’écoute et des techniques de communication non violente.",
+      "expectedRelevantCodes": [
+        "OCD426"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "FINAL-ABS-026",
+      "segment": "abstention",
+      "query": "Je voudrais apprendre à entraîner moi-même un grand modèle de langage sur nos propres serveurs, depuis la préparation des données jusqu’à l’entraînement distribué du modèle.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    },
+    {
+      "id": "FINAL-ABS-027",
+      "segment": "abstention",
+      "query": "Je cherche une formation qui me permette d’être qualifié pour réaliser des diagnostics psychologiques cliniques auprès de collaborateurs en difficulté.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    },
+    {
+      "id": "FINAL-ABS-028",
+      "segment": "abstention",
+      "query": "Je dois développer de A à Z une application métier avec interface web, API, base PostgreSQL et authentification. Je cherche une formation interne couvrant tout ce développement.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    },
+    {
+      "id": "FINAL-ABS-029",
+      "segment": "abstention",
+      "query": "Je cherche une formation pour apprendre à déployer et administrer en production un cluster Kubernetes, avec Helm, gestion des ingress, supervision et sécurisation de l’infrastructure.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    },
+    {
+      "id": "FINAL-ABS-030",
+      "segment": "abstention",
+      "query": "Je dois installer, administrer, sécuriser et sauvegarder un serveur Moodle, y compris la base de données et l’infrastructure technique.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    }
+  ],
+  "frozenAt": "2026-08-27"
+}
