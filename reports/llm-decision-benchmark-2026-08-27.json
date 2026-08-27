@@ -1,0 +1,1006 @@
+{
+  "protocol": {
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "none",
+    "sameTopK": 100,
+    "enrichedTopK": 100,
+    "maxReturnedCodes": 5,
+    "delayMs": 16000
+  },
+  "summary": {
+    "success": 26,
+    "total": 30,
+    "bySegment": {
+      "natural_positive": {
+        "success": 14,
+        "total": 14
+      },
+      "context_restriction": {
+        "success": 5,
+        "total": 6
+      },
+      "multi_intent": {
+        "success": 3,
+        "total": 5
+      },
+      "abstention": {
+        "success": 4,
+        "total": 5
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "SEM-NL-001",
+      "segment": "natural_positive",
+      "query": "J’ai beaucoup de chiffres à suivre dans mon activité et je voudrais que mon collaborateur puisse en tirer rapidement les informations importantes pour m’aider à prendre des décisions.",
+      "expectedRelevantCodes": [
+        "TRT1009"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 162,
+      "abstain": false,
+      "codes": [
+        "TRT1009",
+        "TRT1008",
+        "TRT1010",
+        "PJ-0054",
+        "SEM1237"
+      ],
+      "reason": "Ces formations permettent d’analyser des données chiffrées, d’en extraire rapidement les informations importantes et de les restituer sous forme de graphiques ou de synthèses utiles à la décision. TRT1009 est la plus directement adaptée à l’analyse de données et aux tableaux croisés dynamiques ; TRT1008 complète par la visualisation graphique. TRT1010 et PJ-0054 renforcent l’efficacité dans Excel et l’exploitation de données, tandis que SEM1237 développe la capacité à sélectionner et synthétiser l’information essentielle.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 34559,
+        "input_tokens_details": {
+          "cache_write_tokens": 34556,
+          "cached_tokens": 0
+        },
+        "output_tokens": 156,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 34715
+      }
+    },
+    {
+      "id": "SEM-NL-002",
+      "segment": "natural_positive",
+      "query": "Je dois comparer plusieurs hypothèses et voir rapidement l’impact de différents scénarios à partir de mes données.",
+      "expectedRelevantCodes": [
+        "TRT1009"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 180,
+      "abstain": false,
+      "codes": [
+        "TRT1009",
+        "PJ-0054",
+        "TRT3000E"
+      ],
+      "reason": "Ces formations couvrent l’analyse de données dans Excel, notamment les tableaux croisés dynamiques, les scénarios, les tables de données et les valeurs cibles. TRT1009 est la plus directement adaptée aux simulations de scénarios ; PJ-0054 et TRT3000E sont des compléments pour l’exploitation des données et les tableaux croisés dynamiques.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 47484,
+        "input_tokens_details": {
+          "cache_write_tokens": 47481,
+          "cached_tokens": 0
+        },
+        "output_tokens": 112,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 47596
+      }
+    },
+    {
+      "id": "SEM-NL-003",
+      "segment": "natural_positive",
+      "query": "Quand un dossier devient complexe, j’ai besoin d’une méthode pour distinguer les faits, prendre du recul et construire une vue d’ensemble avant de décider.",
+      "expectedRelevantCodes": [
+        "SEM1237"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 175,
+      "abstain": false,
+      "codes": [
+        "SEM1237",
+        "S2-952",
+        "SEM1043",
+        "SEM1070"
+      ],
+      "reason": "Ces formations répondent au besoin de clarifier une situation complexe, distinguer les faits des interprétations, prendre du recul, raisonner sous incertitude et structurer une démarche de résolution avant de décider.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 37489,
+        "input_tokens_details": {
+          "cache_write_tokens": 37486,
+          "cached_tokens": 0
+        },
+        "output_tokens": 83,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 37572
+      }
+    },
+    {
+      "id": "SEM-NL-004",
+      "segment": "natural_positive",
+      "query": "Je rédige des messages destinés à des publics très différents et je voudrais éviter les formulations qui excluent ou renforcent des stéréotypes.",
+      "expectedRelevantCodes": [
+        "SEM1245"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 156,
+      "abstain": false,
+      "codes": [
+        "SEM1245",
+        "SEM1173",
+        "SEM1169"
+      ],
+      "reason": "La formation SEM1245 traite directement de la communication inclusive, notamment des stéréotypes de genre et de la reformulation de textes à l’écrit et à l’oral. SEM1173 aide à choisir un vocabulaire précis, nuancé et adapté aux contextes, tandis que SEM1169 développe des techniques d’écriture claire et compréhensible pour différents publics.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 39708,
+        "input_tokens_details": {
+          "cache_write_tokens": 39705,
+          "cached_tokens": 0
+        },
+        "output_tokens": 109,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 39817
+      }
+    },
+    {
+      "id": "SEM-NL-005",
+      "segment": "natural_positive",
+      "query": "Après plusieurs heures à mon bureau, j’ai mal au dos et aux épaules ; je voudrais régler mon poste et adopter de meilleures habitudes.",
+      "expectedRelevantCodes": [
+        "SEM0733"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 151,
+      "abstain": false,
+      "codes": [
+        "SEM0733"
+      ],
+      "reason": "Cette formation apprend à aménager son poste de travail de manière autonome afin de prévenir les douleurs musculo-squelettiques, notamment au dos et aux épaules, et propose des exercices pratiques d'adaptation.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 38749,
+        "input_tokens_details": {
+          "cache_write_tokens": 38746,
+          "cached_tokens": 0
+        },
+        "output_tokens": 69,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 38818
+      }
+    },
+    {
+      "id": "SEM-NL-006",
+      "segment": "natural_positive",
+      "query": "Je saisis des écritures pour l’État et je dois comprendre la structure des comptes harmonisés utilisée par les collectivités publiques.",
+      "expectedRelevantCodes": [
+        "SEM1129E"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 148,
+      "abstain": false,
+      "codes": [
+        "SEM1129E",
+        "SFIN-003",
+        "SEM1085",
+        "SEM1084"
+      ],
+      "reason": "La formation SEM1129E est la plus directement adaptée à la compréhension du plan comptable harmonisé MCH2 de l'État de Genève et de la structure des comptes. SFIN-003 complète cette formation sur le rôle comptable, les segments de la clé comptable et les comptes de bilan, de fonctionnement et d'investissement. SEM1085 approfondit les comptes de l'État et les opérations financières, tandis que SEM1084 fournit une introduction générale aux finances publiques et à la comparaison entre comptabilité publique et privée.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 26840,
+        "input_tokens_details": {
+          "cache_write_tokens": 26837,
+          "cached_tokens": 0
+        },
+        "output_tokens": 147,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 26987
+      }
+    },
+    {
+      "id": "SEM-NL-007",
+      "segment": "natural_positive",
+      "query": "Notre service accumule des dossiers papier et numériques ; je dois savoir lesquels conserver, combien de temps et comment organiser leur archivage.",
+      "expectedRelevantCodes": [
+        "SEM1235"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 167,
+      "abstain": false,
+      "codes": [
+        "SEM1235"
+      ],
+      "reason": "Formation directement consacrée à la gestion de l'information, des documents et des archives : cycle de vie des documents, cadre légal, bonnes pratiques de gestion documentaire, flux d'information, conservation et durabilité.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 36876,
+        "input_tokens_details": {
+          "cache_write_tokens": 36873,
+          "cached_tokens": 0
+        },
+        "output_tokens": 68,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 36944
+      }
+    },
+    {
+      "id": "SEM-NL-008",
+      "segment": "natural_positive",
+      "query": "Un journaliste va m’interroger au nom de mon service et je veux apprendre à répondre clairement sans perdre la maîtrise du message.",
+      "expectedRelevantCodes": [
+        "SEM0746"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 161,
+      "abstain": false,
+      "codes": [
+        "SEM0746",
+        "SEM1108",
+        "SEM1098"
+      ],
+      "reason": "La formation SEM0746 est directement consacrée aux relations avec les médias et à la pratique de l’interview, notamment la préparation et les réponses aux journalistes. SEM1108 et SEM1098 complètent utilement cette préparation par la prise de parole en public, la clarté du message et l’écoute.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 34513,
+        "input_tokens_details": {
+          "cache_write_tokens": 34510,
+          "cached_tokens": 0
+        },
+        "output_tokens": 98,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 34611
+      }
+    },
+    {
+      "id": "SEM-NL-009",
+      "segment": "natural_positive",
+      "query": "En tant que manager, une collègue me signale un traitement discriminatoire au travail et je dois savoir reconnaître la situation, réagir et l’orienter correctement.",
+      "expectedRelevantCodes": [
+        "SEM1247"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 153,
+      "abstain": false,
+      "codes": [
+        "SEM1247",
+        "PJ-0045",
+        "SEM1249"
+      ],
+      "reason": "SEM1247 est la formation la plus directement adaptée aux managers et aux RH pour identifier, prévenir, reconnaître et agir face aux discriminations. PJ-0045 complète sur la protection de la personnalité, tandis que SEM1249 aide à orienter et accompagner dans le cadre plus large de la santé psychosociale, avec clarification du rôle et des limites du manager.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 33150,
+        "input_tokens_details": {
+          "cache_write_tokens": 33147,
+          "cached_tokens": 0
+        },
+        "output_tokens": 109,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 33259
+      }
+    },
+    {
+      "id": "SEM-NL-010",
+      "segment": "natural_positive",
+      "query": "Je ne vois plus très bien ce qui donne du sens à mon travail et je cherche à retrouver des sources de motivation durables dans mon activité.",
+      "expectedRelevantCodes": [
+        "SEM1213"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 156,
+      "abstain": false,
+      "codes": [
+        "SEM1213",
+        "SEM1162",
+        "SEM0831",
+        "SEM0815"
+      ],
+      "reason": "La formation SEM1213 répond directement à la perte de sens et à la recherche de motivation durable au travail. SEM1162 complète avec l'équilibre personnel, les valeurs, les besoins et la prévention de l'épuisement. SEM0831 aide à retrouver un élan, clarifier ses buts et identifier ses marges d'action. SEM0815 est pertinente si la recherche de sens s'inscrit dans une réflexion de seconde partie de carrière, mais son public cible est spécifique.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 40747,
+        "input_tokens_details": {
+          "cache_write_tokens": 40744,
+          "cached_tokens": 0
+        },
+        "output_tokens": 136,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 40883
+      }
+    },
+    {
+      "id": "SEM-NL-011",
+      "segment": "natural_positive",
+      "query": "Je dois préparer et mener des entretiens avec mes collaboratrices et collaborateurs, y compris lorsque la discussion est délicate.",
+      "expectedRelevantCodes": [
+        "SEM1203"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 154,
+      "abstain": false,
+      "codes": [
+        "SEM1203",
+        "SEM0052",
+        "SEM1195",
+        "SEM1166",
+        "SEM1210"
+      ],
+      "reason": "Les formations proposées couvrent la préparation et la conduite des entretiens managériaux, la gestion des tensions et des situations conflictuelles, ainsi que la communication et le feedback dans les échanges délicats.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 36376,
+        "input_tokens_details": {
+          "cache_write_tokens": 36373,
+          "cached_tokens": 0
+        },
+        "output_tokens": 85,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 36461
+      }
+    },
+    {
+      "id": "SEM-NL-012",
+      "segment": "natural_positive",
+      "query": "J’ai trop d’idées et d’informations dispersées ; je voudrais une méthode visuelle pour les structurer et faire apparaître les liens.",
+      "expectedRelevantCodes": [
+        "SEM1040"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 160,
+      "abstain": false,
+      "codes": [
+        "SEM1040",
+        "OMP-107",
+        "SEM1237"
+      ],
+      "reason": "Ces formations répondent directement au besoin de structurer visuellement des idées et des informations, notamment par les mindmaps et les cartes mentales. SEM1040 est la plus pertinente pour apprendre une méthode de cartographie des idées ; OMP-107 complète avec l'utilisation de Popplet pour la structuration visuelle des savoirs ; SEM1237 aide à clarifier et synthétiser des situations complexes.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 36395,
+        "input_tokens_details": {
+          "cache_write_tokens": 36392,
+          "cached_tokens": 0
+        },
+        "output_tokens": 117,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 36512
+      }
+    },
+    {
+      "id": "SEM-NL-013",
+      "segment": "natural_positive",
+      "query": "Je dois produire des cartes professionnelles à partir de données géographiques et apprendre à organiser les couches, les symboles et les mises en page.",
+      "expectedRelevantCodes": [
+        "TRT051"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 170,
+      "abstain": false,
+      "codes": [
+        "TRT051",
+        "TRT058"
+      ],
+      "reason": "TRT051 correspond directement à la création de cartes à partir de données géographiques, avec organisation des couches, symbologie et mise en page dans ArcGIS Pro. TRT058 est pertinent en complément pour approfondir la représentation, la symbologie, la gestion des données et la mise en page avancée, mais nécessite déjà une première expérience d'ArcGIS Pro.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 38974,
+        "input_tokens_details": {
+          "cache_write_tokens": 38971,
+          "cached_tokens": 0
+        },
+        "output_tokens": 106,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 39080
+      }
+    },
+    {
+      "id": "SEM-NL-014",
+      "segment": "context_restriction",
+      "query": "Je travaille dans l’administration du DIP et certaines factures adressées par notre service restent impayées ; je dois savoir quelles relances et démarches entreprendre pour recouvrer les montants dus.",
+      "expectedRelevantCodes": [
+        "SFIN-001"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 148,
+      "abstain": false,
+      "codes": [
+        "SFIN-001",
+        "TRT012",
+        "TRT011"
+      ],
+      "reason": "La formation SFIN-001 correspond directement à la gestion des débiteurs et aux actions de recouvrement des créances au DIP. TRT012 complète avec la saisie des transactions débiteurs, la gestion du recouvrement et l'impression des lettres de rappel. TRT011 est pertinente pour consulter les comptes, mouvements, encaissements et listings de contrôle.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 30478,
+        "input_tokens_details": {
+          "cache_write_tokens": 30475,
+          "cached_tokens": 0
+        },
+        "output_tokens": 108,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 30586
+      }
+    },
+    {
+      "id": "SEM-NL-015",
+      "segment": "natural_positive",
+      "query": "Je reçois de longs rapports à parcourir et je voudrais en repérer plus vite la structure, les arguments et les informations essentielles sans perdre en compréhension.",
+      "expectedRelevantCodes": [
+        "SEM1216"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 169,
+      "abstain": false,
+      "codes": [
+        "SEM1216",
+        "SEM1237",
+        "SEM0707",
+        "SEM1040",
+        "SEM1169"
+      ],
+      "reason": "Ces formations répondent directement au besoin de parcourir rapidement de longs rapports tout en en repérant la structure, les arguments et les informations essentielles : lecture rapide, vision synthétique et objective, structuration des documents, cartographie des idées et langage clair.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 37017,
+        "input_tokens_details": {
+          "cache_write_tokens": 37014,
+          "cached_tokens": 0
+        },
+        "output_tokens": 94,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 37111
+      }
+    },
+    {
+      "id": "SEM-MI-016",
+      "segment": "multi_intent",
+      "query": "Je veux apprendre à analyser mes chiffres puis à les présenter de façon claire et visuelle à ma hiérarchie.",
+      "expectedRelevantCodes": [
+        "TRT1009",
+        "TRT1008"
+      ],
+      "expectedTopK": 10,
+      "expectedExactAbstention": false,
+      "candidateCount": 183,
+      "abstain": false,
+      "codes": [
+        "TRT1009",
+        "TRT1008",
+        "SEM0707",
+        "TRT1013"
+      ],
+      "reason": "Ces formations couvrent l’analyse de données chiffrées, leur représentation graphique et la présentation claire de résultats à une hiérarchie. TRT1009 est la plus complète pour analyser les données dans Excel, TRT1008 pour créer des graphiques adaptés, SEM0707 pour structurer et rendre les données convaincantes, et TRT1013 pour concevoir une présentation PowerPoint professionnelle.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 46229,
+        "input_tokens_details": {
+          "cache_write_tokens": 46226,
+          "cached_tokens": 0
+        },
+        "output_tokens": 121,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 46350
+      }
+    },
+    {
+      "id": "SEM-MI-017",
+      "segment": "multi_intent",
+      "query": "Je dois améliorer mes supports de présentation mais aussi être plus convaincant quand je les présente devant un groupe.",
+      "expectedRelevantCodes": [
+        "TRT1014",
+        "SEM1108"
+      ],
+      "expectedTopK": 10,
+      "expectedExactAbstention": false,
+      "candidateCount": 160,
+      "abstain": false,
+      "codes": [
+        "SEM1099",
+        "SEM1108",
+        "SEM1122"
+      ],
+      "reason": "SEM1099 correspond directement à l'amélioration des supports projetés et à la structuration d'un message impactant. SEM1108 renforce l'aisance, le charisme et l'interaction avec un groupe. SEM1122 complète avec le travail sur la voix et le non-verbal pour convaincre et obtenir l'adhésion.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": false,
+      "usage": {
+        "input_tokens": 40801,
+        "input_tokens_details": {
+          "cache_write_tokens": 40798,
+          "cached_tokens": 0
+        },
+        "output_tokens": 104,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 40905
+      }
+    },
+    {
+      "id": "SEM-MI-018",
+      "segment": "multi_intent",
+      "query": "Je débute dans la gestion de projet et je dois aussi apprendre à identifier les risques avant qu’ils ne deviennent des problèmes.",
+      "expectedRelevantCodes": [
+        "SEM0737",
+        "SEM1080"
+      ],
+      "expectedTopK": 10,
+      "expectedExactAbstention": false,
+      "candidateCount": 167,
+      "abstain": false,
+      "codes": [
+        "SEM0737",
+        "SEM1080"
+      ],
+      "reason": "SEM0737 couvre les fondamentaux de la gestion de projet pour débuter, tandis que SEM1080 complète le besoin par l’identification, l’évaluation et la prévention des risques projet.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 38349,
+        "input_tokens_details": {
+          "cache_write_tokens": 38346,
+          "cached_tokens": 0
+        },
+        "output_tokens": 70,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 38419
+      }
+    },
+    {
+      "id": "SEM-MI-019",
+      "segment": "multi_intent",
+      "query": "Comme manager, je dois mieux négocier avec mon équipe et mieux conduire les entretiens individuels.",
+      "expectedRelevantCodes": [
+        "SEM1200",
+        "SEM1203"
+      ],
+      "expectedTopK": 10,
+      "expectedExactAbstention": false,
+      "candidateCount": 147,
+      "abstain": false,
+      "codes": [
+        "SEM1200",
+        "SEM1203",
+        "SEM1149"
+      ],
+      "reason": "La demande porte directement sur la négociation managériale et la conduite d'entretiens individuels. SEM1200 est spécifiquement consacré au rôle de manager-négociateur, SEM1203 aux entretiens managériaux, et SEM1149 complète ces compétences par les stratégies et techniques de négociation.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 31466,
+        "input_tokens_details": {
+          "cache_write_tokens": 31463,
+          "cached_tokens": 0
+        },
+        "output_tokens": 99,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 31565
+      }
+    },
+    {
+      "id": "SEM-MI-020",
+      "segment": "multi_intent",
+      "query": "Je voudrais automatiser certaines tâches répétitives dans mes tableaux tout en comprenant ce que l’intelligence artificielle peut réellement faire ou non.",
+      "expectedRelevantCodes": [
+        "TRT1010",
+        "SEM1246"
+      ],
+      "expectedTopK": 10,
+      "expectedExactAbstention": false,
+      "candidateCount": 162,
+      "abstain": false,
+      "codes": [
+        "S2-555",
+        "S2-552",
+        "S2-553",
+        "SEM-10344"
+      ],
+      "reason": "S2-555 répond directement à l’automatisation de tâches répétitives et aux limites du contrôle humain. S2-552 aide à choisir les outils d’IA adaptés, notamment pour organiser et analyser des informations. S2-553 permet de mieux formuler les demandes à l’IA et d’en contrôler les résultats. SEM-10344 apporte une compréhension générale des techniques, possibilités et limites de l’IA.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": false,
+      "usage": {
+        "input_tokens": 38429,
+        "input_tokens_details": {
+          "cache_write_tokens": 38426,
+          "cached_tokens": 0
+        },
+        "output_tokens": 128,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 38557
+      }
+    },
+    {
+      "id": "SEM-CTX-021",
+      "segment": "context_restriction",
+      "query": "Je suis enseignant au primaire et je voudrais découvrir comment utiliser l’IA pour préparer ou adapter des contenus pédagogiques.",
+      "expectedRelevantCodes": [
+        "SEM-P1575"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 167,
+      "abstain": false,
+      "codes": [
+        "SEM-P1579",
+        "SEM-10350",
+        "SEM-10349",
+        "SEM-10469"
+      ],
+      "reason": "Formations destinées aux enseignants du primaire et centrées sur la découverte des usages pédagogiques de l’IA, la préparation de cours, la différenciation et l’esprit critique. SEM-P1579 est la plus directement adaptée au public et à la demande.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": false,
+      "usage": {
+        "input_tokens": 41034,
+        "input_tokens_details": {
+          "cache_write_tokens": 41031,
+          "cached_tokens": 0
+        },
+        "output_tokens": 96,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 41130
+      }
+    },
+    {
+      "id": "SEM-CTX-022",
+      "segment": "context_restriction",
+      "query": "J’enseigne la chimie au secondaire et je dois évaluer les dangers d’une expérience avant de faire travailler mes élèves au laboratoire.",
+      "expectedRelevantCodes": [
+        "S2-433"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 174,
+      "abstain": false,
+      "codes": [
+        "S2-433",
+        "S2-434"
+      ],
+      "reason": "Ces deux formations portent directement sur l'évaluation et la gestion des risques HSE au laboratoire scolaire. La formation I constitue l'introduction recommandée pour analyser les dangers liés aux solvants, réactifs et expériences ; la formation II approfondit l'analyse quantitative et l'application de la méthode LRA sur des cas concrets.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 47890,
+        "input_tokens_details": {
+          "cache_write_tokens": 47887,
+          "cached_tokens": 0
+        },
+        "output_tokens": 99,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 47989
+      }
+    },
+    {
+      "id": "SEM-CTX-023",
+      "segment": "context_restriction",
+      "query": "J’enseigne en primaire et je voudrais organiser des sorties régulières dans la nature avec ma classe sans devoir faire venir un spécialiste à chaque fois.",
+      "expectedRelevantCodes": [
+        "EP-570"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 166,
+      "abstain": false,
+      "codes": [
+        "EP-570",
+        "EP-582",
+        "EP-579",
+        "EP-580"
+      ],
+      "reason": "EP-570 correspond directement à l'organisation de sorties régulières dans la nature avec une classe, sans spécialiste, et fournit des méthodes d'observation ainsi que des séquences pédagogiques. EP-582 est complémentaire pour explorer la biodiversité autour de l'école à partir de traces et indices animales. EP-579 et EP-580 approfondissent respectivement les abeilles et les oiseaux, avec des activités transférables en classe et sur le terrain.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 45149,
+        "input_tokens_details": {
+          "cache_write_tokens": 45146,
+          "cached_tokens": 0
+        },
+        "output_tokens": 129,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 45278
+      }
+    },
+    {
+      "id": "SEM-CTX-024",
+      "segment": "context_restriction",
+      "query": "Je travaille en détention et je dois mieux comprendre comment les appartenances culturelles et religieuses peuvent influencer la vie quotidienne des personnes incarcérées.",
+      "expectedRelevantCodes": [
+        "OCD424"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 167,
+      "abstain": false,
+      "codes": [
+        "OCD424"
+      ],
+      "reason": "Cette formation est spécifiquement destinée au personnel pénitentiaire et traite directement de l’influence des religions et des cultures sur les situations quotidiennes en détention, notamment les rituels, la prière, le jeûne, les perceptions et les préjugés.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 33606,
+        "input_tokens_details": {
+          "cache_write_tokens": 33603,
+          "cached_tokens": 0
+        },
+        "output_tokens": 82,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 33688
+      }
+    },
+    {
+      "id": "SEM-CTX-025",
+      "segment": "context_restriction",
+      "query": "Dans mon travail je dois prendre ou revoir des décisions administratives et je voudrais mieux maîtriser le raisonnement juridique qui les encadre.",
+      "expectedRelevantCodes": [
+        "SEM0056"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 151,
+      "abstain": false,
+      "codes": [
+        "SEM0056"
+      ],
+      "reason": "Cette formation correspond directement à la prise ou à la révision de décisions administratives et vise la maîtrise du raisonnement juridique ainsi que des principes régissant l'action administrative.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 28069,
+        "input_tokens_details": {
+          "cache_write_tokens": 28066,
+          "cached_tokens": 0
+        },
+        "output_tokens": 61,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 28130
+      }
+    },
+    {
+      "id": "SEM-ABS-026",
+      "segment": "abstention",
+      "query": "Je rénove ma salle de bains et je voudrais apprendre à poser du carrelage mural et à refaire correctement l’étanchéité de la douche.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": null,
+      "expectedExactAbstention": true,
+      "candidateCount": 158,
+      "abstain": true,
+      "codes": [],
+      "reason": "Aucune formation candidate ne porte sur la pose de carrelage mural ou la réfection de l’étanchéité d’une douche.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 43381,
+        "input_tokens_details": {
+          "cache_write_tokens": 43378,
+          "cached_tokens": 0
+        },
+        "output_tokens": 51,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 43432
+      }
+    },
+    {
+      "id": "SEM-ABS-027",
+      "segment": "abstention",
+      "query": "Je voudrais apprendre la soudure TIG pour fabriquer des meubles métalliques.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": null,
+      "expectedExactAbstention": true,
+      "candidateCount": 163,
+      "abstain": true,
+      "codes": [],
+      "reason": "Aucune formation candidate ne porte sur l'apprentissage de la soudure TIG ni sur la fabrication de meubles métalliques.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 37820,
+        "input_tokens_details": {
+          "cache_write_tokens": 37817,
+          "cached_tokens": 0
+        },
+        "output_tokens": 47,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 37867
+      }
+    },
+    {
+      "id": "SEM-ABS-028",
+      "segment": "abstention",
+      "query": "Je cherche une formation de barista pour apprendre à préparer des cafés professionnels.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": null,
+      "expectedExactAbstention": true,
+      "candidateCount": 172,
+      "abstain": true,
+      "codes": [],
+      "reason": "Aucune formation candidate ne porte sur le métier de barista ou la préparation professionnelle du café.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 43085,
+        "input_tokens_details": {
+          "cache_write_tokens": 43082,
+          "cached_tokens": 0
+        },
+        "output_tokens": 42,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 43127
+      }
+    },
+    {
+      "id": "SEM-ABS-029",
+      "segment": "abstention",
+      "query": "Je voudrais apprendre à construire et entretenir des piscines privées, notamment le traitement de l’eau et les systèmes de filtration.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": null,
+      "expectedExactAbstention": true,
+      "candidateCount": 164,
+      "abstain": true,
+      "codes": [],
+      "reason": "Aucune formation candidate ne porte sur la construction ou l’entretien de piscines privées, le traitement de l’eau ou les systèmes de filtration. Les formations liées à la piscine concernent uniquement le sauvetage et la sécurité en milieu aquatique.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "input_tokens": 38562,
+        "input_tokens_details": {
+          "cache_write_tokens": 38559,
+          "cached_tokens": 0
+        },
+        "output_tokens": 72,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 38634
+      }
+    },
+    {
+      "id": "SEM-ABS-030",
+      "segment": "abstention",
+      "query": "Je cherche une formation pour utiliser une IA autonome afin d’automatiser complètement le traitement des dossiers administratifs de mon service.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": null,
+      "expectedExactAbstention": true,
+      "candidateCount": 181,
+      "abstain": false,
+      "codes": [
+        "S2-555",
+        "S2-556",
+        "S2-557",
+        "S2-552"
+      ],
+      "reason": "Ces formations abordent les workflows d’automatisation avec l’IA, les agents IA capables d’utiliser des outils et des documents, ainsi que le choix et la gouvernance d’un écosystème IA. Elles ne garantissent toutefois pas une automatisation complète et sans contrôle des dossiers administratifs : le catalogue insiste au contraire sur la supervision humaine, la traçabilité, la protection des données et les règles d’usage.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": false,
+      "usage": {
+        "input_tokens": 38304,
+        "input_tokens_details": {
+          "cache_write_tokens": 38301,
+          "cached_tokens": 0
+        },
+        "output_tokens": 128,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 38432
+      }
+    }
+  ]
+}
