@@ -5,6 +5,8 @@ const SEARCH_FIELDS = [
   ['themeRaw', 10],
   ['publicRaw', 5],
   ['targetAudienceRaw', 5],
+  ['objectivesRaw', 3],
+  ['contentRaw', 2],
   ['catalogueOffers', 5],
 ]
 
@@ -80,6 +82,28 @@ export function searchCourses(courses, query) {
   return candidates
     .filter(({ score }) => score >= appliedThreshold)
     .map(({ course }) => course)
+}
+
+
+export function searchCourseCandidates(courses, query, limit = 40) {
+  const normalizedQuery = normalizeSearchText(query)
+  if (!normalizedQuery) return []
+
+  const corpus = getCorpus(courses)
+  const variants = buildQueryVariants(normalizedQuery, query)
+
+  return corpus.documents
+    .map((document) =>
+      evaluateDocument(document, variants, normalizedQuery, corpus),
+    )
+    .filter(({ score }) => score > 0)
+    .sort(compareResults)
+    .slice(0, limit)
+    .map(({ course, score, minimumEvidence }) => ({
+      course,
+      score,
+      minimumEvidence,
+    }))
 }
 
 function getCorpus(courses) {

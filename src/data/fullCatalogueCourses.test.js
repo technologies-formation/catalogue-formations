@@ -88,6 +88,8 @@ test('les données descriptives projetées proviennent du snapshot', () => {
     publicRaw: sourceCourse.publicRaw,
     publicValue: sourceCourse.publicRaw,
     targetAudienceRaw: sourceCourse.targetAudienceRaw,
+    objectivesRaw: sourceCourse.objectivesRaw,
+    contentRaw: sourceCourse.contentRaw,
     hasOpenSession: false,
     hasScheduledSession: false,
   })

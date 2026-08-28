@@ -38,6 +38,8 @@ export function projectSnapshotCourse(snapshotCourse) {
       publicRaw: snapshotCourse.publicRaw,
       publicValue: getCoursePublicValue(snapshotCourse.publicRaw),
       targetAudienceRaw: snapshotCourse.targetAudienceRaw,
+      objectivesRaw: snapshotCourse.objectivesRaw,
+      contentRaw: snapshotCourse.contentRaw,
       hasOpenSession: snapshotCourse.hasOpenSession === true,
       hasScheduledSession: snapshotCourse.hasScheduledSession === true,
     },
