@@ -28,6 +28,7 @@ import {
   serializeCourseSearchState,
 } from './domain/courseSearchUrl.js'
 import { searchCourses } from './domain/courseSearch.js'
+import { searchCatalogueWithAi } from './services/catalogueSearchApi.js'
 
 const NO_FILTER = ''
 const LONG_TARGET_AUDIENCE_THRESHOLD = 240
@@ -57,11 +58,19 @@ const trainingEntityOptions = getFacetOptions(
   (course) => course.officialData.organizingEntityRaw,
 )
 
+const courseByCode = new Map(
+  fullCatalogueCourses.map((course) => [course.code, course]),
+)
+
 function App() {
   const [initialSearchState] = useState(() =>
     parseCourseSearchUrl(window.location.search, fullCatalogueCourses),
   )
   const [officialSearch, setOfficialSearch] = useState(initialSearchState.search)
+  const [aiResultCodes, setAiResultCodes] = useState(null)
+  const [aiSearchStatus, setAiSearchStatus] = useState('idle')
+  const [aiSearchReason, setAiSearchReason] = useState('')
+  const [aiSearchError, setAiSearchError] = useState('')
   const [sessions, setSessions] = useState([])
   const [trainingOffers, setTrainingOffers] = useState(initialSearchState.offers)
   const [trainingEntities, setTrainingEntities] = useState(initialSearchState.entities)
@@ -72,6 +81,48 @@ function App() {
   const [showGettingStarted, setShowGettingStarted] = useState(true)
   const [currentPage, dispatchPagination] = useReducer(paginationReducer, 1)
   const resultsHeadingRef = useRef(null)
+  const aiSearchAbortRef = useRef(null)
+
+  async function handleAiSearch() {
+    const query = officialSearch.trim()
+    if (!query || aiSearchStatus === 'loading') return
+
+    aiSearchAbortRef.current?.abort()
+
+    const controller = new AbortController()
+    aiSearchAbortRef.current = controller
+
+    setAiSearchStatus('loading')
+    setAiSearchError('')
+    setAiSearchReason('')
+
+    try {
+      const data = await searchCatalogueWithAi(query, {
+        signal: controller.signal,
+      })
+
+      if (controller.signal.aborted) return
+
+      setAiResultCodes(Array.isArray(data.codes) ? data.codes : [])
+      setAiSearchReason(data.reason ?? '')
+      setAiSearchStatus('success')
+    } catch (error) {
+      if (error?.name === 'AbortError') return
+
+      setAiResultCodes(null)
+      setAiSearchReason('')
+      setAiSearchError(
+        error instanceof Error
+          ? error.message
+          : 'La recherche IA est momentanément indisponible.',
+      )
+      setAiSearchStatus('error')
+    } finally {
+      if (aiSearchAbortRef.current === controller) {
+        aiSearchAbortRef.current = null
+      }
+    }
+  }
 
   const hasPrimarySelection = trainingOffers.length > 0 || trainingEntities.length > 0
   const hasDomainSelection = domains.length > 0
@@ -140,11 +191,34 @@ function App() {
       publics,
     ],
   )
+  useEffect(() => {
+    aiSearchAbortRef.current?.abort()
+    aiSearchAbortRef.current = null
+    setAiResultCodes(null)
+    setAiSearchStatus('idle')
+    setAiSearchReason('')
+    setAiSearchError('')
+  }, [officialSearch])
+
   const hasTextSearch = officialSearch.trim() !== ''
-  const searchedOfficialCourses = useMemo(
+
+  const localSearchedOfficialCourses = useMemo(
     () => searchCourses(fullCatalogueCourses, officialSearch),
     [officialSearch],
   )
+
+  const aiSearchedOfficialCourses = useMemo(
+    () =>
+      aiResultCodes === null
+        ? null
+        : aiResultCodes
+            .map((code) => courseByCode.get(code))
+            .filter(Boolean),
+    [aiResultCodes],
+  )
+
+  const searchedOfficialCourses =
+    aiSearchedOfficialCourses ?? localSearchedOfficialCourses
   const facetCounts = useMemo(
     () => ({
       sessions: getFacetValueCounts(
@@ -398,15 +472,52 @@ function App() {
               Recherchez les formations proposées au personnel de l’État de Genève.
             </p>
           </div>
-          <label className="main-search-field">
-            <span>Rechercher une formation</span>
-            <input
-              type="search"
-              value={officialSearch}
-              onChange={(event) => setOfficialSearch(event.target.value)}
-              placeholder="Rechercher une formation, un mot-clé ou un code..."
-            />
-          </label>
+          <form
+            className="main-search-field"
+            onSubmit={(event) => {
+              event.preventDefault()
+              handleAiSearch()
+            }}
+          >
+            <label htmlFor="catalogue-search">Rechercher une formation</label>
+
+            <div className="main-search-row">
+              <input
+                id="catalogue-search"
+                type="search"
+                value={officialSearch}
+                onChange={(event) => setOfficialSearch(event.target.value)}
+                placeholder="Décrivez votre besoin, recherchez un mot-clé ou un code..."
+              />
+
+              <button
+                className="ai-search-button"
+                type="submit"
+                disabled={!officialSearch.trim() || aiSearchStatus === 'loading'}
+              >
+                {aiSearchStatus === 'loading'
+                  ? 'Recherche en cours…'
+                  : 'Recherche IA'}
+              </button>
+            </div>
+
+            {aiSearchStatus === 'success' && (
+              <p className="ai-search-feedback" role="status">
+                Résultats proposés par la recherche IA.
+                {aiSearchReason ? ` ${aiSearchReason}` : ''}
+              </p>
+            )}
+
+            {aiSearchStatus === 'error' && (
+              <p
+                className="ai-search-feedback ai-search-feedback-error"
+                role="alert"
+              >
+                Recherche IA indisponible. Les résultats locaux sont conservés.
+                {aiSearchError ? ` ${aiSearchError}` : ''}
+              </p>
+            )}
+          </form>
           <div className="search-support">
             <p className="search-examples">
               Exemples : communication, projet, intelligence artificielle, FP173

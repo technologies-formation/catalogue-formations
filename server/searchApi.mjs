@@ -53,6 +53,11 @@ const server = http.createServer(async (request, response) => {
 
       const result = await searchWithLuna(query)
 
+      console.log(
+        'Usage OpenAI :',
+        JSON.stringify(result.usage ?? {}, null, 2)
+      )
+
       sendJson(response, 200, {
         ok: true,
         query,
@@ -79,5 +84,5 @@ server.listen(PORT, '0.0.0.0', () => {
       process.env.OPENAI_API_KEY ? 'configurée ✅' : 'absente ❌'
     }`
   )
-  console.log('Mode /api/search : LOCAL — aucun appel OpenAI')
+  console.log('Mode /api/search : LUNA + rappel lexical — appels OpenAI actifs')
 })
