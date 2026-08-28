@@ -211,8 +211,12 @@ ${normalizedQuery}`,
       mode: 'llm-two-pass-plus-lexical',
       abstain: true,
       codes: [],
+      recommendedCodes: [],
+      complementaryCodes: [],
       reason: 'Aucune formation candidate suffisamment proche.',
       results: [],
+      recommendedResults: [],
+      complementaryResults: [],
       candidates: {
         luna: 0,
         local: localCodes.length,
@@ -247,12 +251,16 @@ Règles impératives :
 - une formation seulement voisine ou partiellement pertinente ne suffit pas ;
 - distingue ce qu'une formation permet réellement d'acquérir de ce qu'elle évoque seulement comme sujet ;
 - tiens compte du public et du contexte professionnel lorsqu'ils sont exprimés ;
-- une demande peut nécessiter plusieurs formations complémentaires si elle contient plusieurs intentions réellement distinctes ;
-- privilégie une formation unique lorsqu'elle couvre explicitement et substantiellement plusieurs dimensions centrales de la demande ;
-- ne préfère pas plusieurs formations partielles à une formation qui couvre à elle seule l'essentiel du besoin ;
-- ne compense pas une absence de correspondance en empilant plusieurs formations approchantes ;
-- si aucune formation ne répond suffisamment au besoin, abstain doit être true et codes doit être vide ;
-- sinon, retourne au maximum 5 codes, classés du plus pertinent au moins pertinent ;
+- distingue deux niveaux de recommandation ;
+- recommendedCodes contient de 1 à 3 formations répondant directement et substantiellement au besoin principal ;
+- complementaryCodes contient de 0 à 3 formations utiles pour approfondir, poursuivre ou couvrir un besoin plus spécifique ;
+- une formation complémentaire ne doit jamais compenser l'absence d'une formation principale réellement pertinente ;
+- privilégie une formation principale unique lorsqu'elle couvre explicitement et substantiellement plusieurs dimensions centrales de la demande ;
+- ne place jamais le même code dans les deux listes ;
+- classe chaque liste du plus pertinent au moins pertinent ;
+- si aucune formation ne répond suffisamment au besoin, abstain doit être true et les deux listes doivent être vides ;
+- si abstain est false, recommendedCodes doit contenir au moins une formation ;
+- complementaryCodes peut être vide lorsqu'aucun complément n'apporte de réelle valeur ;
 - utilise exclusivement les codes autorisés.`,
 
     input:
@@ -273,19 +281,32 @@ ${normalizedQuery}`,
             abstain: {
               type: 'boolean',
             },
-            codes: {
+            recommendedCodes: {
               type: 'array',
               items: {
                 type: 'string',
                 enum: candidateCodes,
               },
-              maxItems: 5,
+              maxItems: 3,
+            },
+            complementaryCodes: {
+              type: 'array',
+              items: {
+                type: 'string',
+                enum: candidateCodes,
+              },
+              maxItems: 3,
             },
             reason: {
               type: 'string',
             },
           },
-          required: ['abstain', 'codes', 'reason'],
+          required: [
+            'abstain',
+            'recommendedCodes',
+            'complementaryCodes',
+            'reason',
+          ],
           additionalProperties: false,
         },
       },
@@ -295,26 +316,49 @@ ${normalizedQuery}`,
   const finalResult = JSON.parse(extractText(second))
   const cost2 = usageCost(second.usage)
 
-  const results = (finalResult.codes ?? [])
-    .map((code) => courseByCode.get(code))
-    .filter(Boolean)
-    .map((course) => ({
-      code: course.code,
-      title: course.officialData?.titleRaw ?? '',
-      domain: course.officialData?.domainRaw ?? '',
-      theme: course.officialData?.themeRaw ?? '',
-      public: course.officialData?.publicRaw ?? '',
-      targetAudience: course.officialData?.targetAudienceRaw ?? '',
-      catalogueOffers: course.catalogueOffers ?? [],
-      sourceUrl: course.sourceUrl ?? '',
-    }))
+  const recommendedCodes = finalResult.abstain
+    ? []
+    : [...new Set(finalResult.recommendedCodes ?? [])]
+
+  const recommendedCodeSet = new Set(recommendedCodes)
+
+  const complementaryCodes = finalResult.abstain
+    ? []
+    : [...new Set(finalResult.complementaryCodes ?? [])].filter(
+        (code) => !recommendedCodeSet.has(code),
+      )
+
+  const finalCodes = [...recommendedCodes, ...complementaryCodes]
+
+  const mapResults = (codes) =>
+    codes
+      .map((code) => courseByCode.get(code))
+      .filter(Boolean)
+      .map((course) => ({
+        code: course.code,
+        title: course.officialData?.titleRaw ?? '',
+        domain: course.officialData?.domainRaw ?? '',
+        theme: course.officialData?.themeRaw ?? '',
+        public: course.officialData?.publicRaw ?? '',
+        targetAudience: course.officialData?.targetAudienceRaw ?? '',
+        catalogueOffers: course.catalogueOffers ?? [],
+        sourceUrl: course.sourceUrl ?? '',
+      }))
+
+  const recommendedResults = mapResults(recommendedCodes)
+  const complementaryResults = mapResults(complementaryCodes)
+  const results = [...recommendedResults, ...complementaryResults]
 
   return {
     mode: 'llm-two-pass-plus-lexical',
     abstain: finalResult.abstain,
-    codes: finalResult.codes,
+    codes: finalCodes,
+    recommendedCodes,
+    complementaryCodes,
     reason: finalResult.reason,
     results,
+    recommendedResults,
+    complementaryResults,
 
     candidates: {
       luna: firstResult.codes.length,

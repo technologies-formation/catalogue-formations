@@ -68,9 +68,12 @@ function App() {
   )
   const [officialSearch, setOfficialSearch] = useState(initialSearchState.search)
   const [aiResultCodes, setAiResultCodes] = useState(null)
+  const [aiRecommendedCodes, setAiRecommendedCodes] = useState([])
+  const [aiComplementaryCodes, setAiComplementaryCodes] = useState([])
   const [aiSearchStatus, setAiSearchStatus] = useState('idle')
   const [aiSearchReason, setAiSearchReason] = useState('')
   const [aiSearchError, setAiSearchError] = useState('')
+  const [showAiExplanation, setShowAiExplanation] = useState(false)
   const [sessions, setSessions] = useState([])
   const [trainingOffers, setTrainingOffers] = useState(initialSearchState.offers)
   const [trainingEntities, setTrainingEntities] = useState(initialSearchState.entities)
@@ -103,14 +106,34 @@ function App() {
 
       if (controller.signal.aborted) return
 
-      setAiResultCodes(Array.isArray(data.codes) ? data.codes : [])
+      const recommendedCodes = Array.isArray(data.recommendedCodes)
+        ? data.recommendedCodes
+        : Array.isArray(data.codes)
+          ? data.codes
+          : []
+
+      const complementaryCodes = Array.isArray(data.complementaryCodes)
+        ? data.complementaryCodes
+        : []
+
+      const allCodes = Array.isArray(data.codes)
+        ? data.codes
+        : [...recommendedCodes, ...complementaryCodes]
+
+      setAiResultCodes(allCodes)
+      setAiRecommendedCodes(recommendedCodes)
+      setAiComplementaryCodes(complementaryCodes)
       setAiSearchReason(data.reason ?? '')
       setAiSearchStatus('success')
+      setShowAiExplanation(true)
     } catch (error) {
       if (error?.name === 'AbortError') return
 
       setAiResultCodes(null)
+      setAiRecommendedCodes([])
+      setAiComplementaryCodes([])
       setAiSearchReason('')
+      setShowAiExplanation(false)
       setAiSearchError(
         error instanceof Error
           ? error.message
@@ -195,12 +218,17 @@ function App() {
     aiSearchAbortRef.current?.abort()
     aiSearchAbortRef.current = null
     setAiResultCodes(null)
+    setAiRecommendedCodes([])
+    setAiComplementaryCodes([])
     setAiSearchStatus('idle')
     setAiSearchReason('')
     setAiSearchError('')
+    setShowAiExplanation(false)
   }, [officialSearch])
 
   const hasTextSearch = officialSearch.trim() !== ''
+  const isAiSearchActive =
+    aiSearchStatus === 'success' && aiResultCodes !== null
 
   const localSearchedOfficialCourses = useMemo(
     () => searchCourses(fullCatalogueCourses, officialSearch),
@@ -357,6 +385,32 @@ function App() {
     ],
   )
 
+  const aiRecommendedCodeSet = useMemo(
+    () => new Set(aiRecommendedCodes),
+    [aiRecommendedCodes],
+  )
+
+  const aiComplementaryCodeSet = useMemo(
+    () => new Set(aiComplementaryCodes),
+    [aiComplementaryCodes],
+  )
+
+  const matchingAiRecommendedCourses = useMemo(
+    () =>
+      matchingOfficialCourses.filter((course) =>
+        aiRecommendedCodeSet.has(course.code),
+      ),
+    [aiRecommendedCodeSet, matchingOfficialCourses],
+  )
+
+  const matchingAiComplementaryCourses = useMemo(
+    () =>
+      matchingOfficialCourses.filter((course) =>
+        aiComplementaryCodeSet.has(course.code),
+      ),
+    [aiComplementaryCodeSet, matchingOfficialCourses],
+  )
+
   const sortedOfficialCourses = useMemo(
     () =>
       hasTextSearch
@@ -447,7 +501,9 @@ function App() {
   }
 
   return (
-    <div className="site-shell">
+    <div
+      className={isAiSearchActive ? 'site-shell ai-search-active' : 'site-shell'}
+    >
       <main>
         <section className="search-hero" aria-labelledby="page-title">
           <header className="search-hero-topbar">
@@ -490,21 +546,22 @@ function App() {
                 placeholder="Décrivez votre besoin, recherchez un mot-clé ou un code..."
               />
 
-              <button
-                className="ai-search-button"
-                type="submit"
-                disabled={!officialSearch.trim() || aiSearchStatus === 'loading'}
-              >
-                {aiSearchStatus === 'loading'
-                  ? 'Recherche en cours…'
-                  : 'Recherche IA'}
-              </button>
+              {officialSearch.trim() && !isAiSearchActive && (
+                <button
+                  className="ai-search-button"
+                  type="submit"
+                  disabled={aiSearchStatus === 'loading'}
+                >
+                  {aiSearchStatus === 'loading'
+                    ? 'Analyse avec l’IA…'
+                    : 'Booster ma recherche avec l’IA'}
+                </button>
+              )}
             </div>
 
-            {aiSearchStatus === 'success' && (
-              <p className="ai-search-feedback" role="status">
-                Résultats proposés par la recherche IA.
-                {aiSearchReason ? ` ${aiSearchReason}` : ''}
+            {aiSearchStatus === 'idle' && hasTextSearch && (
+              <p className="classic-search-feedback" role="status">
+                Résultats issus de la recherche classique du catalogue.
               </p>
             )}
 
@@ -513,7 +570,7 @@ function App() {
                 className="ai-search-feedback ai-search-feedback-error"
                 role="alert"
               >
-                Recherche IA indisponible. Les résultats locaux sont conservés.
+                Recherche avec l’IA indisponible. Les résultats de la recherche classique sont conservés.
                 {aiSearchError ? ` ${aiSearchError}` : ''}
               </p>
             )}
@@ -528,6 +585,70 @@ function App() {
             </p>
           </div>
         </section>
+
+        {showAiExplanation && aiSearchStatus === 'success' && (
+          <div
+            className="ai-explanation-overlay"
+            role="presentation"
+            onClick={() => setShowAiExplanation(false)}
+          >
+            <section
+              className="ai-explanation-dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="ai-explanation-title"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="ai-explanation-header">
+                <div>
+                  <span className="search-mode-badge search-mode-badge-ai">
+                    <span className="ai-badge-icon" aria-hidden="true">✦</span>
+                        Recherche boostée par l’IA
+                  </span>
+                  <h2 id="ai-explanation-title">
+                    Comment votre demande a été interprétée
+                  </h2>
+                </div>
+
+                <button
+                  className="ai-explanation-close"
+                  type="button"
+                  onClick={() => setShowAiExplanation(false)}
+                  aria-label="Fermer"
+                >
+                  ×
+                </button>
+              </div>
+
+              <p className="ai-explanation-text">
+                {aiSearchReason ||
+                  'La recherche a été analysée afin de sélectionner les formations les plus pertinentes du catalogue.'}
+              </p>
+
+              {!hasCourseSelection && sessions.length === 0 && (
+                <div className="ai-explanation-refinement">
+                  <h3>Vous souhaitez affiner davantage ?</h3>
+                  <p>
+                    Utilisez les filtres disponibles pour préciser les résultats
+                    par offre de formation, entité de formation, domaine, thème
+                    ou public.
+                  </p>
+                </div>
+              )}
+
+              <div className="ai-explanation-actions">
+                <button
+                  className="ai-explanation-results-button"
+                  type="button"
+                  onClick={() => setShowAiExplanation(false)}
+                  autoFocus
+                >
+                  Voir les résultats
+                </button>
+              </div>
+            </section>
+          </div>
+        )}
 
         {showGettingStarted && (
           <section className="getting-started" aria-labelledby="getting-started-title">
@@ -652,11 +773,25 @@ function App() {
             <div className="official-catalog-results">
               <div className="official-results-heading" ref={resultsHeadingRef}>
                 <div className="official-results-toolbar">
-                  <h2 id="official-catalog-heading">
-                    {formatFormationCount(matchingOfficialCourses.length)} formation
-                    {matchingOfficialCourses.length !== 1 ? 's' : ''} trouvée
-                    {matchingOfficialCourses.length !== 1 ? 's' : ''}
-                  </h2>
+                  <div className="results-title-group">
+                    <h2 id="official-catalog-heading">
+                      {formatFormationCount(matchingOfficialCourses.length)} formation
+                      {matchingOfficialCourses.length !== 1 ? 's' : ''} trouvée
+                      {matchingOfficialCourses.length !== 1 ? 's' : ''}
+                    </h2>
+
+                    {isAiSearchActive && (
+                      <button
+                        className="search-mode-badge search-mode-badge-ai search-mode-badge-button"
+                        type="button"
+                        onClick={() => setShowAiExplanation(true)}
+                        title="Voir l’interprétation de la recherche IA"
+                      >
+                        <span className="ai-badge-icon" aria-hidden="true">✦</span>
+                        Recherche boostée par l’IA
+                      </button>
+                    )}
+                  </div>
                   {hasTextSearch ? (
                     <div className="course-sort-control">Tri : Pertinence</div>
                   ) : (
@@ -672,6 +807,15 @@ function App() {
                     </label>
                   )}
                 </div>
+                {hasTextSearch &&
+                  matchingOfficialCourses.length > 1 &&
+                  !hasCourseSelection &&
+                  sessions.length === 0 && (
+                    <p className="results-refinement-hint">
+                      Affinez encore ces résultats à l’aide des filtres disponibles.
+                    </p>
+                  )}
+
                 {activeOfficialFilters.length > 0 && (
                   <div className="active-filters" aria-label="Filtres actifs">
                     {activeOfficialFilters.map((filter) => (
@@ -689,11 +833,62 @@ function App() {
                 )}
               </div>
 
-              <div className="official-results-scroll" aria-live="polite">
+              <div
+                className={
+                  isAiSearchActive
+                    ? 'official-results-scroll ai-results-groups'
+                    : 'official-results-scroll'
+                }
+                aria-live="polite"
+              >
                 {matchingOfficialCourses.length > 0 ? (
-                  paginatedOfficialCourses.map((course) => (
-                    <OfficialCourseCard key={course.code} course={course} />
-                  ))
+                  isAiSearchActive ? (
+                    <>
+                      {matchingAiRecommendedCourses.length > 0 && (
+                        <section className="ai-result-group ai-result-group-primary">
+                          <header className="ai-result-group-heading">
+                            <h3>
+                              {formatFormationCount(matchingAiRecommendedCourses.length)} formation
+                              {matchingAiRecommendedCourses.length !== 1 ? 's' : ''} recommandée
+                              {matchingAiRecommendedCourses.length !== 1 ? 's' : ''}
+                            </h3>
+                            <p>
+                              Les formations qui répondent le plus directement à votre besoin.
+                            </p>
+                          </header>
+
+                          {matchingAiRecommendedCourses.map((course) => (
+                            <OfficialCourseCard key={course.code} course={course} />
+                          ))}
+                        </section>
+                      )}
+
+                      {matchingAiComplementaryCourses.length > 0 && (
+                        <section className="ai-result-group ai-result-group-complementary">
+                          <header className="ai-result-group-heading ai-complementary-heading">
+                            <span className="ai-complementary-icon" aria-hidden="true">
+                              ✦
+                            </span>
+                            <div>
+                              <h3>Pour aller plus loin</h3>
+                              <p>
+                                Formations complémentaires pour approfondir ou couvrir
+                                un besoin plus spécifique.
+                              </p>
+                            </div>
+                          </header>
+
+                          {matchingAiComplementaryCourses.map((course) => (
+                            <OfficialCourseCard key={course.code} course={course} />
+                          ))}
+                        </section>
+                      )}
+                    </>
+                  ) : (
+                    paginatedOfficialCourses.map((course) => (
+                      <OfficialCourseCard key={course.code} course={course} />
+                    ))
+                  )
                 ) : (
                   <div className="empty-state official-empty-state">
                     <h3>Aucune formation ne correspond aux critères sélectionnés.</h3>
