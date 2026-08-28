@@ -1,0 +1,1685 @@
+{
+  "protocol": {
+    "benchmarkSHA256": "f4232b49f9a5879e11df2ed69ef0a20906ce794afb3f52ebbf4bb9757735db88",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "none",
+    "architecture": "LLM two-pass",
+    "firstPass": "1058 ultra-compact courses, max 40 candidates",
+    "secondPass": "detailed candidates, max 5 final codes or abstention",
+    "delayMs": 40000,
+    "pricesPerMillionTokens": {
+      "input": 0.2,
+      "cachedInput": 0.02,
+      "cacheWrite": 0.25,
+      "output": 1.2
+    }
+  },
+  "summary": {
+    "success": 26,
+    "total": 30,
+    "bySegment": {
+      "natural_positive": {
+        "success": 13,
+        "total": 14
+      },
+      "multi_intent": {
+        "success": 2,
+        "total": 5
+      },
+      "context_restriction": {
+        "success": 6,
+        "total": 6
+      },
+      "abstention": {
+        "success": 5,
+        "total": 5
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "FINAL-NL-001",
+      "segment": "natural_positive",
+      "query": "Je dois préparer régulièrement des documents Word assez volumineux avec une table des matières, des renvois et des notes. Je voudrais apprendre à les structurer proprement.",
+      "expectedRelevantCodes": [
+        "TRT1018"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 6,
+      "candidateCodes": [
+        "TRT1018",
+        "TRT1017",
+        "TRT1015",
+        "TRT1020",
+        "SEM0707",
+        "SEM0631"
+      ],
+      "abstain": false,
+      "codes": [
+        "TRT1018"
+      ],
+      "reason": "La formation Word 365 Longs documents correspond directement au besoin : elle couvre la structuration de documents volumineux, les tables des matières, les renvois, les notes de bas de page et l'organisation par sections. Les autres formations sont seulement complémentaires ou trop générales.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81363,
+          "output": 42,
+          "cached": 0,
+          "written": 81360,
+          "uncached": 3,
+          "cost": 0.020391
+        },
+        "pass2": {
+          "input": 3256,
+          "output": 84,
+          "cached": 0,
+          "written": 3253,
+          "uncached": 3,
+          "cost": 0.0009146499999999999
+        },
+        "totalCost": 0.02130565
+      }
+    },
+    {
+      "id": "FINAL-NL-002",
+      "segment": "natural_positive",
+      "query": "Dans mon nouveau rôle, je dois mieux comprendre comment se construit et se pilote le budget de l’État et quels sont les différents acteurs impliqués.",
+      "expectedRelevantCodes": [
+        "SEM1086"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 7,
+      "candidateCodes": [
+        "SEM1084",
+        "SEM1086",
+        "SEM1085",
+        "SEM1129E",
+        "SEM1256",
+        "SEM1257",
+        "SEM1087"
+      ],
+      "abstain": false,
+      "codes": [
+        "SEM1086"
+      ],
+      "reason": "Cette formation répond directement au besoin : elle couvre le processus de pilotage financier de l’État, le processus budgétaire, le cadre légal, les outils de pilotage et le rôle et les responsabilités des différents acteurs. Le public cible inclut les cadres supérieurs et les collaborateurs participant au processus budgétaire.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81357,
+          "output": 43,
+          "cached": 4893,
+          "written": 76461,
+          "uncached": 3,
+          "cost": 0.01926531
+        },
+        "pass2": {
+          "input": 2128,
+          "output": 90,
+          "cached": 0,
+          "written": 2125,
+          "uncached": 3,
+          "cost": 0.0006398500000000001
+        },
+        "totalCost": 0.01990516
+      }
+    },
+    {
+      "id": "FINAL-NL-003",
+      "segment": "natural_positive",
+      "query": "Les échanges deviennent parfois tendus dans mon équipe et j’aimerais apprendre à désamorcer les situations avant qu’elles ne se transforment en conflit.",
+      "expectedRelevantCodes": [
+        "SEM0518"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 10,
+      "candidateCodes": [
+        "SEM0518",
+        "SEM1095",
+        "SEM1212",
+        "SEM1195",
+        "SEM1098",
+        "SEM1151",
+        "SEM1209",
+        "SEM1118",
+        "SEM1034",
+        "SEM0527"
+      ],
+      "abstain": false,
+      "codes": [
+        "SEM0518",
+        "SEM1212",
+        "SEM1195",
+        "SEM1151"
+      ],
+      "reason": "Ces formations répondent directement au besoin de prévenir et désamorcer les tensions dans une équipe. SEM0518 est la plus ciblée sur la prévention des tensions et la communication en contexte professionnel. SEM1212 apporte des outils pour comprendre les dynamiques relationnelles et résoudre les conflits. SEM1195 permet de pratiquer le feedback constructif et la communication non violente pour réguler les échanges. SEM1151 complète avec une approche structurée de la CNV pour transformer les désaccords en dialogue.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81360,
+          "output": 54,
+          "cached": 4893,
+          "written": 76464,
+          "uncached": 3,
+          "cost": 0.019279260000000003
+        },
+        "pass2": {
+          "input": 3141,
+          "output": 140,
+          "cached": 0,
+          "written": 3138,
+          "uncached": 3,
+          "cost": 0.0009531
+        },
+        "totalCost": 0.02023236
+      }
+    },
+    {
+      "id": "FINAL-NL-004",
+      "segment": "natural_positive",
+      "query": "Je manage une équipe et je voudrais mieux comprendre certains mécanismes cognitifs et biais qui influencent nos décisions et nos relations au travail.",
+      "expectedRelevantCodes": [
+        "SEM1215"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 12,
+      "candidateCodes": [
+        "SEM1246",
+        "S2-951",
+        "S2-952",
+        "SEM1215",
+        "SEM1166",
+        "SEM1043",
+        "SEM1237",
+        "SEM1118",
+        "SEM1220",
+        "SEM1151",
+        "SEM1195",
+        "SEM1236"
+      ],
+      "abstain": false,
+      "codes": [
+        "SEM1215"
+      ],
+      "reason": "Cette formation s'adresse directement aux managers et traite des mécanismes cognitifs, des biais cognitifs, de la métacognition et de la prise de décision individuelle et collective, avec une application explicite au management et aux relations d'équipe. Les formations sur les biais cognitifs destinées aux enseignants ne correspondent pas au contexte professionnel exprimé.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81355,
+          "output": 64,
+          "cached": 4893,
+          "written": 76459,
+          "uncached": 3,
+          "cost": 0.01929001
+        },
+        "pass2": {
+          "input": 4915,
+          "output": 95,
+          "cached": 0,
+          "written": 4912,
+          "uncached": 3,
+          "cost": 0.0013425999999999998
+        },
+        "totalCost": 0.02063261
+      }
+    },
+    {
+      "id": "FINAL-NL-005",
+      "segment": "natural_positive",
+      "query": "Mon service va connaître plusieurs changements importants et je cherche des méthodes pour aider les collaborateurs à traverser cette période et limiter les résistances.",
+      "expectedRelevantCodes": [
+        "SEM1196"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 20,
+      "candidateCodes": [
+        "SEM1196",
+        "SEM0857",
+        "SEM1211",
+        "SEM1043",
+        "SEM1213",
+        "SEM1164",
+        "SEM1177",
+        "SEM1166",
+        "SEM1231E",
+        "SEM1210",
+        "SEM1183",
+        "SEM1076",
+        "SEM1195",
+        "SEM1220",
+        "SEM1224E",
+        "SEM1034",
+        "SEM1212",
+        "SEM0518",
+        "SEM1037",
+        "SEM1074"
+      ],
+      "abstain": false,
+      "codes": [
+        "SEM1196",
+        "SEM0857",
+        "SEM1166",
+        "SEM1195"
+      ],
+      "reason": "SEM1196 répond directement au besoin : comprendre les enjeux humains du changement, les résistances et les méthodes d'accompagnement et de communication. SEM0857 est complémentaire pour un responsable ou cadre chargé de piloter concrètement une transformation, avec diagnostic, gestion des risques, planification et communication. SEM1166 peut aider à gérer les réactions émotionnelles et les situations problématiques au sein de l'équipe, tandis que SEM1195 apporte des outils de communication et de feed-back constructif pour maintenir le dialogue et prévenir les tensions.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81355,
+          "output": 96,
+          "cached": 4893,
+          "written": 76459,
+          "uncached": 3,
+          "cost": 0.01932841
+        },
+        "pass2": {
+          "input": 6918,
+          "output": 146,
+          "cached": 0,
+          "written": 6915,
+          "uncached": 3,
+          "cost": 0.0019045499999999999
+        },
+        "totalCost": 0.021232960000000002
+      }
+    },
+    {
+      "id": "FINAL-NL-006",
+      "segment": "natural_positive",
+      "query": "Pendant les séances, j’ai du mal à prendre suffisamment de notes tout en suivant les échanges. Je voudrais ensuite pouvoir rédiger des comptes rendus clairs, neutres et synthétiques.",
+      "expectedRelevantCodes": [
+        "SEM0631"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 10,
+      "candidateCodes": [
+        "SEM0631",
+        "SEM0707",
+        "SEM1169",
+        "SEM0872",
+        "SEM1040",
+        "SEM1098",
+        "SEM1195",
+        "TRT1015",
+        "TRT1020",
+        "PJ-1065"
+      ],
+      "abstain": false,
+      "codes": [
+        "SEM0631",
+        "PJ-1065",
+        "SEM1040"
+      ],
+      "reason": "SEM0631 répond directement aux deux besoins centraux : améliorer la prise de notes pendant les échanges puis rédiger des procès-verbaux et comptes rendus clairs, fidèles, neutres et synthétiques. PJ-1065 est également très pertinent pour organiser la prise de notes avant, pendant et après une réunion, mais son public cible est limité aux adjointes et adjoints administratifs du Pouvoir judiciaire. SEM1040 constitue un complément utile pour structurer et restituer l’information essentielle sous forme de schéma heuristique, sans couvrir à lui seul la rédaction de comptes rendus.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81366,
+          "output": 57,
+          "cached": 4893,
+          "written": 76470,
+          "uncached": 3,
+          "cost": 0.01928436
+        },
+        "pass2": {
+          "input": 3214,
+          "output": 157,
+          "cached": 0,
+          "written": 3211,
+          "uncached": 3,
+          "cost": 0.00099175
+        },
+        "totalCost": 0.02027611
+      }
+    },
+    {
+      "id": "FINAL-NL-007",
+      "segment": "natural_positive",
+      "query": "Je voudrais utiliser davantage d’images et de petites animations dans mes cours de sciences, mais en sachant quand elles apportent réellement quelque chose aux apprentissages.",
+      "expectedRelevantCodes": [
+        "SEM-10305"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 10,
+      "candidateCodes": [
+        "SEM-10305",
+        "SEM-10346",
+        "SEM-10347",
+        "SEM-10413",
+        "SEM-10213",
+        "SEM-10256",
+        "SEM-10408",
+        "SEM-10470",
+        "SEM-10331",
+        "SEM-10348"
+      ],
+      "abstain": false,
+      "codes": [
+        "SEM-10305"
+      ],
+      "reason": "Cette formation répond directement au besoin : elle porte sur l’usage des images fixes et animées dans l’enseignement des sciences, aide à distinguer leurs fonctions, leurs apports réels et leurs limites pour l’apprentissage, et propose des règles d’intégration pédagogique. Les formations de création ou de présentation numériques sont seulement périphériques, car la demande porte d’abord sur la pertinence pédagogique des images et animations, non sur leur production technique.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81360,
+          "output": 64,
+          "cached": 4893,
+          "written": 76464,
+          "uncached": 3,
+          "cost": 0.01929126
+        },
+        "pass2": {
+          "input": 3799,
+          "output": 115,
+          "cached": 0,
+          "written": 3796,
+          "uncached": 3,
+          "cost": 0.0010876
+        },
+        "totalCost": 0.020378860000000002
+      }
+    },
+    {
+      "id": "FINAL-NL-008",
+      "segment": "natural_positive",
+      "query": "Je souhaite faire progresser mes élèves en français, mais surtout identifier les leviers qui permettent de mieux les engager et de réduire les écarts entre eux.",
+      "expectedRelevantCodes": [
+        "EP-081EVEN"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 40,
+      "candidateCodes": [
+        "CO-01432",
+        "CO-01652",
+        "CO-01697",
+        "CO-01682",
+        "CO-01685",
+        "CO-01463",
+        "S2-916",
+        "S2-844",
+        "S2-845",
+        "PO-010ETB",
+        "PO-0037ETB",
+        "EP-1049",
+        "EP-998",
+        "EP-699",
+        "EP-736",
+        "EP-737",
+        "EP-1059",
+        "EP-1044",
+        "EP-1057",
+        "EP-522",
+        "EP-519",
+        "EP-525",
+        "EP-514",
+        "EP-515",
+        "EP-521",
+        "EP-003CFA",
+        "EP-004CFA",
+        "CO-01700",
+        "CO-01713",
+        "CO-01714",
+        "CO-01674",
+        "CO-01686",
+        "SEM-P1302",
+        "SEM-10609",
+        "SEM-10540",
+        "SEM-10455",
+        "SEM-10460",
+        "SEM-10469",
+        "S2-733",
+        "S2-916"
+      ],
+      "abstain": false,
+      "codes": [
+        "CO-01685",
+        "CO-01463",
+        "S2-916",
+        "CO-01682",
+        "CO-01697"
+      ],
+      "reason": "La demande combine progression en français, engagement des élèves et réduction des écarts. CO-01685 est le meilleur choix pour la différenciation et la prise en compte de la motivation, de l’attention et des profils d’élèves. CO-01463 apporte des leviers d’enseignement explicite et de participation particulièrement adaptés aux élèves en difficulté. S2-916 complète par des pédagogies participatives et des voies de motivation. CO-01682 soutient l’engagement, l’autonomie et la coopération du groupe classe. CO-01697 est pertinent pour développer un projet de lecture mobilisateur et accessible, mais plus ciblé sur la lecture que sur l’ensemble du français.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": false,
+      "usage": {
+        "pass1": {
+          "input": 81359,
+          "output": 209,
+          "cached": 4893,
+          "written": 76463,
+          "uncached": 3,
+          "cost": 0.01946501
+        },
+        "pass2": {
+          "input": 19061,
+          "output": 186,
+          "cached": 0,
+          "written": 19058,
+          "uncached": 3,
+          "cost": 0.004988299999999999
+        },
+        "totalCost": 0.02445331
+      }
+    },
+    {
+      "id": "FINAL-NL-009",
+      "segment": "natural_positive",
+      "query": "Je voudrais utiliser des tablettes en classe, mais pas seulement pour remplacer le papier : je cherche des idées d’activités où elles ont une vraie valeur pédagogique.",
+      "expectedRelevantCodes": [
+        "SEM-P1535"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 40,
+      "candidateCodes": [
+        "SEM-P1525",
+        "SEM-P1535",
+        "SEM-P1572",
+        "SEM-P4002",
+        "SEM-P4013",
+        "SEM-P4014",
+        "SEM-P1304",
+        "SEM-P1303",
+        "SEM-P1563",
+        "SEM-P1575",
+        "SEM-P1579",
+        "SEM-P1580",
+        "SEM-P1549",
+        "SEM-P1512",
+        "SEM-P1554",
+        "SEM-P1501",
+        "SEM-P1560",
+        "SEM-P1564",
+        "SEM-P1570",
+        "SEM-P1571",
+        "SEM-P1573",
+        "SEM-P4010",
+        "SEM-P4011",
+        "SEM-P4018",
+        "SEM-P4009",
+        "SEM-10921",
+        "SEM-10923",
+        "SEM-10928",
+        "SEM-10929",
+        "SEM-10413",
+        "SEM-10471",
+        "SEM-10213",
+        "SEM-10256",
+        "SEM-10540",
+        "SEM-10541",
+        "SEM-10455",
+        "SEM-10460",
+        "SEM-10350",
+        "SEM-10351",
+        "SEM-P1028"
+      ],
+      "abstain": false,
+      "codes": [
+        "SEM-P1525",
+        "SEM-P1535",
+        "SEM-P4002",
+        "SEM-P4013"
+      ],
+      "reason": "Ces formations répondent directement à l’usage des tablettes en classe avec une réflexion sur leur plus-value pédagogique, des activités concrètes et leur intégration dans les apprentissages. P1525 est la plus complète en présentiel pour les enseignants EP-OMP ; P1535 propose le même parcours en ligne. P4002 convient aux enseignants du cycle 2, tandis que P4013 est spécifique aux enseignants spécialisés de l’OMP primaire.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81360,
+          "output": 214,
+          "cached": 4893,
+          "written": 76464,
+          "uncached": 3,
+          "cost": 0.019471260000000004
+        },
+        "pass2": {
+          "input": 16252,
+          "output": 133,
+          "cached": 0,
+          "written": 16249,
+          "uncached": 3,
+          "cost": 0.00422245
+        },
+        "totalCost": 0.023693710000000003
+      }
+    },
+    {
+      "id": "FINAL-NL-010",
+      "segment": "natural_positive",
+      "query": "Je dois conduire dans des situations opérationnelles où le stress peut être important. Je voudrais mieux maîtriser mon véhicule et connaître mes propres limites dans ces conditions.",
+      "expectedRelevantCodes": [
+        "FP020"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 13,
+      "candidateCodes": [
+        "FP020",
+        "FP255",
+        "FP230",
+        "FP283",
+        "FP204",
+        "FP501",
+        "FP502",
+        "FP503",
+        "FP504",
+        "FP262",
+        "OCD404",
+        "OCD428",
+        "OCD332"
+      ],
+      "abstain": false,
+      "codes": [
+        "FP020"
+      ],
+      "reason": "Cette formation répond directement aux deux objectifs centraux : maîtriser un véhicule sous l'effet du stress et connaître ses propres limites dans des situations de conduite opérationnelle. Elle comprend notamment le freinage d'urgence, l'évitement d'obstacles et des exercices de pilotage sous contrainte.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81359,
+          "output": 56,
+          "cached": 4893,
+          "written": 76463,
+          "uncached": 3,
+          "cost": 0.019281410000000002
+        },
+        "pass2": {
+          "input": 4078,
+          "output": 84,
+          "cached": 0,
+          "written": 4075,
+          "uncached": 3,
+          "cost": 0.0011201499999999999
+        },
+        "totalCost": 0.020401560000000003
+      }
+    },
+    {
+      "id": "FINAL-NL-011",
+      "segment": "natural_positive",
+      "query": "Je vais participer à des recrutements et je dois apprendre à conduire les entretiens de manière structurée et à évaluer les candidats avec les outils prévus.",
+      "expectedRelevantCodes": [
+        "FP291"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 7,
+      "candidateCodes": [
+        "FP291",
+        "FP292",
+        "FP195",
+        "SEM1195",
+        "SEM1098",
+        "FP190",
+        "PJ-0074"
+      ],
+      "abstain": false,
+      "codes": [
+        "FP291"
+      ],
+      "reason": "Cette formation répond directement au besoin : elle apprend à mener un entretien de recrutement selon des principes structurés et à évaluer les candidats avec les outils prévus. Elle couvre également les critères d'évaluation, les biais cognitifs et l'entraînement pratique.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81360,
+          "output": 39,
+          "cached": 4893,
+          "written": 76464,
+          "uncached": 3,
+          "cost": 0.019261260000000002
+        },
+        "pass2": {
+          "input": 1903,
+          "output": 77,
+          "cached": 0,
+          "written": 1900,
+          "uncached": 3,
+          "cost": 0.000568
+        },
+        "totalCost": 0.01982926
+      }
+    },
+    {
+      "id": "FINAL-NL-012",
+      "segment": "natural_positive",
+      "query": "Je vais prendre des responsabilités d’encadrement dans un établissement de détention et je cherche une formation complète pour apprendre à diriger un secteur, conduire une équipe et réfléchir à ma posture de cadre.",
+      "expectedRelevantCodes": [
+        "OCD014"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 17,
+      "candidateCodes": [
+        "OCD014",
+        "OCD423",
+        "OCD374",
+        "OCD179",
+        "SEM1174",
+        "SEM1193",
+        "SEM1210",
+        "SEM0052",
+        "SEM1166",
+        "SEM1177",
+        "SEM1076",
+        "SEM0857",
+        "SEM1223",
+        "SEM1239",
+        "OCD418",
+        "OCD419",
+        "OCD422"
+      ],
+      "abstain": false,
+      "codes": [
+        "OCD014"
+      ],
+      "reason": "Cette formation est la plus complète et correspond directement au contexte pénitentiaire et aux responsabilités visées : elle prépare à organiser et diriger un établissement ou un secteur, fournit des outils de conduite, développe la gestion du personnel et invite à réfléchir à son comportement de cadre. Les autres formations sont plus ciblées ou partielles.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81368,
+          "output": 82,
+          "cached": 4893,
+          "written": 76472,
+          "uncached": 3,
+          "cost": 0.01931486
+        },
+        "pass2": {
+          "input": 6615,
+          "output": 92,
+          "cached": 0,
+          "written": 6612,
+          "uncached": 3,
+          "cost": 0.001764
+        },
+        "totalCost": 0.021078859999999998
+      }
+    },
+    {
+      "id": "FINAL-NL-013",
+      "segment": "natural_positive",
+      "query": "Je dois alimenter et maintenir les pages SharePoint de ma direction, publier des procédures et organiser les documents et la navigation du site.",
+      "expectedRelevantCodes": [
+        "PJ-0106"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 12,
+      "candidateCodes": [
+        "TRT701",
+        "TRT700",
+        "DIP-004",
+        "PJ-0107",
+        "PJ-0106",
+        "SEM1235",
+        "TRT702",
+        "TRT703",
+        "TRT3008E",
+        "SEM1040",
+        "SEM0707",
+        "SEM1169"
+      ],
+      "abstain": false,
+      "codes": [
+        "PJ-0106",
+        "PJ-0107",
+        "TRT701",
+        "TRT700"
+      ],
+      "reason": "La demande porte directement sur l’édition et la maintenance de contenus SharePoint, la publication de procédures, l’organisation des documents et la navigation. PJ-0106 correspond le plus précisément à l’édition de contenus, des tutoriels et du menu de navigation ; PJ-0107 couvre les mêmes besoins avec en plus la gestion de l’arborescence et des métadonnées. TRT701 est pertinent pour administrer un site SharePoint Modern, notamment les droits, pages, bibliothèques, vues et navigation, sous réserve du rôle d’administrateur et du type de site. TRT700 est complémentaire pour les usages documentaires courants, mais moins adapté à la maintenance éditoriale et administrative.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81355,
+          "output": 67,
+          "cached": 4893,
+          "written": 76459,
+          "uncached": 3,
+          "cost": 0.019293610000000003
+        },
+        "pass2": {
+          "input": 4524,
+          "output": 185,
+          "cached": 0,
+          "written": 4521,
+          "uncached": 3,
+          "cost": 0.0013528499999999998
+        },
+        "totalCost": 0.020646460000000002
+      }
+    },
+    {
+      "id": "FINAL-NL-014",
+      "segment": "natural_positive",
+      "query": "Je rencontre régulièrement des parents d’élèves et je voudrais mieux préparer et conduire ces entretiens afin d’instaurer un climat de confiance et une collaboration constructive.",
+      "expectedRelevantCodes": [
+        "EO-008"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 10,
+      "candidateCodes": [
+        "EO-008",
+        "CO-01684",
+        "CO-01674",
+        "SEM1098",
+        "SEM1195",
+        "EP-012",
+        "SEM1220",
+        "SEM1155",
+        "SEM0518",
+        "SEM1212"
+      ],
+      "abstain": false,
+      "codes": [
+        "EO-008",
+        "CO-01684"
+      ],
+      "reason": "Ces deux formations répondent directement au besoin de préparer et conduire des entretiens avec les parents, d’instaurer un climat de confiance et de développer une collaboration constructive. CO-01684 apporte en plus des outils de suivi des élèves et de gestion des situations familiales complexes.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81360,
+          "output": 56,
+          "cached": 4893,
+          "written": 76464,
+          "uncached": 3,
+          "cost": 0.019281660000000003
+        },
+        "pass2": {
+          "input": 4288,
+          "output": 88,
+          "cached": 0,
+          "written": 4285,
+          "uncached": 3,
+          "cost": 0.0011774499999999998
+        },
+        "totalCost": 0.020459110000000003
+      }
+    },
+    {
+      "id": "FINAL-MI-015",
+      "segment": "multi_intent",
+      "query": "Je dois d’abord analyser les besoins d’une équipe pour concevoir une formation, puis être capable de construire dans Moodle une évaluation avec des critères explicites.",
+      "expectedRelevantCodes": [
+        "EP-105CP-E",
+        "SEM-10906"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "candidateCount": 12,
+      "candidateCodes": [
+        "SEM1197",
+        "OCD207",
+        "S2-FIO002B",
+        "S2-FIO002A",
+        "SEM1098",
+        "SEM0737",
+        "SEM1081",
+        "SEM1099",
+        "SEM1119",
+        "TRT700",
+        "TRT701",
+        "TRT703"
+      ],
+      "abstain": true,
+      "codes": [],
+      "reason": "Aucune formation ne couvre suffisamment l’ensemble des deux intentions centrales : analyser les besoins d’une équipe pour concevoir une formation, puis construire dans Moodle une évaluation avec des critères explicites. SEM1197 correspond à la conception et à la planification d’une formation, mais ne traite pas de Moodle ni de la construction d’une évaluation explicite. Les formations FIO002A/FIO002B abordent l’évaluation pédagogique, mais sont réservées au personnel enseignant du préqualifiant et ne portent pas sur Moodle.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": false,
+      "usage": {
+        "pass1": {
+          "input": 81360,
+          "output": 68,
+          "cached": 4893,
+          "written": 76464,
+          "uncached": 3,
+          "cost": 0.019296060000000004
+        },
+        "pass2": {
+          "input": 5317,
+          "output": 130,
+          "cached": 0,
+          "written": 5314,
+          "uncached": 3,
+          "cost": 0.0014850999999999998
+        },
+        "totalCost": 0.020781160000000003
+      }
+    },
+    {
+      "id": "FINAL-MI-016",
+      "segment": "multi_intent",
+      "query": "Dans mes fonctions de moniteur de plongée, je dois pouvoir former des plongeurs aussi bien au nitrox qu’aux conditions particulières de la plongée sous glace.",
+      "expectedRelevantCodes": [
+        "FP074",
+        "FP072"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "candidateCount": 8,
+      "candidateCodes": [
+        "FP074",
+        "FP075",
+        "FP068",
+        "FP069",
+        "FP072",
+        "FP066",
+        "FP076",
+        "FP077"
+      ],
+      "abstain": false,
+      "codes": [
+        "FP074",
+        "FP072"
+      ],
+      "reason": "La demande porte sur la capacité, en tant que moniteur, à former des plongeurs au nitrox et à la plongée sous glace. FP074 est spécifiquement la formation de moniteur de plongeur nitrox, tandis que FP072 prépare à organiser des cours de plongée sous-glace. Les formations de plongeur nitrox ou de préparateur de mélange ne confèrent pas directement ces compétences de moniteur.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81363,
+          "output": 38,
+          "cached": 4893,
+          "written": 76467,
+          "uncached": 3,
+          "cost": 0.01926081
+        },
+        "pass2": {
+          "input": 2385,
+          "output": 114,
+          "cached": 0,
+          "written": 2382,
+          "uncached": 3,
+          "cost": 0.0007329
+        },
+        "totalCost": 0.01999371
+      }
+    },
+    {
+      "id": "FINAL-MI-017",
+      "segment": "multi_intent",
+      "query": "Comme manager au Pouvoir judiciaire, je voudrais à la fois renforcer ma posture managériale et devenir plus efficace pour retrouver la législation et la jurisprudence nécessaires à mon activité.",
+      "expectedRelevantCodes": [
+        "PJ-1055",
+        "PJ-0092"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "candidateCount": 8,
+      "candidateCodes": [
+        "PJ-1055",
+        "PJ-0091",
+        "PJ-0092",
+        "SEM1210",
+        "PJ-0038",
+        "PJ-0093",
+        "PJ-1094",
+        "PJ-0045"
+      ],
+      "abstain": false,
+      "codes": [
+        "PJ-1055",
+        "PJ-0092"
+      ],
+      "reason": "PJ-1055 répond directement au renforcement de la posture managériale pour les managers de juridictions et directions de support. PJ-0092 couvre la recherche de législation et de jurisprudence, compétences nécessaires à l’activité juridique. Les deux formations sont complémentaires et satisfont les deux intentions centrales de la demande.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81365,
+          "output": 53,
+          "cached": 4893,
+          "written": 76469,
+          "uncached": 3,
+          "cost": 0.01927931
+        },
+        "pass2": {
+          "input": 1743,
+          "output": 98,
+          "cached": 0,
+          "written": 1740,
+          "uncached": 3,
+          "cost": 0.0005532
+        },
+        "totalCost": 0.01983251
+      }
+    },
+    {
+      "id": "FINAL-MI-018",
+      "segment": "multi_intent",
+      "query": "Je voudrais être mieux préparé à réagir aux situations de discrimination au travail et, lorsqu’un conflit est déjà installé, disposer aussi de méthodes pour aider les personnes à retrouver un dialogue.",
+      "expectedRelevantCodes": [
+        "SEM1248",
+        "SEM1074"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "candidateCount": 12,
+      "candidateCodes": [
+        "SEM1248",
+        "SEM1247",
+        "SEM0518",
+        "SEM1037",
+        "SEM1074",
+        "SEM1095",
+        "SEM1199",
+        "SEM1229E",
+        "SEM1155",
+        "SEM1195",
+        "SEM1212",
+        "SEM1151"
+      ],
+      "abstain": false,
+      "codes": [
+        "SEM1247",
+        "SEM1037"
+      ],
+      "reason": "SEM1247 répond directement à la préparation face aux discriminations au travail, notamment pour les identifier, les prévenir, les reconnaître et agir, avec un contenu adapté aux RH et managers. SEM1037 apporte les méthodes pratiques de médiation nécessaires lorsqu’un conflit est installé, afin d’aider les personnes à dialoguer et à construire une solution. Ces deux formations couvrent les deux intentions centrales de la demande.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": false,
+      "usage": {
+        "pass1": {
+          "input": 81365,
+          "output": 63,
+          "cached": 4893,
+          "written": 76469,
+          "uncached": 3,
+          "cost": 0.01929131
+        },
+        "pass2": {
+          "input": 3936,
+          "output": 112,
+          "cached": 0,
+          "written": 3933,
+          "uncached": 3,
+          "cost": 0.0011182499999999999
+        },
+        "totalCost": 0.02040956
+      }
+    },
+    {
+      "id": "FINAL-MI-019",
+      "segment": "multi_intent",
+      "query": "Pour mes élèves, je voudrais mieux intégrer l’éducation numérique dans mes activités et être capable de créer moi-même des supports pédagogiques visuels avec les outils disponibles.",
+      "expectedRelevantCodes": [
+        "SEM-P1304",
+        "SEM-P1514"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "candidateCount": 40,
+      "candidateCodes": [
+        "SEM-P1303",
+        "SEM-P1304",
+        "SEM-P1563",
+        "SEM-P1572",
+        "SEM-P1554",
+        "SEM-P1501",
+        "SEM-P1535",
+        "SEM-P1525",
+        "SEM-P1028",
+        "SEM-P1560",
+        "SEM-P1575",
+        "SEM-P1579",
+        "SEM-P1574",
+        "SEM-P1570",
+        "SEM-P1571",
+        "SEM-P1573",
+        "SEM-P1511",
+        "SEM-P1555",
+        "SEM-10413",
+        "SEM-10213",
+        "SEM-10256",
+        "SEM-10439",
+        "SEM-10416",
+        "SEM-10417",
+        "SEM-10415",
+        "SEM-10441",
+        "SEM-10454",
+        "SEM-10473",
+        "SEM-10474",
+        "SEM-10472",
+        "SEM-10921",
+        "SEM-10929",
+        "SEM-10533",
+        "SEM-10124",
+        "SEM-10204",
+        "SEM-10218",
+        "SEM-10408",
+        "SEM-P1519",
+        "SEM-P1566",
+        "SEM-P1567"
+      ],
+      "abstain": false,
+      "codes": [
+        "SEM-P1303",
+        "SEM-P1554",
+        "SEM-10256",
+        "SEM-10413",
+        "SEM-10921"
+      ],
+      "reason": "La demande combine l’intégration de l’éducation numérique dans les activités de classe et la création de supports pédagogiques visuels. SEM-P1303 répond directement au premier besoin avec des ressources et scénarios liés au PER. SEM-P1554 permet de créer et exploiter des supports visuels avec le TBI. SEM-10256 forme à la création de présentations pédagogiques avec LibreOffice Impress. SEM-10413 complète la création de supports vidéo pédagogiques, tandis que SEM-10921 permet de concevoir des contenus multimédias interactifs avec H5P.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": false,
+      "usage": {
+        "pass1": {
+          "input": 81360,
+          "output": 214,
+          "cached": 4893,
+          "written": 76464,
+          "uncached": 3,
+          "cost": 0.019471260000000004
+        },
+        "pass2": {
+          "input": 15737,
+          "output": 164,
+          "cached": 0,
+          "written": 15734,
+          "uncached": 3,
+          "cost": 0.0041309
+        },
+        "totalCost": 0.023602160000000004
+      }
+    },
+    {
+      "id": "FINAL-CTX-020",
+      "segment": "context_restriction",
+      "query": "Je dois préparer des dossiers destinés au Conseil d’État mais je connais mal le circuit, les responsabilités de chacun et la manière dont ces objets sont élaborés.",
+      "expectedRelevantCodes": [
+        "SEM1138E"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 5,
+      "candidateCodes": [
+        "SEM1138E",
+        "SEM0487",
+        "SEM0886",
+        "SEM0735",
+        "SEM0056"
+      ],
+      "abstain": false,
+      "codes": [
+        "SEM1138E",
+        "SEM0886"
+      ],
+      "reason": "SEM1138E répond directement au besoin : préparation des dossiers soumis au Conseil d’État, circuit de traitement des objets, délais, responsabilités et constitution du dossier. SEM0886 est complémentaire pour comprendre le processus législatif et réglementaire ainsi que le rôle des différents intervenants dans l’aboutissement des dossiers.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81360,
+          "output": 35,
+          "cached": 4893,
+          "written": 76464,
+          "uncached": 3,
+          "cost": 0.019256460000000003
+        },
+        "pass2": {
+          "input": 1511,
+          "output": 97,
+          "cached": 0,
+          "written": 1508,
+          "uncached": 3,
+          "cost": 0.000494
+        },
+        "totalCost": 0.019750460000000004
+      }
+    },
+    {
+      "id": "FINAL-CTX-021",
+      "segment": "context_restriction",
+      "query": "Lorsqu’une personne de mon équipe est absente longtemps, je ne suis pas toujours à l’aise sur la façon de maintenir le lien, informer l’équipe et préparer son retour.",
+      "expectedRelevantCodes": [
+        "SEM1127"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 14,
+      "candidateCodes": [
+        "SEM1127",
+        "SEM1249",
+        "SEM1258",
+        "SEM1076",
+        "SEM1166",
+        "SEM1177",
+        "SEM0052",
+        "SEM1195",
+        "SEM1212",
+        "SEM0518",
+        "SEM1098",
+        "SEM1220",
+        "SEM1141",
+        "SEM1162"
+      ],
+      "abstain": false,
+      "codes": [
+        "SEM1127"
+      ],
+      "reason": "Cette formation répond directement à la gestion d’une absence, au maintien du lien, à la transmission d’informations à l’équipe et à l’accueil du collaborateur à son retour. Elle est spécifiquement centrée sur les situations décrites, contrairement aux formations plus générales sur la communication ou le management.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81365,
+          "output": 70,
+          "cached": 4893,
+          "written": 76469,
+          "uncached": 3,
+          "cost": 0.01929971
+        },
+        "pass2": {
+          "input": 5016,
+          "output": 86,
+          "cached": 0,
+          "written": 5013,
+          "uncached": 3,
+          "cost": 0.0013570499999999998
+        },
+        "totalCost": 0.02065676
+      }
+    },
+    {
+      "id": "FINAL-CTX-022",
+      "segment": "context_restriction",
+      "query": "J’enseigne les mathématiques à des élèves qui maîtrisent encore mal le français. Je voudrais mieux comprendre ce qui relève de la langue et ce qui relève réellement des mathématiques afin d’adapter mes pratiques.",
+      "expectedRelevantCodes": [
+        "CO-01665"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 6,
+      "candidateCodes": [
+        "CO-01665",
+        "EP-576",
+        "EP-575",
+        "EP-019EVEN",
+        "EP-050EVEN",
+        "EP-051EVEN"
+      ],
+      "abstain": false,
+      "codes": [
+        "CO-01665"
+      ],
+      "reason": "Cette formation répond directement au besoin : elle traite des obstacles langagiers en mathématiques chez les élèves allophones, distingue les difficultés liées au français de celles liées à l’activité mathématique et propose des stratégies de différenciation et d’adaptation des pratiques. Les autres formations portent sur les cycles, les moyens d’enseignement ou la planification générale, sans cibler suffisamment le contexte du plurilinguisme.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81371,
+          "output": 45,
+          "cached": 4893,
+          "written": 76475,
+          "uncached": 3,
+          "cost": 0.01927121
+        },
+        "pass2": {
+          "input": 2985,
+          "output": 110,
+          "cached": 0,
+          "written": 2982,
+          "uncached": 3,
+          "cost": 0.0008780999999999999
+        },
+        "totalCost": 0.02014931
+      }
+    },
+    {
+      "id": "FINAL-CTX-023",
+      "segment": "context_restriction",
+      "query": "J’accompagne des jeunes avec autisme et je cherche des repères pour aborder avec eux les questions liées au corps, à l’intimité et à la sexualité de façon adaptée.",
+      "expectedRelevantCodes": [
+        "OMP-018TSA"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 9,
+      "candidateCodes": [
+        "OMP-018TSA",
+        "OMP-094",
+        "OMP-071",
+        "OMP-015TSA",
+        "OMP-012TSA",
+        "OMP-021TSA",
+        "OMP-022TSA",
+        "OMP-008TSA",
+        "OMP-013TSA"
+      ],
+      "abstain": false,
+      "codes": [
+        "OMP-094",
+        "OMP-018TSA",
+        "OMP-071"
+      ],
+      "reason": "Les formations OMP-094 et OMP-018TSA répondent directement au besoin : elles portent sur le corps, l’intimité et la sexualité des jeunes avec autisme, avec des repères de santé sexuelle, une posture professionnelle et des activités adaptées. OMP-094 est à privilégier pour le personnel OMP, tandis qu’OMP-018TSA concerne le personnel pédagogique et thérapeutique des structures accueillant des élèves avec autisme. OMP-071 est complémentaire : il aborde la sexualité des élèves en situation de handicap, les droits sexuels, la posture professionnelle et des outils, mais il est moins spécifiquement centré sur l’autisme.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81367,
+          "output": 64,
+          "cached": 4893,
+          "written": 76471,
+          "uncached": 3,
+          "cost": 0.01929301
+        },
+        "pass2": {
+          "input": 4254,
+          "output": 176,
+          "cached": 0,
+          "written": 4251,
+          "uncached": 3,
+          "cost": 0.0012745499999999997
+        },
+        "totalCost": 0.02056756
+      }
+    },
+    {
+      "id": "FINAL-CTX-024",
+      "segment": "context_restriction",
+      "query": "Je voudrais proposer à mes élèves allophones un projet d’écriture qui leur permette aussi de valoriser les différentes langues qu’ils parlent.",
+      "expectedRelevantCodes": [
+        "CO-01700"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 14,
+      "candidateCodes": [
+        "CO-01713",
+        "EP-523",
+        "EP-509",
+        "CO-01700",
+        "EP-996",
+        "CO-01649",
+        "CO-01712",
+        "CO-01697",
+        "SEM-P1544",
+        "SEM-P1539",
+        "SEM-P1557",
+        "SEM-P1559",
+        "SEM-P1302",
+        "CO-01664"
+      ],
+      "abstain": false,
+      "codes": [
+        "CO-01700",
+        "EP-509",
+        "CO-01713"
+      ],
+      "reason": "Ces formations répondent directement au projet d’écriture avec des élèves allophones et à la valorisation de leurs langues : CO-01700 propose de construire un atelier d’écriture plurilingue adapté à la classe, EP-509 permet de créer une histoire plurilingue sous forme de Kamishibaï, et CO-01713 apporte les principes et stratégies pour exploiter pédagogiquement la variation et le plurilinguisme.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81354,
+          "output": 81,
+          "cached": 4893,
+          "written": 76458,
+          "uncached": 3,
+          "cost": 0.01931016
+        },
+        "pass2": {
+          "input": 7443,
+          "output": 122,
+          "cached": 0,
+          "written": 7440,
+          "uncached": 3,
+          "cost": 0.002007
+        },
+        "totalCost": 0.02131716
+      }
+    },
+    {
+      "id": "FINAL-CTX-025",
+      "segment": "context_restriction",
+      "query": "Je travaille en détention et je voudrais mieux communiquer avec les personnes détenues, notamment dans les échanges difficiles, en utilisant davantage l’écoute et des techniques de communication non violente.",
+      "expectedRelevantCodes": [
+        "OCD426"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "candidateCount": 12,
+      "candidateCodes": [
+        "OCD425",
+        "OCD426",
+        "SEM1098",
+        "SEM1151",
+        "SEM0518",
+        "SEM1195",
+        "SEM1212",
+        "OCD212",
+        "SEM1095",
+        "OCD018",
+        "SEM1220",
+        "SEM1224E"
+      ],
+      "abstain": false,
+      "codes": [
+        "OCD425",
+        "OCD426",
+        "SEM1095",
+        "OCD212",
+        "SEM1151"
+      ],
+      "reason": "OCD425 répond directement au contexte pénitentiaire et fournit les bases de la communication, la conduite d’entretiens et l’assurance dans les discussions difficiles. OCD426 est un approfondissement spécifiquement centré sur l’écoute active, la communication non violente et les interactions difficiles avec les personnes détenues, à suivre après OCD425. SEM1095 complète le besoin par des techniques de désescalade et de communication non violente face aux comportements agressifs. OCD212 est pertinent pour la prévention de la violence et la résolution pacifique des conflits en détention. SEM1151 apporte une sensibilisation générale et structurée à la CNV, mais elle est moins spécifique au contexte pénitentiaire.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81364,
+          "output": 63,
+          "cached": 4893,
+          "written": 76468,
+          "uncached": 3,
+          "cost": 0.01929106
+        },
+        "pass2": {
+          "input": 4691,
+          "output": 184,
+          "cached": 0,
+          "written": 4688,
+          "uncached": 3,
+          "cost": 0.0013934
+        },
+        "totalCost": 0.020684459999999998
+      }
+    },
+    {
+      "id": "FINAL-ABS-026",
+      "segment": "abstention",
+      "query": "Je voudrais apprendre à entraîner moi-même un grand modèle de langage sur nos propres serveurs, depuis la préparation des données jusqu’à l’entraînement distribué du modèle.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "candidateCount": 15,
+      "candidateCodes": [
+        "S2-551",
+        "S2-552",
+        "S2-553",
+        "S2-554",
+        "S2-555",
+        "S2-556",
+        "S2-557",
+        "SEM-4008",
+        "SEM1246",
+        "SEM-10344",
+        "SEM-10346",
+        "SEM-10349",
+        "SEM-10350",
+        "SEM-10659",
+        "TRT3004H"
+      ],
+      "abstain": true,
+      "codes": [],
+      "reason": "Aucune formation proposée n'enseigne l'entraînement de bout en bout d'un grand modèle de langage sur des serveurs propres, notamment la préparation des données et l'entraînement distribué. Les formations disponibles portent sur l'utilisation d'IA locales, le choix d'outils, le prompting, les agents, les enjeux ou la culture générale de l'IA, sans couvrir ce besoin technique central.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81361,
+          "output": 89,
+          "cached": 4893,
+          "written": 76465,
+          "uncached": 3,
+          "cost": 0.019321510000000004
+        },
+        "pass2": {
+          "input": 6161,
+          "output": 105,
+          "cached": 0,
+          "written": 6158,
+          "uncached": 3,
+          "cost": 0.0016661
+        },
+        "totalCost": 0.020987610000000004
+      }
+    },
+    {
+      "id": "FINAL-ABS-027",
+      "segment": "abstention",
+      "query": "Je cherche une formation qui me permette d’être qualifié pour réaliser des diagnostics psychologiques cliniques auprès de collaborateurs en difficulté.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "candidateCount": 10,
+      "candidateCodes": [
+        "OCD370",
+        "OCD128",
+        "OCD129",
+        "OCD130",
+        "OCD131",
+        "OCD133",
+        "OCD018",
+        "OCD151",
+        "SEM1258",
+        "SEM1249"
+      ],
+      "abstain": true,
+      "codes": [],
+      "reason": "Aucune formation proposée ne qualifie pour réaliser des diagnostics psychologiques cliniques. Les formations disponibles portent sur la sensibilisation, le repérage et l'orientation en santé mentale, la gestion de situations difficiles ou la prise en charge de personnes détenues, sans habilitation ni formation clinique suffisante au diagnostic.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81354,
+          "output": 54,
+          "cached": 4893,
+          "written": 76458,
+          "uncached": 3,
+          "cost": 0.01927776
+        },
+        "pass2": {
+          "input": 4986,
+          "output": 87,
+          "cached": 0,
+          "written": 4983,
+          "uncached": 3,
+          "cost": 0.0013507499999999997
+        },
+        "totalCost": 0.020628510000000003
+      }
+    },
+    {
+      "id": "FINAL-ABS-028",
+      "segment": "abstention",
+      "query": "Je dois développer de A à Z une application métier avec interface web, API, base PostgreSQL et authentification. Je cherche une formation interne couvrant tout ce développement.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "candidateCount": 22,
+      "candidateCodes": [
+        "SEM0737",
+        "SEM1080",
+        "SEM1081",
+        "SEM1218",
+        "SEM1201",
+        "SEM1202",
+        "SEM1089",
+        "TRT3004H",
+        "SEM1246",
+        "TRT700",
+        "TRT701",
+        "TRT702",
+        "TRT703",
+        "TRT1004",
+        "SEM1235",
+        "TRT1015",
+        "TRT1013",
+        "TRT1011",
+        "TRT1005",
+        "SEM1070",
+        "SEM1165",
+        "SEM1121"
+      ],
+      "abstain": true,
+      "codes": [],
+      "reason": "Aucune formation candidate ne couvre de manière centrale et de bout en bout le développement d'une application métier avec interface web, API, base PostgreSQL et authentification. Les formations proposées portent surtout sur la gestion de projet, SharePoint, les outils bureautiques, la transformation numérique ou des méthodes générales, sans enseignement concret du développement logiciel full-stack, de PostgreSQL ou de l'authentification.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81362,
+          "output": 109,
+          "cached": 4893,
+          "written": 76466,
+          "uncached": 3,
+          "cost": 0.019345760000000004
+        },
+        "pass2": {
+          "input": 9500,
+          "output": 105,
+          "cached": 0,
+          "written": 9497,
+          "uncached": 3,
+          "cost": 0.0025008499999999998
+        },
+        "totalCost": 0.021846610000000002
+      }
+    },
+    {
+      "id": "FINAL-ABS-029",
+      "segment": "abstention",
+      "query": "Je cherche une formation pour apprendre à déployer et administrer en production un cluster Kubernetes, avec Helm, gestion des ingress, supervision et sécurisation de l’infrastructure.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "candidateCount": 0,
+      "candidateCodes": [],
+      "abstain": true,
+      "codes": [],
+      "reason": "Aucune fiche de formation candidate n’est disponible. Il est donc impossible d’identifier une formation couvrant le déploiement et l’administration Kubernetes en production, Helm, les ingress, la supervision et la sécurisation.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81362,
+          "output": 14,
+          "cached": 4893,
+          "written": 76466,
+          "uncached": 3,
+          "cost": 0.019231760000000004
+        },
+        "pass2": {
+          "input": 295,
+          "output": 67,
+          "cached": 0,
+          "written": 0,
+          "uncached": 295,
+          "cost": 0.0001394
+        },
+        "totalCost": 0.019371160000000005
+      }
+    },
+    {
+      "id": "FINAL-ABS-030",
+      "segment": "abstention",
+      "query": "Je dois installer, administrer, sécuriser et sauvegarder un serveur Moodle, y compris la base de données et l’infrastructure technique.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "candidateCount": 26,
+      "candidateCodes": [
+        "TRT702",
+        "TRT703",
+        "TRT701",
+        "TRT700",
+        "SEM-10930",
+        "SEM-10901",
+        "SEM-10902",
+        "SEM-10903",
+        "SEM-10904",
+        "SEM-10905",
+        "SEM-10906",
+        "SEM-10907",
+        "SEM-10908",
+        "SEM-10909",
+        "SEM-10911",
+        "SEM-10912",
+        "SEM-10913",
+        "PJ-0077",
+        "PJ-0078",
+        "PJ-0079",
+        "PJ-0080",
+        "PJ-0068",
+        "TRT3016E",
+        "SEM1121",
+        "SEM1176",
+        "SEM1221"
+      ],
+      "abstain": true,
+      "codes": [],
+      "reason": "Aucune formation candidate ne couvre l’installation, l’administration technique, la sécurisation et la sauvegarde d’un serveur Moodle avec sa base de données et son infrastructure. Les formations proposées portent sur l’utilisation pédagogique de Moodle ou sur des sujets informatiques généraux, sans acquisition des compétences d’administration serveur requises.",
+      "invalidCodes": [],
+      "outputConsistent": true,
+      "success": true,
+      "usage": {
+        "pass1": {
+          "input": 81356,
+          "output": 138,
+          "cached": 4893,
+          "written": 76460,
+          "uncached": 3,
+          "cost": 0.01937906
+        },
+        "pass2": {
+          "input": 9517,
+          "output": 85,
+          "cached": 0,
+          "written": 9514,
+          "uncached": 3,
+          "cost": 0.0024811
+        },
+        "totalCost": 0.02186016
+      }
+    }
+  ]
+}
