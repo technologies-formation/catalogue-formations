@@ -5,9 +5,13 @@ const SEARCH_FIELDS = [
   ['themeRaw', 10],
   ['publicRaw', 5],
   ['targetAudienceRaw', 5],
+  ['catalogueOffers', 5],
+]
+
+const RECALL_SEARCH_FIELDS = [
+  ...SEARCH_FIELDS,
   ['objectivesRaw', 3],
   ['contentRaw', 2],
-  ['catalogueOffers', 5],
 ]
 
 const QUERY_VARIANTS = Object.freeze({
@@ -51,9 +55,25 @@ const QUERY_VARIANTS = Object.freeze({
 
 const STOP_WORDS = new Set([
   'a', 'au', 'aux', 'avec', 'dans', 'd', 'de', 'des', 'du', 'en', 'et', 'faire',
-  'la', 'le', 'les', 'l', 'ma', 'mes', 'mon', 'par', 'pour', 'qu', 'que', 'qui',
-  'sa', 'ses', 'son', 'sur', 'une', 'un',
+  'j', 'je', 'm', 'me', 'moi',
+  'aimerais', 'ameliorer', 'apprendre', 'besoin', 'cherche', 'chercher',
+  'formation', 'mieux', 'niveau', 'souhaite', 'souhaiter', 'souhaiterais',
+  'veux', 'voudrais',
+  'la', 'le', 'les', 'l', 'ma', 'mes', 'mon', 'nous', 'notre', 'nos',
+  'par', 'pour', 'qu', 'que', 'qui',
+  'sa', 'ses', 'son', 'sur', 'une', 'un', 'vous', 'votre', 'vos',
 ])
+const OBJECTIVE_PHRASE_IGNORED_TOKENS = new Set([
+  'dois', 'doit', 'devons', 'devez', 'doivent',
+  'devrais', 'devrait', 'devrions', 'devriez', 'devraient',
+  'peux', 'peut', 'pouvons', 'pouvez', 'peuvent',
+  'pourrais', 'pourrait', 'pourrions', 'pourriez', 'pourraient',
+])
+
+const CLASSIC_QUERY_TOKEN_EQUIVALENTS = new Map([
+  ['conduire', 'conduite'],
+])
+
 const SHORT_ACRONYMS = new Set(['IA', 'SI', 'RH'])
 const ABSOLUTE_SCORE_THRESHOLD = 42
 const RELATIVE_SCORE_THRESHOLD = 0.45
@@ -67,10 +87,30 @@ export function searchCourses(courses, query) {
   const normalizedQuery = normalizeSearchText(query)
   if (!normalizedQuery) return courses
 
-  const corpus = getCorpus(courses)
-  const variants = buildQueryVariants(normalizedQuery, query)
+  const corpus = getCorpus(courses, SEARCH_FIELDS)
+  const variants = buildQueryVariants(normalizedQuery, query).flatMap((variant) => {
+    const equivalentTokens = variant.tokens.map(normalizeClassicQueryToken)
+    const hasEquivalent = equivalentTokens.some(
+      (token, index) => token !== variant.tokens[index],
+    )
+
+    if (!hasEquivalent) return [variant]
+
+    return [
+      variant,
+      {
+        ...variant,
+        tokens: equivalentTokens,
+        intentionTokens: variant.tokens,
+        literal: false,
+        factor: variant.factor * 0.95,
+      },
+    ]
+  })
   const candidates = corpus.documents
-    .map((document) => evaluateDocument(document, variants, normalizedQuery, corpus))
+    .map((document) =>
+      evaluateDocument(document, variants, normalizedQuery, corpus, true),
+    )
     .filter((candidate) => candidate.minimumEvidence)
     .sort(compareResults)
   const bestScore = candidates[0]?.score ?? 0
@@ -89,7 +129,7 @@ export function searchCourseCandidates(courses, query, limit = 40) {
   const normalizedQuery = normalizeSearchText(query)
   if (!normalizedQuery) return []
 
-  const corpus = getCorpus(courses)
+  const corpus = getCorpus(courses, RECALL_SEARCH_FIELDS)
   const variants = buildQueryVariants(normalizedQuery, query)
 
   return corpus.documents
@@ -106,13 +146,23 @@ export function searchCourseCandidates(courses, query, limit = 40) {
     }))
 }
 
-function getCorpus(courses) {
-  const cached = corpusCache.get(courses)
+function getCorpus(courses, searchFields) {
+  let cachedCorpora = corpusCache.get(courses)
+
+  if (!cachedCorpora) {
+    cachedCorpora = new Map()
+    corpusCache.set(courses, cachedCorpora)
+  }
+
+  const cached = cachedCorpora.get(searchFields)
   if (cached) return cached
 
   const documents = courses.map((course) => ({
     course,
-    fields: SEARCH_FIELDS.map(([field, weight]) => {
+    objectiveTokens: tokenizeSearch(
+      course.officialData?.objectivesRaw ?? '',
+    ),
+    fields: searchFields.map(([field, weight]) => {
       const value = readField(course, field)
       return {
         field,
@@ -132,7 +182,7 @@ function getCorpus(courses) {
   }
 
   const corpus = { documents, documentFrequency, size: documents.length }
-  corpusCache.set(courses, corpus)
+  cachedCorpora.set(searchFields, corpus)
   return corpus
 }
 
@@ -157,14 +207,36 @@ function buildQueryVariants(normalizedQuery, originalQuery) {
   ].filter(({ tokens }) => tokens.length > 0)
 }
 
-function evaluateDocument(document, variants, normalizedQuery, corpus) {
+function evaluateDocument(
+  document,
+  variants,
+  normalizedQuery,
+  corpus,
+  allowObjectivePhrase = false,
+) {
   let best = null
   for (const variant of variants) {
-    const details = variant.tokens.map((token) =>
-      scoreToken(document, token, variant.acronym, corpus),
+    const details = variant.tokens.map((token, index) =>
+      scoreToken(
+        document,
+        token,
+        variant.acronym,
+        corpus,
+        variant.intentionTokens?.[index] ?? token,
+      ),
     )
     const matched = details.filter(({ fieldScore }) => fieldScore > 0)
-    if (matched.length === 0) continue
+    const objectiveQueryTokens = allowObjectivePhrase
+      ? variant.tokens.filter(
+          (token) => !OBJECTIVE_PHRASE_IGNORED_TOKENS.has(token),
+        )
+      : []
+
+    const objectivePhraseLength = allowObjectivePhrase
+      ? longestContiguousMatch(objectiveQueryTokens, document.objectiveTokens)
+      : 0
+
+    if (matched.length === 0 && objectivePhraseLength < 2) continue
 
     const totalMass = details.reduce((sum, detail) => sum + detail.mass, 0)
     const coveredMass = matched.reduce((sum, detail) => sum + detail.mass, 0)
@@ -185,16 +257,26 @@ function evaluateDocument(document, variants, normalizedQuery, corpus) {
     const independentEvidence = matched.filter(
       ({ queryFactor }) => queryFactor === 1,
     ).length
+    // En recherche classique, une requête de plusieurs termes ne doit pas
+    // être validée par un seul mot rare présent dans un titre.
+    // Le rappel Luna conserve volontairement son comportement permissif.
+    const sufficientLexicalEvidence =
+      !allowObjectivePhrase ||
+      variant.tokens.length === 1 ||
+      matched.length >= 2
+
     const minimumEvidence =
       exactCode ||
       strongTitleExpression ||
-      (discriminantTitleTerm &&
-        (variant.tokens.length === 1 || coverage >= 0.4)) ||
-      (discriminantTitleTerm &&
-        matched.some(({ idf }) => idf >= VERY_HIGH_IDF_THRESHOLD) &&
-        coverage >= 0.25) ||
-      (independentEvidence >= 2 && coverage >= 0.3) ||
-      coverage >= GLOBAL_COVERAGE_THRESHOLD
+      objectivePhraseLength >= 2 ||
+      (sufficientLexicalEvidence &&
+        ((discriminantTitleTerm &&
+          (variant.tokens.length === 1 || coverage >= 0.4)) ||
+          (discriminantTitleTerm &&
+            matched.some(({ idf }) => idf >= VERY_HIGH_IDF_THRESHOLD) &&
+            coverage >= 0.25) ||
+          (independentEvidence >= 2 && coverage >= 0.3) ||
+          coverage >= GLOBAL_COVERAGE_THRESHOLD))
 
     let score = matched.reduce(
       (sum, detail) => sum + detail.fieldScore * detail.mass,
@@ -204,6 +286,9 @@ function evaluateDocument(document, variants, normalizedQuery, corpus) {
     if (independentEvidence > 1) score += (independentEvidence - 1) * 14
     if (coverage === 1 && variant.tokens.length > 1) score += 30
     if (strongTitleExpression) score += variant.literal ? 90 : 70
+    if (objectivePhraseLength >= 2) {
+      score += 70 + (objectivePhraseLength - 2) * 20
+    }
     if (exactCode) score += 1000
     score *= variant.factor
 
@@ -218,14 +303,48 @@ function evaluateDocument(document, variants, normalizedQuery, corpus) {
   return best ?? { course: document.course, score: 0, minimumEvidence: false }
 }
 
-function scoreToken(document, token, acronym, corpus) {
+function normalizeClassicQueryToken(token) {
+  return CLASSIC_QUERY_TOKEN_EQUIVALENTS.get(token) ?? token
+}
+
+function longestContiguousMatch(queryTokens, targetTokens) {
+  if (queryTokens.length < 2 || targetTokens.length < 2) return 0
+
+  let longest = 0
+
+  for (let queryStart = 0; queryStart < queryTokens.length; queryStart += 1) {
+    for (let targetStart = 0; targetStart < targetTokens.length; targetStart += 1) {
+      let length = 0
+
+      while (
+        queryStart + length < queryTokens.length &&
+        targetStart + length < targetTokens.length &&
+        queryTokens[queryStart + length] === targetTokens[targetStart + length]
+      ) {
+        length += 1
+      }
+
+      if (length > longest) longest = length
+    }
+  }
+
+  return longest
+}
+
+function scoreToken(
+  document,
+  token,
+  acronym,
+  corpus,
+  intentionToken = token,
+) {
   const fields = document.fields
     .filter((field) =>
       acronym ? field.rawTokens.includes(acronym) : field.tokens.includes(token),
     )
     .map(({ field, weight }) => ({ field, weight }))
   const idf = getIdf(token, corpus)
-  const queryFactor = intentionFactor(token)
+  const queryFactor = intentionFactor(intentionToken)
 
   return {
     fields,
@@ -268,6 +387,7 @@ function tokenizeCaseSensitive(value) {
 
 function normalizeToken(token) {
   if (token.length <= 3) return token
+  if (token.endsWith('eaux') && token.length > 5) return token.slice(0, -1)
   if (token.endsWith('aux') && token.length > 5) return `${token.slice(0, -3)}al`
   if (token.endsWith('s') && token.length > 4) return token.slice(0, -1)
   return token

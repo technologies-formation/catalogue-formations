@@ -68,6 +68,89 @@ test('le moteur lit les champs sous course.officialData', () => {
   assert.equal(result[0].code, 'IA-01')
 })
 
+test('une expression métier précise dans les objectifs peut compléter la recherche classique', () => {
+  const objectiveCourses = [
+    course('PROJECT-DASHBOARD', 'Planifier et piloter un projet', {
+      objectivesRaw:
+        "Déterminer les indicateurs de suivi et élaborer un tableau de bord synthétique",
+      contentRaw:
+        "Les tableaux de bords et indicateurs de suivi",
+    }),
+    course('WORDPRESS-DASHBOARD', 'Multimédia-Site web - les bases', {
+      contentRaw:
+        "Présentation du tableau de bord de Wordpress et de ses fonctionnalités principales",
+    }),
+    course('MOYENS-DU-BORD', 'Créer et relier un livre avec les moyens du bord'),
+    ...Array.from({ length: 300 }, (_, index) =>
+      course(
+        `FILLER-${index}`,
+        `Formation générique numéro ${index}`,
+      ),
+    ),
+  ]
+
+  assert.deepEqual(
+    searchCourses(objectiveCourses, 'tableaux de bord').map(({ code }) => code),
+    ['PROJECT-DASHBOARD'],
+  )
+
+  assert.deepEqual(
+    searchCourses(
+      objectiveCourses,
+      'Je dois suivre beaucoup de chiffres et construire des tableaux de bord.',
+    ).map(({ code }) => code),
+    ['PROJECT-DASHBOARD'],
+  )
+})
+
+test('les formulations modales dans les objectifs ne créent pas de faux positif', () => {
+  const testCourses = [
+    course('PROJECT-DASHBOARD', 'Planifier et piloter un projet', {
+      objectivesRaw:
+        "Déterminer les indicateurs de suivi et élaborer un tableau de bord synthétique",
+    }),
+    course('GENERIC-FOLLOW', 'Formation sans rapport', {
+      objectivesRaw:
+        "Je dois suivre et valider cette formation obligatoire",
+    }),
+    ...Array.from({ length: 300 }, (_, index) =>
+      course(`MODAL-FILLER-${index}`, `Cours générique ${index}`),
+    ),
+  ]
+
+  assert.deepEqual(
+    searchCourses(
+      testCourses,
+      'Je dois suivre beaucoup de chiffres et construire des tableaux de bord.',
+    ).map(({ code }) => code),
+    ['PROJECT-DASHBOARD'],
+  )
+})
+
+test('conduire une réunion conserve conduire et retrouve aussi conduite', () => {
+  const meetingCourses = [
+    course('MEETING-DIRECT', 'Savoir conduire une réunion à distance'),
+    course('MEETING-CONDUITE', 'Communication et conduite de réunion'),
+    course('OTHER-01', 'Communication écrite'),
+    ...Array.from({ length: 300 }, (_, index) =>
+      course(
+        `MEETING-FILLER-${index}`,
+        `Formation générique test ${index}`,
+      ),
+    ),
+  ]
+
+  const resultCodes = searchCourses(
+    meetingCourses,
+    'Je cherche une formation pour mieux organiser et conduire mes réunions d’équipe.',
+  ).map(({ code }) => code)
+
+  assert.deepEqual(
+    new Set(resultCodes),
+    new Set(['MEETING-DIRECT', 'MEETING-CONDUITE']),
+  )
+})
+
 function course(code, titleRaw, officialData = {}) {
   return {
     code,
@@ -78,6 +161,8 @@ function course(code, titleRaw, officialData = {}) {
       themeRaw: officialData.themeRaw ?? 'Thème de test',
       publicRaw: officialData.publicRaw ?? 'Tout public',
       targetAudienceRaw: officialData.targetAudienceRaw ?? '',
+      objectivesRaw: officialData.objectivesRaw ?? '',
+      contentRaw: officialData.contentRaw ?? '',
     },
   }
 }
