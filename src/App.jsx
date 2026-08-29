@@ -793,7 +793,9 @@ function App() {
                     )}
                   </div>
                   {hasTextSearch ? (
-                    <div className="course-sort-control">Tri : Pertinence</div>
+                    <div className="course-sort-control">
+                      Classement : {isAiSearchActive ? 'pertinence IA' : 'pertinence'}
+                    </div>
                   ) : (
                     <label className="course-sort-control">
                       <span>Trier par</span>
