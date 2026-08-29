@@ -213,10 +213,12 @@ ${normalizedQuery}`,
       codes: [],
       recommendedCodes: [],
       complementaryCodes: [],
+      relatedCodes: [],
       reason: 'Aucune formation candidate suffisamment proche.',
       results: [],
       recommendedResults: [],
       complementaryResults: [],
+      relatedResults: [],
       candidates: {
         luna: 0,
         local: localCodes.length,
@@ -251,15 +253,19 @@ Règles impératives :
 - une formation seulement voisine ou partiellement pertinente ne suffit pas ;
 - distingue ce qu'une formation permet réellement d'acquérir de ce qu'elle évoque seulement comme sujet ;
 - tiens compte du public et du contexte professionnel lorsqu'ils sont exprimés ;
-- distingue deux niveaux de recommandation ;
+- distingue deux niveaux de recommandation et, en cas d'abstention, d'éventuelles pistes connexes ;
 - recommendedCodes contient de 1 à 3 formations répondant directement et substantiellement au besoin principal ;
 - complementaryCodes contient de 0 à 3 formations utiles pour approfondir, poursuivre ou couvrir un besoin plus spécifique ;
+- relatedCodes contient de 0 à 3 formations seulement lorsque abstain est true : elles peuvent être proches du sujet demandé, mais elles ne répondent pas suffisamment au besoin principal ;
+- une formation dans relatedCodes doit avoir un lien clair avec le sujet de la demande et ne doit jamais être présentée comme répondant au besoin initial ;
+- lorsque abstain est true, reason explique brièvement pourquoi le catalogue ne répond pas suffisamment au besoin ; si relatedCodes contient des formations, ne cite ni leurs codes ni leurs intitulés dans reason car elles sont affichées séparément ;
+- relatedCodes doit être vide lorsque abstain est false ;
 - une formation complémentaire ne doit jamais compenser l'absence d'une formation principale réellement pertinente ;
 - privilégie une formation principale unique lorsqu'elle couvre explicitement et substantiellement plusieurs dimensions centrales de la demande ;
-- ne place jamais le même code dans les deux listes ;
+- ne place jamais le même code dans plusieurs listes ;
 - classe chaque liste du plus pertinent au moins pertinent ;
-- si aucune formation ne répond suffisamment au besoin, abstain doit être true et les deux listes doivent être vides ;
-- si abstain est false, recommendedCodes doit contenir au moins une formation ;
+- si aucune formation ne répond suffisamment au besoin, abstain doit être true, recommendedCodes et complementaryCodes doivent être vides ; relatedCodes peut alors contenir des formations proches du sujet ;
+- si abstain est false, recommendedCodes doit contenir au moins une formation et relatedCodes doit être vide ;
 - complementaryCodes peut être vide lorsqu'aucun complément n'apporte de réelle valeur ;
 - utilise exclusivement les codes autorisés.`,
 
@@ -297,6 +303,14 @@ ${normalizedQuery}`,
               },
               maxItems: 3,
             },
+            relatedCodes: {
+              type: 'array',
+              items: {
+                type: 'string',
+                enum: candidateCodes,
+              },
+              maxItems: 3,
+            },
             reason: {
               type: 'string',
             },
@@ -305,6 +319,7 @@ ${normalizedQuery}`,
             'abstain',
             'recommendedCodes',
             'complementaryCodes',
+            'relatedCodes',
             'reason',
           ],
           additionalProperties: false,
@@ -328,6 +343,10 @@ ${normalizedQuery}`,
         (code) => !recommendedCodeSet.has(code),
       )
 
+  const relatedCodes = finalResult.abstain
+    ? [...new Set(finalResult.relatedCodes ?? [])]
+    : []
+
   const finalCodes = [...recommendedCodes, ...complementaryCodes]
 
   const mapResults = (codes) =>
@@ -347,6 +366,7 @@ ${normalizedQuery}`,
 
   const recommendedResults = mapResults(recommendedCodes)
   const complementaryResults = mapResults(complementaryCodes)
+  const relatedResults = mapResults(relatedCodes)
   const results = [...recommendedResults, ...complementaryResults]
 
   return {
@@ -355,10 +375,12 @@ ${normalizedQuery}`,
     codes: finalCodes,
     recommendedCodes,
     complementaryCodes,
+    relatedCodes,
     reason: finalResult.reason,
     results,
     recommendedResults,
     complementaryResults,
+    relatedResults,
 
     candidates: {
       luna: firstResult.codes.length,

@@ -70,6 +70,7 @@ function App() {
   const [aiResultCodes, setAiResultCodes] = useState(null)
   const [aiRecommendedCodes, setAiRecommendedCodes] = useState([])
   const [aiComplementaryCodes, setAiComplementaryCodes] = useState([])
+  const [aiRelatedCodes, setAiRelatedCodes] = useState([])
   const [aiSearchStatus, setAiSearchStatus] = useState('idle')
   const [aiSearchReason, setAiSearchReason] = useState('')
   const [aiSearchError, setAiSearchError] = useState('')
@@ -117,6 +118,10 @@ function App() {
         ? data.complementaryCodes
         : []
 
+      const relatedCodes = Array.isArray(data.relatedCodes)
+        ? data.relatedCodes
+        : []
+
       const allCodes = Array.isArray(data.codes)
         ? data.codes
         : [...recommendedCodes, ...complementaryCodes]
@@ -124,6 +129,7 @@ function App() {
       setAiResultCodes(allCodes)
       setAiRecommendedCodes(recommendedCodes)
       setAiComplementaryCodes(complementaryCodes)
+      setAiRelatedCodes(relatedCodes)
       setAiSearchReason(data.reason ?? '')
       setAiSearchStatus('success')
       setShowAiExplanation(true)
@@ -133,6 +139,7 @@ function App() {
       setAiResultCodes(null)
       setAiRecommendedCodes([])
       setAiComplementaryCodes([])
+      setAiRelatedCodes([])
       setAiSearchReason('')
       setShowAiExplanation(false)
       setAiSearchError(
@@ -221,6 +228,7 @@ function App() {
     setAiResultCodes(null)
     setAiRecommendedCodes([])
     setAiComplementaryCodes([])
+    setAiRelatedCodes([])
     setAiSearchStatus('idle')
     setAiSearchReason('')
     setAiSearchError('')
@@ -658,7 +666,33 @@ function App() {
                   'La recherche a été analysée afin de sélectionner les formations les plus pertinentes du catalogue.'}
               </p>
 
-              {!hasCourseSelection && sessions.length === 0 && (
+              {aiRelatedCodes.length > 0 && (
+                <div className="ai-explanation-refinement">
+                  <h3>Formations proches du sujet</h3>
+                  <p>
+                    Ces formations sont liées au sujet de votre recherche, mais
+                    ne répondent pas directement à votre besoin :
+                  </p>
+                  <ul>
+                    {aiRelatedCodes.map((code) => {
+                      const course = courseByCode.get(code)
+
+                      return (
+                        <li key={code}>
+                          <strong>{code}</strong>
+                          {course?.officialData?.titleRaw
+                            ? ` – ${course.officialData.titleRaw}`
+                            : ''}
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
+              )}
+
+              {aiRecommendedCodes.length > 0 &&
+                !hasCourseSelection &&
+                sessions.length === 0 && (
                 <div className="ai-explanation-refinement">
                   <h3>Vous souhaitez affiner davantage ?</h3>
                   <p>
@@ -941,18 +975,34 @@ function App() {
                   )
                 ) : (
                   <div className="empty-state official-empty-state">
-                    <h3>Aucune formation ne correspond aux critères sélectionnés.</h3>
-                    <p>
-                      Modifiez ou réinitialisez certains filtres pour élargir
-                      votre recherche.
-                    </p>
-                    <button
-                      className="reset-filters"
-                      type="button"
-                      onClick={resetOfficialFilters}
-                    >
-                      Réinitialiser les filtres
-                    </button>
+                    {isAiSearchActive ? (
+                      <>
+                        <h3>Aucune formation pertinente trouvée par l’IA.</h3>
+                        <p>
+                          Après analyse de votre demande, aucune formation du
+                          catalogue ne semble répondre suffisamment à votre besoin.
+                        </p>
+                        <p>
+                          Vous pouvez reformuler votre recherche ou explorer le
+                          catalogue à l’aide des filtres.
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <h3>Aucune formation ne correspond aux critères sélectionnés.</h3>
+                        <p>
+                          Modifiez ou réinitialisez certains filtres pour élargir
+                          votre recherche.
+                        </p>
+                        <button
+                          className="reset-filters"
+                          type="button"
+                          onClick={resetOfficialFilters}
+                        >
+                          Réinitialiser les filtres
+                        </button>
+                      </>
+                    )}
                   </div>
                 )}
               </div>
