@@ -1137,6 +1137,31 @@ select:disabled {
   background: #2f628f;
 }
 
+.ai-search-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.ai-search-spinner {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  border: 2px solid rgba(255, 255, 255, .45);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: ai-search-spin .75s linear infinite;
+}
+
+@keyframes ai-search-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
 .ai-search-button:disabled {
   cursor: default;
   opacity: .55;

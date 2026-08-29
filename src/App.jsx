@@ -81,6 +81,7 @@ function App() {
   const [themes, setThemes] = useState(initialSearchState.themes)
   const [publics, setPublics] = useState(initialSearchState.publics)
   const [courseSort, setCourseSort] = useState(initialSearchState.sort)
+  const [classicSearchSort, setClassicSearchSort] = useState('relevance')
   const [showGettingStarted, setShowGettingStarted] = useState(true)
   const [currentPage, dispatchPagination] = useReducer(paginationReducer, 1)
   const resultsHeadingRef = useRef(null)
@@ -411,13 +412,21 @@ function App() {
     [aiComplementaryCodeSet, matchingOfficialCourses],
   )
 
-  const sortedOfficialCourses = useMemo(
-    () =>
-      hasTextSearch
-        ? matchingOfficialCourses
-        : sortCourses(matchingOfficialCourses, courseSort),
-    [courseSort, hasTextSearch, matchingOfficialCourses],
-  )
+  const sortedOfficialCourses = useMemo(() => {
+    if (isAiSearchActive) return matchingOfficialCourses
+
+    if (hasTextSearch && classicSearchSort === 'relevance') {
+      return matchingOfficialCourses
+    }
+
+    return sortCourses(matchingOfficialCourses, courseSort)
+  }, [
+    classicSearchSort,
+    courseSort,
+    hasTextSearch,
+    isAiSearchActive,
+    matchingOfficialCourses,
+  ])
 
   const pageCount = getPageCount(matchingOfficialCourses.length)
   const activePage = Math.min(currentPage, Math.max(1, pageCount))
@@ -495,8 +504,24 @@ function App() {
     })
   }
 
+  function changeOfficialSearch(event) {
+    setOfficialSearch(event.target.value)
+    setClassicSearchSort('relevance')
+  }
+
   function changeCourseSort(event) {
     setCourseSort(event.target.value)
+    dispatchPagination({ type: 'sortChanged' })
+  }
+
+  function changeClassicSearchSort(event) {
+    const value = event.target.value
+    setClassicSearchSort(value)
+
+    if (value !== 'relevance') {
+      setCourseSort(value)
+    }
+
     dispatchPagination({ type: 'sortChanged' })
   }
 
@@ -532,7 +557,6 @@ function App() {
             className="main-search-field"
             onSubmit={(event) => {
               event.preventDefault()
-              handleAiSearch()
             }}
           >
             <label htmlFor="catalogue-search">Rechercher une formation</label>
@@ -542,19 +566,28 @@ function App() {
                 id="catalogue-search"
                 type="search"
                 value={officialSearch}
-                onChange={(event) => setOfficialSearch(event.target.value)}
+                onChange={changeOfficialSearch}
                 placeholder="Décrivez votre besoin, recherchez un mot-clé ou un code..."
               />
 
               {officialSearch.trim() && !isAiSearchActive && (
                 <button
                   className="ai-search-button"
-                  type="submit"
+                  type="button"
+                  onClick={handleAiSearch}
                   disabled={aiSearchStatus === 'loading'}
                 >
-                  {aiSearchStatus === 'loading'
-                    ? 'Analyse avec l’IA…'
-                    : 'Booster ma recherche avec l’IA'}
+                  {aiSearchStatus === 'loading' && (
+                    <span
+                      className="ai-search-spinner"
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span>
+                    {aiSearchStatus === 'loading'
+                      ? 'Analyse avec l’IA…'
+                      : 'Booster ma recherche avec l’IA'}
+                  </span>
                 </button>
               )}
             </div>
@@ -792,10 +825,25 @@ function App() {
                       </button>
                     )}
                   </div>
-                  {hasTextSearch ? (
+                  {isAiSearchActive ? (
                     <div className="course-sort-control">
-                      Classement : {isAiSearchActive ? 'pertinence IA' : 'pertinence'}
+                      Classement : pertinence IA
                     </div>
+                  ) : hasTextSearch ? (
+                    <label className="course-sort-control">
+                      <span>Trier par</span>
+                      <select
+                        value={classicSearchSort}
+                        onChange={changeClassicSearchSort}
+                      >
+                        <option value="relevance">Pertinence</option>
+                        {COURSE_SORT_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
                   ) : (
                     <label className="course-sort-control">
                       <span>Trier par</span>
