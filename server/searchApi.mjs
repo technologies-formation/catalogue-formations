@@ -6,8 +6,16 @@ const PORT = Number(process.env.PORT || 8787)
 function sendJson(response, status, data) {
   response.writeHead(status, {
     'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store',
   })
   response.end(JSON.stringify(data))
+}
+
+class HttpError extends Error {
+  constructor(status, message) {
+    super(message)
+    this.status = status
+  }
 }
 
 async function readJson(request) {
@@ -17,11 +25,15 @@ async function readJson(request) {
     body += chunk
 
     if (body.length > 16_000) {
-      throw new Error('Requête trop volumineuse')
+      throw new HttpError(413, 'Requête trop volumineuse')
     }
   }
 
-  return JSON.parse(body || '{}')
+  try {
+    return JSON.parse(body || '{}')
+  } catch {
+    throw new HttpError(400, 'Le corps de la requête doit être un JSON valide')
+  }
 }
 
 const server = http.createServer(async (request, response) => {
@@ -42,13 +54,22 @@ const server = http.createServer(async (request, response) => {
   if (request.method === 'POST' && url.pathname === '/api/search') {
     try {
       const body = await readJson(request)
-      const query = String(body.query ?? '').trim()
+
+      if (typeof body.query !== 'string') {
+        throw new HttpError(400, 'Le champ query doit être une chaîne de caractères')
+      }
+
+      const query = body.query.trim()
 
       if (!query) {
-        sendJson(response, 400, {
-          error: 'Le champ query est obligatoire',
-        })
-        return
+        throw new HttpError(400, 'Le champ query est obligatoire')
+      }
+
+      if (query.length > 1_000) {
+        throw new HttpError(
+          422,
+          'La recherche est trop longue (1 000 caractères maximum)',
+        )
       }
 
       const result = await searchWithLuna(query)
@@ -64,11 +85,36 @@ const server = http.createServer(async (request, response) => {
         ...result,
       })
     } catch (error) {
-      sendJson(response, 400, {
-        error: error.message,
+      if (error instanceof HttpError) {
+        sendJson(response, error.status, {
+          error: error.message,
+        })
+        return
+      }
+
+      console.error('Erreur /api/search :', error)
+
+      sendJson(response, 500, {
+        error: 'Le service de recherche est momentanément indisponible',
       })
     }
 
+    return
+  }
+
+  if (url.pathname === '/api/search') {
+    response.setHeader('Allow', 'POST')
+    sendJson(response, 405, {
+      error: 'Method Not Allowed',
+    })
+    return
+  }
+
+  if (url.pathname === '/api/health') {
+    response.setHeader('Allow', 'GET')
+    sendJson(response, 405, {
+      error: 'Method Not Allowed',
+    })
     return
   }
 
