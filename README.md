@@ -7,8 +7,9 @@ Cette application React/Vite permet de consulter les **1 056 formations** du sna
 ## Fonctionnalités
 
 - recherche lexicale enrichie sur le code, l’intitulé, le domaine, le thème, le Public, le Public visé et les offres de formation ;
+- recherche assistée par **GPT-5.6 Luna**, déclenchée explicitement, avec recommandations principales, compléments et abstention lorsque le catalogue ne répond pas suffisamment au besoin ;
 - normalisation des accents et des variations simples, avec reconnaissance de certains acronymes et synonymes métier validés ;
-- classement par pertinence lorsqu’une recherche est active, tout en conservant les tris habituels lorsque la recherche est vide ;
+- classement par pertinence par défaut avec une recherche classique, avec possibilité de trier aussi par intitulé ou code ;
 - cinq facettes **Cours** multi-sélection : **Offre de formation**, **Entité de formation**, **Domaine**, **Thème** et **Public** ;
 - logique OU entre les valeurs d’une même facette et ET entre les facettes ;
 - activation de Domaine après sélection d’une offre ou d’une entité, puis de Thème après sélection d’un domaine ;
@@ -58,8 +59,19 @@ git diff --check
 
 ## Publication
 
-Le contenu statique est publié sur GitHub Pages. Un push direct sur `main` déclenche `.github/workflows/deploy.yml`. Les mises à jour automatiques du catalogue sont validées, promues et déployées par `.github/workflows/update-catalogue.yml`.
+Le frontend statique peut être publié sur GitHub Pages. Un push direct sur `main` déclenche `.github/workflows/deploy.yml`. Les mises à jour automatiques du catalogue sont validées, promues et déployées par `.github/workflows/update-catalogue.yml`.
+
+La recherche IA nécessite en revanche un backend Node sécurisé : la clé OpenAI ne doit jamais être exposée dans le navigateur ou dans GitHub Pages. Le backend public définitif reste à déployer ; l’architecture Luna est actuellement fonctionnelle dans Codespaces.
 
 ## Choix de recherche
 
-Une recherche sémantique a été expérimentée, mais elle n’est pas retenue dans l’architecture actuelle : les essais n’ont pas démontré un gain suffisant au regard de la complexité technique supplémentaire. La recherche lexicale enrichie V1.2 reste la solution de référence afin de préserver la simplicité, les performances et la maintenance.
+L’application combine désormais deux modes :
+
+- une **recherche classique locale**, rapide et sans appel externe ;
+- une recherche assistée par **GPT-5.6 Luna**, déclenchée explicitement avec le bouton **Booster ma recherche avec l’IA**.
+
+Luna fonctionne en deux passes et utilise également un rappel lexical local pour compléter ses candidats. Les codes proposés sont contraints aux formations présentes dans le catalogue officiel.
+
+Typesense et MiniLM ont été évalués puis abandonnés pour l’architecture testée, leurs résultats n’ayant pas apporté un gain suffisant. Sur le benchmark indépendant réalisé avant les adaptations ultérieures, Luna a obtenu **26/30 (86,7 %)**. Ce benchmark est désormais consommé ; un nouveau jeu indépendant sera nécessaire pour mesurer la qualité finale de la version actuelle.
+
+La documentation technique détaillée et l’historique des décisions sont disponibles dans `GUIDE_REPRISE.md`.
