@@ -710,7 +710,7 @@ function App() {
                   onClick={() => setShowAiExplanation(false)}
                   autoFocus
                 >
-                  Voir les résultats
+                  {aiRecommendedCodes.length > 0 ? 'Voir les résultats' : 'Fermer'}
                 </button>
               </div>
             </section>
