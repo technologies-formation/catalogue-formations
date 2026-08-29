@@ -74,6 +74,17 @@ const CLASSIC_QUERY_TOKEN_EQUIVALENTS = new Map([
   ['conduire', 'conduite'],
 ])
 
+const BEGINNER_QUERY_TOKENS = new Set([
+  'debute',
+  'debuter',
+  'debutant',
+  'debutante',
+  'commence',
+  'commencer',
+])
+
+const BEGINNER_QUERY_ALTERNATIVES = ['base', 'fondamental']
+
 const SHORT_ACRONYMS = new Set(['IA', 'SI', 'RH'])
 const ABSOLUTE_SCORE_THRESHOLD = 42
 const RELATIVE_SCORE_THRESHOLD = 0.45
@@ -88,25 +99,48 @@ export function searchCourses(courses, query) {
   if (!normalizedQuery) return courses
 
   const corpus = getCorpus(courses, SEARCH_FIELDS)
-  const variants = buildQueryVariants(normalizedQuery, query).flatMap((variant) => {
-    const equivalentTokens = variant.tokens.map(normalizeClassicQueryToken)
-    const hasEquivalent = equivalentTokens.some(
-      (token, index) => token !== variant.tokens[index],
-    )
+  const variants = buildQueryVariants(normalizedQuery, query)
+    .flatMap((variant) => {
+      const equivalentTokens = variant.tokens.map(normalizeClassicQueryToken)
+      const hasEquivalent = equivalentTokens.some(
+        (token, index) => token !== variant.tokens[index],
+      )
 
-    if (!hasEquivalent) return [variant]
+      if (!hasEquivalent) return [variant]
 
-    return [
-      variant,
-      {
-        ...variant,
-        tokens: equivalentTokens,
-        intentionTokens: variant.tokens,
-        literal: false,
-        factor: variant.factor * 0.95,
-      },
-    ]
-  })
+      return [
+        variant,
+        {
+          ...variant,
+          tokens: equivalentTokens,
+          intentionTokens: variant.tokens,
+          literal: false,
+          factor: variant.factor * 0.95,
+        },
+      ]
+    })
+    .flatMap((variant) => {
+      const beginnerIndex = variant.tokens.findIndex((token) =>
+        BEGINNER_QUERY_TOKENS.has(token),
+      )
+
+      if (beginnerIndex < 0) return [variant]
+
+      const intentionTokens = variant.intentionTokens ?? variant.tokens
+
+      return [
+        variant,
+        ...BEGINNER_QUERY_ALTERNATIVES.map((alternative) => ({
+          ...variant,
+          tokens: variant.tokens.map((token, index) =>
+            index === beginnerIndex ? alternative : token,
+          ),
+          intentionTokens,
+          literal: false,
+          factor: variant.factor * 0.95,
+        })),
+      ]
+    })
   const candidates = corpus.documents
     .map((document) =>
       evaluateDocument(document, variants, normalizedQuery, corpus, true),

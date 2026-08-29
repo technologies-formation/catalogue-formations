@@ -151,6 +151,42 @@ test('conduire une réunion conserve conduire et retrouve aussi conduite', () =>
   )
 })
 
+test('les formulations de niveau débutant retrouvent les cours Base ou Fondamentaux', () => {
+  const beginnerCourses = [
+    course('POWERPOINT-BASE', 'PowerPoint 365 Base'),
+    course('POWERPOINT-ADVANCED', 'PowerPoint 365 Avancé'),
+    course('EXCEL-BASE-BEGINNER', 'Excel 365 Base'),
+    course('WORD-FUNDAMENTALS', 'Word 2016 : Fondamentaux au perfectionnement'),
+    ...Array.from({ length: 300 }, (_, index) =>
+      course(`BEGINNER-FILLER-${index}`, `Formation générique ${index}`),
+    ),
+  ]
+
+  assert.equal(
+    searchCourses(
+      beginnerCourses,
+      'Je débute avec PowerPoint',
+    )[0]?.code,
+    'POWERPOINT-BASE',
+  )
+
+  assert.equal(
+    searchCourses(
+      beginnerCourses,
+      'Je commence avec Excel',
+    )[0]?.code,
+    'EXCEL-BASE-BEGINNER',
+  )
+
+  assert.equal(
+    searchCourses(
+      beginnerCourses,
+      'Débutant sur Word',
+    )[0]?.code,
+    'WORD-FUNDAMENTALS',
+  )
+})
+
 function course(code, titleRaw, officialData = {}) {
   return {
     code,
