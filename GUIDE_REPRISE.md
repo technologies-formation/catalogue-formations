@@ -2,7 +2,7 @@
 
 Ce document est la référence technique et opérationnelle pour reprendre le projet après une interruption.
 
-> **État actualisé au 29 août 2026**
+> **État actualisé au 30 août 2026**
 >
 > Le projet dispose désormais d'une architecture de recherche combinant :
 > - la recherche classique locale ;
@@ -10,14 +10,24 @@ Ce document est la référence technique et opérationnelle pour reprendre le pr
 > - un rappel lexical local Top 40 ;
 > - un backend Node sécurisé pour les appels OpenAI.
 >
-> Jalon de référence Codespaces :
+> Jalon fonctionnel Codespaces :
 > - commit : `e03d105`
 > - tag : `search-llm-codespaces-v1-2026-08-29`
 > - tests : **288/288 réussis**
 >
+> Validation indépendante finale :
+> - **40 cas gelés avant le premier appel Luna** ;
+> - résultat strict : **37/40 (92,5 %)** ;
+> - langage naturel : **18/18** ;
+> - multi-intentions : **6/8** ;
+> - restrictions de contexte : **6/7** ;
+> - abstention : **7/7** ;
+> - résultat brut : commit `e0af8a4` ;
+> - tag : `search-luna-independent-result-2026-08-30`.
+>
 > Le frontend statique peut être publié sur GitHub Pages, mais **Luna nécessite un backend sécurisé séparé**. La clé `OPENAI_API_KEY` ne doit jamais être exposée dans le navigateur.
 >
-> Le benchmark indépendant Luna a obtenu **26/30 (86,7 %)** avant les adaptations ultérieures. Ce benchmark est désormais consommé ; un nouveau jeu indépendant sera nécessaire pour mesurer la qualité finale de la version actuelle.
+> Le benchmark final du 30 août 2026 est désormais **consommé** : il peut servir de test de régression, mais ne doit plus être présenté comme un nouveau benchmark indépendant après un futur réglage de Luna.
 
 ## État de référence
 
@@ -377,28 +387,58 @@ Rapport : `reports/minilm-enriched-decision-2026-08-26.md`
 
 ### GPT-5.6 Luna
 
-L'approche LLM contrainte par les codes officiels du catalogue a obtenu :
+#### Benchmark historique de développement
+
+L'approche LLM contrainte par les codes officiels du catalogue avait obtenu :
 
 **26/30 = 86,7 %**
 
-Détail du benchmark indépendant :
+Détail :
 
 - natural positive : 13/14 ;
 - multi-intent : 2/5 ;
 - context restriction : 6/6 ;
 - abstention : 5/5.
 
-Coût total observé sur les 30 recherches : **0,6270 USD**.
+Coût total observé sur ces 30 recherches : **0,6270 USD**, soit **0,0209 USD par recherche** en moyenne.
 
-Coût moyen : **0,0209 USD par recherche**.
+Ce benchmark a ensuite servi au diagnostic et à l'amélioration du rappel. Il est donc **consommé** et doit être présenté comme un résultat historique de développement.
 
-Décision : **GO pour l'architecture Luna en deux passes.**
+#### Benchmark indépendant final — 30 août 2026
 
-Le benchmark ayant servi à cette validation a ensuite été utilisé pour diagnostiquer et améliorer le rappel. Il est donc désormais **consommé**.
+Un nouveau jeu de **40 requêtes indépendantes** a été constitué avec les réponses attendues définies avant toute exécution Luna, puis gelé et versionné avant le premier appel au modèle.
 
-Les adaptations réalisées après le résultat 26/30 ne doivent pas être présentées comme indépendamment validées sur ce même benchmark.
+Résultat strict :
 
-Un nouveau jeu de test indépendant sera nécessaire avant toute affirmation définitive sur la qualité de la version actuelle.
+**37/40 = 92,5 %**
+
+Détail :
+
+- natural positive : **18/18 — 100 %** ;
+- multi-intent : **6/8 — 75 %** ;
+- context restriction : **6/7 — 85,7 %** ;
+- abstention : **7/7 — 100 %**.
+
+Coût total observé : **0,945976 USD**, soit environ **0,02365 USD par recherche**.
+
+La revue métier des trois échecs stricts a montré :
+
+- un cas TSA dont la formulation était ambiguë sur l'âge et pour lequel plusieurs formations alternatives étaient légitimes ;
+- deux cas liés aux magistrats où Luna a proposé des formations fonctionnellement équivalentes ou plus adaptées aux formulations utilisées ;
+- aucun défaut fonctionnel majeur de l'architecture Luna n'a été identifié sur cette campagne.
+
+Le score officiel reste néanmoins **37/40 (92,5 %)** : la revue qualitative complète l'interprétation sans modifier a posteriori le benchmark gelé.
+
+Traçabilité :
+
+- benchmark gelé : tag `search-benchmark-independent-final-2026-08-29` ;
+- résultat brut : commit `e0af8a4` ;
+- tag résultat : `search-luna-independent-result-2026-08-30` ;
+- SHA-256 du rapport brut : `cb376b3ca244f0f2b37a84f9d325d6e3aa4190fd72429817f6f0cd510776b889`.
+
+Décision au 30 août 2026 : **GO vers la préparation d'un pilote / d'un déploiement sécurisé**, sans retoucher Luna sur la base de ces trois écarts.
+
+Ce benchmark est désormais **consommé** pour tout futur réglage. Il reste utilisable comme test de régression, mais un nouveau jeu indépendant sera nécessaire pour mesurer objectivement une future version modifiée du moteur.
 
 Rapports :
 
@@ -435,7 +475,15 @@ Les futures adaptations doivent être fondées prioritairement sur des recherche
 
 Pour chaque test utilisant Luna, relever les tokens d’entrée, les tokens de sortie, les tokens lus et écrits dans le cache ainsi que le coût total en USD.
 
-Benchmark indépendant Luna : **0,6270 USD pour 30 recherches**, soit **0,0209 USD par recherche** en moyenne.
+Benchmark historique Luna : **0,6270 USD pour 30 recherches**, soit **0,0209 USD par recherche** en moyenne.
+
+Benchmark indépendant final du 30 août 2026 : **0,945976 USD pour 40 recherches**, soit environ **0,02365 USD par recherche** en moyenne.
+
+Usage total du benchmark final :
+- input : **4 071 094 tokens** ;
+- output : **7 182 tokens** ;
+- lus depuis le cache : **349 580 tokens** ;
+- écrits dans le cache : **3 721 274 tokens**.
 
 Avec un cache chaud, certains appels observés pendant le développement sont descendus autour de **0,003 à 0,004 USD**.
 
