@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-08-24
+- Date du snapshot : 2026-08-28
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 135.2 secondes
-- Taille du JSON final : 2.06 Mio (2156556 octets)
-- Empreinte SHA-256 du snapshot : `f9b43a260d97e472e67b028f0aad13003ac1cab145212d6fb5f6744b2427dcd7`
+- Durée totale de l’import : 123.6 secondes
+- Taille du JSON final : 2.06 Mio (2156376 octets)
+- Empreinte SHA-256 du snapshot : `488fb00afc0a74fd296e9d8705df1ff98870d52bcca140be57c8204d035d4890`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1649
-- Codes uniques : 1058
+- Occurrences détectées dans l’index : 1651
+- Codes uniques : 1060
 - Occurrences éliminées par déduplication : 591
 - Formations présentes dans plusieurs offres : 299
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1058
+- Fiches récupérées avec succès : 1060
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,35 +22,62 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1057 |
-| Cours dans le candidat | 1058 |
-| Cours ajoutés | 1 |
-| Cours supprimés | 0 |
-| Cours modifiés | 7 |
-| Cours dont les offres ont changé | 0 |
+| Cours dans le snapshot officiel | 1056 |
+| Cours dans le candidat | 1060 |
+| Cours ajoutés | 5 |
+| Cours supprimés | 1 |
+| Cours modifiés | 29 |
+| Cours dont les offres ont changé | 1 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| SEM1258 | La santé mentale au travail : le rôle clé des managers et de la filière RH | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | SANTE ET SECURITE AU TRAVAIL |
+| EP-1298ETB | Soutenir l'attention des élèves | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| EP-1314ETB | Jeunesse et Sports (J+S) : sport scolaire | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
+| EP-1316ETB | Accompagner les rythmes et besoins des élèves : outils pratiques pour un environnement capacitant. | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| EP-1324ETB | Relation d'autorité pédagogique | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| EP-1325ETB | Jeunesse et Sports (J+S) : sport scolaire | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| PJ-1065 | Art du PV, du rapport et du compte-rendu | PJ - Offre de formation du pouvoir judiciaire | Secteur formation du Pouvoir judiciaire | FORMATION COLLABORATEURS |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01649 | Du jeu théâtral à l'oralité : découverte d'outils pour la classe d'accueil (DIAC) | `hasOpenSession` : « true » → « false » |
-| CO-01682 | Maîtrise de classe : faire grandir son groupe classe, vers une autonomie sereine et collaborative (module 1) | `hasOpenSession` : « true » → « false » |
-| CO-01697 | Quelle place pour la lecture dans votre classe ou au sein de l'établissement ? Développer des projets autour du livre | `hasOpenSession` : « true » → « false » |
-| CO-01699 | Evaluer efficacement en latin : conception d'évaluation et stratégies de révision | `hasOpenSession` : « true » → « false » |
-| S2-733 | Relever les défis de l'enseignement aux générations Z et Alpha | `hasOpenSession` : « true » → « false » |
-| S2-EPS13 | Enseigner le tir à l'arc en toute sécurité | `hasOpenSession` : « true » → « false » |
-| SEM-10244 | CO-ESII / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « true » → « false » |
+| CO-01610 | TDAH et CO - Outils pour gérer l'hétérogénéité des élèves dont les élèves TDAH | `hasOpenSession` : « true » → « false » |
+| EO-012 | Instituer une relation d'autorité pédagogique II | `hasOpenSession` : « true » → « false » |
+| EP-099MDAS | Ultimate en contexte scolaire MDAS | `hasOpenSession` : « true » → « false » |
+| EP-1044 | Entrée dans le langage écrit : troubles des apprentissages du langage écrit et différenciation pédagogique | `hasOpenSession` : « true » → « false » |
+| EP-696 | L'élève avec un trouble du spectre de l'autisme (TSA) à l'école primaire | `hasOpenSession` : « true » → « false » |
+| EP-977 | Percussion corporelle et danse afro-brésilienne : des outils pour stimuler la capacité d'attention des élèves | `hasOpenSession` : « true » → « false » |
+| FP217 | EC ASP Test de connaissances SOF - inscription participants | `themeRaw` : « Évaluations de compétences ASP » → « Évaluations de compétences EC1 ASP » |
+| FP218 | EC1 ASP Processus d'évaluation SOF - Inscription participants | `themeRaw` : « Évaluations de compétences ASP » → « Évaluations de compétences EC1 ASP » |
+| FP249 | Formation Initiale Sentinelle milicien/milicienne | `hasOpenSession` : « false » → « true » |
+| OMP-007TSA | Les troubles du traitement de l'information sensorielle: de l'évaluation aux interventions | `hasOpenSession` : « true » → « false » |
+| OMP-011TSA | Développement du langage neurotypique vs DI TSA : construire ensemble la communication | `hasOpenSession` : « true » → « false » |
+| PJ-0001 | Accueil des nouveaux collaborateurs.<br>La convocation est directement adressée aux collaboratrices et collaborateurs par RH-Formation | `hasScheduledSession` : « false » → « true » |
+| PJ-0105 | Accueil RH des nouveaux collaborateurs<br>La convocation est directement adressée aux collaboratrices et aux collaborateurs par RH-Formation | `hasScheduledSession` : « false » → « true » |
+| S2-433 | Evaluation HSE des risques au laboratoire (I) | `hasOpenSession` : « true » → « false » |
+| S2-435 | Intelligence artificielle pour l'enseignement de la chimie | `hasOpenSession` : « true » → « false » |
+| S2-840 | Dyslexie et dysorthographie au secondaire I et II : théorie, pistes pédagogiques et outils de remédiation | `hasOpenSession` : « true » → « false » |
+| SEM-10617 | CO-PO / Générer des images avec l'intelligence artificielle / NOUVEAU | `hasOpenSession` : « true » → « false » |
+| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | `hasOpenSession` : « true » → « false » |
+| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « true » → « false » |
+| SEM1040 | Mindmap : une méthode pour organiser ses idées et ses informations | `hasOpenSession` : « true » → « false » |
+| SEM1127 | Gestion de l'absence et de la qualité de vie au travail - Théâtre forum | `hasScheduledSession` : « false » → « true » |
+| SEM1151 | Sensibilisation à la Communication NonViolente (CNV©) | `hasOpenSession` : « false » → « true » |
+| SEM1185 | La fabrique de la confiance : le management par les valeurs | `hasOpenSession` : « false » → « true » |
+| SEM1193 | Prendre et assumer son rôle | `hasOpenSession` : « false » → « true » |
+| SEM1197 | Formateurs occasionnels: construire et animer une formation | `hasOpenSession` : « true » → « false » |
+| SEM1203 | Les entretiens managériaux | `hasOpenSession` : « false » → « true » |
+| TRT1017 | Word 365 Mise en forme avancée | `hasOpenSession` : « true » → « false » |
+| TRT1018 | Word 365 Longs documents | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
@@ -58,7 +85,9 @@ Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
-Aucun rattachement à une offre n’a changé.
+| Code | Intitulé | Offres ajoutées | Offres retirées |
+| --- | --- | --- | --- |
+| S2-FIO002B | Enseignement, différenciation pédagogique et évaluation dans une approche orientée vers les compétences opérationnelles (OCO): préparer, délivrer et évaluer | DIP-ES II - Offre de formation de l'ES II | Détention - Offre de formation de l'OCD |
 
 ### Anomalies techniques
 
@@ -92,32 +121,32 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
-| Détention - Offre de formation de l'OCD | 71 | 71 |
-| DF-OPE - L'offre de formation de l'OPE | 171 | 171 |
+| Détention - Offre de formation de l'OCD | 70 | 70 |
+| DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 226 | 226 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 294 | 294 |
-| DIP-ES II - Offre de formation de l'ES II | 236 | 236 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 299 | 299 |
+| DIP-ES II - Offre de formation de l'ES II | 237 | 237 |
 | DIP-OMP - Offre formation de l'OMP | 234 | 234 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 153 | 153 |
-| PJ - Offre de formation du pouvoir judiciaire | 56 | 56 |
-| POLICE - CFPS - Centre de Formation de la Police | 205 | 205 |
+| PJ - Offre de formation du pouvoir judiciaire | 55 | 55 |
+| POLICE - CFPS - Centre de Formation de la Police | 204 | 204 |
 
 ## Disponibilité des champs
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1058/1058 | 100.0 % |
-| `domainRaw` | 1058/1058 | 100.0 % |
-| `themeRaw` | 979/1058 | 92.5 % |
-| `publicRaw` | 947/1058 | 89.5 % |
-| `durationRaw` | 1043/1058 | 98.6 % |
-| `targetAudienceRaw` | 942/1058 | 89.0 % |
-| `generalInformationRaw` | 545/1058 | 51.5 % |
-| `objectivesRaw` | 1008/1058 | 95.3 % |
-| `contentRaw` | 953/1058 | 90.1 % |
-| `prerequisitesRaw` | 396/1058 | 37.4 % |
-| `additionalInformationRaw` | 354/1058 | 33.5 % |
+| `organizingEntityRaw` | 1060/1060 | 100.0 % |
+| `domainRaw` | 1060/1060 | 100.0 % |
+| `themeRaw` | 981/1060 | 92.5 % |
+| `publicRaw` | 950/1060 | 89.6 % |
+| `durationRaw` | 1045/1060 | 98.6 % |
+| `targetAudienceRaw` | 942/1060 | 88.9 % |
+| `generalInformationRaw` | 543/1060 | 51.2 % |
+| `objectivesRaw` | 1008/1060 | 95.1 % |
+| `contentRaw` | 951/1060 | 89.7 % |
+| `prerequisitesRaw` | 394/1060 | 37.2 % |
+| `additionalInformationRaw` | 353/1060 | 33.3 % |
 
 ### Correspondance des libellés officiels
 
@@ -157,8 +186,8 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
+- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
@@ -200,7 +229,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-08-24T05:27:36.340Z
-- Snapshot candidat validé : 2026-08-24
-- Empreinte SHA-256 : `f9b43a260d97e472e67b028f0aad13003ac1cab145212d6fb5f6744b2427dcd7`
+- Date et heure de promotion : 2026-08-28T21:17:05.419Z
+- Snapshot candidat validé : 2026-08-28
+- Empreinte SHA-256 : `488fb00afc0a74fd296e9d8705df1ff98870d52bcca140be57c8204d035d4890`
 - Promotion manuelle confirmée.
