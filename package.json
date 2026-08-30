@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "node server/searchApi.mjs",
     "build": "vite build",
     "import:catalogue": "node scripts/importOfficialCatalogue.mjs",
     "lint": "oxlint",
