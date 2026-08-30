@@ -28,7 +28,10 @@ import {
   serializeCourseSearchState,
 } from './domain/courseSearchUrl.js'
 import { searchCourses } from './domain/courseSearch.js'
-import { searchCatalogueWithAi } from './services/catalogueSearchApi.js'
+import {
+  isAiSearchConfigured,
+  searchCatalogueWithAi,
+} from './services/catalogueSearchApi.js'
 
 const NO_FILTER = ''
 const LONG_TARGET_AUDIENCE_THRESHOLD = 240
@@ -578,7 +581,9 @@ function App() {
                 placeholder="Décrivez votre besoin, recherchez un mot-clé ou un code..."
               />
 
-              {officialSearch.trim() && !isAiSearchActive && (
+              {isAiSearchConfigured &&
+                officialSearch.trim() &&
+                !isAiSearchActive && (
                 <button
                   className="ai-search-button"
                   type="button"
