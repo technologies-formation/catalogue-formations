@@ -3,6 +3,7 @@ import officialCatalogueSnapshot from '../src/data/officialCatalogueSnapshot.jso
 }
 import { fullCatalogueCourses } from '../src/data/fullCatalogueCourses.js'
 import { searchCourseCandidates } from '../src/domain/courseSearch.js'
+import { positiveIntegerEnv } from './config.mjs'
 
 const MODEL = 'gpt-5.6-luna'
 const LOCAL_RECALL_LIMIT = 40
@@ -93,6 +94,8 @@ function usageCost(usage = {}) {
   }
 }
 
+const OPENAI_TIMEOUT_MS = positiveIntegerEnv('OPENAI_TIMEOUT_MS', 90_000, 1_000)
+
 async function callOpenAI(body) {
   const response = await fetch('https://api.openai.com/v1/responses', {
     method: 'POST',
@@ -101,6 +104,7 @@ async function callOpenAI(body) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
+    signal: AbortSignal.timeout(OPENAI_TIMEOUT_MS),
   })
 
   const data = await response.json()
