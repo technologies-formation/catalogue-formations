@@ -1,0 +1,1407 @@
+{
+  "benchmark": "Benchmark indépendant final Luna 2026-08-29",
+  "benchmarkPath": "benchmarks/search-benchmark-independent-final-2026-08-29.json",
+  "runAt": "2026-08-30T05:42:06.844Z",
+  "model": "gpt-5.6-luna",
+  "cases": [
+    {
+      "id": "NEW-NL-001",
+      "segment": "natural_positive",
+      "query": "J’ai tendance à rester bloqué sur les mêmes solutions lorsqu’un problème se présente. Je voudrais apprendre à sortir de mes habitudes de réflexion et trouver des pistes plus créatives.",
+      "expectedRelevantCodes": [
+        "SEM0828"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "SEM0828": 1
+      },
+      "returnedCodes": [
+        "SEM0828",
+        "SEM1070",
+        "SEM1165"
+      ],
+      "recommendedCodes": [
+        "SEM0828"
+      ],
+      "complementaryCodes": [
+        "SEM1070",
+        "SEM1165"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation SEM0828 répond directement au besoin de sortir des schémas habituels et de développer des solutions originales grâce à un processus créatif et à des techniques d’innovation. SEM1070 peut compléter par une méthode structurée de résolution de problèmes, tandis que SEM1165 approfondit une approche créative centrée sur les besoins humains.",
+      "usage": {
+        "input": 102850,
+        "output": 153,
+        "cached": 81822,
+        "written": 21022,
+        "cost": 0.00707674
+      }
+    },
+    {
+      "id": "NEW-NL-002",
+      "segment": "natural_positive",
+      "query": "On me parle de plus en plus de méthodes agiles dans les projets. Je voudrais comprendre leur fonctionnement, les rôles et dans quels cas elles sont préférables à une démarche classique.",
+      "expectedRelevantCodes": [
+        "SEM1218"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "SEM1218": 1
+      },
+      "returnedCodes": [
+        "SEM1218",
+        "SEM0737"
+      ],
+      "recommendedCodes": [
+        "SEM1218"
+      ],
+      "complementaryCodes": [
+        "SEM0737"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "SEM1218 répond directement à la demande : découverte des approches agiles, comparaison avec les approches en cascade, critères de choix, rôles et expérimentation concrète d’un projet agile. SEM0737 peut compléter par les fondamentaux de la gestion de projet classique, mais n’est pas nécessaire pour répondre au besoin principal.",
+      "usage": {
+        "input": 101211,
+        "output": 159,
+        "cached": 81824,
+        "written": 19381,
+        "cost": 0.006673729999999999
+      }
+    },
+    {
+      "id": "NEW-NL-003",
+      "segment": "natural_positive",
+      "query": "Je dois organiser une concertation avec plusieurs partenaires qui n’ont pas les mêmes intérêts. Je voudrais mieux comprendre les jeux d’acteurs et construire une solution avec eux.",
+      "expectedRelevantCodes": [
+        "SEM1145"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "SEM1145": 1
+      },
+      "returnedCodes": [
+        "SEM1145",
+        "SEM1149",
+        "SEM1164"
+      ],
+      "recommendedCodes": [
+        "SEM1145"
+      ],
+      "complementaryCodes": [
+        "SEM1149",
+        "SEM1164"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation SEM1145 répond directement au besoin central : analyser les logiques d’acteurs, leurs intérêts et représentations, distinguer concertation et consultation, puis mobiliser des techniques de communication pour construire une solution en co-construction. SEM1149 complète utilement sur la préparation stratégique et la gestion des intérêts divergents en négociation, tandis que SEM1164 approfondit la facilitation et les méthodes de création conjointe.",
+      "usage": {
+        "input": 105232,
+        "output": 204,
+        "cached": 4893,
+        "written": 100333,
+        "cost": 0.025427110000000003
+      }
+    },
+    {
+      "id": "NEW-NL-004",
+      "segment": "natural_positive",
+      "query": "Les changements actuels rendent mon environnement professionnel difficile à prévoir. Je voudrais mieux vivre cette incertitude sans chercher à tout contrôler.",
+      "expectedRelevantCodes": [
+        "SEM1211"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "SEM1211": 1
+      },
+      "returnedCodes": [
+        "SEM1211",
+        "SEM1043",
+        "SEM1196"
+      ],
+      "recommendedCodes": [
+        "SEM1211",
+        "SEM1043"
+      ],
+      "complementaryCodes": [
+        "SEM1196"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "Ces deux formations répondent directement au besoin de mieux vivre un environnement professionnel incertain et changeant, en développant des stratégies d’adaptation, en se reconnectant à ses ressources et en travaillant le lâcher-prise. La formation complémentaire permet d’approfondir la dimension d’accompagnement du changement.",
+      "usage": {
+        "input": 101153,
+        "output": 167,
+        "cached": 4893,
+        "written": 96254,
+        "cost": 0.024362960000000003
+      }
+    },
+    {
+      "id": "NEW-NL-005",
+      "segment": "natural_positive",
+      "query": "Je voudrais comprendre l’impact environnemental de mes usages numériques et adopter de meilleurs réflexes au quotidien avec mes outils informatiques.",
+      "expectedRelevantCodes": [
+        "TRT3016E"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "TRT3016E": 1
+      },
+      "returnedCodes": [
+        "TRT3016E"
+      ],
+      "recommendedCodes": [
+        "TRT3016E"
+      ],
+      "complementaryCodes": [],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "Cette formation répond directement et substantiellement à la demande : elle traite des impacts environnementaux du numérique, propose des méthodes pour les mesurer et permet d’adopter des pratiques plus responsables au quotidien, notamment au travail et dans l’usage des outils informatiques.",
+      "usage": {
+        "input": 100657,
+        "output": 132,
+        "cached": 4893,
+        "written": 95758,
+        "cost": 0.02419696
+      }
+    },
+    {
+      "id": "NEW-NL-006",
+      "segment": "natural_positive",
+      "query": "Dans mon activité en milieu pénitentiaire, je voudrais mieux reconnaître les signes qui peuvent annoncer un risque suicidaire et savoir comment intervenir.",
+      "expectedRelevantCodes": [
+        "OCD025"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "OCD025": 1
+      },
+      "returnedCodes": [
+        "OCD025",
+        "OCD128",
+        "OCD425"
+      ],
+      "recommendedCodes": [
+        "OCD025",
+        "OCD128"
+      ],
+      "complementaryCodes": [
+        "OCD425"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "Ces deux formations répondent directement au besoin en milieu pénitentiaire : elles permettent d’identifier les facteurs de risque et les signes précurseurs du suicide, puis d’acquérir des bases de prévention, d’intervention et de prise en charge adaptées des personnes détenues. La formation sur la communication peut compléter utilement ces acquis pour les échanges avec les détenus, notamment lors de discussions difficiles.",
+      "usage": {
+        "input": 100329,
+        "output": 164,
+        "cached": 4893,
+        "written": 95430,
+        "cost": 0.024153360000000002
+      }
+    },
+    {
+      "id": "NEW-NL-007",
+      "segment": "natural_positive",
+      "query": "Je travaille avec des personnes détenues ayant des problèmes d’addiction. Je voudrais mieux comprendre les substances, le sevrage et les stratégies de prise en charge.",
+      "expectedRelevantCodes": [
+        "OCD131"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "OCD131": 1
+      },
+      "returnedCodes": [
+        "OCD131",
+        "OCD370"
+      ],
+      "recommendedCodes": [
+        "OCD131"
+      ],
+      "complementaryCodes": [
+        "OCD370"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation OCD131 répond directement et substantiellement au besoin : elle traite des substances psychoactives, de leurs effets et du sevrage, ainsi que des stratégies de traitement et de prise en charge des personnes détenues présentant une consommation problématique. Le CAS OCD370 constitue un complément plus large sur la santé en milieu pénitentiaire, incluant les addictions, mais il est moins spécifiquement centré sur ce besoin.",
+      "usage": {
+        "input": 100382,
+        "output": 161,
+        "cached": 4893,
+        "written": 95483,
+        "cost": 0.02416301
+      }
+    },
+    {
+      "id": "NEW-NL-008",
+      "segment": "natural_positive",
+      "query": "Certains de mes élèves du primaire décrochent rapidement. Je cherche des moyens utilisant le mouvement et le jeu pour améliorer leur attention et leur disponibilité pour apprendre.",
+      "expectedRelevantCodes": [
+        "EP-998"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "EP-998": 1
+      },
+      "returnedCodes": [
+        "EP-998",
+        "EP-489",
+        "EP-1058",
+        "EP-977"
+      ],
+      "recommendedCodes": [
+        "EP-998"
+      ],
+      "complementaryCodes": [
+        "EP-489",
+        "EP-1058",
+        "EP-977"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation EP-998 répond directement au besoin : elle utilise le corps, le mouvement et le jeu pour renforcer la motivation, l’attention, les fonctions exécutives et la disponibilité mentale, avec des outils concrets pour les élèves en difficulté. Les formations complémentaires approfondissent l’intégration du mouvement en classe, l’investissement de la salle de jeux ou l’usage du rythme et de la percussion corporelle.",
+      "usage": {
+        "input": 105602,
+        "output": 209,
+        "cached": 4893,
+        "written": 100703,
+        "cost": 0.025525609999999997
+      }
+    },
+    {
+      "id": "NEW-NL-009",
+      "segment": "natural_positive",
+      "query": "Je voudrais faire découvrir la programmation à des élèves sans commencer directement devant un ordinateur, puis utiliser un petit robot pour mettre les concepts en pratique.",
+      "expectedRelevantCodes": [
+        "OMP-110"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "OMP-110": 1
+      },
+      "returnedCodes": [
+        "OMP-110",
+        "SEM-P1571",
+        "SEM-P1573"
+      ],
+      "recommendedCodes": [
+        "OMP-110"
+      ],
+      "complementaryCodes": [
+        "SEM-P1571",
+        "SEM-P1573"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "OMP-110 répond directement aux deux dimensions centrales : activités de programmation débranchées avant l'usage d'un robot, puis prise en main de Thymio et conception d'activités transférables en classe. SEM-P1571 et SEM-P1573 peuvent ensuite approfondir la mise en œuvre avec Thymio ou Blue-Bot.",
+      "usage": {
+        "input": 101272,
+        "output": 191,
+        "cached": 4893,
+        "written": 96373,
+        "cost": 0.02442151
+      }
+    },
+    {
+      "id": "NEW-NL-010",
+      "segment": "natural_positive",
+      "query": "J’aimerais utiliser le parcours d’un vêtement pour faire comprendre à mes élèves les liens entre consommation, économie, environnement et justice sociale.",
+      "expectedRelevantCodes": [
+        "S2-646"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "S2-646": 1
+      },
+      "returnedCodes": [
+        "S2-646",
+        "S2-642"
+      ],
+      "recommendedCodes": [
+        "S2-646"
+      ],
+      "complementaryCodes": [
+        "S2-642"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "S2-646 répond directement et de manière substantielle à la demande : elle utilise explicitement le cycle de vie d’un T-shirt pour relier consommation, économie, impacts environnementaux et justice sociale, avec un support pédagogique exploitable en classe. S2-642 peut compléter cette approche en aidant à inscrire le travail dans un projet plus large d’éducation à la durabilité.",
+      "usage": {
+        "input": 107881,
+        "output": 189,
+        "cached": 4893,
+        "written": 102982,
+        "cost": 0.026071360000000002
+      }
+    },
+    {
+      "id": "NEW-NL-011",
+      "segment": "natural_positive",
+      "query": "J’enseigne aux tout premiers degrés du primaire et je dois prendre en main le nouveau moyen romand de français, notamment pour l’entrée dans l’écrit.",
+      "expectedRelevantCodes": [
+        "EP-517"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "EP-517": 1
+      },
+      "returnedCodes": [
+        "EP-517",
+        "EP-030EVEN",
+        "EP-031EVEN",
+        "EP-1044"
+      ],
+      "recommendedCodes": [
+        "EP-517"
+      ],
+      "complementaryCodes": [
+        "EP-030EVEN",
+        "EP-031EVEN",
+        "EP-1044"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "EP-517 répond directement à la prise en main du MER Français 1re-2e et traite explicitement les enjeux de l’entrée dans l’écrit, avec planification, différenciation et évaluation. Les autres formations proposées complètent cette appropriation ou approfondissent les besoins liés aux difficultés du langage écrit.",
+      "usage": {
+        "input": 101701,
+        "output": 211,
+        "cached": 4893,
+        "written": 96802,
+        "cost": 0.02455276
+      }
+    },
+    {
+      "id": "NEW-NL-012",
+      "segment": "natural_positive",
+      "query": "Mes élèves du cycle d’orientation manquent d’enthousiasme en allemand. Je cherche des jeux et activités créatives pour les faire davantage participer.",
+      "expectedRelevantCodes": [
+        "CO-01702"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "CO-01702": 1
+      },
+      "returnedCodes": [
+        "CO-01702",
+        "CO-01712",
+        "SEM-10455"
+      ],
+      "recommendedCodes": [
+        "CO-01702"
+      ],
+      "complementaryCodes": [
+        "CO-01712",
+        "SEM-10455"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation CO-01702 répond directement au besoin : elle propose des jeux et activités créatives spécifiquement pour l'enseignement de l'allemand au CO, avec expérimentation et matériel transférable en classe. CO-01712 peut compléter par une approche actionnelle favorisant la participation et la coopération, tandis que SEM-10455 approfondit la ludification d'exercices, mais sans être spécifique à l'allemand.",
+      "usage": {
+        "input": 102948,
+        "output": 221,
+        "cached": 4893,
+        "written": 98049,
+        "cost": 0.02487651
+      }
+    },
+    {
+      "id": "NEW-NL-013",
+      "segment": "natural_positive",
+      "query": "Je voudrais mettre en place au secondaire II des ateliers méthodologiques spécialement destinés aux élèves dyslexiques ou dysorthographiques.",
+      "expectedRelevantCodes": [
+        "S2-843"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "S2-843": 1
+      },
+      "returnedCodes": [
+        "S2-843",
+        "S2-840"
+      ],
+      "recommendedCodes": [
+        "S2-843"
+      ],
+      "complementaryCodes": [
+        "S2-840"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation S2-843 répond directement et spécifiquement à la mise en place et à l’animation d’ateliers méthodologiques pour des élèves dyslexiques ou dysorthographiques au secondaire II. S2-840 constitue un complément pertinent pour approfondir la compréhension des troubles et les aménagements pédagogiques.",
+      "usage": {
+        "input": 103376,
+        "output": 172,
+        "cached": 4893,
+        "written": 98477,
+        "cost": 0.02492471
+      }
+    },
+    {
+      "id": "NEW-NL-014",
+      "segment": "natural_positive",
+      "query": "Au primaire, je souhaite mieux distinguer les difficultés de lecture liées à la dyslexie de celles liées à la compréhension et adapter mes pratiques.",
+      "expectedRelevantCodes": [
+        "EP-1044"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "EP-1044": 1
+      },
+      "returnedCodes": [
+        "EP-1044",
+        "EP-1049",
+        "OMP-083"
+      ],
+      "recommendedCodes": [
+        "EP-1044"
+      ],
+      "complementaryCodes": [
+        "EP-1049",
+        "OMP-083"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "Cette formation cible directement le primaire et permet de distinguer les difficultés d’identification des mots de celles de compréhension, de comprendre les impacts scolaires de la dyslexie et d’acquérir des outils et méthodes pédagogiques transférables en classe. La différenciation pédagogique et l’introduction plus générale aux troubles du langage peuvent utilement compléter ce parcours.",
+      "usage": {
+        "input": 104089,
+        "output": 185,
+        "cached": 4893,
+        "written": 99190,
+        "cost": 0.025118560000000005
+      }
+    },
+    {
+      "id": "NEW-NL-015",
+      "segment": "natural_positive",
+      "query": "J’aimerais réaliser une petite série télévisée avec ma classe et apprendre les bases nécessaires pour mener ce projet avec les élèves.",
+      "expectedRelevantCodes": [
+        "S2-110"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "S2-110": 1
+      },
+      "returnedCodes": [
+        "S2-110",
+        "SEM-P1083",
+        "SEM-10408"
+      ],
+      "recommendedCodes": [
+        "S2-110"
+      ],
+      "complementaryCodes": [
+        "SEM-P1083",
+        "SEM-10408"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation S2-110 répond directement au projet de réaliser une mini-série en classe : elle couvre la construction narrative et scénaristique sérielle, la prise de vue et de son, le montage, le mixage et la production complète avec des outils accessibles. Les deux compléments proposés renforcent respectivement la démarche générale de réalisation d’un court film et le montage vidéo sur un logiciel plus avancé.",
+      "usage": {
+        "input": 106811,
+        "output": 237,
+        "cached": 4893,
+        "written": 101912,
+        "cost": 0.025861460000000003
+      }
+    },
+    {
+      "id": "NEW-NL-016",
+      "segment": "natural_positive",
+      "query": "Lorsque je fais chanter mes élèves, certains forcent leur voix ou chantent faux. Je voudrais disposer d’exercices pour travailler détente, justesse et projection.",
+      "expectedRelevantCodes": [
+        "CO-01706"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "CO-01706": 1
+      },
+      "returnedCodes": [
+        "CO-01706"
+      ],
+      "recommendedCodes": [
+        "CO-01706"
+      ],
+      "complementaryCodes": [],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation répond directement aux trois besoins centraux : elle propose des exercices de détente et de mise en voix, le travail de la justesse et le développement d’une projection vocale sans forçage, avec des outils transférables aux élèves en classe.",
+      "usage": {
+        "input": 104813,
+        "output": 150,
+        "cached": 4893,
+        "written": 99914,
+        "cost": 0.02525756
+      }
+    },
+    {
+      "id": "NEW-NL-017",
+      "segment": "natural_positive",
+      "query": "J’encadre déjà l’escalade dans le cadre J+S et je voudrais actualiser mes connaissances en sécurité et en gestion des risques.",
+      "expectedRelevantCodes": [
+        "S2-EPS18"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "S2-EPS18": 1
+      },
+      "returnedCodes": [
+        "S2-EPS18",
+        "S2-EPS17"
+      ],
+      "recommendedCodes": [
+        "S2-EPS18"
+      ],
+      "complementaryCodes": [
+        "S2-EPS17"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation S2-EPS18 répond directement au besoin : elle est destinée aux personnes déjà titulaires d’une reconnaissance J+S en escalade et actualise explicitement les standards de sécurité, la gestion des risques et les dispositifs d’assurage. S2-EPS17 constitue un complément pertinent pour approfondir les standards suisses et la réduction des risques, sous réserve de remplir ses prérequis.",
+      "usage": {
+        "input": 99588,
+        "output": 194,
+        "cached": 4893,
+        "written": 94689,
+        "cost": 0.024004110000000006
+      }
+    },
+    {
+      "id": "NEW-NL-018",
+      "segment": "natural_positive",
+      "query": "J’accompagne des adolescents ou adultes autistes avec déficience intellectuelle et je dois mieux évaluer leurs compétences pour construire des interventions individualisées.",
+      "expectedRelevantCodes": [
+        "OMP-009TSA"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "OMP-009TSA": 1
+      },
+      "returnedCodes": [
+        "OMP-009TSA",
+        "OMP-091",
+        "OMP-066"
+      ],
+      "recommendedCodes": [
+        "OMP-009TSA",
+        "OMP-091"
+      ],
+      "complementaryCodes": [
+        "OMP-066"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "Les formations OMP-009TSA et OMP-091 couvrent directement l’évaluation des adolescents et adultes autistes avec déficience intellectuelle, notamment via le TTAP et l’EFI-ré, ainsi que l’exploitation des résultats pour construire des projets d’intervention individualisés. OMP-066 peut compléter cette démarche par la formalisation d’objectifs mesurables et leur évaluation dans un projet éducatif individualisé.",
+      "usage": {
+        "input": 110359,
+        "output": 329,
+        "cached": 4893,
+        "written": 105460,
+        "cost": 0.026858860000000002
+      }
+    },
+    {
+      "id": "NEW-MI-019",
+      "segment": "multi_intent",
+      "query": "Je vais piloter un projet avec une démarche agile, mais je dois aussi organiser la concertation avec plusieurs partenaires aux intérêts différents.",
+      "expectedRelevantCodes": [
+        "SEM1218",
+        "SEM1145"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "SEM1218": 1,
+        "SEM1145": 2
+      },
+      "returnedCodes": [
+        "SEM1218",
+        "SEM1145",
+        "SEM1089"
+      ],
+      "recommendedCodes": [
+        "SEM1218",
+        "SEM1145"
+      ],
+      "complementaryCodes": [
+        "SEM1089"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "Les deux formations recommandées couvrent directement les dimensions centrales de la demande : piloter un projet en démarche agile et organiser une concertation avec des partenaires aux intérêts divergents. Le management transversal constitue un complément utile pour mobiliser ces acteurs sans lien hiérarchique.",
+      "usage": {
+        "input": 101531,
+        "output": 163,
+        "cached": 4893,
+        "written": 96632,
+        "cost": 0.02445266
+      }
+    },
+    {
+      "id": "NEW-MI-020",
+      "segment": "multi_intent",
+      "query": "Je suis cadre en milieu pénitentiaire. Je dois être mieux préparé à gérer une crise tout en sachant réagir lorsqu’un détenu présente un risque suicidaire.",
+      "expectedRelevantCodes": [
+        "OCD423",
+        "OCD025"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "OCD423": 1,
+        "OCD025": 2
+      },
+      "returnedCodes": [
+        "OCD423",
+        "OCD025",
+        "OCD179"
+      ],
+      "recommendedCodes": [
+        "OCD423",
+        "OCD025"
+      ],
+      "complementaryCodes": [
+        "OCD179"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "OCD423 répond directement au besoin de préparation et de conduite de crise pour les cadres pénitentiaires, avec analyse de situation, élaboration de solutions et prise de décision sous pression. OCD025 couvre spécifiquement la détection du risque suicidaire et les bases d’une intervention adaptée en milieu pénitentiaire. OCD179 constitue un complément opérationnel pertinent pour renforcer la conduite d’intervention et la prise de décision en contexte carcéral.",
+      "usage": {
+        "input": 100654,
+        "output": 182,
+        "cached": 4893,
+        "written": 95755,
+        "cost": 0.02425621
+      }
+    },
+    {
+      "id": "NEW-MI-021",
+      "segment": "multi_intent",
+      "query": "Dans notre établissement pénitentiaire, je rencontre des personnes ayant des problèmes d’addiction et je dois également mieux repérer les situations présentant un risque suicidaire.",
+      "expectedRelevantCodes": [
+        "OCD131",
+        "OCD025"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "OCD131": 1,
+        "OCD025": 2
+      },
+      "returnedCodes": [
+        "OCD131",
+        "OCD025",
+        "OCD128"
+      ],
+      "recommendedCodes": [
+        "OCD131",
+        "OCD025"
+      ],
+      "complementaryCodes": [
+        "OCD128"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "Les deux formations recommandées répondent directement aux besoins centraux : la prise en charge des dépendances en milieu pénitentiaire et le repérage ainsi que l’intervention face au risque suicidaire. Le module sur le stress, la dépression et les tendances suicidaires constitue un complément pertinent pour approfondir la compréhension et la prévention des situations suicidaires.",
+      "usage": {
+        "input": 102737,
+        "output": 161,
+        "cached": 4893,
+        "written": 97838,
+        "cost": 0.024751759999999998
+      }
+    },
+    {
+      "id": "NEW-MI-022",
+      "segment": "multi_intent",
+      "query": "Au primaire, plusieurs élèves ont des difficultés de lecture et certains peinent également à rester disponibles et concentrés pour apprendre. Je voudrais agir sur ces deux aspects.",
+      "expectedRelevantCodes": [
+        "EP-1044",
+        "EP-998"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "EP-1044": 1,
+        "EP-998": 3
+      },
+      "returnedCodes": [
+        "EP-1044",
+        "EP-699",
+        "EP-998"
+      ],
+      "recommendedCodes": [
+        "EP-1044",
+        "EP-699"
+      ],
+      "complementaryCodes": [
+        "EP-998"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "EP-1044 répond directement aux difficultés de lecture et propose des outils pour les élèves faibles lecteurs ou dyslexiques. EP-699 cible les fonctions exécutives et attentionnelles, avec des stratégies pédagogiques pour soutenir la concentration et les apprentissages. EP-998 constitue un complément pratique centré sur l’attention, la disponibilité mentale et le mouvement, notamment pour les élèves présentant des troubles.",
+      "usage": {
+        "input": 109112,
+        "output": 243,
+        "cached": 4893,
+        "written": 104213,
+        "cost": 0.026443909999999998
+      }
+    },
+    {
+      "id": "NEW-MI-023",
+      "segment": "multi_intent",
+      "query": "Dans mon activité avec des jeunes ayant des besoins particuliers, je voudrais proposer des activités simples de robotique mais aussi mieux évaluer les compétences de jeunes autistes pour individualiser leur accompagnement.",
+      "expectedRelevantCodes": [
+        "OMP-110",
+        "OMP-009TSA"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "success": false,
+      "ranks": {
+        "OMP-110": 1,
+        "OMP-009TSA": null
+      },
+      "returnedCodes": [
+        "OMP-110",
+        "OMP-010TSA",
+        "OMP-066",
+        "OMP-002TSA"
+      ],
+      "recommendedCodes": [
+        "OMP-110",
+        "OMP-010TSA"
+      ],
+      "complementaryCodes": [
+        "OMP-066",
+        "OMP-002TSA"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "OMP-110 répond directement à la mise en place d'activités simples de science informatique et de robotique adaptées aux jeunes ayant des besoins spécifiques. OMP-010TSA permet d'évaluer les compétences d'élèves autistes avec le PEP-3 et d'utiliser les résultats pour individualiser les objectifs, la structuration et l'accompagnement. OMP-066 et OMP-002TSA peuvent utilement compléter ces acquis par la formalisation du projet individualisé et l'enseignement structuré, sans être nécessaires pour couvrir les deux besoins centraux.",
+      "usage": {
+        "input": 106034,
+        "output": 290,
+        "cached": 4893,
+        "written": 101135,
+        "cost": 0.025730810000000003
+      }
+    },
+    {
+      "id": "NEW-MI-024",
+      "segment": "multi_intent",
+      "query": "J’aimerais faire réaliser une mini-série à mes élèves et, parallèlement, améliorer mon travail sur la voix afin de mieux accompagner leurs prises de parole et leurs productions.",
+      "expectedRelevantCodes": [
+        "S2-110",
+        "CO-01706"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "S2-110": 1,
+        "CO-01706": 2
+      },
+      "returnedCodes": [
+        "S2-110",
+        "CO-01706",
+        "SEM-P1083"
+      ],
+      "recommendedCodes": [
+        "S2-110"
+      ],
+      "complementaryCodes": [
+        "CO-01706",
+        "SEM-P1083"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation S2-110 répond directement au projet central de faire réaliser une mini-série en classe et inclut la construction narrative, la prise de vue, le son, le montage et le mixage. CO-01706 complète spécifiquement le travail de la voix et l'accompagnement du chant, tandis que SEM-P1083 renforce les étapes générales de réalisation d'un court film.",
+      "usage": {
+        "input": 108133,
+        "output": 218,
+        "cached": 4893,
+        "written": 103234,
+        "cost": 0.026169160000000004
+      }
+    },
+    {
+      "id": "NEW-MI-025",
+      "segment": "multi_intent",
+      "query": "Je veux aborder avec mes élèves les conséquences sociales et environnementales de nos choix de consommation, mais également leur apprendre à analyser des controverses scientifiques et à prendre des décisions argumentées.",
+      "expectedRelevantCodes": [
+        "S2-646",
+        "S2-454"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "S2-646": 1,
+        "S2-454": 2
+      },
+      "returnedCodes": [
+        "S2-646",
+        "S2-454",
+        "S2-642"
+      ],
+      "recommendedCodes": [
+        "S2-646",
+        "S2-454"
+      ],
+      "complementaryCodes": [
+        "S2-642"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "S2-646 répond directement à l'étude des conséquences sociales et environnementales des choix de consommation à partir du textile, avec une approche systémique et des activités exploitables en classe. S2-454 couvre explicitement l'analyse des questions socialement vives et controverses scientifiques, ainsi que la construction de décisions éclairées et argumentées. S2-642 complète utilement l'ensemble par la conception d'un projet pédagogique concret en durabilité, mais il est moins centré sur l'analyse des controverses.",
+      "usage": {
+        "input": 108193,
+        "output": 246,
+        "cached": 4893,
+        "written": 103294,
+        "cost": 0.02621776
+      }
+    },
+    {
+      "id": "NEW-MI-026",
+      "segment": "multi_intent",
+      "query": "Comme magistrat, je dois mieux maîtriser les outils permettant de retrouver et gérer les pièces à conviction, mais aussi améliorer ma communication avec les personnes lors des audiences.",
+      "expectedRelevantCodes": [
+        "PJ-0098",
+        "PJ-1101"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false,
+      "success": false,
+      "ranks": {
+        "PJ-0098": null,
+        "PJ-1101": null
+      },
+      "returnedCodes": [
+        "PJ-0103",
+        "PJ-0047",
+        "PJ-1057"
+      ],
+      "recommendedCodes": [
+        "PJ-0103",
+        "PJ-0047"
+      ],
+      "complementaryCodes": [
+        "PJ-1057"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "Le catalogue propose une formation directement adaptée aux magistrats du TMC pour saisir, transmettre, réceptionner, consulter et rattacher les pièces à conviction, ainsi qu'une formation substantielle sur la préparation et la conduite des audiences, les techniques d'audition et la rédaction du procès-verbal. La formation complémentaire renforce l'écoute et l'ajustement de la communication avec les interlocuteurs en audience.",
+      "usage": {
+        "input": 95593,
+        "output": 195,
+        "cached": 4893,
+        "written": 90694,
+        "cost": 0.02300656
+      }
+    },
+    {
+      "id": "NEW-CTX-027",
+      "segment": "context_restriction",
+      "query": "J’enseigne au secondaire II et je veux organiser des ateliers méthodologiques pour mes élèves dyslexiques et dysorthographiques.",
+      "expectedRelevantCodes": [
+        "S2-843"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "S2-843": 1
+      },
+      "returnedCodes": [
+        "S2-843",
+        "S2-840",
+        "S2-844"
+      ],
+      "recommendedCodes": [
+        "S2-843"
+      ],
+      "complementaryCodes": [
+        "S2-840",
+        "S2-844"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "S2-843 répond directement au besoin : elle fournit des outils concrets pour mettre en place et animer quatre ateliers de méthodologie de 90 minutes destinés aux élèves dyslexiques et dysorthographiques au secondaire II. S2-840 permet d'approfondir la compréhension des troubles et les aménagements pédagogiques, tandis que S2-844 élargit les compétences d'organisation d'ateliers de méthodes de travail.",
+      "usage": {
+        "input": 102931,
+        "output": 208,
+        "cached": 4893,
+        "written": 98032,
+        "cost": 0.024856660000000003
+      }
+    },
+    {
+      "id": "NEW-CTX-028",
+      "segment": "context_restriction",
+      "query": "J’enseigne au primaire et je cherche à comprendre les effets de la dyslexie sur la lecture afin de différencier mon enseignement.",
+      "expectedRelevantCodes": [
+        "EP-1044"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "EP-1044": 1
+      },
+      "returnedCodes": [
+        "EP-1044",
+        "EP-1049",
+        "OMP-083"
+      ],
+      "recommendedCodes": [
+        "EP-1044"
+      ],
+      "complementaryCodes": [
+        "EP-1049",
+        "OMP-083"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation recommandée traite explicitement des effets fonctionnels de la dyslexie sur l’identification des mots, la compréhension et les apprentissages scolaires, tout en proposant des outils de différenciation directement utilisables au primaire. Les compléments approfondissent la différenciation pédagogique générale et le développement du langage ainsi que les signaux d’alerte.",
+      "usage": {
+        "input": 102670,
+        "output": 170,
+        "cached": 4893,
+        "written": 97771,
+        "cost": 0.024745810000000003
+      }
+    },
+    {
+      "id": "NEW-CTX-029",
+      "segment": "context_restriction",
+      "query": "Je suis magistrat et je voudrais améliorer mon écoute et ma façon de communiquer avec les différentes parties pendant une audience.",
+      "expectedRelevantCodes": [
+        "PJ-1101"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": false,
+      "ranks": {
+        "PJ-1101": null
+      },
+      "returnedCodes": [
+        "PJ-1057",
+        "PJ-0060",
+        "SEM1098",
+        "PJ-0047",
+        "SEM1220",
+        "SEM1195"
+      ],
+      "recommendedCodes": [
+        "PJ-1057",
+        "PJ-0060",
+        "SEM1098"
+      ],
+      "complementaryCodes": [
+        "PJ-0047",
+        "SEM1220",
+        "SEM1195"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "Ces formations répondent directement à l’amélioration de l’écoute, de la communication et de la conduite d’audience avec les parties. La formation PJ-1057 est la plus directement centrée sur l’ajustement de la communication des magistrats en audience.",
+      "usage": {
+        "input": 94008,
+        "output": 175,
+        "cached": 4893,
+        "written": 89109,
+        "cost": 0.02258631
+      }
+    },
+    {
+      "id": "NEW-CTX-030",
+      "segment": "context_restriction",
+      "query": "Comme magistrat, je dois apprendre à retrouver les pièces à conviction dans les outils prévus et à consulter leur inventaire.",
+      "expectedRelevantCodes": [
+        "PJ-0098"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "PJ-0098": 1
+      },
+      "returnedCodes": [
+        "PJ-0098",
+        "PJ-0103"
+      ],
+      "recommendedCodes": [
+        "PJ-0098"
+      ],
+      "complementaryCodes": [
+        "PJ-0103"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation PJ-0098 est destinée aux magistrats de la filière pénale et couvre explicitement la consultation des inventaires dans DM-Web ainsi que la recherche dans myABI. PJ-0103 constitue un complément plus approfondi, notamment pour les magistrats du TMC, avec des fonctionnalités supplémentaires de consultation et de rattachement.",
+      "usage": {
+        "input": 94076,
+        "output": 136,
+        "cached": 4893,
+        "written": 89177,
+        "cost": 0.022556510000000002
+      }
+    },
+    {
+      "id": "NEW-CTX-031",
+      "segment": "context_restriction",
+      "query": "Je suis cadre dans un service pénitentiaire et je dois apprendre à organiser le travail d’un état-major et décider rapidement en situation de crise.",
+      "expectedRelevantCodes": [
+        "OCD423"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "OCD423": 1
+      },
+      "returnedCodes": [
+        "OCD423",
+        "OCD179",
+        "SEM1222"
+      ],
+      "recommendedCodes": [
+        "OCD423"
+      ],
+      "complementaryCodes": [
+        "OCD179",
+        "SEM1222"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "OCD423 répond directement au besoin d’un cadre pénitentiaire : organisation du travail d’état-major, analyse de situation, élaboration de variantes et prise de décision sous pression du temps. OCD179 complète utilement par une mise en pratique spécifiquement centrée sur la conduite d’intervention en milieu carcéral, tandis que SEM1222 apporte une ouverture sur la gestion des crises majeures et la conduite opérative dans le contexte cantonal.",
+      "usage": {
+        "input": 99017,
+        "output": 184,
+        "cached": 4893,
+        "written": 94118,
+        "cost": 0.023849360000000003
+      }
+    },
+    {
+      "id": "NEW-CTX-032",
+      "segment": "context_restriction",
+      "query": "J’enseigne l’allemand au cycle d’orientation et je cherche des activités plus ludiques pour faire participer mes élèves.",
+      "expectedRelevantCodes": [
+        "CO-01702"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "CO-01702": 1
+      },
+      "returnedCodes": [
+        "CO-01702",
+        "CO-01712",
+        "SEM-10460"
+      ],
+      "recommendedCodes": [
+        "CO-01702"
+      ],
+      "complementaryCodes": [
+        "CO-01712",
+        "SEM-10460"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "La formation principale est spécifiquement destinée aux enseignants d’allemand du CO et propose l’expérimentation de jeux, d’activités créatives et d’outils numériques directement transférables en classe pour accroître la participation des élèves. Les compléments développent respectivement l’approche actionnelle et la création de jeux pédagogiques en ligne.",
+      "usage": {
+        "input": 103989,
+        "output": 192,
+        "cached": 4893,
+        "written": 99090,
+        "cost": 0.025101960000000003
+      }
+    },
+    {
+      "id": "NEW-CTX-033",
+      "segment": "context_restriction",
+      "query": "Je possède déjà une qualification J+S en escalade et je cherche un perfectionnement permettant d’actualiser mes pratiques de sécurité avec les jeunes.",
+      "expectedRelevantCodes": [
+        "S2-EPS18"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false,
+      "success": true,
+      "ranks": {
+        "S2-EPS18": 1
+      },
+      "returnedCodes": [
+        "S2-EPS18",
+        "S2-EPS17"
+      ],
+      "recommendedCodes": [
+        "S2-EPS18"
+      ],
+      "complementaryCodes": [
+        "S2-EPS17"
+      ],
+      "relatedCodes": [],
+      "abstain": false,
+      "reason": "S2-EPS18 correspond directement à une personne déjà titulaire d’une reconnaissance J+S en escalade : il permet de prolonger cette reconnaissance et d’actualiser les standards de sécurité, la gestion des risques et les dispositifs d’assurage dans l’enseignement avec des jeunes. S2-EPS17 constitue un complément pertinent sur les standards suisses de sécurité, sous réserve de remplir ses prérequis.",
+      "usage": {
+        "input": 97780,
+        "output": 167,
+        "cached": 4893,
+        "written": 92881,
+        "cost": 0.023519710000000003
+      }
+    },
+    {
+      "id": "NEW-ABS-034",
+      "segment": "abstention",
+      "query": "Je voudrais apprendre à remplacer un écran de smartphone et effectuer de la microsoudure pour réparer les cartes électroniques des téléphones.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "success": true,
+      "ranks": {},
+      "returnedCodes": [],
+      "recommendedCodes": [],
+      "complementaryCodes": [],
+      "relatedCodes": [
+        "FP293",
+        "SEM-P4010",
+        "SEM-P4012"
+      ],
+      "abstain": true,
+      "reason": "Le catalogue ne propose pas de formation centrée sur le remplacement d’écran de smartphone ni sur la microsoudure et la réparation de cartes électroniques. Les formations disponibles sont seulement connexes : l’une porte sur l’analyse forensique des téléphones et les autres sur la compréhension générale des machines et des systèmes informatiques.",
+      "usage": {
+        "input": 98562,
+        "output": 125,
+        "cached": 4893,
+        "written": 93663,
+        "cost": 0.02366481
+      }
+    },
+    {
+      "id": "NEW-ABS-035",
+      "segment": "abstention",
+      "query": "Je cherche une formation professionnelle pour apprendre à fabriquer des croissants, viennoiseries et pâtes feuilletées comme en boulangerie.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "success": true,
+      "ranks": {},
+      "returnedCodes": [],
+      "recommendedCodes": [],
+      "complementaryCodes": [],
+      "relatedCodes": [],
+      "abstain": true,
+      "reason": "Aucune formation du catalogue ne porte sur la fabrication professionnelle des croissants, viennoiseries ou pâtes feuilletées.",
+      "usage": {
+        "input": 97181,
+        "output": 74,
+        "cached": 4893,
+        "written": 92282,
+        "cost": 0.023258360000000002
+      }
+    },
+    {
+      "id": "NEW-ABS-036",
+      "segment": "abstention",
+      "query": "Je voudrais apprendre à démonter, réviser et régler une montre mécanique afin de me former au métier d’horloger.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "success": true,
+      "ranks": {},
+      "returnedCodes": [],
+      "recommendedCodes": [],
+      "complementaryCodes": [],
+      "relatedCodes": [],
+      "abstain": true,
+      "reason": "Le catalogue ne contient aucune formation d’horlogerie ni de formation pratique permettant de démonter, réviser et régler une montre mécanique ou de se préparer au métier d’horloger.",
+      "usage": {
+        "input": 99229,
+        "output": 87,
+        "cached": 4893,
+        "written": 94330,
+        "cost": 0.023785960000000002
+      }
+    },
+    {
+      "id": "NEW-ABS-037",
+      "segment": "abstention",
+      "query": "Je souhaite apprendre à confectionner moi-même un costume sur mesure, de la prise des mesures jusqu’à la coupe et à l’assemblage du tissu.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "success": true,
+      "ranks": {},
+      "returnedCodes": [],
+      "recommendedCodes": [],
+      "complementaryCodes": [],
+      "relatedCodes": [
+        "CO-01710",
+        "CO-01445"
+      ],
+      "abstain": true,
+      "reason": "Le catalogue ne propose pas de formation couvrant directement et de manière substantielle la confection d’un costume sur mesure, notamment la prise de mesures, le patronage, la coupe et l’assemblage d’un vêtement. Les formations repérées portent seulement sur des techniques manuelles spécifiques et ne permettent pas d’acquérir ce savoir-faire complet.",
+      "usage": {
+        "input": 99844,
+        "output": 162,
+        "cached": 4893,
+        "written": 94945,
+        "cost": 0.024029710000000003
+      }
+    },
+    {
+      "id": "NEW-ABS-038",
+      "segment": "abstention",
+      "query": "Je cherche une formation professionnelle pour apprendre les techniques de tatouage, l’utilisation du matériel et les règles d’hygiène associées.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "success": true,
+      "ranks": {},
+      "returnedCodes": [],
+      "recommendedCodes": [],
+      "complementaryCodes": [],
+      "relatedCodes": [
+        "OMP-001HY"
+      ],
+      "abstain": true,
+      "reason": "Le catalogue ne propose pas de formation dédiée aux techniques de tatouage ni à l’utilisation du matériel de tatouage. Une formation traite de l’hygiène et de la maîtrise du risque sanitaire en restauration collective, mais elle ne couvre pas le contexte professionnel ni les pratiques spécifiques du tatouage.",
+      "usage": {
+        "input": 95155,
+        "output": 111,
+        "cached": 4893,
+        "written": 90256,
+        "cost": 0.022796260000000002
+      }
+    },
+    {
+      "id": "NEW-ABS-039",
+      "segment": "abstention",
+      "query": "Je voudrais apprendre les techniques d’ébénisterie pour fabriquer un meuble en bois massif avec assemblages traditionnels et finitions.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "success": true,
+      "ranks": {},
+      "returnedCodes": [],
+      "recommendedCodes": [],
+      "complementaryCodes": [],
+      "relatedCodes": [
+        "EP-013SUPP",
+        "SEM0828"
+      ],
+      "abstain": true,
+      "reason": "Le catalogue ne propose pas de formation consacrée à l’ébénisterie, au travail du bois massif, aux assemblages traditionnels ou aux techniques de finition permettant de fabriquer un meuble. Les formations retenues sont seulement connexes : elles peuvent soutenir une pratique créative ou la recherche de solutions, sans répondre au besoin technique principal.",
+      "usage": {
+        "input": 99675,
+        "output": 146,
+        "cached": 4893,
+        "written": 94776,
+        "cost": 0.02396826
+      }
+    },
+    {
+      "id": "NEW-ABS-040",
+      "segment": "abstention",
+      "query": "Je cherche une formation de coiffure pour apprendre les techniques professionnelles de coupe, coloration et coiffage.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true,
+      "success": true,
+      "ranks": {},
+      "returnedCodes": [],
+      "recommendedCodes": [],
+      "complementaryCodes": [],
+      "relatedCodes": [
+        "EP-013SUPP",
+        "EP-016SUPP",
+        "EP-985"
+      ],
+      "abstain": true,
+      "reason": "Le catalogue ne propose pas de formation dédiée à la coiffure ni d’enseignement substantiel des techniques professionnelles de coupe, coloration et coiffage. Les formations disponibles les plus proches concernent les arts visuels et les techniques créatives, mais ne répondent pas au besoin principal.",
+      "usage": {
+        "input": 94736,
+        "output": 119,
+        "cached": 4893,
+        "written": 89837,
+        "cost": 0.02270111
+      }
+    }
+  ],
+  "summary": {
+    "total": 40,
+    "succeeded": 37,
+    "failed": 3,
+    "segments": {
+      "natural_positive": {
+        "total": 18,
+        "succeeded": 18
+      },
+      "multi_intent": {
+        "total": 8,
+        "succeeded": 6
+      },
+      "context_restriction": {
+        "total": 7,
+        "succeeded": 6
+      },
+      "abstention": {
+        "total": 7,
+        "succeeded": 7
+      }
+    },
+    "usage": {
+      "input": 4071094,
+      "output": 7182,
+      "cached": 349580,
+      "written": 3721274,
+      "cost": 0.9459765
+    }
+  }
+}
