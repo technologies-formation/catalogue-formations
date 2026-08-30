@@ -1,0 +1,357 @@
+{
+  "registryId": "search-consumed-registry-2026-08-29",
+  "date": "2026-08-29",
+  "count": 70,
+  "cases": [
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-001",
+      "query": "J’ai beaucoup de chiffres à suivre dans mon activité et je voudrais que mon collaborateur puisse en tirer rapidement les informations importantes pour m’aider à prendre des décisions."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-002",
+      "query": "Je dois comparer plusieurs hypothèses et voir rapidement l’impact de différents scénarios à partir de mes données."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-003",
+      "query": "Quand un dossier devient complexe, j’ai besoin d’une méthode pour distinguer les faits, prendre du recul et construire une vue d’ensemble avant de décider."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-004",
+      "query": "Je rédige des messages destinés à des publics très différents et je voudrais éviter les formulations qui excluent ou renforcent des stéréotypes."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-005",
+      "query": "Après plusieurs heures à mon bureau, j’ai mal au dos et aux épaules ; je voudrais régler mon poste et adopter de meilleures habitudes."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-006",
+      "query": "Je saisis des écritures pour l’État et je dois comprendre la structure des comptes harmonisés utilisée par les collectivités publiques."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-007",
+      "query": "Notre service accumule des dossiers papier et numériques ; je dois savoir lesquels conserver, combien de temps et comment organiser leur archivage."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-008",
+      "query": "Un journaliste va m’interroger au nom de mon service et je veux apprendre à répondre clairement sans perdre la maîtrise du message."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-009",
+      "query": "En tant que manager, une collègue me signale un traitement discriminatoire au travail et je dois savoir reconnaître la situation, réagir et l’orienter correctement."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-010",
+      "query": "Je ne vois plus très bien ce qui donne du sens à mon travail et je cherche à retrouver des sources de motivation durables dans mon activité."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-011",
+      "query": "Je dois préparer et mener des entretiens avec mes collaboratrices et collaborateurs, y compris lorsque la discussion est délicate."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-012",
+      "query": "J’ai trop d’idées et d’informations dispersées ; je voudrais une méthode visuelle pour les structurer et faire apparaître les liens."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-013",
+      "query": "Je dois produire des cartes professionnelles à partir de données géographiques et apprendre à organiser les couches, les symboles et les mises en page."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-014",
+      "query": "Je travaille dans l’administration du DIP et certaines factures adressées par notre service restent impayées ; je dois savoir quelles relances et démarches entreprendre pour recouvrer les montants dus."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-NL-015",
+      "query": "Je reçois de longs rapports à parcourir et je voudrais en repérer plus vite la structure, les arguments et les informations essentielles sans perdre en compréhension."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-MI-016",
+      "query": "Je veux apprendre à analyser mes chiffres puis à les présenter de façon claire et visuelle à ma hiérarchie."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-MI-017",
+      "query": "Je dois améliorer mes supports de présentation mais aussi être plus convaincant quand je les présente devant un groupe."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-MI-018",
+      "query": "Je débute dans la gestion de projet et je dois aussi apprendre à identifier les risques avant qu’ils ne deviennent des problèmes."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-MI-019",
+      "query": "Comme manager, je dois mieux négocier avec mon équipe et mieux conduire les entretiens individuels."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-MI-020",
+      "query": "Je voudrais automatiser certaines tâches répétitives dans mes tableaux tout en comprenant ce que l’intelligence artificielle peut réellement faire ou non."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-CTX-021",
+      "query": "Je suis enseignant au primaire et je voudrais découvrir comment utiliser l’IA pour préparer ou adapter des contenus pédagogiques."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-CTX-022",
+      "query": "J’enseigne la chimie au secondaire et je dois évaluer les dangers d’une expérience avant de faire travailler mes élèves au laboratoire."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-CTX-023",
+      "query": "J’enseigne en primaire et je voudrais organiser des sorties régulières dans la nature avec ma classe sans devoir faire venir un spécialiste à chaque fois."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-CTX-024",
+      "query": "Je travaille en détention et je dois mieux comprendre comment les appartenances culturelles et religieuses peuvent influencer la vie quotidienne des personnes incarcérées."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-CTX-025",
+      "query": "Dans mon travail je dois prendre ou revoir des décisions administratives et je voudrais mieux maîtriser le raisonnement juridique qui les encadre."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-ABS-026",
+      "query": "Je rénove ma salle de bains et je voudrais apprendre à poser du carrelage mural et à refaire correctement l’étanchéité de la douche."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-ABS-027",
+      "query": "Je voudrais apprendre la soudure TIG pour fabriquer des meubles métalliques."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-ABS-028",
+      "query": "Je cherche une formation de barista pour apprendre à préparer des cafés professionnels."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-ABS-029",
+      "query": "Je voudrais apprendre à construire et entretenir des piscines privées, notamment le traitement de l’eau et les systèmes de filtration."
+    },
+    {
+      "source": "search-benchmark-decision-2026-08-25.json",
+      "id": "SEM-ABS-030",
+      "query": "Je cherche une formation pour utiliser une IA autonome afin d’automatiser complètement le traitement des dossiers administratifs de mon service."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-001",
+      "query": "Je dois préparer régulièrement des documents Word assez volumineux avec une table des matières, des renvois et des notes. Je voudrais apprendre à les structurer proprement."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-002",
+      "query": "Dans mon nouveau rôle, je dois mieux comprendre comment se construit et se pilote le budget de l’État et quels sont les différents acteurs impliqués."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-003",
+      "query": "Les échanges deviennent parfois tendus dans mon équipe et j’aimerais apprendre à désamorcer les situations avant qu’elles ne se transforment en conflit."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-004",
+      "query": "Je manage une équipe et je voudrais mieux comprendre certains mécanismes cognitifs et biais qui influencent nos décisions et nos relations au travail."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-005",
+      "query": "Mon service va connaître plusieurs changements importants et je cherche des méthodes pour aider les collaborateurs à traverser cette période et limiter les résistances."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-006",
+      "query": "Pendant les séances, j’ai du mal à prendre suffisamment de notes tout en suivant les échanges. Je voudrais ensuite pouvoir rédiger des comptes rendus clairs, neutres et synthétiques."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-007",
+      "query": "Je voudrais utiliser davantage d’images et de petites animations dans mes cours de sciences, mais en sachant quand elles apportent réellement quelque chose aux apprentissages."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-008",
+      "query": "Je souhaite faire progresser mes élèves en français, mais surtout identifier les leviers qui permettent de mieux les engager et de réduire les écarts entre eux."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-009",
+      "query": "Je voudrais utiliser des tablettes en classe, mais pas seulement pour remplacer le papier : je cherche des idées d’activités où elles ont une vraie valeur pédagogique."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-010",
+      "query": "Je dois conduire dans des situations opérationnelles où le stress peut être important. Je voudrais mieux maîtriser mon véhicule et connaître mes propres limites dans ces conditions."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-011",
+      "query": "Je vais participer à des recrutements et je dois apprendre à conduire les entretiens de manière structurée et à évaluer les candidats avec les outils prévus."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-012",
+      "query": "Je vais prendre des responsabilités d’encadrement dans un établissement de détention et je cherche une formation complète pour apprendre à diriger un secteur, conduire une équipe et réfléchir à ma posture de cadre."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-013",
+      "query": "Je dois alimenter et maintenir les pages SharePoint de ma direction, publier des procédures et organiser les documents et la navigation du site."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-NL-014",
+      "query": "Je rencontre régulièrement des parents d’élèves et je voudrais mieux préparer et conduire ces entretiens afin d’instaurer un climat de confiance et une collaboration constructive."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-MI-015",
+      "query": "Je dois d’abord analyser les besoins d’une équipe pour concevoir une formation, puis être capable de construire dans Moodle une évaluation avec des critères explicites."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-MI-016",
+      "query": "Dans mes fonctions de moniteur de plongée, je dois pouvoir former des plongeurs aussi bien au nitrox qu’aux conditions particulières de la plongée sous glace."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-MI-017",
+      "query": "Comme manager au Pouvoir judiciaire, je voudrais à la fois renforcer ma posture managériale et devenir plus efficace pour retrouver la législation et la jurisprudence nécessaires à mon activité."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-MI-018",
+      "query": "Je voudrais être mieux préparé à réagir aux situations de discrimination au travail et, lorsqu’un conflit est déjà installé, disposer aussi de méthodes pour aider les personnes à retrouver un dialogue."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-MI-019",
+      "query": "Pour mes élèves, je voudrais mieux intégrer l’éducation numérique dans mes activités et être capable de créer moi-même des supports pédagogiques visuels avec les outils disponibles."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-CTX-020",
+      "query": "Je dois préparer des dossiers destinés au Conseil d’État mais je connais mal le circuit, les responsabilités de chacun et la manière dont ces objets sont élaborés."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-CTX-021",
+      "query": "Lorsqu’une personne de mon équipe est absente longtemps, je ne suis pas toujours à l’aise sur la façon de maintenir le lien, informer l’équipe et préparer son retour."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-CTX-022",
+      "query": "J’enseigne les mathématiques à des élèves qui maîtrisent encore mal le français. Je voudrais mieux comprendre ce qui relève de la langue et ce qui relève réellement des mathématiques afin d’adapter mes pratiques."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-CTX-023",
+      "query": "J’accompagne des jeunes avec autisme et je cherche des repères pour aborder avec eux les questions liées au corps, à l’intimité et à la sexualité de façon adaptée."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-CTX-024",
+      "query": "Je voudrais proposer à mes élèves allophones un projet d’écriture qui leur permette aussi de valoriser les différentes langues qu’ils parlent."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-CTX-025",
+      "query": "Je travaille en détention et je voudrais mieux communiquer avec les personnes détenues, notamment dans les échanges difficiles, en utilisant davantage l’écoute et des techniques de communication non violente."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-ABS-026",
+      "query": "Je voudrais apprendre à entraîner moi-même un grand modèle de langage sur nos propres serveurs, depuis la préparation des données jusqu’à l’entraînement distribué du modèle."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-ABS-027",
+      "query": "Je cherche une formation qui me permette d’être qualifié pour réaliser des diagnostics psychologiques cliniques auprès de collaborateurs en difficulté."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-ABS-028",
+      "query": "Je dois développer de A à Z une application métier avec interface web, API, base PostgreSQL et authentification. Je cherche une formation interne couvrant tout ce développement."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-ABS-029",
+      "query": "Je cherche une formation pour apprendre à déployer et administrer en production un cluster Kubernetes, avec Helm, gestion des ingress, supervision et sécurisation de l’infrastructure."
+    },
+    {
+      "source": "search-benchmark-independent-final-2026-08-27.json",
+      "id": "FINAL-ABS-030",
+      "query": "Je dois installer, administrer, sécuriser et sauvegarder un serveur Moodle, y compris la base de données et l’infrastructure technique."
+    },
+    {
+      "source": "manual-development-2026-08-28-29",
+      "id": "MANUAL-01",
+      "query": "Je débute avec PowerPoint"
+    },
+    {
+      "source": "manual-development-2026-08-28-29",
+      "id": "MANUAL-02",
+      "query": "Je commence avec Excel"
+    },
+    {
+      "source": "manual-development-2026-08-28-29",
+      "id": "MANUAL-03",
+      "query": "Débutant sur Word"
+    },
+    {
+      "source": "manual-development-2026-08-28-29",
+      "id": "MANUAL-04",
+      "query": "Je voudrais améliorer mon niveau sur Word."
+    },
+    {
+      "source": "manual-development-2026-08-28-29",
+      "id": "MANUAL-05",
+      "query": "tableaux de bord"
+    },
+    {
+      "source": "manual-development-2026-08-28-29",
+      "id": "MANUAL-06",
+      "query": "Je cherche une formation pour mieux organiser et conduire mes réunions d’équipe."
+    },
+    {
+      "source": "manual-development-2026-08-28-29",
+      "id": "MANUAL-07",
+      "query": "Je cherche une formation pour mieux gérer les conflits dans mon équipe et donner des feedbacks constructifs."
+    },
+    {
+      "source": "manual-development-2026-08-28-29",
+      "id": "MANUAL-08",
+      "query": "Je ne suis pas manager. Je cherche une formation pour mieux gérer les conflits avec mes collègues et donner des feedbacks constructifs."
+    },
+    {
+      "source": "manual-development-2026-08-28-29",
+      "id": "MANUAL-09",
+      "query": "Je dois préparer et animer une présentation devant un groupe, mais je manque d’aisance à l’oral."
+    },
+    {
+      "source": "manual-development-2026-08-28-29",
+      "id": "MANUAL-10",
+      "query": "Je cherche une formation pour réparer le moteur diesel de ma voiture."
+    }
+  ]
+}

@@ -1,0 +1,411 @@
+{
+  "name": "Benchmark indépendant final Luna 2026-08-29",
+  "date": "2026-08-29",
+  "status": "frozen",
+  "corpusSize": 1058,
+  "methodology": {
+    "natural_positive_top_k": 3,
+    "multi_intent_top_k": 5,
+    "context_restriction_top_k": 3,
+    "abstention_top_k": 0,
+    "consumedRegistry": "search-consumed-registry-2026-08-29.json",
+    "note": "Conçu et attendu métier définis avant tout appel Luna."
+  },
+  "cases": [
+    {
+      "id": "NEW-NL-001",
+      "segment": "natural_positive",
+      "query": "J’ai tendance à rester bloqué sur les mêmes solutions lorsqu’un problème se présente. Je voudrais apprendre à sortir de mes habitudes de réflexion et trouver des pistes plus créatives.",
+      "expectedRelevantCodes": [
+        "SEM0828"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-002",
+      "segment": "natural_positive",
+      "query": "On me parle de plus en plus de méthodes agiles dans les projets. Je voudrais comprendre leur fonctionnement, les rôles et dans quels cas elles sont préférables à une démarche classique.",
+      "expectedRelevantCodes": [
+        "SEM1218"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-003",
+      "segment": "natural_positive",
+      "query": "Je dois organiser une concertation avec plusieurs partenaires qui n’ont pas les mêmes intérêts. Je voudrais mieux comprendre les jeux d’acteurs et construire une solution avec eux.",
+      "expectedRelevantCodes": [
+        "SEM1145"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-004",
+      "segment": "natural_positive",
+      "query": "Les changements actuels rendent mon environnement professionnel difficile à prévoir. Je voudrais mieux vivre cette incertitude sans chercher à tout contrôler.",
+      "expectedRelevantCodes": [
+        "SEM1211"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-005",
+      "segment": "natural_positive",
+      "query": "Je voudrais comprendre l’impact environnemental de mes usages numériques et adopter de meilleurs réflexes au quotidien avec mes outils informatiques.",
+      "expectedRelevantCodes": [
+        "TRT3016E"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-006",
+      "segment": "natural_positive",
+      "query": "Dans mon activité en milieu pénitentiaire, je voudrais mieux reconnaître les signes qui peuvent annoncer un risque suicidaire et savoir comment intervenir.",
+      "expectedRelevantCodes": [
+        "OCD025"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-007",
+      "segment": "natural_positive",
+      "query": "Je travaille avec des personnes détenues ayant des problèmes d’addiction. Je voudrais mieux comprendre les substances, le sevrage et les stratégies de prise en charge.",
+      "expectedRelevantCodes": [
+        "OCD131"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-008",
+      "segment": "natural_positive",
+      "query": "Certains de mes élèves du primaire décrochent rapidement. Je cherche des moyens utilisant le mouvement et le jeu pour améliorer leur attention et leur disponibilité pour apprendre.",
+      "expectedRelevantCodes": [
+        "EP-998"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-009",
+      "segment": "natural_positive",
+      "query": "Je voudrais faire découvrir la programmation à des élèves sans commencer directement devant un ordinateur, puis utiliser un petit robot pour mettre les concepts en pratique.",
+      "expectedRelevantCodes": [
+        "OMP-110"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-010",
+      "segment": "natural_positive",
+      "query": "J’aimerais utiliser le parcours d’un vêtement pour faire comprendre à mes élèves les liens entre consommation, économie, environnement et justice sociale.",
+      "expectedRelevantCodes": [
+        "S2-646"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-011",
+      "segment": "natural_positive",
+      "query": "J’enseigne aux tout premiers degrés du primaire et je dois prendre en main le nouveau moyen romand de français, notamment pour l’entrée dans l’écrit.",
+      "expectedRelevantCodes": [
+        "EP-517"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-012",
+      "segment": "natural_positive",
+      "query": "Mes élèves du cycle d’orientation manquent d’enthousiasme en allemand. Je cherche des jeux et activités créatives pour les faire davantage participer.",
+      "expectedRelevantCodes": [
+        "CO-01702"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-013",
+      "segment": "natural_positive",
+      "query": "Je voudrais mettre en place au secondaire II des ateliers méthodologiques spécialement destinés aux élèves dyslexiques ou dysorthographiques.",
+      "expectedRelevantCodes": [
+        "S2-843"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-014",
+      "segment": "natural_positive",
+      "query": "Au primaire, je souhaite mieux distinguer les difficultés de lecture liées à la dyslexie de celles liées à la compréhension et adapter mes pratiques.",
+      "expectedRelevantCodes": [
+        "EP-1044"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-015",
+      "segment": "natural_positive",
+      "query": "J’aimerais réaliser une petite série télévisée avec ma classe et apprendre les bases nécessaires pour mener ce projet avec les élèves.",
+      "expectedRelevantCodes": [
+        "S2-110"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-016",
+      "segment": "natural_positive",
+      "query": "Lorsque je fais chanter mes élèves, certains forcent leur voix ou chantent faux. Je voudrais disposer d’exercices pour travailler détente, justesse et projection.",
+      "expectedRelevantCodes": [
+        "CO-01706"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-017",
+      "segment": "natural_positive",
+      "query": "J’encadre déjà l’escalade dans le cadre J+S et je voudrais actualiser mes connaissances en sécurité et en gestion des risques.",
+      "expectedRelevantCodes": [
+        "S2-EPS18"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-NL-018",
+      "segment": "natural_positive",
+      "query": "J’accompagne des adolescents ou adultes autistes avec déficience intellectuelle et je dois mieux évaluer leurs compétences pour construire des interventions individualisées.",
+      "expectedRelevantCodes": [
+        "OMP-009TSA"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-MI-019",
+      "segment": "multi_intent",
+      "query": "Je vais piloter un projet avec une démarche agile, mais je dois aussi organiser la concertation avec plusieurs partenaires aux intérêts différents.",
+      "expectedRelevantCodes": [
+        "SEM1218",
+        "SEM1145"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-MI-020",
+      "segment": "multi_intent",
+      "query": "Je suis cadre en milieu pénitentiaire. Je dois être mieux préparé à gérer une crise tout en sachant réagir lorsqu’un détenu présente un risque suicidaire.",
+      "expectedRelevantCodes": [
+        "OCD423",
+        "OCD025"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-MI-021",
+      "segment": "multi_intent",
+      "query": "Dans notre établissement pénitentiaire, je rencontre des personnes ayant des problèmes d’addiction et je dois également mieux repérer les situations présentant un risque suicidaire.",
+      "expectedRelevantCodes": [
+        "OCD131",
+        "OCD025"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-MI-022",
+      "segment": "multi_intent",
+      "query": "Au primaire, plusieurs élèves ont des difficultés de lecture et certains peinent également à rester disponibles et concentrés pour apprendre. Je voudrais agir sur ces deux aspects.",
+      "expectedRelevantCodes": [
+        "EP-1044",
+        "EP-998"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-MI-023",
+      "segment": "multi_intent",
+      "query": "Dans mon activité avec des jeunes ayant des besoins particuliers, je voudrais proposer des activités simples de robotique mais aussi mieux évaluer les compétences de jeunes autistes pour individualiser leur accompagnement.",
+      "expectedRelevantCodes": [
+        "OMP-110",
+        "OMP-009TSA"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-MI-024",
+      "segment": "multi_intent",
+      "query": "J’aimerais faire réaliser une mini-série à mes élèves et, parallèlement, améliorer mon travail sur la voix afin de mieux accompagner leurs prises de parole et leurs productions.",
+      "expectedRelevantCodes": [
+        "S2-110",
+        "CO-01706"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-MI-025",
+      "segment": "multi_intent",
+      "query": "Je veux aborder avec mes élèves les conséquences sociales et environnementales de nos choix de consommation, mais également leur apprendre à analyser des controverses scientifiques et à prendre des décisions argumentées.",
+      "expectedRelevantCodes": [
+        "S2-646",
+        "S2-454"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-MI-026",
+      "segment": "multi_intent",
+      "query": "Comme magistrat, je dois mieux maîtriser les outils permettant de retrouver et gérer les pièces à conviction, mais aussi améliorer ma communication avec les personnes lors des audiences.",
+      "expectedRelevantCodes": [
+        "PJ-0098",
+        "PJ-1101"
+      ],
+      "expectedTopK": 5,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-CTX-027",
+      "segment": "context_restriction",
+      "query": "J’enseigne au secondaire II et je veux organiser des ateliers méthodologiques pour mes élèves dyslexiques et dysorthographiques.",
+      "expectedRelevantCodes": [
+        "S2-843"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-CTX-028",
+      "segment": "context_restriction",
+      "query": "J’enseigne au primaire et je cherche à comprendre les effets de la dyslexie sur la lecture afin de différencier mon enseignement.",
+      "expectedRelevantCodes": [
+        "EP-1044"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-CTX-029",
+      "segment": "context_restriction",
+      "query": "Je suis magistrat et je voudrais améliorer mon écoute et ma façon de communiquer avec les différentes parties pendant une audience.",
+      "expectedRelevantCodes": [
+        "PJ-1101"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-CTX-030",
+      "segment": "context_restriction",
+      "query": "Comme magistrat, je dois apprendre à retrouver les pièces à conviction dans les outils prévus et à consulter leur inventaire.",
+      "expectedRelevantCodes": [
+        "PJ-0098"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-CTX-031",
+      "segment": "context_restriction",
+      "query": "Je suis cadre dans un service pénitentiaire et je dois apprendre à organiser le travail d’un état-major et décider rapidement en situation de crise.",
+      "expectedRelevantCodes": [
+        "OCD423"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-CTX-032",
+      "segment": "context_restriction",
+      "query": "J’enseigne l’allemand au cycle d’orientation et je cherche des activités plus ludiques pour faire participer mes élèves.",
+      "expectedRelevantCodes": [
+        "CO-01702"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-CTX-033",
+      "segment": "context_restriction",
+      "query": "Je possède déjà une qualification J+S en escalade et je cherche un perfectionnement permettant d’actualiser mes pratiques de sécurité avec les jeunes.",
+      "expectedRelevantCodes": [
+        "S2-EPS18"
+      ],
+      "expectedTopK": 3,
+      "expectedExactAbstention": false
+    },
+    {
+      "id": "NEW-ABS-034",
+      "segment": "abstention",
+      "query": "Je voudrais apprendre à remplacer un écran de smartphone et effectuer de la microsoudure pour réparer les cartes électroniques des téléphones.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    },
+    {
+      "id": "NEW-ABS-035",
+      "segment": "abstention",
+      "query": "Je cherche une formation professionnelle pour apprendre à fabriquer des croissants, viennoiseries et pâtes feuilletées comme en boulangerie.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    },
+    {
+      "id": "NEW-ABS-036",
+      "segment": "abstention",
+      "query": "Je voudrais apprendre à démonter, réviser et régler une montre mécanique afin de me former au métier d’horloger.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    },
+    {
+      "id": "NEW-ABS-037",
+      "segment": "abstention",
+      "query": "Je souhaite apprendre à confectionner moi-même un costume sur mesure, de la prise des mesures jusqu’à la coupe et à l’assemblage du tissu.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    },
+    {
+      "id": "NEW-ABS-038",
+      "segment": "abstention",
+      "query": "Je cherche une formation professionnelle pour apprendre les techniques de tatouage, l’utilisation du matériel et les règles d’hygiène associées.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    },
+    {
+      "id": "NEW-ABS-039",
+      "segment": "abstention",
+      "query": "Je voudrais apprendre les techniques d’ébénisterie pour fabriquer un meuble en bois massif avec assemblages traditionnels et finitions.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    },
+    {
+      "id": "NEW-ABS-040",
+      "segment": "abstention",
+      "query": "Je cherche une formation de coiffure pour apprendre les techniques professionnelles de coupe, coloration et coiffage.",
+      "expectedRelevantCodes": [],
+      "expectedTopK": 0,
+      "expectedExactAbstention": true
+    }
+  ],
+  "frozenAt": "2026-08-29T16:47:28+00:00"
+}
