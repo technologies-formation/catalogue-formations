@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-08-28
+- Date du snapshot : 2026-08-31
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 123.6 secondes
-- Taille du JSON final : 2.06 Mio (2156376 octets)
-- Empreinte SHA-256 du snapshot : `488fb00afc0a74fd296e9d8705df1ff98870d52bcca140be57c8204d035d4890`
+- Durée totale de l’import : 139.7 secondes
+- Taille du JSON final : 2.06 Mio (2156357 octets)
+- Empreinte SHA-256 du snapshot : `3b129128ffef41b7b60ad5ba5fe5e65f4ffe7d3543ac68787995464f71d4900e`
 
 ## Synthèse
 
@@ -22,62 +22,37 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1056 |
+| Cours dans le snapshot officiel | 1060 |
 | Cours dans le candidat | 1060 |
-| Cours ajoutés | 5 |
-| Cours supprimés | 1 |
-| Cours modifiés | 29 |
-| Cours dont les offres ont changé | 1 |
+| Cours ajoutés | 0 |
+| Cours supprimés | 0 |
+| Cours modifiés | 11 |
+| Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| EP-1298ETB | Soutenir l'attention des élèves | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
-| EP-1314ETB | Jeunesse et Sports (J+S) : sport scolaire | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| EP-1316ETB | Accompagner les rythmes et besoins des élèves : outils pratiques pour un environnement capacitant. | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
-| EP-1324ETB | Relation d'autorité pédagogique | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
-| EP-1325ETB | Jeunesse et Sports (J+S) : sport scolaire | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| PJ-1065 | Art du PV, du rapport et du compte-rendu | PJ - Offre de formation du pouvoir judiciaire | Secteur formation du Pouvoir judiciaire | FORMATION COLLABORATEURS |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01610 | TDAH et CO - Outils pour gérer l'hétérogénéité des élèves dont les élèves TDAH | `hasOpenSession` : « true » → « false » |
-| EO-012 | Instituer une relation d'autorité pédagogique II | `hasOpenSession` : « true » → « false » |
-| EP-099MDAS | Ultimate en contexte scolaire MDAS | `hasOpenSession` : « true » → « false » |
-| EP-1044 | Entrée dans le langage écrit : troubles des apprentissages du langage écrit et différenciation pédagogique | `hasOpenSession` : « true » → « false » |
-| EP-696 | L'élève avec un trouble du spectre de l'autisme (TSA) à l'école primaire | `hasOpenSession` : « true » → « false » |
-| EP-977 | Percussion corporelle et danse afro-brésilienne : des outils pour stimuler la capacité d'attention des élèves | `hasOpenSession` : « true » → « false » |
-| FP217 | EC ASP Test de connaissances SOF - inscription participants | `themeRaw` : « Évaluations de compétences ASP » → « Évaluations de compétences EC1 ASP » |
-| FP218 | EC1 ASP Processus d'évaluation SOF - Inscription participants | `themeRaw` : « Évaluations de compétences ASP » → « Évaluations de compétences EC1 ASP » |
-| FP249 | Formation Initiale Sentinelle milicien/milicienne | `hasOpenSession` : « false » → « true » |
-| OMP-007TSA | Les troubles du traitement de l'information sensorielle: de l'évaluation aux interventions | `hasOpenSession` : « true » → « false » |
-| OMP-011TSA | Développement du langage neurotypique vs DI TSA : construire ensemble la communication | `hasOpenSession` : « true » → « false » |
-| PJ-0001 | Accueil des nouveaux collaborateurs.<br>La convocation est directement adressée aux collaboratrices et collaborateurs par RH-Formation | `hasScheduledSession` : « false » → « true » |
-| PJ-0105 | Accueil RH des nouveaux collaborateurs<br>La convocation est directement adressée aux collaboratrices et aux collaborateurs par RH-Formation | `hasScheduledSession` : « false » → « true » |
-| S2-433 | Evaluation HSE des risques au laboratoire (I) | `hasOpenSession` : « true » → « false » |
-| S2-435 | Intelligence artificielle pour l'enseignement de la chimie | `hasOpenSession` : « true » → « false » |
-| S2-840 | Dyslexie et dysorthographie au secondaire I et II : théorie, pistes pédagogiques et outils de remédiation | `hasOpenSession` : « true » → « false » |
-| SEM-10617 | CO-PO / Générer des images avec l'intelligence artificielle / NOUVEAU | `hasOpenSession` : « true » → « false » |
-| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | `hasOpenSession` : « true » → « false » |
-| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « true » → « false » |
-| SEM1040 | Mindmap : une méthode pour organiser ses idées et ses informations | `hasOpenSession` : « true » → « false » |
-| SEM1127 | Gestion de l'absence et de la qualité de vie au travail - Théâtre forum | `hasScheduledSession` : « false » → « true » |
-| SEM1151 | Sensibilisation à la Communication NonViolente (CNV©) | `hasOpenSession` : « false » → « true » |
-| SEM1185 | La fabrique de la confiance : le management par les valeurs | `hasOpenSession` : « false » → « true » |
-| SEM1193 | Prendre et assumer son rôle | `hasOpenSession` : « false » → « true » |
-| SEM1197 | Formateurs occasionnels: construire et animer une formation | `hasOpenSession` : « true » → « false » |
-| SEM1203 | Les entretiens managériaux | `hasOpenSession` : « false » → « true » |
-| TRT1017 | Word 365 Mise en forme avancée | `hasOpenSession` : « true » → « false » |
-| TRT1018 | Word 365 Longs documents | `hasOpenSession` : « true » → « false » |
+| FP250 | Formation continue Sentinelle milicien/ne | `titleRaw` : « Formation continue et Intervision - Sentinelle-milicien/ne » → « Formation continue Sentinelle milicien/ne » |
+| OMP-048 | Particularités cognitives et sensorielles des élèves avec autisme; outils pour les intégrer à la classe | `hasOpenSession` : « true » → « false » |
+| OMP-111 | Des jeux de société pour construire l'attention, la mémoire, la compréhension et le raisonnement | `hasOpenSession` : « true » → « false » |
+| S2-EPS16 | J+S Cours d'introduction escalade sportive pour enseignants du DIP | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| S2-EPS18 | Escalade : perfectionnement J+S | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « false » → « true » |
+| SEM-P4009 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 5P-6P | `hasOpenSession` : « true » → « false » |
+| SEM1033 | Répondre avec tact aux plaintes écrites | `hasOpenSession` : « false » → « true » |
+| SEM1089 | Le management transversal | `hasOpenSession` : « false » → « true » |
+| SEM1113 | De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité | `hasOpenSession` : « false » → « true » |
+| SEM1196 | Accompagner et vivre le changement | `hasOpenSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
@@ -85,9 +60,7 @@ Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
-| Code | Intitulé | Offres ajoutées | Offres retirées |
-| --- | --- | --- | --- |
-| S2-FIO002B | Enseignement, différenciation pédagogique et évaluation dans une approche orientée vers les compétences opérationnelles (OCO): préparer, délivrer et évaluer | DIP-ES II - Offre de formation de l'ES II | Détention - Offre de formation de l'OCD |
+Aucun rattachement à une offre n’a changé.
 
 ### Anomalies techniques
 
@@ -191,8 +164,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
@@ -229,7 +202,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-08-28T21:17:05.419Z
-- Snapshot candidat validé : 2026-08-28
-- Empreinte SHA-256 : `488fb00afc0a74fd296e9d8705df1ff98870d52bcca140be57c8204d035d4890`
+- Date et heure de promotion : 2026-08-31T03:11:53.320Z
+- Snapshot candidat validé : 2026-08-31
+- Empreinte SHA-256 : `3b129128ffef41b7b60ad5ba5fe5e65f4ffe7d3543ac68787995464f71d4900e`
 - Promotion manuelle confirmée.
