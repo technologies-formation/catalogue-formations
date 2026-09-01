@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-08-31
+- Date du snapshot : 2026-09-01
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 139.7 secondes
-- Taille du JSON final : 2.06 Mio (2156357 octets)
-- Empreinte SHA-256 du snapshot : `3b129128ffef41b7b60ad5ba5fe5e65f4ffe7d3543ac68787995464f71d4900e`
+- Durée totale de l’import : 121.1 secondes
+- Taille du JSON final : 2.06 Mio (2159222 octets)
+- Empreinte SHA-256 du snapshot : `ab8579af8386d331d6c83e442cbbe32fa8b718a572fb4bc8099f4a9fea688a2f`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1651
-- Codes uniques : 1060
-- Occurrences éliminées par déduplication : 591
-- Formations présentes dans plusieurs offres : 299
+- Occurrences détectées dans l’index : 1654
+- Codes uniques : 1061
+- Occurrences éliminées par déduplication : 593
+- Formations présentes dans plusieurs offres : 300
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1060
+- Fiches récupérées avec succès : 1061
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -23,16 +23,18 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | Indicateur | Valeur |
 | --- | ---: |
 | Cours dans le snapshot officiel | 1060 |
-| Cours dans le candidat | 1060 |
-| Cours ajoutés | 0 |
+| Cours dans le candidat | 1061 |
+| Cours ajoutés | 1 |
 | Cours supprimés | 0 |
-| Cours modifiés | 11 |
+| Cours modifiés | 18 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-Aucun cours ajouté.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| SEM-3159 | LabTice, le nouveau logiciel de labo langues pour l'ESI et l'ESII / formation pour les référents | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
 
 ### Cours supprimés
 
@@ -42,21 +44,29 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| FP250 | Formation continue Sentinelle milicien/ne | `titleRaw` : « Formation continue et Intervision - Sentinelle-milicien/ne » → « Formation continue Sentinelle milicien/ne » |
-| OMP-048 | Particularités cognitives et sensorielles des élèves avec autisme; outils pour les intégrer à la classe | `hasOpenSession` : « true » → « false » |
-| OMP-111 | Des jeux de société pour construire l'attention, la mémoire, la compréhension et le raisonnement | `hasOpenSession` : « true » → « false » |
-| S2-EPS16 | J+S Cours d'introduction escalade sportive pour enseignants du DIP | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| S2-EPS18 | Escalade : perfectionnement J+S | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « false » → « true » |
-| SEM-P4009 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 5P-6P | `hasOpenSession` : « true » → « false » |
-| SEM1033 | Répondre avec tact aux plaintes écrites | `hasOpenSession` : « false » → « true » |
-| SEM1089 | Le management transversal | `hasOpenSession` : « false » → « true » |
-| SEM1113 | De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité | `hasOpenSession` : « false » → « true » |
-| SEM1196 | Accompagner et vivre le changement | `hasOpenSession` : « false » → « true » |
+| CO-00312 | Module de perfectionnement Moniteur ski J+S | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| CO-01197 | Cours d'introduction au Sport scolaire J+S | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| CO-01418 | Cours d'introduction Moniteur Ski J+S | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| CO-01797 | Module de perfectionnement au Sport scolaire J+S | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| EP-988 | La danse, un appui pour le corps et la gestion de groupe | `hasOpenSession` : « true » → « false » |
+| FP249 | Formation Initiale Sentinelle milicien/milicienne | `hasOpenSession` : « true » → « false » |
+| OMP-021TSA | Soutenir les interactions sociales des jeunes enfants sur le spectre de l'autisme | `hasOpenSession` : « true » → « false » |
+| OMP-048 | Particularités cognitives et sensorielles des élèves avec autisme; outils pour les intégrer à la classe | `hasOpenSession` : « false » → « true » |
+| PJ-0038 | Méthodologie Gestion de projet (volet 3) | `hasScheduledSession` : « true » → « false » |
+| PJ-0094 | Fondamentaux Gestion de projet (volet 2) | `hasScheduledSession` : « true » → « false » |
+| PJ-0101 | Gestion des pièces à conviction - Personnel du TMIN, TPN et CJP titulaire d'une licence | `hasOpenSession` : « true » → « false » |
+| SEM-P1575 | EP-OMP / Découvrir l'intelligence artificielle / Formation hybride / NOUVEAU | `hasOpenSession` : « true » → « false » |
+| SEM-P4005 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 1 | `hasOpenSession` : « true » → « false » |
+| SEM-P4009 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 5P-6P | `hasOpenSession` : « false » → « true » |
+| SEM-P4010 | EP / Formation institutionnelle obligatoire / Science informatique pour le Cycle 1 | `hasOpenSession` : « true » → « false » |
+| TRT023 | CFI - Achats: gestion des demandes d'achat | `hasOpenSession` : « true » → « false » |
+| TRT039 | Consultation et saisie dans Ge-Invest | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-Aucun champ descriptif long n’a changé.
+| Code | Intitulé candidat | Champs modifiés |
+| --- | --- | --- |
+| SEM-4009 | Formation IA et ORFO pour les enseignants AFP | `durationRaw` |
 
 ### Changements d’offres
 
@@ -97,11 +107,11 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Détention - Offre de formation de l'OCD | 70 | 70 |
 | DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
-| DIP-CO - Offre de formation du Cycle d'orientation | 226 | 226 |
+| DIP-CO - Offre de formation du Cycle d'orientation | 227 | 227 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 299 | 299 |
-| DIP-ES II - Offre de formation de l'ES II | 237 | 237 |
+| DIP-ES II - Offre de formation de l'ES II | 238 | 238 |
 | DIP-OMP - Offre formation de l'OMP | 234 | 234 |
-| DIP-SEM - Offre de formation du Service Écoles-Médias | 153 | 153 |
+| DIP-SEM - Offre de formation du Service Écoles-Médias | 154 | 154 |
 | PJ - Offre de formation du pouvoir judiciaire | 55 | 55 |
 | POLICE - CFPS - Centre de Formation de la Police | 204 | 204 |
 
@@ -109,17 +119,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1060/1060 | 100.0 % |
-| `domainRaw` | 1060/1060 | 100.0 % |
-| `themeRaw` | 981/1060 | 92.5 % |
-| `publicRaw` | 950/1060 | 89.6 % |
-| `durationRaw` | 1045/1060 | 98.6 % |
-| `targetAudienceRaw` | 942/1060 | 88.9 % |
-| `generalInformationRaw` | 543/1060 | 51.2 % |
-| `objectivesRaw` | 1008/1060 | 95.1 % |
-| `contentRaw` | 951/1060 | 89.7 % |
-| `prerequisitesRaw` | 394/1060 | 37.2 % |
-| `additionalInformationRaw` | 353/1060 | 33.3 % |
+| `organizingEntityRaw` | 1061/1061 | 100.0 % |
+| `domainRaw` | 1061/1061 | 100.0 % |
+| `themeRaw` | 982/1061 | 92.6 % |
+| `publicRaw` | 951/1061 | 89.6 % |
+| `durationRaw` | 1046/1061 | 98.6 % |
+| `targetAudienceRaw` | 942/1061 | 88.8 % |
+| `generalInformationRaw` | 544/1061 | 51.3 % |
+| `objectivesRaw` | 1009/1061 | 95.1 % |
+| `contentRaw` | 951/1061 | 89.6 % |
+| `prerequisitesRaw` | 394/1061 | 37.1 % |
+| `additionalInformationRaw` | 353/1061 | 33.3 % |
 
 ### Correspondance des libellés officiels
 
@@ -164,8 +174,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
@@ -202,7 +212,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-08-31T03:11:53.320Z
-- Snapshot candidat validé : 2026-08-31
-- Empreinte SHA-256 : `3b129128ffef41b7b60ad5ba5fe5e65f4ffe7d3543ac68787995464f71d4900e`
+- Date et heure de promotion : 2026-09-01T03:20:17.691Z
+- Snapshot candidat validé : 2026-09-01
+- Empreinte SHA-256 : `ab8579af8386d331d6c83e442cbbe32fa8b718a572fb4bc8099f4a9fea688a2f`
 - Promotion manuelle confirmée.
