@@ -25,7 +25,7 @@ Ce document est la référence technique et opérationnelle pour reprendre le pr
 > - résultat brut : commit `e0af8a4` ;
 > - tag : `search-luna-independent-result-2026-08-30`.
 >
-> Le frontend statique peut être publié sur GitHub Pages, mais **Luna nécessite un backend sécurisé séparé**. La clé `OPENAI_API_KEY` ne doit jamais être exposée dans le navigateur.
+> Le frontend statique est publié sur GitHub Pages et **Luna utilise un backend sécurisé séparé déployé sur Infomaniak**. La clé `OPENAI_API_KEY` reste exclusivement côté serveur et ne doit jamais être exposée dans le navigateur.
 >
 > Le benchmark final du 30 août 2026 est désormais **consommé** : il peut servir de test de régression, mais ne doit plus être présenté comme un nouveau benchmark indépendant après un futur réglage de Luna.
 
@@ -33,15 +33,18 @@ Ce document est la référence technique et opérationnelle pour reprendre le pr
 
 - Projet : Catalogue de formations — Projet n°2, indépendant du Projet n°1.
 - Branche principale du dépôt : `main`.
-- Branche de développement actuelle : `feat/search-llm-recall-augmentation-2026-08-28`.
+- Ancienne branche de développement Luna : `feat/search-llm-recall-augmentation-2026-08-28` (historique ; son contenu est désormais intégré à `main`).
 - Dépôt distant : [github.com/technologies-formation/catalogue-formations](https://github.com/technologies-formation/catalogue-formations).
-- URL publique historique du frontend statique : [technologies-formation.github.io/catalogue-formations](https://technologies-formation.github.io/catalogue-formations/).
+- URL publique du frontend : [technologies-formation.github.io/catalogue-formations](https://technologies-formation.github.io/catalogue-formations/).
+- URL publique du backend Luna : `https://api.a658yg-catalogue.ch`.
+- Jalon de connexion du frontend au backend public : commit `928ba5f`.
 - Jalon fonctionnel Codespaces au 29 août 2026 : commit `e03d105`.
 - Tag de reprise : `search-llm-codespaces-v1-2026-08-29`.
 - Ancien jalon public du 20 août 2026 : `projet-2-public-v1.4-2026-08-20`.
-- Le snapshot utilisé pendant les tests Luna contient 1 058 formations. Cette volumétrie peut évoluer avec les mises à jour du catalogue.
+- Le benchmark indépendant final Luna a été exécuté sur un snapshot de 1 058 formations.
+- Le snapshot public courant contient 1 061 formations au 1er septembre 2026. Cette volumétrie peut évoluer avec les mises à jour du catalogue.
 
-Le tag `search-llm-codespaces-v1-2026-08-29` correspond à une version fonctionnelle en environnement Codespaces. Il ne signifie pas que le backend Luna est déjà déployé en production publique.
+Le tag `search-llm-codespaces-v1-2026-08-29` reste un jalon historique de la version Codespaces. Depuis, le backend Luna a été déployé publiquement sur Infomaniak et le frontend GitHub Pages a été connecté à ce backend.
 
 Avant toute intervention, vérifier :
 
@@ -174,7 +177,7 @@ L'utilisateur doit cliquer explicitement sur **Booster ma recherche avec l'IA**.
 
 #### Architecture
 
-1. Luna analyse les 1 058 formations sous forme compacte et sélectionne jusqu'à 40 candidats.
+1. Luna analyse le snapshot courant du catalogue sous forme compacte (1 061 formations au 1er septembre 2026) et sélectionne jusqu'à 40 candidats.
 2. `searchCourseCandidates()` produit en parallèle un Top 40 lexical.
 3. Les deux listes sont fusionnées et dédupliquées.
 4. Luna analyse les fiches détaillées de l'union.
@@ -495,7 +498,7 @@ Les coûts varient selon l’état du cache, la taille de l’union des candidat
 
 Pour relancer l’environnement de développement :
 
-- backend Luna : `nohup node server/searchApi.mjs > /tmp/catalogue-api.log 2>&1 &`
+- backend Luna : `nohup npm start > /tmp/catalogue-api.log 2>&1 &`
 - contrôle backend : `curl -s http://localhost:8787/api/health`
 - logs backend : `tail -n 50 /tmp/catalogue-api.log`
 - frontend Vite : `nohup npm run dev -- --host 0.0.0.0 > /tmp/catalogue-vite.log 2>&1 &`
@@ -503,7 +506,7 @@ Pour relancer l’environnement de développement :
 
 Après modification de `server/searchApi.mjs` ou `server/llmSearch.mjs`, redémarrer le backend Node.
 
-Le backend Luna ne dispose pas encore d’un script npm dédié ; il est lancé directement avec `node server/searchApi.mjs`.
+Le backend Luna dispose du script `npm start`, qui lance `node server/searchApi.mjs`.
 
 ## Principe de décision du projet
 
@@ -540,7 +543,7 @@ Le frontend Vite utilise un proxy local `/api` vers ce serveur.
 
 ### Protections déjà en place
 
-Le backend Codespaces applique actuellement :
+Le backend applique actuellement, en développement comme sur le pilote public :
 
 - JSON invalide : HTTP `400` ;
 - `query` absente ou de mauvais type : HTTP `400` ;
@@ -567,22 +570,24 @@ La clé `OPENAI_API_KEY` ne doit donc jamais être placée :
 
 Dans Codespaces, la clé est fournie comme secret GitHub.
 
-Pour un usage public, l'architecture devra conserver un backend séparé entre le navigateur et OpenAI.
+L'architecture publique conserve un backend séparé entre le navigateur et OpenAI. Le frontend GitHub Pages communique avec `https://api.a658yg-catalogue.ch` via `VITE_SEARCH_API_BASE_URL`.
 
-### À traiter avant production publique
+### Déploiement public pilote
 
-Le backend actuel est adapté au développement et aux tests Codespaces, mais pas encore à une exposition publique définitive.
+Le backend est désormais déployé sur Infomaniak pour le pilote public.
 
-Il reste notamment à décider ou mettre en place :
+Les principaux mécanismes actuellement en place sont :
 
-- hébergement du backend ;
-- CORS ;
-- rate limiting ;
-- protection contre les abus ;
-- monitoring ;
-- suivi budgétaire ;
-- gestion des timeouts ;
-- journalisation de production ;
+- hébergement Infomaniak sous Node.js 24 ;
+- CORS limité au frontend `https://technologies-formation.github.io` ;
+- rate limiting configuré à 10 requêtes par période de 10 minutes et par IP ;
+- limitation à une recherche IA simultanée ;
+- timeout OpenAI configuré à 90 secondes ;
+- validation stricte des requêtes et limitation de leur taille ;
+- journalisation serveur sans enregistrer le texte des recherches utilisateur ;
+- clé OpenAI conservée exclusivement côté serveur.
+
+Le monitoring et le suivi budgétaire restent à consolider avant une éventuelle industrialisation à plus grande échelle ;
 - éventuelle authentification ou restriction d'accès.
 
 ## Contrôles avant commit

@@ -2,7 +2,7 @@
 
 > **Prototype de démonstration non officiel — ne constitue pas le catalogue officiel de formation de l’État de Genève.**
 
-Cette application React/Vite permet de consulter les **1 056 formations** du snapshot officiel actuellement publié au 20 août 2026. Cette volumétrie issue du snapshot courant peut évoluer avec les mises à jour quotidiennes. L’application est accessible à l’adresse [technologies-formation.github.io/catalogue-formations](https://technologies-formation.github.io/catalogue-formations/).
+Cette application React/Vite permet de consulter les **1 061 formations** du snapshot officiel actuellement publié au 1er septembre 2026. Cette volumétrie issue du snapshot courant peut évoluer avec les mises à jour quotidiennes. L’application est accessible à l’adresse [technologies-formation.github.io/catalogue-formations](https://technologies-formation.github.io/catalogue-formations/).
 
 ## Fonctionnalités
 
@@ -61,7 +61,7 @@ git diff --check
 
 Le frontend statique peut être publié sur GitHub Pages. Un push direct sur `main` déclenche `.github/workflows/deploy.yml`. Les mises à jour automatiques du catalogue sont validées, promues et déployées par `.github/workflows/update-catalogue.yml`.
 
-La recherche IA nécessite en revanche un backend Node sécurisé : la clé OpenAI ne doit jamais être exposée dans le navigateur ou dans GitHub Pages. Le backend public définitif reste à déployer ; l’architecture Luna est actuellement fonctionnelle dans Codespaces.
+La recherche IA utilise un backend Node sécurisé séparé, déployé sur Infomaniak à l’adresse `https://api.a658yg-catalogue.ch`. La clé OpenAI reste exclusivement côté serveur et n’est jamais exposée dans le navigateur ou dans GitHub Pages. Le frontend public communique avec ce backend via `VITE_SEARCH_API_BASE_URL`.
 
 ## Choix de recherche
 
@@ -72,6 +72,6 @@ L’application combine désormais deux modes :
 
 Luna fonctionne en deux passes et utilise également un rappel lexical local pour compléter ses candidats. Les codes proposés sont contraints aux formations présentes dans le catalogue officiel.
 
-Typesense et MiniLM ont été évalués puis abandonnés pour l’architecture testée, leurs résultats n’ayant pas apporté un gain suffisant. Sur le benchmark indépendant réalisé avant les adaptations ultérieures, Luna a obtenu **26/30 (86,7 %)**. Ce benchmark est désormais consommé ; un nouveau jeu indépendant sera nécessaire pour mesurer la qualité finale de la version actuelle.
+Typesense et MiniLM ont été évalués puis abandonnés pour l’architecture actuelle, leurs résultats n’ayant pas apporté un gain suffisant. Le benchmark indépendant final, gelé avant exécution, a obtenu **37/40 (92,5 %)** avec Luna. Ce benchmark est désormais consommé : il peut servir de test de régression, mais toute nouvelle mesure indépendante exige un nouveau jeu de cas défini et gelé avant exécution.
 
 La documentation technique détaillée et l’historique des décisions sont disponibles dans `GUIDE_REPRISE.md`.
