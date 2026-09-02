@@ -114,6 +114,8 @@ jobs:
       - name: Run lint after promotion
         run: npm run lint
       - name: Build application after promotion
+        env:
+          VITE_SEARCH_API_BASE_URL: https://api.a658yg-catalogue.ch
         run: npm run build
       - name: Check promoted diff
         run: git diff --check
