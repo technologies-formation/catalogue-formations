@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-01
+- Date du snapshot : 2026-09-02
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 121.1 secondes
-- Taille du JSON final : 2.06 Mio (2159222 octets)
-- Empreinte SHA-256 du snapshot : `ab8579af8386d331d6c83e442cbbe32fa8b718a572fb4bc8099f4a9fea688a2f`
+- Durée totale de l’import : 138.3 secondes
+- Taille du JSON final : 2.06 Mio (2163341 octets)
+- Empreinte SHA-256 du snapshot : `c58e41388a707e10e2871d4d66f75f181197103ae7ffeecfd064d30a6e2e0506`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1654
-- Codes uniques : 1061
+- Occurrences détectées dans l’index : 1657
+- Codes uniques : 1064
 - Occurrences éliminées par déduplication : 593
 - Formations présentes dans plusieurs offres : 300
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1061
+- Fiches récupérées avec succès : 1064
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1060 |
-| Cours dans le candidat | 1061 |
-| Cours ajoutés | 1 |
+| Cours dans le snapshot officiel | 1061 |
+| Cours dans le candidat | 1064 |
+| Cours ajoutés | 3 |
 | Cours supprimés | 0 |
-| Cours modifiés | 18 |
+| Cours modifiés | 8 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,7 +34,9 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| SEM-3159 | LabTice, le nouveau logiciel de labo langues pour l'ESI et l'ESII / formation pour les référents | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
+| EP-1330ETB | Faire vivre la salle de jeux : outils pour varier les activités, exploiter l'espace et accompagner les besoins psychomoteurs des enfants 1P-4P | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
+| PO-ORFO300 | Logiciel CRESUS Partie 1 | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
+| S2-ORFO304 | Marketing digital : atelier pratique des outils numériques | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
 
 ### Cours supprimés
 
@@ -44,29 +46,19 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-00312 | Module de perfectionnement Moniteur ski J+S | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| CO-01197 | Cours d'introduction au Sport scolaire J+S | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| CO-01418 | Cours d'introduction Moniteur Ski J+S | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| CO-01797 | Module de perfectionnement au Sport scolaire J+S | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| EP-988 | La danse, un appui pour le corps et la gestion de groupe | `hasOpenSession` : « true » → « false » |
-| FP249 | Formation Initiale Sentinelle milicien/milicienne | `hasOpenSession` : « true » → « false » |
-| OMP-021TSA | Soutenir les interactions sociales des jeunes enfants sur le spectre de l'autisme | `hasOpenSession` : « true » → « false » |
-| OMP-048 | Particularités cognitives et sensorielles des élèves avec autisme; outils pour les intégrer à la classe | `hasOpenSession` : « false » → « true » |
-| PJ-0038 | Méthodologie Gestion de projet (volet 3) | `hasScheduledSession` : « true » → « false » |
-| PJ-0094 | Fondamentaux Gestion de projet (volet 2) | `hasScheduledSession` : « true » → « false » |
-| PJ-0101 | Gestion des pièces à conviction - Personnel du TMIN, TPN et CJP titulaire d'une licence | `hasOpenSession` : « true » → « false » |
-| SEM-P1575 | EP-OMP / Découvrir l'intelligence artificielle / Formation hybride / NOUVEAU | `hasOpenSession` : « true » → « false » |
-| SEM-P4005 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 1 | `hasOpenSession` : « true » → « false » |
-| SEM-P4009 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 5P-6P | `hasOpenSession` : « false » → « true » |
-| SEM-P4010 | EP / Formation institutionnelle obligatoire / Science informatique pour le Cycle 1 | `hasOpenSession` : « true » → « false » |
-| TRT023 | CFI - Achats: gestion des demandes d'achat | `hasOpenSession` : « true » → « false » |
-| TRT039 | Consultation et saisie dans Ge-Invest | `hasOpenSession` : « true » → « false » |
+| CO-01517 | Initiation à la gravure | `hasOpenSession` : « true » → « false » |
+| FP178 | Manager : gérer les tensions au sein de son équipe | `hasOpenSession` : « true » → « false » |
+| OMP-014TSA | Travailler les compétences sociales en milieu spécialisé | `hasOpenSession` : « true » → « false » |
+| OMP-020TSA | L'oralité alimentaire en milieu renforcé: Troubles Alimentaires Pédiatriques , évaluation & prise en charge | `hasOpenSession` : « true » → « false » |
+| OMP-022TSA | Accompagner le développement de comportements attendus chez les élèves autistes avec un TDI | `hasOpenSession` : « true » → « false » |
+| S2-EPS16 | J+S Cours d'introduction escalade sportive pour enseignants du DIP | `hasOpenSession` : « true » → « false » |
+| SEM1122 | Ajuster sa voix et son comportement non verbal, force d'influence | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| SEM-4009 | Formation IA et ORFO pour les enseignants AFP | `durationRaw` |
+| CO-01676 | La transition écologique : quels enjeux pour respecter les limites de notre planète ? | `prerequisitesRaw` |
 
 ### Changements d’offres
 
@@ -108,8 +100,8 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 227 | 227 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 299 | 299 |
-| DIP-ES II - Offre de formation de l'ES II | 238 | 238 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 300 | 300 |
+| DIP-ES II - Offre de formation de l'ES II | 240 | 240 |
 | DIP-OMP - Offre formation de l'OMP | 234 | 234 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 154 | 154 |
 | PJ - Offre de formation du pouvoir judiciaire | 55 | 55 |
@@ -119,17 +111,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1061/1061 | 100.0 % |
-| `domainRaw` | 1061/1061 | 100.0 % |
-| `themeRaw` | 982/1061 | 92.6 % |
-| `publicRaw` | 951/1061 | 89.6 % |
-| `durationRaw` | 1046/1061 | 98.6 % |
-| `targetAudienceRaw` | 942/1061 | 88.8 % |
-| `generalInformationRaw` | 544/1061 | 51.3 % |
-| `objectivesRaw` | 1009/1061 | 95.1 % |
-| `contentRaw` | 951/1061 | 89.6 % |
-| `prerequisitesRaw` | 394/1061 | 37.1 % |
-| `additionalInformationRaw` | 353/1061 | 33.3 % |
+| `organizingEntityRaw` | 1064/1064 | 100.0 % |
+| `domainRaw` | 1064/1064 | 100.0 % |
+| `themeRaw` | 985/1064 | 92.6 % |
+| `publicRaw` | 952/1064 | 89.5 % |
+| `durationRaw` | 1047/1064 | 98.4 % |
+| `targetAudienceRaw` | 945/1064 | 88.8 % |
+| `generalInformationRaw` | 544/1064 | 51.1 % |
+| `objectivesRaw` | 1011/1064 | 95.0 % |
+| `contentRaw` | 952/1064 | 89.5 % |
+| `prerequisitesRaw` | 393/1064 | 36.9 % |
+| `additionalInformationRaw` | 353/1064 | 33.2 % |
 
 ### Correspondance des libellés officiels
 
@@ -212,7 +204,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-01T03:20:17.691Z
-- Snapshot candidat validé : 2026-09-01
-- Empreinte SHA-256 : `ab8579af8386d331d6c83e442cbbe32fa8b718a572fb4bc8099f4a9fea688a2f`
+- Date et heure de promotion : 2026-09-02T03:19:52.424Z
+- Snapshot candidat validé : 2026-09-02
+- Empreinte SHA-256 : `c58e41388a707e10e2871d4d66f75f181197103ae7ffeecfd064d30a6e2e0506`
 - Promotion manuelle confirmée.
