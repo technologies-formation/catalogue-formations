@@ -144,6 +144,8 @@ jobs:
           git commit -m "data: mettre à jour automatiquement le catalogue au ${SNAPSHOT_DATE}"
       - name: Push promoted data
         run: git push origin HEAD:main
+      - name: Prepare published catalogue
+        run: node scripts/preparePublishedCatalogue.mjs
       - name: Configure Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
       - name: Upload Pages artifact

@@ -1,7 +1,4 @@
-import officialCatalogueSnapshot from '../src/data/officialCatalogueSnapshot.json' with {
-  type: 'json',
-}
-import { fullCatalogueCourses } from '../src/data/fullCatalogueCourses.js'
+import { catalogueStore } from './catalogueRuntime.mjs'
 import { searchCourseCandidates } from '../src/domain/courseSearch.js'
 import { positiveIntegerEnv } from './config.mjs'
 
@@ -13,52 +10,6 @@ const PRICE = {
   cachedInput: 0.02,
   cacheWrite: 0.25,
   output: 1.20,
-}
-
-const ultraCompactCatalogue = fullCatalogueCourses.map((course) => ({
-  code: course.code,
-  title: course.officialData?.titleRaw ?? '',
-  domain: course.officialData?.domainRaw ?? '',
-  theme: course.officialData?.themeRaw ?? '',
-  public: course.officialData?.publicRaw ?? '',
-  targetAudience: course.officialData?.targetAudienceRaw ?? '',
-}))
-
-const officialCodes = ultraCompactCatalogue.map(({ code }) => code)
-
-const detailedByCode = new Map(
-  officialCatalogueSnapshot.map((course) => [
-    course.code,
-    {
-      code: course.code,
-      title: clean(course.titleRaw),
-      organizingEntity: clean(course.organizingEntityRaw),
-      domain: clean(course.domainRaw),
-      theme: clean(course.themeRaw),
-      public: clean(course.publicRaw),
-      targetAudience: clean(course.targetAudienceRaw),
-      duration: clean(course.durationRaw),
-      generalInformation: clean(course.generalInformationRaw),
-      objectives: clean(course.objectivesRaw),
-      content: clean(course.contentRaw),
-      prerequisites: clean(course.prerequisitesRaw),
-      additionalInformation: clean(course.additionalInformationRaw),
-    },
-  ]),
-)
-
-const courseByCode = new Map(
-  fullCatalogueCourses.map((course) => [course.code, course]),
-)
-
-function clean(value) {
-  if (value == null) return ''
-  if (Array.isArray(value)) return value.map(clean).filter(Boolean).join(' | ')
-
-  return String(value)
-    .replace(/<[^>]*>/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
 }
 
 function extractText(response) {
@@ -122,6 +73,9 @@ export async function searchWithLuna(query) {
   if (!process.env.OPENAI_API_KEY) {
     throw new Error('OPENAI_API_KEY absente côté serveur')
   }
+
+  // Capture once: both passes and lexical recall keep this version across awaits.
+  const { courses, ultraCompactCatalogue, officialCodes, detailedByCode, courseByCode } = catalogueStore.current().search
 
   const normalizedQuery = String(query ?? '').trim()
 
@@ -189,7 +143,7 @@ ${normalizedQuery}`,
    * RAPPEL LEXICAL LOCAL
    */
   const localCodes = searchCourseCandidates(
-    fullCatalogueCourses,
+    courses,
     normalizedQuery,
     LOCAL_RECALL_LIMIT,
   ).map(({ course }) => course.code)

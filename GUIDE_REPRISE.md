@@ -1,5 +1,11 @@
 # Guide de reprise — Catalogue de formations — Projet n°2
 
+> Évolution préparée le 02.09.2026 : synchronisation optionnelle du catalogue
+> backend depuis le catalogue publié sur Pages. Voir
+> [la procédure et les limites](docs/BACKEND_CATALOGUE_SYNC.md).
+> Son activation en production doit être vérifiée séparément ; elle est désactivée
+> par défaut. Les jalons et résultats historiques ci-dessous restent datés.
+
 Ce document est la référence technique et opérationnelle pour reprendre le projet après une interruption.
 
 > **État actualisé au 30 août 2026**

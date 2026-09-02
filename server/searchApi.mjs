@@ -2,6 +2,7 @@ import http from 'node:http'
 import { randomUUID } from 'node:crypto'
 import { positiveIntegerEnv } from './config.mjs'
 import { searchWithLuna } from './llmSearch.mjs'
+import { catalogueStore, catalogueSyncEnabled, initializeCatalogue, startCatalogueSync } from './catalogueRuntime.mjs'
 
 const PORT = Number(process.env.PORT || 8787)
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
@@ -165,6 +166,7 @@ const server = http.createServer(async (request, response) => {
       ok: true,
       service: 'catalogue-search-api',
       openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
+      catalogue: { syncEnabled: catalogueSyncEnabled, ...catalogueStore.status() },
     })
     return
   }
@@ -305,6 +307,12 @@ const server = http.createServer(async (request, response) => {
   sendJson(response, 404, {
     error: 'Not found',
   })
+})
+
+await initializeCatalogue()
+server.once('listening', () => {
+  const stopSync = startCatalogueSync()
+  server.once('close', stopSync)
 })
 
 server.listen(PORT, '0.0.0.0', () => {

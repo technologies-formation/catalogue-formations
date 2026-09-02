@@ -39,3 +39,6 @@ reports/catalogue-import-report.candidate.md
 *.njsproj
 *.sln
 *.sw?
+
+# Backend catalogue cache (runtime only)
+var/
