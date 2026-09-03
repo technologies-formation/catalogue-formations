@@ -70,6 +70,9 @@ const OBJECTIVE_PHRASE_IGNORED_TOKENS = new Set([
   'pourrais', 'pourrait', 'pourrions', 'pourriez', 'pourraient',
 ])
 
+// Ces verbes seuls ne désignent pas une compétence métier.
+const GENERIC_OBJECTIVE_TOKENS = new Set(['savoir', 'utiliser', 'etre', 'capable'])
+
 const CLASSIC_QUERY_TOKEN_EQUIVALENTS = new Map([
   ['conduire', 'conduite'],
 ])
@@ -100,6 +103,17 @@ export function searchCourses(courses, query) {
 
   const corpus = getCorpus(courses, SEARCH_FIELDS)
   const variants = buildQueryVariants(normalizedQuery, query)
+    .map((variant) => {
+      // Retirer seulement une amorce d'utilisation, en conservant le sujet
+      // et tous les qualificatifs. Le rappel Luna ne passe pas ici.
+      const prefixLength = variant.tokens[0] === 'utiliser'
+        ? 1
+        : variant.tokens[0] === 'savoir' && variant.tokens[1] === 'utiliser'
+          ? 2
+          : 0
+      if (!prefixLength || variant.tokens.length <= prefixLength) return variant
+      return { ...variant, tokens: variant.tokens.slice(prefixLength) }
+    })
     .flatMap((variant) => {
       const equivalentTokens = variant.tokens.map(normalizeClassicQueryToken)
       const hasEquivalent = equivalentTokens.some(
@@ -358,7 +372,10 @@ function longestContiguousMatch(queryTokens, targetTokens) {
         length += 1
       }
 
-      if (length > longest) longest = length
+      const hasSubject = queryTokens
+        .slice(queryStart, queryStart + length)
+        .some((token) => !GENERIC_OBJECTIVE_TOKENS.has(token))
+      if (hasSubject && length > longest) longest = length
     }
   }
 

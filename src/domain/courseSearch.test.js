@@ -202,3 +202,28 @@ function course(code, titleRaw, officialData = {}) {
     },
   }
 }
+
+
+test('les amorces utiliser et savoir utiliser conservent le sujet explicite', () => {
+  const sample = [
+    course('EXCEL', 'Excel 365 Base'),
+    course('PODCAST', 'Créer des podcasts', { objectivesRaw: 'Savoir utiliser un microphone' }),
+    course('MOODLE', 'Créer des évaluations', { objectivesRaw: 'Savoir utiliser Moodle' }),
+    ...Array.from({ length: 300 }, (_, i) => course(`USE-${i}`, `Cours générique ${i}`)),
+  ]
+  for (const query of ['utiliser Excel', 'je voudrais savoir utiliser Excel']) {
+    assert.deepEqual(searchCourses(sample, query).map(({ code }) => code), ['EXCEL'])
+  }
+  assert.deepEqual(searchCourses(sample, 'je voudrais savoir utiliser Photoshop'), [])
+  assert.deepEqual(searchCourses(sample, 'utiliser Excel en Python'), [])
+})
+
+test('une expression générique seule dans les objectifs ne prouve pas le sujet', () => {
+  const sample = [
+    course('OTHER', 'Créer un podcast', { objectivesRaw: 'Savoir utiliser le microphone' }),
+    course('TABLE', 'Analyser des données', { objectivesRaw: 'Savoir utiliser Excel pour construire des tableaux de bord' }),
+    ...Array.from({ length: 300 }, (_, i) => course(`GEN-${i}`, `Cours générique ${i}`)),
+  ]
+  assert.deepEqual(searchCourses(sample, 'comprendre les statistiques et savoir utiliser Photoshop'), [])
+  assert.deepEqual(searchCourses(sample, 'construire des tableaux de bord').map(({ code }) => code), ['TABLE'])
+})
