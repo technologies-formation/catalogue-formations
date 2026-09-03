@@ -497,8 +497,16 @@ function App() {
     })),
   ].filter(Boolean)
 
+  const hasActiveFacetFilters = activeOfficialFilters.some(
+    (filter) => filter.key !== 'search',
+  )
+
   function resetOfficialFilters() {
     setOfficialSearch(NO_FILTER)
+    resetOfficialFacets()
+  }
+
+  function resetOfficialFacets() {
     setSessions([])
     setTrainingOffers([])
     setTrainingEntities([])
@@ -994,18 +1002,47 @@ function App() {
                       </>
                     ) : (
                       <>
-                        <h3>Aucune formation ne correspond aux critères sélectionnés.</h3>
-                        <p>
-                          Modifiez ou réinitialisez certains filtres pour élargir
-                          votre recherche.
-                        </p>
-                        <button
-                          className="reset-filters"
-                          type="button"
-                          onClick={resetOfficialFilters}
-                        >
-                          Réinitialiser les filtres
-                        </button>
+                        <h3>
+                          {hasTextSearch
+                            ? 'La recherche classique n’a trouvé aucun résultat.'
+                            : 'Aucune formation avec ces filtres.'}
+                        </h3>
+                        {hasTextSearch && (
+                          <>
+                            <p>
+                              Essayez quelques mots-clés ou un code de formation.
+                              {isAiSearchConfigured &&
+                                ' Vous pouvez aussi demander à l’IA d’analyser votre besoin.'}
+                            </p>
+                            {isAiSearchConfigured && (
+                              <button
+                                className="ai-search-button"
+                                type="button"
+                                onClick={handleAiSearch}
+                                disabled={aiSearchStatus === 'loading'}
+                              >
+                                {aiSearchStatus === 'loading'
+                                  ? 'Analyse avec l’IA…'
+                                  : 'Booster ma recherche avec l’IA'}
+                              </button>
+                            )}
+                          </>
+                        )}
+                        {hasActiveFacetFilters && (
+                          <>
+                            <p>
+                              Des filtres sont actifs. Retirez-en certains pour
+                              élargir les résultats.
+                            </p>
+                            <button
+                              className="reset-filters"
+                              type="button"
+                              onClick={resetOfficialFacets}
+                            >
+                              Retirer les filtres
+                            </button>
+                          </>
+                        )}
                       </>
                     )}
                   </div>
