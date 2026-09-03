@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-02
+- Date du snapshot : 2026-09-03
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
 - Durée totale de l’import : 138.3 secondes
-- Taille du JSON final : 2.06 Mio (2163341 octets)
-- Empreinte SHA-256 du snapshot : `c58e41388a707e10e2871d4d66f75f181197103ae7ffeecfd064d30a6e2e0506`
+- Taille du JSON final : 2.06 Mio (2164369 octets)
+- Empreinte SHA-256 du snapshot : `1b4b3f9b85051b9004afd5f15737e37ac37ed3a89756cb8b3508cb21f4ffb51b`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1657
-- Codes uniques : 1064
+- Occurrences détectées dans l’index : 1658
+- Codes uniques : 1065
 - Occurrences éliminées par déduplication : 593
 - Formations présentes dans plusieurs offres : 300
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1064
+- Fiches récupérées avec succès : 1065
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1061 |
-| Cours dans le candidat | 1064 |
-| Cours ajoutés | 3 |
+| Cours dans le snapshot officiel | 1064 |
+| Cours dans le candidat | 1065 |
+| Cours ajoutés | 1 |
 | Cours supprimés | 0 |
-| Cours modifiés | 8 |
+| Cours modifiés | 19 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,9 +34,7 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| EP-1330ETB | Faire vivre la salle de jeux : outils pour varier les activités, exploiter l'espace et accompagner les besoins psychomoteurs des enfants 1P-4P | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| PO-ORFO300 | Logiciel CRESUS Partie 1 | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
-| S2-ORFO304 | Marketing digital : atelier pratique des outils numériques | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
+| EP-1329ETB | Accompagner les jeunes élèves dans le passage de l?oral à l?écrit | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Langues |
 
 ### Cours supprimés
 
@@ -46,19 +44,31 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01517 | Initiation à la gravure | `hasOpenSession` : « true » → « false » |
-| FP178 | Manager : gérer les tensions au sein de son équipe | `hasOpenSession` : « true » → « false » |
-| OMP-014TSA | Travailler les compétences sociales en milieu spécialisé | `hasOpenSession` : « true » → « false » |
-| OMP-020TSA | L'oralité alimentaire en milieu renforcé: Troubles Alimentaires Pédiatriques , évaluation & prise en charge | `hasOpenSession` : « true » → « false » |
-| OMP-022TSA | Accompagner le développement de comportements attendus chez les élèves autistes avec un TDI | `hasOpenSession` : « true » → « false » |
-| S2-EPS16 | J+S Cours d'introduction escalade sportive pour enseignants du DIP | `hasOpenSession` : « true » → « false » |
-| SEM1122 | Ajuster sa voix et son comportement non verbal, force d'influence | `hasOpenSession` : « true » → « false » |
+| FP021 | Les Levées de corps | `titleRaw` : « Nouveaux officiers de police - Formation de base » → « Les Levées de corps »<br>`domainRaw` : « 03. FORMATION DES CADRES Police » → « 02. FORMATION CONTINUE Police »<br>`themeRaw` : « Formations pour les sous-officiers supérieurs » → « Formations de spécialisation »<br>`targetAudienceRaw` : « policiers - administratifs rattachés à la police » → « Policier »<br>`hasOpenSession` : « false » → « true » |
+| OMP-021TSA | Soutenir les interactions sociales des jeunes enfants sur le spectre de l'autisme | `hasOpenSession` : « false » → « true » |
+| PJ-0103 | Gestion des pièces à conviction - Magistrats TMC | `hasOpenSession` : « true » → « false » |
+| SEM-P4009 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 5P-6P | `hasOpenSession` : « true » → « false » |
+| SEM0518 | Prévenir les tensions dans ses relations par une bonne communication | `hasScheduledSession` : « false » → « true » |
+| SEM0815 | Dynamiser sa seconde partie de carrière et de vie | `hasScheduledSession` : « false » → « true » |
+| SEM1033 | Répondre avec tact aux plaintes écrites | `hasScheduledSession` : « false » → « true » |
+| SEM1037 | Médiation 1: les bases pratiques | `hasOpenSession` : « true » → « false » |
+| SEM1086 | Budget et planification financière | `hasOpenSession` : « false » → « true » |
+| SEM1118 | Gérer ses émotions dans ses relations professionnelles | `hasScheduledSession` : « false » → « true » |
+| SEM1121 | Management de la continuité des activités (MCA) | `hasScheduledSession` : « false » → « true » |
+| SEM1163 | Relation et confiance en soi | `hasScheduledSession` : « false » → « true » |
+| SEM1165 | Design Thinking: des solutions créatives qui prennent l'humain en compte | `hasOpenSession` : « false » → « true » |
+| SEM1169 | Ecrire pour être compris | `hasScheduledSession` : « false » → « true » |
+| SEM1215 | Les neurosciences au service du management | `hasScheduledSession` : « false » → « true » |
+| SEM1221 | Gestion des risques | `hasScheduledSession` : « false » → « true » |
+| SEM1249 | Préserver la santé psychosociale de mon équipe | `hasScheduledSession` : « false » → « true » |
+| SEM1258 | La santé mentale au travail : le rôle clé des managers et de la filière RH | `hasScheduledSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| CO-01676 | La transition écologique : quels enjeux pour respecter les limites de notre planète ? | `prerequisitesRaw` |
+| EP-005ADMI | Prévention et sécurité incendie | `generalInformationRaw` |
+| FP021 | Les Levées de corps | `durationRaw`, `objectivesRaw`, `contentRaw`, `prerequisitesRaw`, `additionalInformationRaw` |
 
 ### Changements d’offres
 
@@ -100,7 +110,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 227 | 227 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 300 | 300 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 301 | 301 |
 | DIP-ES II - Offre de formation de l'ES II | 240 | 240 |
 | DIP-OMP - Offre formation de l'OMP | 234 | 234 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 154 | 154 |
@@ -111,17 +121,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1064/1064 | 100.0 % |
-| `domainRaw` | 1064/1064 | 100.0 % |
-| `themeRaw` | 985/1064 | 92.6 % |
-| `publicRaw` | 952/1064 | 89.5 % |
-| `durationRaw` | 1047/1064 | 98.4 % |
-| `targetAudienceRaw` | 945/1064 | 88.8 % |
-| `generalInformationRaw` | 544/1064 | 51.1 % |
-| `objectivesRaw` | 1011/1064 | 95.0 % |
-| `contentRaw` | 952/1064 | 89.5 % |
-| `prerequisitesRaw` | 393/1064 | 36.9 % |
-| `additionalInformationRaw` | 353/1064 | 33.2 % |
+| `organizingEntityRaw` | 1065/1065 | 100.0 % |
+| `domainRaw` | 1065/1065 | 100.0 % |
+| `themeRaw` | 986/1065 | 92.6 % |
+| `publicRaw` | 953/1065 | 89.5 % |
+| `durationRaw` | 1048/1065 | 98.4 % |
+| `targetAudienceRaw` | 946/1065 | 88.8 % |
+| `generalInformationRaw` | 544/1065 | 51.1 % |
+| `objectivesRaw` | 1012/1065 | 95.0 % |
+| `contentRaw` | 952/1065 | 89.4 % |
+| `prerequisitesRaw` | 393/1065 | 36.9 % |
+| `additionalInformationRaw` | 353/1065 | 33.1 % |
 
 ### Correspondance des libellés officiels
 
@@ -204,7 +214,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-02T03:19:52.424Z
-- Snapshot candidat validé : 2026-09-02
-- Empreinte SHA-256 : `c58e41388a707e10e2871d4d66f75f181197103ae7ffeecfd064d30a6e2e0506`
+- Date et heure de promotion : 2026-09-03T05:30:31.462Z
+- Snapshot candidat validé : 2026-09-03
+- Empreinte SHA-256 : `1b4b3f9b85051b9004afd5f15737e37ac37ed3a89756cb8b3508cb21f4ffb51b`
 - Promotion manuelle confirmée.
