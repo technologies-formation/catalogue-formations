@@ -1457,3 +1457,12 @@ select:disabled {
 .ai-results-groups .ai-result-group {
   width: 100%;
 }
+
+
+/* Action IA dans la zone sans résultat */
+.official-empty-state .ai-search-button {
+  min-height: 44px;
+  margin-top: 16px;
+  padding: 10px 20px;
+  white-space: normal;
+}
