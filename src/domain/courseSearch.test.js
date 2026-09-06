@@ -255,3 +255,28 @@ test('la modalité en ligne ne supplante pas le sujet recherché', () => {
     ['WORD-FORM'],
   )
 })
+
+
+test('faire une présentation privilégie la création et exclut les mentions contextuelles', () => {
+  const sample = [
+    course('POWERPOINT', 'PowerPoint 365 Base'),
+    course('ORAL', "Optimiser l'impact de vos présentations projetées", {
+      themeRaw: 'Communication orale',
+    }),
+    course('MOODLE', 'Améliorer la présentation des ressources Moodle'),
+    course('RESULTS', "Présentation des résultats d'une évaluation"),
+    ...Array.from({ length: 300 }, (_, i) =>
+      course(`PRESENT-${i}`, `Cours générique ${i}`)),
+  ]
+
+  assert.deepEqual(
+    searchCourses(sample, 'je voudrais savoir faire des présentations')
+      .map(({ code }) => code),
+    ['POWERPOINT'],
+  )
+  assert.deepEqual(
+    searchCourses(sample, 'présentation des résultats')
+      .map(({ code }) => code),
+    ['RESULTS'],
+  )
+})

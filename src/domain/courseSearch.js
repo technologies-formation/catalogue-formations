@@ -265,16 +265,20 @@ function getCorpus(courses, searchFields) {
 
 function buildQueryVariants(normalizedQuery, originalQuery) {
   const normalizedKey = tokenizeSearch(normalizedQuery).join(' ')
-  const synonymVariants = QUERY_VARIANTS[normalizedKey] ?? []
+  const presentationCreationIntent =
+    /\b(?:faire|creer|realiser|preparer)\b.*\bpresentations?\b/.test(normalizedQuery)
+  const synonymVariants = presentationCreationIntent
+    ? ['powerpoint', 'presentation orale', 'prise parole']
+    : QUERY_VARIANTS[normalizedKey] ?? []
   const trimmedQuery = String(originalQuery).trim()
 
   return [
-    {
+    ...(!presentationCreationIntent ? [{
       tokens: tokenizeSearch(normalizedQuery),
       factor: 1,
       literal: true,
       acronym: SHORT_ACRONYMS.has(trimmedQuery) ? trimmedQuery : null,
-    },
+    }] : []),
     ...synonymVariants.map((variant) => ({
       tokens: tokenizeSearch(variant),
       factor: 0.82,
