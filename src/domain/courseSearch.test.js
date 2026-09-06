@@ -280,3 +280,60 @@ test('faire une présentation privilégie la création et exclut les mentions co
     ['RESULTS'],
   )
 })
+
+
+test('un outil explicitement demandé ne peut pas être ignoré', () => {
+  const sample = [
+    course('PROJECT', 'Planifier et piloter un projet', {
+      objectivesRaw: 'Construire un tableau de bord de suivi',
+    }),
+    course('EXCEL', 'Excel 365 Base'),
+    ...Array.from({ length: 300 }, (_, i) =>
+      course(`TOOL-${i}`, `Cours générique ${i}`)),
+  ]
+
+  assert.deepEqual(
+    searchCourses(sample, 'créer un tableau de bord avec Excel'),
+    [],
+  )
+  assert.deepEqual(
+    searchCourses(sample, 'tableau de bord').map(({ code }) => code),
+    ['PROJECT'],
+  )
+})
+
+test('accompagner ne supplante pas le sujet manager', () => {
+  const sample = [
+    course('MANAGER', 'Accompagner un nouveau manager dans sa prise de fonction'),
+    course(
+      'SMARTPHONE',
+      'Accompagner les élèves vers un usage responsable des smartphones',
+    ),
+    ...Array.from({ length: 300 }, (_, i) =>
+      course(`COACH-${i}`, `Cours générique ${i}`)),
+  ]
+
+  assert.deepEqual(
+    searchCourses(sample, 'accompagner un nouveau manager')
+      .map(({ code }) => code),
+    ['MANAGER'],
+  )
+})
+
+test('orthographe professionnelle retrouve la formation généraliste', () => {
+  const sample = [
+    course('GENERAL', 'En finir avec les pièges de la langue française !', {
+      objectivesRaw:
+        'Gagner en autonomie dans la correction et la fiabilité de ses productions écrites',
+    }),
+    course('TEACHING', "Stratégies pour enseigner l'orthographe aux élèves"),
+    ...Array.from({ length: 300 }, (_, i) =>
+      course(`SPELL-${i}`, `Cours générique ${i}`)),
+  ]
+
+  assert.deepEqual(
+    searchCourses(sample, 'améliorer mon orthographe professionnelle')
+      .map(({ code }) => code),
+    ['GENERAL'],
+  )
+})

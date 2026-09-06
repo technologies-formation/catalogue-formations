@@ -75,8 +75,9 @@ const GENERIC_OBJECTIVE_TOKENS = new Set(['savoir', 'utiliser', 'etre', 'capable
 
 // Ces verbes expriment souvent l'intention de l'utilisateur plutôt que le
 // sujet recherché. Une variante de rappel conserve uniquement le sujet.
-const LEADING_ACTION_TOKENS = new Set(['creer', 'piloter', 'proteger'])
+const LEADING_ACTION_TOKENS = new Set(['accompagner', 'creer', 'piloter', 'proteger'])
 const SUBJECT_CONTEXT_TOKENS = new Set(['ligne'])
+const REQUIRED_EXPLICIT_SUBJECT_TOKENS = new Set(['excel'])
 
 const CLASSIC_QUERY_TOKEN_EQUIVALENTS = new Map([
   ['conduire', 'conduite'],
@@ -267,13 +268,19 @@ function buildQueryVariants(normalizedQuery, originalQuery) {
   const normalizedKey = tokenizeSearch(normalizedQuery).join(' ')
   const presentationCreationIntent =
     /\b(?:faire|creer|realiser|preparer)\b.*\bpresentations?\b/.test(normalizedQuery)
+  const professionalOrthographyIntent =
+    normalizedKey === 'orthographe professionnelle'
+  const semanticIntent =
+    presentationCreationIntent || professionalOrthographyIntent
   const synonymVariants = presentationCreationIntent
     ? ['powerpoint', 'presentation orale', 'prise parole']
-    : QUERY_VARIANTS[normalizedKey] ?? []
+    : professionalOrthographyIntent
+      ? ['fiabilite productions ecrites']
+      : QUERY_VARIANTS[normalizedKey] ?? []
   const trimmedQuery = String(originalQuery).trim()
 
   return [
-    ...(!presentationCreationIntent ? [{
+    ...(!semanticIntent ? [{
       tokens: tokenizeSearch(normalizedQuery),
       factor: 1,
       literal: true,
@@ -338,6 +345,10 @@ function evaluateDocument(
     const independentEvidence = matched.filter(
       ({ queryFactor }) => queryFactor === 1,
     ).length
+    const missesRequiredExplicitSubject = details.some(
+      ({ fieldScore, token }) =>
+        REQUIRED_EXPLICIT_SUBJECT_TOKENS.has(token) && fieldScore === 0,
+    )
     // En recherche classique, une requête de plusieurs termes ne doit pas
     // être validée par un seul mot rare présent dans un titre.
     // Le rappel Luna conserve volontairement son comportement permissif.
@@ -346,7 +357,7 @@ function evaluateDocument(
       variant.tokens.length === 1 ||
       matched.length >= 2
 
-    const minimumEvidence =
+    const minimumEvidence = !missesRequiredExplicitSubject && (
       exactCode ||
       strongTitleExpression ||
       objectivePhraseLength >= 2 ||
@@ -358,6 +369,7 @@ function evaluateDocument(
             coverage >= 0.25) ||
           (independentEvidence >= 2 && coverage >= 0.3) ||
           coverage >= GLOBAL_COVERAGE_THRESHOLD))
+    )
 
     let score = matched.reduce(
       (sum, detail) => sum + detail.fieldScore * detail.mass,
