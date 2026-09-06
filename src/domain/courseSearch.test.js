@@ -227,3 +227,31 @@ test('une expression générique seule dans les objectifs ne prouve pas le sujet
   assert.deepEqual(searchCourses(sample, 'comprendre les statistiques et savoir utiliser Photoshop'), [])
   assert.deepEqual(searchCourses(sample, 'construire des tableaux de bord').map(({ code }) => code), ['TABLE'])
 })
+
+test('une action initiale ne masque pas un sujet métier explicite', () => {
+  const sample = [
+    course('BUDGET', 'Budget et planification financière'),
+    course('PROJECT', 'Planifier et piloter un projet'),
+    ...Array.from({ length: 300 }, (_, i) => course(`ACTION-${i}`, `Cours générique ${i}`)),
+  ]
+
+  assert.equal(searchCourses(sample, 'piloter un budget')[0]?.code, 'BUDGET')
+  assert.deepEqual(searchCourses(sample, 'piloter un budget scolaire'), [])
+})
+
+test('la modalité en ligne ne supplante pas le sujet recherché', () => {
+  const sample = [
+    course('WORD-FORM', 'Word 365 Formulaires et modèles', {
+      objectivesRaw: 'Créer et modifier des formulaires comprenant des champs',
+    }),
+    course('DATABASE', 'Bases de données avec LibreOffice - Formation autonome en ligne', {
+      objectivesRaw: 'Créer des formulaires de saisie pour une base de données',
+    }),
+    ...Array.from({ length: 300 }, (_, i) => course(`FORM-${i}`, `Cours générique ${i}`)),
+  ]
+
+  assert.deepEqual(
+    searchCourses(sample, 'créer un formulaire en ligne').map(({ code }) => code),
+    ['WORD-FORM'],
+  )
+})

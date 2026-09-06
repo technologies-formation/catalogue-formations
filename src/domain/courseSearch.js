@@ -73,6 +73,11 @@ const OBJECTIVE_PHRASE_IGNORED_TOKENS = new Set([
 // Ces verbes seuls ne désignent pas une compétence métier.
 const GENERIC_OBJECTIVE_TOKENS = new Set(['savoir', 'utiliser', 'etre', 'capable'])
 
+// Ces verbes expriment souvent l'intention de l'utilisateur plutôt que le
+// sujet recherché. Une variante de rappel conserve uniquement le sujet.
+const LEADING_ACTION_TOKENS = new Set(['creer', 'piloter', 'proteger'])
+const SUBJECT_CONTEXT_TOKENS = new Set(['ligne'])
+
 const CLASSIC_QUERY_TOKEN_EQUIVALENTS = new Map([
   ['conduire', 'conduite'],
 ])
@@ -113,6 +118,30 @@ export function searchCourses(courses, query) {
           : 0
       if (!prefixLength || variant.tokens.length <= prefixLength) return variant
       return { ...variant, tokens: variant.tokens.slice(prefixLength) }
+    })
+    .flatMap((variant) => {
+      if (
+        !LEADING_ACTION_TOKENS.has(variant.tokens[0]) ||
+        variant.tokens.length <= 1
+      ) {
+        return [variant]
+      }
+
+      const subjectTokens = variant.tokens
+        .slice(1)
+        .filter((token, _index, tokens) =>
+          tokens.length <= 1 || !SUBJECT_CONTEXT_TOKENS.has(token),
+        )
+
+      if (subjectTokens.length === 0) return [variant]
+
+      return [{
+        ...variant,
+        tokens: subjectTokens,
+        intentionTokens: subjectTokens,
+        literal: false,
+        factor: variant.factor * 0.95,
+      }]
     })
     .flatMap((variant) => {
       const equivalentTokens = variant.tokens.map(normalizeClassicQueryToken)
