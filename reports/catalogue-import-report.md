@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-04
+- Date du snapshot : 2026-09-07
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 137.7 secondes
-- Taille du JSON final : 2.05 Mio (2153860 octets)
-- Empreinte SHA-256 du snapshot : `1923b4e6a03cad8011d6cd445faa898df52ef67faaabbd19c37afac783c80da3`
+- Durée totale de l’import : 116.8 secondes
+- Taille du JSON final : 2.06 Mio (2161663 octets)
+- Empreinte SHA-256 du snapshot : `4814470dc42f65865573aba6659e1438a0c44530a1d9ea2cd3108c493af420f4`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1651
-- Codes uniques : 1058
+- Occurrences détectées dans l’index : 1652
+- Codes uniques : 1059
 - Occurrences éliminées par déduplication : 593
 - Formations présentes dans plusieurs offres : 300
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1058
+- Fiches récupérées avec succès : 1059
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,65 +22,69 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1065 |
-| Cours dans le candidat | 1058 |
-| Cours ajoutés | 0 |
-| Cours supprimés | 7 |
-| Cours modifiés | 25 |
+| Cours dans le snapshot officiel | 1058 |
+| Cours dans le candidat | 1059 |
+| Cours ajoutés | 2 |
+| Cours supprimés | 1 |
+| Cours modifiés | 34 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-Aucun cours ajouté.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| EP-027ECA | Les deuils multiples des élèves migrants à l'école : mieux comprendre et accompagner | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| EP-028ECA | Les deuils multiples des élèves migrants à l'école : mieux comprendre et accompagner | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
 
 ### Cours supprimés
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| EP-1022 | Phase test Senso5 / 1P-2P | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| FP066 | Préparateur mélange nitrox | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
-| FP068 | Instructeur préparateur nitrox | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
-| FP070 | Moniteur de plongée niveau 1 | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
-| FP071 | Moniteur de plongée niveau 2 | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
-| FP072 | Moniteur de plongée sous-glace | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
-| FP077 | Plongeur nitrox | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+| OMP-19SSS | Brevet Base Pool - OMP | DIP-OMP - Offre formation de l'OMP | DGOMP/SRH | Formations spécifiques |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-00312 | Module de perfectionnement Moniteur ski J+S | `hasOpenSession` : « true » → « false » |
-| CO-01418 | Cours d'introduction Moniteur Ski J+S | `hasOpenSession` : « true » → « false » |
-| EP-092EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - différé | `hasOpenSession` : « true » → « false » |
-| OMP-021TSA | Soutenir les interactions sociales des jeunes enfants sur le spectre de l'autisme | `hasOpenSession` : « true » → « false » |
-| S2-ORFO304 | Atelier pratique des outils numériques | `titleRaw` : « Marketing digital : atelier pratique des outils numériques » → « Atelier pratique des outils numériques »<br>`targetAudienceRaw` : « Cet atelier est destiné prioritairement aux enseignantes et enseignants du socle commun ORFO Com, enseignant le marketing digital filières: - Plein Temps => UE C6- 3ème année - Dual=> UE C5- 3ème année (attention à ne pas confondre avec … » → « Cet atelier est destiné prioritairement aux enseignantes et enseignants, formateurs et formatrices de l'Espace entreprise du socle commun ORFO Com » |
-| SEM-10473 | EP-ESI-ESII-OMP / Découverte de la partie Fabrication numérique du FabLab du SEM / NOUVEAU | `hasOpenSession` : « true » → « false » |
-| SEM-P1562 | EP-OMP / Atelier découpeuse numérique : fabrication de lettres rugueuses | `hasOpenSession` : « false » → « true » |
-| SEM-P4009 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 5P-6P | `hasOpenSession` : « false » → « true » |
-| SEM0737 | Les bases de la gestion de projet | `hasScheduledSession` : « false » → « true » |
-| SEM1034 | Bien vivre l'équipe et sa dynamique | `hasScheduledSession` : « false » → « true » |
-| SEM1098 | Les clés d'une communication efficace | `hasScheduledSession` : « false » → « true » |
-| SEM1166 | L'intelligence émotionnelle au service de la conduite d'équipe | `hasScheduledSession` : « false » → « true » |
-| SEM1183 | Prendre soin de soi pour rester performant : intégrer les TOP dans son management | `hasOpenSession` : « true » → « false » |
-| SEM1211 | L'incertitude dans le monde du travail: comment l'apprivoiser ? | `hasScheduledSession` : « false » → « true » |
-| SEM1212 | Améliorer et apaiser ses relations professionnelles | `hasOpenSession` : « false » → « true » |
+| CO-01697 | Quelle place pour la lecture dans votre classe ou au sein de l'établissement ? Développer des projets autour du livre | `hasOpenSession` : « true » → « false » |
+| CO-01699 | Evaluer efficacement en latin : conception d'évaluation et stratégies de révision | `hasOpenSession` : « true » → « false » |
+| EP-092EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - différé | `hasOpenSession` : « false » → « true » |
+| FP211 | EC1 Processus d'évaluation SOF - Inscription participant-e-s | `hasOpenSession` : « true » → « false » |
+| PJ-0074 | Le rôle du référent métier au PJ | `hasOpenSession` : « true » → « false » |
+| SEM-P4009 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 5P-6P | `hasOpenSession` : « true » → « false » |
+| SEM0052 | Manager : gérer les tensions au sein de son équipe | `hasScheduledSession` : « false » → « true » |
+| SEM0056 | Principes généraux du droit administratif | `hasScheduledSession` : « false » → « true » |
+| SEM0707 | Techniques d'élaboration des documents écrits | `hasScheduledSession` : « false » → « true » |
+| SEM0746 | Communiquer efficacement avec les médias | `hasScheduledSession` : « false » → « true » |
+| SEM0872 | Gestion du temps et des priorités | `hasScheduledSession` : « false » → « true » |
+| SEM1037 | Médiation 1: les bases pratiques | `hasScheduledSession` : « false » → « true » |
+| SEM1076 | Gestion de la charge de travail dans les équipes | `hasScheduledSession` : « false » → « true » |
+| SEM1081 | Planifier et piloter un projet | `hasScheduledSession` : « false » → « true » |
+| SEM1086 | Budget et planification financière | `hasOpenSession` : « true » → « false » |
+| SEM1089 | Le management transversal | `hasOpenSession` : « true » → « false » |
+| SEM1099 | Optimiser l'impact de vos présentations projetées | `hasScheduledSession` : « false » → « true » |
+| SEM1113 | De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité | `hasScheduledSession` : « false » → « true » |
+| SEM1141 | La roue de l'équilibre de vie au travail | `hasScheduledSession` : « false » → « true » |
+| SEM1145 | Mener des concertations avec des partenaires de projet | `hasScheduledSession` : « false » → « true » |
+| SEM1161 | Sensibilisation à la pleine-conscience au travail | `hasScheduledSession` : « false » → « true » |
+| SEM1171 | Comment collaborer au sein d'une équipe intergénérationnelle | `hasScheduledSession` : « false » → « true » |
+| SEM1172 | En finir avec les pièges de la langue française ! | `hasOpenSession` : « false » → « true » |
+| SEM1176 | Prise en main de l'outil de gestion des risques Etat | `hasScheduledSession` : « false » → « true » |
+| SEM1183 | Prendre soin de soi pour rester performant : intégrer les TOP dans son management | `hasScheduledSession` : « false » → « true » |
+| SEM1196 | Accompagner et vivre le changement | `hasOpenSession` : « true » → « false » |
+| SEM1198 | Prendre soin de soi pour un meilleur équilibre au travail : intégrer les TOP dans son quotidien | `hasScheduledSession` : « false » → « true » |
+| SEM1200 | Moi, manager et négociateur ! | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « false » → « true » |
+| SEM1210 | Management et Assertivité | `hasScheduledSession` : « false » → « true » |
+| SEM1218 | Sensibilisation aux approches agiles | `hasScheduledSession` : « false » → « true » |
+| SEM1223 | L'alignement stratégique dans la conduite d'équipe | `hasScheduledSession` : « false » → « true » |
+| SEM1235 | Gestion de l'information, des documents et des archives de l'administration (GIDA) | `hasScheduledSession` : « false » → « true » |
+| SEM1256 | Gestion des investissements | `hasScheduledSession` : « false » → « true » |
+| SEM1257 | Projets d'investissement et immobilisations | `hasScheduledSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
-| Code | Intitulé candidat | Champs modifiés |
-| --- | --- | --- |
-| S2-ORFO304 | Atelier pratique des outils numériques | `objectivesRaw`, `contentRaw` |
-| SEM-P1563 | EP-OMP / LaDigitale.dev : des outils numériques simples pour optimiser des gestes quotidiens en classe / Formation autonome en ligne | `objectivesRaw` |
-| TRT1004 | Windows 11 | `objectivesRaw`, `contentRaw` |
-| TRT1005 | Excel 365 Base | `objectivesRaw` |
-| TRT1007 | Excel 365 Formules et fonctions avancées | `objectivesRaw` |
-| TRT1008 | Excel 365 Les graphiques | `objectivesRaw` |
-| TRT1009 | Excel 365 Analyse de données | `objectivesRaw` |
-| TRT1010 | Excel 365 Gagner en efficacité | `objectivesRaw` |
-| TRT1011 | Outlook 365 Base | `objectivesRaw` |
-| TRT1012 | Outlook 365 Avancé | `objectivesRaw` |
-| TRT452 | Cockpit Formation | `durationRaw` |
+Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
@@ -122,9 +126,9 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 227 | 227 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 300 | 300 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 302 | 302 |
 | DIP-ES II - Offre de formation de l'ES II | 240 | 240 |
-| DIP-OMP - Offre formation de l'OMP | 234 | 234 |
+| DIP-OMP - Offre formation de l'OMP | 233 | 233 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 154 | 154 |
 | PJ - Offre de formation du pouvoir judiciaire | 55 | 55 |
 | POLICE - CFPS - Centre de Formation de la Police | 198 | 198 |
@@ -133,17 +137,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1058/1058 | 100.0 % |
-| `domainRaw` | 1058/1058 | 100.0 % |
-| `themeRaw` | 979/1058 | 92.5 % |
-| `publicRaw` | 946/1058 | 89.4 % |
-| `durationRaw` | 1041/1058 | 98.4 % |
-| `targetAudienceRaw` | 939/1058 | 88.8 % |
-| `generalInformationRaw` | 538/1058 | 50.9 % |
-| `objectivesRaw` | 1006/1058 | 95.1 % |
-| `contentRaw` | 946/1058 | 89.4 % |
-| `prerequisitesRaw` | 388/1058 | 36.7 % |
-| `additionalInformationRaw` | 347/1058 | 32.8 % |
+| `organizingEntityRaw` | 1059/1059 | 100.0 % |
+| `domainRaw` | 1059/1059 | 100.0 % |
+| `themeRaw` | 980/1059 | 92.5 % |
+| `publicRaw` | 947/1059 | 89.4 % |
+| `durationRaw` | 1042/1059 | 98.4 % |
+| `targetAudienceRaw` | 940/1059 | 88.8 % |
+| `generalInformationRaw` | 540/1059 | 51.0 % |
+| `objectivesRaw` | 1008/1059 | 95.2 % |
+| `contentRaw` | 947/1059 | 89.4 % |
+| `prerequisitesRaw` | 388/1059 | 36.6 % |
+| `additionalInformationRaw` | 347/1059 | 32.8 % |
 
 ### Correspondance des libellés officiels
 
@@ -188,8 +192,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
@@ -226,7 +230,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-04T03:25:57.532Z
-- Snapshot candidat validé : 2026-09-04
-- Empreinte SHA-256 : `1923b4e6a03cad8011d6cd445faa898df52ef67faaabbd19c37afac783c80da3`
+- Date et heure de promotion : 2026-09-07T03:20:49.791Z
+- Snapshot candidat validé : 2026-09-07
+- Empreinte SHA-256 : `4814470dc42f65865573aba6659e1438a0c44530a1d9ea2cd3108c493af420f4`
 - Promotion manuelle confirmée.
