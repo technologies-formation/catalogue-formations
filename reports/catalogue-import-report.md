@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-07
+- Date du snapshot : 2026-09-08
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 116.8 secondes
-- Taille du JSON final : 2.06 Mio (2161663 octets)
-- Empreinte SHA-256 du snapshot : `4814470dc42f65865573aba6659e1438a0c44530a1d9ea2cd3108c493af420f4`
+- Durée totale de l’import : 114.7 secondes
+- Taille du JSON final : 2.06 Mio (2162136 octets)
+- Empreinte SHA-256 du snapshot : `0ffa88dded0c3fa928ee137d675c500ff288e4d5059496f1e2c3dd8569cac324`
 
 ## Synthèse
 
@@ -22,69 +22,56 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1058 |
+| Cours dans le snapshot officiel | 1059 |
 | Cours dans le candidat | 1059 |
-| Cours ajoutés | 2 |
-| Cours supprimés | 1 |
-| Cours modifiés | 34 |
+| Cours ajoutés | 0 |
+| Cours supprimés | 0 |
+| Cours modifiés | 25 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| EP-027ECA | Les deuils multiples des élèves migrants à l'école : mieux comprendre et accompagner | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
-| EP-028ECA | Les deuils multiples des élèves migrants à l'école : mieux comprendre et accompagner | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| OMP-19SSS | Brevet Base Pool - OMP | DIP-OMP - Offre formation de l'OMP | DGOMP/SRH | Formations spécifiques |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01697 | Quelle place pour la lecture dans votre classe ou au sein de l'établissement ? Développer des projets autour du livre | `hasOpenSession` : « true » → « false » |
-| CO-01699 | Evaluer efficacement en latin : conception d'évaluation et stratégies de révision | `hasOpenSession` : « true » → « false » |
-| EP-092EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - différé | `hasOpenSession` : « false » → « true » |
-| FP211 | EC1 Processus d'évaluation SOF - Inscription participant-e-s | `hasOpenSession` : « true » → « false » |
-| PJ-0074 | Le rôle du référent métier au PJ | `hasOpenSession` : « true » → « false » |
-| SEM-P4009 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 5P-6P | `hasOpenSession` : « true » → « false » |
-| SEM0052 | Manager : gérer les tensions au sein de son équipe | `hasScheduledSession` : « false » → « true » |
-| SEM0056 | Principes généraux du droit administratif | `hasScheduledSession` : « false » → « true » |
-| SEM0707 | Techniques d'élaboration des documents écrits | `hasScheduledSession` : « false » → « true » |
-| SEM0746 | Communiquer efficacement avec les médias | `hasScheduledSession` : « false » → « true » |
-| SEM0872 | Gestion du temps et des priorités | `hasScheduledSession` : « false » → « true » |
-| SEM1037 | Médiation 1: les bases pratiques | `hasScheduledSession` : « false » → « true » |
-| SEM1076 | Gestion de la charge de travail dans les équipes | `hasScheduledSession` : « false » → « true » |
-| SEM1081 | Planifier et piloter un projet | `hasScheduledSession` : « false » → « true » |
-| SEM1086 | Budget et planification financière | `hasOpenSession` : « true » → « false » |
-| SEM1089 | Le management transversal | `hasOpenSession` : « true » → « false » |
-| SEM1099 | Optimiser l'impact de vos présentations projetées | `hasScheduledSession` : « false » → « true » |
-| SEM1113 | De quoi je m'e-mail ! Comment mieux maîtriser sa boîte de réception et gagner en efficacité | `hasScheduledSession` : « false » → « true » |
-| SEM1141 | La roue de l'équilibre de vie au travail | `hasScheduledSession` : « false » → « true » |
-| SEM1145 | Mener des concertations avec des partenaires de projet | `hasScheduledSession` : « false » → « true » |
-| SEM1161 | Sensibilisation à la pleine-conscience au travail | `hasScheduledSession` : « false » → « true » |
-| SEM1171 | Comment collaborer au sein d'une équipe intergénérationnelle | `hasScheduledSession` : « false » → « true » |
-| SEM1172 | En finir avec les pièges de la langue française ! | `hasOpenSession` : « false » → « true » |
-| SEM1176 | Prise en main de l'outil de gestion des risques Etat | `hasScheduledSession` : « false » → « true » |
-| SEM1183 | Prendre soin de soi pour rester performant : intégrer les TOP dans son management | `hasScheduledSession` : « false » → « true » |
-| SEM1196 | Accompagner et vivre le changement | `hasOpenSession` : « true » → « false » |
-| SEM1198 | Prendre soin de soi pour un meilleur équilibre au travail : intégrer les TOP dans son quotidien | `hasScheduledSession` : « false » → « true » |
-| SEM1200 | Moi, manager et négociateur ! | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « false » → « true » |
-| SEM1210 | Management et Assertivité | `hasScheduledSession` : « false » → « true » |
-| SEM1218 | Sensibilisation aux approches agiles | `hasScheduledSession` : « false » → « true » |
-| SEM1223 | L'alignement stratégique dans la conduite d'équipe | `hasScheduledSession` : « false » → « true » |
-| SEM1235 | Gestion de l'information, des documents et des archives de l'administration (GIDA) | `hasScheduledSession` : « false » → « true » |
-| SEM1256 | Gestion des investissements | `hasScheduledSession` : « false » → « true » |
-| SEM1257 | Projets d'investissement et immobilisations | `hasScheduledSession` : « false » → « true » |
+| EP-026MA | Atelier de pratique professionnelle MA : la communication | `themeRaw` : « Formation spécifique MDAS » → « Formation spécifique MA » |
+| EP-027ECA | Les deuils multiples des élèves migrants à l'école : mieux comprendre et accompagner | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| EP-028ECA | Les deuils multiples des élèves migrants à l'école : mieux comprendre et accompagner | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| EP-1042 | Développement de la communication et du langage oral, TDL, défis langagiers et stratégies pédagogiques (1P-2P) | `hasOpenSession` : « false » → « true » |
+| OMP-048 | Particularités cognitives et sensorielles des élèves avec autisme; outils pour les intégrer à la classe | `hasOpenSession` : « true » → « false » |
+| S2-110 | Histoire et esthétique des séries télévisées et initiation à la réalisation pratique d'une mini-série | `hasOpenSession` : « true » → « false » |
+| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | `hasOpenSession` : « false » → « true » |
+| SEM0737 | Les bases de la gestion de projet | `hasOpenSession` : « false » → « true » |
+| SEM0828 | Développer sa créativité pour aborder et résoudre autrement les problèmes | `hasOpenSession` : « false » → « true » |
+| SEM1034 | Bien vivre l'équipe et sa dynamique | `hasOpenSession` : « false » → « true » |
+| SEM1043 | Comment aborder sereinement la complexité et l'ambiguïté du monde du travail ? | `hasScheduledSession` : « false » → « true » |
+| SEM1070 | Outils et méthodes de résolution de problèmes | `hasScheduledSession` : « false » → « true » |
+| SEM1117 | Stress et préoccupations : maintenir et améliorer son équilibre au travail | `hasScheduledSession` : « false » → « true » |
+| SEM1130 | L'improvisation au service de l'interaction | `hasScheduledSession` : « false » → « true » |
+| SEM1164 | L'intelligence collective au service de la transformation et l'innovation | `hasScheduledSession` : « false » → « true » |
+| SEM1177 | Créer une dynamique collaborative au sein de son équipe | `hasScheduledSession` : « false » → « true » |
+| SEM1195 | Communication et feed-back constructif | `hasOpenSession` : « false » → « true » |
+| SEM1217 | Manager une équipe de projet | `hasScheduledSession` : « false » → « true » |
+| SEM1238 | Sensibilisation aux enjeux de la Transition écologique | `hasScheduledSession` : « false » → « true » |
+| SEM1247 | Les discriminations: comprendre, prévenir et prendre en charge | `hasScheduledSession` : « false » → « true » |
+| SEM1248 | Les discriminations: comprendre pour agir | `hasScheduledSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
-Aucun champ descriptif long n’a changé.
+| Code | Intitulé candidat | Champs modifiés |
+| --- | --- | --- |
+| EP-999 | Tresser le vivant : vannerie sauvage, un artisanat durable et sensible | `objectivesRaw` |
+| SEM-10756 | CO-ESII : Découverte de Typst pour la rédaction de PDF / NOUVEAU / Formation hybride | `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
+| SEM-P1567 | EP-CO-ESII-OMP / L'animation filmique comme vecteur de la compréhension du monde avec le festival Animatou | `durationRaw` |
+| SEM-P1569 | EP-OMP / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
 
 ### Changements d’offres
 
@@ -144,7 +131,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | `durationRaw` | 1042/1059 | 98.4 % |
 | `targetAudienceRaw` | 940/1059 | 88.8 % |
 | `generalInformationRaw` | 540/1059 | 51.0 % |
-| `objectivesRaw` | 1008/1059 | 95.2 % |
+| `objectivesRaw` | 1009/1059 | 95.3 % |
 | `contentRaw` | 947/1059 | 89.4 % |
 | `prerequisitesRaw` | 388/1059 | 36.6 % |
 | `additionalInformationRaw` | 347/1059 | 32.8 % |
@@ -188,8 +175,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
@@ -230,7 +217,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-07T03:20:49.791Z
-- Snapshot candidat validé : 2026-09-07
-- Empreinte SHA-256 : `4814470dc42f65865573aba6659e1438a0c44530a1d9ea2cd3108c493af420f4`
+- Date et heure de promotion : 2026-09-08T03:20:24.070Z
+- Snapshot candidat validé : 2026-09-08
+- Empreinte SHA-256 : `0ffa88dded0c3fa928ee137d675c500ff288e4d5059496f1e2c3dd8569cac324`
 - Promotion manuelle confirmée.
