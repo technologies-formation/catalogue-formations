@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-08
+- Date du snapshot : 2026-09-09
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 114.7 secondes
-- Taille du JSON final : 2.06 Mio (2162136 octets)
-- Empreinte SHA-256 du snapshot : `0ffa88dded0c3fa928ee137d675c500ff288e4d5059496f1e2c3dd8569cac324`
+- Durée totale de l’import : 138.5 secondes
+- Taille du JSON final : 2.06 Mio (2165116 octets)
+- Empreinte SHA-256 du snapshot : `ef2f28e4fcd2bf859c87052ceac6dbd3a13ec9dbda45c4b558a834846bbe314e`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1652
-- Codes uniques : 1059
+- Occurrences détectées dans l’index : 1653
+- Codes uniques : 1060
 - Occurrences éliminées par déduplication : 593
 - Formations présentes dans plusieurs offres : 300
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1059
+- Fiches récupérées avec succès : 1060
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -23,16 +23,18 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | Indicateur | Valeur |
 | --- | ---: |
 | Cours dans le snapshot officiel | 1059 |
-| Cours dans le candidat | 1059 |
-| Cours ajoutés | 0 |
+| Cours dans le candidat | 1060 |
+| Cours ajoutés | 1 |
 | Cours supprimés | 0 |
-| Cours modifiés | 25 |
+| Cours modifiés | 23 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-Aucun cours ajouté.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| TRT3016E | Maîtriser les fondamentaux du Numérique Responsable \| E-Learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | NUMERIQUE A L'ETAT |
 
 ### Cours supprimés
 
@@ -42,36 +44,34 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-026MA | Atelier de pratique professionnelle MA : la communication | `themeRaw` : « Formation spécifique MDAS » → « Formation spécifique MA » |
-| EP-027ECA | Les deuils multiples des élèves migrants à l'école : mieux comprendre et accompagner | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| EP-028ECA | Les deuils multiples des élèves migrants à l'école : mieux comprendre et accompagner | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| EP-1042 | Développement de la communication et du langage oral, TDL, défis langagiers et stratégies pédagogiques (1P-2P) | `hasOpenSession` : « false » → « true » |
-| OMP-048 | Particularités cognitives et sensorielles des élèves avec autisme; outils pour les intégrer à la classe | `hasOpenSession` : « true » → « false » |
-| S2-110 | Histoire et esthétique des séries télévisées et initiation à la réalisation pratique d'une mini-série | `hasOpenSession` : « true » → « false » |
-| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | `hasOpenSession` : « false » → « true » |
-| SEM0737 | Les bases de la gestion de projet | `hasOpenSession` : « false » → « true » |
-| SEM0828 | Développer sa créativité pour aborder et résoudre autrement les problèmes | `hasOpenSession` : « false » → « true » |
-| SEM1034 | Bien vivre l'équipe et sa dynamique | `hasOpenSession` : « false » → « true » |
-| SEM1043 | Comment aborder sereinement la complexité et l'ambiguïté du monde du travail ? | `hasScheduledSession` : « false » → « true » |
-| SEM1070 | Outils et méthodes de résolution de problèmes | `hasScheduledSession` : « false » → « true » |
-| SEM1117 | Stress et préoccupations : maintenir et améliorer son équilibre au travail | `hasScheduledSession` : « false » → « true » |
-| SEM1130 | L'improvisation au service de l'interaction | `hasScheduledSession` : « false » → « true » |
-| SEM1164 | L'intelligence collective au service de la transformation et l'innovation | `hasScheduledSession` : « false » → « true » |
-| SEM1177 | Créer une dynamique collaborative au sein de son équipe | `hasScheduledSession` : « false » → « true » |
-| SEM1195 | Communication et feed-back constructif | `hasOpenSession` : « false » → « true » |
-| SEM1217 | Manager une équipe de projet | `hasScheduledSession` : « false » → « true » |
-| SEM1238 | Sensibilisation aux enjeux de la Transition écologique | `hasScheduledSession` : « false » → « true » |
-| SEM1247 | Les discriminations: comprendre, prévenir et prendre en charge | `hasScheduledSession` : « false » → « true » |
-| SEM1248 | Les discriminations: comprendre pour agir | `hasScheduledSession` : « false » → « true » |
+| EP-027MA | Atelier de pratique professionnelle MA : dynamique d'équipe | `hasOpenSession` : « true » → « false » |
+| EP-575 | Enseigner les mathématiques au cycle élémentaire | `hasOpenSession` : « true » → « false » |
+| PJ-0099 | Gestion des pièces à conviction - Greffiers-juristes référents | `hasOpenSession` : « true » → « false » |
+| SEM-10617 | CO-PO / Générer des images avec l'intelligence artificielle / NOUVEAU | `hasOpenSession` : « false » → « true » |
+| SEM-P1549 | EP-OMP-CO-ESII / Appréhender la plateforme Graasp / Formation hybride | `hasOpenSession` : « true » → « false » |
+| SEM-P1575 | EP-OMP / Découvrir l'intelligence artificielle / Formation hybride / NOUVEAU | `hasOpenSession` : « false » → « true » |
+| SEM0735 | Ethique et déontologie de la fonction publique | `hasScheduledSession` : « false » → « true » |
+| SEM0857 | Faire face au changement : leadership et pilotage | `hasScheduledSession` : « false » → « true » |
+| SEM1040 | Mindmap : une méthode pour organiser ses idées et ses informations | `hasOpenSession` : « false » → « true » |
+| SEM1084 | Finances publiques: introduction | `hasScheduledSession` : « false » → « true » |
+| SEM1095 | Prévenir et gérer les comportements agressifs | `hasScheduledSession` : « false » → « true » |
+| SEM1098 | Les clés d'une communication efficace | `hasOpenSession` : « false » → « true » |
+| SEM1199 | Atelier de résolution de conflits | `hasOpenSession` : « false » → « true » |
+| SEM1201 | Hermes Edition 2022: bases | `hasScheduledSession` : « false » → « true » |
+| SEM1202 | Hermes Edition 2022: application et scénarios IT | `hasOpenSession` : « true » → « false »<br>`hasScheduledSession` : « false » → « true » |
+| SEM1239 | Maîtriser ses activités: principes et outils pratiques | `hasScheduledSession` : « false » → « true » |
+| SEM1246 | Renforcer son esprit critique à l'ère de l'IA et de la désinformation | `hasScheduledSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| EP-999 | Tresser le vivant : vannerie sauvage, un artisanat durable et sensible | `objectivesRaw` |
-| SEM-10756 | CO-ESII : Découverte de Typst pour la rédaction de PDF / NOUVEAU / Formation hybride | `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
-| SEM-P1567 | EP-CO-ESII-OMP / L'animation filmique comme vecteur de la compréhension du monde avec le festival Animatou | `durationRaw` |
-| SEM-P1569 | EP-OMP / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
+| TRT1013 | PowerPoint 365 Base | `objectivesRaw` |
+| TRT1014 | PowerPoint 365 Avancé | `objectivesRaw` |
+| TRT1015 | Word 365 Base | `objectivesRaw`, `contentRaw` |
+| TRT1016 | Word 365 Publipostage | `objectivesRaw` |
+| TRT1017 | Word 365 Mise en forme avancée | `objectivesRaw` |
+| TRT1018 | Word 365 Longs documents | `objectivesRaw` |
 
 ### Changements d’offres
 
@@ -110,7 +110,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 70 | 70 |
-| DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
+| DF-OPE - L'offre de formation de l'OPE | 171 | 171 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 227 | 227 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 302 | 302 |
@@ -124,17 +124,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1059/1059 | 100.0 % |
-| `domainRaw` | 1059/1059 | 100.0 % |
-| `themeRaw` | 980/1059 | 92.5 % |
-| `publicRaw` | 947/1059 | 89.4 % |
-| `durationRaw` | 1042/1059 | 98.4 % |
-| `targetAudienceRaw` | 940/1059 | 88.8 % |
-| `generalInformationRaw` | 540/1059 | 51.0 % |
-| `objectivesRaw` | 1009/1059 | 95.3 % |
-| `contentRaw` | 947/1059 | 89.4 % |
-| `prerequisitesRaw` | 388/1059 | 36.6 % |
-| `additionalInformationRaw` | 347/1059 | 32.8 % |
+| `organizingEntityRaw` | 1060/1060 | 100.0 % |
+| `domainRaw` | 1060/1060 | 100.0 % |
+| `themeRaw` | 981/1060 | 92.5 % |
+| `publicRaw` | 948/1060 | 89.4 % |
+| `durationRaw` | 1043/1060 | 98.4 % |
+| `targetAudienceRaw` | 940/1060 | 88.7 % |
+| `generalInformationRaw` | 541/1060 | 51.0 % |
+| `objectivesRaw` | 1010/1060 | 95.3 % |
+| `contentRaw` | 948/1060 | 89.4 % |
+| `prerequisitesRaw` | 389/1060 | 36.7 % |
+| `additionalInformationRaw` | 347/1060 | 32.7 % |
 
 ### Correspondance des libellés officiels
 
@@ -217,7 +217,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-08T03:20:24.070Z
-- Snapshot candidat validé : 2026-09-08
-- Empreinte SHA-256 : `0ffa88dded0c3fa928ee137d675c500ff288e4d5059496f1e2c3dd8569cac324`
+- Date et heure de promotion : 2026-09-09T03:20:53.799Z
+- Snapshot candidat validé : 2026-09-09
+- Empreinte SHA-256 : `ef2f28e4fcd2bf859c87052ceac6dbd3a13ec9dbda45c4b558a834846bbe314e`
 - Promotion manuelle confirmée.
