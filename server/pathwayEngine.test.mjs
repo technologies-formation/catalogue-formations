@@ -324,3 +324,41 @@ test('une restriction institutionnelle explicite prime sur la mention tout publi
   assert.deepEqual(result.recommendedSteps.map(({ course }) => course.code), ['AI-BASE'])
   assert.deepEqual(result.informationalCourses.map(({ course }) => course.code), ['AI-PRACTICE'])
 })
+
+test('stabilise un module nouveau manager qui tient exactement dans le budget restant', async () => {
+  const catalogue = fixture()
+  const baseCourse = catalogue.courseByCode.get('AI-BASE')
+  const managerCourse = catalogue.courseByCode.get('AI-PRACTICE')
+  baseCourse.duration = '4 demi-journées'
+  managerCourse.duration = '8 heures'
+  managerCourse.officialData.publicRaw = 'Manager'
+  managerCourse.officialData.targetAudienceRaw = 'Formation réservée aux nouvelles et nouveaux managers'
+  const replies = [
+    response({ interpretedGoal: 'Prendre une fonction managériale', codes: ['AI-BASE', 'AI-PRACTICE'] }),
+    response({
+      abstain: false,
+      summary: 'Parcours manager',
+      recommendedSteps: [{ code: 'AI-BASE', rationale: 'Prérequis' }],
+      optionalSteps: [],
+      informationalCourses: [{ code: 'AI-PRACTICE', rationale: 'Leadership' }],
+      gaps: [],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    {
+      managerStatus: 'Nouveau manager',
+      role: 'Première responsabilité d une équipe',
+      objective: 'Prendre mes fonctions',
+      timeAvailable: 'Maximum 3 jours',
+    },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(
+    result.recommendedSteps.map(({ course }) => course.code),
+    ['AI-BASE', 'AI-PRACTICE'],
+  )
+  assert.deepEqual(result.optionalSteps, [])
+  assert.equal(result.durationSummary.recommendedHours, 24)
+})

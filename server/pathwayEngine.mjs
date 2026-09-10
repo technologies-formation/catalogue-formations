@@ -212,6 +212,16 @@ function audienceCompatibility(profile, course) {
   return 'eligible'
 }
 
+function isNewManagerProfile(profile) {
+  return /nouveau manager|nouvelle manage|premiere fois.*(?:equipe|responsabilite)/
+    .test(normalized(Object.values(profile).join(' ')))
+}
+
+function isNewManagerCourse(course) {
+  return /reservee? aux nouvelles? et nouveaux managers|reservee? aux nouveaux managers/
+    .test(normalized(course?.officialData?.targetAudienceRaw))
+}
+
 function publicCourse(course, detail) {
   return {
     code: course.code,
@@ -479,6 +489,28 @@ Règles impératives :
     add(plan.recommendedSteps ?? plan.steps, recommendedSteps)
     add(plan.informationalCourses, informationalCourses)
     add(plan.optionalSteps, optionalSteps)
+  }
+
+  if (budgetHours !== null && isNewManagerProfile(profile)) {
+    const remainingOptions = []
+
+    for (const item of optionalSteps) {
+      const hours = item.course.durationHours
+      const fitsBudget = hours !== null && recommendedHours + hours <= budgetHours
+
+      if (
+        recommendedSteps.length < MAX_STEPS &&
+        fitsBudget &&
+        isNewManagerCourse(courseByCode.get(item.course.code))
+      ) {
+        recommendedHours += hours
+        recommendedSteps.push(item)
+      } else {
+        remainingOptions.push(item)
+      }
+    }
+
+    optionalSteps.splice(0, optionalSteps.length, ...remainingOptions)
   }
 
   recommendedSteps.forEach((item, index) => { item.position = index + 1 })
