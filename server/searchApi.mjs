@@ -8,6 +8,7 @@ import {
   isPathwayAssistantEnabled,
   validatePathwayInput,
 } from './pathwayAssistant.mjs'
+import { buildPathwayWithLuna } from './pathwayEngine.mjs'
 
 const PORT = Number(process.env.PORT || 8787)
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
@@ -182,6 +183,11 @@ const server = http.createServer(async (request, response) => {
   }
 
   if (request.method === 'POST' && url.pathname === '/api/pathway') {
+    const requestId = randomUUID()
+    const startedAt = Date.now()
+
+    response.setHeader('X-Request-Id', requestId)
+
     if (!isPathwayAssistantEnabled()) {
       sendJson(response, 503, {
         error: 'L assistant de parcours est désactivé',
@@ -190,11 +196,42 @@ const server = http.createServer(async (request, response) => {
     }
 
     try {
+      if (!applyRateLimit(request, response)) return
+
       const profile = validatePathwayInput(await readJson(request))
 
-      sendJson(response, 501, {
-        error: 'Le moteur de parcours n est pas encore implémenté',
+      if (activeLunaSearches >= MAX_CONCURRENT_SEARCHES) {
+        response.setHeader('Retry-After', '5')
+        sendJson(response, 503, {
+          error: 'Le service traite déjà une demande. Merci de réessayer dans quelques secondes.',
+        })
+        return
+      }
+
+      activeLunaSearches += 1
+
+      let result
+
+      try {
+        result = await buildPathwayWithLuna(profile, {
+          catalogue: catalogueStore.current().search,
+        })
+      } finally {
+        activeLunaSearches -= 1
+      }
+
+      console.log(JSON.stringify({
+        event: 'pathway',
+        requestId,
+        status: 200,
+        durationMs: Date.now() - startedAt,
+        usage: result.usage ?? {},
+      }))
+
+      sendJson(response, 200, {
+        ok: true,
         profile,
+        ...result,
       })
     } catch (error) {
       if (error instanceof HttpError || error instanceof PathwayInputError) {
@@ -203,6 +240,14 @@ const server = http.createServer(async (request, response) => {
         })
         return
       }
+
+      console.error(JSON.stringify({
+        event: 'pathway-error',
+        requestId,
+        status: 500,
+        durationMs: Date.now() - startedAt,
+        error: error instanceof Error ? error.name : 'UnknownError',
+      }))
 
       sendJson(response, 500, {
         error: 'L assistant de parcours est momentanément indisponible',
