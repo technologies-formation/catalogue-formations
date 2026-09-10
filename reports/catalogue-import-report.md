@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-09
+- Date du snapshot : 2026-09-10
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 138.5 secondes
-- Taille du JSON final : 2.06 Mio (2165116 octets)
-- Empreinte SHA-256 du snapshot : `ef2f28e4fcd2bf859c87052ceac6dbd3a13ec9dbda45c4b558a834846bbe314e`
+- Durée totale de l’import : 136.8 secondes
+- Taille du JSON final : 2.06 Mio (2160230 octets)
+- Empreinte SHA-256 du snapshot : `b0fa28eaac4c5b84739d94ed677d0c7c2308dc96171a512526c6e4548a44b332`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1653
-- Codes uniques : 1060
+- Occurrences détectées dans l’index : 1651
+- Codes uniques : 1058
 - Occurrences éliminées par déduplication : 593
 - Formations présentes dans plusieurs offres : 300
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1060
+- Fiches récupérées avec succès : 1058
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,56 +22,47 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1059 |
-| Cours dans le candidat | 1060 |
-| Cours ajoutés | 1 |
-| Cours supprimés | 0 |
-| Cours modifiés | 23 |
+| Cours dans le snapshot officiel | 1060 |
+| Cours dans le candidat | 1058 |
+| Cours ajoutés | 0 |
+| Cours supprimés | 2 |
+| Cours modifiés | 13 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| TRT3016E | Maîtriser les fondamentaux du Numérique Responsable \| E-Learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | NUMERIQUE A L'ETAT |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| SEM1087 | Gestion des investissements et des immobilisations | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | FONCTIONNEMENT DE L'ADMINISTRATION |
+| TRT3016E | Maîtriser les fondamentaux du Numérique Responsable \| E-Learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | NUMERIQUE A L'ETAT |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-027MA | Atelier de pratique professionnelle MA : dynamique d'équipe | `hasOpenSession` : « true » → « false » |
-| EP-575 | Enseigner les mathématiques au cycle élémentaire | `hasOpenSession` : « true » → « false » |
-| PJ-0099 | Gestion des pièces à conviction - Greffiers-juristes référents | `hasOpenSession` : « true » → « false » |
-| SEM-10617 | CO-PO / Générer des images avec l'intelligence artificielle / NOUVEAU | `hasOpenSession` : « false » → « true » |
-| SEM-P1549 | EP-OMP-CO-ESII / Appréhender la plateforme Graasp / Formation hybride | `hasOpenSession` : « true » → « false » |
-| SEM-P1575 | EP-OMP / Découvrir l'intelligence artificielle / Formation hybride / NOUVEAU | `hasOpenSession` : « false » → « true » |
-| SEM0735 | Ethique et déontologie de la fonction publique | `hasScheduledSession` : « false » → « true » |
-| SEM0857 | Faire face au changement : leadership et pilotage | `hasScheduledSession` : « false » → « true » |
-| SEM1040 | Mindmap : une méthode pour organiser ses idées et ses informations | `hasOpenSession` : « false » → « true » |
-| SEM1084 | Finances publiques: introduction | `hasScheduledSession` : « false » → « true » |
-| SEM1095 | Prévenir et gérer les comportements agressifs | `hasScheduledSession` : « false » → « true » |
-| SEM1098 | Les clés d'une communication efficace | `hasOpenSession` : « false » → « true » |
-| SEM1199 | Atelier de résolution de conflits | `hasOpenSession` : « false » → « true » |
-| SEM1201 | Hermes Edition 2022: bases | `hasScheduledSession` : « false » → « true » |
-| SEM1202 | Hermes Edition 2022: application et scénarios IT | `hasOpenSession` : « true » → « false »<br>`hasScheduledSession` : « false » → « true » |
-| SEM1239 | Maîtriser ses activités: principes et outils pratiques | `hasScheduledSession` : « false » → « true » |
-| SEM1246 | Renforcer son esprit critique à l'ère de l'IA et de la désinformation | `hasScheduledSession` : « false » → « true » |
+| CO-00312 | Module de perfectionnement Moniteur ski J+S | `hasOpenSession` : « false » → « true » |
+| EP-1034 | Exercice de l'autorité pédagogique en classe | `hasOpenSession` : « true » → « false » |
+| EP-1044 | Entrée dans le langage écrit : troubles des apprentissages du langage écrit et différenciation pédagogique | `hasOpenSession` : « false » → « true » |
+| EP-699 | Introduction aux fonctions exécutives et attentionnelles à l'école primaire | `hasOpenSession` : « false » → « true » |
+| OMP-066 | Le projet éducatif (P.E.I.) de l'évaluation à la rédaction | `hasOpenSession` : « true » → « false » |
+| OMP-112 | Enseigner et soutenir l'autorégulation : stratégies transversales d'apprentissage pour les élèves en difficulté | `hasOpenSession` : « true » → « false » |
+| S2-443 | Au coeur de la science : explorez l'offre éducative du CERN Science Gateway ! | `titleRaw` : « Au c½ur de la science : explorez l'offre éducative du CERN Science Gateway ! » → « Au coeur de la science : explorez l'offre éducative du CERN Science Gateway ! » |
+| S2-500 | Histoire des mathématiques : de la pratique de l'algorisme à la pratique de l'abaque | `hasOpenSession` : « true » → « false » |
+| S2-850 | Apprendre à apprendre : optimiser les méthodes de travail de mes élèves | `hasOpenSession` : « true » → « false » |
+| SEM0872 | Gestion du temps et des priorités | `hasOpenSession` : « false » → « true » |
+| SEM1197 | Formateurs occasionnels: construire et animer une formation | `hasOpenSession` : « false » → « true » |
+| TRT012 | CFI - Débiteurs: saisie de transactions débiteurs | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| TRT1013 | PowerPoint 365 Base | `objectivesRaw` |
-| TRT1014 | PowerPoint 365 Avancé | `objectivesRaw` |
-| TRT1015 | Word 365 Base | `objectivesRaw`, `contentRaw` |
-| TRT1016 | Word 365 Publipostage | `objectivesRaw` |
-| TRT1017 | Word 365 Mise en forme avancée | `objectivesRaw` |
-| TRT1018 | Word 365 Longs documents | `objectivesRaw` |
+| S2-EPS13 | Enseigner le tir à l'arc en toute sécurité | `additionalInformationRaw` |
 
 ### Changements d’offres
 
@@ -110,7 +101,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 70 | 70 |
-| DF-OPE - L'offre de formation de l'OPE | 171 | 171 |
+| DF-OPE - L'offre de formation de l'OPE | 169 | 169 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 227 | 227 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 302 | 302 |
@@ -124,17 +115,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1060/1060 | 100.0 % |
-| `domainRaw` | 1060/1060 | 100.0 % |
-| `themeRaw` | 981/1060 | 92.5 % |
-| `publicRaw` | 948/1060 | 89.4 % |
-| `durationRaw` | 1043/1060 | 98.4 % |
-| `targetAudienceRaw` | 940/1060 | 88.7 % |
-| `generalInformationRaw` | 541/1060 | 51.0 % |
-| `objectivesRaw` | 1010/1060 | 95.3 % |
-| `contentRaw` | 948/1060 | 89.4 % |
-| `prerequisitesRaw` | 389/1060 | 36.7 % |
-| `additionalInformationRaw` | 347/1060 | 32.7 % |
+| `organizingEntityRaw` | 1058/1058 | 100.0 % |
+| `domainRaw` | 1058/1058 | 100.0 % |
+| `themeRaw` | 979/1058 | 92.5 % |
+| `publicRaw` | 946/1058 | 89.4 % |
+| `durationRaw` | 1041/1058 | 98.4 % |
+| `targetAudienceRaw` | 939/1058 | 88.8 % |
+| `generalInformationRaw` | 540/1058 | 51.0 % |
+| `objectivesRaw` | 1008/1058 | 95.3 % |
+| `contentRaw` | 946/1058 | 89.4 % |
+| `prerequisitesRaw` | 387/1058 | 36.6 % |
+| `additionalInformationRaw` | 347/1058 | 32.8 % |
 
 ### Correspondance des libellés officiels
 
@@ -174,15 +165,15 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
+- TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
-- SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
+- SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
-- TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
+- TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
@@ -217,7 +208,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-09T03:20:53.799Z
-- Snapshot candidat validé : 2026-09-09
-- Empreinte SHA-256 : `ef2f28e4fcd2bf859c87052ceac6dbd3a13ec9dbda45c4b558a834846bbe314e`
+- Date et heure de promotion : 2026-09-10T03:21:19.575Z
+- Snapshot candidat validé : 2026-09-10
+- Empreinte SHA-256 : `b0fa28eaac4c5b84739d94ed677d0c7c2308dc96171a512526c6e4548a44b332`
 - Promotion manuelle confirmée.
