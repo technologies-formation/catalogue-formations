@@ -3,6 +3,11 @@ import { randomUUID } from 'node:crypto'
 import { positiveIntegerEnv } from './config.mjs'
 import { searchWithLuna } from './llmSearch.mjs'
 import { catalogueStore, catalogueSyncEnabled, initializeCatalogue, startCatalogueSync } from './catalogueRuntime.mjs'
+import {
+  PathwayInputError,
+  isPathwayAssistantEnabled,
+  validatePathwayInput,
+} from './pathwayAssistant.mjs'
 
 const PORT = Number(process.env.PORT || 8787)
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
@@ -154,7 +159,11 @@ const server = http.createServer(async (request, response) => {
 
   if (
     request.method === 'OPTIONS' &&
-    (url.pathname === '/api/search' || url.pathname === '/api/health')
+    (
+      url.pathname === '/api/search' ||
+      url.pathname === '/api/pathway' ||
+      url.pathname === '/api/health'
+    )
   ) {
     response.writeHead(204)
     response.end()
@@ -166,8 +175,40 @@ const server = http.createServer(async (request, response) => {
       ok: true,
       service: 'catalogue-search-api',
       openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
+      pathwayAssistantEnabled: isPathwayAssistantEnabled(),
       catalogue: { syncEnabled: catalogueSyncEnabled, ...catalogueStore.status() },
     })
+    return
+  }
+
+  if (request.method === 'POST' && url.pathname === '/api/pathway') {
+    if (!isPathwayAssistantEnabled()) {
+      sendJson(response, 503, {
+        error: 'L assistant de parcours est désactivé',
+      })
+      return
+    }
+
+    try {
+      const profile = validatePathwayInput(await readJson(request))
+
+      sendJson(response, 501, {
+        error: 'Le moteur de parcours n est pas encore implémenté',
+        profile,
+      })
+    } catch (error) {
+      if (error instanceof HttpError || error instanceof PathwayInputError) {
+        sendJson(response, error.status, {
+          error: error.message,
+        })
+        return
+      }
+
+      sendJson(response, 500, {
+        error: 'L assistant de parcours est momentanément indisponible',
+      })
+    }
+
     return
   }
 
@@ -288,7 +329,7 @@ const server = http.createServer(async (request, response) => {
     return
   }
 
-  if (url.pathname === '/api/search') {
+  if (url.pathname === '/api/search' || url.pathname === '/api/pathway') {
     response.setHeader('Allow', 'POST')
     sendJson(response, 405, {
       error: 'Method Not Allowed',
