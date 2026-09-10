@@ -1,5 +1,6 @@
 const MODEL = 'gpt-5.6-luna'
 const MAX_CANDIDATES = 30
+const MAX_RECALL_CANDIDATES = 12
 const MAX_STEPS = 8
 const HOURS_PER_DAY = 8
 
@@ -86,6 +87,76 @@ function normalized(value) {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
+}
+
+const RECALL_STOP_WORDS = new Set([
+  'avec', 'cette', 'dans', 'devenir', 'disponible', 'formation', 'formations',
+  'pour', 'progressif', 'service', 'suivre', 'cette', 'annee', 'personnel',
+])
+
+function recallTokens(value) {
+  return [...new Set(normalized(value)
+    .split(/[^a-z0-9]+/)
+    .filter((token) => token.length >= 4 && !RECALL_STOP_WORDS.has(token)))]
+}
+
+function deterministicRecall(profile, detailedByCode) {
+  const need = normalized(Object.values(profile).join(' '))
+  const tokens = recallTokens(need)
+  const asksCockpits = /cockpit|sirh/.test(need)
+  const isNewManager = /nouveau manager|nouvelle manage|premiere fois.*(?:equipe|responsabilite)|prise de fonction/.test(need)
+
+  return [...detailedByCode.entries()]
+    .map(([code, detail]) => {
+      const title = normalized(detail?.title)
+      const domain = normalized(detail?.domain)
+      const theme = normalized(detail?.theme)
+      const audience = normalized([detail?.public, detail?.targetAudience].join(' '))
+      const searchable = normalized([
+        detail?.title,
+        detail?.domain,
+        detail?.theme,
+        detail?.objectives,
+        detail?.content,
+        detail?.prerequisites,
+      ].join(' '))
+      let score = 0
+
+      for (const token of tokens) {
+        if (title.includes(token)) score += 4
+        else if (domain.includes(token) || theme.includes(token)) score += 2
+        else if (searchable.includes(token)) score += 1
+      }
+
+      if (asksCockpits && title.includes('cockpit')) score += 12
+      if (asksCockpits && theme.includes('sirh')) score += 6
+      if (isNewManager && /nouveaux managers|nouvelles et nouveaux managers/.test(audience)) score += 12
+      if (isNewManager && theme.includes('prise de fonction')) score += 6
+
+      return { code, score }
+    })
+    .filter(({ score }) => score >= 4)
+    .sort((a, b) => b.score - a.score || a.code.localeCompare(b.code, 'fr'))
+    .slice(0, MAX_RECALL_CANDIDATES)
+    .map(({ code }) => code)
+}
+
+function referencedPrerequisites(codes, detailedByCode, officialCodes) {
+  const official = new Set(officialCodes)
+  const found = []
+
+  for (const code of codes) {
+    const detail = detailedByCode.get(code)
+    const value = textOf(detail?.prerequisites).toUpperCase()
+
+    for (const reference of value.match(/[A-Z][A-Z0-9-]*\d[A-Z0-9-]*/g) ?? []) {
+      if (reference !== code && official.has(reference) && !found.includes(reference)) {
+        found.push(reference)
+      }
+    }
+  }
+
+  return found
 }
 
 function durationHours(detail) {
@@ -213,8 +284,17 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
     { fetchImpl, apiKey, timeoutMs },
   )
   const firstResult = JSON.parse(extractText(first))
-  const candidateCodes = [...new Set(firstResult.codes ?? [])]
+  const recalledCodes = deterministicRecall(profile, detailedByCode)
+  const initialCodes = [...new Set([...recalledCodes, ...(firstResult.codes ?? [])])]
     .filter((code) => officialCodes.includes(code))
+    .slice(0, MAX_CANDIDATES)
+  const prerequisiteCodes = referencedPrerequisites(
+    initialCodes,
+    detailedByCode,
+    officialCodes,
+  )
+  const candidateCodes = [...new Set([...prerequisiteCodes, ...initialCodes])]
+    .slice(0, MAX_CANDIDATES)
   const cost1 = usageCost(first.usage)
 
   if (candidateCodes.length === 0) {
@@ -227,7 +307,13 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
       recommendedSteps: [],
       optionalSteps: [],
       informationalCourses: [],
-      durationSummary: { budgetHours: timeBudgetHours(profile.timeAvailable), recommendedHours: 0, verified: true },
+      durationSummary: {
+        budgetHours: timeBudgetHours(profile.timeAvailable),
+        recommendedHours: 0,
+        verified: true,
+        durationsKnown: true,
+        budgetVerified: timeBudgetHours(profile.timeAvailable) !== null,
+      },
       gaps: ['Aucune formation suffisamment pertinente n a été identifiée.'],
       usage: { pass1: cost1, pass2: null, total: cost1 },
     }
@@ -251,11 +337,15 @@ Règles impératives :
 - recommendedSteps contient de 1 à ${MAX_STEPS} étapes directement utiles et accessibles au profil ;
 - optionalSteps contient les compléments utiles mais moins prioritaires ou hors du temps disponible ;
 - informationalCourses contient les cours pertinents mais réservés à un autre public ; ne les recommande jamais comme accessibles ;
+- un profil qui se déclare nouveau manager est compatible avec une formation réservée aux nouvelles et nouveaux managers ;
 - tiens compte des acquis pour éviter les formations manifestement redondantes ;
 - respecte strictement le temps disponible lorsque les durées sont connues ;
 - place les prérequis avant les approfondissements ;
 - privilégie les formations directement liées au métier et aux outils demandés avant les compétences transversales ;
 - ne remplis pas artificiellement le parcours si peu de formations conviennent ;
+- le résumé décrit uniquement le parcours recommandé ; il ne présente jamais les cours informatifs comme des étapes du parcours ;
+- n'indique aucun total de durée dans le résumé : le serveur le calcule après ta réponse ;
+- n'affirme jamais qu'un cours est absent du catalogue complet : tu ne vois qu'une sélection de fiches autorisées ;
 - explique brièvement la valeur de chaque étape ;
 - si aucun parcours cohérent n'est possible, abstain vaut true et recommendedSteps est vide ;
 - indique honnêtement dans gaps ce que le catalogue ne couvre pas.`,
@@ -349,9 +439,16 @@ Règles impératives :
         course: publicCourse(course, detail),
       }
 
-      if (audienceCompatibility(profile, course) === 'incompatible') {
+      const compatibility = audienceCompatibility(profile, course)
+      if (compatibility === 'incompatible') {
         item.position = informationalCourses.length + 1
         informationalCourses.push(item)
+        continue
+      }
+
+      if (destination === informationalCourses) {
+        item.position = optionalSteps.length + 1
+        optionalSteps.push(item)
         continue
       }
 
@@ -400,7 +497,9 @@ Règles impératives :
     durationSummary: {
       budgetHours,
       recommendedHours,
-      verified: allRecommendedDurationsKnown,
+      verified: budgetHours !== null && allRecommendedDurationsKnown,
+      durationsKnown: allRecommendedDurationsKnown,
+      budgetVerified: budgetHours !== null && allRecommendedDurationsKnown,
     },
     gaps: plan.gaps ?? [],
     usage: {

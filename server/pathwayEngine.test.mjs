@@ -215,5 +215,83 @@ test('déplace hors parcours les formations qui dépassent un plafond de durée 
     budgetHours: 8,
     recommendedHours: 8,
     verified: true,
+    durationsKnown: true,
+    budgetVerified: true,
   })
+})
+
+test('complète les candidats Luna avec les cours Cockpit demandés explicitement', async () => {
+  const courses = [
+    { code: 'TRT452', title: 'Cockpit Formation', theme: 'SIRH' },
+    { code: 'TRT450', title: 'Cockpit RH', theme: 'SIRH' },
+    { code: 'TRT451', title: 'Cockpit Paie', theme: 'SIRH' },
+  ].map(({ code, title, theme }) => ({
+    code,
+    title,
+    theme,
+    officialData: { titleRaw: title, themeRaw: theme, publicRaw: 'Tout public' },
+  }))
+  const catalogue = {
+    ultraCompactCatalogue: courses.map(({ code, title }) => [code, title]),
+    officialCodes: courses.map(({ code }) => code),
+    detailedByCode: new Map(courses.map((course) => [course.code, course])),
+    courseByCode: new Map(courses.map((course) => [course.code, course])),
+  }
+  const replies = [
+    response({ interpretedGoal: 'Maîtriser les Cockpits SIRH', codes: ['TRT452'] }),
+    response({
+      abstain: false,
+      summary: 'Parcours Cockpit',
+      recommendedSteps: [
+        { code: 'TRT452', rationale: 'Formation' },
+        { code: 'TRT450', rationale: 'RH' },
+        { code: 'TRT451', rationale: 'Paie' },
+      ],
+      optionalSteps: [],
+      informationalCourses: [],
+      gaps: [],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    { role: 'Analyste OPE', objective: 'Utiliser les différents Cockpits SIRH' },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(
+    result.recommendedSteps.map(({ course }) => course.code),
+    ['TRT452', 'TRT450', 'TRT451'],
+  )
+})
+
+test('ne classe pas comme inaccessible un cours réservé aux nouveaux managers pour un nouveau manager', async () => {
+  const catalogue = fixture()
+  const managerCourse = catalogue.courseByCode.get('AI-PRACTICE')
+  managerCourse.officialData.publicRaw = 'Manager'
+  managerCourse.officialData.targetAudienceRaw = 'Formation réservée aux nouvelles et nouveaux managers'
+  managerCourse.title = managerCourse.officialData.titleRaw
+  managerCourse.targetAudience = managerCourse.officialData.targetAudienceRaw
+  const replies = [
+    response({ interpretedGoal: 'Prendre une fonction managériale', codes: ['AI-BASE', 'AI-PRACTICE'] }),
+    response({
+      abstain: false,
+      summary: 'Parcours manager',
+      recommendedSteps: [{ code: 'AI-BASE', rationale: 'Base' }],
+      optionalSteps: [],
+      informationalCourses: [{ code: 'AI-PRACTICE', rationale: 'À confirmer' }],
+      gaps: [],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    {
+      managerStatus: 'Nouveau manager',
+      role: 'Responsable d équipe',
+      objective: 'Prendre mes fonctions',
+    },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(result.informationalCourses, [])
+  assert.deepEqual(result.optionalSteps.map(({ course }) => course.code), ['AI-PRACTICE'])
 })
