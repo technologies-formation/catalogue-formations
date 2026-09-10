@@ -92,6 +92,7 @@ function normalized(value) {
 const RECALL_STOP_WORDS = new Set([
   'avec', 'cette', 'dans', 'devenir', 'disponible', 'formation', 'formations',
   'pour', 'progressif', 'service', 'suivre', 'cette', 'annee', 'personnel',
+  'apprendre', 'objectif', 'objectifs', 'equipe',
 ])
 
 function recallTokens(value) {
@@ -194,7 +195,6 @@ function audienceCompatibility(profile, course) {
   ].join(' '))
 
   if (!publicValue) return 'eligible'
-  if (/tout public|toute personne/.test(publicValue)) return 'eligible'
 
   const profileIsTeacher = /enseignant|enseignement|\bpe\b|\bdip\b/.test(profileValue)
   const profileIsPolice = /police|\bpu police\b/.test(profileValue)
@@ -207,6 +207,7 @@ function audienceCompatibility(profile, course) {
   if (/prison|penitentiaire|detention|\bocd\b/.test(publicValue) && !profileIsPrison) return 'incompatible'
   if (/pouvoir judiciaire|\bpj\b/.test(publicValue) && !profileIsJudiciary) return 'incompatible'
   if (/reservee? aux (?:nouvelles? et nouveaux )?managers|nouveaux managers/.test(publicValue) && !profileIsManager) return 'incompatible'
+  if (/tout public|toute personne/.test(publicValue)) return 'eligible'
 
   return 'eligible'
 }
@@ -345,6 +346,7 @@ Règles impératives :
 - ne remplis pas artificiellement le parcours si peu de formations conviennent ;
 - le résumé décrit uniquement le parcours recommandé ; il ne présente jamais les cours informatifs comme des étapes du parcours ;
 - n'indique aucun total de durée dans le résumé : le serveur le calcule après ta réponse ;
+- ne commente pas dans gaps la vérification arithmétique des durées : le serveur s'en charge ;
 - n'affirme jamais qu'un cours est absent du catalogue complet : tu ne vois qu'une sélection de fiches autorisées ;
 - explique brièvement la valeur de chaque étape ;
 - si aucun parcours cohérent n'est possible, abstain vaut true et recommendedSteps est vide ;
@@ -475,8 +477,8 @@ Règles impératives :
 
   if (!plan.abstain) {
     add(plan.recommendedSteps ?? plan.steps, recommendedSteps)
-    add(plan.optionalSteps, optionalSteps)
     add(plan.informationalCourses, informationalCourses)
+    add(plan.optionalSteps, optionalSteps)
   }
 
   recommendedSteps.forEach((item, index) => { item.position = index + 1 })

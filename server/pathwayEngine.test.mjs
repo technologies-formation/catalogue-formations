@@ -295,3 +295,32 @@ test('ne classe pas comme inaccessible un cours réservé aux nouveaux managers 
   assert.deepEqual(result.informationalCourses, [])
   assert.deepEqual(result.optionalSteps.map(({ course }) => course.code), ['AI-PRACTICE'])
 })
+
+test('une restriction institutionnelle explicite prime sur la mention tout public', async () => {
+  const catalogue = fixture()
+  const policeCourse = catalogue.courseByCode.get('AI-PRACTICE')
+  policeCourse.officialData.publicRaw = 'Tout public'
+  policeCourse.officialData.targetAudienceRaw = 'Policiers, policières et personnel administratif de la police'
+  const replies = [
+    response({ interpretedGoal: 'Prendre une fonction managériale', codes: ['AI-BASE', 'AI-PRACTICE'] }),
+    response({
+      abstain: false,
+      summary: 'Parcours manager',
+      recommendedSteps: [
+        { code: 'AI-BASE', rationale: 'Base' },
+        { code: 'AI-PRACTICE', rationale: 'Police' },
+      ],
+      optionalSteps: [],
+      informationalCourses: [],
+      gaps: [],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    { personnelCategory: 'PAT', entity: 'OPE', role: 'Manager', objective: 'Prendre mes fonctions' },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(result.recommendedSteps.map(({ course }) => course.code), ['AI-BASE'])
+  assert.deepEqual(result.informationalCourses.map(({ course }) => course.code), ['AI-PRACTICE'])
+})
