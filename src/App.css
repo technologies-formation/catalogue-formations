@@ -1053,6 +1053,383 @@ select:disabled {
 
 
 /* Modes de recherche */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pathway-launch-button {
+  min-height: 42px;
+  padding: 9px 15px;
+  border: 1px solid #a7195b;
+  border-radius: 3px;
+  background: #a7195b;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pathway-launch-button:hover,
+.pathway-launch-button:focus-visible {
+  border-color: #831245;
+  background: #831245;
+}
+
+.pathway-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(20, 39, 57, .62);
+}
+
+.pathway-dialog {
+  width: min(1050px, calc(100vw - 48px));
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 32px;
+  border: 1px solid #9db5ca;
+  border-top: 5px solid #a7195b;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 18px 55px rgba(17, 40, 61, .3);
+}
+
+.pathway-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #d5dde4;
+}
+
+.pathway-kicker {
+  color: #a7195b;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.pathway-header h2,
+.pathway-summary h3 {
+  margin: 7px 0;
+  color: #17324d;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.pathway-header p,
+.pathway-summary p {
+  margin: 0;
+  color: #52616d;
+  line-height: 1.5;
+}
+
+.pathway-close {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #aab8c4;
+  background: #fff;
+  color: #17324d;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.pathway-form,
+.pathway-result {
+  display: grid;
+  gap: 20px;
+  padding-top: 24px;
+}
+
+.pathway-request-recap {
+  padding: 18px 20px;
+  border: 1px solid #cbd5df;
+  border-left: 4px solid #a7195b;
+  background: #f7f9fb;
+}
+
+.pathway-request-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.pathway-request-heading h3 { margin: 0; }
+
+.pathway-request-heading button {
+  border: 0;
+  background: transparent;
+  color: #8f164f;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.pathway-request-recap dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 24px;
+  margin: 0;
+}
+
+.pathway-request-recap dl div { min-width: 0; }
+
+.pathway-request-recap dt {
+  margin-bottom: 2px;
+  color: #52606d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pathway-request-recap dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.pathway-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.pathway-form label {
+  display: grid;
+  gap: 7px;
+  color: #263d50;
+  font-size: .87rem;
+  font-weight: 700;
+}
+
+.pathway-form label small {
+  color: #697681;
+  font-weight: 400;
+}
+
+.pathway-form input,
+.pathway-form select,
+.pathway-form textarea {
+  width: 100%;
+  min-height: 45px;
+  padding: 10px 12px;
+  border: 1px solid #8795a1;
+  border-radius: 3px;
+  background: #fff;
+  color: #222;
+  font: inherit;
+}
+
+.pathway-form textarea {
+  resize: vertical;
+}
+
+.pathway-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.pathway-primary,
+.pathway-secondary {
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 3px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pathway-primary {
+  border: 1px solid #a7195b;
+  background: #a7195b;
+  color: #fff;
+}
+
+.pathway-primary:disabled {
+  cursor: default;
+  opacity: .55;
+}
+
+.pathway-secondary {
+  border: 1px solid #17324d;
+  background: #fff;
+  color: #17324d;
+}
+
+.pathway-error {
+  margin: 0;
+  padding: 13px 15px;
+  border-left: 4px solid #a12c37;
+  background: #fff1f2;
+  color: #74212a;
+}
+
+.pathway-summary {
+  padding: 18px;
+  border-left: 4px solid #a7195b;
+  background: #fff3f7;
+}
+
+.pathway-duration {
+  margin-top: 10px !important;
+  font-weight: 700;
+}
+
+.pathway-course-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pathway-course-card {
+  padding: 18px;
+  border: 1px solid #d3dbe2;
+  border-top: 3px solid #17324d;
+  background: #fff;
+}
+
+.pathway-course-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.pathway-course-position {
+  display: grid;
+  flex: 0 0 31px;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border-radius: 50%;
+  background: #17324d;
+  color: #fff;
+  font-weight: 800;
+}
+
+.pathway-course-code {
+  color: #65717b;
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.pathway-course-card h4 {
+  margin: 4px 0 0;
+  color: #17324d;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.05rem;
+}
+
+.pathway-course-card > p {
+  color: #44525e;
+  font-size: .88rem;
+  line-height: 1.5;
+}
+
+.pathway-course-card dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin: 14px 0;
+}
+
+.pathway-course-card dl div {
+  display: flex;
+  gap: 5px;
+}
+
+.pathway-course-card dt {
+  color: #65717b;
+  font-size: .76rem;
+  font-weight: 700;
+}
+
+.pathway-course-card dd {
+  margin: 0;
+  color: #2e3d49;
+  font-size: .76rem;
+}
+
+.pathway-course-card a {
+  color: #174d78;
+  font-size: .84rem;
+  font-weight: 700;
+}
+
+.pathway-details {
+  padding: 15px 0;
+  border-top: 1px solid #d5dde4;
+}
+
+.pathway-details > summary {
+  color: #17324d;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.pathway-details[open] > summary {
+  margin-bottom: 15px;
+}
+
+.pathway-information-note,
+.pathway-empty {
+  color: #5b6873;
+  font-size: .86rem;
+}
+
+.pathway-gaps ul {
+  color: #4c5964;
+  line-height: 1.55;
+}
+
+@media (max-width: 720px) {
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .pathway-overlay {
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .pathway-dialog {
+    width: 100%;
+    max-height: calc(100vh - 20px);
+    padding: 19px;
+  }
+
+  .pathway-form-grid,
+  .pathway-request-recap dl,
+  .pathway-course-list {
+    grid-template-columns: 1fr;
+  }
+
+  .pathway-actions {
+    flex-direction: column-reverse;
+  }
+
+  .pathway-actions button {
+    width: 100%;
+  }
+}
+
 .search-mode-header {
   display: flex;
   align-items: center;

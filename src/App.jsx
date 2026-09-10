@@ -32,6 +32,8 @@ import {
   isAiSearchConfigured,
   searchCatalogueWithAi,
 } from './services/catalogueSearchApi.js'
+import PathwayAssistant from './components/PathwayAssistant.jsx'
+import { isPathwayAssistantConfigured } from './services/pathwayAssistantApi.js'
 
 const NO_FILTER = ''
 const LONG_TARGET_AUDIENCE_THRESHOLD = 240
@@ -87,6 +89,7 @@ function App() {
   const [courseSort, setCourseSort] = useState(initialSearchState.sort)
   const [classicSearchSort, setClassicSearchSort] = useState('relevance')
   const [showGettingStarted, setShowGettingStarted] = useState(true)
+  const [showPathwayAssistant, setShowPathwayAssistant] = useState(false)
   const [currentPage, dispatchPagination] = useReducer(paginationReducer, 1)
   const resultsHeadingRef = useRef(null)
   const aiSearchAbortRef = useRef(null)
@@ -558,13 +561,24 @@ function App() {
                 <span className="brand-service">Formation du personnel</span>
               </div>
             </div>
-            <button
-              className="help-button"
-              type="button"
-              onClick={() => setShowGettingStarted(true)}
-            >
-              Aide
-            </button>
+            <div className="hero-actions">
+              {isPathwayAssistantConfigured && (
+                <button
+                  className="pathway-launch-button"
+                  type="button"
+                  onClick={() => setShowPathwayAssistant(true)}
+                >
+                  Construire mon parcours
+                </button>
+              )}
+              <button
+                className="help-button"
+                type="button"
+                onClick={() => setShowGettingStarted(true)}
+              >
+                Aide
+              </button>
+            </div>
           </header>
           <div className="application-intro">
             <h1 id="page-title">Catalogue de formations</h1>
@@ -639,6 +653,10 @@ function App() {
             </p>
           </div>
         </section>
+
+        {showPathwayAssistant && (
+          <PathwayAssistant onClose={() => setShowPathwayAssistant(false)} />
+        )}
 
         {showAiExplanation && aiSearchStatus === 'success' && (
           <div

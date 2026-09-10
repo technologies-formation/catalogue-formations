@@ -2,6 +2,7 @@ const MODEL = 'gpt-5.6-luna'
 const MAX_CANDIDATES = 30
 const MAX_RECALL_CANDIDATES = 12
 const MAX_STEPS = 8
+const MAX_OPTIONAL_STEPS = 4
 const HOURS_PER_DAY = 8
 
 const PRICE = {
@@ -142,6 +143,32 @@ function deterministicRecall(profile, detailedByCode) {
     .map(({ code }) => code)
 }
 
+function isPatGenerativeAiProfile(profile) {
+  const need = normalized(Object.values(profile).join(' '))
+  const isPat = normalized(profile.personnelCategory) === 'pat' || /personnel administratif|chef de projet/.test(need)
+  const asksGenerativeAi = /intelligence artificielle generative|\bia generative\b|chatgpt|prompt/.test(need)
+
+  return isPat && asksGenerativeAi
+}
+
+function institutionalAnchorCodes(profile, officialCodes) {
+  if (!isPatGenerativeAiProfile(profile)) return []
+
+  const official = new Set(officialCodes)
+  return ['TRT3004H', 'SEM1246'].filter((code) => official.has(code))
+}
+
+function isAiRelevantInformationalCourse(course, detail) {
+  return /intelligence artificielle|\bia\b|numerique|prompt|automatis|multimodal/
+    .test(normalized([
+      course?.officialData?.titleRaw,
+      course?.officialData?.domainRaw,
+      course?.officialData?.themeRaw,
+      detail?.objectives,
+      detail?.content,
+    ].join(' ')))
+}
+
 function referencedPrerequisites(codes, detailedByCode, officialCodes) {
   const official = new Set(officialCodes)
   const found = []
@@ -196,13 +223,16 @@ function audienceCompatibility(profile, course) {
 
   if (!publicValue) return 'eligible'
 
-  const profileIsTeacher = /enseignant|enseignement|\bpe\b|\bdip\b/.test(profileValue)
+  const profileIsTeacher = /enseignant|enseignement|\bpe\b/.test(profileValue)
+  const profileIsDip = /\bdip\b/.test(profileValue)
   const profileIsPolice = /police|\bpu police\b/.test(profileValue)
   const profileIsPrison = /prison|penitentiaire|detention|\bocd\b/.test(profileValue)
   const profileIsJudiciary = /pouvoir judiciaire|\bpj\b/.test(profileValue)
   const profileIsManager = /manager|management|responsabilite d.?une equipe|encadrement/.test(profileValue)
 
-  if (/enseignant|enseignement|\bdip\b|\bes ?ii\b/.test(publicValue) && !profileIsTeacher) return 'incompatible'
+  const educatorAudience = /enseignant|enseignement|corps enseignant|maitres? adjoints?|coordinateurs?.*pedagog|personnel pedagogique|\bes ?ii\b/.test(publicValue)
+  if (educatorAudience && !profileIsTeacher) return 'incompatible'
+  if (/\bdip\b/.test(publicValue) && !profileIsDip) return 'incompatible'
   if (/police/.test(publicValue) && !profileIsPolice) return 'incompatible'
   if (/prison|penitentiaire|detention|\bocd\b/.test(publicValue) && !profileIsPrison) return 'incompatible'
   if (/pouvoir judiciaire|\bpj\b/.test(publicValue) && !profileIsJudiciary) return 'incompatible'
@@ -296,7 +326,8 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
   )
   const firstResult = JSON.parse(extractText(first))
   const recalledCodes = deterministicRecall(profile, detailedByCode)
-  const initialCodes = [...new Set([...recalledCodes, ...(firstResult.codes ?? [])])]
+  const anchorCodes = institutionalAnchorCodes(profile, officialCodes)
+  const initialCodes = [...new Set([...anchorCodes, ...recalledCodes, ...(firstResult.codes ?? [])])]
     .filter((code) => officialCodes.includes(code))
     .slice(0, MAX_CANDIDATES)
   const prerequisiteCodes = referencedPrerequisites(
@@ -513,9 +544,64 @@ Règles impératives :
     optionalSteps.splice(0, optionalSteps.length, ...remainingOptions)
   }
 
+  if (isPatGenerativeAiProfile(profile)) {
+    const anchorRationales = new Map([
+      ['TRT3004H', 'Acquérir un socle de culture numérique et comprendre les usages, les limites et les conditions de déploiement de l’IA dans une organisation.'],
+      ['SEM1246', 'Développer l’esprit critique nécessaire pour vérifier les résultats de l’IA générative, repérer les biais et sécuriser son usage professionnel.'],
+    ])
+    const anchors = []
+    const otherItems = [...recommendedSteps, ...optionalSteps]
+
+    for (const code of anchorCodes) {
+      const course = courseByCode.get(code)
+      if (!course || audienceCompatibility(profile, course) === 'incompatible') continue
+
+      const existing = otherItems.find((item) => item.course.code === code)
+      const detail = detailedByCode.get(code)
+      anchors.push(existing
+        ? { ...existing, rationale: anchorRationales.get(code) }
+        : {
+            position: anchors.length + 1,
+            rationale: anchorRationales.get(code),
+            course: publicCourse(course, detail),
+          })
+    }
+
+    if (anchors.length > 0) {
+      const anchorSet = new Set(anchors.map((item) => item.course.code))
+      const displaced = recommendedSteps.filter((item) => !anchorSet.has(item.course.code))
+      recommendedSteps.splice(0, recommendedSteps.length, ...anchors)
+      optionalSteps.splice(
+        0,
+        optionalSteps.length,
+        ...displaced,
+        ...optionalSteps.filter((item) => !anchorSet.has(item.course.code)),
+      )
+      informationalCourses.splice(
+        0,
+        informationalCourses.length,
+        ...informationalCourses.filter((item) => !anchorSet.has(item.course.code)),
+      )
+      recommendedHours = anchors.reduce(
+        (total, item) => total + (item.course.durationHours ?? 0),
+        0,
+      )
+      allRecommendedDurationsKnown = anchors.every((item) => item.course.durationHours !== null)
+    }
+
+    const relevantInformation = informationalCourses.filter((item) =>
+      isAiRelevantInformationalCourse(
+        courseByCode.get(item.course.code),
+        detailedByCode.get(item.course.code),
+      ))
+    informationalCourses.splice(0, informationalCourses.length, ...relevantInformation)
+  }
+
   recommendedSteps.forEach((item, index) => { item.position = index + 1 })
   optionalSteps.forEach((item, index) => { item.position = index + 1 })
   informationalCourses.forEach((item, index) => { item.position = index + 1 })
+
+  optionalSteps.splice(MAX_OPTIONAL_STEPS)
 
   const abstain = Boolean(plan.abstain || recommendedSteps.length === 0)
 
@@ -535,7 +621,7 @@ Règles impératives :
       durationsKnown: allRecommendedDurationsKnown,
       budgetVerified: budgetHours !== null && allRecommendedDurationsKnown,
     },
-    gaps: plan.gaps ?? [],
+    gaps: (plan.gaps ?? []).filter((gap) => typeof gap === 'string' && gap.trim()),
     usage: {
       pass1: cost1,
       pass2: cost2,
