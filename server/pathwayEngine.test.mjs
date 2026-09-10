@@ -150,3 +150,70 @@ test('refuse de démarrer sans clé API', async () => {
     /OPENAI_API_KEY absente/,
   )
 })
+
+test('déplace une formation réservée aux enseignants vers les cours informatifs', async () => {
+  const catalogue = fixture()
+  const teacherCourse = catalogue.courseByCode.get('AI-PRACTICE')
+  teacherCourse.officialData.publicRaw = 'Personnel enseignant du DIP'
+  teacherCourse.officialData.targetAudienceRaw = 'Corps enseignant de l ES II'
+  const replies = [
+    response({ interpretedGoal: 'Progresser en IA', codes: ['AI-BASE', 'AI-PRACTICE'] }),
+    response({
+      abstain: false,
+      summary: 'Parcours',
+      recommendedSteps: [
+        { code: 'AI-BASE', rationale: 'Bases' },
+        { code: 'AI-PRACTICE', rationale: 'Pratique' },
+      ],
+      optionalSteps: [],
+      informationalCourses: [],
+      gaps: [],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    {
+      personnelCategory: 'PAT',
+      role: 'Chef de projet IT',
+      objective: 'Progresser en IA',
+    },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(result.recommendedSteps.map(({ course }) => course.code), ['AI-BASE'])
+  assert.deepEqual(result.informationalCourses.map(({ course }) => course.code), ['AI-PRACTICE'])
+  assert.equal(result.steps, result.recommendedSteps)
+})
+
+test('déplace hors parcours les formations qui dépassent un plafond de durée vérifiable', async () => {
+  const catalogue = fixture()
+  catalogue.detailedByCode.get('AI-BASE').duration = '1 jour'
+  catalogue.detailedByCode.get('AI-PRACTICE').duration = '8 heures'
+  const replies = [
+    response({ interpretedGoal: 'Progresser en IA', codes: ['AI-BASE', 'AI-PRACTICE'] }),
+    response({
+      abstain: false,
+      summary: 'Parcours',
+      recommendedSteps: [
+        { code: 'AI-BASE', rationale: 'Bases' },
+        { code: 'AI-PRACTICE', rationale: 'Pratique' },
+      ],
+      optionalSteps: [],
+      informationalCourses: [],
+      gaps: [],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    { role: 'Analyste', objective: 'Progresser en IA', timeAvailable: 'maximum 1 jour' },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(result.recommendedSteps.map(({ course }) => course.code), ['AI-BASE'])
+  assert.deepEqual(result.optionalSteps.map(({ course }) => course.code), ['AI-PRACTICE'])
+  assert.deepEqual(result.durationSummary, {
+    budgetHours: 8,
+    recommendedHours: 8,
+    verified: true,
+  })
+})

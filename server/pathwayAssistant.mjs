@@ -1,4 +1,7 @@
 const FIELD_LIMITS = {
+  personnelCategory: 80,
+  entity: 120,
+  managerStatus: 120,
   role: 300,
   objective: 1_000,
   existingSkills: 1_000,
