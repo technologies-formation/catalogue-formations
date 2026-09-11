@@ -518,11 +518,14 @@ Règles impératives :
     const remainingOptions = []
 
     for (const item of optionalSteps) {
+      const hours = item.course.durationHours
+      const fitsBudget = hours !== null && recommendedHours + hours <= budgetHours
+
       if (
         recommendedSteps.length < MAX_STEPS &&
+        fitsBudget &&
         isNewManagerCourse(courseByCode.get(item.course.code))
       ) {
-        const hours = item.course.durationHours
         if (hours === null) allRecommendedDurationsKnown = false
         else recommendedHours += hours
         recommendedSteps.push(item)

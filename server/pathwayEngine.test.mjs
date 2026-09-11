@@ -364,3 +364,45 @@ test('stabilise un module nouveau manager qui tient exactement dans le budget re
   assert.deepEqual(result.optionalSteps, [])
   assert.equal(result.durationSummary.recommendedHours, 24)
 })
+
+test('ne promeut pas tous les compléments nouveau manager quand le parcours dépasse déjà le budget', async () => {
+  const catalogue = fixture()
+  const baseCourse = catalogue.courseByCode.get('AI-BASE')
+  const managerCourse = catalogue.courseByCode.get('AI-PRACTICE')
+  baseCourse.duration = '2 jours'
+  managerCourse.duration = '2 jours'
+  managerCourse.officialData.publicRaw = 'Manager'
+  managerCourse.officialData.targetAudienceRaw = 'Formation réservée aux nouvelles et nouveaux managers'
+  const replies = [
+    response({ interpretedGoal: 'Prendre une fonction managériale', codes: ['AI-BASE', 'AI-PRACTICE'] }),
+    response({
+      abstain: false,
+      summary: 'Parcours manager',
+      recommendedSteps: [{ code: 'AI-BASE', rationale: 'Indispensable' }],
+      optionalSteps: [{ code: 'AI-PRACTICE', rationale: 'Approfondissement' }],
+      informationalCourses: [],
+      gaps: [],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    {
+      managerStatus: 'Nouveau manager',
+      role: 'Première responsabilité d une équipe',
+      objective: 'Prendre mes fonctions',
+      timeAvailable: 'Maximum 1 jour',
+    },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(
+    result.recommendedSteps.map(({ course }) => course.code),
+    ['AI-BASE'],
+  )
+  assert.deepEqual(
+    result.optionalSteps.map(({ course }) => course.code),
+    ['AI-PRACTICE'],
+  )
+  assert.equal(result.durationSummary.recommendedHours, 16)
+  assert.equal(result.durationSummary.excessHours, 8)
+})
