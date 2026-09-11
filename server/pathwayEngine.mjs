@@ -158,6 +158,13 @@ function institutionalAnchorCodes(profile, officialCodes) {
   return ['TRT3004H', 'SEM1246'].filter((code) => official.has(code))
 }
 
+function newManagerAnchorCodes(profile, officialCodes) {
+  if (!isNewManagerProfile(profile)) return []
+
+  const official = new Set(officialCodes)
+  return ['SEM1174'].filter((code) => official.has(code))
+}
+
 function isAiRelevantInformationalCourse(course, detail) {
   return /intelligence artificielle|\bia\b|numerique|prompt|automatis|multimodal/
     .test(normalized([
@@ -327,7 +334,13 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
   const firstResult = JSON.parse(extractText(first))
   const recalledCodes = deterministicRecall(profile, detailedByCode)
   const anchorCodes = institutionalAnchorCodes(profile, officialCodes)
-  const initialCodes = [...new Set([...anchorCodes, ...recalledCodes, ...(firstResult.codes ?? [])])]
+  const managerFoundationCodes = newManagerAnchorCodes(profile, officialCodes)
+  const initialCodes = [...new Set([
+    ...anchorCodes,
+    ...managerFoundationCodes,
+    ...recalledCodes,
+    ...(firstResult.codes ?? []),
+  ])]
     .filter((code) => officialCodes.includes(code))
     .slice(0, MAX_CANDIDATES)
   const prerequisiteCodes = referencedPrerequisites(
@@ -514,6 +527,45 @@ Règles impératives :
     add(plan.optionalSteps, optionalSteps)
   }
 
+  if (!plan.abstain && isNewManagerProfile(profile)) {
+    const code = managerFoundationCodes[0]
+    const course = code ? courseByCode.get(code) : null
+
+    if (course && audienceCompatibility(profile, course) !== 'incompatible') {
+      const allItems = [...recommendedSteps, ...optionalSteps, ...informationalCourses]
+      const existing = allItems.find((item) => item.course.code === code)
+      const detail = detailedByCode.get(code)
+      const item = existing
+        ? {
+            ...existing,
+            rationale: 'Renforcer le leadership et la gestion d’équipe dans le cadre du programme des nouvelles et nouveaux managers ; accès sous réserve des conditions d’inscription au programme.',
+          }
+        : {
+            position: 1,
+            rationale: 'Renforcer le leadership et la gestion d’équipe dans le cadre du programme des nouvelles et nouveaux managers ; accès sous réserve des conditions d’inscription au programme.',
+            course: publicCourse(course, detail),
+          }
+
+      recommendedSteps.splice(
+        0,
+        recommendedSteps.length,
+        ...recommendedSteps.filter((entry) => entry.course.code !== code),
+      )
+      optionalSteps.splice(
+        0,
+        optionalSteps.length,
+        ...optionalSteps.filter((entry) => entry.course.code !== code),
+      )
+      informationalCourses.splice(
+        0,
+        informationalCourses.length,
+        ...informationalCourses.filter((entry) => entry.course.code !== code),
+      )
+      if (recommendedSteps.length >= MAX_STEPS) optionalSteps.unshift(recommendedSteps.pop())
+      recommendedSteps.splice(Math.min(2, recommendedSteps.length), 0, item)
+    }
+  }
+
   if (budgetHours !== null && isNewManagerProfile(profile)) {
     const remainingOptions = []
 
@@ -588,6 +640,14 @@ Règles impératives :
         detailedByCode.get(item.course.code),
       ))
     informationalCourses.splice(0, informationalCourses.length, ...relevantInformation)
+  }
+
+  recommendedHours = 0
+  allRecommendedDurationsKnown = true
+  for (const item of recommendedSteps) {
+    const hours = item.course.durationHours
+    if (hours === null) allRecommendedDurationsKnown = false
+    else recommendedHours += hours
   }
 
   recommendedSteps.forEach((item, index) => { item.position = index + 1 })

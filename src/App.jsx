@@ -600,7 +600,7 @@ function App() {
                 type="search"
                 value={officialSearch}
                 onChange={changeOfficialSearch}
-                placeholder="Décrivez votre besoin, recherchez un mot-clé ou un code..."
+                placeholder="Recherchez un mot-clé ou un code de cours"
               />
 
               {isAiSearchConfigured &&

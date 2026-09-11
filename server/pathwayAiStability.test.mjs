@@ -174,9 +174,9 @@ test('écarte une limite qui attribue au parcours recommandé des cours non rete
       summary: 'Parcours nouveau manager',
       recommendedSteps: [
         { code: 'SEM1192', rationale: 'Fondamentaux' },
-        { code: 'SEM1174', rationale: 'Leadership' },
       ],
       optionalSteps: [
+        { code: 'SEM1174', rationale: 'Leadership' },
         { code: 'SEM1203', rationale: 'Entretiens' },
         { code: 'SEM0052', rationale: 'Tensions' },
       ],
