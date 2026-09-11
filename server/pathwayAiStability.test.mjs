@@ -137,3 +137,73 @@ test('classe un public pédagogique comme informatif pour un PAT et limite les c
   assert.deepEqual(result.informationalCourses.map(({ course }) => course.code), ['EP-COORD'])
   assert.equal(result.optionalSteps.length, 4)
 })
+
+test('écarte une limite qui attribue au parcours recommandé des cours non retenus', async () => {
+  const courses = [
+    {
+      code: 'SEM1192',
+      duration: '4 demi-journées',
+      officialData: { titleRaw: 'Apprendre la conduite stratégique', publicRaw: 'Manager' },
+    },
+    {
+      code: 'SEM1174',
+      duration: '8 heures',
+      officialData: { titleRaw: 'Pacific : Leadership et gestion d équipe', publicRaw: 'Manager' },
+    },
+    {
+      code: 'SEM1203',
+      duration: '2 jours',
+      officialData: { titleRaw: 'Les entretiens managériaux', publicRaw: 'Manager' },
+    },
+    {
+      code: 'SEM0052',
+      duration: '3 jours',
+      officialData: { titleRaw: 'Manager : gérer les tensions', publicRaw: 'Manager' },
+    },
+  ]
+  const catalogue = {
+    ultraCompactCatalogue: courses.map((course) => [course.code, course.officialData.titleRaw]),
+    officialCodes: courses.map((course) => course.code),
+    detailedByCode: new Map(courses.map((course) => [course.code, course])),
+    courseByCode: new Map(courses.map((course) => [course.code, course])),
+  }
+  const replies = [
+    response({ interpretedGoal: 'Prendre une fonction managériale', codes: courses.map(({ code }) => code) }),
+    response({
+      abstain: false,
+      summary: 'Parcours nouveau manager',
+      recommendedSteps: [
+        { code: 'SEM1192', rationale: 'Fondamentaux' },
+        { code: 'SEM1174', rationale: 'Leadership' },
+      ],
+      optionalSteps: [
+        { code: 'SEM1203', rationale: 'Entretiens' },
+        { code: 'SEM0052', rationale: 'Tensions' },
+      ],
+      informationalCourses: [],
+      gaps: [
+        'Le catalogue ne propose pas de formation dédiée au travail à distance.',
+        'Le parcours recommandé respecte la limite en retenant SEM1192, SEM1203 et SEM0052.',
+      ],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    {
+      personnelCategory: 'PAT',
+      managerialSituation: 'Nouveau manager',
+      role: 'Nouveau responsable d une équipe',
+      objective: 'Prendre mes fonctions et conduire des entretiens difficiles',
+      timeAvailable: 'Maximum 3 jours',
+    },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(
+    result.recommendedSteps.map(({ course }) => course.code),
+    ['SEM1192', 'SEM1174'],
+  )
+  assert.deepEqual(result.gaps, [
+    'Le catalogue ne propose pas de formation dédiée au travail à distance.',
+  ])
+})

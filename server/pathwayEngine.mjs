@@ -621,7 +621,21 @@ Règles impératives :
       durationsKnown: allRecommendedDurationsKnown,
       budgetVerified: budgetHours !== null && allRecommendedDurationsKnown,
     },
-    gaps: (plan.gaps ?? []).filter((gap) => typeof gap === 'string' && gap.trim()),
+    gaps: (plan.gaps ?? [])
+      .filter((gap) => typeof gap === 'string' && gap.trim())
+      .filter((gap) => {
+        const describesRecommendedPath =
+          /parcours recommand|en retenant|formations? retenues?|étapes? recommand/i.test(gap)
+
+        if (!describesRecommendedPath) return true
+
+        const recommendedCodes = new Set(recommendedSteps.map((item) => item.course.code))
+        const mentionedCourseCodes =
+          (gap.match(/\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*\b/g) ?? [])
+            .filter((code) => courseByCode.has(code))
+
+        return mentionedCourseCodes.every((code) => recommendedCodes.has(code))
+      }),
     usage: {
       pass1: cost1,
       pass2: cost2,
