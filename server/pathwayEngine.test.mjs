@@ -185,7 +185,7 @@ test('déplace une formation réservée aux enseignants vers les cours informati
   assert.equal(result.steps, result.recommendedSteps)
 })
 
-test('déplace hors parcours les formations qui dépassent un plafond de durée vérifiable', async () => {
+test('signale un dépassement sans déclasser les formations recommandées', async () => {
   const catalogue = fixture()
   catalogue.detailedByCode.get('AI-BASE').duration = '1 jour'
   catalogue.detailedByCode.get('AI-PRACTICE').duration = '8 heures'
@@ -209,14 +209,16 @@ test('déplace hors parcours les formations qui dépassent un plafond de durée 
     { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
   )
 
-  assert.deepEqual(result.recommendedSteps.map(({ course }) => course.code), ['AI-BASE'])
-  assert.deepEqual(result.optionalSteps.map(({ course }) => course.code), ['AI-PRACTICE'])
+  assert.deepEqual(result.recommendedSteps.map(({ course }) => course.code), ['AI-BASE', 'AI-PRACTICE'])
+  assert.deepEqual(result.optionalSteps, [])
   assert.deepEqual(result.durationSummary, {
     budgetHours: 8,
-    recommendedHours: 8,
+    recommendedHours: 16,
     verified: true,
     durationsKnown: true,
     budgetVerified: true,
+    withinBudget: false,
+    excessHours: 8,
   })
 })
 

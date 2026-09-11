@@ -195,6 +195,9 @@ export default function PathwayAssistant({ onClose }) {
                 <p className="pathway-duration">
                   Durée recommandée : {result.durationSummary.recommendedHours} h
                   {' '}sur {result.durationSummary.budgetHours} h disponibles
+                  {result.durationSummary.excessHours > 0 && (
+                    <> — dépassement de {result.durationSummary.excessHours} h</>
+                  )}
                 </p>
               )}
             </div>

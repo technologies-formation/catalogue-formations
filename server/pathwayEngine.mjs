@@ -355,6 +355,8 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
         verified: true,
         durationsKnown: true,
         budgetVerified: timeBudgetHours(profile.timeAvailable) !== null,
+        withinBudget: timeBudgetHours(profile.timeAvailable) !== null ? true : null,
+        excessHours: timeBudgetHours(profile.timeAvailable) !== null ? 0 : null,
       },
       gaps: ['Aucune formation suffisamment pertinente n a été identifiée.'],
       usage: { pass1: cost1, pass2: null, total: cost1 },
@@ -377,11 +379,12 @@ Règles impératives :
 - utilise uniquement les codes fournis ;
 - classe les cours dans recommendedSteps, optionalSteps ou informationalCourses, sans doublon ;
 - recommendedSteps contient de 1 à ${MAX_STEPS} étapes directement utiles et accessibles au profil ;
-- optionalSteps contient les compléments utiles mais moins prioritaires ou hors du temps disponible ;
+- optionalSteps contient uniquement les compléments utiles mais moins prioritaires ;
 - informationalCourses contient les cours pertinents mais réservés à un autre public ; ne les recommande jamais comme accessibles ;
 - un profil qui se déclare nouveau manager est compatible avec une formation réservée aux nouvelles et nouveaux managers ;
 - tiens compte des acquis pour éviter les formations manifestement redondantes ;
-- respecte strictement le temps disponible lorsque les durées sont connues ;
+- considère le temps disponible comme un repère de planification, jamais comme un motif pour retirer ou déclasser une étape directement nécessaire ;
+- recommande le parcours qui répond précisément au besoin même si sa durée totale dépasse le temps disponible ;
 - place les prérequis avant les approfondissements ;
 - privilégie les formations directement liées au métier et aux outils demandés avant les compétences transversales ;
 - ne remplis pas artificiellement le parcours si peu de formations conviennent ;
@@ -496,20 +499,9 @@ Règles impératives :
       }
 
       const hours = item.course.durationHours
-      if (destination === recommendedSteps && budgetHours !== null) {
-        if (hours === null) {
-          allRecommendedDurationsKnown = false
-        } else if (recommendedHours + hours > budgetHours) {
-          item.position = optionalSteps.length + 1
-          optionalSteps.push(item)
-          continue
-        } else {
-          recommendedHours += hours
-        }
-      } else if (destination === recommendedSteps && hours !== null) {
-        recommendedHours += hours
-      } else if (destination === recommendedSteps) {
-        allRecommendedDurationsKnown = false
+      if (destination === recommendedSteps) {
+        if (hours === null) allRecommendedDurationsKnown = false
+        else recommendedHours += hours
       }
 
       destination.push(item)
@@ -526,15 +518,13 @@ Règles impératives :
     const remainingOptions = []
 
     for (const item of optionalSteps) {
-      const hours = item.course.durationHours
-      const fitsBudget = hours !== null && recommendedHours + hours <= budgetHours
-
       if (
         recommendedSteps.length < MAX_STEPS &&
-        fitsBudget &&
         isNewManagerCourse(courseByCode.get(item.course.code))
       ) {
-        recommendedHours += hours
+        const hours = item.course.durationHours
+        if (hours === null) allRecommendedDurationsKnown = false
+        else recommendedHours += hours
         recommendedSteps.push(item)
       } else {
         remainingOptions.push(item)
@@ -620,6 +610,12 @@ Règles impératives :
       verified: budgetHours !== null && allRecommendedDurationsKnown,
       durationsKnown: allRecommendedDurationsKnown,
       budgetVerified: budgetHours !== null && allRecommendedDurationsKnown,
+      withinBudget: budgetHours !== null && allRecommendedDurationsKnown
+        ? recommendedHours <= budgetHours
+        : null,
+      excessHours: budgetHours !== null && allRecommendedDurationsKnown
+        ? Math.max(0, recommendedHours - budgetHours)
+        : null,
     },
     gaps: (plan.gaps ?? [])
       .filter((gap) => typeof gap === 'string' && gap.trim())
