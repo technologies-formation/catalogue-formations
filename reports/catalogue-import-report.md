@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-10
+- Date du snapshot : 2026-09-11
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 136.8 secondes
-- Taille du JSON final : 2.06 Mio (2160230 octets)
-- Empreinte SHA-256 du snapshot : `b0fa28eaac4c5b84739d94ed677d0c7c2308dc96171a512526c6e4548a44b332`
+- Durée totale de l’import : 115.5 secondes
+- Taille du JSON final : 2.06 Mio (2160238 octets)
+- Empreinte SHA-256 du snapshot : `a69bd1541f71e56a2e4bfced863b0f0b41b2568b4b8e155fefd44dd5f22308f8`
 
 ## Synthèse
 
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1060 |
+| Cours dans le snapshot officiel | 1058 |
 | Cours dans le candidat | 1058 |
 | Cours ajoutés | 0 |
-| Cours supprimés | 2 |
-| Cours modifiés | 13 |
+| Cours supprimés | 0 |
+| Cours modifiés | 8 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -36,33 +36,24 @@ Aucun cours ajouté.
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| SEM1087 | Gestion des investissements et des immobilisations | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | FONCTIONNEMENT DE L'ADMINISTRATION |
-| TRT3016E | Maîtriser les fondamentaux du Numérique Responsable \| E-Learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | NUMERIQUE A L'ETAT |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-00312 | Module de perfectionnement Moniteur ski J+S | `hasOpenSession` : « false » → « true » |
-| EP-1034 | Exercice de l'autorité pédagogique en classe | `hasOpenSession` : « true » → « false » |
-| EP-1044 | Entrée dans le langage écrit : troubles des apprentissages du langage écrit et différenciation pédagogique | `hasOpenSession` : « false » → « true » |
-| EP-699 | Introduction aux fonctions exécutives et attentionnelles à l'école primaire | `hasOpenSession` : « false » → « true » |
-| OMP-066 | Le projet éducatif (P.E.I.) de l'évaluation à la rédaction | `hasOpenSession` : « true » → « false » |
-| OMP-112 | Enseigner et soutenir l'autorégulation : stratégies transversales d'apprentissage pour les élèves en difficulté | `hasOpenSession` : « true » → « false » |
-| S2-443 | Au coeur de la science : explorez l'offre éducative du CERN Science Gateway ! | `titleRaw` : « Au c½ur de la science : explorez l'offre éducative du CERN Science Gateway ! » → « Au coeur de la science : explorez l'offre éducative du CERN Science Gateway ! » |
-| S2-500 | Histoire des mathématiques : de la pratique de l'algorisme à la pratique de l'abaque | `hasOpenSession` : « true » → « false » |
-| S2-850 | Apprendre à apprendre : optimiser les méthodes de travail de mes élèves | `hasOpenSession` : « true » → « false » |
-| SEM0872 | Gestion du temps et des priorités | `hasOpenSession` : « false » → « true » |
-| SEM1197 | Formateurs occasionnels: construire et animer une formation | `hasOpenSession` : « false » → « true » |
-| TRT012 | CFI - Débiteurs: saisie de transactions débiteurs | `hasOpenSession` : « true » → « false » |
+| EP-1044 | Entrée dans le langage écrit : troubles des apprentissages du langage écrit et différenciation pédagogique | `hasOpenSession` : « true » → « false » |
+| EP-1049 | Mettre en oeuvre une pédagogie différenciée réaliste dans ma classe | `hasOpenSession` : « true » → « false » |
+| EP-582 | Découverte des traces et indices de présence animale autour de l'école | `hasOpenSession` : « true » → « false » |
+| EP-699 | Introduction aux fonctions exécutives et attentionnelles à l'école primaire | `hasOpenSession` : « true » → « false » |
+| EP-739 | Collaboration (multi)professionnelle dans les établissements scolaires : comprendre, analyser, agir | `hasOpenSession` : « true » → « false » |
+| EP-997 | Cercle vertueux propice aux apprentissages : de la théorie à la pratique | `hasOpenSession` : « true » → « false » |
+| PJ-0092 | Recherche dans la législation et la jurisprudence | `hasScheduledSession` : « true » → « false » |
+| SEM1099 | Optimiser l'impact de vos présentations projetées | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-| Code | Intitulé candidat | Champs modifiés |
-| --- | --- | --- |
-| S2-EPS13 | Enseigner le tir à l'arc en toute sécurité | `additionalInformationRaw` |
+Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
@@ -165,15 +156,15 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
-- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
@@ -208,7 +199,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-10T03:21:19.575Z
-- Snapshot candidat validé : 2026-09-10
-- Empreinte SHA-256 : `b0fa28eaac4c5b84739d94ed677d0c7c2308dc96171a512526c6e4548a44b332`
+- Date et heure de promotion : 2026-09-11T03:19:36.879Z
+- Snapshot candidat validé : 2026-09-11
+- Empreinte SHA-256 : `a69bd1541f71e56a2e4bfced863b0f0b41b2568b4b8e155fefd44dd5f22308f8`
 - Promotion manuelle confirmée.
