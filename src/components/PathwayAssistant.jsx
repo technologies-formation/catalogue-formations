@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { buildPathway } from '../services/pathwayAssistantApi.js'
 
 const INITIAL_PROFILE = {
-  personnelCategory: 'PAT',
+  personnelCategory: '',
   entity: '',
   managerStatus: '',
   role: '',
@@ -110,8 +110,9 @@ export default function PathwayAssistant({ onClose }) {
           <form className="pathway-form" onSubmit={submit}>
             <div className="pathway-form-grid">
               <label>
-                <span>Catégorie de personnel</span>
-                <select value={profile.personnelCategory} onChange={update('personnelCategory')}>
+                <span>Catégorie de personnel *</span>
+                <select required value={profile.personnelCategory} onChange={update('personnelCategory')}>
+                  <option value="" disabled>À renseigner</option>
                   <option value="PAT">PAT — Personnel administratif et technique</option>
                   <option value="PE">PE — Personnel enseignant</option>
                   <option value="PU Police">Personnel en uniforme — Police</option>
