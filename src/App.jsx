@@ -562,15 +562,6 @@ function App() {
               </div>
             </div>
             <div className="hero-actions">
-              {isPathwayAssistantConfigured && (
-                <button
-                  className="pathway-launch-button"
-                  type="button"
-                  onClick={() => setShowPathwayAssistant(true)}
-                >
-                  Construire mon parcours
-                </button>
-              )}
               <button
                 className="help-button"
                 type="button"
@@ -586,6 +577,7 @@ function App() {
               Recherchez les formations proposées au personnel de l’État de Genève.
             </p>
           </div>
+          <div className="search-choice">
           <form
             className="main-search-field"
             onSubmit={(event) => {
@@ -643,6 +635,29 @@ function App() {
               </p>
             )}
           </form>
+          {isPathwayAssistantConfigured && (
+            <>
+              <div className="search-choice-separator" aria-hidden="true">
+                <span>OU</span>
+              </div>
+              <section className="pathway-choice" aria-labelledby="pathway-choice-title">
+                <p id="pathway-choice-title" className="pathway-choice-title">
+                  Besoin d’être guidé ?
+                </p>
+                <button
+                  className="pathway-launch-button"
+                  type="button"
+                  onClick={() => setShowPathwayAssistant(true)}
+                >
+                  Construire mon parcours
+                </button>
+                <p className="pathway-choice-help">
+                  Décrivez votre situation et obtenez un parcours progressif à partir du catalogue.
+                </p>
+              </section>
+            </>
+          )}
+          </div>
           <div className="search-support">
             <p className="search-examples">
               Exemples : communication, projet, intelligence artificielle, FP173
