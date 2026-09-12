@@ -291,6 +291,16 @@ function publicCourse(course, detail) {
   }
 }
 
+function isServerManagedGap(gap) {
+  const value = normalized(gap)
+  const discussesDuration =
+    /duree|temps disponible|budget|plafond|depassement|repere.*(?:jour|heure)|depasse.*(?:jour|heure|temps)/.test(value)
+  const discussesAdministrativeAccess =
+    /acces exact|conditions? d.?acces|accessibilite.*(?:profil|statut)|(?:public|profil|statut).*(?:confirmer|verification|verifier)|inscription.*(?:confirmer|verification|verifier)/.test(value)
+
+  return discussesDuration || discussesAdministrativeAccess
+}
+
 export async function buildPathwayWithLuna(
   profile,
   {
@@ -421,6 +431,8 @@ Règles impératives :
 - le résumé décrit uniquement le parcours recommandé ; il ne présente jamais les cours informatifs comme des étapes du parcours ;
 - n'indique aucun total de durée dans le résumé : le serveur le calcule après ta réponse ;
 - ne commente pas dans gaps la vérification arithmétique des durées : le serveur s'en charge ;
+- gaps décrit uniquement les compétences ou objectifs professionnels que les fiches fournies ne couvrent pas ;
+- ne mentionne jamais dans gaps la durée, le temps disponible, le budget, le public, l'accès ou les conditions d'inscription : le serveur les contrôle et les affiche séparément ;
 - n'affirme jamais qu'un cours est absent du catalogue complet : tu ne vois qu'une sélection de fiches autorisées ;
 - explique brièvement la valeur de chaque étape ;
 - si aucun parcours cohérent n'est possible, abstain vaut true et recommendedSteps est vide ;
@@ -701,6 +713,7 @@ Règles impératives :
     },
     gaps: (plan.gaps ?? [])
       .filter((gap) => typeof gap === 'string' && gap.trim())
+      .filter((gap) => !isServerManagedGap(gap))
       .filter((gap) => {
         const describesRecommendedPath =
           /parcours recommand|en retenant|formations? retenues?|étapes? recommand/i.test(gap)

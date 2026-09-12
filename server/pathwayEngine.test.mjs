@@ -285,7 +285,11 @@ test('signale un dépassement sans déclasser les formations recommandées', asy
       ],
       optionalSteps: [],
       informationalCourses: [],
-      gaps: [],
+      gaps: [
+        'Aucun cours ne traite spécifiquement l évaluation des acquis.',
+        'Le parcours recommandé dépasse le repère de quatre jours disponibles.',
+        'L accès exact des formations tout public doit être confirmé lors de l inscription.',
+      ],
     }),
   ]
 
@@ -305,6 +309,9 @@ test('signale un dépassement sans déclasser les formations recommandées', asy
     withinBudget: false,
     excessHours: 8,
   })
+  assert.deepEqual(result.gaps, [
+    'Aucun cours ne traite spécifiquement l évaluation des acquis.',
+  ])
 })
 
 test('complète les candidats Luna avec les cours Cockpit demandés explicitement', async () => {
