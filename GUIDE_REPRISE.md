@@ -8,49 +8,79 @@
 
 Ce document est la référence technique et opérationnelle pour reprendre le projet après une interruption.
 
-> **État actualisé au 30 août 2026**
+> **État actualisé au 12 septembre 2026**
 >
-> Le projet dispose désormais d'une architecture de recherche combinant :
-> - la recherche classique locale ;
-> - GPT-5.6 Luna en deux passes ;
-> - un rappel lexical local Top 40 ;
-> - un backend Node sécurisé pour les appels OpenAI.
+> Le projet dispose désormais :
+> - d'une recherche classique locale avec facettes ;
+> - d'une recherche enrichie par GPT-5.6 Luna en deux passes ;
+> - d'un rappel lexical local Top 40 ;
+> - d'un backend Node sécurisé pour les appels OpenAI ;
+> - d'un assistant de construction de parcours fondé exclusivement sur le catalogue officiel.
 >
-> Jalon fonctionnel Codespaces :
-> - commit : `e03d105`
-> - tag : `search-llm-codespaces-v1-2026-08-29`
-> - tests : **288/288 réussis**
+> Jalon courant de l'assistant de parcours :
+> - commit : `266837ffa9a2b9e3a33ba000cf393897d4fb42ad` ;
+> - tag : `pathway-assistant-v1-2026-09-12` ;
+> - tests : **329/329 réussis** ;
+> - lint et build de production : réussis ;
+> - validation fonctionnelle et visuelle sur GitHub Pages : effectuée.
 >
-> Validation indépendante finale :
-> - **40 cas gelés avant le premier appel Luna** ;
-> - résultat strict : **37/40 (92,5 %)** ;
-> - langage naturel : **18/18** ;
-> - multi-intentions : **6/8** ;
-> - restrictions de contexte : **6/7** ;
-> - abstention : **7/7** ;
-> - résultat brut : commit `e0af8a4` ;
-> - tag : `search-luna-independent-result-2026-08-30`.
+> Le jalon fonctionnel Codespaces `search-llm-codespaces-v1-2026-08-29` et le benchmark indépendant final Luna du 30 août 2026 restent des références historiques. Le benchmark a obtenu **37/40 (92,5 %)** et est désormais consommé : il peut servir de test de régression, mais pas de nouveau benchmark indépendant après un futur réglage.
 >
-> Le frontend statique est publié sur GitHub Pages et **Luna utilise un backend sécurisé séparé déployé sur Infomaniak**. La clé `OPENAI_API_KEY` reste exclusivement côté serveur et ne doit jamais être exposée dans le navigateur.
->
-> Le benchmark final du 30 août 2026 est désormais **consommé** : il peut servir de test de régression, mais ne doit plus être présenté comme un nouveau benchmark indépendant après un futur réglage de Luna.
+> Le frontend statique est publié sur GitHub Pages. Luna et l'assistant de parcours utilisent un backend sécurisé séparé déployé sur Infomaniak. La clé `OPENAI_API_KEY` reste exclusivement côté serveur et ne doit jamais être exposée dans le navigateur.
 
 ## État de référence
 
 - Projet : Catalogue de formations — Projet n°2, indépendant du Projet n°1.
 - Branche principale du dépôt : `main`.
-- Ancienne branche de développement Luna : `feat/search-llm-recall-augmentation-2026-08-28` (historique ; son contenu est désormais intégré à `main`).
 - Dépôt distant : [github.com/technologies-formation/catalogue-formations](https://github.com/technologies-formation/catalogue-formations).
 - URL publique du frontend : [technologies-formation.github.io/catalogue-formations](https://technologies-formation.github.io/catalogue-formations/).
-- URL publique du backend Luna : `https://api.a658yg-catalogue.ch`.
-- Jalon de connexion du frontend au backend public : commit `928ba5f`.
-- Jalon fonctionnel Codespaces au 29 août 2026 : commit `e03d105`.
-- Tag de reprise : `search-llm-codespaces-v1-2026-08-29`.
+- URL publique du backend Luna et de l'assistant de parcours : `https://api.a658yg-catalogue.ch`.
+- Le catalogue public contient 1 058 formations au 12 septembre 2026. Cette volumétrie peut évoluer avec les mises à jour quotidiennes du catalogue.
+
+### Jalon courant — Assistant de parcours V1
+
+L'état stable de référence au 12 septembre 2026 est identifié par :
+
+- tag Git : `pathway-assistant-v1-2026-09-12` ;
+- commit : `266837ffa9a2b9e3a33ba000cf393897d4fb42ad` ;
+- branche de référence : `main`.
+
+Ce jalon comprend notamment :
+
+- la recherche classique du catalogue et ses facettes ;
+- la recherche enrichie avec GPT-5.6 Luna ;
+- l'assistant de construction d'un parcours de formation ;
+- la sélection et l'ordonnancement des formations par l'IA à partir du catalogue officiel ;
+- la prise en compte de la catégorie de personnel, de l'entité, de la situation managériale, de la fonction, de l'objectif, des compétences, du temps disponible et des contraintes ;
+- la distinction entre formations recommandées, compléments éventuels et formations proposées pour information ;
+- le respect des restrictions de public et des limites connues du catalogue ;
+- la prise en compte indicative du budget-temps sans suppression automatique d'une formation pertinente ;
+- la validation explicite des champs obligatoires ;
+- un état de chargement visible pendant la construction du parcours ;
+- une interface différenciant clairement la recherche directe et le parcours guidé ;
+- une identité visuelle propre à l'assistant de parcours ;
+- une aide générale masquée par défaut et accessible depuis le bouton `Aide`.
+
+Le correctif de référence maintenant les limites du parcours dans le périmètre réel du catalogue correspond au commit `f6ddda1`.
+
+La validation du jalon comprend :
+
+- 329 tests automatisés réussis ;
+- aucune erreur ni aucun avertissement de lint ;
+- un build Vite de production réussi ;
+- une validation visuelle du frontend publié sur GitHub Pages ;
+- une validation fonctionnelle des champs obligatoires, de l'état de chargement, de la génération des résultats et des actions de modification ou de fermeture.
+
+### Jalons historiques
+
+- Connexion du frontend au backend public : commit `928ba5f`.
+- Jalon fonctionnel Codespaces du 29 août 2026 : commit `e03d105`.
+- Tag Codespaces historique : `search-llm-codespaces-v1-2026-08-29`.
+- Ancienne branche de développement Luna : `feat/search-llm-recall-augmentation-2026-08-28`.
 - Ancien jalon public du 20 août 2026 : `projet-2-public-v1.4-2026-08-20`.
 - Le benchmark indépendant final Luna a été exécuté sur un snapshot de 1 058 formations.
-- Le snapshot public courant contient 1 061 formations au 1er septembre 2026. Cette volumétrie peut évoluer avec les mises à jour du catalogue.
 
-Le tag `search-llm-codespaces-v1-2026-08-29` reste un jalon historique de la version Codespaces. Depuis, le backend Luna a été déployé publiquement sur Infomaniak et le frontend GitHub Pages a été connecté à ce backend.
+Les jalons antérieurs restent conservés pour l'historique. Pour toute nouvelle reprise ou évolution de l'assistant de parcours, utiliser en priorité le tag `pathway-assistant-v1-2026-09-12`.
 
 Avant toute intervention, vérifier :
 
