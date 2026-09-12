@@ -226,6 +226,10 @@ export default function PathwayAssistant({ onClose }) {
               </details>
             )}
 
+            <p className="pathway-ai-notice" role="note">
+              <strong>Information</strong> — Ce parcours est proposé avec l’aide de l’intelligence artificielle à partir des informations disponibles dans le catalogue. L’IA peut commettre des erreurs. En cas de doute, vérifiez la fiche de la formation ou adressez-vous à votre responsable hiérarchique ou à votre service RH.
+            </p>
+
             <div className="pathway-actions">
               <button type="button" className="pathway-secondary" onClick={() => setStatus('form')}>Modifier mon besoin</button>
               <button type="button" className="pathway-primary" onClick={close}>Terminer</button>

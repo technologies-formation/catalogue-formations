@@ -1398,6 +1398,16 @@ select:disabled {
   line-height: 1.55;
 }
 
+.pathway-ai-notice {
+  margin: 0;
+  padding: 12px 14px;
+  border-left: 3px solid #62798e;
+  background: #f5f7f9;
+  color: #4c5964;
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 720px) {
   .hero-actions {
     align-items: stretch;
