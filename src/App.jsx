@@ -88,7 +88,7 @@ function App() {
   const [publics, setPublics] = useState(initialSearchState.publics)
   const [courseSort, setCourseSort] = useState(initialSearchState.sort)
   const [classicSearchSort, setClassicSearchSort] = useState('relevance')
-  const [showGettingStarted, setShowGettingStarted] = useState(true)
+  const [showGettingStarted, setShowGettingStarted] = useState(false)
   const [showPathwayAssistant, setShowPathwayAssistant] = useState(false)
   const [currentPage, dispatchPagination] = useReducer(paginationReducer, 1)
   const resultsHeadingRef = useRef(null)
@@ -565,9 +565,11 @@ function App() {
               <button
                 className="help-button"
                 type="button"
-                onClick={() => setShowGettingStarted(true)}
+                onClick={() => setShowGettingStarted((visible) => !visible)}
+                aria-expanded={showGettingStarted}
+                aria-controls="getting-started-panel"
               >
-                Aide
+                {showGettingStarted ? 'Masquer l’aide' : 'Aide'}
               </button>
             </div>
           </header>
@@ -764,7 +766,11 @@ function App() {
         )}
 
         {showGettingStarted && (
-          <section className="getting-started" aria-labelledby="getting-started-title">
+          <section
+            id="getting-started-panel"
+            className="getting-started"
+            aria-labelledby="getting-started-title"
+          >
             <div>
               <h2 id="getting-started-title">Besoin d’aide&nbsp;?</h2>
               <p>
@@ -772,13 +778,6 @@ function App() {
                 Les résultats s’adaptent automatiquement à vos choix.
               </p>
             </div>
-            <button
-              type="button"
-              onClick={() => setShowGettingStarted(false)}
-              aria-label="Fermer l’aide"
-            >
-              Fermer
-            </button>
           </section>
         )}
 
