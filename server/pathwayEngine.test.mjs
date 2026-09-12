@@ -185,6 +185,91 @@ test('déplace une formation réservée aux enseignants vers les cours informati
   assert.equal(result.steps, result.recommendedSteps)
 })
 
+test('déplace un cours public Manager vers les informations pour un profil non manager', async () => {
+  const catalogue = fixture()
+  const managerCourse = catalogue.courseByCode.get('AI-PRACTICE')
+  managerCourse.officialData.publicRaw = 'Manager'
+  const replies = [
+    response({ interpretedGoal: 'Animer une activité à distance', codes: ['AI-BASE', 'AI-PRACTICE'] }),
+    response({
+      abstain: false,
+      summary: 'Parcours',
+      recommendedSteps: [
+        { code: 'AI-BASE', rationale: 'Socle' },
+        { code: 'AI-PRACTICE', rationale: 'Animation à distance' },
+      ],
+      optionalSteps: [],
+      informationalCourses: [],
+      gaps: [],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    {
+      personnelCategory: 'PAT',
+      managerStatus: 'Non précisé',
+      role: 'Formateur occasionnel',
+      objective: 'Animer une activité à distance',
+    },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(result.recommendedSteps.map(({ course }) => course.code), ['AI-BASE'])
+  assert.deepEqual(result.informationalCourses.map(({ course }) => course.code), ['AI-PRACTICE'])
+})
+
+test('rappelle une fiche qui couvre plusieurs termes du besoin sans imposer son code', async () => {
+  const catalogue = fixture()
+  const presentationCourse = {
+    code: 'PRESENTATION',
+    title: 'Présentations professionnelles',
+    objectives: 'Maintenir l attention du public',
+    officialData: {
+      titleRaw: 'Présentations professionnelles',
+      publicRaw: 'Tout public',
+    },
+    sourceUrl: 'https://example.test/presentation',
+  }
+  catalogue.ultraCompactCatalogue.push([
+    presentationCourse.code,
+    presentationCourse.officialData.titleRaw,
+  ])
+  catalogue.officialCodes.push(presentationCourse.code)
+  catalogue.detailedByCode.set(presentationCourse.code, presentationCourse)
+  catalogue.courseByCode.set(presentationCourse.code, presentationCourse)
+  const requests = []
+  const replies = [
+    response({ interpretedGoal: 'Maintenir l attention', codes: ['AI-BASE'] }),
+    response({
+      abstain: false,
+      summary: 'Parcours',
+      recommendedSteps: [{ code: 'PRESENTATION', rationale: 'Répond au besoin' }],
+      optionalSteps: [],
+      informationalCourses: [],
+      gaps: [],
+    }),
+  ]
+  const fetchImpl = async (_url, options) => {
+    requests.push(JSON.parse(options.body))
+    return replies.shift()
+  }
+
+  const result = await buildPathwayWithLuna(
+    {
+      personnelCategory: 'PAT',
+      role: 'Formateur occasionnel',
+      objective: 'Maintenir l attention',
+    },
+    { catalogue, apiKey: 'test-key', fetchImpl },
+  )
+
+  assert.match(requests[1].input, /PRESENTATION/)
+  assert.deepEqual(
+    result.recommendedSteps.map(({ course }) => course.code),
+    ['PRESENTATION'],
+  )
+})
+
 test('signale un dépassement sans déclasser les formations recommandées', async () => {
   const catalogue = fixture()
   catalogue.detailedByCode.get('AI-BASE').duration = '1 jour'

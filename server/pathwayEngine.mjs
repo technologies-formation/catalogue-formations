@@ -123,12 +123,21 @@ function deterministicRecall(profile, detailedByCode) {
         detail?.prerequisites,
       ].join(' '))
       let score = 0
+      let matchedTokens = 0
 
       for (const token of tokens) {
-        if (title.includes(token)) score += 4
-        else if (domain.includes(token) || theme.includes(token)) score += 2
-        else if (searchable.includes(token)) score += 1
+        if (title.includes(token)) {
+          score += 4
+          matchedTokens += 1
+        } else if (domain.includes(token) || theme.includes(token)) {
+          score += 2
+          matchedTokens += 1
+        } else if (searchable.includes(token)) {
+          score += 1
+          matchedTokens += 1
+        }
       }
+      if (matchedTokens >= 2) score += 2
 
       if (asksCockpits && title.includes('cockpit')) score += 12
       if (asksCockpits && theme.includes('sirh')) score += 6
@@ -223,6 +232,7 @@ function timeBudgetHours(value) {
 
 function audienceCompatibility(profile, course) {
   const profileValue = normalized(Object.values(profile).join(' '))
+  const publicLabel = normalized(course.officialData?.publicRaw)
   const publicValue = normalized([
     course.officialData?.publicRaw,
     course.officialData?.targetAudienceRaw,
@@ -235,7 +245,13 @@ function audienceCompatibility(profile, course) {
   const profileIsPolice = /police|\bpu police\b/.test(profileValue)
   const profileIsPrison = /prison|penitentiaire|detention|\bocd\b/.test(profileValue)
   const profileIsJudiciary = /pouvoir judiciaire|\bpj\b/.test(profileValue)
-  const profileIsManager = /manager|management|responsabilite d.?une equipe|encadrement/.test(profileValue)
+  const managerProfileValue = normalized([
+    profile.managerStatus,
+    profile.managerialSituation,
+    profile.role,
+  ].join(' '))
+  const profileIsManager =
+    /manager|responsable d.?une equipe|responsabilite d.?une equipe|encadrement/.test(managerProfileValue)
 
   const educatorAudience = /enseignant|enseignement|corps enseignant|maitres? adjoints?|coordinateurs?.*pedagog|personnel pedagogique|\bes ?ii\b/.test(publicValue)
   if (educatorAudience && !profileIsTeacher) return 'incompatible'
@@ -244,6 +260,7 @@ function audienceCompatibility(profile, course) {
   if (/prison|penitentiaire|detention|\bocd\b/.test(publicValue) && !profileIsPrison) return 'incompatible'
   if (/pouvoir judiciaire|\bpj\b/.test(publicValue) && !profileIsJudiciary) return 'incompatible'
   if (/reservee? aux (?:nouvelles? et nouveaux )?managers|nouveaux managers/.test(publicValue) && !profileIsManager) return 'incompatible'
+  if (/^managers?$/.test(publicLabel) && !profileIsManager) return 'incompatible'
   if (/tout public|toute personne/.test(publicValue)) return 'eligible'
 
   return 'eligible'
