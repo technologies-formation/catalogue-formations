@@ -507,6 +507,8 @@ Règles impératives :
 
       if (destination === informationalCourses) {
         item.position = optionalSteps.length + 1
+        item.rationale =
+          'Formation pertinente pour votre profil, proposée comme complément au parcours recommandé ; vérifiez les éventuelles conditions d’inscription dans la fiche officielle.'
         optionalSteps.push(item)
         continue
       }
