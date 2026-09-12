@@ -134,7 +134,7 @@ export default function PathwayAssistant({ onClose }) {
               </label>
               <label>
                 <span>Fonction ou situation *</span>
-                <input required value={profile.role} onChange={update('role')} maxLength={300} placeholder="Par exemple : chef de projet IT" />
+                <textarea required value={profile.role} onChange={update('role')} maxLength={300} placeholder="Par exemple : chef de projet IT" rows={2} />
               </label>
             </div>
 
@@ -153,7 +153,7 @@ export default function PathwayAssistant({ onClose }) {
               </label>
               <label>
                 <span>Contraintes ou préférences</span>
-                <input value={profile.constraints} onChange={update('constraints')} maxLength={1000} placeholder="À distance, sans programmation…" />
+                <textarea value={profile.constraints} onChange={update('constraints')} maxLength={1000} placeholder="À distance, sans programmation…" rows={4} />
               </label>
             </div>
 
