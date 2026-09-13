@@ -170,6 +170,10 @@ test('déduplique les étapes retournées par le modèle', async () => {
 
 test('stabilise un besoin Word général et conserve le e-learning comme alternative', async () => {
   const catalogue = officeFixture('WORD', [
+    ...Array.from({ length: 12 }, (_, index) => ({
+      code: `A-WORD-${String(index + 1).padStart(2, '0')}`,
+      title: `Word 365 Spécialité ${String(index + 1).padStart(2, '0')}`,
+    })),
     { code: 'WORD-BASE', title: 'Word 365 Base' },
     { code: 'WORD-ADVANCED', title: 'Word 365 Mise en forme avancée' },
     { code: 'WORD-LONG', title: 'Word 365 Longs documents' },
@@ -178,7 +182,7 @@ test('stabilise un besoin Word général et conserve le e-learning comme alterna
   const replies = [
     response({
       interpretedGoal: 'Utiliser Word',
-      codes: catalogue.officialCodes,
+      codes: ['WORD-BASE', 'WORD-ADVANCED', 'WORD-LONG'],
     }),
     response({
       abstain: false,
@@ -193,12 +197,18 @@ test('stabilise un besoin Word général et conserve le e-learning comme alterna
       gaps: [],
     }),
   ]
+  const requests = []
+  const fetchImpl = async (_url, options) => {
+    requests.push(JSON.parse(options.body))
+    return replies.shift()
+  }
 
   const result = await buildPathwayWithLuna(
     { personnelCategory: 'PAT', role: 'Chef de projet', objective: 'Je veux utiliser Word' },
-    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+    { catalogue, apiKey: 'test-key', fetchImpl },
   )
 
+  assert.match(requests[1].input, /WORD-ONLINE/)
   assert.deepEqual(result.recommendedSteps.map(({ course }) => course.code), ['WORD-BASE'])
   assert.deepEqual(
     result.optionalSteps.map(({ course }) => course.code),

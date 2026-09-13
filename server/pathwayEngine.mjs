@@ -439,6 +439,29 @@ function stabilizeGeneralOfficePathway(
     : `Commencer par ${primary.course.title}. Les niveaux avancés et les autres modalités sont proposés comme compléments ou alternatives selon les besoins.`
 }
 
+function officeAnchorCodes(profile, officialCodes, courseByCode, detailedByCode) {
+  const theme = requestedOfficeTheme(
+    profile,
+    officialCodes,
+    courseByCode,
+    detailedByCode,
+  )
+  if (!theme) return []
+
+  const matchingCodes = officialCodes.filter((code) => {
+    const info = officeCourseInfo(courseByCode.get(code), detailedByCode.get(code))
+    return info.isOffice && info.theme === theme
+  })
+  const foundationCode = matchingCodes.find((code) => {
+    const info = officeCourseInfo(courseByCode.get(code), detailedByCode.get(code))
+    return info.isFoundation && !info.isBroadElearning
+  })
+  const elearningCode = matchingCodes.find((code) =>
+    officeCourseInfo(courseByCode.get(code), detailedByCode.get(code)).isBroadElearning)
+
+  return [foundationCode, elearningCode].filter(Boolean)
+}
+
 export async function buildPathwayWithLuna(
   profile,
   {
@@ -500,9 +523,16 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
   const recalledCodes = deterministicRecall(profile, detailedByCode)
   const anchorCodes = institutionalAnchorCodes(profile, officialCodes)
   const managerFoundationCodes = newManagerAnchorCodes(profile, officialCodes)
+  const officeFoundationCodes = officeAnchorCodes(
+    profile,
+    officialCodes,
+    courseByCode,
+    detailedByCode,
+  )
   const initialCodes = [...new Set([
     ...anchorCodes,
     ...managerFoundationCodes,
+    ...officeFoundationCodes,
     ...recalledCodes,
     ...(firstResult.codes ?? []),
   ])]
