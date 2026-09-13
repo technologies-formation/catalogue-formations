@@ -419,10 +419,15 @@ Règles impératives :
 - utilise uniquement les codes fournis ;
 - classe les cours dans recommendedSteps, optionalSteps ou informationalCourses, sans doublon ;
 - recommendedSteps contient de 1 à ${MAX_STEPS} étapes directement utiles et accessibles au profil ;
-- optionalSteps contient uniquement les compléments utiles mais moins prioritaires ;
+- optionalSteps contient les compléments utiles mais moins prioritaires ainsi que les alternatives de modalité ou de version qui ne doivent pas être cumulées avec le parcours principal ;
 - informationalCourses contient les cours pertinents mais réservés à un autre public ; ne les recommande jamais comme accessibles ;
 - un profil qui se déclare nouveau manager est compatible avec une formation réservée aux nouvelles et nouveaux managers ;
 - tiens compte des acquis pour éviter les formations manifestement redondantes ;
+- identifie les modalités à partir de tous les champs disponibles, y compris le titre lorsqu'elles n'existent pas sous forme structurée ;
+- si plusieurs formations couvrent essentiellement le même besoin, ne les présente pas comme des étapes cumulatives : choisis la meilleure pour recommendedSteps et place, si elle apporte un vrai choix de modalité, la meilleure autre option dans optionalSteps avec une justification explicite d'alternative ;
+- une préférence exprimée pour l'e-learning, le distanciel, le présentiel, l'hybride ou l'autonomie prime dans le classement lorsque la fiche la confirme ;
+- ne déduis pas qu'une version de logiciel plus récente convient nécessairement mieux : respecte la version demandée et présente une autre version uniquement comme alternative pertinente ;
+- pour un objectif général et des acquis non précisés, construis un parcours minimal : recommande d'abord le socle et classe les niveaux avancés ou usages spécialisés dans optionalSteps ;
 - considère le temps disponible comme un repère de planification, jamais comme un motif pour retirer ou déclasser une étape directement nécessaire ;
 - recommande le parcours qui répond précisément au besoin même si sa durée totale dépasse le temps disponible ;
 - place les prérequis avant les approfondissements ;

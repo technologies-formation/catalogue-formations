@@ -999,10 +999,10 @@ function App() {
                               ✦
                             </span>
                             <div>
-                              <h3>Pour aller plus loin</h3>
+                              <h3>Compléments ou alternatives</h3>
                               <p>
-                                Formations complémentaires pour approfondir ou couvrir
-                                un besoin plus spécifique.
+                                Autres formations pour approfondir, couvrir un besoin
+                                plus spécifique ou choisir une autre modalité.
                               </p>
                             </div>
                           </header>

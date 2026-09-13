@@ -256,7 +256,7 @@ export default function PathwayAssistant({ onClose }) {
 
             {result.optionalSteps?.length > 0 && (
               <details className="pathway-details">
-                <summary>Compléments possibles ({result.optionalSteps.length})</summary>
+                <summary>Compléments ou alternatives ({result.optionalSteps.length})</summary>
                 <CourseSteps items={result.optionalSteps} categoryLabel="Complément" />
               </details>
             )}

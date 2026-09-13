@@ -211,9 +211,14 @@ Règles impératives :
 - une formation seulement voisine ou partiellement pertinente ne suffit pas ;
 - distingue ce qu'une formation permet réellement d'acquérir de ce qu'elle évoque seulement comme sujet ;
 - tiens compte du public et du contexte professionnel lorsqu'ils sont exprimés ;
-- distingue deux niveaux de recommandation et, en cas d'abstention, d'éventuelles pistes connexes ;
+- distingue les recommandations principales, les compléments ou alternatives, et, en cas d'abstention, d'éventuelles pistes connexes ;
 - recommendedCodes contient de 1 à 3 formations répondant directement et substantiellement au besoin principal ;
-- complementaryCodes contient de 0 à 3 formations utiles pour approfondir, poursuivre ou couvrir un besoin plus spécifique ;
+- complementaryCodes contient de 0 à 3 formations utiles pour approfondir, poursuivre, couvrir un besoin plus spécifique ou proposer une autre modalité pertinente (par exemple e-learning, présentiel, hybride ou formation autonome) ;
+- identifie les modalités à partir de tous les champs disponibles, y compris le titre lorsqu'elles n'existent pas sous forme structurée ;
+- si plusieurs formations couvrent essentiellement le même besoin, ne les présente pas comme un parcours cumulatif : choisis la meilleure comme recommandation principale et conserve, si elle apporte un vrai choix de modalité, la meilleure autre option dans complementaryCodes ;
+- une préférence exprimée pour l'e-learning, le distanciel, le présentiel, l'hybride ou l'autonomie prime dans le classement lorsque la fiche la confirme ;
+- ne déduis pas qu'une version de logiciel plus récente convient nécessairement mieux : tiens compte de la version demandée et conserve une formation sur une autre version seulement comme alternative clairement pertinente ;
+- pour une demande générale et un niveau non précisé, reste prudent : privilégie un socle directement utile et classe les niveaux avancés ou usages spécialisés en compléments ;
 - relatedCodes contient de 0 à 3 formations seulement lorsque abstain est true : elles peuvent être proches du sujet demandé, mais elles ne répondent pas suffisamment au besoin principal ;
 - une formation dans relatedCodes doit avoir un lien clair avec le sujet de la demande et ne doit jamais être présentée comme répondant au besoin initial ;
 - lorsque abstain est true, reason explique brièvement pourquoi le catalogue ne répond pas suffisamment au besoin ; si relatedCodes contient des formations, ne cite ni leurs codes ni leurs intitulés dans reason car elles sont affichées séparément ;

@@ -86,6 +86,10 @@ test('construit un parcours ordonné uniquement avec les formations autorisées'
   assert.equal(requests.length, 2)
   assert.equal(requests[0].model, 'gpt-5.6-luna')
   assert.equal(requests[0].store, false)
+  assert.match(requests[1].instructions, /alternatives de modalité ou de version/)
+  assert.match(requests[1].instructions, /e-learning, le distanciel, le présentiel/)
+  assert.match(requests[1].instructions, /ne les présente pas comme des étapes cumulatives/)
+  assert.match(requests[1].instructions, /objectif général et des acquis non précisés/)
   assert.equal(result.abstain, false)
   assert.deepEqual(
     result.steps.map(({ position, course }) => [position, course.code]),
