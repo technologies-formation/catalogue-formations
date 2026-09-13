@@ -301,6 +301,144 @@ function isServerManagedGap(gap) {
   return discussesDuration || discussesAdministrativeAccess
 }
 
+function officeCourseInfo(course, detail) {
+  const title = normalized(course?.officialData?.titleRaw ?? detail?.title)
+  const domain = normalized(course?.officialData?.domainRaw ?? detail?.domain)
+  const theme = normalized(course?.officialData?.themeRaw ?? detail?.theme)
+
+  return {
+    title,
+    theme,
+    isOffice: /logiciels? bureautiques?/.test(domain),
+    isFoundation: /\bbase\b|fondamentaux?|debutants?/.test(title),
+    isBroadElearning:
+      /e[- ]?learning|formation en ligne/.test(title) &&
+      /fondamentaux?|perfectionnement|tous niveaux|debutants?/.test(title),
+  }
+}
+
+function requestedOfficeTheme(profile, candidateCodes, courseByCode, detailedByCode) {
+  const objective = normalized(profile.objective)
+  if (!objective) return null
+
+  const themes = [...new Set(candidateCodes.map((code) => {
+    const info = officeCourseInfo(courseByCode.get(code), detailedByCode.get(code))
+    return info.isOffice ? info.theme : ''
+  }).filter(Boolean))]
+
+  return themes
+    .sort((a, b) => b.length - a.length)
+    .find((theme) => objective.includes(theme) || theme
+      .split(/[^a-z0-9]+/)
+      .filter((token) => token.length >= 4)
+      .some((token) => objective.includes(token))) ?? null
+}
+
+function hasOfficeSpecialization(profile, theme, candidateCodes, courseByCode, detailedByCode) {
+  if (normalized(profile.existingSkills)) return true
+
+  const objective = normalized(profile.objective)
+  const ignored = new Set([
+    ...theme.split(/[^a-z0-9]+/),
+    'base', 'fondamental', 'fondamentaux', 'perfectionnement', 'utiliser',
+    'apprendre', 'maitriser', 'formation', 'former', 'veux', 'souhaite',
+    'logiciel', 'office', 'microsoft', 'e-learning', 'learning',
+  ])
+  const specializationTokens = new Set()
+
+  for (const code of candidateCodes) {
+    const info = officeCourseInfo(courseByCode.get(code), detailedByCode.get(code))
+    if (!info.isOffice || info.theme !== theme || info.isFoundation || info.isBroadElearning) continue
+    for (const token of info.title.split(/[^a-z0-9]+/)) {
+      if (token.length >= 5 && !ignored.has(token) && !/^20\d\d$/.test(token)) {
+        specializationTokens.add(token)
+      }
+    }
+  }
+
+  return [...specializationTokens].some((token) => objective.includes(token))
+}
+
+function stabilizeGeneralOfficePathway(
+  profile,
+  candidateCodes,
+  courseByCode,
+  detailedByCode,
+  recommendedSteps,
+  optionalSteps,
+) {
+  const theme = requestedOfficeTheme(profile, candidateCodes, courseByCode, detailedByCode)
+  if (!theme || hasOfficeSpecialization(profile, theme, candidateCodes, courseByCode, detailedByCode)) {
+    return null
+  }
+
+  const matchingCodes = candidateCodes.filter((code) => {
+    const info = officeCourseInfo(courseByCode.get(code), detailedByCode.get(code))
+    return info.isOffice && info.theme === theme
+  })
+  const foundationCode = matchingCodes.find((code) =>
+    officeCourseInfo(courseByCode.get(code), detailedByCode.get(code)).isFoundation &&
+    !officeCourseInfo(courseByCode.get(code), detailedByCode.get(code)).isBroadElearning)
+  const elearningCode = matchingCodes.find((code) =>
+    officeCourseInfo(courseByCode.get(code), detailedByCode.get(code)).isBroadElearning)
+  const need = normalized([profile.objective, profile.constraints].join(' '))
+  const wantsElearning = /e[- ]?learning|distanciel|en ligne|autonomie/.test(need)
+  const primaryCode = wantsElearning ? (elearningCode ?? foundationCode) : (foundationCode ?? elearningCode)
+
+  if (!primaryCode) return null
+
+  const all = [...recommendedSteps, ...optionalSteps]
+  const byCode = new Map(all.map((item) => [item.course.code, item]))
+  function itemFor(code, rationale) {
+    const existing = byCode.get(code)
+    if (existing) return { ...existing, rationale }
+    const course = courseByCode.get(code)
+    if (!course || audienceCompatibility(profile, course) === 'incompatible') return null
+    return {
+      position: 1,
+      rationale,
+      course: publicCourse(course, detailedByCode.get(code)),
+    }
+  }
+
+  const primary = itemFor(
+    primaryCode,
+    wantsElearning
+      ? 'Parcours général en autonomie couvrant les fondamentaux jusqu’aux fonctions avancées.'
+      : 'Socle adapté à un besoin général lorsque le niveau initial et les usages spécialisés ne sont pas précisés.',
+  )
+  if (!primary) return null
+
+  const alternativeCode = primaryCode === elearningCode ? foundationCode : elearningCode
+  const alternative = alternativeCode
+    ? itemFor(
+        alternativeCode,
+        primaryCode === elearningCode
+          ? 'Alternative en présentiel pour acquérir les bases avec accompagnement.'
+          : 'Alternative e-learning en autonomie couvrant les fondamentaux jusqu’au perfectionnement.',
+      )
+    : null
+  const matchingSet = new Set(matchingCodes)
+  const displaced = recommendedSteps.filter((item) =>
+    matchingSet.has(item.course.code) &&
+    item.course.code !== primaryCode &&
+    item.course.code !== alternativeCode)
+  const unrelated = recommendedSteps.filter((item) => !matchingSet.has(item.course.code))
+  const remainingOptions = optionalSteps.filter((item) =>
+    item.course.code !== primaryCode && item.course.code !== alternativeCode)
+
+  recommendedSteps.splice(0, recommendedSteps.length, primary, ...unrelated)
+  optionalSteps.splice(
+    0,
+    optionalSteps.length,
+    ...[alternative, ...displaced, ...remainingOptions].filter(Boolean),
+  )
+
+  return wantsElearning
+    ? `${primary.course.title} constitue le parcours général recommandé en autonomie. Les modules présentiels sont proposés comme compléments ou alternatives selon les besoins.`
+    : `Commencer par ${primary.course.title}. Les niveaux avancés et les autres modalités sont proposés comme compléments ou alternatives selon les besoins.`
+}
+
 export async function buildPathwayWithLuna(
   profile,
   {
@@ -563,6 +701,17 @@ Règles impératives :
     add(plan.optionalSteps, optionalSteps)
   }
 
+  const stabilizedOfficeSummary = !plan.abstain
+    ? stabilizeGeneralOfficePathway(
+        profile,
+        candidateCodes,
+        courseByCode,
+        detailedByCode,
+        recommendedSteps,
+        optionalSteps,
+      )
+    : null
+
   if (!plan.abstain && isNewManagerProfile(profile)) {
     const code = managerFoundationCodes[0]
     const course = code ? courseByCode.get(code) : null
@@ -698,7 +847,7 @@ Règles impératives :
     mode: 'pathway-two-pass',
     abstain,
     interpretedGoal: firstResult.interpretedGoal,
-    summary: plan.summary,
+    summary: stabilizedOfficeSummary ?? plan.summary,
     steps: abstain ? [] : recommendedSteps,
     recommendedSteps: abstain ? [] : recommendedSteps,
     optionalSteps,

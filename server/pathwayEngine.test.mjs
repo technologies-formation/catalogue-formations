@@ -44,6 +44,29 @@ function fixture() {
   }
 }
 
+function officeFixture(theme, courses) {
+  const prepared = courses.map(({ code, title, prerequisites = '' }) => ({
+    code,
+    title,
+    theme,
+    prerequisites,
+    officialData: {
+      titleRaw: title,
+      domainRaw: 'LOGICIELS BUREAUTIQUES',
+      themeRaw: theme,
+      publicRaw: 'Tout public',
+    },
+    sourceUrl: `https://example.test/${code}`,
+  }))
+
+  return {
+    ultraCompactCatalogue: prepared.map(({ code, title }) => [code, title]),
+    officialCodes: prepared.map(({ code }) => code),
+    detailedByCode: new Map(prepared.map((course) => [course.code, course])),
+    courseByCode: new Map(prepared.map((course) => [course.code, course])),
+  }
+}
+
 test('construit un parcours ordonné uniquement avec les formations autorisées', async () => {
   const replies = [
     response(
@@ -143,6 +166,116 @@ test('déduplique les étapes retournées par le modèle', async () => {
   )
 
   assert.deepEqual(result.steps.map(({ course }) => course.code), ['AI-BASE'])
+})
+
+test('stabilise un besoin Word général et conserve le e-learning comme alternative', async () => {
+  const catalogue = officeFixture('WORD', [
+    { code: 'WORD-BASE', title: 'Word 365 Base' },
+    { code: 'WORD-ADVANCED', title: 'Word 365 Mise en forme avancée' },
+    { code: 'WORD-LONG', title: 'Word 365 Longs documents' },
+    { code: 'WORD-ONLINE', title: 'Word 2016 : Fondamentaux au perfectionnement | E-LEARNING' },
+  ])
+  const replies = [
+    response({
+      interpretedGoal: 'Utiliser Word',
+      codes: catalogue.officialCodes,
+    }),
+    response({
+      abstain: false,
+      summary: 'Parcours trop large retourné par le modèle.',
+      recommendedSteps: [
+        { code: 'WORD-BASE', rationale: 'Base' },
+        { code: 'WORD-ADVANCED', rationale: 'Avancé' },
+        { code: 'WORD-LONG', rationale: 'Longs documents' },
+      ],
+      optionalSteps: [],
+      informationalCourses: [],
+      gaps: [],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    { personnelCategory: 'PAT', role: 'Chef de projet', objective: 'Je veux utiliser Word' },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(result.recommendedSteps.map(({ course }) => course.code), ['WORD-BASE'])
+  assert.deepEqual(
+    result.optionalSteps.map(({ course }) => course.code),
+    ['WORD-ONLINE', 'WORD-ADVANCED', 'WORD-LONG'],
+  )
+  assert.match(result.summary, /Commencer par Word 365 Base/)
+})
+
+test('privilégie le e-learning pour un besoin Excel général en autonomie', async () => {
+  const catalogue = officeFixture('EXCEL', [
+    { code: 'EXCEL-BASE', title: 'Excel 365 Base' },
+    { code: 'EXCEL-PIVOT', title: 'Excel 365 Tableaux croisés dynamiques' },
+    { code: 'EXCEL-ONLINE', title: 'Excel 2016 : Fondamentaux au perfectionnement | E-LEARNING' },
+  ])
+  const replies = [
+    response({ interpretedGoal: 'Apprendre Excel en autonomie', codes: catalogue.officialCodes }),
+    response({
+      abstain: false,
+      summary: 'Parcours Excel.',
+      recommendedSteps: [
+        { code: 'EXCEL-BASE', rationale: 'Base' },
+        { code: 'EXCEL-PIVOT', rationale: 'Approfondissement' },
+      ],
+      optionalSteps: [{ code: 'EXCEL-ONLINE', rationale: 'En ligne' }],
+      informationalCourses: [],
+      gaps: [],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    {
+      personnelCategory: 'PAT',
+      role: 'Assistante administrative',
+      objective: 'Je veux apprendre Excel',
+      constraints: 'Je préfère un e-learning en autonomie',
+    },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(result.recommendedSteps.map(({ course }) => course.code), ['EXCEL-ONLINE'])
+  assert.deepEqual(
+    result.optionalSteps.map(({ course }) => course.code),
+    ['EXCEL-BASE', 'EXCEL-PIVOT'],
+  )
+})
+
+test('préserve un parcours PowerPoint spécialisé', async () => {
+  const catalogue = officeFixture('POWERPOINT', [
+    { code: 'PPT-BASE', title: 'PowerPoint 365 Base' },
+    { code: 'PPT-MEDIA', title: 'PowerPoint 365 Multimédia et animations' },
+    { code: 'PPT-ONLINE', title: 'PowerPoint 2016 : Fondamentaux au perfectionnement | E-LEARNING' },
+  ])
+  const replies = [
+    response({ interpretedGoal: 'Créer des animations PowerPoint', codes: catalogue.officialCodes }),
+    response({
+      abstain: false,
+      summary: 'Parcours spécialisé.',
+      recommendedSteps: [
+        { code: 'PPT-BASE', rationale: 'Prérequis' },
+        { code: 'PPT-MEDIA', rationale: 'Répond au besoin' },
+      ],
+      optionalSteps: [{ code: 'PPT-ONLINE', rationale: 'Alternative' }],
+      informationalCourses: [],
+      gaps: [],
+    }),
+  ]
+
+  const result = await buildPathwayWithLuna(
+    { objective: 'Je veux créer des animations avec PowerPoint' },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() },
+  )
+
+  assert.deepEqual(
+    result.recommendedSteps.map(({ course }) => course.code),
+    ['PPT-BASE', 'PPT-MEDIA'],
+  )
+  assert.equal(result.summary, 'Parcours spécialisé.')
 })
 
 test('refuse de démarrer sans clé API', async () => {
