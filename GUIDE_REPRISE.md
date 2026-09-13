@@ -35,7 +35,7 @@ Ce document est la référence technique et opérationnelle pour reprendre le pr
 - Dépôt distant : [github.com/technologies-formation/catalogue-formations](https://github.com/technologies-formation/catalogue-formations).
 - URL publique du frontend : [technologies-formation.github.io/catalogue-formations](https://technologies-formation.github.io/catalogue-formations/).
 - URL publique du backend Luna et de l'assistant de parcours : `https://api.a658yg-catalogue.ch`.
-- Le catalogue public contient 1 058 formations au 12 septembre 2026. Cette volumétrie peut évoluer avec les mises à jour quotidiennes du catalogue.
+- Le catalogue public contient 1 058 formations au 13 septembre 2026. Cette volumétrie peut évoluer avec les mises à jour quotidiennes du catalogue.
 
 ### Jalon courant — Assistant de parcours V1
 
@@ -70,6 +70,32 @@ La validation du jalon comprend :
 - un build Vite de production réussi ;
 - une validation visuelle du frontend publié sur GitHub Pages ;
 - une validation fonctionnelle des champs obligatoires, de l'état de chargement, de la génération des résultats et des actions de modification ou de fermeture.
+
+### Évolution validée — Compléments et alternatives de format
+
+L'évolution déployée en production le 13 septembre 2026 est identifiée par :
+
+- commit de référence : `02b4612dd569f275830d88ca0ad3bb038ff69efa` ;
+- branche de référence : `main` ;
+- ancienne branche de travail : `feat/training-format-alternatives` ;
+- backend Infomaniak et frontend GitHub Pages alignés sur cette révision.
+
+Cette évolution harmonise la recherche IA et l'assistant de parcours :
+
+- elle distingue les étapes nécessaires des compléments et des alternatives ;
+- elle tient compte des préférences de modalité : e-learning, autonomie, présentiel ou hybride ;
+- elle tient compte de la version du logiciel lorsqu'elle est précisée ;
+- elle évite de cumuler automatiquement une formation généraliste et des modules couvrant le même socle ;
+- elle fonctionne de manière générique pour Word, Excel, PowerPoint et les autres domaines présentant des offres comparables ;
+- elle conserve les approfondissements spécialisés dans la rubrique `Compléments ou alternatives` lorsque le besoin ne les rend pas indispensables.
+
+Cas de référence validés :
+
+- besoin Word général : `TRT1015 — Word 365 Base` reste la recommandation principale et `TRT3003E` apparaît comme alternative e-learning ;
+- besoin Word avec préférence e-learning en autonomie : `TRT3003E — Word 2016 : Fondamentaux au perfectionnement | E-LEARNING` devient la recommandation principale et Word 365 Base une alternative en présentiel ;
+- besoin Excel avec préférence e-learning en autonomie : `TRT3000E — Excel 2016 : Fondamentaux au perfectionnement | E-LEARNING` devient la recommandation principale et Excel 365 Base une alternative en présentiel.
+
+La validation comprend 332 tests automatisés réussis, un lint sans erreur ni avertissement, un build Vite réussi et un contrôle fonctionnel sur le site public. Le health public a confirmé `ok=true`, `openaiConfigured=true`, `pathwayAssistantEnabled=true`, la révision `02b4612`, 1 058 formations et `lastError=null`.
 
 ### Jalons historiques
 
@@ -622,6 +648,20 @@ Les principaux mécanismes actuellement en place sont :
 - validation stricte des requêtes et limitation de leur taille ;
 - journalisation serveur sans enregistrer le texte des recherches utilisateur ;
 - clé OpenAI conservée exclusivement côté serveur.
+
+Le runtime actif se trouve dans `/srv/customer/sites/api.a658yg-catalogue.ch`. La configuration privée se trouve hors de ce répertoire dans `/srv/customer/.a658yg-catalogue.env` et ne doit jamais être affichée, copiée dans Git ou remplacée pendant un déploiement.
+
+Pour le déploiement de `02b4612`, l'archive GitHub a été préparée dans `/srv/customer/a658yg-release-02b4612`, puis le runtime précédent a été sauvegardé dans `/srv/customer/a658yg-backup-20260913-before-02b4612.tgz`. Les fichiers de la nouvelle révision ont ensuite été copiés dans le runtime actif en conservant `node_modules` et la configuration privée. Les empreintes de `server/pathwayEngine.mjs` et `server/llmSearch.mjs` ont été comparées à celles de la release avant le redémarrage.
+
+Configuration Infomaniak validée :
+
+- Node.js 24 ;
+- port d'écoute `8787` ;
+- commande de build `npm ci` ;
+- commande d'exécution chargeant `/srv/customer/.a658yg-catalogue.env` puis `server/searchApi.mjs` ;
+- redémarrage manuel depuis `Tableau de bord > Exécution de l'application > Redémarrer`.
+
+Après chaque évolution du code serveur, vérifier successivement la sauvegarde, les empreintes des fichiers déployés, le redémarrage, `https://api.a658yg-catalogue.ch/api/health`, puis un scénario réel sur le frontend public. Un push GitHub ou un déploiement Pages ne met pas à jour automatiquement le code Node.js installé sur Infomaniak.
 
 Le monitoring et le suivi budgétaire restent à consolider avant une éventuelle industrialisation à plus grande échelle ;
 - éventuelle authentification ou restriction d'accès.
