@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-11
+- Date du snapshot : 2026-09-14
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 115.5 secondes
-- Taille du JSON final : 2.06 Mio (2160238 octets)
-- Empreinte SHA-256 du snapshot : `a69bd1541f71e56a2e4bfced863b0f0b41b2568b4b8e155fefd44dd5f22308f8`
+- Durée totale de l’import : 117.8 secondes
+- Taille du JSON final : 2.05 Mio (2154115 octets)
+- Empreinte SHA-256 du snapshot : `ec7be7e6760bb5015cacfe45736771badf764e4cf0bc816e82f9405437de09b7`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1651
-- Codes uniques : 1058
+- Occurrences détectées dans l’index : 1646
+- Codes uniques : 1053
 - Occurrences éliminées par déduplication : 593
 - Formations présentes dans plusieurs offres : 300
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1058
+- Fiches récupérées avec succès : 1053
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -23,10 +23,10 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | Indicateur | Valeur |
 | --- | ---: |
 | Cours dans le snapshot officiel | 1058 |
-| Cours dans le candidat | 1058 |
+| Cours dans le candidat | 1053 |
 | Cours ajoutés | 0 |
-| Cours supprimés | 0 |
-| Cours modifiés | 8 |
+| Cours supprimés | 5 |
+| Cours modifiés | 15 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -36,24 +36,39 @@ Aucun cours ajouté.
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| FP069 | Instructeur préparateur trimix | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+| FP075 | Moniteur de plongeur trimix | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+| FP079 | RADAR MODULE 1 - Formation SR520 | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+| FP100 | Refresh Polycom | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+| FP112 | FP112 | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-1044 | Entrée dans le langage écrit : troubles des apprentissages du langage écrit et différenciation pédagogique | `hasOpenSession` : « true » → « false » |
-| EP-1049 | Mettre en oeuvre une pédagogie différenciée réaliste dans ma classe | `hasOpenSession` : « true » → « false » |
-| EP-582 | Découverte des traces et indices de présence animale autour de l'école | `hasOpenSession` : « true » → « false » |
-| EP-699 | Introduction aux fonctions exécutives et attentionnelles à l'école primaire | `hasOpenSession` : « true » → « false » |
-| EP-739 | Collaboration (multi)professionnelle dans les établissements scolaires : comprendre, analyser, agir | `hasOpenSession` : « true » → « false » |
-| EP-997 | Cercle vertueux propice aux apprentissages : de la théorie à la pratique | `hasOpenSession` : « true » → « false » |
-| PJ-0092 | Recherche dans la législation et la jurisprudence | `hasScheduledSession` : « true » → « false » |
-| SEM1099 | Optimiser l'impact de vos présentations projetées | `hasOpenSession` : « true » → « false » |
+| CO-00312 | Module de perfectionnement Moniteur ski J+S | `hasOpenSession` : « true » → « false » |
+| CO-01647 | Unihockey au cycle d'orientation (éducation physique) | `hasOpenSession` : « true » → « false » |
+| CO-01664 | Faire vivre la littérature suisse romande en classe, présentation des séquences LiRom disponibles sur le site Ecole EEL | `hasOpenSession` : « true » → « false » |
+| CO-01676 | La transition écologique : quels enjeux pour respecter les limites de notre planète ? | `hasOpenSession` : « true » → « false » |
+| CO-01706 | La mise en voix : justesse, projection et plaisir de chanter | `hasOpenSession` : « true » → « false » |
+| FP133 | Introduction à Mercure V3 | `hasOpenSession` : « false » → « true » |
+| OMP-003TSA | La méthode PECS niveau 1 | `hasOpenSession` : « true » → « false » |
+| OMP-017TSA | Particularités cognitives et sensorielles des élèves avec autisme; outils pour les intégrer à la classe | `hasOpenSession` : « true » → « false » |
+| OMP-074 | Cours de langue des signes niveau intermédiaire | `hasOpenSession` : « true » → « false » |
+| OMP-096 | Cours de langue des signes niveau avancé | `hasOpenSession` : « true » → « false » |
+| SEM-10464 | EP-CO-ESII / Utiliser les imprimantes 3D du FabLab du SEM / NOUVEAU | `hasOpenSession` : « true » → « false » |
+| SEM-P1569 | EP-OMP / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « true » → « false » |
+| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « true » → « false » |
+| SEM1040 | Mindmap : une méthode pour organiser ses idées et ses informations | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-Aucun champ descriptif long n’a changé.
+| Code | Intitulé candidat | Champs modifiés |
+| --- | --- | --- |
+| FP086 | RADAR MODULE 5 - Formation 6F mobile | `durationRaw` |
+| FP133 | Introduction à Mercure V3 | `contentRaw`, `additionalInformationRaw` |
 
 ### Changements d’offres
 
@@ -100,23 +115,23 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DIP-OMP - Offre formation de l'OMP | 233 | 233 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 154 | 154 |
 | PJ - Offre de formation du pouvoir judiciaire | 55 | 55 |
-| POLICE - CFPS - Centre de Formation de la Police | 198 | 198 |
+| POLICE - CFPS - Centre de Formation de la Police | 193 | 193 |
 
 ## Disponibilité des champs
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1058/1058 | 100.0 % |
-| `domainRaw` | 1058/1058 | 100.0 % |
-| `themeRaw` | 979/1058 | 92.5 % |
-| `publicRaw` | 946/1058 | 89.4 % |
-| `durationRaw` | 1041/1058 | 98.4 % |
-| `targetAudienceRaw` | 939/1058 | 88.8 % |
-| `generalInformationRaw` | 540/1058 | 51.0 % |
-| `objectivesRaw` | 1008/1058 | 95.3 % |
-| `contentRaw` | 946/1058 | 89.4 % |
-| `prerequisitesRaw` | 387/1058 | 36.6 % |
-| `additionalInformationRaw` | 347/1058 | 32.8 % |
+| `organizingEntityRaw` | 1053/1053 | 100.0 % |
+| `domainRaw` | 1053/1053 | 100.0 % |
+| `themeRaw` | 974/1053 | 92.5 % |
+| `publicRaw` | 941/1053 | 89.4 % |
+| `durationRaw` | 1036/1053 | 98.4 % |
+| `targetAudienceRaw` | 935/1053 | 88.8 % |
+| `generalInformationRaw` | 536/1053 | 50.9 % |
+| `objectivesRaw` | 1004/1053 | 95.3 % |
+| `contentRaw` | 943/1053 | 89.6 % |
+| `prerequisitesRaw` | 384/1053 | 36.5 % |
+| `additionalInformationRaw` | 344/1053 | 32.7 % |
 
 ### Correspondance des libellés officiels
 
@@ -157,13 +172,13 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
@@ -199,7 +214,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-11T03:19:36.879Z
-- Snapshot candidat validé : 2026-09-11
-- Empreinte SHA-256 : `a69bd1541f71e56a2e4bfced863b0f0b41b2568b4b8e155fefd44dd5f22308f8`
+- Date et heure de promotion : 2026-09-14T08:50:17.867Z
+- Snapshot candidat validé : 2026-09-14
+- Empreinte SHA-256 : `ec7be7e6760bb5015cacfe45736771badf764e4cf0bc816e82f9405437de09b7`
 - Promotion manuelle confirmée.
