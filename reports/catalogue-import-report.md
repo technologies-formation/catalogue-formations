@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-18
+- Date du snapshot : 2026-09-21
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 123.8 secondes
-- Taille du JSON final : 2.05 Mio (2145860 octets)
-- Empreinte SHA-256 du snapshot : `ea83a3719a9002f3e419541d011b360c1c73911a8fb3cb513ea834bac51fe8cf`
+- Durée totale de l’import : 138.8 secondes
+- Taille du JSON final : 2.05 Mio (2147902 octets)
+- Empreinte SHA-256 du snapshot : `14bb53e6b9055ab675072c8c694aeb08958e44067dee2269d8bfd51a1c97cf4b`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1648
-- Codes uniques : 1054
+- Occurrences détectées dans l’index : 1649
+- Codes uniques : 1055
 - Occurrences éliminées par déduplication : 594
 - Formations présentes dans plusieurs offres : 298
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1054
+- Fiches récupérées avec succès : 1055
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1055 |
-| Cours dans le candidat | 1054 |
+| Cours dans le snapshot officiel | 1054 |
+| Cours dans le candidat | 1055 |
 | Cours ajoutés | 1 |
-| Cours supprimés | 2 |
-| Cours modifiés | 14 |
+| Cours supprimés | 0 |
+| Cours modifiés | 12 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,39 +34,34 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| EP-1297ETB | Bien collaborer | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| EP-1335ETB | Enseigner explicitement les comportements attendus : Gestion de classe et cohérence d?équipe au Cycle Moyen | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| CO-01664 | Faire vivre la littérature suisse romande en classe, présentation des séquences LiRom disponibles sur le site Ecole EEL | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II | DGEO/SRH/Secteur de la formation continue EO | Langues |
-| CO-01676 | La transition écologique : quels enjeux pour respecter les limites de notre planète ? | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II | DGEO/SRH/Secteur de la formation continue EO | Formation générale |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-01APPCO | Ateliers de pratique professionnelle en contexte de co-intervention (APP CO) | `targetAudienceRaw` : « Cette formation s'adresse aux professionnelles et professionnels impliqués dans un dispositif de co-intervention au cycle élémentaire. » → « Cette formation s'adresse aux professionnelles et professionnels impliqués pour la première année dans un dispositif de co-intervention au cycle élémentaire. »<br>`hasScheduledSession` : « false » → « true » |
-| FP313 | MyABI - VBME - gestion des pièces à conviction (cadres) | `hasOpenSession` : « true » → « false » |
-| OMP-015TSA | Les transitions de l'enfance à l'âge adulte | `hasOpenSession` : « true » → « false » |
-| S2-EPS18 | Escalade : perfectionnement J+S | `hasOpenSession` : « false » → « true » |
-| SEM-10465 | EP-CO-ESII / Utiliser la découpeuse vinyle du FabLab du SEM | `hasOpenSession` : « true » → « false » |
-| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | `hasOpenSession` : « true » → « false » |
-| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « true » → « false » |
-| SEM0872 | Gestion du temps et des priorités | `hasOpenSession` : « true » → « false » |
-| SEM1089 | Le management transversal | `hasOpenSession` : « false » → « true » |
-| SEM1095 | Prévenir et gérer les comportements agressifs | `hasOpenSession` : « true » → « false » |
-| SEM1122 | Ajuster sa voix et son comportement non verbal, force d'influence | `hasOpenSession` : « false » → « true » |
-| SEM1164 | L'intelligence collective au service de la transformation et l'innovation | `hasOpenSession` : « false » → « true » |
-| SEM1237 | Comment acquérir une vision synthétique et objective d'une situation ? | `hasOpenSession` : « false » → « true » |
+| EP-091EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - live streaming | `hasOpenSession` : « true » → « false » |
+| EP-094MDAS | Beatbox | `hasScheduledSession` : « false » → « true » |
+| S2-ORFO303 | FC3-Excel_Base de donnée | `hasOpenSession` : « true » → « false » |
+| SEM0056 | Principes généraux du droit administratif | `hasOpenSession` : « false » → « true » |
+| SEM0733 | Améliorer l'ergonomie de son poste de travail | `hasOpenSession` : « false » → « true » |
+| SEM1117 | Stress et préoccupations : maintenir et améliorer son équilibre au travail | `hasOpenSession` : « true » → « false » |
+| SEM1122 | Ajuster sa voix et son comportement non verbal, force d'influence | `hasOpenSession` : « true » → « false » |
+| SEM1199 | Atelier de résolution de conflits | `hasOpenSession` : « true » → « false » |
+| SEM1217 | Manager une équipe de projet | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
 | EP-004EPP | Encadrer, planifier et sécuriser les activités scolaires (anciennement prévention des accidents) | `prerequisitesRaw` |
-| EP-01APPCO | Ateliers de pratique professionnelle en contexte de co-intervention (APP CO) | `durationRaw` |
+| EP-094MDAS | Beatbox | `objectivesRaw`, `contentRaw` |
+| FP217 | EC ASP Test de connaissances SOF - inscription participants | `prerequisitesRaw` |
+| FP218 | EC1 ASP Processus d'évaluation SOF - Inscription participants | `prerequisitesRaw` |
 
 ### Changements d’offres
 
@@ -108,7 +103,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 229 | 229 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 304 | 304 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 305 | 305 |
 | DIP-ES II - Offre de formation de l'ES II | 241 | 241 |
 | DIP-OMP - Offre formation de l'OMP | 232 | 232 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 154 | 154 |
@@ -119,17 +114,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1054/1054 | 100.0 % |
-| `domainRaw` | 1054/1054 | 100.0 % |
-| `themeRaw` | 975/1054 | 92.5 % |
-| `publicRaw` | 942/1054 | 89.4 % |
-| `durationRaw` | 1037/1054 | 98.4 % |
-| `targetAudienceRaw` | 935/1054 | 88.7 % |
-| `generalInformationRaw` | 533/1054 | 50.6 % |
-| `objectivesRaw` | 1004/1054 | 95.3 % |
-| `contentRaw` | 939/1054 | 89.1 % |
-| `prerequisitesRaw` | 381/1054 | 36.1 % |
-| `additionalInformationRaw` | 343/1054 | 32.5 % |
+| `organizingEntityRaw` | 1055/1055 | 100.0 % |
+| `domainRaw` | 1055/1055 | 100.0 % |
+| `themeRaw` | 976/1055 | 92.5 % |
+| `publicRaw` | 943/1055 | 89.4 % |
+| `durationRaw` | 1038/1055 | 98.4 % |
+| `targetAudienceRaw` | 936/1055 | 88.7 % |
+| `generalInformationRaw` | 533/1055 | 50.5 % |
+| `objectivesRaw` | 1005/1055 | 95.3 % |
+| `contentRaw` | 939/1055 | 89.0 % |
+| `prerequisitesRaw` | 381/1055 | 36.1 % |
+| `additionalInformationRaw` | 343/1055 | 32.5 % |
 
 ### Correspondance des libellés officiels
 
@@ -169,19 +164,19 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
+- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
-- TRT701 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
+- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
-- TRT012 — Informations complémentaires (`additionalInformationRaw`)
-- EP-373FEX — Généralités (`generalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
+- EP-373FEX — Généralités (`generalInformationRaw`)
 - S2-301 — Informations complémentaires (`additionalInformationRaw`)
 - EP-002ANG — Pré-requis (`prerequisitesRaw`)
 - FP254 — Informations complémentaires (`additionalInformationRaw`)
@@ -213,7 +208,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-18T08:11:56.742Z
-- Snapshot candidat validé : 2026-09-18
-- Empreinte SHA-256 : `ea83a3719a9002f3e419541d011b360c1c73911a8fb3cb513ea834bac51fe8cf`
+- Date et heure de promotion : 2026-09-21T08:52:19.581Z
+- Snapshot candidat validé : 2026-09-21
+- Empreinte SHA-256 : `14bb53e6b9055ab675072c8c694aeb08958e44067dee2269d8bfd51a1c97cf4b`
 - Promotion manuelle confirmée.
