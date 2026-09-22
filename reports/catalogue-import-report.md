@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-21
+- Date du snapshot : 2026-09-22
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 138.8 secondes
-- Taille du JSON final : 2.05 Mio (2147902 octets)
-- Empreinte SHA-256 du snapshot : `14bb53e6b9055ab675072c8c694aeb08958e44067dee2269d8bfd51a1c97cf4b`
+- Durée totale de l’import : 137.8 secondes
+- Taille du JSON final : 2.05 Mio (2153605 octets)
+- Empreinte SHA-256 du snapshot : `0cc8408910e27f72d9c64156f878fe236072a08d7c832dd93521d9e390a27ddf`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1649
-- Codes uniques : 1055
+- Occurrences détectées dans l’index : 1651
+- Codes uniques : 1057
 - Occurrences éliminées par déduplication : 594
 - Formations présentes dans plusieurs offres : 298
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1055
+- Fiches récupérées avec succès : 1057
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1054 |
-| Cours dans le candidat | 1055 |
-| Cours ajoutés | 1 |
+| Cours dans le snapshot officiel | 1055 |
+| Cours dans le candidat | 1057 |
+| Cours ajoutés | 2 |
 | Cours supprimés | 0 |
-| Cours modifiés | 12 |
+| Cours modifiés | 31 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,7 +34,8 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| EP-1335ETB | Enseigner explicitement les comportements attendus : Gestion de classe et cohérence d?équipe au Cycle Moyen | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| EP-093EVEN | Ateliers d'échange de pratique autour du jeu de faire-semblant | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| TRT3016E | Maîtriser les fondamentaux du Numérique Responsable \| E-Learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | NUMERIQUE A L'ETAT |
 
 ### Cours supprimés
 
@@ -44,24 +45,43 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-091EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - live streaming | `hasOpenSession` : « true » → « false » |
-| EP-094MDAS | Beatbox | `hasScheduledSession` : « false » → « true » |
-| S2-ORFO303 | FC3-Excel_Base de donnée | `hasOpenSession` : « true » → « false » |
-| SEM0056 | Principes généraux du droit administratif | `hasOpenSession` : « false » → « true » |
-| SEM0733 | Améliorer l'ergonomie de son poste de travail | `hasOpenSession` : « false » → « true » |
-| SEM1117 | Stress et préoccupations : maintenir et améliorer son équilibre au travail | `hasOpenSession` : « true » → « false » |
-| SEM1122 | Ajuster sa voix et son comportement non verbal, force d'influence | `hasOpenSession` : « true » → « false » |
-| SEM1199 | Atelier de résolution de conflits | `hasOpenSession` : « true » → « false » |
-| SEM1217 | Manager une équipe de projet | `hasOpenSession` : « true » → « false » |
+| CO-01710 | Pratiquer la broderie avec ses élèves | `hasOpenSession` : « false » → « true » |
+| EP-01APPCO | Ateliers de pratique professionnelle en contexte de co-intervention (APP CO) | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| FP020 | Pilotage automobile | `hasOpenSession` : « true » → « false » |
+| FP119 | Animer des sessions de formation pour des groupes d?adultes » Certificat FSEA formatrice/formateur | `hasOpenSession` : « false » → « true » |
+| SEM0872 | Gestion du temps et des priorités | `hasOpenSession` : « false » → « true » |
+| SEM1218 | Sensibilisation aux approches agiles | `hasOpenSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| EP-004EPP | Encadrer, planifier et sécuriser les activités scolaires (anciennement prévention des accidents) | `prerequisitesRaw` |
-| EP-094MDAS | Beatbox | `objectivesRaw`, `contentRaw` |
-| FP217 | EC ASP Test de connaissances SOF - inscription participants | `prerequisitesRaw` |
-| FP218 | EC1 ASP Processus d'évaluation SOF - Inscription participants | `prerequisitesRaw` |
+| CO-01453 | Initiation à la sérigraphie | `contentRaw` |
+| CO-01614 | Arts et sports | `objectivesRaw` |
+| CO-01662 | La boxe light contact : perfectionnement | `objectivesRaw` |
+| CO-01665 | Les enjeux d'apprentissage des mathématiques auprès des élèves allophones (DIAC) | `objectivesRaw` |
+| CO-01674 | Relation Famille-Ecole / Approche interculturelle (DIAC) | `contentRaw` |
+| CO-01677 | Animer le jeu de la transition écologique en milieu scolaire | `contentRaw` |
+| CO-01681 | The Contribution of Neuroscience to Vocabulary Learning in EFL: Current Research in Psycholinguistics | `objectivesRaw` |
+| CO-01682 | Maîtrise de classe : faire grandir son groupe classe, vers une autonomie sereine et collaborative (module 1) | `objectivesRaw`, `prerequisitesRaw` |
+| CO-01685 | Différenciation pédagogique au CO: dispositifs, outils, stratégies | `objectivesRaw` |
+| CO-01687 | La pédagogie de la Classe Autonome | `objectivesRaw` |
+| CO-01691 | Badminton | `contentRaw` |
+| CO-01697 | Quelle place pour la lecture dans votre classe ou au sein de l'établissement ? Développer des projets autour du livre | `objectivesRaw`, `contentRaw` |
+| CO-01705 | Visite de la STAP du Vengeron (GeniLac) | `objectivesRaw` |
+| CO-01706 | La mise en voix : justesse, projection et plaisir de chanter | `objectivesRaw`, `contentRaw` |
+| CO-01707 | Littérature et cinéma : Le Voyage en Italie | `objectivesRaw`, `contentRaw` |
+| CO-01710 | Pratiquer la broderie avec ses élèves | `objectivesRaw` |
+| CO-01713 | Faire de la diversité linguistique de ses élèves un atout : utiliser la variation et le plurilinguisme (DIAC) | `contentRaw` |
+| EO-727 | Imagination, expression orale et écrite : des jeux pour créer des histoires | `contentRaw` |
+| EP-095MDAS | Comprendre et gérer les conflits en EPS : stratégies d'autorégulation | `objectivesRaw` |
+| EP-099MDAS | Ultimate en contexte scolaire MDAS | `objectivesRaw` |
+| EP-266EVEN | Dans la peau de scientifiques | `contentRaw`, `prerequisitesRaw` |
+| EP-570 | Proposer des sorties dans la nature avec sa classe sans la présence de spécialistes | `prerequisitesRaw` |
+| EP-582 | Découverte des traces et indices de présence animale autour de l'école | `contentRaw` |
+| EP-699 | Introduction aux fonctions exécutives et attentionnelles à l'école primaire | `objectivesRaw` |
+| EP-732 | Les inégalités scolaires de genre : de la théorie à la pratique, de la classe au préau | `objectivesRaw` |
+| EP-988 | La danse, un appui pour le corps et la gestion de groupe | `objectivesRaw` |
 
 ### Changements d’offres
 
@@ -100,10 +120,10 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 70 | 70 |
-| DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
+| DF-OPE - L'offre de formation de l'OPE | 169 | 169 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 229 | 229 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 305 | 305 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 306 | 306 |
 | DIP-ES II - Offre de formation de l'ES II | 241 | 241 |
 | DIP-OMP - Offre formation de l'OMP | 232 | 232 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 154 | 154 |
@@ -114,17 +134,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1055/1055 | 100.0 % |
-| `domainRaw` | 1055/1055 | 100.0 % |
-| `themeRaw` | 976/1055 | 92.5 % |
-| `publicRaw` | 943/1055 | 89.4 % |
-| `durationRaw` | 1038/1055 | 98.4 % |
-| `targetAudienceRaw` | 936/1055 | 88.7 % |
-| `generalInformationRaw` | 533/1055 | 50.5 % |
-| `objectivesRaw` | 1005/1055 | 95.3 % |
-| `contentRaw` | 939/1055 | 89.0 % |
-| `prerequisitesRaw` | 381/1055 | 36.1 % |
-| `additionalInformationRaw` | 343/1055 | 32.5 % |
+| `organizingEntityRaw` | 1057/1057 | 100.0 % |
+| `domainRaw` | 1057/1057 | 100.0 % |
+| `themeRaw` | 978/1057 | 92.5 % |
+| `publicRaw` | 945/1057 | 89.4 % |
+| `durationRaw` | 1040/1057 | 98.4 % |
+| `targetAudienceRaw` | 937/1057 | 88.6 % |
+| `generalInformationRaw` | 534/1057 | 50.5 % |
+| `objectivesRaw` | 1007/1057 | 95.3 % |
+| `contentRaw` | 941/1057 | 89.0 % |
+| `prerequisitesRaw` | 383/1057 | 36.2 % |
+| `additionalInformationRaw` | 343/1057 | 32.5 % |
 
 ### Correspondance des libellés officiels
 
@@ -164,15 +184,15 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
+- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
-- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
@@ -183,8 +203,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - FP208 — Généralités (`generalInformationRaw`)
 - FP209 — Généralités (`generalInformationRaw`)
 - FP210 — Généralités (`generalInformationRaw`)
-- FP218 — Généralités (`generalInformationRaw`)
 - FP217 — Généralités (`generalInformationRaw`)
+- FP218 — Généralités (`generalInformationRaw`)
 
 ## Erreurs de récupération
 
@@ -208,7 +228,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-21T08:52:19.581Z
-- Snapshot candidat validé : 2026-09-21
-- Empreinte SHA-256 : `14bb53e6b9055ab675072c8c694aeb08958e44067dee2269d8bfd51a1c97cf4b`
+- Date et heure de promotion : 2026-09-22T08:29:34.126Z
+- Snapshot candidat validé : 2026-09-22
+- Empreinte SHA-256 : `0cc8408910e27f72d9c64156f878fe236072a08d7c832dd93521d9e390a27ddf`
 - Promotion manuelle confirmée.
