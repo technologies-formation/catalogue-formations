@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-24
+- Date du snapshot : 2026-09-25
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 125.7 secondes
-- Taille du JSON final : 2.06 Mio (2154952 octets)
-- Empreinte SHA-256 du snapshot : `f91c6e046e6d493ba66481492fb7d21aa453444bd1bf2429b279ebc9bedbe656`
+- Durée totale de l’import : 119.2 secondes
+- Taille du JSON final : 2.03 Mio (2129289 octets)
+- Empreinte SHA-256 du snapshot : `73175e7dfe398306febff33d2b95e41a6210ea8778b8577f88517b640d9be13b`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1651
-- Codes uniques : 1057
-- Occurrences éliminées par déduplication : 594
-- Formations présentes dans plusieurs offres : 298
+- Occurrences détectées dans l’index : 1627
+- Codes uniques : 1043
+- Occurrences éliminées par déduplication : 584
+- Formations présentes dans plusieurs offres : 295
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1057
+- Fiches récupérées avec succès : 1043
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1056 |
-| Cours dans le candidat | 1057 |
-| Cours ajoutés | 1 |
-| Cours supprimés | 0 |
-| Cours modifiés | 7 |
+| Cours dans le snapshot officiel | 1057 |
+| Cours dans le candidat | 1043 |
+| Cours ajoutés | 2 |
+| Cours supprimés | 16 |
+| Cours modifiés | 10 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,28 +34,50 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| S2-PREQ01 | Analyse des pratiques professionnelles (APP) à l'attention du personnel enseignant du préqualifiant | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
+| EP-1344ETB | Parler pour apprendre | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Langues |
+| SEM000 | (intitulé \| POS1) Améliorer l'expérience utilisateur dans l'Espace de formation (Intitulé : Zéphir) | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | Informatique Bureautique |
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| FSM012 | Moniteurs sanitaires - refresh BLS-AED (Generic provider) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD001 | Accompagnement des stagiaires (ADS) - base | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD022 | Coach FOBA | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD170 | Formateurs TTI (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD171 | Formateurs Tir (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD177 | Cours cadre TTI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD183 | Cours cadre Tir | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD207 | BFFA - M1 : Animer des sessions de formation pour des groupes d'adultes (FFA CF-AF). | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD240 | Coach FOI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD373 | Accompagnement des stagiaires - Refresh | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD418 | Formation continue pour les coaches de la pratique - module 1: Rôle et tâches de la/du coach et formulation des objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD419 | Formation continue pour les coaches de la pratique - module 2: planifier, organiser et suivre les objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD422 | Formation continue pour les coaches de la pratique - module 3: Evaluation de l'apprentissage et du transfert | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| SEM-10347 | EP-CO-ESII-OMP / L'erreur est humaine: introduction à l'esprit critique | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
+| SEM-10429 | CO-ESII / GarageBand : création de morceaux de musique avec un Mac | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Arts |
+| SEM-10524 | CO -ESII / Wikipédia en classe : Former des élèves critiques et acteurs du savoir / Formation hybride | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-1049 | Mettre en ½uvre une pédagogie différenciée réaliste dans ma classe | `titleRaw` : « Mettre en oeuvre une pédagogie différenciée réaliste dans ma classe » → « Mettre en ½uvre une pédagogie différenciée réaliste dans ma classe » |
-| S2-842 | Trouble du déficit d'attention avec ou sans hyperactivité (TDA/H), au secondaire I et II : identification, conséquences et pistes d'intervention | `hasOpenSession` : « true » → « false » |
-| SEM-10244 | CO-ESII / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « false » → « true » |
-| SEM-10472 | EP-ESI-ESII-OMP / Utiliser la découpeuse laser du FabLab du SEM | `hasOpenSession` : « true » → « false » |
-| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | `hasOpenSession` : « false » → « true » |
-| SEM1172 | En finir avec les pièges de la langue française ! | `hasOpenSession` : « true » → « false » |
+| EP-092EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - différé | `hasOpenSession` : « true » → « false » |
+| PJ-0098 | Gestion des pièces à conviction - Magistrats | `hasOpenSession` : « true » → « false » |
+| S2-PREQ01 | Analyse des pratiques professionnelles (APP) à l'attention du personnel enseignant du préqualifiant | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
+| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | `hasOpenSession` : « true » → « false » |
+| SEM0733 | Améliorer l'ergonomie de son poste de travail | `hasOpenSession` : « true » → « false » |
+| SEM1108 | Parler en public | `hasOpenSession` : « false » → « true » |
+| SEM1195 | Communication et feed-back constructif | `hasOpenSession` : « true » → « false » |
+| SEM1209 | Assertivité et confiance en soi en situation de travail | `hasOpenSession` : « false » → « true » |
+| TRT1005 | Excel 365 Base | `hasScheduledSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| FP021 | Les Levées de corps | `generalInformationRaw`, `prerequisitesRaw` |
+| EP-004EPP | Encadrer, planifier et sécuriser les activités scolaires (anciennement prévention des accidents) | `prerequisitesRaw` |
+| S2-PREQ01 | Analyse des pratiques professionnelles (APP) à l'attention du personnel enseignant du préqualifiant | `contentRaw` |
 
 ### Changements d’offres
 
@@ -72,9 +94,9 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Indicateur | Références |
 | --- | ---: |
 | Références contrôlées | 24 |
-| Références présentes | 22 |
-| Références absentes | 2 |
-| Références identiques | 21 |
+| Références présentes | 21 |
+| Références absentes | 3 |
+| Références identiques | 20 |
 | Revues métier prioritaires | 0 |
 | Revues métier | 0 |
 | Références nécessitant une revue métier | 0 |
@@ -88,19 +110,20 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | CO-01660 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 | EP-520 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 | CO-01686 | INFORMATION À EXAMINER | `targetAudienceRaw` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP<br>Les participants identifient quelques-unes des préoccupations majeures des élèves, de leurs familles et des enseignants qui les côtoient à travers une expérience rapportée du terrain ;<br>A la fin de la séance, les participants sont capables d'identifier les défis pour ces familles et, en collaboration avec les personnes ressources de leur établissement (conseillères et conseillers sociaux, éducatrices et éducateurs), de mieux les orienter.` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP` |
+| OCD207 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 
 ## Offres détectées
 
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
-| Détention - Offre de formation de l'OCD | 70 | 70 |
-| DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
+| Détention - Offre de formation de l'OCD | 57 | 57 |
+| DF-OPE - L'offre de formation de l'OPE | 169 | 169 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
-| DIP-CO - Offre de formation du Cycle d'orientation | 229 | 229 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 306 | 306 |
-| DIP-ES II - Offre de formation de l'ES II | 242 | 242 |
-| DIP-OMP - Offre formation de l'OMP | 232 | 232 |
-| DIP-SEM - Offre de formation du Service Écoles-Médias | 154 | 154 |
+| DIP-CO - Offre de formation du Cycle d'orientation | 226 | 226 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 305 | 305 |
+| DIP-ES II - Offre de formation de l'ES II | 239 | 239 |
+| DIP-OMP - Offre formation de l'OMP | 230 | 230 |
+| DIP-SEM - Offre de formation du Service Écoles-Médias | 151 | 151 |
 | POLICE - CFPS - Centre de Formation de la Police | 193 | 193 |
 | Pouvoir Judiciaire - Offre de formation du Pouvoir judiciaire | 54 | 54 |
 
@@ -108,17 +131,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1057/1057 | 100.0 % |
-| `domainRaw` | 1057/1057 | 100.0 % |
-| `themeRaw` | 978/1057 | 92.5 % |
-| `publicRaw` | 944/1057 | 89.3 % |
-| `durationRaw` | 1039/1057 | 98.3 % |
-| `targetAudienceRaw` | 938/1057 | 88.7 % |
-| `generalInformationRaw` | 534/1057 | 50.5 % |
-| `objectivesRaw` | 1007/1057 | 95.3 % |
-| `contentRaw` | 941/1057 | 89.0 % |
-| `prerequisitesRaw` | 383/1057 | 36.2 % |
-| `additionalInformationRaw` | 343/1057 | 32.5 % |
+| `organizingEntityRaw` | 1043/1043 | 100.0 % |
+| `domainRaw` | 1043/1043 | 100.0 % |
+| `themeRaw` | 977/1043 | 93.7 % |
+| `publicRaw` | 930/1043 | 89.2 % |
+| `durationRaw` | 1025/1043 | 98.3 % |
+| `targetAudienceRaw` | 924/1043 | 88.6 % |
+| `generalInformationRaw` | 519/1043 | 49.8 % |
+| `objectivesRaw` | 994/1043 | 95.3 % |
+| `contentRaw` | 926/1043 | 88.8 % |
+| `prerequisitesRaw` | 382/1043 | 36.6 % |
+| `additionalInformationRaw` | 340/1043 | 32.6 % |
 
 ### Correspondance des libellés officiels
 
@@ -139,12 +162,12 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 | SEM-10213 | EP-CO-ESII-OMP / Présentation : Maîtriser l'art des présentations avec Sozi ! / Formation autonome en ligne | 5 | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | 1 |
 | SEM-10321 | EP-CO-ESII-OMP / : L'information à l'ère digitale : des fake news aux bulles filtrantes! / Formation autonome en ligne | 5 | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | 1 |
 | SEM-10346 | EP-CO-ESII-OMP / Problèmes liés au biais et à la sécurité des intelligence artificielles / Formation autonome en ligne | 5 | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | 1 |
-| SEM-10347 | EP-CO-ESII-OMP / L'erreur est humaine: introduction à l'esprit critique | 5 | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | 1 |
 | SEM-10348 | EP-CO-ESII-OMP / Esprit critique : gestion de l'incertitude (bayésianisme) | 5 | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | 1 |
 | SEM-10349 | EP-ESI-ESII-OMP / IA et esprit critique / Formation autonome en ligne | 5 | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | 1 |
 | SEM-10351 | EP-ESI-ESII-OMP / Rechercher avec des IA (et sans !) / NOUVEAU / Formation autonome en ligne | 5 | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | 1 |
 | SEM-10454 | EP-CO-ESII-OMP / Impression 3D, la base pour créer des objets 3D et les imprimer / Formation hybride | 5 | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | 1 |
 | SEM-10470 | EP-CO-ESII-OMP / Convertir des fichiers audio et vidéo avec VLC / Formation autonome en ligne / NOUVEAU | 5 | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | 1 |
+| SEM-10471 | EP-CO-ESII-OMP / Apprendre à faire des montages vidéos avec vos élèves en utilisant les configurations du DIP<br>/ Formation autonome en ligne | 5 | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | 1 |
 
 ## Anomalies de l’index et minimisation des données
 
@@ -158,10 +181,10 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
@@ -202,7 +225,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-24T08:23:51.341Z
-- Snapshot candidat validé : 2026-09-24
-- Empreinte SHA-256 : `f91c6e046e6d493ba66481492fb7d21aa453444bd1bf2429b279ebc9bedbe656`
+- Date et heure de promotion : 2026-09-25T08:45:54.753Z
+- Snapshot candidat validé : 2026-09-25
+- Empreinte SHA-256 : `73175e7dfe398306febff33d2b95e41a6210ea8778b8577f88517b640d9be13b`
 - Promotion manuelle confirmée.
