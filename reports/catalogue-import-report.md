@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-25
+- Date du snapshot : 2026-09-28
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 119.2 secondes
-- Taille du JSON final : 2.03 Mio (2129289 octets)
-- Empreinte SHA-256 du snapshot : `73175e7dfe398306febff33d2b95e41a6210ea8778b8577f88517b640d9be13b`
+- Durée totale de l’import : 128.7 secondes
+- Taille du JSON final : 2.05 Mio (2145275 octets)
+- Empreinte SHA-256 du snapshot : `781518d3722a8061013a17f723f49f717f2714b87f05ec2cde0b265230e587e4`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1627
-- Codes uniques : 1043
-- Occurrences éliminées par déduplication : 584
-- Formations présentes dans plusieurs offres : 295
+- Occurrences détectées dans l’index : 1630
+- Codes uniques : 1053
+- Occurrences éliminées par déduplication : 577
+- Formations présentes dans plusieurs offres : 293
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1043
+- Fiches récupérées avec succès : 1053
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,22 +22,15 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1057 |
-| Cours dans le candidat | 1043 |
-| Cours ajoutés | 2 |
-| Cours supprimés | 16 |
-| Cours modifiés | 10 |
+| Cours dans le snapshot officiel | 1043 |
+| Cours dans le candidat | 1053 |
+| Cours ajoutés | 13 |
+| Cours supprimés | 3 |
+| Cours modifiés | 7 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
-
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| EP-1344ETB | Parler pour apprendre | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Langues |
-| SEM000 | (intitulé \| POS1) Améliorer l'expérience utilisateur dans l'Espace de formation (Intitulé : Zéphir) | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | Informatique Bureautique |
-
-### Cours supprimés
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
@@ -54,30 +47,30 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | OCD418 | Formation continue pour les coaches de la pratique - module 1: Rôle et tâches de la/du coach et formulation des objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
 | OCD419 | Formation continue pour les coaches de la pratique - module 2: planifier, organiser et suivre les objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
 | OCD422 | Formation continue pour les coaches de la pratique - module 3: Evaluation de l'apprentissage et du transfert | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| SEM-10347 | EP-CO-ESII-OMP / L'erreur est humaine: introduction à l'esprit critique | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10429 | CO-ESII / GarageBand : création de morceaux de musique avec un Mac | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Arts |
-| SEM-10524 | CO -ESII / Wikipédia en classe : Former des élèves critiques et acteurs du savoir / Formation hybride | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
+
+### Cours supprimés
+
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| SEM-10465 | EP-CO-ESII / Utiliser la découpeuse vinyle du FabLab du SEM | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
+| SEM-10472 | EP-ESI-ESII-OMP / Utiliser la découpeuse laser du FabLab du SEM | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
+| SEM-4009 | Formation IA et ORFO pour les enseignants AFP | DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-092EVEN | Enseigner au cycle élémentaire : enjeux, apports et pistes pour construire les bases de la réussite scolaire - différé | `hasOpenSession` : « true » → « false » |
-| PJ-0098 | Gestion des pièces à conviction - Magistrats | `hasOpenSession` : « true » → « false » |
-| S2-PREQ01 | Analyse des pratiques professionnelles (APP) à l'attention du personnel enseignant du préqualifiant | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false » |
-| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | `hasOpenSession` : « true » → « false » |
-| SEM0733 | Améliorer l'ergonomie de son poste de travail | `hasOpenSession` : « true » → « false » |
-| SEM1108 | Parler en public | `hasOpenSession` : « false » → « true » |
-| SEM1195 | Communication et feed-back constructif | `hasOpenSession` : « true » → « false » |
-| SEM1209 | Assertivité et confiance en soi en situation de travail | `hasOpenSession` : « false » → « true » |
-| TRT1005 | Excel 365 Base | `hasScheduledSession` : « false » → « true » |
+| CO-01665 | Les enjeux d'apprentissage des mathématiques auprès des élèves allophones (DIAC) | `hasOpenSession` : « true » → « false » |
+| CO-01681 | The Contribution of Neuroscience to Vocabulary Learning in EFL: Current Research in Psycholinguistics | `hasOpenSession` : « true » → « false » |
+| CO-01685 | Différenciation pédagogique au CO: dispositifs, outils, stratégies | `hasOpenSession` : « true » → « false » |
+| OMP-110 | Educatrices et Educateurs : Animer des activités de science informatique : du débranché à la robotique | `hasOpenSession` : « true » → « false » |
+| SEM1084 | Finances publiques: introduction | `hasOpenSession` : « true » → « false » |
+| SEM1089 | Le management transversal | `hasOpenSession` : « true » → « false » |
+| SEM1173 | Comment varier son vocabulaire à l'écrit ? | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-| Code | Intitulé candidat | Champs modifiés |
-| --- | --- | --- |
-| EP-004EPP | Encadrer, planifier et sécuriser les activités scolaires (anciennement prévention des accidents) | `prerequisitesRaw` |
-| S2-PREQ01 | Analyse des pratiques professionnelles (APP) à l'attention du personnel enseignant du préqualifiant | `contentRaw` |
+Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
@@ -94,9 +87,9 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Indicateur | Références |
 | --- | ---: |
 | Références contrôlées | 24 |
-| Références présentes | 21 |
-| Références absentes | 3 |
-| Références identiques | 20 |
+| Références présentes | 22 |
+| Références absentes | 2 |
+| Références identiques | 21 |
 | Revues métier prioritaires | 0 |
 | Revues métier | 0 |
 | Références nécessitant une revue métier | 0 |
@@ -110,20 +103,19 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | CO-01660 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 | EP-520 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 | CO-01686 | INFORMATION À EXAMINER | `targetAudienceRaw` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP<br>Les participants identifient quelques-unes des préoccupations majeures des élèves, de leurs familles et des enseignants qui les côtoient à travers une expérience rapportée du terrain ;<br>A la fin de la séance, les participants sont capables d'identifier les défis pour ces familles et, en collaboration avec les personnes ressources de leur établissement (conseillères et conseillers sociaux, éducatrices et éducateurs), de mieux les orienter.` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP` |
-| OCD207 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 
 ## Offres détectées
 
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
-| Détention - Offre de formation de l'OCD | 57 | 57 |
+| Détention - Offre de formation de l'OCD | 70 | 70 |
 | DF-OPE - L'offre de formation de l'OPE | 169 | 169 |
 | DIP - Service de la formation DRH-DIP | 3 | 3 |
-| DIP-CO - Offre de formation du Cycle d'orientation | 226 | 226 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 305 | 305 |
-| DIP-ES II - Offre de formation de l'ES II | 239 | 239 |
-| DIP-OMP - Offre formation de l'OMP | 230 | 230 |
-| DIP-SEM - Offre de formation du Service Écoles-Médias | 151 | 151 |
+| DIP-CO - Offre de formation du Cycle d'orientation | 224 | 224 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 303 | 303 |
+| DIP-ES II - Offre de formation de l'ES II | 237 | 237 |
+| DIP-OMP - Offre formation de l'OMP | 229 | 229 |
+| DIP-SEM - Offre de formation du Service Écoles-Médias | 148 | 148 |
 | POLICE - CFPS - Centre de Formation de la Police | 193 | 193 |
 | Pouvoir Judiciaire - Offre de formation du Pouvoir judiciaire | 54 | 54 |
 
@@ -131,17 +123,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1043/1043 | 100.0 % |
-| `domainRaw` | 1043/1043 | 100.0 % |
-| `themeRaw` | 977/1043 | 93.7 % |
-| `publicRaw` | 930/1043 | 89.2 % |
-| `durationRaw` | 1025/1043 | 98.3 % |
-| `targetAudienceRaw` | 924/1043 | 88.6 % |
-| `generalInformationRaw` | 519/1043 | 49.8 % |
-| `objectivesRaw` | 994/1043 | 95.3 % |
-| `contentRaw` | 926/1043 | 88.8 % |
-| `prerequisitesRaw` | 382/1043 | 36.6 % |
-| `additionalInformationRaw` | 340/1043 | 32.6 % |
+| `organizingEntityRaw` | 1053/1053 | 100.0 % |
+| `domainRaw` | 1053/1053 | 100.0 % |
+| `themeRaw` | 974/1053 | 92.5 % |
+| `publicRaw` | 940/1053 | 89.3 % |
+| `durationRaw` | 1035/1053 | 98.3 % |
+| `targetAudienceRaw` | 934/1053 | 88.7 % |
+| `generalInformationRaw` | 530/1053 | 50.3 % |
+| `objectivesRaw` | 1003/1053 | 95.3 % |
+| `contentRaw` | 936/1053 | 88.9 % |
+| `prerequisitesRaw` | 380/1053 | 36.1 % |
+| `additionalInformationRaw` | 341/1053 | 32.4 % |
 
 ### Correspondance des libellés officiels
 
@@ -181,16 +173,16 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT701 — Informations complémentaires (`additionalInformationRaw`)
-- TRT703 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
+- TRT701 — Informations complémentaires (`additionalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
-- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
+- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
@@ -225,7 +217,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-25T08:45:54.753Z
-- Snapshot candidat validé : 2026-09-25
-- Empreinte SHA-256 : `73175e7dfe398306febff33d2b95e41a6210ea8778b8577f88517b640d9be13b`
+- Date et heure de promotion : 2026-09-28T09:40:56.575Z
+- Snapshot candidat validé : 2026-09-28
+- Empreinte SHA-256 : `781518d3722a8061013a17f723f49f717f2714b87f05ec2cde0b265230e587e4`
 - Promotion manuelle confirmée.
