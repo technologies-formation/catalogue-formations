@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-28
+- Date du snapshot : 2026-09-29
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 128.7 secondes
-- Taille du JSON final : 2.05 Mio (2145275 octets)
-- Empreinte SHA-256 du snapshot : `781518d3722a8061013a17f723f49f717f2714b87f05ec2cde0b265230e587e4`
+- Durée totale de l’import : 120.3 secondes
+- Taille du JSON final : 2.05 Mio (2146019 octets)
+- Empreinte SHA-256 du snapshot : `e21423f2dfb09c71420956070cab22513d91e82c06b79de873a44033e9cbe7be`
 
 ## Synthèse
 
@@ -22,55 +22,40 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1043 |
+| Cours dans le snapshot officiel | 1053 |
 | Cours dans le candidat | 1053 |
-| Cours ajoutés | 13 |
-| Cours supprimés | 3 |
-| Cours modifiés | 7 |
+| Cours ajoutés | 0 |
+| Cours supprimés | 0 |
+| Cours modifiés | 9 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| FSM012 | Moniteurs sanitaires - refresh BLS-AED (Generic provider) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD001 | Accompagnement des stagiaires (ADS) - base | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD022 | Coach FOBA | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD170 | Formateurs TTI (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD171 | Formateurs Tir (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD177 | Cours cadre TTI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD183 | Cours cadre Tir | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD207 | BFFA - M1 : Animer des sessions de formation pour des groupes d'adultes (FFA CF-AF). | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD240 | Coach FOI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD373 | Accompagnement des stagiaires - Refresh | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD418 | Formation continue pour les coaches de la pratique - module 1: Rôle et tâches de la/du coach et formulation des objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD419 | Formation continue pour les coaches de la pratique - module 2: planifier, organiser et suivre les objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD422 | Formation continue pour les coaches de la pratique - module 3: Evaluation de l'apprentissage et du transfert | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| SEM-10465 | EP-CO-ESII / Utiliser la découpeuse vinyle du FabLab du SEM | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10472 | EP-ESI-ESII-OMP / Utiliser la découpeuse laser du FabLab du SEM | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-4009 | Formation IA et ORFO pour les enseignants AFP | DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01665 | Les enjeux d'apprentissage des mathématiques auprès des élèves allophones (DIAC) | `hasOpenSession` : « true » → « false » |
-| CO-01681 | The Contribution of Neuroscience to Vocabulary Learning in EFL: Current Research in Psycholinguistics | `hasOpenSession` : « true » → « false » |
-| CO-01685 | Différenciation pédagogique au CO: dispositifs, outils, stratégies | `hasOpenSession` : « true » → « false » |
-| OMP-110 | Educatrices et Educateurs : Animer des activités de science informatique : du débranché à la robotique | `hasOpenSession` : « true » → « false » |
-| SEM1084 | Finances publiques: introduction | `hasOpenSession` : « true » → « false » |
-| SEM1089 | Le management transversal | `hasOpenSession` : « true » → « false » |
-| SEM1173 | Comment varier son vocabulaire à l'écrit ? | `hasOpenSession` : « true » → « false » |
+| EP-1043 | Développement de la communication et du langage oral, TDL, défis langagiers et stratégies pédagogiques (3P-8P) | `hasOpenSession` : « true » → « false » |
+| SEM-P1539 | EP - C2 / Créer un journal: un projet pour lire, écrire & collaborer | `hasOpenSession` : « true » → « false » |
+| SEM-P1573 | EP-OMP / Blue-Bot en classe : une démarche pluridisciplinaire | `hasOpenSession` : « true » → « false » |
+| SEM1121 | Management de la continuité des activités (MCA) | `hasOpenSession` : « true » → « false » |
+| SEM1151 | Sensibilisation à la Communication NonViolente (CNV©) | `hasOpenSession` : « false » → « true » |
+| SEM1214 | Charge mentale au travail: s'en décharger avant d'être surchargé.e | `hasOpenSession` : « false » → « true » |
+| SEM1237 | Comment acquérir une vision synthétique et objective d'une situation ? | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-Aucun champ descriptif long n’a changé.
+| Code | Intitulé candidat | Champs modifiés |
+| --- | --- | --- |
+| CO-01710 | Pratiquer la broderie avec ses élèves | `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
+| EP-004EPP | Encadrer, planifier et sécuriser les activités scolaires (anciennement prévention des accidents) | `prerequisitesRaw` |
 
 ### Changements d’offres
 
@@ -133,7 +118,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | `objectivesRaw` | 1003/1053 | 95.3 % |
 | `contentRaw` | 936/1053 | 88.9 % |
 | `prerequisitesRaw` | 380/1053 | 36.1 % |
-| `additionalInformationRaw` | 341/1053 | 32.4 % |
+| `additionalInformationRaw` | 342/1053 | 32.5 % |
 
 ### Correspondance des libellés officiels
 
@@ -174,16 +159,16 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
-- TRT701 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
-- TRT023 — Informations complémentaires (`additionalInformationRaw`)
-- TRT012 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
+- TRT012 — Informations complémentaires (`additionalInformationRaw`)
+- TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
 - S2-301 — Informations complémentaires (`additionalInformationRaw`)
@@ -217,7 +202,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-28T09:40:56.575Z
-- Snapshot candidat validé : 2026-09-28
-- Empreinte SHA-256 : `781518d3722a8061013a17f723f49f717f2714b87f05ec2cde0b265230e587e4`
+- Date et heure de promotion : 2026-09-29T09:45:21.616Z
+- Snapshot candidat validé : 2026-09-29
+- Empreinte SHA-256 : `e21423f2dfb09c71420956070cab22513d91e82c06b79de873a44033e9cbe7be`
 - Promotion manuelle confirmée.
