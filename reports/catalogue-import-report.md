@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-09-30
+- Date du snapshot : 2026-10-01
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 123.7 secondes
-- Taille du JSON final : 2.02 Mio (2122811 octets)
-- Empreinte SHA-256 du snapshot : `f2a774942fa149d5bea183b1b1260a349db1f3409730609de0d2b1df623151e9`
+- Durée totale de l’import : 119.5 secondes
+- Taille du JSON final : 2.02 Mio (2122815 octets)
+- Empreinte SHA-256 du snapshot : `217a596e5d168a5acb95e896d9bc3ae5ba07e3a260e67c287639e5d4ab20cc21`
 
 ## Synthèse
 
@@ -22,54 +22,30 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1053 |
+| Cours dans le snapshot officiel | 1041 |
 | Cours dans le candidat | 1041 |
-| Cours ajoutés | 2 |
-| Cours supprimés | 14 |
-| Cours modifiés | 10 |
+| Cours ajoutés | 0 |
+| Cours supprimés | 0 |
+| Cours modifiés | 4 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| DIP-006 | De la prévention à l'accompagnement : mobiliser le plan absence en tant que manager | DIP - Service de la formation DRH-DIP | Service développement des compétences DIP | SANTE ET SECURITE AU TRAVAIL |
-| EP-1349ETB | Préparation d'une grande exposition | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Arts |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| FSM012 | Moniteurs sanitaires - refresh BLS-AED (Generic provider) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD001 | Accompagnement des stagiaires (ADS) - base | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD022 | Coach FOBA | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD170 | Formateurs TTI (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD171 | Formateurs Tir (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD177 | Cours cadre TTI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD183 | Cours cadre Tir | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD207 | BFFA - M1 : Animer des sessions de formation pour des groupes d'adultes (FFA CF-AF). | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD240 | Coach FOI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD373 | Accompagnement des stagiaires - Refresh | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD418 | Formation continue pour les coaches de la pratique - module 1: Rôle et tâches de la/du coach et formulation des objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD419 | Formation continue pour les coaches de la pratique - module 2: planifier, organiser et suivre les objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD422 | Formation continue pour les coaches de la pratique - module 3: Evaluation de l'apprentissage et du transfert | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Arts |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-522 | Enseigner le vocabulaire au cycle moyen | `hasOpenSession` : « true » → « false » |
-| EP-995 | Découverte d'une approche créative de la céramique au CM | `hasOpenSession` : « false » → « true » |
-| SEM000 | (intitulé \| POS1) Améliorer l'expérience utilisateur dans l'Espace de formation (Intitulé : Zéphir) | `domainRaw` : « Informatique Bureautique » → « LOGICIELS BUREAUTIQUES »<br>`themeRaw` : « Super-Utilisateur » → « SUPER-U » |
-| SEM1085 | Finances et comptabilité | `hasOpenSession` : « true » → « false » |
-| SEM1108 | Parler en public | `hasOpenSession` : « true » → « false » |
-| SEM1122 | Ajuster sa voix et son comportement non verbal, force d'influence | `hasScheduledSession` : « false » → « true » |
-| SEM1151 | Sensibilisation à la Communication NonViolente (CNV©) | `hasOpenSession` : « true » → « false » |
-| SEM1164 | L'intelligence collective au service de la transformation et l'innovation | `hasOpenSession` : « true » → « false » |
-| SEM1214 | Charge mentale au travail: s'en décharger avant d'être surchargé.e | `hasOpenSession` : « true » → « false » |
-| SEM1218 | Sensibilisation aux approches agiles | `hasOpenSession` : « true » → « false » |
+| EP-045WEB | Accueil des élèves et des familles relevant du domaine de l'asile | `hasOpenSession` : « true » → « false » |
+| EP-093EVEN | Ateliers d'échange de pratique autour du jeu de faire-semblant | `hasOpenSession` : « true » → « false » |
+| EP-576 | Enseigner les mathématiques au cycle moyen | `hasOpenSession` : « true » → « false » |
+| S2-100 | La Formulation : développement de la trace graphique | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
@@ -196,8 +172,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - FP208 — Généralités (`generalInformationRaw`)
 - FP209 — Généralités (`generalInformationRaw`)
 - FP210 — Généralités (`generalInformationRaw`)
-- FP217 — Généralités (`generalInformationRaw`)
 - FP218 — Généralités (`generalInformationRaw`)
+- FP217 — Généralités (`generalInformationRaw`)
 
 ## Erreurs de récupération
 
@@ -221,7 +197,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-09-30T09:37:06.296Z
-- Snapshot candidat validé : 2026-09-30
-- Empreinte SHA-256 : `f2a774942fa149d5bea183b1b1260a349db1f3409730609de0d2b1df623151e9`
+- Date et heure de promotion : 2026-10-01T10:03:06.799Z
+- Snapshot candidat validé : 2026-10-01
+- Empreinte SHA-256 : `217a596e5d168a5acb95e896d9bc3ae5ba07e3a260e67c287639e5d4ab20cc21`
 - Promotion manuelle confirmée.
