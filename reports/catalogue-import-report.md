@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-01
+- Date du snapshot : 2026-10-02
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 119.5 secondes
-- Taille du JSON final : 2.02 Mio (2122815 octets)
-- Empreinte SHA-256 du snapshot : `217a596e5d168a5acb95e896d9bc3ae5ba07e3a260e67c287639e5d4ab20cc21`
+- Durée totale de l’import : 126.2 secondes
+- Taille du JSON final : 2.03 Mio (2127227 octets)
+- Empreinte SHA-256 du snapshot : `cda0ec0b424c02181ff700dbdd9b1cda5748c73f9681eda50d4181ec2d418f63`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1614
-- Codes uniques : 1041
-- Occurrences éliminées par déduplication : 573
-- Formations présentes dans plusieurs offres : 292
+- Occurrences détectées dans l’index : 1619
+- Codes uniques : 1042
+- Occurrences éliminées par déduplication : 577
+- Formations présentes dans plusieurs offres : 293
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1041
+- Fiches récupérées avec succès : 1042
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -23,29 +23,47 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | Indicateur | Valeur |
 | --- | ---: |
 | Cours dans le snapshot officiel | 1041 |
-| Cours dans le candidat | 1041 |
-| Cours ajoutés | 0 |
-| Cours supprimés | 0 |
-| Cours modifiés | 4 |
+| Cours dans le candidat | 1042 |
+| Cours ajoutés | 2 |
+| Cours supprimés | 1 |
+| Cours modifiés | 17 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-Aucun cours ajouté.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| SEM-10656 | EP-CO-ESII-OMP / A la découverte du Cyanotype | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Arts |
+| SEM1259 | Absences, vacances et congés : cadre applicable, processus RH et saisie | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | MANAGEMENT ET RESSOURCES HUMAINES |
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| CO-01703 | Approche sensorielle et alimentation : physiologie, constructivisme et ateliers pratiques | DIP-CO - Offre de formation du Cycle d'orientation | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-045WEB | Accueil des élèves et des familles relevant du domaine de l'asile | `hasOpenSession` : « true » → « false » |
-| EP-093EVEN | Ateliers d'échange de pratique autour du jeu de faire-semblant | `hasOpenSession` : « true » → « false » |
-| EP-576 | Enseigner les mathématiques au cycle moyen | `hasOpenSession` : « true » → « false » |
-| S2-100 | La Formulation : développement de la trace graphique | `hasOpenSession` : « true » → « false » |
+| CO-01517 | Initiation à la gravure | `hasOpenSession` : « false » → « true » |
+| EP-093EVEN | Ateliers d'échange de pratique autour du jeu de faire-semblant | `hasOpenSession` : « false » → « true » |
+| EP-1049 | Mettre en oeuvre une pédagogie différenciée réaliste dans ma classe | `titleRaw` : « Mettre en ½uvre une pédagogie différenciée réaliste dans ma classe » → « Mettre en oeuvre une pédagogie différenciée réaliste dans ma classe » |
+| EP-984 | Peinture et graphisme au cycle moyen | `hasOpenSession` : « true » → « false » |
+| PJ-0077 | Répondants SI technique - Module 1 | `hasOpenSession` : « true » → « false » |
+| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « false » → « true » |
+| SEM0815 | Dynamiser sa seconde partie de carrière et de vie | `hasOpenSession` : « false » → « true » |
+| SEM1114 | Marketing de soi au féminin | `hasOpenSession` : « true » → « false » |
+| SEM1196 | Accompagner et vivre le changement | `hasOpenSession` : « true » → « false » |
+| SEM1213 | Comment entretenir le sens et la motivation dans son activité professionnelle | `hasOpenSession` : « true » → « false » |
+| SEM1215 | Les neurosciences au service du management | `hasOpenSession` : « true » → « false » |
+| SEM1245 | La communication inclusive | `hasOpenSession` : « false » → « true » |
+| SEM1246 | Renforcer son esprit critique à l'ère de l'IA et de la désinformation | `hasOpenSession` : « false » → « true » |
+| TRT051 | ArcGIS Pro niveau I | `hasScheduledSession` : « false » → « true » |
+| TRT057 | Le portail ArcGIS enterprise dans le contexte Etat GE | `hasScheduledSession` : « false » → « true » |
+| TRT058 | ArcGIS Pro niveau II | `hasScheduledSession` : « false » → « true » |
+| TRT1007 | Excel 365 Formules et fonctions avancées | `hasScheduledSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
@@ -89,13 +107,13 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 57 | 57 |
-| DF-OPE - L'offre de formation de l'OPE | 169 | 169 |
+| DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
 | DIP - Service de la formation DRH-DIP | 4 | 4 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 223 | 223 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 303 | 303 |
-| DIP-ES II - Offre de formation de l'ES II | 236 | 236 |
-| DIP-OMP - Offre formation de l'OMP | 228 | 228 |
-| DIP-SEM - Offre de formation du Service Écoles-Médias | 147 | 147 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 304 | 304 |
+| DIP-ES II - Offre de formation de l'ES II | 237 | 237 |
+| DIP-OMP - Offre formation de l'OMP | 229 | 229 |
+| DIP-SEM - Offre de formation du Service Écoles-Médias | 148 | 148 |
 | POLICE - CFPS - Centre de Formation de la Police | 193 | 193 |
 | Pouvoir Judiciaire - Offre de formation du Pouvoir judiciaire | 54 | 54 |
 
@@ -103,17 +121,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1041/1041 | 100.0 % |
-| `domainRaw` | 1041/1041 | 100.0 % |
-| `themeRaw` | 975/1041 | 93.7 % |
-| `publicRaw` | 928/1041 | 89.1 % |
-| `durationRaw` | 1023/1041 | 98.3 % |
-| `targetAudienceRaw` | 922/1041 | 88.6 % |
-| `generalInformationRaw` | 516/1041 | 49.6 % |
-| `objectivesRaw` | 991/1041 | 95.2 % |
-| `contentRaw` | 923/1041 | 88.7 % |
-| `prerequisitesRaw` | 380/1041 | 36.5 % |
-| `additionalInformationRaw` | 339/1041 | 32.6 % |
+| `organizingEntityRaw` | 1042/1042 | 100.0 % |
+| `domainRaw` | 1042/1042 | 100.0 % |
+| `themeRaw` | 976/1042 | 93.7 % |
+| `publicRaw` | 929/1042 | 89.2 % |
+| `durationRaw` | 1024/1042 | 98.3 % |
+| `targetAudienceRaw` | 923/1042 | 88.6 % |
+| `generalInformationRaw` | 518/1042 | 49.7 % |
+| `objectivesRaw` | 992/1042 | 95.2 % |
+| `contentRaw` | 924/1042 | 88.7 % |
+| `prerequisitesRaw` | 381/1042 | 36.6 % |
+| `additionalInformationRaw` | 339/1042 | 32.5 % |
 
 ### Correspondance des libellés officiels
 
@@ -172,8 +190,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - FP208 — Généralités (`generalInformationRaw`)
 - FP209 — Généralités (`generalInformationRaw`)
 - FP210 — Généralités (`generalInformationRaw`)
-- FP218 — Généralités (`generalInformationRaw`)
 - FP217 — Généralités (`generalInformationRaw`)
+- FP218 — Généralités (`generalInformationRaw`)
 
 ## Erreurs de récupération
 
@@ -197,7 +215,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-01T10:03:06.799Z
-- Snapshot candidat validé : 2026-10-01
-- Empreinte SHA-256 : `217a596e5d168a5acb95e896d9bc3ae5ba07e3a260e67c287639e5d4ab20cc21`
+- Date et heure de promotion : 2026-10-02T09:39:57.074Z
+- Snapshot candidat validé : 2026-10-02
+- Empreinte SHA-256 : `cda0ec0b424c02181ff700dbdd9b1cda5748c73f9681eda50d4181ec2d418f63`
 - Promotion manuelle confirmée.
