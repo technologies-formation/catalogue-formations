@@ -9,6 +9,7 @@ import {
   validatePathwayInput,
 } from './pathwayAssistant.mjs'
 import { buildPathwayWithLuna } from './pathwayEngine.mjs'
+import { createStaticFrontendHandler } from './staticFrontend.mjs'
 
 const PORT = Number(process.env.PORT || 8787)
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
@@ -27,6 +28,7 @@ const MAX_CONCURRENT_SEARCHES = positiveIntegerEnv(
 
 let activeLunaSearches = 0
 const rateLimits = new Map()
+const serveStaticFrontend = createStaticFrontendHandler()
 
 function getClientIp(request) {
   if (TRUST_PROXY) {
@@ -113,10 +115,13 @@ function applyCors(request, response) {
 }
 
 function sendJson(response, status, data) {
-  response.writeHead(status, {
-    'Content-Type': 'application/json; charset=utf-8',
-    'Cache-Control': 'no-store',
-  })
+  response.statusCode = status
+  response.setHeader('Content-Type', 'application/json; charset=utf-8')
+
+  if (!response.hasHeader('Cache-Control')) {
+    response.setHeader('Cache-Control', 'no-store')
+  }
+
   response.end(JSON.stringify(data))
 }
 
@@ -178,6 +183,28 @@ const server = http.createServer(async (request, response) => {
       openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
       pathwayAssistantEnabled: isPathwayAssistantEnabled(),
       catalogue: { syncEnabled: catalogueSyncEnabled, ...catalogueStore.status() },
+    })
+    return
+  }
+
+  if (request.method === 'GET' && url.pathname === '/api/catalogue') {
+    const current = catalogueStore.current()
+    const etag = `"${current.metadata.snapshotHash}"`
+
+    if (request.headers['if-none-match'] === etag) {
+      response.writeHead(304, {
+        ETag: etag,
+        'Cache-Control': 'no-cache',
+      })
+      response.end()
+      return
+    }
+
+    response.setHeader('ETag', etag)
+    response.setHeader('Cache-Control', 'no-cache')
+    sendJson(response, 200, {
+      courses: current.search.courses,
+      catalogue: catalogueStore.status(),
     })
     return
   }
@@ -382,11 +409,15 @@ const server = http.createServer(async (request, response) => {
     return
   }
 
-  if (url.pathname === '/api/health') {
+  if (url.pathname === '/api/health' || url.pathname === '/api/catalogue') {
     response.setHeader('Allow', 'GET')
     sendJson(response, 405, {
       error: 'Method Not Allowed',
     })
+    return
+  }
+
+  if (await serveStaticFrontend(request, response, url)) {
     return
   }
 
@@ -409,4 +440,5 @@ server.listen(PORT, '0.0.0.0', () => {
     }`
   )
   console.log('Mode /api/search : LUNA + rappel lexical — appels OpenAI actifs')
+  console.log(`Frontend statique : ${process.env.NODE_ENV === 'production' ? 'racine du service si dist est présent' : 'disponible si dist est présent'}`)
 })

@@ -54,22 +54,21 @@ function getFacetOptions(courses, getValue) {
   return uniqueTextValues(courses.flatMap((course) => getValue(course) ?? []))
 }
 
-const trainingOfferOptions = getFacetOptions(
-  fullCatalogueCourses,
-  (course) => course.catalogueOffers,
-)
-const trainingEntityOptions = getFacetOptions(
-  fullCatalogueCourses,
-  (course) => course.officialData.organizingEntityRaw,
-)
-
-const courseByCode = new Map(
-  fullCatalogueCourses.map((course) => [course.code, course]),
-)
-
-function App() {
+function App({ courses = fullCatalogueCourses }) {
+  const trainingOfferOptions = useMemo(
+    () => getFacetOptions(courses, (course) => course.catalogueOffers),
+    [courses],
+  )
+  const trainingEntityOptions = useMemo(
+    () => getFacetOptions(courses, (course) => course.officialData.organizingEntityRaw),
+    [courses],
+  )
+  const courseByCode = useMemo(
+    () => new Map(courses.map((course) => [course.code, course])),
+    [courses],
+  )
   const [initialSearchState] = useState(() =>
-    parseCourseSearchUrl(window.location.search, fullCatalogueCourses),
+    parseCourseSearchUrl(window.location.search, courses),
   )
   const [officialSearch, setOfficialSearch] = useState(initialSearchState.search)
   const [aiResultCodes, setAiResultCodes] = useState(null)
@@ -173,14 +172,14 @@ function App() {
 
   const coursesMatchingPrimaryFacets = useMemo(
     () =>
-      fullCatalogueCourses.filter(
+      courses.filter(
         (course) =>
           (trainingOffers.length === 0 ||
             course.catalogueOffers.some((offer) => trainingOffers.includes(offer))) &&
           (trainingEntities.length === 0 ||
             trainingEntities.includes(course.officialData.organizingEntityRaw)),
       ),
-    [trainingEntities, trainingOffers],
+    [courses, trainingEntities, trainingOffers],
   )
 
   const domainOptions = useMemo(
@@ -246,8 +245,8 @@ function App() {
     aiSearchStatus === 'success' && aiResultCodes !== null
 
   const localSearchedOfficialCourses = useMemo(
-    () => searchCourses(fullCatalogueCourses, officialSearch),
-    [officialSearch],
+    () => searchCourses(courses, officialSearch),
+    [courses, officialSearch],
   )
 
   const aiSearchedOfficialCourses = useMemo(
@@ -257,7 +256,7 @@ function App() {
         : aiResultCodes
             .map((code) => courseByCode.get(code))
             .filter(Boolean),
-    [aiResultCodes],
+    [aiResultCodes, courseByCode],
   )
 
   const searchedOfficialCourses =
@@ -359,7 +358,7 @@ function App() {
         publics,
         sort: courseSort,
       },
-      fullCatalogueCourses,
+      courses,
     )
     const url = new URL(window.location.href)
 
@@ -368,6 +367,7 @@ function App() {
     window.history.replaceState(window.history.state, '', url)
   }, [
     courseSort,
+    courses,
     domains,
     officialSearch,
     publics,
@@ -665,7 +665,7 @@ function App() {
               Exemples : communication, projet, intelligence artificielle, FP173
             </p>
             <p className="prototype-note">
-              Données issues du catalogue importé — {formatFormationCount(fullCatalogueCourses.length)} formations.
+              Données issues du catalogue importé — {formatFormationCount(courses.length)} formations.
               {' '}Prototype de démonstration.
             </p>
           </div>

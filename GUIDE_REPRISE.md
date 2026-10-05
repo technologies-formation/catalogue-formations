@@ -599,7 +599,9 @@ Le port local par défaut est `8787`.
 Endpoints :
 
 - `GET /api/health`
+- `GET /api/catalogue`
 - `POST /api/search`
+- `POST /api/pathway`
 
 Le frontend Vite utilise un proxy local `/api` vers ce serveur.
 
@@ -633,6 +635,21 @@ La clé `OPENAI_API_KEY` ne doit donc jamais être placée :
 Dans Codespaces, la clé est fournie comme secret GitHub.
 
 L'architecture publique conserve un backend séparé entre le navigateur et OpenAI. Le frontend GitHub Pages communique avec `https://api.a658yg-catalogue.ch` via `VITE_SEARCH_API_BASE_URL`.
+
+### Variante de même origine pour les réseaux institutionnels
+
+Le 5 octobre 2026, un réseau Wi-Fi institutionnel a laissé fonctionner `GET /api/health` mais a provoqué `Failed to fetch` sur les appels IA interdomaines. Les mêmes scénarios ont fonctionné sur un autre réseau. Le diagnostic le plus probable est un filtrage du précontrôle CORS `OPTIONS` ou des `POST` interdomaines.
+
+La branche `feat/same-origin-infomaniak` prépare une variante sans ce point de dépendance :
+
+- `npm run build:self-hosted` construit le frontend pour la racine `/` ;
+- le serveur Node sert les fichiers de `dist` sans modifier les routes `/api` ;
+- les appels IA utilisent `/api/search` et `/api/pathway` sur la même origine ;
+- `GET /api/catalogue` fournit au frontend le catalogue courant déjà synchronisé par le backend ;
+- le snapshot intégré au build reste le repli si le chargement dynamique échoue ;
+- le build GitHub Pages par défaut reste inchangé.
+
+Cette variante n'est pas encore déployée. Elle doit d'abord être publiée sur une adresse parallèle, testée depuis le Wi-Fi institutionnel et validée avant toute bascule de l'adresse publique. La commande de build Infomaniak devra devenir `npm ci && npm run build:self-hosted` pour cette publication parallèle.
 
 ### Déploiement public pilote
 

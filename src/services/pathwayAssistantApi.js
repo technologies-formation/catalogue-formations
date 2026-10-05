@@ -2,7 +2,9 @@ const API_BASE_URL =
   (import.meta.env.VITE_SEARCH_API_BASE_URL ?? '').replace(/\/$/, '')
 
 export const isPathwayAssistantConfigured =
-  import.meta.env.DEV || Boolean(API_BASE_URL)
+  import.meta.env.DEV ||
+  import.meta.env.MODE === 'self-hosted' ||
+  Boolean(API_BASE_URL)
 
 export async function buildPathway(profile, { signal } = {}) {
   if (!isPathwayAssistantConfigured) {
