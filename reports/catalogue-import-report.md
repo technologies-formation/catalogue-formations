@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-05
+- Date du snapshot : 2026-10-06
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 119.1 secondes
-- Taille du JSON final : 2.05 Mio (2153645 octets)
-- Empreinte SHA-256 du snapshot : `15f6a57fb5afd49e4a7afc7af13f54b6f871ebe4602ab3503f980d6927b77999`
+- Durée totale de l’import : 139.3 secondes
+- Taille du JSON final : 2.07 Mio (2172825 octets)
+- Empreinte SHA-256 du snapshot : `c0c2f73a9a2ee2bd904ab16e1060de547e58af8fe91baa5b59dabb185b7a53be`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1634
-- Codes uniques : 1056
+- Occurrences détectées dans l’index : 1646
+- Codes uniques : 1068
 - Occurrences éliminées par déduplication : 578
 - Formations présentes dans plusieurs offres : 294
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1056
+- Fiches récupérées avec succès : 1068
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1042 |
-| Cours dans le candidat | 1056 |
-| Cours ajoutés | 24 |
-| Cours supprimés | 10 |
-| Cours modifiés | 27 |
+| Cours dans le snapshot officiel | 1056 |
+| Cours dans le candidat | 1068 |
+| Cours ajoutés | 13 |
+| Cours supprimés | 1 |
+| Cours modifiés | 10 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,35 +34,8 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| EP-003SSEJ | SENSO5 : pour une éducation nutritionnelle et sensorielle | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Formations spécifiques |
-| EP-039 | L'alimentation, un nouveau défi du PER : comment susciter l'intérêt des élèves ? | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| EP-1022 | Phase test Senso5 / 1P-2P | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| EP-1023 | Phase test Senso5 / 3P-4P | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| EP-1350ETB | La salle de jeux au cycle 1 : bouger, explorer, apprendre | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| EP-1351ETB | La salle de jeux au cycle 1 : bouger, explorer, apprendre | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| EP-1352ETB | Apprendre par le corps - Activité en salle de jeux au CE | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| EP-1353ETB | Comprendre et accompagner les élèves avec un fonctionnement neurotypique (TSA,TDA/H) - repères, aménagements et stratégies en classe | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
-| EP-417 | Organiser dans son école une action autour de l'alimentation : de la théorie à la pratique | DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-OMP - Offre formation de l'OMP | DGEO/SRH/Secteur de la formation continue EO | Formation générale |
-| FSM012 | Moniteurs sanitaires - refresh BLS-AED (Generic provider) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD001 | Accompagnement des stagiaires (ADS) - base | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD022 | Coach FOBA | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD170 | Formateurs TTI (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD171 | Formateurs Tir (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD177 | Cours cadre TTI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD183 | Cours cadre Tir | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD207 | BFFA - M1 : Animer des sessions de formation pour des groupes d'adultes (FFA CF-AF). | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD240 | Coach FOI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD373 | Accompagnement des stagiaires - Refresh | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD418 | Formation continue pour les coaches de la pratique - module 1: Rôle et tâches de la/du coach et formulation des objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD419 | Formation continue pour les coaches de la pratique - module 2: planifier, organiser et suivre les objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD422 | Formation continue pour les coaches de la pratique - module 3: Evaluation de l'apprentissage et du transfert | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| SEM1260 | Rente-pont AVS (LRP) : cadre applicable et processus RH | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | MANAGEMENT ET RESSOURCES HUMAINES |
-| SEM1261 | Gouvernance des données RH | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | MANAGEMENT ET RESSOURCES HUMAINES |
-
-### Cours supprimés
-
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
+| EP-1336ETB | Plans de travail/atelier/autonomie/Différenciation/Coopération | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| EP-1338ETB | Le corps à l'école et en salle de jeux : bouger, réguler, apprendre par corps | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
 | OCD005 | Permis D1 - Pratique | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
 | OCD030 | Permis D1 - Théorie | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
 | OCD153 | Papillon - Harmonisation | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
@@ -73,44 +46,32 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | OCD414 | PLESORR - Module 4 : la planification et le suivi | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
 | OCD415 | PLESORR - Module 5 : le LS/CMI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
 | OCD421 | PLESORR - Module 6 : l'approche de la désistance | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
+| SEM1254 | Storytelling, l'art de convaincre par le récit | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | COMMUNIQUER ET TRANSMETTRE |
+
+### Cours supprimés
+
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| SEM000 | (intitulé \| POS1) Améliorer l'expérience utilisateur dans l'Espace de formation (Intitulé : Zéphir) | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | LOGICIELS BUREAUTIQUES |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01432 | Plus jamais peur d'écrire I : pistes et outils pour accompagner les élèves dans l'écrit | `hasOpenSession` : « true » → « false » |
-| CO-01445 | Initiation au papier découpé | `hasOpenSession` : « true » → « false » |
-| CO-01705 | Visite de la STAP du Vengeron (GeniLac) | `hasOpenSession` : « true » → « false » |
-| CO-01712 | Mettre les élèves en action : co-construire des apprentissages langagiers authentiques | `hasOpenSession` : « true » → « false » |
-| EP-093EVEN | Ateliers d'échange de pratique autour du jeu de faire-semblant | `hasOpenSession` : « true » → « false » |
-| EP-1035 | Le jeu de faire semblant pour favoriser les apprentissages fondamentaux et disciplinaires | `hasOpenSession` : « true » → « false » |
-| EP-521 | Enseigner le vocabulaire au cycle élémentaire | `hasOpenSession` : « true » → « false » |
-| FP223 | EC3 Processus d'évaluation - Inscription participant-e-s | `hasOpenSession` : « true » → « false » |
-| OMP-107 | Utiliser Popplet pour soutenir la mémorisation et la structuration de la pensée chez les élèves | `hasOpenSession` : « true » → « false » |
-| S2-916 | Coaching pédagogique : vers des stratégies participatives pour lutter contre l'échec scolaire | `hasOpenSession` : « true » → « false » |
-| SEM-P1567 | EP-CO-ESII-OMP / L'animation filmique comme vecteur de la compréhension du monde avec le festival Animatou | `hasOpenSession` : « true » → « false » |
-| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « true » → « false » |
-| SEM0707 | Techniques d'élaboration des documents écrits | `hasOpenSession` : « true » → « false » |
-| SEM0831 | Attitude professionnelle proactive | `hasOpenSession` : « true » → « false » |
-| SEM1034 | Bien vivre l'équipe et sa dynamique | `hasOpenSession` : « true » → « false » |
-| SEM1081 | Planifier et piloter un projet | `hasOpenSession` : « false » → « true » |
-| SEM1119 | Formation pour les formatrices et formateurs des personnes en apprentissage de la branche "administration publique" | `targetAudienceRaw` : « Plus particulièrement, les personnes encadrant un ou une apprentie employée de commerce et/ou un ou une stagiaire maturité professionnelle 3+1 et qui participent à l'évaluation de la personne en formation dans le cadre de la procédure de… » → « Cette formation s'adresse plus particulièrement aux formatrices et formateurs qui encadrent une apprentie ou un apprenti employé de commerce ou une personne en stage de maturité professionnelle 3+1 et qui participent à son évaluation dan… » |
-| SEM1199 | Atelier de résolution de conflits | `hasOpenSession` : « true » → « false » |
-| SEM1215 | Les neurosciences au service du management | `hasOpenSession` : « false » → « true » |
-| TRT011 | CFI - Débiteurs: consultation des transactions débiteurs | `hasOpenSession` : « true » → « false » |
-| TRT1008 | Excel 365 Les graphiques | `hasScheduledSession` : « false » → « true » |
-| TRT1009 | Excel 365 Analyse de données | `hasScheduledSession` : « false » → « true » |
-| TRT1010 | Excel 365 Gagner en efficacité | `hasScheduledSession` : « false » → « true » |
-| TRT1011 | Outlook 365 Base | `hasScheduledSession` : « false » → « true » |
-| TRT1012 | Outlook 365 Avancé | `hasScheduledSession` : « false » → « true » |
+| EP-093EVEN | Ateliers d'échange de pratique autour du jeu de faire-semblant | `hasOpenSession` : « false » → « true » |
+| FP212 | EC2 Processus d'évaluation - inscription participant-e-s | `hasOpenSession` : « true » → « false » |
+| FP218 | EC1 ASP Processus d'évaluation SOF - Inscription participants | `hasOpenSession` : « true » → « false » |
+| SEM0647 | Bilan de mes ressources et de mes intérêts : première approche | `hasOpenSession` : « false » → « true » |
+| SEM1085 | Finances et comptabilité | `hasOpenSession` : « false » → « true » |
+| SEM1098 | Les clés d'une communication efficace | `hasOpenSession` : « true » → « false » |
+| SEM1118 | Gérer ses émotions dans ses relations professionnelles | `hasOpenSession` : « false » → « true » |
+| SEM1195 | Communication et feed-back constructif | `hasOpenSession` : « false » → « true » |
+| SEM1213 | Comment entretenir le sens et la motivation dans son activité professionnelle | `hasOpenSession` : « false » → « true » |
+| SEM1218 | Sensibilisation aux approches agiles | `hasOpenSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
-| Code | Intitulé candidat | Champs modifiés |
-| --- | --- | --- |
-| S2-100 | La Formulation : développement de la trace graphique | `additionalInformationRaw` |
-| SEM1119 | Formation pour les formatrices et formateurs des personnes en apprentissage de la branche "administration publique" | `objectivesRaw`, `contentRaw` |
-| SEM1259 | Absences, vacances et congés : cadre applicable, processus RH et saisie | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
+Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
@@ -148,11 +109,11 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
-| Détention - Offre de formation de l'OCD | 60 | 60 |
+| Détention - Offre de formation de l'OCD | 70 | 70 |
 | DF-OPE - L'offre de formation de l'OPE | 172 | 172 |
 | DIP - Service de la formation DRH-DIP | 4 | 4 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 223 | 223 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 313 | 313 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 315 | 315 |
 | DIP-ES II - Offre de formation de l'ES II | 237 | 237 |
 | DIP-OMP - Offre formation de l'OMP | 230 | 230 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 148 | 148 |
@@ -163,17 +124,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1056/1056 | 100.0 % |
-| `domainRaw` | 1056/1056 | 100.0 % |
-| `themeRaw` | 987/1056 | 93.5 % |
-| `publicRaw` | 945/1056 | 89.5 % |
-| `durationRaw` | 1038/1056 | 98.3 % |
-| `targetAudienceRaw` | 937/1056 | 88.7 % |
-| `generalInformationRaw` | 525/1056 | 49.7 % |
-| `objectivesRaw` | 1003/1056 | 95.0 % |
-| `contentRaw` | 935/1056 | 88.5 % |
-| `prerequisitesRaw` | 384/1056 | 36.4 % |
-| `additionalInformationRaw` | 337/1056 | 31.9 % |
+| `organizingEntityRaw` | 1068/1068 | 100.0 % |
+| `domainRaw` | 1068/1068 | 100.0 % |
+| `themeRaw` | 989/1068 | 92.6 % |
+| `publicRaw` | 955/1068 | 89.4 % |
+| `durationRaw` | 1050/1068 | 98.3 % |
+| `targetAudienceRaw` | 947/1068 | 88.7 % |
+| `generalInformationRaw` | 535/1068 | 50.1 % |
+| `objectivesRaw` | 1015/1068 | 95.0 % |
+| `contentRaw` | 944/1068 | 88.4 % |
+| `prerequisitesRaw` | 383/1068 | 35.9 % |
+| `additionalInformationRaw` | 341/1068 | 31.9 % |
 
 ### Correspondance des libellés officiels
 
@@ -257,7 +218,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-05T10:19:48.548Z
-- Snapshot candidat validé : 2026-10-05
-- Empreinte SHA-256 : `15f6a57fb5afd49e4a7afc7af13f54b6f871ebe4602ab3503f980d6927b77999`
+- Date et heure de promotion : 2026-10-06T10:07:23.153Z
+- Snapshot candidat validé : 2026-10-06
+- Empreinte SHA-256 : `c0c2f73a9a2ee2bd904ab16e1060de547e58af8fe91baa5b59dabb185b7a53be`
 - Promotion manuelle confirmée.
