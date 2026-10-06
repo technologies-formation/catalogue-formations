@@ -10,6 +10,7 @@ import {
 } from './pathwayAssistant.mjs'
 import { buildPathwayWithLuna } from './pathwayEngine.mjs'
 import { createStaticFrontendHandler } from './staticFrontend.mjs'
+import { createCorsHandler } from './cors.mjs'
 
 const PORT = Number(process.env.PORT || 8787)
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
@@ -90,29 +91,10 @@ const ALLOWED_ORIGINS = new Set(
     .filter(Boolean),
 )
 
-function applyCors(request, response) {
-  const origin = request.headers.origin
-
-  if (!origin) {
-    return true
-  }
-
-  const allowed =
-    ALLOWED_ORIGINS.has(origin) ||
-    (!IS_PRODUCTION && ALLOWED_ORIGINS.size === 0)
-
-  if (!allowed) {
-    return false
-  }
-
-  response.setHeader('Access-Control-Allow-Origin', origin)
-  response.setHeader('Vary', 'Origin')
-  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-  response.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-  response.setHeader('Access-Control-Max-Age', '600')
-
-  return true
-}
+const applyCors = createCorsHandler({
+  allowedOrigins: ALLOWED_ORIGINS,
+  isProduction: IS_PRODUCTION,
+})
 
 function sendJson(response, status, data) {
   response.statusCode = status
