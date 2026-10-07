@@ -7,6 +7,7 @@
     "dev": "vite",
     "start": "node server/searchApi.mjs",
     "build": "vite build",
+    "build:self-hosted": "vite build --mode self-hosted",
     "import:catalogue": "node scripts/importOfficialCatalogue.mjs",
     "lint": "oxlint",
     "mail:catalogue": "node scripts/sendCatalogueUpdateEmail.mjs",

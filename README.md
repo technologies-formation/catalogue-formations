@@ -63,6 +63,15 @@ Le frontend statique peut être publié sur GitHub Pages. Un push direct sur `ma
 
 La recherche IA utilise un backend Node sécurisé séparé, déployé sur Infomaniak à l’adresse `https://api.a658yg-catalogue.ch`. La clé OpenAI reste exclusivement côté serveur et n’est jamais exposée dans le navigateur ou dans GitHub Pages. Le frontend public communique avec ce backend via `VITE_SEARCH_API_BASE_URL`.
 
+Un build de même origine est également disponible pour les réseaux qui filtrent les requêtes CORS entre GitHub Pages et Infomaniak :
+
+```bash
+npm run build:self-hosted
+npm start
+```
+
+Dans ce mode, le serveur Node sert `dist` et les appels utilisent directement `/api`. Le frontend charge le catalogue courant via `GET /api/catalogue`; si ce chargement échoue, le snapshot inclus dans le build reste disponible. Le build GitHub Pages habituel (`npm run build`) et son URL publique ne sont pas modifiés.
+
 ## Choix de recherche
 
 L’application combine désormais deux modes :
