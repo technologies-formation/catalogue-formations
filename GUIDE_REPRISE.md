@@ -640,7 +640,7 @@ L'architecture publique conserve un backend séparé entre le navigateur et Open
 
 Le 5 octobre 2026, un réseau Wi-Fi institutionnel a laissé fonctionner `GET /api/health` mais a provoqué `Failed to fetch` sur les appels IA interdomaines. Les mêmes scénarios ont fonctionné sur un autre réseau. Le diagnostic le plus probable est un filtrage du précontrôle CORS `OPTIONS` ou des `POST` interdomaines.
 
-La branche `feat/same-origin-infomaniak` prépare une variante sans ce point de dépendance :
+La branche `feat/same-origin-infomaniak`, fusionnée dans `main` le 7 octobre 2026 par la pull request `#1` (commit de fusion `03b8950`), fournit une variante sans ce point de dépendance :
 
 - `npm run build:self-hosted` construit le frontend pour la racine `/` ;
 - le serveur Node sert les fichiers de `dist` sans modifier les routes `/api` ;
@@ -649,7 +649,16 @@ La branche `feat/same-origin-infomaniak` prépare une variante sans ce point de 
 - le snapshot intégré au build reste le repli si le chargement dynamique échoue ;
 - le build GitHub Pages par défaut reste inchangé.
 
-Cette variante n'est pas encore déployée. Elle doit d'abord être publiée sur une adresse parallèle, testée depuis le Wi-Fi institutionnel et validée avant toute bascule de l'adresse publique. La commande de build Infomaniak devra devenir `npm ci && npm run build:self-hosted` pour cette publication parallèle.
+Cette variante est déployée sur le même site Node.js Infomaniak avec la commande de build `npm ci && npm run build:self-hosted`. Elle a été validée depuis le Wi-Fi institutionnel sur l'adresse temporaire `https://endch4cfkas.preview.hosting-ik.com`, y compris avec une recherche IA réelle.
+
+Adresses au 7 octobre 2026 :
+
+- démonstration immédiate sur le réseau institutionnel : `https://endch4cfkas.preview.hosting-ik.com` ;
+- future adresse publique : `https://catalogue.a658yg-catalogue.ch` ;
+- adresse historique du backend, qui sert également le frontend : `https://api.a658yg-catalogue.ch` ;
+- frontend GitHub Pages conservé : `https://technologies-formation.github.io/catalogue-formations/`.
+
+Les deux domaines personnalisés Infomaniak sont techniquement opérationnels et couverts par le certificat Let's Encrypt. Le filtre du réseau institutionnel les classe toutefois temporairement dans `Newly Observed Domain`. Ils doivent être retestés début novembre 2026. Tant que cette classification subsiste, l'adresse temporaire Infomaniak est l'adresse de démonstration de référence. Le frontend GitHub Pages reste disponible, mais ses appels IA interdomaines peuvent encore être bloqués sur ce réseau.
 
 ### Déploiement public pilote
 
@@ -658,7 +667,7 @@ Le backend est désormais déployé sur Infomaniak pour le pilote public.
 Les principaux mécanismes actuellement en place sont :
 
 - hébergement Infomaniak sous Node.js 24 ;
-- CORS limité au frontend `https://technologies-formation.github.io` ;
+- CORS limité au frontend `https://technologies-formation.github.io` et autorisation des requêtes provenant de la même origine Infomaniak ;
 - rate limiting configuré à 10 requêtes par période de 10 minutes et par IP ;
 - limitation à une recherche IA simultanée ;
 - timeout OpenAI configuré à 90 secondes ;
@@ -674,11 +683,13 @@ Configuration Infomaniak validée :
 
 - Node.js 24 ;
 - port d'écoute `8787` ;
-- commande de build `npm ci` ;
+- commande de build `npm ci && npm run build:self-hosted` ;
 - commande d'exécution chargeant `/srv/customer/.a658yg-catalogue.env` puis `server/searchApi.mjs` ;
 - redémarrage manuel depuis `Tableau de bord > Exécution de l'application > Redémarrer`.
 
-Après chaque évolution du code serveur, vérifier successivement la sauvegarde, les empreintes des fichiers déployés, le redémarrage, `https://api.a658yg-catalogue.ch/api/health`, puis un scénario réel sur le frontend public. Un push GitHub ou un déploiement Pages ne met pas à jour automatiquement le code Node.js installé sur Infomaniak.
+Après chaque évolution du code serveur, vérifier successivement la sauvegarde, les empreintes des fichiers déployés, le redémarrage, `/api/health` sur une adresse Infomaniak, puis un scénario réel sur le frontend public. Un push GitHub ou un déploiement Pages ne met pas à jour automatiquement le code Node.js installé sur Infomaniak.
+
+Dernier contrôle au 7 octobre 2026 : 1 073 formations, snapshot du 7 octobre 2026, commit de catalogue `41131bbe551ff0e3cd094b8221699371fa2c72c1`, synchronisation réussie et `lastError: null`.
 
 Le monitoring et le suivi budgétaire restent à consolider avant une éventuelle industrialisation à plus grande échelle ;
 - éventuelle authentification ou restriction d'accès.

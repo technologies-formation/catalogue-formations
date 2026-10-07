@@ -72,6 +72,8 @@ npm start
 
 Dans ce mode, le serveur Node sert `dist` et les appels utilisent directement `/api`. Le frontend charge le catalogue courant via `GET /api/catalogue`; si ce chargement échoue, le snapshot inclus dans le build reste disponible. Le build GitHub Pages habituel (`npm run build`) et son URL publique ne sont pas modifiés.
 
+La variante de même origine est déployée sur Infomaniak. Pour une démonstration depuis le réseau institutionnel, utiliser actuellement `https://endch4cfkas.preview.hosting-ik.com`. L'adresse cible `https://catalogue.a658yg-catalogue.ch` est opérationnelle mais peut rester temporairement bloquée par les filtres classant les nouveaux domaines. Un nouveau test est prévu début novembre 2026.
+
 ## Choix de recherche
 
 L’application combine désormais deux modes :
