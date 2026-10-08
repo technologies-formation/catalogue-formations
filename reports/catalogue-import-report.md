@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-07
+- Date du snapshot : 2026-10-08
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 125.2 secondes
-- Taille du JSON final : 2.08 Mio (2181355 octets)
-- Empreinte SHA-256 du snapshot : `4cfbc77479229e1e491dab3f804745a82041c9edd09b939e4e35185224808e4a`
+- Durée totale de l’import : 123.5 secondes
+- Taille du JSON final : 2.08 Mio (2181268 octets)
+- Empreinte SHA-256 du snapshot : `53247a4957d9d86f0f928e8d731b65d3b42f74020e47c98434630d2c8cad64e1`
 
 ## Synthèse
 
@@ -22,23 +22,17 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1068 |
+| Cours dans le snapshot officiel | 1073 |
 | Cours dans le candidat | 1073 |
-| Cours ajoutés | 5 |
+| Cours ajoutés | 0 |
 | Cours supprimés | 0 |
-| Cours modifiés | 26 |
+| Cours modifiés | 15 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| EP-1340ETB | MSN : mathématiques | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Mathématiques |
-| S2-PATC017 | Formation continue pour les médiatrices et médiateurs du réseau de médiation de l'ESII. | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Développement professionnel |
-| S2-PATC018 | Médiation scolaire : formation de base pour rejoindre le réseau de médiation de l'ESII | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Développement professionnel |
-| SEM1255 | Construire le futur : la boîte à outils du manager | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | MANAGEMENT ET RESSOURCES HUMAINES |
-| SEM1263 | Améliorer sa mémoire pour être plus efficace | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | APTITUDES PERSONNELLES |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
@@ -48,41 +42,26 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-519 | Appropriation des MER Français cycle moyen | `titleRaw` : « Appropriation des MER Français 5e-6e » → « Appropriation des MER Français cycle moyen »<br>`targetAudienceRaw` : « Personnel enseignant CM (MGEN*, ECSP, ECA), prioritairement pour celles et ceux travaillant avec des élèves de 5P-6P Personnel enseignant OMP *maitresses et maitres généralistes titulaires de classe » → « Personnel enseignant CM (MGEN*, ECSP, ECA), prioritairement pour celles et ceux travaillant avec des élèves du cycle moyen Personnel enseignant OMP *maitresses et maitres généralistes titulaires de classe » |
-| S2-326 | Commerce extérieur suisse : un an de bouleversements géopolitiques - où en sommes-nous ? | `hasOpenSession` : « false » → « true » |
-| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « false » → « true » |
-| SEM-P4005 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 1 | `hasOpenSession` : « false » → « true » |
-| SEM-P4009 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 5P-6P | `hasOpenSession` : « false » → « true » |
-| SEM-P4010 | EP / Formation institutionnelle obligatoire / Science informatique pour le Cycle 1 | `hasOpenSession` : « false » → « true » |
-| SEM0647 | Bilan de mes ressources et de mes intérêts : première approche | `hasOpenSession` : « true » → « false » |
-| SEM1118 | Gérer ses émotions dans ses relations professionnelles | `hasOpenSession` : « true » → « false » |
-| SEM1141 | Retrouver son équilibre et développer son pouvoir d'agir au travail | `titleRaw` : « La roue de l'équilibre de vie au travail » → « Retrouver son équilibre et développer son pouvoir d'agir au travail »<br>`targetAudienceRaw` : « Toute personne intéressée à développer ses aptitudes personnelles et professionnelles et à effectuer un travail sur soi. Des difficultés relationnelles, conflictuelles et/ou organisationnelles peuvent être une incitation à suivre et vivr… » → `null` |
-| SEM1169 | Ecrire pour être compris | `hasOpenSession` : « false » → « true » |
-| SEM1212 | Améliorer et apaiser ses relations professionnelles | `hasOpenSession` : « true » → « false » |
-| SEM1214 | Charge mentale au travail: s'en décharger avant d'être surchargé.e | `hasOpenSession` : « false » → « true » |
-| SEM1218 | Sensibilisation aux approches agiles | `hasOpenSession` : « true » → « false » |
-| SEM1220 | Adapter sa manière de communiquer pour des relations professionnelles efficaces (PCM) | `hasOpenSession` : « false » → « true » |
-| SEM1246 | Renforcer son esprit critique à l'ère de l'IA et de la désinformation | `hasOpenSession` : « true » → « false » |
-| SEM1254 | Storytelling, l'art de convaincre par le récit | `publicRaw` : « Ressources humaines » → « Manager »<br>`targetAudienceRaw` : `null` → « Managers, chefs et cheffes de projet, spécialistes »<br>`hasScheduledSession` : « false » → « true » |
-| SEM1261 | Gouvernance des données RH | `targetAudienceRaw` : « Ressources humaines : Précisions sur le public cible : Cette formation s'adresse plus particulièrement aux gestionnaires de données RH, à savoir : - Les personnes directement impliquées dans la gouvernance des données comme les propriéta… » → « Ressources humaines : Précisions sur le public cible : Cette formation s'adresse plus particulièrement aux gestionnaires de données RH, à savoir : - Les personnes directement impliquées dans la gouvernance des données comme les propriéta… » |
-| TRT1004 | Windows 11 | `hasScheduledSession` : « false » → « true » |
-| TRT1013 | PowerPoint 365 Base | `hasScheduledSession` : « false » → « true » |
-| TRT1014 | PowerPoint 365 Avancé | `hasScheduledSession` : « false » → « true » |
-| TRT1015 | Word 365 Base | `hasScheduledSession` : « false » → « true » |
-| TRT1016 | Word 365 Publipostage | `hasScheduledSession` : « false » → « true » |
-| TRT1017 | Word 365 Mise en forme avancée | `hasScheduledSession` : « false » → « true » |
-| TRT1018 | Word 365 Longs documents | `hasScheduledSession` : « false » → « true » |
-| TRT1020 | Word 365 Gagner en efficacité | `hasScheduledSession` : « false » → « true » |
+| EP-995 | Découverte d'une approche créative de la céramique au CM | `hasOpenSession` : « true » → « false » |
+| FP020 | Pilotage automobile | `hasOpenSession` : « false » → « true » |
+| FP223 | EC3 Processus d'évaluation - Inscription participant-e-s | `hasOpenSession` : « false » → « true » |
+| S2-208 | Vie et aventures du sonnet | `hasOpenSession` : « true » → « false » |
+| S2-429 | Energie solaire : panneaux photovoltaïques et thermiques | `hasOpenSession` : « true » → « false » |
+| S2-443 | Au coeur de la science : explorez l'offre éducative du CERN Science Gateway ! | `hasOpenSession` : « true » → « false » |
+| S2-6705 | Prévention du suicide en milieu scolaire : quelles pistes et limites d'intervention ? | `hasOpenSession` : « true » → « false » |
+| S2-951 | Les biais cognitifs, ou pourquoi j'ai toujours raison ! | `hasOpenSession` : « true » → « false » |
+| S2-EPS17 | Escalade perfectionnement : standards suisses de sécurité et gestion de risques | `hasOpenSession` : « true » → « false » |
+| S2-EPS20 | Kick-boxing et boxe thaïlandaise light-contact | `hasOpenSession` : « true » → « false » |
+| S2-PATC017 | Formation continue pour les médiatrices et médiateurs du réseau de médiation de l'ESII. | `targetAudienceRaw` : « Assistantes et assistants sociaux, conseillères et conseillers sociaux de l'ESII qui font partie actuellement du partie de Réseau de médiation scolaire de l'ESII. Les personnes ne correspondant pas à ce public seront désinscrites. » → « Assistantes et assistants sociaux, conseillères et conseillers sociaux de l'ESII qui font partie actuellement du Réseau de médiation scolaire de l'ESII. Les personnes ne correspondant pas à ce public seront désinscrites. » |
+| SEM0815 | Dynamiser sa seconde partie de carrière et de vie | `hasOpenSession` : « true » → « false » |
+| SEM1033 | Répondre avec tact aux plaintes écrites | `hasOpenSession` : « true » → « false » |
+| SEM1177 | Créer une dynamique collaborative au sein de son équipe | `hasOpenSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| EP-519 | Appropriation des MER Français cycle moyen | `objectivesRaw`, `contentRaw` |
-| S2-326 | Commerce extérieur suisse : un an de bouleversements géopolitiques - où en sommes-nous ? | `contentRaw` |
-| SEM1040 | Mindmap : une méthode pour organiser ses idées et ses informations | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
-| SEM1141 | Retrouver son équilibre et développer son pouvoir d'agir au travail | `generalInformationRaw`, `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
-| SEM1261 | Gouvernance des données RH | `prerequisitesRaw` |
+| S2-PATC018 | Médiation scolaire : formation de base pour rejoindre le réseau de médiation de l'ESII | `additionalInformationRaw` |
 
 ### Changements d’offres
 
@@ -145,7 +124,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | `objectivesRaw` | 1020/1073 | 95.1 % |
 | `contentRaw` | 947/1073 | 88.3 % |
 | `prerequisitesRaw` | 384/1073 | 35.8 % |
-| `additionalInformationRaw` | 342/1073 | 31.9 % |
+| `additionalInformationRaw` | 341/1073 | 31.8 % |
 
 ### Correspondance des libellés officiels
 
@@ -186,16 +165,16 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
-- TRT023 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
+- TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
 - S2-301 — Informations complémentaires (`additionalInformationRaw`)
@@ -229,7 +208,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-07T10:10:25.108Z
-- Snapshot candidat validé : 2026-10-07
-- Empreinte SHA-256 : `4cfbc77479229e1e491dab3f804745a82041c9edd09b939e4e35185224808e4a`
+- Date et heure de promotion : 2026-10-08T10:25:18.438Z
+- Snapshot candidat validé : 2026-10-08
+- Empreinte SHA-256 : `53247a4957d9d86f0f928e8d731b65d3b42f74020e47c98434630d2c8cad64e1`
 - Promotion manuelle confirmée.
