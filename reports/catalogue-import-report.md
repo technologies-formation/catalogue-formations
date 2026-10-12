@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-09
+- Date du snapshot : 2026-10-12
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 119.4 secondes
-- Taille du JSON final : 2.07 Mio (2167230 octets)
-- Empreinte SHA-256 du snapshot : `6b97e528d2a45cc8f8779a770263712d65c6cfb7aff3a2698fa04b39434b2aca`
+- Durée totale de l’import : 143.4 secondes
+- Taille du JSON final : 2.07 Mio (2169055 octets)
+- Empreinte SHA-256 du snapshot : `b697e7ed8d61f9f75c58102cf9026fa4b037becfd9ed2a4938709c3c8a55b90b`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1631
-- Codes uniques : 1068
+- Occurrences détectées dans l’index : 1632
+- Codes uniques : 1069
 - Occurrences éliminées par déduplication : 563
 - Formations présentes dans plusieurs offres : 289
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1068
+- Fiches récupérées avec succès : 1069
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,47 +22,44 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1073 |
-| Cours dans le candidat | 1068 |
-| Cours ajoutés | 0 |
-| Cours supprimés | 5 |
-| Cours modifiés | 9 |
+| Cours dans le snapshot officiel | 1068 |
+| Cours dans le candidat | 1069 |
+| Cours ajoutés | 1 |
+| Cours supprimés | 0 |
+| Cours modifiés | 12 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-Aucun cours ajouté.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| S2-PATC021 | Se préparer, réagir et communiquer face à un événement traumatique | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| SEM-10441 | EP-CO-ESII / Modélisation et réalisation d'objet en 3D | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10463 | EP-CO-ESII / Utiliser les fraiseuses numériques (CNC) du FabLab du SEM | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10464 | EP-CO-ESII / Utiliser les imprimantes 3D du FabLab du SEM | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-10473 | EP-ESI-ESII-OMP / Découverte de la partie Fabrication numérique du FabLab du SEM | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
-| SEM-P1569 | EP-OMP / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-OMP - Offre formation de l'OMP<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Sciences humaines et sociales |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| DIP-002 | Séance d'accueil destinée aux nouvelles et nouveaux collaborateurs - DIP | `targetAudienceRaw` : « Cette séance d'accueil s'adresse aux personnes nouvellement engagées au sein du DIP, répondant aux critères suivants : - le personnel administratif et technique - les apprenties et apprentis - le personnel enseignant engagé en cours d'an… » → « Cette séance d'accueil s'adresse aux personnes nouvellement engagées au sein du DIP, répondant aux critères suivants : - le personnel administratif et technique - le personnel enseignant engagé en cours d'année scolaire, n'ayant pas béné… » |
-| EP-093EVEN | Ateliers d'échange de pratique autour du jeu de faire-semblant | `hasOpenSession` : « true » → « false » |
-| EP-990 | L'alimentation au cycle moyen : outils concrets pour enseigner et faire goûter | `hasOpenSession` : « true » → « false » |
-| S2-301 | Voyage au mémorial de Mauthausen | `titleRaw` : « Voyage à Auschwitz-Birkenau » → « Voyage au mémorial de Mauthausen » |
-| S2-427 | Repenser l'enseignement de la génétique au secondaire | `hasOpenSession` : « true » → « false » |
-| S2-552 | W2 : Composer son portefeuille d'IA : choisir le bon outil pour le bon usage | `hasOpenSession` : « true » → « false » |
-| SEM-10244 | CO-ESII / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « true » → « false » |
-| SEM1141 | La roue de l'équilibre de vie au travail | `titleRaw` : « Retrouver son équilibre et développer son pouvoir d'agir au travail » → « La roue de l'équilibre de vie au travail » |
-| SEM1254 | Storytelling, l'art de convaincre par le récit | `publicRaw` : « Manager » → « Spécifique »<br>`targetAudienceRaw` : « Managers, chefs et cheffes de projet, spécialistes » → « Managers, chefs et cheffes de projet, spécialistes métiers souhaitant renforcer l'impact de leur communication, valoriser leurs prestations ou projets, transmettre leurs connaissances et mobiliser leurs interlocutrices et interlocuteurs … » |
+| CO-01614 | Arts et sports | `hasOpenSession` : « true » → « false » |
+| CO-01662 | La boxe light contact : perfectionnement | `hasOpenSession` : « true » → « false » |
+| CO-01797 | Module de perfectionnement au Sport scolaire J+S | `hasOpenSession` : « true » → « false » |
+| FP020 | Pilotage automobile | `hasOpenSession` : « true » → « false » |
+| FP255 | Sport et Santé - Bilan fonctionnel | `hasOpenSession` : « false » → « true » |
+| PJ-0042 | Introduction aux systèmes d'information<br>La convocation est directement adressée aux collaboratrices et collaborateurs par RH-Formation | `hasScheduledSession` : « true » → « false » |
+| S2-EPS18 | Escalade : perfectionnement J+S | `hasOpenSession` : « true » → « false » |
+| SEM0735 | Ethique et déontologie de la fonction publique | `hasOpenSession` : « false » → « true » |
+| SEM1118 | Gérer ses émotions dans ses relations professionnelles | `hasOpenSession` : « false » → « true » |
+| SEM1214 | Charge mentale au travail: s'en décharger avant d'être surchargé.e | `hasOpenSession` : « true » → « false » |
+| SEM1216 | Lecture rapide à l'ère numérique | `hasOpenSession` : « true » → « false » |
+| TRT024 | CFI - Infocentre: connaissance et utilisation des restitutions | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-| Code | Intitulé candidat | Champs modifiés |
-| --- | --- | --- |
-| S2-301 | Voyage au mémorial de Mauthausen | `contentRaw` |
+Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
@@ -106,7 +103,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DIP - Service de la formation DRH-DIP | 4 | 4 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 219 | 219 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 311 | 311 |
-| DIP-ES II - Offre de formation de l'ES II | 235 | 235 |
+| DIP-ES II - Offre de formation de l'ES II | 236 | 236 |
 | DIP-OMP - Offre formation de l'OMP | 228 | 228 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
 | POLICE - CFPS - Centre de Formation de la Police | 193 | 193 |
@@ -116,17 +113,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1068/1068 | 100.0 % |
-| `domainRaw` | 1068/1068 | 100.0 % |
-| `themeRaw` | 989/1068 | 92.6 % |
-| `publicRaw` | 953/1068 | 89.2 % |
-| `durationRaw` | 1048/1068 | 98.1 % |
-| `targetAudienceRaw` | 945/1068 | 88.5 % |
-| `generalInformationRaw` | 534/1068 | 50.0 % |
-| `objectivesRaw` | 1015/1068 | 95.0 % |
-| `contentRaw` | 942/1068 | 88.2 % |
-| `prerequisitesRaw` | 381/1068 | 35.7 % |
-| `additionalInformationRaw` | 336/1068 | 31.5 % |
+| `organizingEntityRaw` | 1069/1069 | 100.0 % |
+| `domainRaw` | 1069/1069 | 100.0 % |
+| `themeRaw` | 990/1069 | 92.6 % |
+| `publicRaw` | 954/1069 | 89.2 % |
+| `durationRaw` | 1048/1069 | 98.0 % |
+| `targetAudienceRaw` | 946/1069 | 88.5 % |
+| `generalInformationRaw` | 534/1069 | 50.0 % |
+| `objectivesRaw` | 1016/1069 | 95.0 % |
+| `contentRaw` | 943/1069 | 88.2 % |
+| `prerequisitesRaw` | 381/1069 | 35.6 % |
+| `additionalInformationRaw` | 336/1069 | 31.4 % |
 
 ### Correspondance des libellés officiels
 
@@ -166,19 +163,19 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
-- EP-373FEX — Généralités (`generalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
+- EP-373FEX — Généralités (`generalInformationRaw`)
 - S2-301 — Informations complémentaires (`additionalInformationRaw`)
 - EP-002ANG — Pré-requis (`prerequisitesRaw`)
 - FP254 — Informations complémentaires (`additionalInformationRaw`)
@@ -210,7 +207,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-09T10:24:27.513Z
-- Snapshot candidat validé : 2026-10-09
-- Empreinte SHA-256 : `6b97e528d2a45cc8f8779a770263712d65c6cfb7aff3a2698fa04b39434b2aca`
+- Date et heure de promotion : 2026-10-12T10:39:36.135Z
+- Snapshot candidat validé : 2026-10-12
+- Empreinte SHA-256 : `b697e7ed8d61f9f75c58102cf9026fa4b037becfd9ed2a4938709c3c8a55b90b`
 - Promotion manuelle confirmée.
