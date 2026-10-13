@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-12
+- Date du snapshot : 2026-10-13
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 143.4 secondes
-- Taille du JSON final : 2.07 Mio (2169055 octets)
-- Empreinte SHA-256 du snapshot : `b697e7ed8d61f9f75c58102cf9026fa4b037becfd9ed2a4938709c3c8a55b90b`
+- Durée totale de l’import : 126.6 secondes
+- Taille du JSON final : 2.04 Mio (2142587 octets)
+- Empreinte SHA-256 du snapshot : `3ca2cbc956fd5eff0f30388c1e34f41d51ad40b9844eeddf263b00b2023c930c`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1632
-- Codes uniques : 1069
-- Occurrences éliminées par déduplication : 563
-- Formations présentes dans plusieurs offres : 289
+- Occurrences détectées dans l’index : 1619
+- Codes uniques : 1059
+- Occurrences éliminées par déduplication : 560
+- Formations présentes dans plusieurs offres : 287
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1069
+- Fiches récupérées avec succès : 1059
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1068 |
-| Cours dans le candidat | 1069 |
-| Cours ajoutés | 1 |
-| Cours supprimés | 0 |
-| Cours modifiés | 12 |
+| Cours dans le snapshot officiel | 1069 |
+| Cours dans le candidat | 1059 |
+| Cours ajoutés | 3 |
+| Cours supprimés | 13 |
+| Cours modifiés | 6 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,28 +34,38 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| S2-PATC021 | Se préparer, réagir et communiquer face à un événement traumatique | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
+| EP-1310ETB | Rôle des mécanismes attentionnels et des fonctions exécutives dans les<br>apprentissages scolaires | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| EP-1328ETB | Rôle des mécanismes attentionnels et des fonctions exécutives dans les apprentissages scolaires | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| EP-1342ETB | Débats philosophiques | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Formation générale |
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| CO-01614 | Arts et sports | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II | DGEO/SRH/Secteur de la formation continue EO | Arts |
+| CO-01662 | La boxe light contact : perfectionnement | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
+| S2-PATC021 | Se préparer, réagir et communiquer face à un événement traumatique | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
+| SEM1224E | Babel - Communication interpersonnelle | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | COMMUNIQUER ET TRANSMETTRE |
+| SEM1225E | Christmas - Adopter une attitude assertive | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | APTITUDES PERSONNELLES |
+| SEM1226E | Desdemona - Renforcer la confiance | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | APTITUDES PERSONNELLES |
+| SEM1227E | Exit - Travail d'équipe | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | TRAVAILLER ENSEMBLE |
+| SEM1228E | Gourmet - Efficacité personnelle | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | APTITUDES PERSONNELLES |
+| SEM1229E | Kaos - Résolution de conflits | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | TRAVAILLER ENSEMBLE |
+| SEM1230E | Limbo - La collaboration dans les équipes de travail | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | TRAVAILLER ENSEMBLE |
+| SEM1231E | Sahara - Apprendre à déléguer efficacement | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | MANAGEMENT ET RESSOURCES HUMAINES |
+| SEM1232E | Titan - Apprendre à motiver une équipe | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | GESTION DE PROJET |
+| SEM1233E | Triskelion - Productivité et gestion du temps | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | APTITUDES PERSONNELLES |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01614 | Arts et sports | `hasOpenSession` : « true » → « false » |
-| CO-01662 | La boxe light contact : perfectionnement | `hasOpenSession` : « true » → « false » |
-| CO-01797 | Module de perfectionnement au Sport scolaire J+S | `hasOpenSession` : « true » → « false » |
-| FP020 | Pilotage automobile | `hasOpenSession` : « true » → « false » |
-| FP255 | Sport et Santé - Bilan fonctionnel | `hasOpenSession` : « false » → « true » |
-| PJ-0042 | Introduction aux systèmes d'information<br>La convocation est directement adressée aux collaboratrices et collaborateurs par RH-Formation | `hasScheduledSession` : « true » → « false » |
-| S2-EPS18 | Escalade : perfectionnement J+S | `hasOpenSession` : « true » → « false » |
-| SEM0735 | Ethique et déontologie de la fonction publique | `hasOpenSession` : « false » → « true » |
-| SEM1118 | Gérer ses émotions dans ses relations professionnelles | `hasOpenSession` : « false » → « true » |
-| SEM1214 | Charge mentale au travail: s'en décharger avant d'être surchargé.e | `hasOpenSession` : « true » → « false » |
-| SEM1216 | Lecture rapide à l'ère numérique | `hasOpenSession` : « true » → « false » |
-| TRT024 | CFI - Infocentre: connaissance et utilisation des restitutions | `hasOpenSession` : « true » → « false » |
+| CO-01445 | Initiation au papier découpé | `hasOpenSession` : « false » → « true » |
+| EP-996 | Accueillir un élève allophone nouvellement arrivé en classe ordinaire : pistes d'action | `hasOpenSession` : « true » → « false » |
+| FP090 | Techniques d'optimisation du potentiel (TOP) - Formation Sensibilisation TOP CADRES SUP | `hasOpenSession` : « true » → « false » |
+| OMP-100 | Sons et Corps pour enseignants, par le biais de la méthodologie Integrative Move Construction | `hasOpenSession` : « true » → « false » |
+| SEM1108 | Parler en public | `hasOpenSession` : « false » → « true » |
+| SEM1161 | Sensibilisation à la pleine-conscience au travail | `hasOpenSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
@@ -99,11 +109,11 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 70 | 70 |
-| DF-OPE - L'offre de formation de l'OPE | 174 | 174 |
+| DF-OPE - L'offre de formation de l'OPE | 164 | 164 |
 | DIP - Service de la formation DRH-DIP | 4 | 4 |
-| DIP-CO - Offre de formation du Cycle d'orientation | 219 | 219 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 311 | 311 |
-| DIP-ES II - Offre de formation de l'ES II | 236 | 236 |
+| DIP-CO - Offre de formation du Cycle d'orientation | 217 | 217 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 313 | 313 |
+| DIP-ES II - Offre de formation de l'ES II | 233 | 233 |
 | DIP-OMP - Offre formation de l'OMP | 228 | 228 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
 | POLICE - CFPS - Centre de Formation de la Police | 193 | 193 |
@@ -113,17 +123,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1069/1069 | 100.0 % |
-| `domainRaw` | 1069/1069 | 100.0 % |
-| `themeRaw` | 990/1069 | 92.6 % |
-| `publicRaw` | 954/1069 | 89.2 % |
-| `durationRaw` | 1048/1069 | 98.0 % |
-| `targetAudienceRaw` | 946/1069 | 88.5 % |
-| `generalInformationRaw` | 534/1069 | 50.0 % |
-| `objectivesRaw` | 1016/1069 | 95.0 % |
-| `contentRaw` | 943/1069 | 88.2 % |
-| `prerequisitesRaw` | 381/1069 | 35.6 % |
-| `additionalInformationRaw` | 336/1069 | 31.4 % |
+| `organizingEntityRaw` | 1059/1059 | 100.0 % |
+| `domainRaw` | 1059/1059 | 100.0 % |
+| `themeRaw` | 980/1059 | 92.5 % |
+| `publicRaw` | 944/1059 | 89.1 % |
+| `durationRaw` | 1039/1059 | 98.1 % |
+| `targetAudienceRaw` | 945/1059 | 89.2 % |
+| `generalInformationRaw` | 524/1059 | 49.5 % |
+| `objectivesRaw` | 1006/1059 | 95.0 % |
+| `contentRaw` | 930/1059 | 87.8 % |
+| `prerequisitesRaw` | 369/1059 | 34.8 % |
+| `additionalInformationRaw` | 324/1059 | 30.6 % |
 
 ### Correspondance des libellés officiels
 
@@ -164,16 +174,16 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
-- TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
+- TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
 - S2-301 — Informations complémentaires (`additionalInformationRaw`)
@@ -207,7 +217,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-12T10:39:36.135Z
-- Snapshot candidat validé : 2026-10-12
-- Empreinte SHA-256 : `b697e7ed8d61f9f75c58102cf9026fa4b037becfd9ed2a4938709c3c8a55b90b`
+- Date et heure de promotion : 2026-10-13T10:27:13.813Z
+- Snapshot candidat validé : 2026-10-13
+- Empreinte SHA-256 : `3ca2cbc956fd5eff0f30388c1e34f41d51ad40b9844eeddf263b00b2023c930c`
 - Promotion manuelle confirmée.
