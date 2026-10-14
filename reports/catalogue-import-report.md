@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-13
+- Date du snapshot : 2026-10-14
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 126.6 secondes
-- Taille du JSON final : 2.04 Mio (2142587 octets)
-- Empreinte SHA-256 du snapshot : `3ca2cbc956fd5eff0f30388c1e34f41d51ad40b9844eeddf263b00b2023c930c`
+- Durée totale de l’import : 124.7 secondes
+- Taille du JSON final : 2.04 Mio (2142590 octets)
+- Empreinte SHA-256 du snapshot : `6d2fc8a603ae0ec2e3ac1e14a38c5c37c6f3c27edebb2927b8c44c142b2bfb2f`
 
 ## Synthèse
 
@@ -22,50 +22,31 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1069 |
+| Cours dans le snapshot officiel | 1059 |
 | Cours dans le candidat | 1059 |
-| Cours ajoutés | 3 |
-| Cours supprimés | 13 |
-| Cours modifiés | 6 |
+| Cours ajoutés | 0 |
+| Cours supprimés | 0 |
+| Cours modifiés | 5 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| EP-1310ETB | Rôle des mécanismes attentionnels et des fonctions exécutives dans les<br>apprentissages scolaires | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
-| EP-1328ETB | Rôle des mécanismes attentionnels et des fonctions exécutives dans les apprentissages scolaires | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
-| EP-1342ETB | Débats philosophiques | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Formation générale |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| CO-01614 | Arts et sports | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II | DGEO/SRH/Secteur de la formation continue EO | Arts |
-| CO-01662 | La boxe light contact : perfectionnement | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| S2-PATC021 | Se préparer, réagir et communiquer face à un événement traumatique | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
-| SEM1224E | Babel - Communication interpersonnelle | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | COMMUNIQUER ET TRANSMETTRE |
-| SEM1225E | Christmas - Adopter une attitude assertive | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | APTITUDES PERSONNELLES |
-| SEM1226E | Desdemona - Renforcer la confiance | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | APTITUDES PERSONNELLES |
-| SEM1227E | Exit - Travail d'équipe | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | TRAVAILLER ENSEMBLE |
-| SEM1228E | Gourmet - Efficacité personnelle | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | APTITUDES PERSONNELLES |
-| SEM1229E | Kaos - Résolution de conflits | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | TRAVAILLER ENSEMBLE |
-| SEM1230E | Limbo - La collaboration dans les équipes de travail | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | TRAVAILLER ENSEMBLE |
-| SEM1231E | Sahara - Apprendre à déléguer efficacement | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | MANAGEMENT ET RESSOURCES HUMAINES |
-| SEM1232E | Titan - Apprendre à motiver une équipe | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | GESTION DE PROJET |
-| SEM1233E | Triskelion - Productivité et gestion du temps | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | APTITUDES PERSONNELLES |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01445 | Initiation au papier découpé | `hasOpenSession` : « false » → « true » |
-| EP-996 | Accueillir un élève allophone nouvellement arrivé en classe ordinaire : pistes d'action | `hasOpenSession` : « true » → « false » |
-| FP090 | Techniques d'optimisation du potentiel (TOP) - Formation Sensibilisation TOP CADRES SUP | `hasOpenSession` : « true » → « false » |
-| OMP-100 | Sons et Corps pour enseignants, par le biais de la méthodologie Integrative Move Construction | `hasOpenSession` : « true » → « false » |
-| SEM1108 | Parler en public | `hasOpenSession` : « false » → « true » |
-| SEM1161 | Sensibilisation à la pleine-conscience au travail | `hasOpenSession` : « false » → « true » |
+| EP-01APPCO | Ateliers de pratique professionnelle en contexte de co-intervention (APP CO) | `hasOpenSession` : « true » → « false » |
+| FP020 | Pilotage automobile | `hasOpenSession` : « false » → « true » |
+| SEM0735 | Ethique et déontologie de la fonction publique | `hasOpenSession` : « true » → « false » |
+| SEM1081 | Planifier et piloter un projet | `hasOpenSession` : « true » → « false » |
+| SEM1209 | Assertivité et confiance en soi en situation de travail | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
@@ -175,15 +156,15 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
-- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
+- TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
-- TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
 - S2-301 — Informations complémentaires (`additionalInformationRaw`)
@@ -217,7 +198,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-13T10:27:13.813Z
-- Snapshot candidat validé : 2026-10-13
-- Empreinte SHA-256 : `3ca2cbc956fd5eff0f30388c1e34f41d51ad40b9844eeddf263b00b2023c930c`
+- Date et heure de promotion : 2026-10-14T08:38:05.276Z
+- Snapshot candidat validé : 2026-10-14
+- Empreinte SHA-256 : `6d2fc8a603ae0ec2e3ac1e14a38c5c37c6f3c27edebb2927b8c44c142b2bfb2f`
 - Promotion manuelle confirmée.
