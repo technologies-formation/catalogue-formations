@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-14
+- Date du snapshot : 2026-10-15
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 124.7 secondes
-- Taille du JSON final : 2.04 Mio (2142590 octets)
-- Empreinte SHA-256 du snapshot : `6d2fc8a603ae0ec2e3ac1e14a38c5c37c6f3c27edebb2927b8c44c142b2bfb2f`
+- Durée totale de l’import : 137.4 secondes
+- Taille du JSON final : 2.02 Mio (2122655 octets)
+- Empreinte SHA-256 du snapshot : `11b29b9f606d02a0380a4da070a1cc489a8c880f6c88dabfebdda2362b7ff3e6`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1619
-- Codes uniques : 1059
+- Occurrences détectées dans l’index : 1609
+- Codes uniques : 1049
 - Occurrences éliminées par déduplication : 560
 - Formations présentes dans plusieurs offres : 287
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1059
+- Fiches récupérées avec succès : 1049
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -23,34 +23,65 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | Indicateur | Valeur |
 | --- | ---: |
 | Cours dans le snapshot officiel | 1059 |
-| Cours dans le candidat | 1059 |
-| Cours ajoutés | 0 |
-| Cours supprimés | 0 |
-| Cours modifiés | 5 |
+| Cours dans le candidat | 1049 |
+| Cours ajoutés | 3 |
+| Cours supprimés | 13 |
+| Cours modifiés | 14 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-Aucun cours ajouté.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| CO-1172CFP | FIO IOSP : VISITES AUX CFP | DIP-CO - Offre de formation du Cycle d'orientation | DGEO/SRH/Secteur de la formation continue EO | Formation générale |
+| EP-1357ETB | La distance émotionnelle dans la posture enseignante | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Formations spécifiques |
+| SEM1264 | Optimiser sa rédaction professionnelle à l'ère de l'IA | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | COMMUNIQUER ET TRANSMETTRE |
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| FSM012 | Moniteurs sanitaires - refresh BLS-AED (Generic provider) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD001 | Accompagnement des stagiaires (ADS) - base | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD022 | Coach FOBA | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD170 | Formateurs TTI (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD171 | Formateurs Tir (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD177 | Cours cadre TTI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD183 | Cours cadre Tir | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD207 | BFFA - M1 : Animer des sessions de formation pour des groupes d'adultes (FFA CF-AF). | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD240 | Coach FOI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD373 | Accompagnement des stagiaires - Refresh | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD418 | Formation continue pour les coaches de la pratique - module 1: Rôle et tâches de la/du coach et formulation des objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD419 | Formation continue pour les coaches de la pratique - module 2: planifier, organiser et suivre les objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD422 | Formation continue pour les coaches de la pratique - module 3: Evaluation de l'apprentissage et du transfert | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-01APPCO | Ateliers de pratique professionnelle en contexte de co-intervention (APP CO) | `hasOpenSession` : « true » → « false » |
-| FP020 | Pilotage automobile | `hasOpenSession` : « false » → « true » |
-| SEM0735 | Ethique et déontologie de la fonction publique | `hasOpenSession` : « true » → « false » |
-| SEM1081 | Planifier et piloter un projet | `hasOpenSession` : « true » → « false » |
-| SEM1209 | Assertivité et confiance en soi en situation de travail | `hasOpenSession` : « true » → « false » |
+| EP-979 | Créer et relier un livre avec les moyens du bord (CE) | `hasOpenSession` : « true » → « false » |
+| FP003 | Formation coach | `hasOpenSession` : « true » → « false » |
+| FP020 | Pilotage automobile | `hasOpenSession` : « true » → « false » |
+| SEM-10244 | CO-ESII / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « false » → « true » |
+| SEM-P1534 | EP-OMP / Photographie argentique (UNIQUEMENT C2/7P-8P et DS) | `publicRaw` : « enseignant-e-s cycle 2 & division spécialisée » → « Ensemble du corps enseignant »<br>`hasOpenSession` : « true » → « false » |
+| SEM-P4011 | OMP / Formation institutionnelle obligatoire science informatique pour l'OMP Primaire | `hasOpenSession` : « true » → « false » |
+| SEM0487 | L'Etat et son administration : les fondamentaux | `titleRaw` : « Approche institutionnelle de l'administration cantonale » → « L'Etat et son administration : les fondamentaux » |
+| SEM1043 | Trouver sa place dans la complexité du monde professionnel | `titleRaw` : « Comment aborder sereinement la complexité et l'ambiguïté du monde du travail ? » → « Trouver sa place dans la complexité du monde professionnel » |
+| SEM1161 | Sensibilisation à la pleine-conscience au travail | `hasOpenSession` : « true » → « false » |
+| SEM1164 | Faciliter des démarches d'intelligence collective au service de la transformation | `titleRaw` : « L'intelligence collective au service de la transformation et l'innovation » → « Faciliter des démarches d'intelligence collective au service de la transformation » |
+| SEM1197 | Formatrices et formateurs occasionnels : construire et animer une formation | `titleRaw` : « Formateurs occasionnels: construire et animer une formation » → « Formatrices et formateurs occasionnels : construire et animer une formation » |
+| SEM1214 | Charge mentale au travail: s'en décharger avant la surcharge | `titleRaw` : « Charge mentale au travail: s'en décharger avant d'être surchargé.e » → « Charge mentale au travail: s'en décharger avant la surcharge » |
+| TRT1003 | Certification ICDL (ECDL) | `hasScheduledSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
-Aucun champ descriptif long n’a changé.
+| Code | Intitulé candidat | Champs modifiés |
+| --- | --- | --- |
+| S2-FOSEC4 | Premiers secours : cours de perfectionnement pour personnes préposées aux premiers secours de l'ES II et de l'ES I | `prerequisitesRaw` |
+| SEM0487 | L'Etat et son administration : les fondamentaux | `generalInformationRaw`, `objectivesRaw` |
+| SEM1043 | Trouver sa place dans la complexité du monde professionnel | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
+| SEM1164 | Faciliter des démarches d'intelligence collective au service de la transformation | `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
 
 ### Changements d’offres
 
@@ -67,9 +98,9 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Indicateur | Références |
 | --- | ---: |
 | Références contrôlées | 24 |
-| Références présentes | 22 |
-| Références absentes | 2 |
-| Références identiques | 20 |
+| Références présentes | 21 |
+| Références absentes | 3 |
+| Références identiques | 19 |
 | Revues métier prioritaires | 0 |
 | Revues métier | 0 |
 | Références nécessitant une revue métier | 0 |
@@ -84,16 +115,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | CO-01660 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 | EP-520 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 | CO-01686 | INFORMATION À EXAMINER | `targetAudienceRaw` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP<br>Les participants identifient quelques-unes des préoccupations majeures des élèves, de leurs familles et des enseignants qui les côtoient à travers une expérience rapportée du terrain ;<br>A la fin de la séance, les participants sont capables d'identifier les défis pour ces familles et, en collaboration avec les personnes ressources de leur établissement (conseillères et conseillers sociaux, éducatrices et éducateurs), de mieux les orienter.` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP` |
+| OCD207 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 
 ## Offres détectées
 
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
-| Détention - Offre de formation de l'OCD | 70 | 70 |
-| DF-OPE - L'offre de formation de l'OPE | 164 | 164 |
+| Détention - Offre de formation de l'OCD | 57 | 57 |
+| DF-OPE - L'offre de formation de l'OPE | 165 | 165 |
 | DIP - Service de la formation DRH-DIP | 4 | 4 |
-| DIP-CO - Offre de formation du Cycle d'orientation | 217 | 217 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 313 | 313 |
+| DIP-CO - Offre de formation du Cycle d'orientation | 218 | 218 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 314 | 314 |
 | DIP-ES II - Offre de formation de l'ES II | 233 | 233 |
 | DIP-OMP - Offre formation de l'OMP | 228 | 228 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
@@ -104,17 +136,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1059/1059 | 100.0 % |
-| `domainRaw` | 1059/1059 | 100.0 % |
-| `themeRaw` | 980/1059 | 92.5 % |
-| `publicRaw` | 944/1059 | 89.1 % |
-| `durationRaw` | 1039/1059 | 98.1 % |
-| `targetAudienceRaw` | 945/1059 | 89.2 % |
-| `generalInformationRaw` | 524/1059 | 49.5 % |
-| `objectivesRaw` | 1006/1059 | 95.0 % |
-| `contentRaw` | 930/1059 | 87.8 % |
-| `prerequisitesRaw` | 369/1059 | 34.8 % |
-| `additionalInformationRaw` | 324/1059 | 30.6 % |
+| `organizingEntityRaw` | 1049/1049 | 100.0 % |
+| `domainRaw` | 1049/1049 | 100.0 % |
+| `themeRaw` | 983/1049 | 93.7 % |
+| `publicRaw` | 934/1049 | 89.0 % |
+| `durationRaw` | 1029/1049 | 98.1 % |
+| `targetAudienceRaw` | 934/1049 | 89.0 % |
+| `generalInformationRaw` | 512/1049 | 48.8 % |
+| `objectivesRaw` | 996/1049 | 94.9 % |
+| `contentRaw` | 918/1049 | 87.5 % |
+| `prerequisitesRaw` | 369/1049 | 35.2 % |
+| `additionalInformationRaw` | 320/1049 | 30.5 % |
 
 ### Correspondance des libellés officiels
 
@@ -159,11 +191,11 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
-- TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
+- TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
@@ -198,7 +230,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-14T08:38:05.276Z
-- Snapshot candidat validé : 2026-10-14
-- Empreinte SHA-256 : `6d2fc8a603ae0ec2e3ac1e14a38c5c37c6f3c27edebb2927b8c44c142b2bfb2f`
+- Date et heure de promotion : 2026-10-15T08:13:54.552Z
+- Snapshot candidat validé : 2026-10-15
+- Empreinte SHA-256 : `11b29b9f606d02a0380a4da070a1cc489a8c880f6c88dabfebdda2362b7ff3e6`
 - Promotion manuelle confirmée.
