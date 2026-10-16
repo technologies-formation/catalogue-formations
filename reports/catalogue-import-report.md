@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-15
+- Date du snapshot : 2026-10-16
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 137.4 secondes
-- Taille du JSON final : 2.02 Mio (2122655 octets)
-- Empreinte SHA-256 du snapshot : `11b29b9f606d02a0380a4da070a1cc489a8c880f6c88dabfebdda2362b7ff3e6`
+- Durée totale de l’import : 113.4 secondes
+- Taille du JSON final : 2.03 Mio (2124963 octets)
+- Empreinte SHA-256 du snapshot : `b127bb8952394f1ec14ed1e197c5d982759a95505e7daef74f4e4900edb9fc85`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1609
-- Codes uniques : 1049
+- Occurrences détectées dans l’index : 1610
+- Codes uniques : 1050
 - Occurrences éliminées par déduplication : 560
 - Formations présentes dans plusieurs offres : 287
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1049
+- Fiches récupérées avec succès : 1050
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1059 |
-| Cours dans le candidat | 1049 |
-| Cours ajoutés | 3 |
-| Cours supprimés | 13 |
-| Cours modifiés | 14 |
+| Cours dans le snapshot officiel | 1049 |
+| Cours dans le candidat | 1050 |
+| Cours ajoutés | 1 |
+| Cours supprimés | 0 |
+| Cours modifiés | 33 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,54 +34,59 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| CO-1172CFP | FIO IOSP : VISITES AUX CFP | DIP-CO - Offre de formation du Cycle d'orientation | DGEO/SRH/Secteur de la formation continue EO | Formation générale |
-| EP-1357ETB | La distance émotionnelle dans la posture enseignante | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Formations spécifiques |
-| SEM1264 | Optimiser sa rédaction professionnelle à l'ère de l'IA | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | COMMUNIQUER ET TRANSMETTRE |
+| TRT1022 | Excel 365 Préparation à l'analyse de données | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | LOGICIELS BUREAUTIQUES |
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| FSM012 | Moniteurs sanitaires - refresh BLS-AED (Generic provider) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD001 | Accompagnement des stagiaires (ADS) - base | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD022 | Coach FOBA | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD170 | Formateurs TTI (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD171 | Formateurs Tir (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD177 | Cours cadre TTI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD183 | Cours cadre Tir | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD207 | BFFA - M1 : Animer des sessions de formation pour des groupes d'adultes (FFA CF-AF). | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD240 | Coach FOI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD373 | Accompagnement des stagiaires - Refresh | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD418 | Formation continue pour les coaches de la pratique - module 1: Rôle et tâches de la/du coach et formulation des objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD419 | Formation continue pour les coaches de la pratique - module 2: planifier, organiser et suivre les objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD422 | Formation continue pour les coaches de la pratique - module 3: Evaluation de l'apprentissage et du transfert | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-979 | Créer et relier un livre avec les moyens du bord (CE) | `hasOpenSession` : « true » → « false » |
-| FP003 | Formation coach | `hasOpenSession` : « true » → « false » |
-| FP020 | Pilotage automobile | `hasOpenSession` : « true » → « false » |
-| SEM-10244 | CO-ESII / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « false » → « true » |
-| SEM-P1534 | EP-OMP / Photographie argentique (UNIQUEMENT C2/7P-8P et DS) | `publicRaw` : « enseignant-e-s cycle 2 & division spécialisée » → « Ensemble du corps enseignant »<br>`hasOpenSession` : « true » → « false » |
-| SEM-P4011 | OMP / Formation institutionnelle obligatoire science informatique pour l'OMP Primaire | `hasOpenSession` : « true » → « false » |
-| SEM0487 | L'Etat et son administration : les fondamentaux | `titleRaw` : « Approche institutionnelle de l'administration cantonale » → « L'Etat et son administration : les fondamentaux » |
-| SEM1043 | Trouver sa place dans la complexité du monde professionnel | `titleRaw` : « Comment aborder sereinement la complexité et l'ambiguïté du monde du travail ? » → « Trouver sa place dans la complexité du monde professionnel » |
-| SEM1161 | Sensibilisation à la pleine-conscience au travail | `hasOpenSession` : « true » → « false » |
-| SEM1164 | Faciliter des démarches d'intelligence collective au service de la transformation | `titleRaw` : « L'intelligence collective au service de la transformation et l'innovation » → « Faciliter des démarches d'intelligence collective au service de la transformation » |
-| SEM1197 | Formatrices et formateurs occasionnels : construire et animer une formation | `titleRaw` : « Formateurs occasionnels: construire et animer une formation » → « Formatrices et formateurs occasionnels : construire et animer une formation » |
-| SEM1214 | Charge mentale au travail: s'en décharger avant la surcharge | `titleRaw` : « Charge mentale au travail: s'en décharger avant d'être surchargé.e » → « Charge mentale au travail: s'en décharger avant la surcharge » |
-| TRT1003 | Certification ICDL (ECDL) | `hasScheduledSession` : « false » → « true » |
+| CO-1172CFP | FIO IOSP : VISITES AUX CFP | `hasOpenSession` : « true » → « false » |
+| EO-010 | Histoire sans chute ou comment repenser le travail du textile dans nos ateliers | `hasOpenSession` : « true » → « false » |
+| EP-519 | Appropriation des MER Français cycle moyen | `hasOpenSession` : « true » → « false » |
+| OMP-017TSA | Particularités cognitives et sensorielles des élèves avec autisme; outils pour les intégrer à la classe | `hasOpenSession` : « false » → « true » |
+| S2-301 | Voyage au mémorial de Mauthausen | `hasOpenSession` : « true » → « false » |
+| SEM-10244 | CO-ESII / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « true » → « false » |
+| SEM0052 | Tensions et conflits au sein de vos équipes : anticiper, désamorcer et réguler | `titleRaw` : « Manager : gérer les tensions au sein de son équipe » → « Tensions et conflits au sein de vos équipes : anticiper, désamorcer et réguler »<br>`targetAudienceRaw` : « Manager avec responsabilité d'encadrement présente ou future, souhaitant développer sa compétence à gérer les tensions au quotidien dans son équipe, ou amené à jouer un rôle de tiers dans un conflit entre des collaboratrices et collabora… » → « Manager avec responsabilité d'encadrement, présente ou future, amené·e à intervenir comme tiers dans une tension ou un conflit entre collaboratrices et collaborateurs de son équipe. Sans responsabilité d'équipe ? Le cours « Développer se… » |
+| SEM0518 | Développer ses qualités relationnelles pour prévenir les tensions | `titleRaw` : « Prévenir les tensions dans ses relations par une bonne communication » → « Développer ses qualités relationnelles pour prévenir les tensions »<br>`targetAudienceRaw` : « Collaboratices et collaborateurs désireux d'agir pour améliorer sa communication et éviter les conflits. Ce cours n'est pas un lieu de résolution pour des conflits avérés. Si vous avez des difficultés, nous vous invitons à solliciter vot… » → « Le cours s'adresse à toute personne souhaitant développer ses qualités relationnelles et prévenir les tensions dans son cadre professionnel. Il a une visée préventive et n'est pas un lieu de résolution de conflits avérés : en cas de diff… » |
+| SEM0746 | Communiquer efficacement avec les médias | `hasOpenSession` : « true » → « false » |
+| SEM0815 | Mi-parcours professionnel: donner un nouvel élan à sa carrière | `titleRaw` : « Dynamiser sa seconde partie de carrière et de vie » → « Mi-parcours professionnel: donner un nouvel élan à sa carrière »<br>`targetAudienceRaw` : « Toute personne soucieuse de son évolution professionnelle, ayant plus de 45 ans ou 20 ans d'expérience professionnelle. Ce cours est destiné aux personnes qui ont encore des années d'activité devant elles et qui désirent y amener un nouv… » → « Toute personne ayant plus de 45 ans ou environ 20 ans d'expérience professionnelle, qui souhaite donner un nouvel élan à son parcours professionnel et personnel. Cette formation s'adresse aux personnes qui disposent encore de plusieurs a… » |
+| SEM0828 | Développer sa créativité pour aborder et résoudre autrement les problèmes | `hasOpenSession` : « true » → « false » |
+| SEM1040 | Mindmap : une méthode pour organiser ses idées et ses informations | `hasOpenSession` : « false » → « true » |
+| SEM1085 | Finances et comptabilité | `hasOpenSession` : « true » → « false » |
+| SEM1163 | Développer ses ressources personnelles pour agir avec confiance | `titleRaw` : « Relation et confiance en soi » → « Développer ses ressources personnelles pour agir avec confiance »<br>`publicRaw` : « Tout public » → « Spécifique »<br>`targetAudienceRaw` : `null` → « Toute personne qui souhaite approfondir la connaissance de soi pour être et agir en confiance » |
+| SEM1198 | Prendre soin de soi pour un meilleur équilibre au travail : intégrer les TOP dans son quotidien | `hasOpenSession` : « false » → « true » |
+| SEM1247 | Les discriminations: comprendre, prévenir et prendre en charge | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| S2-FOSEC4 | Premiers secours : cours de perfectionnement pour personnes préposées aux premiers secours de l'ES II et de l'ES I | `prerequisitesRaw` |
-| SEM0487 | L'Etat et son administration : les fondamentaux | `generalInformationRaw`, `objectivesRaw` |
-| SEM1043 | Trouver sa place dans la complexité du monde professionnel | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
-| SEM1164 | Faciliter des démarches d'intelligence collective au service de la transformation | `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
+| EP-100MDAS | La danse Hip-Hop comme outil pédagogique et artistique au Cycle 2 | `objectivesRaw`, `contentRaw` |
+| S2-326 | Commerce extérieur suisse : un an de bouleversements géopolitiques - où en sommes-nous ? | `contentRaw` |
+| SEM0052 | Tensions et conflits au sein de vos équipes : anticiper, désamorcer et réguler | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
+| SEM0518 | Développer ses qualités relationnelles pour prévenir les tensions | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
+| SEM0815 | Mi-parcours professionnel: donner un nouvel élan à sa carrière | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
+| SEM1085 | Finances et comptabilité | `contentRaw` |
+| SEM1163 | Développer ses ressources personnelles pour agir avec confiance | `objectivesRaw`, `contentRaw` |
+| TRT1004 | Windows 11 | `contentRaw` |
+| TRT1005 | Excel 365 Base | `contentRaw` |
+| TRT1007 | Excel 365 Formules et fonctions avancées | `contentRaw` |
+| TRT1008 | Excel 365 Les graphiques | `contentRaw`, `additionalInformationRaw` |
+| TRT1009 | Excel 365 Analyse de données | `durationRaw`, `objectivesRaw`, `contentRaw`, `prerequisitesRaw`, `additionalInformationRaw` |
+| TRT1010 | Excel 365 Gagner en efficacité | `durationRaw`, `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
+| TRT1011 | Outlook 365 Base | `contentRaw`, `prerequisitesRaw`, `additionalInformationRaw` |
+| TRT1012 | Outlook 365 Avancé | `contentRaw` |
+| TRT1013 | PowerPoint 365 Base | `durationRaw`, `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
+| TRT1014 | PowerPoint 365 Avancé | `contentRaw`, `additionalInformationRaw` |
+| TRT1015 | Word 365 Base | `contentRaw`, `additionalInformationRaw` |
+| TRT1016 | Word 365 Publipostage | `contentRaw`, `additionalInformationRaw` |
+| TRT1017 | Word 365 Mise en forme avancée | `contentRaw`, `additionalInformationRaw` |
+| TRT1018 | Word 365 Longs documents | `durationRaw`, `contentRaw`, `additionalInformationRaw` |
+| TRT1020 | Word 365 Gagner en efficacité | `durationRaw`, `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
 
 ### Changements d’offres
 
@@ -100,18 +105,20 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Références contrôlées | 24 |
 | Références présentes | 21 |
 | Références absentes | 3 |
-| Références identiques | 19 |
+| Références identiques | 18 |
 | Revues métier prioritaires | 0 |
 | Revues métier | 0 |
 | Références nécessitant une revue métier | 0 |
-| Informations à examiner | 2 |
+| Informations à examiner | 3 |
 | Enrichissements | 0 |
-| Évolutions contextuelles | 0 |
+| Évolutions contextuelles | 1 |
 | Différences typographiques | 0 |
 
 | Code | Catégorie d’écart | Champ | Valeur de référence | Valeur actuelle |
 | --- | --- | --- | --- | --- |
 | DIP-002 | INFORMATION À EXAMINER | `targetAudienceRaw` | `Cette séance d'accueil s'adresse aux personnes nouvellement engagées au sein du DIP, répondant aux critères suivants :<br><br>- le personnel administratif et technique<br>- les apprenties et apprentis<br>- le personnel enseignant engagé en cours d'année scolaire, n'ayant pas bénéficié d'une séance d'accueil organisée par sa direction générale<br><br>Dans certains cas, des auxiliaires peuvent également être invitées et invités à y prendre part.` | `Cette séance d'accueil s'adresse aux personnes nouvellement engagées au sein du DIP, répondant aux critères suivants :<br>- le personnel administratif et technique<br>- le personnel enseignant engagé en cours d'année scolaire, n'ayant pas bénéficié d'une séance d'accueil organisée par sa direction générale<br>Dans certains cas, des auxiliaires peuvent également être invitées et invités à y prendre part.` |
+| SEM0518 | ÉVOLUTION CONTEXTUELLE | `titleRaw` | `Prévenir les tensions dans ses relations par une bonne communication` | `Développer ses qualités relationnelles pour prévenir les tensions` |
+| SEM0518 | INFORMATION À EXAMINER | `targetAudienceRaw` | `Collaboratices et collaborateurs désireux d'agir pour améliorer sa communication et éviter les conflits.<br>Ce cours n'est pas un lieu de résolution pour des conflits avérés. Si vous avez des difficultés, nous vous invitons à solliciter votre hiérarchie ou votre RH départemental, voire le Groupe de confiance - qui peuvent vous accompagner dans une démarche et/ou vous orienter.<br>Les responsables d'équipe amenés à gérer des conflits dans lesquels elles et ils ne sont pas impliqués, mais dans lesquels elles et ils jouent un rôle de tiers, ou souhaitant développer leur compétence à gérer les tensions au quotidien dans leur équipe, choisiront la formation "Manager : Gérer les tensions au sein de son équipe".` | `Le cours s'adresse à toute personne souhaitant développer ses qualités relationnelles et prévenir les tensions dans son cadre professionnel. Il a une visée préventive et n'est pas un lieu de résolution de conflits avérés : en cas de difficulté installée, la hiérarchie, le RH départemental ou le Groupe de confiance peuvent accompagner et orienter. Les responsables d'équipe appelés à intervenir comme tiers s'orienteront vers le cours « Tensions et conflits au sein de vos équipes : anticiper, désamorcer et réguler» (SEM00052).` |
 | CO-01660 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 | EP-520 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 | CO-01686 | INFORMATION À EXAMINER | `targetAudienceRaw` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP<br>Les participants identifient quelques-unes des préoccupations majeures des élèves, de leurs familles et des enseignants qui les côtoient à travers une expérience rapportée du terrain ;<br>A la fin de la séance, les participants sont capables d'identifier les défis pour ces familles et, en collaboration avec les personnes ressources de leur établissement (conseillères et conseillers sociaux, éducatrices et éducateurs), de mieux les orienter.` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP` |
@@ -122,7 +129,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 57 | 57 |
-| DF-OPE - L'offre de formation de l'OPE | 165 | 165 |
+| DF-OPE - L'offre de formation de l'OPE | 166 | 166 |
 | DIP - Service de la formation DRH-DIP | 4 | 4 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 218 | 218 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 314 | 314 |
@@ -136,17 +143,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1049/1049 | 100.0 % |
-| `domainRaw` | 1049/1049 | 100.0 % |
-| `themeRaw` | 983/1049 | 93.7 % |
-| `publicRaw` | 934/1049 | 89.0 % |
-| `durationRaw` | 1029/1049 | 98.1 % |
-| `targetAudienceRaw` | 934/1049 | 89.0 % |
-| `generalInformationRaw` | 512/1049 | 48.8 % |
-| `objectivesRaw` | 996/1049 | 94.9 % |
-| `contentRaw` | 918/1049 | 87.5 % |
-| `prerequisitesRaw` | 369/1049 | 35.2 % |
-| `additionalInformationRaw` | 320/1049 | 30.5 % |
+| `organizingEntityRaw` | 1050/1050 | 100.0 % |
+| `domainRaw` | 1050/1050 | 100.0 % |
+| `themeRaw` | 984/1050 | 93.7 % |
+| `publicRaw` | 935/1050 | 89.0 % |
+| `durationRaw` | 1030/1050 | 98.1 % |
+| `targetAudienceRaw` | 935/1050 | 89.0 % |
+| `generalInformationRaw` | 515/1050 | 49.0 % |
+| `objectivesRaw` | 997/1050 | 95.0 % |
+| `contentRaw` | 919/1050 | 87.5 % |
+| `prerequisitesRaw` | 370/1050 | 35.2 % |
+| `additionalInformationRaw` | 321/1050 | 30.6 % |
 
 ### Correspondance des libellés officiels
 
@@ -230,7 +237,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-15T08:13:54.552Z
-- Snapshot candidat validé : 2026-10-15
-- Empreinte SHA-256 : `11b29b9f606d02a0380a4da070a1cc489a8c880f6c88dabfebdda2362b7ff3e6`
+- Date et heure de promotion : 2026-10-16T08:06:18.599Z
+- Snapshot candidat validé : 2026-10-16
+- Empreinte SHA-256 : `b127bb8952394f1ec14ed1e197c5d982759a95505e7daef74f4e4900edb9fc85`
 - Promotion manuelle confirmée.
