@@ -1,5 +1,10 @@
 # Guide de reprise — Catalogue de formations — Projet n°2
 
+> Jalon préparé le 18.10.2026 : centralisation des référentiels du parcours et
+> `GET /api/profile-references` avec révision et ETag/304. Voir le
+> [contrat et les limites](docs/PROFILE_REFERENCES.md). Développement local uniquement,
+> sans publication ni déploiement ; les jalons de production ci-dessous restent datés.
+
 > Évolution préparée le 02.09.2026 : synchronisation optionnelle du catalogue
 > backend depuis le catalogue publié sur Pages. Voir
 > [la procédure et les limites](docs/BACKEND_CATALOGUE_SYNC.md).

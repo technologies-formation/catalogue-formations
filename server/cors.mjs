@@ -39,7 +39,8 @@ export function createCorsHandler({ allowedOrigins, isProduction }) {
     response.setHeader('Access-Control-Allow-Origin', origin)
     response.setHeader('Vary', 'Origin')
     response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-    response.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+    response.setHeader('Access-Control-Allow-Headers', 'Content-Type, If-None-Match')
+    response.setHeader('Access-Control-Expose-Headers', 'ETag')
     response.setHeader('Access-Control-Max-Age', '600')
 
     return true

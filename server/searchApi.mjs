@@ -11,6 +11,7 @@ import {
 import { buildPathwayWithLuna } from './pathwayEngine.mjs'
 import { createStaticFrontendHandler } from './staticFrontend.mjs'
 import { createCorsHandler } from './cors.mjs'
+import { handleProfileReferences } from './profileReferences.mjs'
 
 const PORT = Number(process.env.PORT || 8787)
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
@@ -144,6 +145,8 @@ const server = http.createServer(async (request, response) => {
     })
     return
   }
+
+  if (handleProfileReferences(request, response, url)) return
 
   if (
     request.method === 'OPTIONS' &&

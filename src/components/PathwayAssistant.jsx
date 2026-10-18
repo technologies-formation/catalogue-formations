@@ -1,16 +1,8 @@
 import { useRef, useState } from 'react'
 import { buildPathway } from '../services/pathwayAssistantApi.js'
+import { createEmptyPathwayProfile, pathwayProfileFields } from '../config/pathwayProfile.js'
 
-const INITIAL_PROFILE = {
-  personnelCategory: '',
-  entity: '',
-  managerStatus: '',
-  role: '',
-  objective: '',
-  existingSkills: '',
-  timeAvailable: '',
-  constraints: '',
-}
+const INITIAL_PROFILE = createEmptyPathwayProfile()
 
 function CourseSteps({ items, emptyMessage, categoryLabel }) {
   if (!items?.length) return <p className="pathway-empty">{emptyMessage}</p>
@@ -79,13 +71,13 @@ export default function PathwayAssistant({ onClose }) {
     event.preventDefault()
     const nextErrors = {}
 
-    if (!profile.personnelCategory) {
+    if (pathwayProfileFields.personnelCategory.requiredInForm && !profile.personnelCategory) {
       nextErrors.personnelCategory = 'Sélectionnez votre catégorie de personnel.'
     }
-    if (!profile.role.trim()) {
+    if (pathwayProfileFields.role.requiredInForm && !profile.role.trim()) {
       nextErrors.role = 'Décrivez brièvement votre fonction ou votre situation.'
     }
-    if (!profile.objective.trim()) {
+    if (pathwayProfileFields.objective.requiredInForm && !profile.objective.trim()) {
       nextErrors.objective = 'Indiquez l’objectif professionnel recherché.'
     }
 
@@ -142,32 +134,30 @@ export default function PathwayAssistant({ onClose }) {
             <div className="pathway-form-grid">
               <label>
                 <span>Catégorie de personnel *</span>
-                <select id="pathway-personnelCategory" required value={profile.personnelCategory} onChange={update('personnelCategory')} aria-invalid={Boolean(validationErrors.personnelCategory)} aria-describedby={validationErrors.personnelCategory ? 'pathway-personnelCategory-error' : undefined}>
+                <select id="pathway-personnelCategory" required={pathwayProfileFields.personnelCategory.requiredInForm} value={profile.personnelCategory} onChange={update('personnelCategory')} aria-invalid={Boolean(validationErrors.personnelCategory)} aria-describedby={validationErrors.personnelCategory ? 'pathway-personnelCategory-error' : undefined}>
                   <option value="" disabled>À renseigner</option>
-                  <option value="PAT">PAT — Personnel administratif et technique</option>
-                  <option value="PE">PE — Personnel enseignant</option>
-                  <option value="PU Police">Personnel en uniforme — Police</option>
-                  <option value="PU Prison">Personnel en uniforme — Prison</option>
-                  <option value="PJ">Personnel du Pouvoir judiciaire</option>
+                  {pathwayProfileFields.personnelCategory.options.map(({ value, label }) => (
+                    <option key={value} value={value}>{label}</option>
+                  ))}
                 </select>
                 {validationErrors.personnelCategory && <small id="pathway-personnelCategory-error" className="pathway-field-error">{validationErrors.personnelCategory}</small>}
               </label>
               <label>
                 <span>Entité ou service <small>(facultatif)</small></span>
-                <input value={profile.entity} onChange={update('entity')} maxLength={120} placeholder="Par exemple : OPE, DIP, Police…" />
+                <input value={profile.entity} onChange={update('entity')} maxLength={pathwayProfileFields.entity.maxLength} placeholder="Par exemple : OPE, DIP, Police…" />
               </label>
               <label>
                 <span>Situation managériale <small>(facultatif)</small></span>
                 <select value={profile.managerStatus} onChange={update('managerStatus')}>
                   <option value="">Non précisée</option>
-                  <option value="Nouveau manager">Nouveau manager</option>
-                  <option value="Manager expérimenté">Manager expérimenté</option>
-                  <option value="Sans responsabilité managériale">Sans responsabilité managériale</option>
+                  {pathwayProfileFields.managerStatus.options.map(({ value, label }) => (
+                    <option key={value} value={value}>{label}</option>
+                  ))}
                 </select>
               </label>
               <label>
                 <span>Fonction ou situation *</span>
-                <textarea id="pathway-role" required value={profile.role} onChange={update('role')} maxLength={300} placeholder="Par exemple : chef de projet IT" rows={2} aria-invalid={Boolean(validationErrors.role)} aria-describedby={validationErrors.role ? 'pathway-role-help pathway-role-error' : 'pathway-role-help'} />
+                <textarea id="pathway-role" required={pathwayProfileFields.role.requiredInForm} value={profile.role} onChange={update('role')} maxLength={pathwayProfileFields.role.maxLength} placeholder="Par exemple : chef de projet IT" rows={2} aria-invalid={Boolean(validationErrors.role)} aria-describedby={validationErrors.role ? 'pathway-role-help pathway-role-error' : 'pathway-role-help'} />
                 <small id="pathway-role-help" className="pathway-field-help">Votre métier, votre mission ou la situation professionnelle concernée.</small>
                 {validationErrors.role && <small id="pathway-role-error" className="pathway-field-error">{validationErrors.role}</small>}
               </label>
@@ -175,24 +165,24 @@ export default function PathwayAssistant({ onClose }) {
 
             <label>
               <span>Quel est votre objectif professionnel ? *</span>
-              <textarea id="pathway-objective" required value={profile.objective} onChange={update('objective')} maxLength={1000} rows={3} aria-invalid={Boolean(validationErrors.objective)} aria-describedby={validationErrors.objective ? 'pathway-objective-help pathway-objective-error' : 'pathway-objective-help'} />
+              <textarea id="pathway-objective" required={pathwayProfileFields.objective.requiredInForm} value={profile.objective} onChange={update('objective')} maxLength={pathwayProfileFields.objective.maxLength} rows={3} aria-invalid={Boolean(validationErrors.objective)} aria-describedby={validationErrors.objective ? 'pathway-objective-help pathway-objective-error' : 'pathway-objective-help'} />
               <small id="pathway-objective-help" className="pathway-field-help">Décrivez ce que vous souhaitez savoir faire après la formation.</small>
               {validationErrors.objective && <small id="pathway-objective-error" className="pathway-field-error">{validationErrors.objective}</small>}
             </label>
             <label>
               <span>Quelles compétences possédez-vous déjà ?</span>
-              <textarea value={profile.existingSkills} onChange={update('existingSkills')} maxLength={1000} rows={2} />
+              <textarea value={profile.existingSkills} onChange={update('existingSkills')} maxLength={pathwayProfileFields.existingSkills.maxLength} rows={2} />
               <small className="pathway-field-help">Indiquez les connaissances ou expériences déjà acquises pour éviter les propositions trop élémentaires.</small>
             </label>
             <div className="pathway-form-grid">
               <label>
                 <span>Temps disponible</span>
-                <input value={profile.timeAvailable} onChange={update('timeAvailable')} maxLength={300} placeholder="Par exemple : maximum 5 jours" />
+                <input value={profile.timeAvailable} onChange={update('timeAvailable')} maxLength={pathwayProfileFields.timeAvailable.maxLength} placeholder="Par exemple : maximum 5 jours" />
                 <small className="pathway-field-help">Ce temps sert de repère : les formations pertinentes peuvent rester proposées au-delà.</small>
               </label>
               <label>
                 <span>Contraintes ou préférences</span>
-                <textarea value={profile.constraints} onChange={update('constraints')} maxLength={1000} placeholder="À distance, sans programmation…" rows={4} />
+                <textarea value={profile.constraints} onChange={update('constraints')} maxLength={pathwayProfileFields.constraints.maxLength} placeholder="À distance, sans programmation…" rows={4} />
                 <small className="pathway-field-help">Précisez vos préférences de format, prérequis, accessibilité ou organisation.</small>
               </label>
             </div>

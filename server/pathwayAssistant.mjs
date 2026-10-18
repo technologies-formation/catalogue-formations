@@ -1,15 +1,4 @@
-const FIELD_LIMITS = {
-  personnelCategory: 80,
-  entity: 120,
-  managerStatus: 120,
-  role: 300,
-  objective: 1_000,
-  existingSkills: 1_000,
-  timeAvailable: 300,
-  constraints: 1_000,
-}
-
-const REQUIRED_FIELDS = new Set(['role', 'objective'])
+import { pathwayProfileFields } from '../src/config/pathwayProfile.js'
 
 export class PathwayInputError extends Error {
   constructor(status, message) {
@@ -30,11 +19,11 @@ export function validatePathwayInput(body) {
 
   const profile = {}
 
-  for (const [field, limit] of Object.entries(FIELD_LIMITS)) {
+  for (const [field, { maxLength, requiredInApi }] of Object.entries(pathwayProfileFields)) {
     const value = body[field]
 
     if (value === undefined || value === null) {
-      if (REQUIRED_FIELDS.has(field)) {
+      if (requiredInApi) {
         throw new PathwayInputError(400, `Le champ ${field} est obligatoire`)
       }
       continue
@@ -46,12 +35,12 @@ export function validatePathwayInput(body) {
 
     const normalized = value.trim()
 
-    if (!normalized && REQUIRED_FIELDS.has(field)) {
+    if (!normalized && requiredInApi) {
       throw new PathwayInputError(400, `Le champ ${field} est obligatoire`)
     }
 
-    if (normalized.length > limit) {
-      throw new PathwayInputError(422, `Le champ ${field} dépasse ${limit} caractères`)
+    if (normalized.length > maxLength) {
+      throw new PathwayInputError(422, `Le champ ${field} dépasse ${maxLength} caractères`)
     }
 
     if (normalized) {
