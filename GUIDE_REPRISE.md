@@ -1,19 +1,34 @@
-# Guide de reprise — Catalogue de formations — Projet n°2
+# Guide de reprise — A658-YG — Catalogue de formations — Projet n°2
 
-> Jalon préparé le 18.10.2026 : centralisation des référentiels du parcours et
-> `GET /api/profile-references` avec révision et ETag/304. Voir le
-> [contrat et les limites](docs/PROFILE_REFERENCES.md). Développement local uniquement,
-> sans publication ni déploiement ; les jalons de production ci-dessous restent datés.
+> **Synthèse de reprise vérifiée dans GitHub le 18 octobre 2026**
+>
+> - Révision de `main` examinée : `bbc7ed98138c998684bdab350b898b0dc4b56666`,
+>   centralisation des référentiels du parcours.
+> - Le [workflow Pages de cette révision](https://github.com/technologies-formation/catalogue-formations/actions/runs/39108545058)
+>   est terminé avec succès : tests, lint, build, publication et contrôle de disponibilité.
+> - Le rapport d'import versionné décrit **1 050 formations**, snapshot du **16 octobre 2026**,
+>   intégré par `3efb6c40ec8c42229ccb30611d489aeb9f25fbd1`.
+>   Ce volume décrit le dépôt examiné, pas une nouvelle mesure du backend public.
+> - La variante de même origine Infomaniak et son usage sur le Wi-Fi institutionnel
+>   sont documentés au jalon du 7 octobre. Aucun nouveau contrôle réseau ou Infomaniak
+>   n'a été effectué pendant cette reprise.
+> - `GET /api/profile-references` est désormais versionné sur `main`.
+>   Le déploiement Pages réussi ne prouve pas sa disponibilité sur le backend Node.
+>   Son déploiement Infomaniak et le raccordement de l'avatar restent à vérifier ou à réaliser.
+>
+> Les constats de production et les résultats historiques ci-dessous conservent leurs dates.
+> Une publication GitHub, un déploiement Pages et un déploiement du backend sont des états distincts.
 
-> Évolution préparée le 02.09.2026 : synchronisation optionnelle du catalogue
-> backend depuis le catalogue publié sur Pages. Voir
+> Synchronisation optionnelle du catalogue backend : préparée le 02.09.2026,
+> désactivée par défaut et documentée dans
 > [la procédure et les limites](docs/BACKEND_CATALOGUE_SYNC.md).
-> Son activation en production doit être vérifiée séparément ; elle est désactivée
-> par défaut. Les jalons et résultats historiques ci-dessous restent datés.
+> Le contrôle historique du 7 octobre décrit une synchronisation réussie en production ;
+> son état actuel doit être confirmé par `/api/health`, notamment `syncEnabled`,
+> `lastSuccessAt` et `lastError`.
 
 Ce document est la référence technique et opérationnelle pour reprendre le projet après une interruption.
 
-> **État actualisé au 12 septembre 2026**
+> **Jalon historique validé au 12 septembre 2026**
 >
 > Le projet dispose désormais :
 > - d'une recherche classique locale avec facettes ;
@@ -22,7 +37,7 @@ Ce document est la référence technique et opérationnelle pour reprendre le pr
 > - d'un backend Node sécurisé pour les appels OpenAI ;
 > - d'un assistant de construction de parcours fondé exclusivement sur le catalogue officiel.
 >
-> Jalon courant de l'assistant de parcours :
+> Jalon initial V1 de l'assistant de parcours :
 > - commit : `266837ffa9a2b9e3a33ba000cf393897d4fb42ad` ;
 > - tag : `pathway-assistant-v1-2026-09-12` ;
 > - tests : **329/329 réussis** ;
@@ -40,9 +55,11 @@ Ce document est la référence technique et opérationnelle pour reprendre le pr
 - Dépôt distant : [github.com/technologies-formation/catalogue-formations](https://github.com/technologies-formation/catalogue-formations).
 - URL publique du frontend : [technologies-formation.github.io/catalogue-formations](https://technologies-formation.github.io/catalogue-formations/).
 - URL publique du backend Luna et de l'assistant de parcours : `https://api.a658yg-catalogue.ch`.
-- Le catalogue public contient 1 058 formations au 13 septembre 2026. Cette volumétrie peut évoluer avec les mises à jour quotidiennes du catalogue.
+- Snapshot versionné examiné le 18 octobre 2026 : 1 050 formations, daté du 16 octobre, selon `reports/catalogue-import-report.md`.
+- Volumes historiques : 1 058 formations au 13 septembre ; 1 073 au contrôle du 7 octobre. Ces constats datés ne décrivent pas nécessairement le catalogue servi aujourd'hui.
+- Pour la démonstration sur le réseau institutionnel, l'adresse documentée au 7 octobre reste `https://endch4cfkas.preview.hosting-ik.com`. Le domaine cible `https://catalogue.a658yg-catalogue.ch` doit être retesté sur ce réseau début novembre, comme prévu dans la section consacrée à Infomaniak.
 
-### Jalon courant — Assistant de parcours V1
+### Jalon historique — Assistant de parcours V1
 
 L'état stable de référence au 12 septembre 2026 est identifié par :
 
@@ -111,7 +128,7 @@ La validation comprend 332 tests automatisés réussis, un lint sans erreur ni a
 - Ancien jalon public du 20 août 2026 : `projet-2-public-v1.4-2026-08-20`.
 - Le benchmark indépendant final Luna a été exécuté sur un snapshot de 1 058 formations.
 
-Les jalons antérieurs restent conservés pour l'historique. Pour toute nouvelle reprise ou évolution de l'assistant de parcours, utiliser en priorité le tag `pathway-assistant-v1-2026-09-12`.
+Les jalons antérieurs restent conservés pour l'historique. Le tag `pathway-assistant-v1-2026-09-12` permet de retrouver la V1 initiale ; il ne contient pas les évolutions ultérieures. Pour poursuivre le développement courant, partir de la révision actuelle de `main` après vérification du dépôt. Un retour à un ancien tag est une opération explicite, pas la procédure normale de reprise.
 
 Avant toute intervention, vérifier :
 
@@ -120,6 +137,28 @@ git status
 git branch --show-current
 git log --oneline -5
 ```
+
+### Reprise directe depuis GitHub
+
+Le dépôt versionné est la source de vérité du code et du guide. Les supports de
+présentation servent de contexte historique et ne remplacent pas son état actuel.
+
+1. Lire `GUIDE_REPRISE.md`, les consignes applicables du dépôt et les documents liés.
+2. Vérifier la tête de `main`, les branches et propositions de modification déjà
+   ouvertes, puis les workflows associés à la révision concernée.
+3. Avec un clone de travail, vérifier aussi la branche, les modifications locales et
+   la synchronisation distante avant toute édition. Une lecture via le connecteur
+   GitHub ne renseigne pas l'état du poste personnel ou d'un ancien Codespace.
+4. Préparer une modification ciblée du guide sur une branche dédiée, depuis une
+   révision connue. Contrôler le diff et proposer la fusion dans GitHub.
+5. Vérifier de nouveau `main` avant la fusion : le workflow quotidien peut publier
+   un nouveau catalogue pendant le travail.
+
+Un changement du guide ne justifie pas un appel OpenAI ou une nouvelle mesure de
+pertinence. Toute évolution du code, fusion ou mise en production doit conserver
+un périmètre explicite. Un push sur `main` déclenche actuellement le workflow Pages,
+y compris pour une modification documentaire ; le backend Infomaniak suit sa
+procédure séparée.
 
 ## Environnement local
 
@@ -266,6 +305,40 @@ Si aucune formation n'est suffisamment pertinente, Luna retourne `abstain = true
 
 Les essais récents sur les restrictions de public, les demandes multi-intentions, la présentation orale et l'abstention sont des tests fonctionnels. Ils ne constituent pas une validation indépendante.
 
+### Référentiels du profil de parcours — jalon du 18 octobre 2026
+
+La centralisation est intégrée à `main` par `bbc7ed98138c998684bdab350b898b0dc4b56666`.
+Le [contrat HTTP v1](docs/PROFILE_REFERENCES.md) décrit le format et ses limites.
+Sa mention initiale « développement local, non publié, non déployé » décrit
+l'état de préparation ; la publication GitHub et Pages est maintenant vérifiée.
+La mise en service de l'endpoint sur Infomaniak n'est pas établie par ces preuves.
+
+- `src/config/pathwayProfile.js` définit les huit champs, options et contraintes
+  partagés par le formulaire, le validateur HTTP et l'endpoint.
+- `server/profileReferences.mjs` expose `GET /api/profile-references`, sans appel IA,
+  sans accès au catalogue et indépendamment de la clé OpenAI et du drapeau du parcours.
+- Le format porte `schemaVersion: 1`, une révision SHA-256 et le périmètre `pathway`.
+  L'ETag et `If-None-Match` permettent les réponses 200/304.
+- Les suggestions d'entités viennent de `src/config/entities.js`. Une entité libre
+  reste acceptée ; les suggestions ne constituent pas une liste blanche exhaustive.
+- Les catégories du parcours restent `PAT`, `PE`, `PU Police`, `PU Prison`, `PJ`.
+  Aucune conversion vers les catégories internes de ciblage n'est introduite.
+- Le formulaire exige la catégorie de personnel, le rôle et l'objectif.
+  L'API exige le rôle et l'objectif, conserve des chaînes libres et n'impose pas
+  les listes d'options comme valeurs fermées.
+- Cette évolution ne raccorde pas l'avatar et n'ajoute aucun déclenchement de recherche
+  ou de construction de parcours. Le lecteur avatar, la gestion d'un référentiel
+  obsolète et la validation sur le réseau institutionnel restent des étapes distinctes.
+
+Validation locale consignée dans le contrat le 18 octobre : **352 tests réussis**,
+dont 14 nouveaux, lint, `git diff --check`, build standard et build `self-hosted`
+réussis, sans connexion externe ni clé OpenAI. Le rendu du formulaire a été testé
+côté serveur, sans validation dans un navigateur réel. Ces résultats sont ceux
+du contrôle documenté, pas une nouvelle exécution pendant la reprise du guide.
+Le workflow Pages de `bbc7ed9` confirme séparément la réussite de ses étapes
+tests, lint et build standard ; il ne valide pas le build `self-hosted`
+ni le déploiement Node Infomaniak.
+
 ### Disponibilité des sessions
 
 Les Sessions forment un bloc séparé des cinq facettes Cours :
@@ -359,7 +432,7 @@ Le chemin dépend de l’origine de la modification :
 
 ### Push direct ou humain sur `main`
 
-`.github/workflows/deploy.yml` installe les dépendances, construit l’application et déploie `dist` sur GitHub Pages.
+`.github/workflows/deploy.yml` installe les dépendances, exécute les tests et le lint, construit l’application, prépare le catalogue publié, déploie `dist` sur GitHub Pages et contrôle la disponibilité de l’URL publique.
 
 ### Mise à jour automatique du catalogue
 
@@ -605,6 +678,7 @@ Endpoints :
 
 - `GET /api/health`
 - `GET /api/catalogue`
+- `GET /api/profile-references` : présent dans le code depuis `bbc7ed9` ; disponibilité Infomaniak à vérifier séparément.
 - `POST /api/search`
 - `POST /api/pathway`
 
@@ -621,7 +695,7 @@ Le backend applique actuellement, en développement comme sur le pilote public :
 - mauvaise méthode HTTP : `405` avec en-tête `Allow` ;
 - route inconnue : HTTP `404` ;
 - erreur interne ou OpenAI : HTTP `500` ;
-- réponses JSON avec `Cache-Control: no-store`.
+- réponses JSON des routes de recherche avec `Cache-Control: no-store` ; le référentiel de profil utilise son contrat spécifique de revalidation (`public, max-age=0, must-revalidate` et ETag).
 
 Les erreurs techniques détaillées restent dans les logs serveur et ne sont pas renvoyées telles quelles au navigateur.
 
