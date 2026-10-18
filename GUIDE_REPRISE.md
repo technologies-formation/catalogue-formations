@@ -63,9 +63,9 @@ l'avatar prépare une nouvelle interaction avec ces services. Il n'est pas un se
 | Catalogue, recherche classique, Luna et parcours | [catalogue-formations](https://github.com/technologies-formation/catalogue-formations), `main` à `bbc7ed9` | Code versionné ; tests, lint et build du workflow Pages réussis le 18 octobre | Le fichier du moteur de parcours a été contrôlé et remplacé le 18 octobre ; aucune révision globale du runtime n'est attestée |
 | Données du catalogue | `reports/catalogue-import-report.md`, commit `3efb6c4` | Snapshot du 16 octobre, 1 050 formations | La date d'un workflow réussi n'est pas nécessairement celle d'un nouveau snapshot |
 | Hébergement de même origine | Section Infomaniak de ce guide, jalon `8a247c0` du 7 octobre | Déploiement et essai institutionnel consignés à cette date | Les domaines personnalisés et le réseau doivent être retestés comme prévu |
-| Référentiels du profil | `src/config/pathwayProfile.js`, `server/profileReferences.mjs`, contrat HTTP v1 | Centralisés dans le catalogue depuis `bbc7ed9` | Endpoint Node non confirmé en production ; aucun consommateur avatar raccordé |
+| Référentiels du profil | `src/config/pathwayProfile.js`, `server/profileReferences.mjs`, contrat HTTP v1 | Centralisés dans le catalogue depuis `bbc7ed9` | Endpoint Infomaniak vérifié le 18 octobre ; aucun consommateur avatar raccordé au moteur |
 | Avatar publié | [a658-yg-avatar](https://github.com/technologies-formation/a658-yg-avatar), `main` à `07a9e0990b9daf1bd515a008f8cbe9045877e45b` | Questionnaire V5 de démonstration, sans connexion Luna ni backend de production | La publication ne prouve pas une génération réelle de formations |
-| Avatar en préparation | Branche `feat/avatar-interactive-local` à `b19078fe9d068febf5282f5420953d7184d4ed8a` | Simulation locale, lecteur des référentiels et questionnaire aligné ; contrôle Chromium ordinateur/mobile réussi | Branche non fusionnée ; adaptateur désactivé et non importé par l'interface ou le simulateur |
+| Avatar en préparation | Branche `feat/avatar-interactive-local` au jalon de code `045a0c48b5ca77831a0c6316f64de09fe8071dc7` | Simulation locale, brouillon restauré, choix actualisables et confirmation explicite ; 60 tests | Branche non fusionnée ; adaptateur désactivé et non importé par l'interface ou le simulateur |
 
 Les révisions ci-dessus sont des repères datés. Relire les têtes distantes avant
 tout travail ; ne pas supposer qu'une branche portant un nom fonctionnel reste
@@ -158,7 +158,7 @@ Il n'est toujours importé ni par la page ni par le serveur de simulation.
 | --- | --- | --- |
 | Contrat et nomenclatures | Huit champs consommés ; entité libre, choix et limites issus du document | Vérifier la version réellement servie par l'hébergement |
 | Référentiel HTTP | Lecteur testé et service Infomaniak vérifié : 200/304, prévol 204, origine refusée 403 ; contrat vivant accepté par le lecteur avatar | Cadrer le chargement serveur de l’avatar et vérifier son futur hébergement et le réseau institutionnel |
-| Brouillon et confirmation | Correction sans envoi ; anciens résultats invalidés ; révision différente bloquée avant POST | Définir le renouvellement des choix et la conservation du brouillon après rechargement |
+| Brouillon et confirmation | Brouillon de session restauré ; actualisation sans perte des codes, valeurs retirées signalées et confirmation explicite en simulation | Cadrer le chargement serveur et la confirmation avant raccordement réel |
 | Interface | DOM de test et Chromium réel sur le runner GitHub ; captures ordinateur/mobile examinées | Compléter ultérieurement les essais sur appareils physiques et réseau institutionnel |
 | Délai parcours | Adaptateur toujours à 10 secondes par défaut, configurable ; lecture du référentiel bornée séparément | Choisir le délai compatible avec les traitements du moteur |
 | Activation | Simulation seule exposée ; aucun appel OpenAI pendant ce jalon | Cadrer la destination, l'accès, les quotas/budget, la concurrence et le contrôle des réponses |
@@ -201,9 +201,50 @@ Contrôles directs sur `https://api.a658yg-catalogue.ch` :
 
 Ce sont des vérifications HTTP publiques et de compatibilité, sans appel OpenAI
 (0 token / 0 $). Elles ne prouvent ni l'accès sur le réseau institutionnel ni le
-raccordement réel de l'avatar, qui reste désactivé. La prochaine phase porte sur
-le renouvellement des choix, la conservation du brouillon et la confirmation du
-profil dans l'avatar, puis le cadrage séparé de son raccordement serveur.
+raccordement réel de l'avatar, qui reste désactivé. Le flux de renouvellement des choix, de conservation du brouillon et de confirmation
+a ensuite été implémenté en simulation dans l'avatar ; voir le jalon suivant.
+Le raccordement serveur reste à cadrer séparément.
+
+### Avatar : brouillon, choix actualisés et confirmation — 18 octobre
+
+La branche existante `feat/avatar-interactive-local` contient le flux de simulation
+au jalon de code `045a0c48b5ca77831a0c6316f64de09fe8071dc7`, après l'implémentation
+`7ffff5473bc55fd876d0bd5f3595773a527a468d` et les ajustements de lisibilité.
+
+- Après la dernière réponse, **Confirmer le profil et simuler** est nécessaire.
+  Une correction, une actualisation ou un rechargement ne lance aucune simulation.
+- Le brouillon est restauré depuis `sessionStorage` dans le même onglet et la même
+  origine locale : réponses sous leurs codes, étape et saisie en cours. Ni résultat,
+  ni confirmation, ni jeton ne sont sauvegardés. Recommencer efface le brouillon.
+  Une correction non enregistrée n'est pas restaurée. Si le stockage est indisponible,
+  le formulaire reste utilisable et le signale.
+- **Actualiser les choix** conserve le profil et relit le fichier explicitement
+  configuré côté serveur local. Un nouveau libellé conserve la valeur du code ;
+  un choix retiré ou une limite réduite marque la réponse **À revérifier** et bloque
+  la confirmation jusqu'à correction. Une entité libre reste conservée.
+- La révision courante est relue avant chaque simulation : un changement (409),
+  une indisponibilité (503) ou une confirmation manquante sont refusés avant quota.
+  Les quotas ne sont pas réinitialisés par une actualisation. Les réponses tardives
+  d'un profil corrigé sont ignorées. Le booléen de confirmation n'est pas une
+  authentification ni une activation du moteur réel.
+- La zone de saisie est masquée pendant la vérification du profil, les consignes
+  répétées sont remplacées et le récapitulatif mobile garde la fin de l'échange visible.
+
+Les [60 tests Node](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39142566897)
+et le [contrôle Chromium](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39142566949)
+réussissent au commit `045a0c4`. Les sept captures ordinateur/mobile ont été
+examinées (1280 × 900 et 390 × 844) : pas de problème bloquant observé. Cinq
+simulations explicitement confirmées, quota de cinq, aucune erreur navigateur,
+aucune requête externe et aucun débordement horizontal. Les captures sont dans
+l'artefact `avatar-browser-simulation`, rétention de 14 jours. Ce contrôle ne couvre
+pas Safari, les appareils physiques, le clavier tactile ou le réseau institutionnel.
+Le [bilan avatar](https://github.com/technologies-formation/a658-yg-avatar/blob/7e63dee55f3f45c0865ac1d1ed0e88307a6cfd60/experimental-service/REFERENTIELS_PARCOURS.md)
+est consigné au commit `7e63dee55f3f45c0865ac1d1ed0e88307a6cfd60`.
+
+Ces contrôles sont fonctionnels simulés et de régression ; ils ne constituent
+pas un benchmark indépendant du moteur. Le serveur local n'appelle toujours pas Infomaniak ; l'adaptateur
+réel reste désactivé et non importé. La branche publique `main` de l'avatar reste
+au jalon `07a9e09`. Coût OpenAI API : 0 token / 0 $.
 
 ### Prochain point de reprise
 
@@ -239,7 +280,8 @@ Ordre de travail confirmé avec l'utilisateur le 18 octobre 2026 :
    La démonstration publique sur `main` reste au jalon `07a9e09` ; l'adaptateur
    n'est pas connecté. Le relevé SSH et les contrôles HTTP ultérieurs confirment
    le référentiel déjà opérationnel sur Infomaniak ; voir le bilan ci-dessus.
-   La suite concerne le brouillon, l'actualisation et le cadrage du raccordement.
+   Le brouillon, l'actualisation et la confirmation ont ensuite été implémentés
+   en simulation ; le cadrage du raccordement réel reste à réaliser.
 
 Le dépassement d'heures n'est pas prioritaire et sa gestion reste inchangée.
 Un entretien déjà évoqué reste à faire dans le Manager Infomaniak : **renommer
@@ -257,8 +299,9 @@ Pour la phase avatar :
 
 1. Relire les deux dépôts et la branche interactive, puis comparer les révisions
    aux repères ci-dessus et inspecter les éventuels changements intervenus depuis.
-2. Le contrôle visuel Chromium du mode référencé est effectué. Cadrer
-   l'actualisation des choix et la conservation du brouillon après rechargement.
+2. Le mode référencé conserve le brouillon après rechargement, actualise les
+   choix sans perdre les réponses et exige une confirmation explicite en simulation.
+   Cadrer maintenant le chargement serveur et le raccordement réel de l'adaptateur.
 3. **Référentiel Infomaniak vérifié et opérationnel.** Les empreintes des cinq
    modules concernés, de leur dépendance `entities` et du moteur corrigé sont
    conformes ; les contrôles HTTP publics passent sans appel IA. Aucun remplacement
