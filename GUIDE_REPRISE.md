@@ -65,7 +65,7 @@ l'avatar prépare une nouvelle interaction avec ces services. Il n'est pas un se
 | Hébergement de même origine | Section Infomaniak de ce guide, jalon `8a247c0` du 7 octobre | Déploiement et essai institutionnel consignés à cette date | Les domaines personnalisés et le réseau doivent être retestés comme prévu |
 | Référentiels du profil | `src/config/pathwayProfile.js`, `server/profileReferences.mjs`, contrat HTTP v1 | Centralisés dans le catalogue depuis `bbc7ed9` | Endpoint Infomaniak vérifié le 18 octobre ; aucun consommateur avatar raccordé au moteur |
 | Avatar publié | [a658-yg-avatar](https://github.com/technologies-formation/a658-yg-avatar), `main` à `07a9e0990b9daf1bd515a008f8cbe9045877e45b` | Questionnaire V5 de démonstration, sans connexion Luna ni backend de production | La publication ne prouve pas une génération réelle de formations |
-| Avatar en préparation | Branche `feat/avatar-interactive-local` au jalon `11796dd23cb16484860bc5a0eb3ddeba3c7764f8` | Simulation avec brouillon/confirmation, session serveur préparée et désactivée ; 72 tests | Branche non fusionnée ; adaptateur désactivé et non importé par l'interface ou le simulateur |
+| Avatar en préparation | Branche `feat/avatar-interactive-local`, code `d838d06894b49cfe21ba104849e6cf23f379caa5`, bilan `e292965d41948de026714da78ee1b3a73557f152` | Simulation avec affichage de résultat, session et frontière d’accès privé préparées ; 84 tests et Chromium réussis | Branche non fusionnée ; routes privées non exposées et moteur non connecté |
 
 Les révisions ci-dessus sont des repères datés. Relire les têtes distantes avant
 tout travail ; ne pas supposer qu'une branche portant un nom fonctionnel reste
@@ -288,13 +288,75 @@ réussit aussi en régression sur le même commit ; le contrôle visuel détaill
 sept captures reste celui du jalon `045a0c4` documenté plus haut.
 Coût OpenAI API : 0 token / 0 $.
 
-**Prochaine étape :** préparer l'exposition privée et l'affichage des résultats de
-parcours dans l'avatar, en conservant la simulation. Avant un premier essai réel,
+**Suite prévue à ce jalon historique :** préparer l'exposition privée et l'affichage
+des résultats. Cette préparation est réalisée au jalon suivant. Avant un premier essai réel,
 fixer le cas fictif, l'accès, l'environnement, le nombre maximal de tentatives, le
 suivi de coût et les délais de bout en bout. Les quotas de tentatives ne sont pas
 un plafond en USD et ne couvrent pas les autres consommateurs du backend partagé.
 Aucune clé OpenAI n'ira dans le navigateur. Le raccordement de recherche Luna et la
 publication de l'avatar connecté restent des périmètres distincts.
+
+### Avatar : affichage et frontière d’accès privé — 18 octobre, reprise après rangement du PC
+
+Le code est publié sur la branche d’essai existante au commit
+`d838d06894b49cfe21ba104849e6cf23f379caa5`, avec le
+[bilan détaillé](https://github.com/technologies-formation/a658-yg-avatar/blob/e292965d41948de026714da78ee1b3a73557f152/experimental-service/AFFICHAGE_ACCES_PRIVE.md).
+La branche publique `main` de l’avatar reste inchangée.
+
+- Le rendu conserve les rubriques du moteur, les justifications, durées, publics,
+  liens officiels, limites, résultats vides et mesures de consommation disponibles.
+  Le contrôle de résultat est partagé avec l’adaptateur. Les textes ne sont pas
+  interprétés comme du HTML ; les liens dangereux sont refusés.
+- La simulation locale peut recevoir un aperçu **explicitement configuré**, signalé
+  comme données de test ne répondant pas au profil. Il apparaît après confirmation
+  d’un parcours et disparaît lors d’une modification ou actualisation. Ni la page
+  publique ni la commande locale habituelle ne chargent un aperçu par défaut.
+- `private-pathway-handler.mjs` prépare l’accès privé mais n’écoute aucun port et
+  n’est importé par aucun serveur démarrable. Désactivé par défaut, il exige une
+  origine HTTPS, une identité vérifiée par une intégration serveur et une session
+  explicite. Aucun système de connexion n’est installé et aucun hébergement choisi.
+- Les deux routes préparées (non exposées) sont `GET /private/profile-references`
+  et `POST /private/pathway`. Une confirmation aléatoire générée côté serveur est
+  liée à l’identité/révision, expire après cinq minutes et ne sert qu’une fois ;
+  32 confirmations au maximum restent en attente par instance. Aucun jeton partagé
+  n’est ajouté au navigateur. Les quotas persistants restent ceux de la session.
+  Ni CORS ouvert, ni cache des profils/résultats, ni relance automatique.
+
+Les [84 tests Node de la CI](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39156186306)
+passent comme en local. Le [contrôle Chromium](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39156186284)
+réussit sur ordinateur/mobile (1280 × 900 et 390 × 844), avec cinq simulations,
+aucune erreur navigateur, aucune requête distante et aucun débordement horizontal.
+Neuf captures sont produites ; quatre captures du résultat et de l’état final ont
+été examinées, sans problème bloquant observé. Artefact `avatar-browser-simulation`,
+rétention 14 jours. Ce sont des essais fonctionnels simulés et de régression,
+pas un benchmark indépendant ni une validation d’authentification ou de moteur réels.
+Safari, appareils physiques, clavier tactile et réseau institutionnel ne sont pas couverts.
+Coût OpenAI API : 0 token / 0 $. Le quota de travail Codex est distinct de ce coût API.
+
+**Prochaine étape :** choisir l’hébergement et son contrôle d’identité privé,
+puis préparer les échanges du navigateur (référentiel, confirmation, délais longs,
+erreurs et brouillon conservé). Avant tout premier appel réel : cas fictif,
+plafond de tentatives, suivi de coût, délais des proxies et autorisation dédiée.
+Aucun déploiement Infomaniak ni appel au moteur réel n’a eu lieu pendant ce jalon.
+
+#### Emplacement local de l’avatar sur le PC
+
+Le 18 octobre 2026, l’utilisateur a copié `C:\Users\yanng\a658-yg-avatar` vers :
+
+```text
+C:\Users\yanng\OneDrive\Documents\Projets-ChatGPT-Codex\a658-yg-avatar
+```
+
+Les quatre éléments `.git`, `.github`, `experimental-service` et `index.html`
+sont visibles à destination. L’ouverture de la démonstration depuis cette nouvelle
+adresse a été confirmée par capture. L’utilisateur a ensuite confirmé la mise à la
+Corbeille de l’ancien dossier ; la consigne était de ne pas vider la Corbeille.
+L’intégrité complète du dépôt local, sa branche et sa synchronisation avec GitHub
+n’ont pas été vérifiées : ne pas supposer que cette copie contient les derniers jalons.
+Adapter les anciens raccourcis/commandes lors de leur prochaine utilisation.
+Les dossiers d’outils `.codex`, `.copilot`, `.local`, `.vscode` et `.vscode-shared`
+restent dans le profil Windows ; ne pas les déplacer avec le code du projet.
+Les documents de sauvegarde restent dans leur dossier existant sous `Projets-ChatGPT-Codex`.
 
 ### Prochain point de reprise
 
@@ -351,8 +413,9 @@ Pour la phase avatar :
    aux repères ci-dessus et inspecter les éventuels changements intervenus depuis.
 2. Le mode référencé conserve le brouillon après rechargement, actualise les
    choix sans perdre les réponses et exige une confirmation explicite en simulation.
-   La session serveur est préparée et désactivée ; préparer ensuite son exposition
-   privée et l'affichage des résultats, puis cadrer le premier essai réel.
+   La session, le rendu de résultat et la frontière d’accès privé sont préparés ;
+   choisir l’hébergement et son contrôle d’identité, puis préparer les échanges
+   privés du navigateur et cadrer le premier essai réel. Aucun raccordement actif.
 3. **Référentiel Infomaniak vérifié et opérationnel.** Les empreintes des cinq
    modules concernés, de leur dépendance `entities` et du moteur corrigé sont
    conformes ; les contrôles HTTP publics passent sans appel IA. Aucun remplacement
