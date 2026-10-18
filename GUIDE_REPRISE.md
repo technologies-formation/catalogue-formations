@@ -65,7 +65,7 @@ l'avatar prépare une nouvelle interaction avec ces services. Il n'est pas un se
 | Hébergement de même origine | Section Infomaniak de ce guide, jalon `8a247c0` du 7 octobre | Déploiement et essai institutionnel consignés à cette date | Les domaines personnalisés et le réseau doivent être retestés comme prévu |
 | Référentiels du profil | `src/config/pathwayProfile.js`, `server/profileReferences.mjs`, contrat HTTP v1 | Centralisés dans le catalogue depuis `bbc7ed9` | Endpoint Infomaniak vérifié le 18 octobre ; aucun consommateur avatar raccordé au moteur |
 | Avatar publié | [a658-yg-avatar](https://github.com/technologies-formation/a658-yg-avatar), `main` à `07a9e0990b9daf1bd515a008f8cbe9045877e45b` | Questionnaire V5 de démonstration, sans connexion Luna ni backend de production | La publication ne prouve pas une génération réelle de formations |
-| Avatar en préparation | Branche `feat/avatar-interactive-local` au jalon de code `045a0c48b5ca77831a0c6316f64de09fe8071dc7` | Simulation locale, brouillon restauré, choix actualisables et confirmation explicite ; 60 tests | Branche non fusionnée ; adaptateur désactivé et non importé par l'interface ou le simulateur |
+| Avatar en préparation | Branche `feat/avatar-interactive-local` au jalon `11796dd23cb16484860bc5a0eb3ddeba3c7764f8` | Simulation avec brouillon/confirmation, session serveur préparée et désactivée ; 72 tests | Branche non fusionnée ; adaptateur désactivé et non importé par l'interface ou le simulateur |
 
 Les révisions ci-dessus sont des repères datés. Relire les têtes distantes avant
 tout travail ; ne pas supposer qu'une branche portant un nom fonctionnel reste
@@ -160,8 +160,8 @@ Il n'est toujours importé ni par la page ni par le serveur de simulation.
 | Référentiel HTTP | Lecteur testé et service Infomaniak vérifié : 200/304, prévol 204, origine refusée 403 ; contrat vivant accepté par le lecteur avatar | Cadrer le chargement serveur de l’avatar et vérifier son futur hébergement et le réseau institutionnel |
 | Brouillon et confirmation | Brouillon de session restauré ; actualisation sans perte des codes, valeurs retirées signalées et confirmation explicite en simulation | Cadrer le chargement serveur et la confirmation avant raccordement réel |
 | Interface | DOM de test et Chromium réel sur le runner GitHub ; captures ordinateur/mobile examinées | Compléter ultérieurement les essais sur appareils physiques et réseau institutionnel |
-| Délai parcours | Adaptateur toujours à 10 secondes par défaut, configurable ; lecture du référentiel bornée séparément | Choisir le délai compatible avec les traitements du moteur |
-| Activation | Simulation seule exposée ; aucun appel OpenAI pendant ce jalon | Cadrer la destination, l'accès, les quotas/budget, la concurrence et le contrôle des réponses |
+| Délai parcours | Session serveur : délai explicite obligatoire, maximum 210 s ; adaptateur isolé : défaut historique de 10 s ; référentiel borné séparément | Vérifier les limites du navigateur et des proxies avant essai réel ; 200 s proposé pour le POST, non déployé |
+| Activation | Session préparée sans route ni import actif ; configuration, quotas et concurrence testés hors ligne | Choisir hébergement et accès privés, budget et plafonds d’essai ; activer uniquement le périmètre validé |
 
 Les essais restent des contrôles techniques et de régression. Le contrôle croisé
 avec le vrai générateur du catalogue a accepté la révision
@@ -203,7 +203,8 @@ Ce sont des vérifications HTTP publiques et de compatibilité, sans appel OpenA
 (0 token / 0 $). Elles ne prouvent ni l'accès sur le réseau institutionnel ni le
 raccordement réel de l'avatar, qui reste désactivé. Le flux de renouvellement des choix, de conservation du brouillon et de confirmation
 a ensuite été implémenté en simulation dans l'avatar ; voir le jalon suivant.
-Le raccordement serveur reste à cadrer séparément.
+La session serveur a ensuite été préparée sans activation ; voir le jalon ci-dessous.
+Son exposition HTTP, son hébergement et son premier essai réel restent à cadrer séparément.
 
 ### Avatar : brouillon, choix actualisés et confirmation — 18 octobre
 
@@ -245,6 +246,55 @@ Ces contrôles sont fonctionnels simulés et de régression ; ils ne constituent
 pas un benchmark indépendant du moteur. Le serveur local n'appelle toujours pas Infomaniak ; l'adaptateur
 réel reste désactivé et non importé. La branche publique `main` de l'avatar reste
 au jalon `07a9e09`. Coût OpenAI API : 0 token / 0 $.
+
+### Préparation du raccordement serveur — 18 octobre
+
+La branche avatar contient la [préparation serveur](https://github.com/technologies-formation/a658-yg-avatar/blob/11796dd23cb16484860bc5a0eb3ddeba3c7764f8/experimental-service/PLAN_ENVIRONNEMENT_TEST.md)
+au commit `11796dd23cb16484860bc5a0eb3ddeba3c7764f8`. Le nouveau
+`experimental-service/pathway-session.mjs` réutilise le lecteur, l'adaptateur et
+le compteur existants. Désactivé par défaut, il ne fournit aucune route HTTP,
+commande de lancement, lecture d'environnement ou destination implicite. Il
+n'est importé ni par l'interface ni par les serveurs de simulation.
+
+La préparation exige une même origine HTTPS explicitement autorisée pour les deux
+endpoints, une seule session dans une seule instance, un fichier privé absolu
+persistant, des quotas et un délai choisis explicitement. Elle fige le profil avant
+la lecture réseau, revalide le référentiel, puis réserve une tentative avant le POST.
+Révision modifiée, profil invalide, stockage indisponible, concurrence et identifiant
+déjà tenté dans cette instance bloquent l'envoi. Le compteur et l'arrêt persistent ;
+la détection des identifiants ne persiste pas au redémarrage. Pas de relance automatique
+ni de remboursement d'une tentative en erreur ou au résultat incertain.
+
+Le moteur catalogue utilise jusqu'à deux passes de 90 secondes : le défaut de
+10 secondes de l'adaptateur isolé ne suffit pas à décider le délai d'un raccordement.
+La session exige un délai explicite ; le maximum de l'adaptateur passe à 210 secondes.
+200 secondes pour le POST est une proposition à valider avec le navigateur, le serveur
+et les proxies ; aucune limite de proxy réelle n'est attestée par ce choix. Le moteur
+Infomaniak n'a pas été modifié. L'expiration côté consommateur ne garantit pas l'arrêt
+des appels OpenAI déjà engagés dans le backend.
+
+L'adaptateur borne aussi le JSON reçu (256 Kio par défaut, maximum 1 Mio), refuse les
+redirections, contrôle UTF-8, type MIME, catégories, liens officiels, durées et mesures
+de consommation. Il conserve les données acceptées sans recomposer les recommandations.
+Un contrôle croisé hors ligne a accepté sans modification la réponse déjà enregistrée
+dans `reports/pathway-functional-check-2026-10-18.json`. Ce n'est pas un nouvel appel
+réel ni un benchmark indépendant.
+
+Les [72 tests Node de la CI](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39144470141)
+passent comme en local : neuf nouveaux cas de session et trois cas supplémentaires
+d'adaptateur couvrent ces protections. L'interface est inchangée par cette préparation.
+Le [workflow Chromium](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39144470134)
+réussit aussi en régression sur le même commit ; le contrôle visuel détaillé des
+sept captures reste celui du jalon `045a0c4` documenté plus haut.
+Coût OpenAI API : 0 token / 0 $.
+
+**Prochaine étape :** préparer l'exposition privée et l'affichage des résultats de
+parcours dans l'avatar, en conservant la simulation. Avant un premier essai réel,
+fixer le cas fictif, l'accès, l'environnement, le nombre maximal de tentatives, le
+suivi de coût et les délais de bout en bout. Les quotas de tentatives ne sont pas
+un plafond en USD et ne couvrent pas les autres consommateurs du backend partagé.
+Aucune clé OpenAI n'ira dans le navigateur. Le raccordement de recherche Luna et la
+publication de l'avatar connecté restent des périmètres distincts.
 
 ### Prochain point de reprise
 
@@ -301,7 +351,8 @@ Pour la phase avatar :
    aux repères ci-dessus et inspecter les éventuels changements intervenus depuis.
 2. Le mode référencé conserve le brouillon après rechargement, actualise les
    choix sans perdre les réponses et exige une confirmation explicite en simulation.
-   Cadrer maintenant le chargement serveur et le raccordement réel de l'adaptateur.
+   La session serveur est préparée et désactivée ; préparer ensuite son exposition
+   privée et l'affichage des résultats, puis cadrer le premier essai réel.
 3. **Référentiel Infomaniak vérifié et opérationnel.** Les empreintes des cinq
    modules concernés, de leur dépendance `entities` et du moteur corrigé sont
    conformes ; les contrôles HTTP publics passent sans appel IA. Aucun remplacement
