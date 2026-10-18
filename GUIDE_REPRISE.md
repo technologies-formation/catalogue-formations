@@ -149,9 +149,32 @@ et les réponses antérieures ; aucune correction du questionnaire ne doit décl
 
 ### Prochain point de reprise
 
-La prochaine évolution possible est l'alignement **hors ligne** de la branche
-avatar existante avec le contrat `docs/PROFILE_REFERENCES.md`. Elle doit être
-cadrée avant développement, sans activer le moteur dans le cadre de la reprise du guide.
+Ordre de travail confirmé avec l'utilisateur le 18 octobre 2026 :
+
+1. **Fiabiliser les propositions annexes du parcours.** Le correctif documenté dans
+   [Pertinence des propositions annexes](docs/PATHWAY_SUPPLEMENTARY_RELEVANCE_2026-10-18.md)
+   supprime la promotion automatique d'un cours informatif en complément sur la seule
+   absence de restriction détectée. Les consignes des deux passes exigent aussi la
+   pertinence du sujet et du contexte. Les 356 tests, le lint et les deux builds
+   passent localement, avec des transports simulés et sans appel OpenAI.
+2. **Mettre en service et contrôler ce correctif sur le backend.** Une publication
+   GitHub/Pages ne suffit pas : vérifier séparément le déploiement Node Infomaniak,
+   la révision exécutée, le health et des scénarios fonctionnels réels. La diminution
+   des propositions hors sujet par Luna reste à confirmer ; les tests de classement
+   serveur ne sont pas une mesure de pertinence du modèle. Ce contrôle n'a pas été
+   effectué pendant le développement du correctif.
+3. **Revenir à l'avatar existant.** Aligner d'abord **hors ligne** la branche
+   `feat/avatar-interactive-local` sur `docs/PROFILE_REFERENCES.md`, puis cadrer le
+   raccordement au moteur. Il s'agit de réutiliser l'adaptateur et les services
+   existants, pas de construire un second moteur.
+
+Le dépassement d'heures n'est pas prioritaire et sa gestion reste inchangée.
+Le nettoyage éventuel d'Infomaniak est un sujet séparé : aucun inventaire précis
+des éléments à supprimer ni décision de suppression n'a été retrouvé. Ne pas
+assimiler les noms d'anciennes releases ou sauvegardes à une autorisation de les
+effacer. Ce nettoyage ne doit pas être confondu avec le correctif du parcours.
+
+Pour la phase avatar :
 
 1. Relire les deux dépôts et la branche interactive, puis comparer les révisions
    aux repères ci-dessus et inspecter les éventuels changements intervenus depuis.
