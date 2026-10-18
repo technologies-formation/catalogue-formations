@@ -337,6 +337,36 @@ reste à consolider, comme indiqué dans les jalons antérieurs.
   sans preuve. Ne pas exposer de secret ; relever les tokens et le coût de tout
   appel API du projet lorsqu'ils sont disponibles.
 
+#### Fonctionnement convenu : autonomie encadrée par jalons
+
+Accord explicite de l'utilisateur le **18 octobre 2026**, à conserver lors d'une
+reprise après perte des conversations. Ce nom décrit notre fonctionnement de
+collaboration ; il ne désigne pas une méthode officielle ni une installation de BMAD.
+
+Au début d'une nouvelle phase, le copilote propose : **« On avance en autonomie
+encadrée par jalons ? Voici le périmètre que je prends en charge… »** Il précise
+l'objectif, les actions prévues, les limites et les vérifications attendues.
+Il recueille l'accord si ce périmètre n'est pas déjà autorisé. Un accord ou un GO
+déjà donné reste valable pour la phase annoncée ; ne pas le redemander à chaque étape.
+
+Dans ce périmètre, le copilote consulte les sources, réalise les actions techniques,
+effectue les contrôles utiles, corrige les problèmes rencontrés et met à jour la
+documentation. Il avance sans multiplier les questions ou les manipulations manuelles,
+avec des points d'avancement courts : acquis, incertitudes et prochaine étape.
+L'utilisateur pilote les objectifs et les décisions qui engagent la suite.
+
+Si une décision manque, si une action dépasse le périmètre autorisé ou nécessite
+l'accès personnel de l'utilisateur, le copilote revient vers lui en expliquant le
+point précis à trancher. L'autonomie n'autorise pas implicitement une suppression,
+une dépense ou un déploiement qui n'était pas compris dans l'accord.
+
+À chaque jalon, distinguer ce qui est réalisé, testé, publié dans GitHub, déployé
+et encore prévu. Conserver les preuves, les limites et le prochain point de reprise
+dans ce guide afin de pouvoir continuer sans dépendre de l'historique des chats.
+La copie conservée sur le PC doit être réactualisée à partir du guide versionné,
+en gardant l'ancienne copie comme archive ; sa mise à jour locale ne peut pas être
+déduite d'une mise à jour GitHub et reste à confirmer par l'utilisateur.
+
 Les pièces de contexte fournies lors de cette reprise sont le comparatif des
 trois projets du 1er septembre, l'historique technique du 12 septembre,
 la valorisation économique du 13 septembre et les instructions permanentes.
