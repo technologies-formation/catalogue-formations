@@ -16,7 +16,9 @@
 >   Aucun nouvel essai du réseau institutionnel ni contrôle visuel n'a été effectué.
 > - `GET /api/profile-references` est désormais versionné sur `main`.
 >   Le déploiement Pages réussi ne prouve pas sa disponibilité sur le backend Node.
->   Son déploiement Infomaniak et le raccordement de l'avatar restent à vérifier ou à réaliser.
+>   Sa disponibilité Infomaniak est vérifiée le 18 octobre à 15:38 UTC : contrat v1,
+>   huit champs, 200/304, prévol 204 et refus d'origine non autorisée 403.
+>   Le raccordement réel de l'avatar reste à réaliser.
 >
 > Les constats de production et les résultats historiques ci-dessous conservent leurs dates.
 > Une publication GitHub, un déploiement Pages et un déploiement du backend sont des états distincts.
@@ -155,7 +157,7 @@ Il n'est toujours importé ni par la page ni par le serveur de simulation.
 | Sujet | État après alignement hors ligne | Reste à faire avant raccordement réel |
 | --- | --- | --- |
 | Contrat et nomenclatures | Huit champs consommés ; entité libre, choix et limites issus du document | Vérifier la version réellement servie par l'hébergement |
-| Référentiel HTTP | Lecteur testé avec transports injectés ; URL HTTPS et origine explicitement autorisées, sans destination par défaut | Installer les modules du référentiel sur Infomaniak et vérifier 200/304/CORS |
+| Référentiel HTTP | Lecteur testé et service Infomaniak vérifié : 200/304, prévol 204, origine refusée 403 ; contrat vivant accepté par le lecteur avatar | Cadrer le chargement serveur de l’avatar et vérifier son futur hébergement et le réseau institutionnel |
 | Brouillon et confirmation | Correction sans envoi ; anciens résultats invalidés ; révision différente bloquée avant POST | Définir le renouvellement des choix et la conservation du brouillon après rechargement |
 | Interface | DOM de test et Chromium réel sur le runner GitHub ; captures ordinateur/mobile examinées | Compléter ultérieurement les essais sur appareils physiques et réseau institutionnel |
 | Délai parcours | Adaptateur toujours à 10 secondes par défaut, configurable ; lecture du référentiel bornée séparément | Choisir le délai compatible avec les traitements du moteur |
@@ -176,6 +178,32 @@ Ce contrôle ne couvre pas Safari, les appareils physiques ni le clavier tactile
 Les preuves sont dans l'artefact `avatar-browser-simulation` (rétention 14 jours) ;
 le bilan est consigné sur la branche au commit `b19078f`. Le moteur réel reste
 déconnecté. Coût OpenAI API de ce jalon avatar : 0 token / 0 $.
+
+### Vérification Infomaniak du référentiel — 18 octobre, 15:38 UTC
+
+Le relevé SSH fourni par l'utilisateur confirme les SHA-256 attendus des cinq
+modules du référentiel (`searchApi`, `cors`, `pathwayAssistant`, `profileReferences`,
+`pathwayProfile`), de la dépendance `entities` et du moteur corrigé `pathwayEngine`.
+Les modules sont donc déjà présents : aucun remplacement ni redémarrage
+supplémentaire n'a été effectué lors de ce contrôle. Leur date d'installation
+n'est pas déduite du relevé ; l'opération ciblée antérieure ne concernait que le moteur.
+
+Contrôles directs sur `https://api.a658yg-catalogue.ch` :
+
+- `GET /api/profile-references` : 200, schéma v1 et huit champs ; document accepté
+  par le lecteur avatar et identique au générateur du catalogue.
+- Révision et ETag : `68da05c1b2668874873373762cd10897b6cd26e31422c9c300ecedab5845a60d`.
+- GET conditionnel depuis l'origine Pages autorisée : 304, origine autorisée
+  renvoyée, ETag exposé et `If-None-Match` autorisé.
+- Prévol OPTIONS depuis cette origine : 204 ; origine `https://example.invalid` : 403.
+- `/api/health` : `ok=true`, synchronisation active, 1 050 formations,
+  snapshot du 16 octobre et `lastError=null`.
+
+Ce sont des vérifications HTTP publiques et de compatibilité, sans appel OpenAI
+(0 token / 0 $). Elles ne prouvent ni l'accès sur le réseau institutionnel ni le
+raccordement réel de l'avatar, qui reste désactivé. La prochaine phase porte sur
+le renouvellement des choix, la conservation du brouillon et la confirmation du
+profil dans l'avatar, puis le cadrage séparé de son raccordement serveur.
 
 ### Prochain point de reprise
 
@@ -209,9 +237,9 @@ Ordre de travail confirmé avec l'utilisateur le 18 octobre 2026 :
    ordinateur/mobile a ensuite réussi dans la CI ; les captures ont été examinées
    et le bilan documenté au commit `b19078f`.
    La démonstration publique sur `main` reste au jalon `07a9e09` ; l'adaptateur
-   n'est pas connecté. La suite est l'audit des fichiers réellement présents, la mise
-   en service séparée du référentiel sur Infomaniak, puis le cadrage du raccordement
-   au moteur.
+   n'est pas connecté. Le relevé SSH et les contrôles HTTP ultérieurs confirment
+   le référentiel déjà opérationnel sur Infomaniak ; voir le bilan ci-dessus.
+   La suite concerne le brouillon, l'actualisation et le cadrage du raccordement.
 
 Le dépassement d'heures n'est pas prioritaire et sa gestion reste inchangée.
 Un entretien déjà évoqué reste à faire dans le Manager Infomaniak : **renommer
@@ -231,15 +259,11 @@ Pour la phase avatar :
    aux repères ci-dessus et inspecter les éventuels changements intervenus depuis.
 2. Le contrôle visuel Chromium du mode référencé est effectué. Cadrer
    l'actualisation des choix et la conservation du brouillon après rechargement.
-3. Préparer la mise en service du référentiel Infomaniak avec sauvegarde, vérification
-   des modules requis et tests HTTP sans appel IA. Le déploiement ciblé du moteur de
-   parcours n'a pas installé cet endpoint. Les tests synthétiques ne remplacent pas
-   le contrôle réseau ou un futur scénario fonctionnel réel.
-   Commencer par relever les SHA-256 de `server/searchApi.mjs`, `server/cors.mjs`,
-   `server/pathwayAssistant.mjs`, `server/profileReferences.mjs`,
-   `src/config/pathwayProfile.js`, de leur dépendance `src/config/entities.js`
-   et du moteur déjà corrigé. Les cinq premiers sont les modules concernés par
-   l'installation ; préserver le moteur et le fichier privé de configuration.
+3. **Référentiel Infomaniak vérifié et opérationnel.** Les empreintes des cinq
+   modules concernés, de leur dépendance `entities` et du moteur corrigé sont
+   conformes ; les contrôles HTTP publics passent sans appel IA. Aucun remplacement
+   supplémentaire n'est nécessaire à ce jalon. Préserver le moteur et le fichier
+   privé de configuration. Le réseau institutionnel reste à vérifier séparément.
 4. Avant tout essai réel, vérifier séparément le code effectivement déployé sur
    Infomaniak, la disponibilité HTTP du référentiel, les origines autorisées,
    le réseau institutionnel et le périmètre d'activation approuvé.
@@ -541,7 +565,9 @@ La centralisation est intégrée à `main` par `bbc7ed98138c998684bdab350b898b0d
 Le [contrat HTTP v1](docs/PROFILE_REFERENCES.md) décrit le format et ses limites.
 Sa mention initiale « développement local, non publié, non déployé » décrit
 l'état de préparation ; la publication GitHub et Pages est maintenant vérifiée.
-La mise en service de l'endpoint sur Infomaniak n'est pas établie par ces preuves.
+Ces preuves GitHub ne suffisaient pas à établir sa mise en service Infomaniak.
+Le relevé SSH et les contrôles HTTP du 18 octobre à 15:38 UTC la confirment
+désormais, comme détaillé dans le bilan de vérification ci-dessus.
 
 - `src/config/pathwayProfile.js` définit les huit champs, options et contraintes
   partagés par le formulaire, le validateur HTTP et l'endpoint.
@@ -908,7 +934,7 @@ Endpoints :
 
 - `GET /api/health`
 - `GET /api/catalogue`
-- `GET /api/profile-references` : présent dans le code depuis `bbc7ed9` ; disponibilité Infomaniak à vérifier séparément.
+- `GET /api/profile-references` : présent dans le code depuis `bbc7ed9` ; disponibilité Infomaniak vérifiée le 18 octobre (200/304 et CORS).
 - `POST /api/search`
 - `POST /api/pathway`
 
