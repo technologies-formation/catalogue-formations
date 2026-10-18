@@ -63,7 +63,7 @@ l'avatar prépare une nouvelle interaction avec ces services. Il n'est pas un se
 | Hébergement de même origine | Section Infomaniak de ce guide, jalon `8a247c0` du 7 octobre | Déploiement et essai institutionnel consignés à cette date | Les domaines personnalisés et le réseau doivent être retestés comme prévu |
 | Référentiels du profil | `src/config/pathwayProfile.js`, `server/profileReferences.mjs`, contrat HTTP v1 | Centralisés dans le catalogue depuis `bbc7ed9` | Endpoint Node non confirmé en production ; aucun consommateur avatar raccordé |
 | Avatar publié | [a658-yg-avatar](https://github.com/technologies-formation/a658-yg-avatar), `main` à `07a9e0990b9daf1bd515a008f8cbe9045877e45b` | Questionnaire V5 de démonstration, sans connexion Luna ni backend de production | La publication ne prouve pas une génération réelle de formations |
-| Avatar en préparation | Branche `feat/avatar-interactive-local` à `b11508ecc08a0934ff219c981f0697ecfe18b2f5` | Simulation locale, lecteur des référentiels et questionnaire aligné ; 10 commits devant `main` au contrôle | Branche non fusionnée ; adaptateur désactivé et non importé par l'interface ou le simulateur |
+| Avatar en préparation | Branche `feat/avatar-interactive-local` à `b19078fe9d068febf5282f5420953d7184d4ed8a` | Simulation locale, lecteur des référentiels et questionnaire aligné ; contrôle Chromium ordinateur/mobile réussi | Branche non fusionnée ; adaptateur désactivé et non importé par l'interface ou le simulateur |
 
 Les révisions ci-dessus sont des repères datés. Relire les têtes distantes avant
 tout travail ; ne pas supposer qu'une branche portant un nom fonctionnel reste
@@ -157,7 +157,7 @@ Il n'est toujours importé ni par la page ni par le serveur de simulation.
 | Contrat et nomenclatures | Huit champs consommés ; entité libre, choix et limites issus du document | Vérifier la version réellement servie par l'hébergement |
 | Référentiel HTTP | Lecteur testé avec transports injectés ; URL HTTPS et origine explicitement autorisées, sans destination par défaut | Installer les modules du référentiel sur Infomaniak et vérifier 200/304/CORS |
 | Brouillon et confirmation | Correction sans envoi ; anciens résultats invalidés ; révision différente bloquée avant POST | Définir le renouvellement des choix et la conservation du brouillon après rechargement |
-| Interface | Vrai script testé dans un DOM de test, y compris le mode référencé | Contrôler visuellement ordinateur/mobile dans un navigateur réel |
+| Interface | DOM de test et Chromium réel sur le runner GitHub ; captures ordinateur/mobile examinées | Compléter ultérieurement les essais sur appareils physiques et réseau institutionnel |
 | Délai parcours | Adaptateur toujours à 10 secondes par défaut, configurable ; lecture du référentiel bornée séparément | Choisir le délai compatible avec les traitements du moteur |
 | Activation | Simulation seule exposée ; aucun appel OpenAI pendant ce jalon | Cadrer la destination, l'accès, les quotas/budget, la concurrence et le contrôle des réponses |
 
@@ -165,8 +165,17 @@ Les essais restent des contrôles techniques et de régression. Le contrôle cro
 avec le vrai générateur du catalogue a accepté la révision
 `68da05c1b2668874873373762cd10897b6cd26e31422c9c300ecedab5845a60d` :
 c'est un constat daté, pas une constante métier à conserver dans le client.
-Le navigateur de test était absent et son téléchargement a échoué ; aucun contrôle
-visuel réussi n'est revendiqué. Coût OpenAI API de ce jalon avatar : 0 token / 0 $.
+Le contrôle navigateur a ensuite réussi dans la CI GitHub au commit `9670b6f` :
+[exécution 39140642621](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39140642621),
+Chromium 151.0.7922.34. Les quatre captures initiales/finales ont été examinées
+en formats 1280 × 900 et 390 × 844 : aucun débordement horizontal ni problème
+bloquant observé. Questionnaire, champs facultatifs, entité libre, correction sans
+envoi automatique et actualisation explicite sont contrôlés. Trois requêtes de
+simulation et un quota de trois, aucune erreur navigateur, aucune requête externe.
+Ce contrôle ne couvre pas Safari, les appareils physiques ni le clavier tactile.
+Les preuves sont dans l'artefact `avatar-browser-simulation` (rétention 14 jours) ;
+le bilan est consigné sur la branche au commit `b19078f`. Le moteur réel reste
+déconnecté. Coût OpenAI API de ce jalon avatar : 0 token / 0 $.
 
 ### Prochain point de reprise
 
@@ -196,11 +205,13 @@ Ordre de travail confirmé avec l'utilisateur le 18 octobre 2026 :
    `feat/avatar-interactive-local` contient le lecteur de référentiels et le mode
    de questionnaire à huit champs au commit `b11508ecc08a0934ff219c981f0697ecfe18b2f5`.
    Les 52 tests passent localement et dans la CI ; le contrôle croisé avec le
-   document généré par le catalogue est compatible. La vérification visuelle dans
-   un navigateur réel reste à faire : le navigateur de test n'a pas pu être installé.
+   document généré par le catalogue est compatible. Le contrôle Chromium sur
+   ordinateur/mobile a ensuite réussi dans la CI ; les captures ont été examinées
+   et le bilan documenté au commit `b19078f`.
    La démonstration publique sur `main` reste au jalon `07a9e09` ; l'adaptateur
-   n'est pas connecté. La suite est le contrôle visuel, la mise en service séparée
-   du référentiel sur Infomaniak, puis le cadrage du raccordement au moteur.
+   n'est pas connecté. La suite est l'audit des fichiers réellement présents, la mise
+   en service séparée du référentiel sur Infomaniak, puis le cadrage du raccordement
+   au moteur.
 
 Le dépassement d'heures n'est pas prioritaire et sa gestion reste inchangée.
 Un entretien déjà évoqué reste à faire dans le Manager Infomaniak : **renommer
@@ -218,12 +229,17 @@ Pour la phase avatar :
 
 1. Relire les deux dépôts et la branche interactive, puis comparer les révisions
    aux repères ci-dessus et inspecter les éventuels changements intervenus depuis.
-2. Contrôler visuellement le mode référencé local sur ordinateur et mobile, puis
-   cadrer l'actualisation des choix et la conservation du brouillon après rechargement.
+2. Le contrôle visuel Chromium du mode référencé est effectué. Cadrer
+   l'actualisation des choix et la conservation du brouillon après rechargement.
 3. Préparer la mise en service du référentiel Infomaniak avec sauvegarde, vérification
    des modules requis et tests HTTP sans appel IA. Le déploiement ciblé du moteur de
    parcours n'a pas installé cet endpoint. Les tests synthétiques ne remplacent pas
    le contrôle réseau ou un futur scénario fonctionnel réel.
+   Commencer par relever les SHA-256 de `server/searchApi.mjs`, `server/cors.mjs`,
+   `server/pathwayAssistant.mjs`, `server/profileReferences.mjs`,
+   `src/config/pathwayProfile.js`, de leur dépendance `src/config/entities.js`
+   et du moteur déjà corrigé. Les cinq premiers sont les modules concernés par
+   l'installation ; préserver le moteur et le fichier privé de configuration.
 4. Avant tout essai réel, vérifier séparément le code effectivement déployé sur
    Infomaniak, la disponibilité HTTP du référentiel, les origines autorisées,
    le réseau institutionnel et le périmètre d'activation approuvé.
