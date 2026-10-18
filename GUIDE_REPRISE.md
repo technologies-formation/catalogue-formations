@@ -63,7 +63,7 @@ l'avatar prépare une nouvelle interaction avec ces services. Il n'est pas un se
 | Hébergement de même origine | Section Infomaniak de ce guide, jalon `8a247c0` du 7 octobre | Déploiement et essai institutionnel consignés à cette date | Les domaines personnalisés et le réseau doivent être retestés comme prévu |
 | Référentiels du profil | `src/config/pathwayProfile.js`, `server/profileReferences.mjs`, contrat HTTP v1 | Centralisés dans le catalogue depuis `bbc7ed9` | Endpoint Node non confirmé en production ; aucun consommateur avatar raccordé |
 | Avatar publié | [a658-yg-avatar](https://github.com/technologies-formation/a658-yg-avatar), `main` à `07a9e0990b9daf1bd515a008f8cbe9045877e45b` | Questionnaire V5 de démonstration, sans connexion Luna ni backend de production | La publication ne prouve pas une génération réelle de formations |
-| Avatar en préparation | Branche `feat/avatar-interactive-local` à `314123377070640f87a0b3f5d603fbf0f127b926` | Simulation locale et adaptateur de parcours préparés ; 9 commits devant `main` au contrôle | Branche non fusionnée ; adaptateur désactivé et non importé par l'interface ou le simulateur |
+| Avatar en préparation | Branche `feat/avatar-interactive-local` à `b11508ecc08a0934ff219c981f0697ecfe18b2f5` | Simulation locale, lecteur des référentiels et questionnaire aligné ; 10 commits devant `main` au contrôle | Branche non fusionnée ; adaptateur désactivé et non importé par l'interface ou le simulateur |
 
 Les révisions ci-dessus sont des repères datés. Relire les têtes distantes avant
 tout travail ; ne pas supposer qu'une branche portant un nom fonctionnel reste
@@ -94,7 +94,7 @@ les contraintes. Elle construit un aperçu local de demande ; aucun résultat de
 formation n'est inventé et aucun appel au moteur n'est effectué. La page indique
 également l'absence de connexion à MOS Chorus.
 
-Sur la branche d'essai, le [mode interactif local et ses limites](https://github.com/technologies-formation/a658-yg-avatar/blob/314123377070640f87a0b3f5d603fbf0f127b926/experimental-service/ESSAI_INTERACTIF_LOCAL.md)
+Sur la branche d'essai, le [mode interactif local et ses limites](https://github.com/technologies-formation/a658-yg-avatar/blob/b11508ecc08a0934ff219c981f0697ecfe18b2f5/experimental-service/ESSAI_INTERACTIF_LOCAL.md)
 sont documentés. `local-demo.mjs` sert la page sur `127.0.0.1:8799` et transmet
 les demandes à `/local/validate`, avec un secret gardé côté serveur et des quotas
 persistants de simulation. Le service initial `server.mjs` expose séparément
@@ -125,29 +125,48 @@ conserve la distinction entre essai local et accès distant. Aucun hébergement
 expérimental distant, raccordement à la production ou appel OpenAI ne découle
 de la présente mise à jour documentaire.
 
-### Écarts à résoudre avant un raccordement de l'avatar
+### Référentiels avatar : alignement réalisé et écarts restants
 
-Le nouvel endpoint de référentiels est une préparation à la réutilisation des
-données du catalogue. La branche avatar actuelle référence encore le contrat
-historique du catalogue à `3efb6c4`, avant `bbc7ed9`.
-Il faut donc reprendre l'adaptateur existant et comparer les contrats, sans créer
-un nouveau moteur ni recopier une seconde liste métier.
+Le [jalon avatar du 18 octobre](https://github.com/technologies-formation/a658-yg-avatar/blob/b11508ecc08a0934ff219c981f0697ecfe18b2f5/experimental-service/REFERENTIELS_PARCOURS.md)
+est publié sur la branche interactive au commit `b11508ecc08a0934ff219c981f0697ecfe18b2f5`.
+Le [workflow associé](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39133645836)
+réussit avec les 52 tests. La révision de départ `3141233` reste un repère historique.
 
-| Sujet | Contrat du catalogue à `bbc7ed9` | Préparation avatar à `3141233` | Travail restant |
-| --- | --- | --- | --- |
-| Catégorie de personnel | Obligatoire dans le formulaire, facultative dans le validateur HTTP ; chaînes libres côté API | Catégorie obligatoire et liste autorisée explicite dans l'adaptateur | Rendre la règle de l'interface explicite sans modifier silencieusement l'API |
-| Fonction et objectif | Chaînes non vides après trim, maximum 300 et 1 000 caractères | Minimums supplémentaires de 2 et 10 caractères | Décider et documenter les contraintes de l'avatar ; ne pas les attribuer au moteur |
-| Entité et situation managériale | Suggestions d'entités avec saisie libre ; options du formulaire non imposées comme liste fermée à l'API | Valeurs renseignées soumises à des listes autorisées ; listes vides par défaut | Consommer le référentiel selon son contrat, sans transformer les suggestions en liste blanche |
-| Référentiel obsolète | Version majeure, révision et ETag disponibles ; pas de négociation de révision sur le POST | Pas de lecteur de `/api/profile-references` raccordé | Préserver le brouillon et gérer explicitement incompatibilité, modification et retrait de valeur |
-| Délai de traitement | Timeout OpenAI de 90 secondes documenté pour le pilote | Adaptateur réglé à 10 secondes par défaut, configurable | Choisir un délai adapté ; une annulation client ne garantit pas l'absence de coût serveur |
-| Corps HTTP | Recherche : `{ query }` ; parcours : profil directement à la racine du JSON | Simulation : `{ type, profile, query? }` | Conserver les contrats distincts ; l'adaptateur prépare déjà le profil à la racine pour le parcours |
-| Activation réelle | Routes protégées par la configuration et les mécanismes du backend | Adaptateur non branché, simulation seule exposée | Définir l'accès, les quotas, le budget et la destination avant activation ; vérifier les réponses et leur taille |
+Le lecteur `experimental-service/profile-references.mjs` consomme le contrat v1
+sans seconde liste de catégories métier. Il contrôle le format, la révision et
+l'ETag, les réponses 200/304, la taille du flux, les délais et les réponses obsolètes.
+Un échec conserve le cache mais bloque son usage pour une soumission réelle.
+Les propriétés additives sont tolérées ; une version majeure inconnue est refusée.
 
-Les restrictions CORS existantes ne constituent pas une authentification.
-Ne pas ajouter une origine publique ou exposer un jeton de simulation pour rendre
-l'essai accessible. Toute modification du profil doit invalider la confirmation
-et les réponses antérieures ; aucune correction du questionnaire ne doit déclencher
-à elle seule un appel payant.
+Le mode local peut recevoir un document généré par `buildProfileReferences()`
+dans le dépôt catalogue, hors ligne et hors Git. Le questionnaire utilise alors
+les huit champs et les contraintes de ce document. L'entité reste libre, les
+options des sélecteurs sont contrôlées côté formulaire, et les minimums locaux
+de 2 caractères pour la fonction et 10 pour l'objectif ne sont plus imposés dans
+ce mode. La simulation historique sans document reste séparée et n'alimente pas
+l'adaptateur de parcours.
+
+L'adaptateur désactivé exige désormais un lecteur de référentiel et la révision
+du profil confirmé ; les anciennes listes d'autorisation manuelles sont remplacées.
+Il revalide avant le POST et refuse toute différence de révision. Il conserve les
+protections de destination, d'annulation, de délai et de contrôle des résultats.
+Il n'est toujours importé ni par la page ni par le serveur de simulation.
+
+| Sujet | État après alignement hors ligne | Reste à faire avant raccordement réel |
+| --- | --- | --- |
+| Contrat et nomenclatures | Huit champs consommés ; entité libre, choix et limites issus du document | Vérifier la version réellement servie par l'hébergement |
+| Référentiel HTTP | Lecteur testé avec transports injectés ; URL HTTPS et origine explicitement autorisées, sans destination par défaut | Installer les modules du référentiel sur Infomaniak et vérifier 200/304/CORS |
+| Brouillon et confirmation | Correction sans envoi ; anciens résultats invalidés ; révision différente bloquée avant POST | Définir le renouvellement des choix et la conservation du brouillon après rechargement |
+| Interface | Vrai script testé dans un DOM de test, y compris le mode référencé | Contrôler visuellement ordinateur/mobile dans un navigateur réel |
+| Délai parcours | Adaptateur toujours à 10 secondes par défaut, configurable ; lecture du référentiel bornée séparément | Choisir le délai compatible avec les traitements du moteur |
+| Activation | Simulation seule exposée ; aucun appel OpenAI pendant ce jalon | Cadrer la destination, l'accès, les quotas/budget, la concurrence et le contrôle des réponses |
+
+Les essais restent des contrôles techniques et de régression. Le contrôle croisé
+avec le vrai générateur du catalogue a accepté la révision
+`68da05c1b2668874873373762cd10897b6cd26e31422c9c300ecedab5845a60d` :
+c'est un constat daté, pas une constante métier à conserver dans le client.
+Le navigateur de test était absent et son téléchargement a échoué ; aucun contrôle
+visuel réussi n'est revendiqué. Coût OpenAI API de ce jalon avatar : 0 token / 0 $.
 
 ### Prochain point de reprise
 
@@ -173,10 +192,15 @@ Ordre de travail confirmé avec l'utilisateur le 18 octobre 2026 :
    Les autres fichiers Node, dont l'endpoint de référentiels, n'ont pas été déployés
    par cette opération. Le commit du catalogue renvoyé par le health n'est pas une
    preuve de la révision globale du code serveur.
-3. **Revenir à l'avatar existant.** Aligner d'abord **hors ligne** la branche
-   `feat/avatar-interactive-local` sur `docs/PROFILE_REFERENCES.md`, puis cadrer le
-   raccordement au moteur. Il s'agit de réutiliser l'adaptateur et les services
-   existants, pas de construire un second moteur.
+3. **Avatar : alignement hors ligne réalisé le 18 octobre.** La branche existante
+   `feat/avatar-interactive-local` contient le lecteur de référentiels et le mode
+   de questionnaire à huit champs au commit `b11508ecc08a0934ff219c981f0697ecfe18b2f5`.
+   Les 52 tests passent localement et dans la CI ; le contrôle croisé avec le
+   document généré par le catalogue est compatible. La vérification visuelle dans
+   un navigateur réel reste à faire : le navigateur de test n'a pas pu être installé.
+   La démonstration publique sur `main` reste au jalon `07a9e09` ; l'adaptateur
+   n'est pas connecté. La suite est le contrôle visuel, la mise en service séparée
+   du référentiel sur Infomaniak, puis le cadrage du raccordement au moteur.
 
 Le dépassement d'heures n'est pas prioritaire et sa gestion reste inchangée.
 Un entretien déjà évoqué reste à faire dans le Manager Infomaniak : **renommer
@@ -194,11 +218,12 @@ Pour la phase avatar :
 
 1. Relire les deux dépôts et la branche interactive, puis comparer les révisions
    aux repères ci-dessus et inspecter les éventuels changements intervenus depuis.
-2. Définir le lecteur de référentiel, les règles de validation du questionnaire et
-   le traitement d'un cache incompatible ou ancien ; conserver les protections
-   propres à l'adaptateur et la liberté des champs prévue par le contrat.
-3. Valider sur des données et transports synthétiques, avec les suites existantes.
-   Distinguer ces tests de régression d'un benchmark indépendant.
+2. Contrôler visuellement le mode référencé local sur ordinateur et mobile, puis
+   cadrer l'actualisation des choix et la conservation du brouillon après rechargement.
+3. Préparer la mise en service du référentiel Infomaniak avec sauvegarde, vérification
+   des modules requis et tests HTTP sans appel IA. Le déploiement ciblé du moteur de
+   parcours n'a pas installé cet endpoint. Les tests synthétiques ne remplacent pas
+   le contrôle réseau ou un futur scénario fonctionnel réel.
 4. Avant tout essai réel, vérifier séparément le code effectivement déployé sur
    Infomaniak, la disponibilité HTTP du référentiel, les origines autorisées,
    le réseau institutionnel et le périmètre d'activation approuvé.
