@@ -179,6 +179,12 @@ Ordre de travail confirmé avec l'utilisateur le 18 octobre 2026 :
    existants, pas de construire un second moteur.
 
 Le dépassement d'heures n'est pas prioritaire et sa gestion reste inchangée.
+Un entretien déjà évoqué reste à faire dans le Manager Infomaniak : **renommer
+« Hébergement Web 2 »** pour identifier clairement l'hébergement A658-YG.
+L'utilisateur l'a rappelé le 18 octobre 2026 ; le nouveau libellé reste à préciser.
+Ce renommage n'a pas été exécuté et doit rester dans la liste de suivi jusqu'à
+confirmation de sa réalisation.
+
 Le nettoyage éventuel d'Infomaniak est un sujet séparé : aucun inventaire précis
 des éléments à supprimer ni décision de suppression n'a été retrouvé. Ne pas
 assimiler les noms d'anciennes releases ou sauvegardes à une autorisation de les
