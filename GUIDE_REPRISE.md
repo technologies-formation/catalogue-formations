@@ -65,7 +65,7 @@ l'avatar prépare une nouvelle interaction avec ces services. Il n'est pas un se
 | Hébergement de même origine | Section Infomaniak de ce guide, jalon `8a247c0` du 7 octobre | Déploiement et essai institutionnel consignés à cette date | Les domaines personnalisés et le réseau doivent être retestés comme prévu |
 | Référentiels du profil | `src/config/pathwayProfile.js`, `server/profileReferences.mjs`, contrat HTTP v1 | Centralisés dans le catalogue depuis `bbc7ed9` | Endpoint Infomaniak vérifié le 18 octobre ; aucun consommateur avatar raccordé au moteur |
 | Avatar publié | [a658-yg-avatar](https://github.com/technologies-formation/a658-yg-avatar), `main` à `07a9e0990b9daf1bd515a008f8cbe9045877e45b` | Questionnaire V5 de démonstration, sans connexion Luna ni backend de production | La publication ne prouve pas une génération réelle de formations |
-| Avatar en préparation | Branche `feat/avatar-interactive-local`, code `fcaab9d030e541e1cd9f3113c0368e13ebdfb03b`, bilan `90cffabf7384a3d96fd5a2f2208777e8f7e39713` | Accès individuel du pilote préparé et désactivé ; 93 tests et essais Chromium HTTPS réussis | Branche non fusionnée ; aucun compte réel, hébergement d’essai ou moteur activé |
+| Avatar en préparation | Branche `feat/avatar-interactive-local`, code `4a5d834ac665e555f520206c737a90f5cc4cc87a`, bilan `930a5ac9378684577d2854789918ee3e6f993a27` | Page et serveur privés en simulation HTTPS locale ; 99 tests et Chromium réussis | Branche non fusionnée ; aucun compte réel ou certificat installé sur le PC, aucun déploiement Infomaniak ou moteur activé |
 
 Les révisions ci-dessus sont des repères datés. Relire les têtes distantes avant
 tout travail ; ne pas supposer qu'une branche portant un nom fonctionnel reste
@@ -419,12 +419,65 @@ Ces essais ne prouvent ni le fonctionnement du proxy Infomaniak, ni le réseau
 institutionnel, ni une authentification ou connexion au moteur réelles.
 Coût OpenAI API : 0 token / 0 $. Le quota Codex est distinct.
 
-**Prochaine étape :** préparer le serveur d’essai et les échanges du navigateur
-sur une même origine, en simulation, avec page/modules/API protégés. Avant
+**Suite prévue à ce jalon historique :** préparer le serveur d’essai et les échanges
+du navigateur sur une même origine, en simulation, avec page/modules/API protégés.
+Cette réalisation est consignée au jalon suivant. Avant
 activation distante : capacité et coût éventuel de l’offre Infomaniak, TLS et
 proxy attestés, provisionnement/révocation hors dépôt, persistance, testeurs,
 plafonds et délais. Le premier appel réel reste une autorisation distincte.
 La démonstration publique `main` de l’avatar et le catalogue restent inchangés.
+
+### Avatar : page et serveur privés en simulation — 18 octobre, reprise du soir
+
+La branche d’essai contient la page privée et le serveur local au commit
+`4a5d834ac665e555f520206c737a90f5cc4cc87a` (assemblage initial `f563ffc`).
+Ils réutilisent le questionnaire,
+l’accès individuel et l’affichage existants. Le
+[mode d’emploi et ses limites](https://github.com/technologies-formation/a658-yg-avatar/blob/930a5ac9378684577d2854789918ee3e6f993a27/experimental-service/SERVEUR_PRIVE_SIMULATION.md)
+conserve la procédure, les fichiers privés attendus et les contrôles.
+
+- `pilot-server.mjs` sert page, modules autorisés et API sur une même origine HTTPS
+  locale ; toutes ces ressources exigent l’identification. Aucun fichier de
+  configuration, compte, secret, dépôt Git ou répertoire arbitraire n’est exposé.
+- La page reprend les huit champs du contrat et propose seulement un parcours.
+  Brouillon restauré, actualisation des choix sans perte des réponses, confirmation
+  explicite et invalidation/annulation des réponses tardives sont conservés.
+  Après erreur ou quota, aucun succès ni nouvelle demande automatique n’est annoncé.
+- `pilot-simulation.mjs` ne charge ni la session ni l’adaptateur du moteur réel.
+  Il fige le profil, relit le contrat local, valide, compte une simulation dans
+  un fichier persistant et renvoie un aperçu de test explicitement configuré.
+  Cet aperçu ne répond pas au profil et l’affichage le signale. La recherche Luna
+  n’est pas activée dans cette page privée.
+- Le lanceur exige une activation explicite et une configuration privée absolue :
+  compte(s) avec empreinte scrypt, contrat, aperçu, compteur, clé/certificat TLS,
+  quotas, limites d’authentification et instance unique. Il n’écoute que
+  `127.0.0.1` ; aucune origine distante ni confiance implicite dans un proxy.
+  Aucun fichier privé, compte réel ou certificat de confiance n’a été installé
+  sur le PC de l’utilisateur ni sur Infomaniak.
+- L’arrêt persiste le blocage du compteur : une simple relance ne réouvre pas
+  une session arrêtée. Ne pas effacer un compteur sans décision explicite.
+
+Les [99 tests Node](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39164462051)
+réussissent localement et dans la CI. Le [contrôle Chromium](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39164462058)
+réussit aussi et son rapport JSON a été relu : trois simulations privées acceptées,
+une tentative refusée au quota, brouillon restauré, choix actualisé et aucun envoi
+automatique au rechargement. Aucune erreur navigateur, requête distante ou
+débordement horizontal à 1280 × 900 et 390 × 844. Le statut de réponse reste
+visible et le récapitulatif mobile se replie après une réponse pour libérer l’espace.
+Les cinq captures privées sont dans `avatar-browser-simulation`, rétention 14 jours ;
+les trois captures finales du résultat ordinateur/mobile et du quota mobile ont
+été examinées, sans problème bloquant observé. Les contrôles HTTPS d’accès et le
+questionnaire simulé précédent passent aussi en régression. Pas de validation
+Safari, appareils physiques, clavier tactile, certificat sur le PC, Infomaniak
+ou réseau institutionnel. Aucun compte, certificat ou secret réel utilisé.
+Aucun appel au moteur réel ni OpenAI : 0 token / 0 $. Quota Codex distinct.
+
+**Prochaine étape :** préparer un essai utilisateur local avec compte, certificat
+et configuration hors dépôt, ou vérifier la capacité et les coûts d’un site
+Infomaniak distinct avant un déploiement séparé. Le serveur actuel est un lanceur
+HTTPS local, pas une configuration compatible implicitement avec le proxy Infomaniak.
+La connexion au moteur réel et le premier appel payant gardent leur validation dédiée.
+La démonstration publique avatar, le catalogue et l’hébergement restent inchangés.
 
 ### Prochain point de reprise
 
@@ -481,10 +534,10 @@ Pour la phase avatar :
    aux repères ci-dessus et inspecter les éventuels changements intervenus depuis.
 2. Le mode référencé conserve le brouillon après rechargement, actualise les
    choix sans perdre les réponses et exige une confirmation explicite en simulation.
-   La session, le rendu et l’accès individuel du petit pilote sont préparés ;
-   préparer le serveur et les échanges du navigateur en simulation avec accès
-   protégé, puis vérifier l’hébergement avant tout déploiement ou premier appel réel.
-   Aucun raccordement actif.
+   La page, le serveur HTTPS local, le rendu et l’accès individuel du petit pilote
+   sont réalisés en simulation. Préparer les fichiers privés d’un essai utilisateur
+   local ou vérifier l’hébergement distinct avant tout déploiement. Le moteur réel
+   reste déconnecté et son premier appel nécessite un périmètre dédié.
 3. **Référentiel Infomaniak vérifié et opérationnel.** Les empreintes des cinq
    modules concernés, de leur dépendance `entities` et du moteur corrigé sont
    conformes ; les contrôles HTTP publics passent sans appel IA. Aucun remplacement
