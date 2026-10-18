@@ -537,7 +537,7 @@ test('ne classe pas comme inaccessible un cours réservé aux nouveaux managers 
   assert.deepEqual(result.optionalSteps.map(({ course }) => course.code), ['AI-PRACTICE'])
   assert.equal(
     result.optionalSteps[0].rationale,
-    'Formation pertinente pour votre profil, proposée comme complément au parcours recommandé ; vérifiez les éventuelles conditions d’inscription dans la fiche officielle.',
+    'À confirmer',
   )
 })
 

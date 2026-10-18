@@ -494,6 +494,7 @@ export async function buildPathwayWithLuna(
         `Tu prépares un parcours de formation à partir du catalogue officiel.
 Interprète l'objectif professionnel, les acquis, le temps disponible et les contraintes.
 Sélectionne uniquement des formations susceptibles de former un ensemble cohérent.
+La proximité de mots génériques ne suffit pas : vérifie le sujet et le contexte professionnel de chaque formation par rapport à l'objectif.
 N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
       input: `CATALOGUE OFFICIEL :\n${JSON.stringify(ultraCompactCatalogue)}\n\nPROFIL :\n${need}`,
       text: {
@@ -585,10 +586,14 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
         `Tu construis un parcours court, réaliste et ordonné à partir des seules fiches autorisées.
 Règles impératives :
 - utilise uniquement les codes fournis ;
+- évalue séparément la pertinence pour l'objectif et la compatibilité du public : un cours accessible n'est pas nécessairement utile au besoin ;
+- omets les formations hors sujet de toutes les rubriques, y compris informationalCourses ; un mot commun comme projet, suivi, travail ou communication ne suffit pas si le contenu concerne une autre activité professionnelle ;
 - classe les cours dans recommendedSteps, optionalSteps ou informationalCourses, sans doublon ;
 - recommendedSteps contient de 1 à ${MAX_STEPS} étapes directement utiles et accessibles au profil ;
 - optionalSteps contient les compléments utiles mais moins prioritaires ainsi que les alternatives de modalité ou de version qui ne doivent pas être cumulées avec le parcours principal ;
 - informationalCourses contient les cours pertinents mais réservés à un autre public ; ne les recommande jamais comme accessibles ;
+- informationalCourses ne sert pas à lister toutes les formations écartées : conserve uniquement celles dont les compétences enseignées répondent concrètement à l'objectif malgré la différence de public ; cette rubrique peut rester vide ;
+- chaque complément ou alternative doit apporter une compétence ou un choix utile au besoin ; une offre propre à une autre institution ou activité n'est pas une alternative sur la seule proximité de son intitulé ;
 - un profil qui se déclare nouveau manager est compatible avec une formation réservée aux nouvelles et nouveaux managers ;
 - tiens compte des acquis pour éviter les formations manifestement redondantes ;
 - identifie les modalités à partir de tous les champs disponibles, y compris le titre lorsqu'elles n'existent pas sous forme structurée ;
@@ -692,7 +697,6 @@ Règles impératives :
         continue
       }
 
-      seen.add(code)
       const detail = detailedByCode.get(code)
       const item = {
         position: destination.length + 1,
@@ -702,19 +706,24 @@ Règles impératives :
 
       const compatibility = audienceCompatibility(profile, course)
       if (compatibility === 'incompatible') {
+        seen.add(code)
         item.position = informationalCourses.length + 1
         informationalCourses.push(item)
         continue
       }
 
       if (destination === informationalCourses) {
+        // L'absence de restriction détectée n'établit ni l'accès ni la pertinence.
+        // Conserver seulement la récupération déjà prévue pour les nouveaux managers.
+        if (!isNewManagerProfile(profile) || !isNewManagerCourse(course)) continue
+
+        seen.add(code)
         item.position = optionalSteps.length + 1
-        item.rationale =
-          'Formation pertinente pour votre profil, proposée comme complément au parcours recommandé ; vérifiez les éventuelles conditions d’inscription dans la fiche officielle.'
         optionalSteps.push(item)
         continue
       }
 
+      seen.add(code)
       const hours = item.course.durationHours
       if (destination === recommendedSteps) {
         if (hours === null) allRecommendedDurationsKnown = false
