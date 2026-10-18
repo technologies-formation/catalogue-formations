@@ -48,6 +48,156 @@ Ce document est la référence technique et opérationnelle pour reprendre le pr
 >
 > Le frontend statique est publié sur GitHub Pages. Luna et l'assistant de parcours utilisent un backend sécurisé séparé déployé sur Infomaniak. La clé `OPENAI_API_KEY` reste exclusivement côté serveur et ne doit jamais être exposée dans le navigateur.
 
+## Vue d'ensemble A658-YG et point de reprise
+
+Le périmètre opérationnel examiné le 18 octobre 2026 comprend deux dépôts.
+Le catalogue conserve le moteur, les règles métier et les données officielles ;
+l'avatar prépare une nouvelle interaction avec ces services. Il n'est pas un second moteur.
+
+| Élément | Source et révision examinées | État établi | Limite du constat |
+| --- | --- | --- | --- |
+| Catalogue, recherche classique, Luna et parcours | [catalogue-formations](https://github.com/technologies-formation/catalogue-formations), `main` à `bbc7ed9` | Code versionné ; tests, lint et build du workflow Pages réussis le 18 octobre | La révision du runtime Infomaniak n'a pas été relue pendant cette reprise |
+| Données du catalogue | `reports/catalogue-import-report.md`, commit `3efb6c4` | Snapshot du 16 octobre, 1 050 formations | La date d'un workflow réussi n'est pas nécessairement celle d'un nouveau snapshot |
+| Hébergement de même origine | Section Infomaniak de ce guide, jalon `8a247c0` du 7 octobre | Déploiement et essai institutionnel consignés à cette date | Les domaines personnalisés et le réseau doivent être retestés comme prévu |
+| Référentiels du profil | `src/config/pathwayProfile.js`, `server/profileReferences.mjs`, contrat HTTP v1 | Centralisés dans le catalogue depuis `bbc7ed9` | Endpoint Node non confirmé en production ; aucun consommateur avatar raccordé |
+| Avatar publié | [a658-yg-avatar](https://github.com/technologies-formation/a658-yg-avatar), `main` à `07a9e0990b9daf1bd515a008f8cbe9045877e45b` | Questionnaire V5 de démonstration, sans connexion Luna ni backend de production | La publication ne prouve pas une génération réelle de formations |
+| Avatar en préparation | Branche `feat/avatar-interactive-local` à `314123377070640f87a0b3f5d603fbf0f127b926` | Simulation locale et adaptateur de parcours préparés ; 9 commits devant `main` au contrôle | Branche non fusionnée ; adaptateur désactivé et non importé par l'interface ou le simulateur |
+
+Les révisions ci-dessus sont des repères datés. Relire les têtes distantes avant
+tout travail ; ne pas supposer qu'une branche portant un nom fonctionnel reste
+non intégrée. Par exemple, `feat/pathway-profile-references` et `main` du catalogue
+pointent déjà vers le même commit `bbc7ed9` lors de cette reprise.
+
+### Carte des fichiers à consulter
+
+| Besoin | Source principale |
+| --- | --- |
+| Interface et facettes | `src/App.jsx`, `src/domain/courseSearch.js` |
+| Assistant de parcours visible | `src/components/PathwayAssistant.jsx`, `src/services/pathwayAssistantApi.js` |
+| Validation HTTP et moteur de parcours | `server/pathwayAssistant.mjs`, `server/pathwayEngine.mjs` |
+| Recherche IA en deux passes | `server/llmSearch.mjs`, `src/services/catalogueSearchApi.js` |
+| Serveur, CORS et configuration | `server/searchApi.mjs`, `server/cors.mjs`, `server/config.mjs` |
+| Catalogue actif et synchronisation | `server/catalogueRuntime.mjs`, `server/catalogueState.mjs`, `server/catalogueStore.mjs`, `docs/BACKEND_CATALOGUE_SYNC.md` |
+| Import, promotion et publication des données | `scripts/importOfficialCatalogue.mjs`, `scripts/promoteOfficialCatalogue.mjs`, `scripts/preparePublishedCatalogue.mjs` |
+| Profil du parcours et contrat de lecture | `src/config/pathwayProfile.js`, `src/config/entities.js`, `docs/PROFILE_REFERENCES.md` |
+| Ciblages métier internes, distincts du profil | `src/config/personnelCategories.js`, `src/config/profileRules.js`, `src/data/officialCourseSamples.js` |
+| Avatar public | `index.html` dans le dépôt avatar, branche `main` |
+| Dernier essai local de l'avatar | `experimental-service/ESSAI_INTERACTIF_LOCAL.md`, `local-demo.mjs`, `pathway-adapter.mjs` sur `feat/avatar-interactive-local` |
+
+### Avatar : réalisé, préparé et restant à faire
+
+La version publiée de l'avatar propose un questionnaire sur la catégorie de personnel,
+le type de besoin, la fonction, l'objectif, les compétences, le temps disponible et
+les contraintes. Elle construit un aperçu local de demande ; aucun résultat de
+formation n'est inventé et aucun appel au moteur n'est effectué. La page indique
+également l'absence de connexion à MOS Chorus.
+
+Sur la branche d'essai, le [mode interactif local et ses limites](https://github.com/technologies-formation/a658-yg-avatar/blob/314123377070640f87a0b3f5d603fbf0f127b926/experimental-service/ESSAI_INTERACTIF_LOCAL.md)
+sont documentés. `local-demo.mjs` sert la page sur `127.0.0.1:8799` et transmet
+les demandes à `/local/validate`, avec un secret gardé côté serveur et des quotas
+persistants de simulation. Le service initial `server.mjs` expose séparément
+`POST /test/request`. Aucun de ces deux chemins n'appelle Luna.
+
+L'adaptateur `pathway-adapter.mjs` prépare un futur appel serveur à
+`POST /api/pathway`. Il est désactivé par défaut, sans URL de production par défaut,
+et n'est importé ni par le simulateur ni par la page. Il conserve les rubriques du
+moteur historique et contrôle notamment les liens officiels, les erreurs HTTP,
+l'annulation et le délai. Sa présence et ses tests ne constituent pas un raccordement réel.
+
+Deux preuves CI sont distinctes :
+
+- Sur `main` avatar, le [workflow du commit `07a9e09`](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/38263936763)
+  a réussi, mais sa commande ne lance que `server.test.mjs`. La présence de
+  `avatar-e2e.test.mjs` dans ce commit ne prouve donc pas son exécution par ce workflow.
+- Sur la branche interactive, le [workflow du commit `3141233`](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39054049714)
+  a réussi et lance `node --test experimental-service/*.test.mjs`.
+  Cela valide des simulations et transports injectés, pas une communication avec le moteur public.
+
+La branche `test/avatar-local-e2e` à `291e4f1` diverge de `main`
+d'un commit de chaque côté. Ne pas la fusionner automatiquement : comparer son
+unique test avec celui déjà présent sur `main` et dans la branche interactive.
+Aucune proposition de fusion avatar ouverte n'a été trouvée au contrôle du 18 octobre.
+
+Le [plan d'environnement d'essai](https://github.com/technologies-formation/a658-yg-avatar/blob/07a9e0990b9daf1bd515a008f8cbe9045877e45b/experimental-service/PLAN_ENVIRONNEMENT_TEST.md)
+conserve la distinction entre essai local et accès distant. Aucun hébergement
+expérimental distant, raccordement à la production ou appel OpenAI ne découle
+de la présente mise à jour documentaire.
+
+### Écarts à résoudre avant un raccordement de l'avatar
+
+Le nouvel endpoint de référentiels est une préparation à la réutilisation des
+données du catalogue. La branche avatar actuelle référence encore le contrat
+historique du catalogue à `3efb6c4`, avant `bbc7ed9`.
+Il faut donc reprendre l'adaptateur existant et comparer les contrats, sans créer
+un nouveau moteur ni recopier une seconde liste métier.
+
+| Sujet | Contrat du catalogue à `bbc7ed9` | Préparation avatar à `3141233` | Travail restant |
+| --- | --- | --- | --- |
+| Catégorie de personnel | Obligatoire dans le formulaire, facultative dans le validateur HTTP ; chaînes libres côté API | Catégorie obligatoire et liste autorisée explicite dans l'adaptateur | Rendre la règle de l'interface explicite sans modifier silencieusement l'API |
+| Fonction et objectif | Chaînes non vides après trim, maximum 300 et 1 000 caractères | Minimums supplémentaires de 2 et 10 caractères | Décider et documenter les contraintes de l'avatar ; ne pas les attribuer au moteur |
+| Entité et situation managériale | Suggestions d'entités avec saisie libre ; options du formulaire non imposées comme liste fermée à l'API | Valeurs renseignées soumises à des listes autorisées ; listes vides par défaut | Consommer le référentiel selon son contrat, sans transformer les suggestions en liste blanche |
+| Référentiel obsolète | Version majeure, révision et ETag disponibles ; pas de négociation de révision sur le POST | Pas de lecteur de `/api/profile-references` raccordé | Préserver le brouillon et gérer explicitement incompatibilité, modification et retrait de valeur |
+| Délai de traitement | Timeout OpenAI de 90 secondes documenté pour le pilote | Adaptateur réglé à 10 secondes par défaut, configurable | Choisir un délai adapté ; une annulation client ne garantit pas l'absence de coût serveur |
+| Corps HTTP | Recherche : `{ query }` ; parcours : profil directement à la racine du JSON | Simulation : `{ type, profile, query? }` | Conserver les contrats distincts ; l'adaptateur prépare déjà le profil à la racine pour le parcours |
+| Activation réelle | Routes protégées par la configuration et les mécanismes du backend | Adaptateur non branché, simulation seule exposée | Définir l'accès, les quotas, le budget et la destination avant activation ; vérifier les réponses et leur taille |
+
+Les restrictions CORS existantes ne constituent pas une authentification.
+Ne pas ajouter une origine publique ou exposer un jeton de simulation pour rendre
+l'essai accessible. Toute modification du profil doit invalider la confirmation
+et les réponses antérieures ; aucune correction du questionnaire ne doit déclencher
+à elle seule un appel payant.
+
+### Prochain point de reprise
+
+La prochaine évolution possible est l'alignement **hors ligne** de la branche
+avatar existante avec le contrat `docs/PROFILE_REFERENCES.md`. Elle doit être
+cadrée avant développement, sans activer le moteur dans le cadre de la reprise du guide.
+
+1. Relire les deux dépôts et la branche interactive, puis comparer les révisions
+   aux repères ci-dessus et inspecter les éventuels changements intervenus depuis.
+2. Définir le lecteur de référentiel, les règles de validation du questionnaire et
+   le traitement d'un cache incompatible ou ancien ; conserver les protections
+   propres à l'adaptateur et la liberté des champs prévue par le contrat.
+3. Valider sur des données et transports synthétiques, avec les suites existantes.
+   Distinguer ces tests de régression d'un benchmark indépendant.
+4. Avant tout essai réel, vérifier séparément le code effectivement déployé sur
+   Infomaniak, la disponibilité HTTP du référentiel, les origines autorisées,
+   le réseau institutionnel et le périmètre d'activation approuvé.
+
+Ce point de reprise ne préjuge pas du choix d'un hébergement ni d'une date
+d'industrialisation. Le suivi des usages, des coûts et de la stabilité du pilote
+reste à consolider, comme indiqué dans les jalons antérieurs.
+
+### Méthode et décisions à conserver
+
+- Examiner les sources et les choix antérieurs avant toute nouvelle approche.
+  Conserver les résultats officiels et distinguer fait vérifié, hypothèse et projet.
+- En cas d'écart, privilégier la décision explicite récente de l'utilisateur, puis
+  l'état réel vérifié, le guide de reprise récent et la documentation technique.
+  Les présentations et souvenirs de conversation restent des sources secondaires.
+- Présenter le périmètre avant une action importante ; si une validation préalable
+  est demandée, attendre le GO, qui couvre uniquement ce périmètre.
+- Favoriser l'évolution de l'existant, les opérations directes par les outils et
+  des demandes simples à l'utilisateur. Ne pas lui déléguer une interprétation
+  technique que le copilote peut prendre en charge.
+- Typesense et MiniLM restent abandonnés pour l'architecture évaluée. Les mesures
+  historiques et leurs limites sont détaillées plus bas ; ne pas réutiliser les
+  corpus consommés comme nouvelle preuve indépendante.
+- BMAD reste une piste d'amélioration conservée, sans installation ni remplacement
+  automatique de la méthode actuelle. Un éventuel essai doit être cadré séparément,
+  sur une branche dédiée et comparé au bénéfice et à la complexité de l'existant.
+- Ne jamais présenter un commit, un test, un push ou un déploiement comme réussi
+  sans preuve. Ne pas exposer de secret ; relever les tokens et le coût de tout
+  appel API du projet lorsqu'ils sont disponibles.
+
+Les pièces de contexte fournies lors de cette reprise sont le comparatif des
+trois projets du 1er septembre, l'historique technique du 12 septembre,
+la valorisation économique du 13 septembre et les instructions permanentes.
+Elles ne sont pas ajoutées au dépôt par cette mise à jour. Leurs dates et leurs
+estimations ne décrivent pas automatiquement l'état actuel ; ne pas inventer
+leur disponibilité lors d'une future conversation. Pour travailler sur un support
+absent du dépôt ou de la conversation, demander la pièce correspondante.
+
 ## État de référence
 
 - Projet : Catalogue de formations — Projet n°2, indépendant du Projet n°1.
