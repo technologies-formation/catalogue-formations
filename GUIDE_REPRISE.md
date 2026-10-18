@@ -65,7 +65,7 @@ l'avatar prépare une nouvelle interaction avec ces services. Il n'est pas un se
 | Hébergement de même origine | Section Infomaniak de ce guide, jalon `8a247c0` du 7 octobre | Déploiement et essai institutionnel consignés à cette date | Les domaines personnalisés et le réseau doivent être retestés comme prévu |
 | Référentiels du profil | `src/config/pathwayProfile.js`, `server/profileReferences.mjs`, contrat HTTP v1 | Centralisés dans le catalogue depuis `bbc7ed9` | Endpoint Infomaniak vérifié le 18 octobre ; aucun consommateur avatar raccordé au moteur |
 | Avatar publié | [a658-yg-avatar](https://github.com/technologies-formation/a658-yg-avatar), `main` à `07a9e0990b9daf1bd515a008f8cbe9045877e45b` | Questionnaire V5 de démonstration, sans connexion Luna ni backend de production | La publication ne prouve pas une génération réelle de formations |
-| Avatar en préparation | Branche `feat/avatar-interactive-local`, code `d838d06894b49cfe21ba104849e6cf23f379caa5`, bilan `e292965d41948de026714da78ee1b3a73557f152` | Simulation avec affichage de résultat, session et frontière d’accès privé préparées ; 84 tests et Chromium réussis | Branche non fusionnée ; routes privées non exposées et moteur non connecté |
+| Avatar en préparation | Branche `feat/avatar-interactive-local`, code `fcaab9d030e541e1cd9f3113c0368e13ebdfb03b`, bilan `90cffabf7384a3d96fd5a2f2208777e8f7e39713` | Accès individuel du pilote préparé et désactivé ; 93 tests et essais Chromium HTTPS réussis | Branche non fusionnée ; aucun compte réel, hébergement d’essai ou moteur activé |
 
 Les révisions ci-dessus sont des repères datés. Relire les têtes distantes avant
 tout travail ; ne pas supposer qu'une branche portant un nom fonctionnel reste
@@ -333,8 +333,8 @@ pas un benchmark indépendant ni une validation d’authentification ou de moteu
 Safari, appareils physiques, clavier tactile et réseau institutionnel ne sont pas couverts.
 Coût OpenAI API : 0 token / 0 $. Le quota de travail Codex est distinct de ce coût API.
 
-**Prochaine étape :** choisir l’hébergement et son contrôle d’identité privé,
-puis préparer les échanges du navigateur (référentiel, confirmation, délais longs,
+**Suite prévue à ce jalon historique :** choisir l’hébergement et son contrôle
+d’identité privé, puis préparer les échanges du navigateur (référentiel, confirmation, délais longs,
 erreurs et brouillon conservé). Avant tout premier appel réel : cas fictif,
 plafond de tentatives, suivi de coût, délais des proxies et autorisation dédiée.
 Aucun déploiement Infomaniak ni appel au moteur réel n’a eu lieu pendant ce jalon.
@@ -357,6 +357,74 @@ Adapter les anciens raccourcis/commandes lors de leur prochaine utilisation.
 Les dossiers d’outils `.codex`, `.copilot`, `.local`, `.vscode` et `.vscode-shared`
 restent dans le profil Windows ; ne pas les déplacer avec le code du projet.
 Les documents de sauvegarde restent dans leur dossier existant sous `Projets-ChatGPT-Codex`.
+
+### Avatar : accès individuel du pilote — 18 octobre, après contrôle du Manager
+
+Le code est préparé sur `feat/avatar-interactive-local` au commit
+`fcaab9d030e541e1cd9f3113c0368e13ebdfb03b`. La
+[comparaison et les limites](https://github.com/technologies-formation/a658-yg-avatar/blob/90cffabf7384a3d96fd5a2f2208777e8f7e39713/experimental-service/ACCES_PILOTE.md)
+sont conservées dans le dépôt avatar.
+
+**Constat vérifié par les captures de l’utilisateur :** dans « Hébergement Web 2 »,
+l’option « Protection des dossiers » est grisée et son infobulle indique
+« Vous n’avez aucun site », alors que le site Node.js est listé. Cette protection
+n’est pas utilisable dans la configuration observée ; ne pas la présenter comme
+une protection active de l’avatar ni généraliser à toutes les offres Infomaniak.
+
+**Choix pour la préparation du petit pilote :** identifiants HTTP Basic individuels
+sous HTTPS, vérifiés côté serveur avant l’accès aux référentiels et parcours. Aucun
+service externe ni nouvelle dépendance ajouté. L’accès institutionnel/OIDC reste
+une option à cadrer pour une population élargie ; aucun fournisseur ni compte de
+service n’est établi ici. Le site d’essai Infomaniak distinct du catalogue reste
+privilégié, mais sa disponibilité et son coût éventuel ne sont pas vérifiés :
+aucun site ni domaine créé, aucun achat ni déploiement effectué.
+
+`pilot-auth.mjs` prépare les enregistrements salés scrypt et l’authentification ;
+`pilot-private.mjs` les assemble avec la frontière privée existante. Les deux sont
+désactivés par défaut, sans serveur démarré, lecture d’environnement ou fichier
+implicite. Aucun compte réel n’est créé. Le navigateur utilisera son dialogue
+standard ; aucun mot de passe réel ou jeton partagé n’est inclus dans la page.
+L’adaptateur ne transmet pas les identifiants au backend catalogue.
+
+L’activation demande des comptes individuels explicites (10 au maximum), une limite
+globale de vérifications et une attestation du transport HTTPS. Ne pas faire
+confiance au seul `X-Forwarded-Proto` : l’intégration doit établir le proxy de
+confiance et l’absence de contournement direct. Le coût scrypt (32 Mio environ)
+est à mesurer sur l’hébergement. Une seule vérification lourde à la fois ; demandes
+identiques en cours mutualisées, autres demandes refusées sans file d’attente.
+Les mauvais comptes, formats invalides, succès tardifs après révocation et erreurs
+du contrôle TLS sont refusés. Les réponses, profils et mots de passe ne sont pas
+mis en cache par ce module. Les succès consomment aussi le plafond de vérifications.
+
+**Limites à conserver :** HTTP Basic dépend entièrement de HTTPS et ne fournit ni
+MFA ni déconnexion universelle immédiate du navigateur. La révocation serveur fait
+foi. Révocations et limites d’authentification sont en mémoire ; pour une révocation
+durable, retirer le compte de la future configuration privée et recharger le
+processus. Le quota de parcours reste persistant et distinct. Une attaque peut
+épuiser la limite globale et gêner les testeurs. Ce contrôle côté application
+remplace pour ce pilote l’hypothèse initiale d’un proxy d’identité extérieur au
+processus ; il ne remplace pas l’isolation, TLS ni le débit en périphérie.
+
+Les [93 tests Node](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39157868026)
+passent localement et dans la CI. Le [contrôle Chromium HTTPS](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39157868062)
+réussit aussi, et le rapport JSON de l’artefact a été relu : TLS local réel,
+anonyme 401, authentifié 200, doublon 409, révoqué 401 et arrêté 503 ; un seul
+parcours simulé pour cet essai d’accès. Le certificat auto-signé est accepté
+uniquement dans le test local ; ne jamais reprendre ce réglage en déploiement.
+La régression de l’interface passe avec cinq simulations, sans erreur navigateur,
+requête distante ou débordement horizontal sur ordinateur/mobile. Les captures
+ne sont pas réexaminées à ce jalon ; le dernier examen visuel détaillé reste celui
+du jalon précédent. Artefact `avatar-browser-simulation`, rétention 14 jours.
+Ces essais ne prouvent ni le fonctionnement du proxy Infomaniak, ni le réseau
+institutionnel, ni une authentification ou connexion au moteur réelles.
+Coût OpenAI API : 0 token / 0 $. Le quota Codex est distinct.
+
+**Prochaine étape :** préparer le serveur d’essai et les échanges du navigateur
+sur une même origine, en simulation, avec page/modules/API protégés. Avant
+activation distante : capacité et coût éventuel de l’offre Infomaniak, TLS et
+proxy attestés, provisionnement/révocation hors dépôt, persistance, testeurs,
+plafonds et délais. Le premier appel réel reste une autorisation distincte.
+La démonstration publique `main` de l’avatar et le catalogue restent inchangés.
 
 ### Prochain point de reprise
 
@@ -413,9 +481,10 @@ Pour la phase avatar :
    aux repères ci-dessus et inspecter les éventuels changements intervenus depuis.
 2. Le mode référencé conserve le brouillon après rechargement, actualise les
    choix sans perdre les réponses et exige une confirmation explicite en simulation.
-   La session, le rendu de résultat et la frontière d’accès privé sont préparés ;
-   choisir l’hébergement et son contrôle d’identité, puis préparer les échanges
-   privés du navigateur et cadrer le premier essai réel. Aucun raccordement actif.
+   La session, le rendu et l’accès individuel du petit pilote sont préparés ;
+   préparer le serveur et les échanges du navigateur en simulation avec accès
+   protégé, puis vérifier l’hébergement avant tout déploiement ou premier appel réel.
+   Aucun raccordement actif.
 3. **Référentiel Infomaniak vérifié et opérationnel.** Les empreintes des cinq
    modules concernés, de leur dépendance `entities` et du moteur corrigé sont
    conformes ; les contrôles HTTP publics passent sans appel IA. Aucun remplacement
