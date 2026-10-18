@@ -1,0 +1,223 @@
+{
+  "ok": true,
+  "profile": {
+    "personnelCategory": "PAT",
+    "entity": "Service administratif fictif",
+    "role": "Collaborateur administratif chargé du suivi de projets",
+    "objective": "Développer mes compétences en gestion de projet, en organisation du travail et en communication professionnelle.",
+    "existingSkills": "Maîtrise des outils bureautiques, expérience de coordination administrative et de suivi de dossiers.",
+    "timeAvailable": "5 jours maximum",
+    "constraints": "Formations en français, de préférence en présentiel."
+  },
+  "mode": "pathway-two-pass",
+  "abstain": false,
+  "interpretedGoal": "Constituer un parcours court pour un collaborateur administratif chargé du suivi de projets, visant à consolider les fondamentaux de la gestion de projet, l'organisation du travail et la communication professionnelle, en privilégiant les formations en français et compatibles avec un maximum de 5 jours. Les modalités présentielle et la durée exacte restant à confirmer dans le catalogue.",
+  "summary": "Commencer par les fondamentaux de la gestion de projet, puis renforcer l’organisation personnelle et la communication professionnelle utile au suivi des projets.",
+  "steps": [
+    {
+      "position": 1,
+      "rationale": "Socle directement adapté au suivi de projets : méthodes, étapes, planification, risques, pilotage et rôle des parties prenantes. Accessible à tout public et pertinent pour consolider les acquis de coordination administrative.",
+      "course": {
+        "code": "SEM0737",
+        "title": "Les bases de la gestion de projet",
+        "domain": "GESTION DE PROJET",
+        "theme": "Les bases",
+        "public": "Tout public",
+        "targetAudience": "Ce cours est destiné à toute personne amenée à contribuer et/ou à réaliser un projet",
+        "duration": "4 Jour(s)",
+        "durationHours": 32,
+        "catalogueOffers": [
+          "DF-OPE - L'offre de formation de l'OPE"
+        ],
+        "sourceUrl": "https://outils.ge.ch/referentiel/formation/CatalogueDescription/SEM0737.html"
+      }
+    },
+    {
+      "position": 2,
+      "rationale": "Complète le socle projet par des méthodes concrètes de priorisation, de planification des tâches, de gestion de l’agenda et des interruptions.",
+      "course": {
+        "code": "SEM0872",
+        "title": "Gestion du temps et des priorités",
+        "domain": "APTITUDES PERSONNELLES",
+        "theme": "Efficacité et performance",
+        "public": "Tout public",
+        "targetAudience": "",
+        "duration": "2 Jour(s)",
+        "durationHours": 16,
+        "catalogueOffers": [
+          "DF-OPE - L'offre de formation de l'OPE"
+        ],
+        "sourceUrl": "https://outils.ge.ch/referentiel/formation/CatalogueDescription/SEM0872.html"
+      }
+    },
+    {
+      "position": 3,
+      "rationale": "Développe l’écoute active, la reformulation, la clarté des messages et la vérification de la compréhension, compétences directement utiles à la coordination professionnelle.",
+      "course": {
+        "code": "SEM1098",
+        "title": "Les clés d'une communication efficace",
+        "domain": "COMMUNIQUER ET TRANSMETTRE",
+        "theme": "Communication orale",
+        "public": "Tout public",
+        "targetAudience": "Ce cours est destiné à toutes celles et tous ceux qui souhaitent améliorer la qualité de leur communication en s'appropriant et en intégrant de manière consciente les principes de l'écoute active qui représentent des clés indispensables pour une communication efficace.",
+        "duration": "1 Jour(s)",
+        "durationHours": 8,
+        "catalogueOffers": [
+          "DF-OPE - L'offre de formation de l'OPE"
+        ],
+        "sourceUrl": "https://outils.ge.ch/referentiel/formation/CatalogueDescription/SEM1098.html"
+      }
+    }
+  ],
+  "recommendedSteps": [
+    {
+      "position": 1,
+      "rationale": "Socle directement adapté au suivi de projets : méthodes, étapes, planification, risques, pilotage et rôle des parties prenantes. Accessible à tout public et pertinent pour consolider les acquis de coordination administrative.",
+      "course": {
+        "code": "SEM0737",
+        "title": "Les bases de la gestion de projet",
+        "domain": "GESTION DE PROJET",
+        "theme": "Les bases",
+        "public": "Tout public",
+        "targetAudience": "Ce cours est destiné à toute personne amenée à contribuer et/ou à réaliser un projet",
+        "duration": "4 Jour(s)",
+        "durationHours": 32,
+        "catalogueOffers": [
+          "DF-OPE - L'offre de formation de l'OPE"
+        ],
+        "sourceUrl": "https://outils.ge.ch/referentiel/formation/CatalogueDescription/SEM0737.html"
+      }
+    },
+    {
+      "position": 2,
+      "rationale": "Complète le socle projet par des méthodes concrètes de priorisation, de planification des tâches, de gestion de l’agenda et des interruptions.",
+      "course": {
+        "code": "SEM0872",
+        "title": "Gestion du temps et des priorités",
+        "domain": "APTITUDES PERSONNELLES",
+        "theme": "Efficacité et performance",
+        "public": "Tout public",
+        "targetAudience": "",
+        "duration": "2 Jour(s)",
+        "durationHours": 16,
+        "catalogueOffers": [
+          "DF-OPE - L'offre de formation de l'OPE"
+        ],
+        "sourceUrl": "https://outils.ge.ch/referentiel/formation/CatalogueDescription/SEM0872.html"
+      }
+    },
+    {
+      "position": 3,
+      "rationale": "Développe l’écoute active, la reformulation, la clarté des messages et la vérification de la compréhension, compétences directement utiles à la coordination professionnelle.",
+      "course": {
+        "code": "SEM1098",
+        "title": "Les clés d'une communication efficace",
+        "domain": "COMMUNIQUER ET TRANSMETTRE",
+        "theme": "Communication orale",
+        "public": "Tout public",
+        "targetAudience": "Ce cours est destiné à toutes celles et tous ceux qui souhaitent améliorer la qualité de leur communication en s'appropriant et en intégrant de manière consciente les principes de l'écoute active qui représentent des clés indispensables pour une communication efficace.",
+        "duration": "1 Jour(s)",
+        "durationHours": 8,
+        "catalogueOffers": [
+          "DF-OPE - L'offre de formation de l'OPE"
+        ],
+        "sourceUrl": "https://outils.ge.ch/referentiel/formation/CatalogueDescription/SEM1098.html"
+      }
+    }
+  ],
+  "optionalSteps": [
+    {
+      "position": 1,
+      "rationale": "Approfondissement ciblé de la planification, du suivi, des indicateurs et des tableaux de bord après SEM0737 ; à choisir si le suivi opérationnel des projets constitue la priorité.",
+      "course": {
+        "code": "SEM1081",
+        "title": "Planifier et piloter un projet",
+        "domain": "GESTION DE PROJET",
+        "theme": "Les bases",
+        "public": "Tout public",
+        "targetAudience": "Toute personne amenée à contribuer et/ou à réaliser un projet et qui souhaite approfondir cette thématique.",
+        "duration": "1 Jour(s)",
+        "durationHours": 8,
+        "catalogueOffers": [
+          "DF-OPE - L'offre de formation de l'OPE"
+        ],
+        "sourceUrl": "https://outils.ge.ch/referentiel/formation/CatalogueDescription/SEM1081.html"
+      }
+    },
+    {
+      "position": 2,
+      "rationale": "Approfondissement spécialisé de l’identification et du traitement des risques après SEM0737 ; utile lorsque la fonction comporte une responsabilité marquée sur les risques.",
+      "course": {
+        "code": "SEM1080",
+        "title": "Identifier et gérer les risques d'un projet",
+        "domain": "GESTION DE PROJET",
+        "theme": "Les bases",
+        "public": "Tout public",
+        "targetAudience": "Toute personne amenée à contribuer et/ou à réaliser un projet et qui souhaite approfondir cette thématique.",
+        "duration": "1 Jour(s)",
+        "durationHours": 8,
+        "catalogueOffers": [
+          "DF-OPE - L'offre de formation de l'OPE"
+        ],
+        "sourceUrl": "https://outils.ge.ch/referentiel/formation/CatalogueDescription/SEM1080.html"
+      }
+    },
+    {
+      "position": 3,
+      "rationale": "Complément ciblé pour produire des procès-verbaux, rapports et comptes rendus professionnels ; à privilégier si le poste implique une forte activité de documentation des projets.",
+      "course": {
+        "code": "SEM0631",
+        "title": "L'art du PV, du rapport et du compte-rendu",
+        "domain": "COMMUNIQUER ET TRANSMETTRE",
+        "theme": "Communication écrite",
+        "public": "Tout public",
+        "targetAudience": "",
+        "duration": "2 Jour(s)",
+        "durationHours": 16,
+        "catalogueOffers": [
+          "DF-OPE - L'offre de formation de l'OPE"
+        ],
+        "sourceUrl": "https://outils.ge.ch/referentiel/formation/CatalogueDescription/SEM0631.html"
+      }
+    }
+  ],
+  "informationalCourses": [],
+  "durationSummary": {
+    "budgetHours": 40,
+    "recommendedHours": 56,
+    "verified": true,
+    "durationsKnown": true,
+    "budgetVerified": true,
+    "withinBudget": false,
+    "excessHours": 16
+  },
+  "gaps": [
+    "Les fiches ne couvrent pas précisément les outils bureautiques ou logiciels de gestion de projet utilisés dans le poste.",
+    "Les fiches ne détaillent pas les techniques avancées de coordination multiprojets ni la gouvernance de portefeuille."
+  ],
+  "usage": {
+    "pass1": {
+      "input": 82438,
+      "output": 123,
+      "cached": 0,
+      "written": 82435,
+      "uncached": 3,
+      "cost": 0.02075695
+    },
+    "pass2": {
+      "input": 9189,
+      "output": 430,
+      "cached": 0,
+      "written": 9186,
+      "uncached": 3,
+      "cost": 0.0028131
+    },
+    "total": {
+      "input": 91627,
+      "output": 553,
+      "cached": 0,
+      "written": 91621,
+      "cost": 0.02357005
+    }
+  }
+}

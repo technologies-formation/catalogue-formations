@@ -10,8 +10,10 @@
 >   intégré par `3efb6c40ec8c42229ccb30611d489aeb9f25fbd1`.
 >   Ce volume décrit le dépôt examiné, pas une nouvelle mesure du backend public.
 > - La variante de même origine Infomaniak et son usage sur le Wi-Fi institutionnel
->   sont documentés au jalon du 7 octobre. Aucun nouveau contrôle réseau ou Infomaniak
->   n'a été effectué pendant cette reprise.
+>   sont documentés au jalon du 7 octobre. Le correctif du parcours a été installé
+>   sur Infomaniak et contrôlé par un essai API réel le 18 octobre ; voir
+>   [la trace du déploiement](docs/PATHWAY_SUPPLEMENTARY_RELEVANCE_2026-10-18.md).
+>   Aucun nouvel essai du réseau institutionnel ni contrôle visuel n'a été effectué.
 > - `GET /api/profile-references` est désormais versionné sur `main`.
 >   Le déploiement Pages réussi ne prouve pas sa disponibilité sur le backend Node.
 >   Son déploiement Infomaniak et le raccordement de l'avatar restent à vérifier ou à réaliser.
@@ -56,7 +58,7 @@ l'avatar prépare une nouvelle interaction avec ces services. Il n'est pas un se
 
 | Élément | Source et révision examinées | État établi | Limite du constat |
 | --- | --- | --- | --- |
-| Catalogue, recherche classique, Luna et parcours | [catalogue-formations](https://github.com/technologies-formation/catalogue-formations), `main` à `bbc7ed9` | Code versionné ; tests, lint et build du workflow Pages réussis le 18 octobre | La révision du runtime Infomaniak n'a pas été relue pendant cette reprise |
+| Catalogue, recherche classique, Luna et parcours | [catalogue-formations](https://github.com/technologies-formation/catalogue-formations), `main` à `bbc7ed9` | Code versionné ; tests, lint et build du workflow Pages réussis le 18 octobre | Le fichier du moteur de parcours a été contrôlé et remplacé le 18 octobre ; aucune révision globale du runtime n'est attestée |
 | Données du catalogue | `reports/catalogue-import-report.md`, commit `3efb6c4` | Snapshot du 16 octobre, 1 050 formations | La date d'un workflow réussi n'est pas nécessairement celle d'un nouveau snapshot |
 | Hébergement de même origine | Section Infomaniak de ce guide, jalon `8a247c0` du 7 octobre | Déploiement et essai institutionnel consignés à cette date | Les domaines personnalisés et le réseau doivent être retestés comme prévu |
 | Référentiels du profil | `src/config/pathwayProfile.js`, `server/profileReferences.mjs`, contrat HTTP v1 | Centralisés dans le catalogue depuis `bbc7ed9` | Endpoint Node non confirmé en production ; aucun consommateur avatar raccordé |
@@ -157,12 +159,20 @@ Ordre de travail confirmé avec l'utilisateur le 18 octobre 2026 :
    absence de restriction détectée. Les consignes des deux passes exigent aussi la
    pertinence du sujet et du contexte. Les 356 tests, le lint et les deux builds
    passent localement, avec des transports simulés et sans appel OpenAI.
-2. **Mettre en service et contrôler ce correctif sur le backend.** Une publication
-   GitHub/Pages ne suffit pas : vérifier séparément le déploiement Node Infomaniak,
-   la révision exécutée, le health et des scénarios fonctionnels réels. La diminution
-   des propositions hors sujet par Luna reste à confirmer ; les tests de classement
-   serveur ne sont pas une mesure de pertinence du modèle. Ce contrôle n'a pas été
-   effectué pendant le développement du correctif.
+2. **Mise en service et premier contrôle réel effectués le 18 octobre.** Le seul
+   fichier `server/pathwayEngine.mjs` issu de `55fadf0` a été sauvegardé puis remplacé
+   sur Infomaniak, son SHA-256 vérifié et l'application redémarrée par l'utilisateur.
+   Le health répond `ok=true`, synchronisation active et `lastError=null`.
+   Le cas administratif observé a été rejoué via l'API : trois étapes principales,
+   trois compléments cohérents et aucun cours informatif. Les anciennes propositions
+   pédagogiques/judiciaires n'apparaissent plus dans cet essai. C'est un contrôle
+   fonctionnel ciblé, pas une garantie générale ni une validation visuelle du navigateur.
+   Le coût calculé par le backend est de 0,02357005 USD pour 91 627 tokens d'entrée
+   et 553 de sortie. La réponse brute est conservée dans
+   `reports/pathway-functional-check-2026-10-18.json`.
+   Les autres fichiers Node, dont l'endpoint de référentiels, n'ont pas été déployés
+   par cette opération. Le commit du catalogue renvoyé par le health n'est pas une
+   preuve de la révision globale du code serveur.
 3. **Revenir à l'avatar existant.** Aligner d'abord **hors ligne** la branche
    `feat/avatar-interactive-local` sur `docs/PROFILE_REFERENCES.md`, puis cadrer le
    raccordement au moteur. Il s'agit de réutiliser l'adaptateur et les services
