@@ -351,8 +351,10 @@ Les quatre éléments `.git`, `.github`, `experimental-service` et `index.html`
 sont visibles à destination. L’ouverture de la démonstration depuis cette nouvelle
 adresse a été confirmée par capture. L’utilisateur a ensuite confirmé la mise à la
 Corbeille de l’ancien dossier ; la consigne était de ne pas vider la Corbeille.
-L’intégrité complète du dépôt local, sa branche et sa synchronisation avec GitHub
-n’ont pas été vérifiées : ne pas supposer que cette copie contient les derniers jalons.
+Lors du seul déplacement, l’intégrité, la branche et la synchronisation n’avaient
+pas été vérifiées. Le contrôle Windows ultérieur décrit ci-dessous confirme la
+branche, l’avance rapide jusqu’à `930a5ac`, un contrôle de connectivité sans erreur
+et les 99 tests réussis ; la présence des modules ajoutés ensuite reste à confirmer.
 Adapter les anciens raccourcis/commandes lors de leur prochaine utilisation.
 Les dossiers d’outils `.codex`, `.copilot`, `.local`, `.vscode` et `.vscode-shared`
 restent dans le profil Windows ; ne pas les déplacer avec le code du projet.
@@ -478,6 +480,65 @@ Infomaniak distinct avant un déploiement séparé. Le serveur actuel est un lan
 HTTPS local, pas une configuration compatible implicitement avec le proxy Infomaniak.
 La connexion au moteur réel et le premier appel payant gardent leur validation dédiée.
 La démonstration publique avatar, le catalogue et l’hébergement restent inchangés.
+
+### Premier essai sur le PC Windows — 18 octobre, fin de soirée
+
+Retours fournis par l’utilisateur : Node.js `v24.19.0`, Git installé et OpenSSL
+présent dans `C:\Program Files\Git\usr\bin\openssl.exe`. Le dépôt déplacé
+était au commit `3141233` sur `feat/avatar-interactive-local`, sans modification.
+Le pull a récupéré les commits puis terminé en avance rapide jusqu’à `930a5ac`.
+Pendant son nettoyage automatique, Git a demandé de retenter des suppressions de
+dossiers `.git/objects/...` ; l’utilisateur a répondu `n` et la mise à jour a abouti.
+La cause exacte n’est pas établie ; OneDrive est une hypothèse. Ne supprimer aucun
+objet Git manuellement. Le `git fsck --connectivity-only` suivant ne signale aucune
+erreur et le working tree reste propre. Ce contrôle est une vérification de
+connectivité, pas une preuve exhaustive de chaque aspect du stockage.
+
+Les **99 tests passent sur Windows**, aucun échec ni test ignoré, d’après le retour
+complet fourni par l’utilisateur. OpenSSL est ajouté au PATH de cette session
+PowerShell seulement ; aucune installation ou configuration globale n’est modifiée.
+Ces essais restent hors ligne et n’appellent ni le moteur réel ni OpenAI.
+
+Le module `setup-local-pilot.mjs`, préparé au commit
+`df37a2da305ed61948b3e3524e40726a7d594fc6`, automatise la suite : création d’une
+session privée distincte sous `%LOCALAPPDATA%\A658-YG\pilote-prive`, compte
+aléatoire et empreinte scrypt, certificat HTTPS local non-CA valable 24 h et
+configuration de cinq simulations. Les droits Windows du nouveau dossier sont
+limités à l’utilisateur courant, SYSTEM et aux administrateurs. Un unique GET
+public récupère le contrat de profil ; aucune destination de parcours réel n’est
+configurée. Les données d’aperçu sont synthétiques et sans faux lien officiel ni
+montant de consommation de test. Aucun certificat de confiance Windows n’est ajouté.
+
+Les [contrôles CI](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39166441339)
+du commit `c4054ec465fa2f5ddf27facd36056afed7ed4016` réussissent : 103 tests sous
+Linux et les quatre nouveaux tests de mise en place sous Windows/Node 24. Le
+[bilan de mise en place](https://github.com/technologies-formation/a658-yg-avatar/blob/995195a56bd0b687980ae359dcbacfdf308cb1f7/experimental-service/SERVEUR_PRIVE_SIMULATION.md)
+conserve les preuves et les limites. Le premier test Windows a refusé le répertoire
+temporaire du runner, extérieur au profil local ; le test a été corrigé pour
+respecter la restriction. Aucun assouplissement du stockage privé n’est introduit.
+Ce résultat ne confirme pas encore le provisionnement ou le GET public depuis le PC.
+
+Le mot de passe est conservé uniquement dans `ACCES_LOCAL_PRIVE.txt`, dans le
+nouveau dossier privé ; ne jamais en demander le contenu dans le chat. Le terminal
+retourne seulement les chemins et n’affiche pas le mot de passe. Le script ne lance
+pas le serveur. Un certificat auto-signé de test peut provoquer un avertissement
+du navigateur sur l’adresse locale ; ne pas désactiver globalement la validation TLS.
+Le provisionnement sur le PC reste **à confirmer** par le retour de cette commande :
+
+```powershell
+git -c gc.auto=0 -c maintenance.auto=false pull --ff-only
+if ($LASTEXITCODE -eq 0) {
+    node .\experimental-service\setup-local-pilot.mjs 'C:\Program Files\Git\usr\bin\openssl.exe'
+}
+```
+
+Les deux options Git désactivent le nettoyage automatique pour ce pull seulement,
+sans enregistrer de réglage dans le dépôt ou le profil. Chaque mise en place génère
+une session distincte ; ne pas répéter la commande si elle est encore en cours.
+**Prochaine étape concrète :** attendre les chemins de configuration et d’accès,
+puis lancer le serveur local et effectuer un parcours fictif. Ne pas considérer un
+compte, un certificat ou un serveur comme présents sur le PC sans le retour utilisateur.
+Coût OpenAI API de la préparation : 0 token / 0 $. Quota Codex distinct.
 
 ### Prochain point de reprise
 
