@@ -608,6 +608,61 @@ ne garantit pas l’arrêt d’un traitement déjà engagé dans le backend.
 POST réel n’a été exécuté. Le serveur de simulation peut rester ouvert ; son arrêt
 persiste un blocage de la session, il ne faut pas effacer le compteur pour le contourner.
 
+### Préparation du premier parcours réel privé — 19 octobre 2026
+
+L’utilisateur a validé explicitement le périmètre proposé : préparer et tester le
+raccordement privé local, puis effectuer **une seule tentative réelle** avec un
+profil fictif, sans relance automatique et avec relevé du coût. Cet accord est acquis ;
+ne pas redemander un GO pour les étapes techniques de ce même essai.
+
+Le code est publié sur `feat/avatar-interactive-local` au commit
+`6b1dc30e7b95f7186a77d661ae393fc05c24a2d6`. La
+[procédure du parcours réel privé](https://github.com/technologies-formation/a658-yg-avatar/blob/b22a2501705394e37485bdcac40b53c3a6db6783/experimental-service/ESSAI_REEL_PRIVE.md)
+donne le profil et les commandes. Le lanceur `pilot-real-server.mjs` réutilise
+les accès et le certificat locaux existants mais exige une activation explicite.
+Il écoute sur `https://127.0.0.1:8800/private/`, séparément du simulateur sur 8799.
+Il ne crée aucun hébergement et ne modifie ni le backend catalogue ni l’avatar public.
+
+Le GET du référentiel et le POST du parcours sont transmis par le serveur local
+aux routes connues de `https://api.a658yg-catalogue.ch`. Les identifiants locaux ne
+sont jamais transmis au backend. Les contrôles d’identité, d’origine, de confirmation
+et de révision sont conservés. Le délai POST est de 200 s, celui de la page de 210 s.
+La compatibilité effective avec le proxy reste à constater lors de l’essai.
+
+Le compteur privé `real-one-attempt-quotas.json`, dans la session existante, est
+limité à un essai, distinct des simulations et conservé au redémarrage. Ne jamais
+l’effacer, le réinitialiser ou créer une autre session pour répéter ce premier test.
+Après succès, `real-one-attempt-report.json` conserve date, quota, codes des cours
+et consommation renvoyée, sans profil ni secret. Un échec d’écriture du rapport ne
+déclenche aucune relance et ne retire pas le résultat affiché. Une erreur/expiration
+après réservation conserve la tentative ; son coût peut alors rester inconnu.
+
+Les **108 tests Node passent localement**, tous avec transports moteur simulés.
+Les [tests GitHub](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39227459028)
+réussissent au commit `5be853a46bfa327aff78cbd78411c452087797e0` : 108 tests Linux
+et neuf tests Windows/Node 24. Le
+[contrôle Chromium](https://github.com/technologies-formation/a658-yg-avatar/actions/runs/39227458793)
+réussit aussi, avec un transport moteur injecté exclusivement : un POST fictif
+accepté, second essai refusé, brouillon restauré sans POST au rechargement,
+aucune erreur navigateur, requête externe ou débordement horizontal aux formats
+1280 × 900 et 390 × 844. Le simulateur privé antérieur passe en régression.
+Rapport JSON et captures du résultat ordinateur, du brouillon mobile restauré et
+du quota mobile examinés sans problème bloquant observé. Artefact
+`avatar-browser-simulation`, rétention 14 jours. Le premier contrôle lisait le texte
+visible dans le récapitulatif mobile replié ; la vérification a été corrigée pour
+lire la donnée DOM, sans modifier ou assouplir le produit. Aucun contrôle n’a utilisé
+le moteur réel. Safari, appareils mobiles physiques et réseau institutionnel non couverts.
+
+**Point exact de reprise à la préparation :** le serveur réel n’est pas encore
+lancé sur le PC, aucune tentative réelle n’est effectuée. Utiliser une nouvelle
+fenêtre PowerShell sans arrêter le simulateur, récupérer le code et lancer le mode
+réel avec le chemin de la configuration privée de la session déjà créée. Ouvrir
+l’adresse 8800 directement, reprendre les mêmes identifiants et saisir le profil
+fictif documenté. Le brouillon du port 8799 ne se transfère pas sur cette autre origine.
+Après le seul clic de confirmation, attendre puis relever résultat, tokens et coût.
+Coût OpenAI API de la préparation : **0 token / 0 $**. La validation métier du
+résultat réel et sa consommation restent à constater par le retour utilisateur.
+
 ### Prochain point de reprise
 
 Ordre de travail confirmé avec l'utilisateur le 18 octobre 2026 :
