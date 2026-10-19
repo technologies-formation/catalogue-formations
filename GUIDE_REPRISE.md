@@ -743,11 +743,18 @@ Ordre de travail confirmé avec l'utilisateur le 18 octobre 2026 :
    en simulation ; le cadrage du raccordement réel reste à réaliser.
 
 Le dépassement d'heures n'est pas prioritaire et sa gestion reste inchangée.
-Un entretien déjà évoqué reste à faire dans le Manager Infomaniak : **renommer
-« Hébergement Web 2 »** pour identifier clairement l'hébergement A658-YG.
-L'utilisateur l'a rappelé le 18 octobre 2026 ; le nouveau libellé reste à préciser.
-Ce renommage n'a pas été exécuté et doit rester dans la liste de suivi jusqu'à
-confirmation de sa réalisation.
+**Renommage de l’hébergement effectué le 19 octobre 2026.** L’utilisateur a
+enregistré le nom identifiant « A658-YG », « Catalogue et Avatar » à la place de
+« Hébergement Web 2 ». La capture après sauvegarde confirme le nouveau libellé
+dans le titre, le fil d’Ariane et la navigation du Manager. Ce point de suivi est
+clos. Cette opération porte sur le nom de l’hébergement ; elle ne constitue pas
+la création ou le déploiement d’un site avatar distant.
+
+La vérification d’un site Node.js séparé pour le pilote distant est en cours.
+La vue d’ensemble montrée le 19 octobre comporte « Ajouter un site » et un compteur
+de sites 1/21. Ce compteur général ne confirme pas à lui seul la possibilité d’une
+seconde application Node.js ni son prix. Examiner l’assistant d’ajout avant toute
+création ou modification d’offre. Aucun nouveau site ou achat n’est constaté.
 
 Le nettoyage éventuel d'Infomaniak est un sujet séparé : aucun inventaire précis
 des éléments à supprimer ni décision de suppression n'a été retrouvé. Ne pas
