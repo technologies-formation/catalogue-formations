@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-16
+- Date du snapshot : 2026-10-19
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 113.4 secondes
-- Taille du JSON final : 2.03 Mio (2124963 octets)
-- Empreinte SHA-256 du snapshot : `b127bb8952394f1ec14ed1e197c5d982759a95505e7daef74f4e4900edb9fc85`
+- Durée totale de l’import : 112.7 secondes
+- Taille du JSON final : 2.03 Mio (2124967 octets)
+- Empreinte SHA-256 du snapshot : `878f95ecf2f154de4891dc2ad06bc211d405f9310b59aa284adb6a4d9234020d`
 
 ## Synthèse
 
@@ -22,19 +22,17 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1049 |
+| Cours dans le snapshot officiel | 1050 |
 | Cours dans le candidat | 1050 |
-| Cours ajoutés | 1 |
+| Cours ajoutés | 0 |
 | Cours supprimés | 0 |
-| Cours modifiés | 33 |
+| Cours modifiés | 8 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| TRT1022 | Excel 365 Préparation à l'analyse de données | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | LOGICIELS BUREAUTIQUES |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
@@ -44,49 +42,18 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-1172CFP | FIO IOSP : VISITES AUX CFP | `hasOpenSession` : « true » → « false » |
-| EO-010 | Histoire sans chute ou comment repenser le travail du textile dans nos ateliers | `hasOpenSession` : « true » → « false » |
-| EP-519 | Appropriation des MER Français cycle moyen | `hasOpenSession` : « true » → « false » |
-| OMP-017TSA | Particularités cognitives et sensorielles des élèves avec autisme; outils pour les intégrer à la classe | `hasOpenSession` : « false » → « true » |
-| S2-301 | Voyage au mémorial de Mauthausen | `hasOpenSession` : « true » → « false » |
-| SEM-10244 | CO-ESII / Une promenade en images pour l'Histoire de Genève : rencontre avec A. Bosch, conférencier et historien | `hasOpenSession` : « true » → « false » |
-| SEM0052 | Tensions et conflits au sein de vos équipes : anticiper, désamorcer et réguler | `titleRaw` : « Manager : gérer les tensions au sein de son équipe » → « Tensions et conflits au sein de vos équipes : anticiper, désamorcer et réguler »<br>`targetAudienceRaw` : « Manager avec responsabilité d'encadrement présente ou future, souhaitant développer sa compétence à gérer les tensions au quotidien dans son équipe, ou amené à jouer un rôle de tiers dans un conflit entre des collaboratrices et collabora… » → « Manager avec responsabilité d'encadrement, présente ou future, amené·e à intervenir comme tiers dans une tension ou un conflit entre collaboratrices et collaborateurs de son équipe. Sans responsabilité d'équipe ? Le cours « Développer se… » |
-| SEM0518 | Développer ses qualités relationnelles pour prévenir les tensions | `titleRaw` : « Prévenir les tensions dans ses relations par une bonne communication » → « Développer ses qualités relationnelles pour prévenir les tensions »<br>`targetAudienceRaw` : « Collaboratices et collaborateurs désireux d'agir pour améliorer sa communication et éviter les conflits. Ce cours n'est pas un lieu de résolution pour des conflits avérés. Si vous avez des difficultés, nous vous invitons à solliciter vot… » → « Le cours s'adresse à toute personne souhaitant développer ses qualités relationnelles et prévenir les tensions dans son cadre professionnel. Il a une visée préventive et n'est pas un lieu de résolution de conflits avérés : en cas de diff… » |
-| SEM0746 | Communiquer efficacement avec les médias | `hasOpenSession` : « true » → « false » |
-| SEM0815 | Mi-parcours professionnel: donner un nouvel élan à sa carrière | `titleRaw` : « Dynamiser sa seconde partie de carrière et de vie » → « Mi-parcours professionnel: donner un nouvel élan à sa carrière »<br>`targetAudienceRaw` : « Toute personne soucieuse de son évolution professionnelle, ayant plus de 45 ans ou 20 ans d'expérience professionnelle. Ce cours est destiné aux personnes qui ont encore des années d'activité devant elles et qui désirent y amener un nouv… » → « Toute personne ayant plus de 45 ans ou environ 20 ans d'expérience professionnelle, qui souhaite donner un nouvel élan à son parcours professionnel et personnel. Cette formation s'adresse aux personnes qui disposent encore de plusieurs a… » |
-| SEM0828 | Développer sa créativité pour aborder et résoudre autrement les problèmes | `hasOpenSession` : « true » → « false » |
-| SEM1040 | Mindmap : une méthode pour organiser ses idées et ses informations | `hasOpenSession` : « false » → « true » |
-| SEM1085 | Finances et comptabilité | `hasOpenSession` : « true » → « false » |
-| SEM1163 | Développer ses ressources personnelles pour agir avec confiance | `titleRaw` : « Relation et confiance en soi » → « Développer ses ressources personnelles pour agir avec confiance »<br>`publicRaw` : « Tout public » → « Spécifique »<br>`targetAudienceRaw` : `null` → « Toute personne qui souhaite approfondir la connaissance de soi pour être et agir en confiance » |
-| SEM1198 | Prendre soin de soi pour un meilleur équilibre au travail : intégrer les TOP dans son quotidien | `hasOpenSession` : « false » → « true » |
-| SEM1247 | Les discriminations: comprendre, prévenir et prendre en charge | `hasOpenSession` : « true » → « false » |
+| CO-1172CFP | FIO IOSP : VISITES AUX CFP | `hasOpenSession` : « false » → « true » |
+| OMP-097 | Les troubles des apprentissages chez l'enfant : théorie et implications pédagogiques | `hasOpenSession` : « true » → « false » |
+| S2-PREQ01 | Analyse des pratiques professionnelles (APP) à l'attention du personnel enseignant du préqualifiant | `hasOpenSession` : « true » → « false » |
+| SEM0631 | L'art du PV, du rapport et du compte-rendu | `hasOpenSession` : « true » → « false » |
+| SEM0886 | Processus législatif et réglementaire | `hasOpenSession` : « true » → « false » |
+| SEM1118 | Gérer ses émotions dans ses relations professionnelles | `hasOpenSession` : « true » → « false » |
+| SEM1161 | Sensibilisation à la pleine-conscience au travail | `hasOpenSession` : « false » → « true » |
+| SEM1177 | Créer une dynamique collaborative au sein de son équipe | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-| Code | Intitulé candidat | Champs modifiés |
-| --- | --- | --- |
-| EP-100MDAS | La danse Hip-Hop comme outil pédagogique et artistique au Cycle 2 | `objectivesRaw`, `contentRaw` |
-| S2-326 | Commerce extérieur suisse : un an de bouleversements géopolitiques - où en sommes-nous ? | `contentRaw` |
-| SEM0052 | Tensions et conflits au sein de vos équipes : anticiper, désamorcer et réguler | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
-| SEM0518 | Développer ses qualités relationnelles pour prévenir les tensions | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
-| SEM0815 | Mi-parcours professionnel: donner un nouvel élan à sa carrière | `generalInformationRaw`, `objectivesRaw`, `contentRaw` |
-| SEM1085 | Finances et comptabilité | `contentRaw` |
-| SEM1163 | Développer ses ressources personnelles pour agir avec confiance | `objectivesRaw`, `contentRaw` |
-| TRT1004 | Windows 11 | `contentRaw` |
-| TRT1005 | Excel 365 Base | `contentRaw` |
-| TRT1007 | Excel 365 Formules et fonctions avancées | `contentRaw` |
-| TRT1008 | Excel 365 Les graphiques | `contentRaw`, `additionalInformationRaw` |
-| TRT1009 | Excel 365 Analyse de données | `durationRaw`, `objectivesRaw`, `contentRaw`, `prerequisitesRaw`, `additionalInformationRaw` |
-| TRT1010 | Excel 365 Gagner en efficacité | `durationRaw`, `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
-| TRT1011 | Outlook 365 Base | `contentRaw`, `prerequisitesRaw`, `additionalInformationRaw` |
-| TRT1012 | Outlook 365 Avancé | `contentRaw` |
-| TRT1013 | PowerPoint 365 Base | `durationRaw`, `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
-| TRT1014 | PowerPoint 365 Avancé | `contentRaw`, `additionalInformationRaw` |
-| TRT1015 | Word 365 Base | `contentRaw`, `additionalInformationRaw` |
-| TRT1016 | Word 365 Publipostage | `contentRaw`, `additionalInformationRaw` |
-| TRT1017 | Word 365 Mise en forme avancée | `contentRaw`, `additionalInformationRaw` |
-| TRT1018 | Word 365 Longs documents | `durationRaw`, `contentRaw`, `additionalInformationRaw` |
-| TRT1020 | Word 365 Gagner en efficacité | `durationRaw`, `objectivesRaw`, `contentRaw`, `additionalInformationRaw` |
+Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
@@ -193,17 +160,17 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
+- TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
-- SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
-- TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-001 — Généralités (`generalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
-- TRT023 — Informations complémentaires (`additionalInformationRaw`)
+- TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
+- TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
 - S2-301 — Informations complémentaires (`additionalInformationRaw`)
@@ -237,7 +204,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-16T08:06:18.599Z
-- Snapshot candidat validé : 2026-10-16
-- Empreinte SHA-256 : `b127bb8952394f1ec14ed1e197c5d982759a95505e7daef74f4e4900edb9fc85`
+- Date et heure de promotion : 2026-10-19T08:46:14.369Z
+- Snapshot candidat validé : 2026-10-19
+- Empreinte SHA-256 : `878f95ecf2f154de4891dc2ad06bc211d405f9310b59aa284adb6a4d9234020d`
 - Promotion manuelle confirmée.
