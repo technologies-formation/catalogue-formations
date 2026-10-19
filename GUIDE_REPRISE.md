@@ -32,6 +32,13 @@
 
 Ce document est la référence technique et opérationnelle pour reprendre le projet après une interruption.
 
+> **Dernier jalon utilisateur — 19 octobre 2026 :** le pilote privé HTTPS local
+> fonctionne sur le PC Windows. Mise en place, authentification et deux simulations
+> confirmées ; brouillon restauré après rechargement, résultat retiré et compteur
+> passant de 1/5 à 2/5 après une nouvelle confirmation. Aucun appel au moteur réel.
+> Voir « Validation du pilote privé sur le PC Windows » ci-dessous pour les preuves
+> et le prochain périmètre. Les constats du 18 octobre restent historiques.
+
 > **Jalon historique validé au 12 septembre 2026**
 >
 > Le projet dispose désormais :
@@ -540,6 +547,67 @@ puis lancer le serveur local et effectuer un parcours fictif. Ne pas considérer
 compte, un certificat ou un serveur comme présents sur le PC sans le retour utilisateur.
 Coût OpenAI API de la préparation : 0 token / 0 $. Quota Codex distinct.
 
+### Validation du pilote privé sur le PC Windows — 19 octobre 2026
+
+Le [bilan de cet essai](https://github.com/technologies-formation/a658-yg-avatar/blob/a2b4e2f82498f7e37b10a94eae8fe89f39bcea8a/experimental-service/SERVEUR_PRIVE_SIMULATION.md)
+est versionné sur la branche interactive ; la mise à jour ne modifie que la documentation.
+
+Le retour PowerShell confirme l’avance rapide de `930a5ac` à `995195a`, puis la
+réussite de `setup-local-pilot.mjs` avec OpenSSL fourni par Git. Une session privée
+a été créée sous `%LOCALAPPDATA%\A658-YG\pilote-prive`, hors dépôt et hors OneDrive.
+Le lancement explicite de `pilot-server.mjs` confirme l’écoute HTTPS locale sur
+`127.0.0.1:8799`. La préparation utilise le GET public des référentiels ; ce succès
+ne constitue pas un appel au générateur de parcours.
+
+L’utilisateur a ouvert `https://127.0.0.1:8799/private/`, accepté l’exception du
+certificat auto-signé pour cette adresse locale et utilisé les identifiants du
+fichier privé sur son PC. Aucun secret n’a été communiqué dans le chat ni versionné.
+Aucun certificat de confiance Windows n’a été installé. L’ouverture initiale depuis
+un lien a produit « Origine refusée » ; la saisie directe dans la barre d’adresse
+a permis l’accès. Un contexte de navigation intersite est une hypothèse, pas un
+diagnostic confirmé ; aucune protection d’origine n’a été assouplie.
+
+Les captures examinées confirment :
+
+- un questionnaire fictif complété, puis une confirmation explicite ;
+- le résultat synthétique avec « Tentatives : 1/5 » ;
+- après Ctrl+R, les réponses restaurées, le résultat retiré et une nouvelle
+  confirmation demandée ;
+- après cette seconde confirmation, « Tentatives : 2/5 ». Le rechargement n’a
+  donc pas réservé de tentative supplémentaire dans cette séquence.
+
+Ce contrôle est une validation fonctionnelle manuelle sur le poste, en complément
+des 103 tests Linux et des quatre tests de mise en place Windows du jalon précédent.
+Ce n’est ni un nouveau benchmark, ni une validation de pertinence métier : les
+formations et durées de l’aperçu sont fixes, indépendantes du profil saisi.
+Il ne prouve pas le fonctionnement sur le réseau institutionnel, un accès distant
+ou un parcours réel. Coût OpenAI API : **0 token / 0 $** ; quota Codex distinct.
+
+**Prochain jalon proposé : un premier parcours réel privé depuis le PC.**
+Réutiliser la page, l’authentification, l’adaptateur et la session existants, avec
+un mode réel explicite séparé du simulateur. Préparer et tester hors ligne le
+lanceur avant toute activation. Conserver un état de quota privé distinct : ne pas
+convertir ni remettre à zéro les cinq simulations de cette session. Aucun nouveau
+site Infomaniak, déploiement public ou changement du moteur n’est requis par cette
+proposition ; un accès distant demeure un périmètre séparé.
+
+Avant le premier POST payant, obtenir l’accord explicite sur :
+
+- un cas fictif de personnel administratif, sans données personnelles, objectif
+  « Mieux organiser mes tâches administratives et mes priorités au quotidien » ;
+- **une seule tentative réelle**, sans relance automatique ni nouvel essai après
+  erreur ou expiration ;
+- un délai client proposé de 200 secondes, dont la compatibilité reste à vérifier ;
+- le relevé des tokens et du coût renvoyés par le moteur lorsqu’ils sont disponibles.
+
+Le coût historique du contrôle du 18 octobre (0,02357005 USD) est un repère observé,
+pas un devis ni un plafond. Un quota d’une tentative ne garantit pas un plafond
+en dollars ; aucun montant ne doit être annoncé comme garanti. Un timeout client
+ne garantit pas l’arrêt d’un traitement déjà engagé dans le backend.
+À ce jalon documentaire, aucun lanceur réel n’a été ajouté ou activé et aucun
+POST réel n’a été exécuté. Le serveur de simulation peut rester ouvert ; son arrêt
+persiste un blocage de la session, il ne faut pas effacer le compteur pour le contourner.
+
 ### Prochain point de reprise
 
 Ordre de travail confirmé avec l'utilisateur le 18 octobre 2026 :
@@ -596,9 +664,11 @@ Pour la phase avatar :
 2. Le mode référencé conserve le brouillon après rechargement, actualise les
    choix sans perdre les réponses et exige une confirmation explicite en simulation.
    La page, le serveur HTTPS local, le rendu et l’accès individuel du petit pilote
-   sont réalisés en simulation. Préparer les fichiers privés d’un essai utilisateur
-   local ou vérifier l’hébergement distinct avant tout déploiement. Le moteur réel
-   reste déconnecté et son premier appel nécessite un périmètre dédié.
+   sont réalisés en simulation. L’essai utilisateur local est confirmé le 19 octobre,
+   jusqu’à deux simulations avec restauration du brouillon entre les deux.
+   Préparer le jalon réel privé décrit ci-dessus après accord sur son périmètre,
+   ou vérifier l’hébergement distinct avant tout déploiement distant. Le moteur
+   reste déconnecté et son premier appel nécessite une validation dédiée.
 3. **Référentiel Infomaniak vérifié et opérationnel.** Les empreintes des cinq
    modules concernés, de leur dépendance `entities` et du moteur corrigé sont
    conformes ; les contrôles HTTP publics passent sans appel IA. Aucun remplacement
