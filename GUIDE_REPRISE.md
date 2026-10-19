@@ -32,12 +32,13 @@
 
 Ce document est la référence technique et opérationnelle pour reprendre le projet après une interruption.
 
-> **Dernier jalon utilisateur — 19 octobre 2026 :** le pilote privé HTTPS local
-> fonctionne sur le PC Windows. Mise en place, authentification et deux simulations
-> confirmées ; brouillon restauré après rechargement, résultat retiré et compteur
-> passant de 1/5 à 2/5 après une nouvelle confirmation. Aucun appel au moteur réel.
-> Voir « Validation du pilote privé sur le PC Windows » ci-dessous pour les preuves
-> et le prochain périmètre. Les constats du 18 octobre restent historiques.
+> **Dernier jalon utilisateur — 19 octobre 2026 :** après validation du simulateur,
+> le premier parcours réel a été reçu depuis le pilote privé HTTPS local sur le PC.
+> Une tentative sur une consommée, 91 448 tokens d’entrée, 525 de sortie et
+> 0,0234917 USD renvoyés par le backend. Deux étapes recommandées cohérentes pour
+> le cas fictif administratif ; voir « Premier parcours réel reçu depuis l’avatar privé ».
+> Aucun second appel ou déploiement distant autorisé à ce jalon. Les constats
+> antérieurs conservent leur date et leur périmètre.
 
 > **Jalon historique validé au 12 septembre 2026**
 >
@@ -662,6 +663,47 @@ fictif documenté. Le brouillon du port 8799 ne se transfère pas sur cette autr
 Après le seul clic de confirmation, attendre puis relever résultat, tokens et coût.
 Coût OpenAI API de la préparation : **0 token / 0 $**. La validation métier du
 résultat réel et sa consommation restent à constater par le retour utilisateur.
+
+### Premier parcours réel reçu depuis l’avatar privé — 19 octobre 2026
+
+**Jalon fonctionnel confirmé sur le PC utilisateur.** Le retour PowerShell atteste
+la mise à jour jusqu’à `b22a250`, puis l’écoute locale sur le port 8800. Les captures
+montrent le pilote réel, la génération après confirmation et le résultat avec
+**Tentatives : 1/1**. Le texte intégral du résultat a ensuite été fourni dans le chat.
+Le profil fictif est celui prévu : collaborateur administratif PAT, sans responsabilité
+managériale, entité vide, objectif d’organisation des tâches et priorités au quotidien,
+bases bureautiques, cinq jours disponibles, présentiel de préférence.
+
+| Constat | Résultat reçu |
+| --- | --- |
+| Étapes recommandées | SEM0872 — Gestion du temps et des priorités ; TRT1011 — Outlook 365 Base |
+| Compléments | SEM1113 — De quoi je m’e-mail? ; TRT1012 — Outlook 365 Avancé ; SEM1040 — Mindmap ; SEM1235 — GIDA |
+| Durée affichée | 40 h disponibles ; 20 h recommandées ; 0 h de dépassement |
+| Tokens renvoyés par le moteur | **91 448 en entrée ; 525 en sortie** |
+| Coût calculé par le backend | **0,0234917 USD** pour ce seul essai |
+
+La lecture qualitative du résultat fourni est cohérente pour ce cas : gestion du
+temps en socle, application dans Outlook, compléments reliés à l’objectif et
+alternatives expliquées. Outlook Avancé est conditionné à la maîtrise préalable
+des bases ; le cours sur les e-mails est proposé en complément ciblé ou à la place
+d’Outlook Base plutôt qu’en cumul systématique. Les 20 h ne comprennent pas tous
+les compléments. Aucun ancien cours pédagogique ou judiciaire sans lien avec le
+profil n’apparaît dans cette réponse. Les modalités, prérequis et possibilités
+d’inscription restent à vérifier pour une utilisation réelle.
+
+Ce constat valide un flux de bout en bout sur le PC et une cohérence qualitative
+sur un cas, sans constituer un benchmark indépendant, une validation générale du
+moteur, du réseau institutionnel ou d’un avatar distant. Le rapport JSON privé
+n’a pas été lu séparément ; la preuve du résultat et du coût est la capture puis
+le texte utilisateur, sans secret. La préparation avait coûté 0 token / 0 $ ; ce
+premier appel réel est bien payant et sa consommation doit rester distincte.
+
+**Point de reprise actuel :** essai unique consommé, aucun nouvel appel autorisé.
+Ne pas effacer le compteur ni créer une nouvelle session pour répéter le test.
+Le mode réel sur le PC utilise le port 8800 et la configuration privée existante ;
+le simulateur demeure distinct sur 8799. Aucun déploiement distant de l’avatar,
+fusion dans son `main` ou modification du moteur backend n’a eu lieu par cet essai.
+Choisir le prochain périmètre avant une nouvelle dépense ou un déploiement.
 
 ### Prochain point de reprise
 
