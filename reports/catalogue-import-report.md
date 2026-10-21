@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-20
+- Date du snapshot : 2026-10-21
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 138.9 secondes
-- Taille du JSON final : 2.05 Mio (2149203 octets)
-- Empreinte SHA-256 du snapshot : `ca64d432b476a9cfe329bd30ce39d5cabfcb71ced77cef37ccbf6960b816023b`
+- Durée totale de l’import : 139.2 secondes
+- Taille du JSON final : 2.05 Mio (2151785 octets)
+- Empreinte SHA-256 du snapshot : `f3af47b817c119966310bdb255627982c2539f72e0e74394c0411c95429eaa48`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1623
-- Codes uniques : 1063
+- Occurrences détectées dans l’index : 1624
+- Codes uniques : 1064
 - Occurrences éliminées par déduplication : 560
 - Formations présentes dans plusieurs offres : 287
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1063
+- Fiches récupérées avec succès : 1064
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1050 |
-| Cours dans le candidat | 1063 |
-| Cours ajoutés | 13 |
+| Cours dans le snapshot officiel | 1063 |
+| Cours dans le candidat | 1064 |
+| Cours ajoutés | 1 |
 | Cours supprimés | 0 |
-| Cours modifiés | 7 |
+| Cours modifiés | 2 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,19 +34,7 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| FSM012 | Moniteurs sanitaires - refresh BLS-AED (Generic provider) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD001 | Accompagnement des stagiaires (ADS) - base | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD022 | Coach FOBA | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD170 | Formateurs TTI (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD171 | Formateurs Tir (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD177 | Cours cadre TTI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD183 | Cours cadre Tir | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD207 | BFFA - M1 : Animer des sessions de formation pour des groupes d'adultes (FFA CF-AF). | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD240 | Coach FOI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD373 | Accompagnement des stagiaires - Refresh | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD418 | Formation continue pour les coaches de la pratique - module 1: Rôle et tâches de la/du coach et formulation des objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD419 | Formation continue pour les coaches de la pratique - module 2: planifier, organiser et suivre les objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD422 | Formation continue pour les coaches de la pratique - module 3: Evaluation de l'apprentissage et du transfert | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| DIP-007 | Nouveau cadre managérial du DIP - Séance de lancement | DIP - Service de la formation DRH-DIP | Service développement des compétences DIP | FONCTIONNEMENT DE L'ADMINISTRATION |
 
 ### Cours supprimés
 
@@ -56,13 +44,8 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-996 | Accueillir un élève allophone nouvellement arrivé en classe régulière : pistes d'action | `titleRaw` : « Accueillir un élève allophone nouvellement arrivé en classe ordinaire : pistes d'action » → « Accueillir un élève allophone nouvellement arrivé en classe régulière : pistes d'action » |
-| FP196 | FOCO en matière d'audition (St-Yves) : POLICE (Sauf PJ & GSJ) | `hasOpenSession` : « true » → « false » |
-| FP197 | FOCO en matière d'audition (St-Yves) : PJ & Suivi Judiciaire | `hasOpenSession` : « true » → « false » |
-| FP255 | Sport et Santé - Bilan fonctionnel | `hasOpenSession` : « true » → « false » |
-| S2-340 | Penser l'Histoire dans l'Anthropocène | `hasOpenSession` : « true » → « false » |
-| SEM0518 | Développer ses qualités relationnelles pour prévenir les tensions | `hasOpenSession` : « false » → « true » |
-| SEM1210 | Management et Assertivité | `hasOpenSession` : « true » → « false » |
+| SEM1095 | Prévenir et gérer les comportements agressifs | `hasOpenSession` : « false » → « true » |
+| SEM1172 | En finir avec les pièges de la langue française ! | `hasOpenSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
@@ -109,7 +92,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 70 | 70 |
 | DF-OPE - L'offre de formation de l'OPE | 166 | 166 |
-| DIP - Service de la formation DRH-DIP | 4 | 4 |
+| DIP - Service de la formation DRH-DIP | 5 | 5 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 218 | 218 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 314 | 314 |
 | DIP-ES II - Offre de formation de l'ES II | 233 | 233 |
@@ -122,17 +105,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1063/1063 | 100.0 % |
-| `domainRaw` | 1063/1063 | 100.0 % |
-| `themeRaw` | 984/1063 | 92.6 % |
-| `publicRaw` | 948/1063 | 89.2 % |
-| `durationRaw` | 1043/1063 | 98.1 % |
-| `targetAudienceRaw` | 948/1063 | 89.2 % |
-| `generalInformationRaw` | 528/1063 | 49.7 % |
-| `objectivesRaw` | 1009/1063 | 94.9 % |
-| `contentRaw` | 932/1063 | 87.7 % |
-| `prerequisitesRaw` | 371/1063 | 34.9 % |
-| `additionalInformationRaw` | 324/1063 | 30.5 % |
+| `organizingEntityRaw` | 1064/1064 | 100.0 % |
+| `domainRaw` | 1064/1064 | 100.0 % |
+| `themeRaw` | 985/1064 | 92.6 % |
+| `publicRaw` | 949/1064 | 89.2 % |
+| `durationRaw` | 1044/1064 | 98.1 % |
+| `targetAudienceRaw` | 949/1064 | 89.2 % |
+| `generalInformationRaw` | 529/1064 | 49.7 % |
+| `objectivesRaw` | 1010/1064 | 94.9 % |
+| `contentRaw` | 933/1064 | 87.7 % |
+| `prerequisitesRaw` | 371/1064 | 34.9 % |
+| `additionalInformationRaw` | 324/1064 | 30.5 % |
 
 ### Correspondance des libellés officiels
 
@@ -173,13 +156,13 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
+- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
-- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
@@ -191,8 +174,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - FP208 — Généralités (`generalInformationRaw`)
 - FP209 — Généralités (`generalInformationRaw`)
 - FP210 — Généralités (`generalInformationRaw`)
-- FP218 — Généralités (`generalInformationRaw`)
 - FP217 — Généralités (`generalInformationRaw`)
+- FP218 — Généralités (`generalInformationRaw`)
 
 ## Erreurs de récupération
 
@@ -216,7 +199,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-20T08:26:53.413Z
-- Snapshot candidat validé : 2026-10-20
-- Empreinte SHA-256 : `ca64d432b476a9cfe329bd30ce39d5cabfcb71ced77cef37ccbf6960b816023b`
+- Date et heure de promotion : 2026-10-21T08:30:17.414Z
+- Snapshot candidat validé : 2026-10-21
+- Empreinte SHA-256 : `f3af47b817c119966310bdb255627982c2539f72e0e74394c0411c95429eaa48`
 - Promotion manuelle confirmée.
