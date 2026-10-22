@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-21
+- Date du snapshot : 2026-10-22
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 139.2 secondes
-- Taille du JSON final : 2.05 Mio (2151785 octets)
-- Empreinte SHA-256 du snapshot : `f3af47b817c119966310bdb255627982c2539f72e0e74394c0411c95429eaa48`
+- Durée totale de l’import : 130.4 secondes
+- Taille du JSON final : 2.05 Mio (2151786 octets)
+- Empreinte SHA-256 du snapshot : `9e554122db8752e41e6de61d3cc5f6daaea729cd613a9420493d4d7ea8b8001a`
 
 ## Synthèse
 
@@ -22,19 +22,17 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1063 |
+| Cours dans le snapshot officiel | 1064 |
 | Cours dans le candidat | 1064 |
-| Cours ajoutés | 1 |
+| Cours ajoutés | 0 |
 | Cours supprimés | 0 |
-| Cours modifiés | 2 |
+| Cours modifiés | 5 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| DIP-007 | Nouveau cadre managérial du DIP - Séance de lancement | DIP - Service de la formation DRH-DIP | Service développement des compétences DIP | FONCTIONNEMENT DE L'ADMINISTRATION |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
@@ -44,8 +42,11 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| SEM1095 | Prévenir et gérer les comportements agressifs | `hasOpenSession` : « false » → « true » |
-| SEM1172 | En finir avec les pièges de la langue française ! | `hasOpenSession` : « false » → « true » |
+| EO-727 | Imagination, expression orale et écrite : des jeux pour créer des histoires | `hasOpenSession` : « true » → « false » |
+| FP230 | Techniques Optimisation Potentiel (TOP) - Formation 1er niveau | `hasOpenSession` : « true » → « false » |
+| FP255 | Sport et Santé - Bilan fonctionnel | `hasOpenSession` : « false » → « true » |
+| FP283 | Techniques d'optimisation du potentiel (TOP) - Praticiens - Formation continue | `hasOpenSession` : « false » → « true » |
+| SEM1195 | Communication et feed-back constructif | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
@@ -156,13 +157,13 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
-- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
-- TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
+- TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
@@ -199,7 +200,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-21T08:30:17.414Z
-- Snapshot candidat validé : 2026-10-21
-- Empreinte SHA-256 : `f3af47b817c119966310bdb255627982c2539f72e0e74394c0411c95429eaa48`
+- Date et heure de promotion : 2026-10-22T08:32:32.435Z
+- Snapshot candidat validé : 2026-10-22
+- Empreinte SHA-256 : `9e554122db8752e41e6de61d3cc5f6daaea729cd613a9420493d4d7ea8b8001a`
 - Promotion manuelle confirmée.
