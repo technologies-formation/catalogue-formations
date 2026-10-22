@@ -1,25 +1,31 @@
 # Complément au guide de reprise — Hébergement de l’avatar distant
 
-Date : 19 octobre 2026.
+Synthèse initiale : 19 octobre 2026. Mise à jour : 22 octobre 2026.
 
-À lire avec le [guide de reprise](../GUIDE_REPRISE.md). Cette synthèse complète le point de reprise relatif à l’hébergement distant ; les constats historiques du guide conservent leur date.
+À lire avec le [guide de reprise](../GUIDE_REPRISE.md). Cette synthèse conserve uniquement les décisions et les résultats généraux du projet ; les détails privés d’exploitation n’y figurent pas.
 
-## Constat
+## Décision d’hébergement
 
-Lors de la vérification dans le Manager Infomaniak, l’ajout d’un second site Node.js était désactivé, avec le message « Vous avez déjà créé un site Node.js dans votre hébergement ». Le nombre de sites Web disponibles ne garantit donc pas la possibilité d’ajouter une seconde application Node.js dans l’offre actuelle.
+L’hébergement séparé de l’avatar a été retenu et mis en place. Il permet de faire évoluer et redémarrer son interface indépendamment du catalogue. Le code du catalogue n’a pas été modifié pour ce déploiement.
 
-## Orientation retenue pour la suite de l’étude
+Le constat du 19 octobre demeure historique : l’offre existante ne permettait pas d’ajouter une seconde application Node.js. L’intégration de l’avatar dans le même processus que le catalogue n’a pas été retenue.
 
-Privilégier un hébergement séparé pour l’avatar afin de préserver la stabilité du catalogue. Ses déploiements et redémarrages seraient ainsi indépendants de ceux du catalogue.
+Pour les générations réelles, l’avatar continuera d’utiliser le moteur existant du catalogue. La séparation de l’hébergement ne supprime pas cette dépendance.
 
-L’intégration au serveur existant reste une alternative technique, mais ferait partager aux deux applications le même processus, ses ressources et ses redémarrages. Elle n’est pas retenue comme option privilégiée.
+## Jalon validé le 22 octobre
 
-L’avatar continuerait d’utiliser le moteur du catalogue pour les générations réelles : un hébergement distinct ne supprime pas cette dépendance ni la charge des appels sur le moteur. Les accès, quotas et limites devront être cadrés avant activation.
+Le pilote distant reste exclusivement en simulation. L’utilisateur a vérifié l’accès authentifié, le questionnaire, l’affichage d’un résultat fictif et la restauration du brouillon après rechargement.
 
-## Prochain jalon proposé
+Le défaut du récapitulatif vide lors du passage d’une petite à une grande fenêtre a été corrigé et contrôlé sur le site. Le contrôle HTTPS a été adapté, puis vérifié sur l’hébergement. Le compteur des simulations a été conservé après les mises à jour et redémarrages.
 
-Vérifier l’offre d’hébergement séparé, son devis exact et ses conditions, puis soumettre le choix à validation avant tout achat. Prévoir un premier déploiement distant privé en simulation avant tout nouvel essai réel.
+La révision avatar `043df13a2f8c29a52fe397d0b0cfdc865b99647c` a passé 121 tests locaux. Les contrôles sur appareil mobile physique et réseau institutionnel restent à effectuer ; les essais réalisés ne constituent pas une validation générale du moteur.
 
-Aucun achat, changement de production ou nouvel appel payant n’est autorisé par la seule publication de cette synthèse. Cette mise à jour est uniquement documentaire et ne modifie aucun code applicatif.
+## Prochaine étape
 
-Coût OpenAI API de cette publication : 0 token / 0 $.
+Réutiliser le raccordement déjà éprouvé lors du premier essai réel local pour préparer le futur essai distant, puis le tester avec un faux moteur. Le mode réel distant n’est pas activé.
+
+Une seule tentative payante avec profil fictif, sans relance automatique et avec relevé de consommation, sera soumise à un GO distinct avant activation.
+
+Aucun achat supplémentaire ni appel payant n’est autorisé par cette mise à jour documentaire.
+
+Coût OpenAI API du déploiement et des validations en simulation : 0 token / 0 $.
