@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-22
+- Date du snapshot : 2026-10-23
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 130.4 secondes
-- Taille du JSON final : 2.05 Mio (2151786 octets)
-- Empreinte SHA-256 du snapshot : `9e554122db8752e41e6de61d3cc5f6daaea729cd613a9420493d4d7ea8b8001a`
+- Durée totale de l’import : 125.9 secondes
+- Taille du JSON final : 2.05 Mio (2151787 octets)
+- Empreinte SHA-256 du snapshot : `aac1e482266750f1d6d41d85ab6f803510e5a4f057e7dc91ea3627e082f2eb62`
 
 ## Synthèse
 
@@ -26,7 +26,7 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | Cours dans le candidat | 1064 |
 | Cours ajoutés | 0 |
 | Cours supprimés | 0 |
-| Cours modifiés | 5 |
+| Cours modifiés | 7 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -42,11 +42,13 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EO-727 | Imagination, expression orale et écrite : des jeux pour créer des histoires | `hasOpenSession` : « true » → « false » |
-| FP230 | Techniques Optimisation Potentiel (TOP) - Formation 1er niveau | `hasOpenSession` : « true » → « false » |
-| FP255 | Sport et Santé - Bilan fonctionnel | `hasOpenSession` : « false » → « true » |
-| FP283 | Techniques d'optimisation du potentiel (TOP) - Praticiens - Formation continue | `hasOpenSession` : « false » → « true » |
-| SEM1195 | Communication et feed-back constructif | `hasOpenSession` : « true » → « false » |
+| EP-084EVEN | Formation institutionnelle obligatoire Éducation numérique 7P-8P Séance de lancement | `hasOpenSession` : « true » → « false » |
+| EP-509 | Créer un Kamishibaï plurilingue avec sa classe | `hasOpenSession` : « true » → « false » |
+| FP255 | Sport et Santé - Bilan fonctionnel | `hasOpenSession` : « true » → « false » |
+| FP306 | Formation maître de stage ASP | `hasOpenSession` : « true » → « false » |
+| PJ-1055 | Posture managériale | `hasScheduledSession` : « false » → « true » |
+| SEM1149 | La négociation entre stratégie et relation | `hasOpenSession` : « false » → « true » |
+| SEM1195 | Communication et feed-back constructif | `hasOpenSession` : « false » → « true » |
 
 ### Cours modifiés — champs descriptifs longs
 
@@ -158,17 +160,17 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
-- TRT023 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
-- EP-372FEX — Généralités (`generalInformationRaw`)
+- TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
+- EP-372FEX — Généralités (`generalInformationRaw`)
 - S2-301 — Informations complémentaires (`additionalInformationRaw`)
 - EP-002ANG — Pré-requis (`prerequisitesRaw`)
 - FP254 — Informations complémentaires (`additionalInformationRaw`)
@@ -200,7 +202,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-22T08:32:32.435Z
-- Snapshot candidat validé : 2026-10-22
-- Empreinte SHA-256 : `9e554122db8752e41e6de61d3cc5f6daaea729cd613a9420493d4d7ea8b8001a`
+- Date et heure de promotion : 2026-10-23T08:28:48.869Z
+- Snapshot candidat validé : 2026-10-23
+- Empreinte SHA-256 : `aac1e482266750f1d6d41d85ab6f803510e5a4f057e7dc91ea3627e082f2eb62`
 - Promotion manuelle confirmée.
