@@ -649,3 +649,38 @@ test('ne promeut pas tous les compléments nouveau manager quand le parcours dé
   assert.equal(result.durationSummary.recommendedHours, 16)
   assert.equal(result.durationSummary.excessHours, 8)
 })
+
+// Contrat de provenance transmis au modèle, sans appel OpenAI.
+// Le transport fictif ne mesure pas l'obéissance d'un modèle réel aux consignes.
+for (const constraints of [undefined, '', 'Aucune', 'sans préférence', 'E-learning uniquement']) {
+  test(`sépare la modalité du cours et la préférence du profil : ${constraints ?? 'absente'}`, async () => {
+    const catalogue = officeFixture('Outlook', [
+      { code: 'OUTLOOK-E', title: 'Outlook : fondamentaux | E-LEARNING' },
+    ])
+    const requests = []
+    const replies = [
+      response({ interpretedGoal: 'Organiser les tâches administratives', codes: ['OUTLOOK-E'] }),
+      response({ abstain: false, summary: 'Organiser les tâches avec Outlook.',
+        recommendedSteps: [{ code: 'OUTLOOK-E', rationale: 'Utiliser le calendrier et les tâches ; formation en e-learning.' }],
+        optionalSteps: [], informationalCourses: [], gaps: [] }),
+    ]
+    const profile = { personnelCategory: 'PAT', role: 'Assistant administratif',
+      objective: 'Mieux organiser mes tâches avec Outlook', timeAvailable: '3 à 5 jours',
+      ...(constraints === undefined ? {} : { constraints }) }
+    const result = await buildPathwayWithLuna(profile, { catalogue, apiKey: 'test-key',
+      fetchImpl: async (_url, options) => { requests.push(JSON.parse(options.body)); return replies.shift() } })
+    assert.equal(requests.length, 2)
+    for (const request of requests) {
+      const profileText = request.input.split('PROFIL :\n')[1].split('\n\nOBJECTIF INTERPRÉTÉ :')[0]
+      // La modalité appartient aux fiches, pas au profil sans demande explicite.
+      if (constraints !== 'E-learning uniquement') assert.doesNotMatch(profileText, /e-learning/i)
+      if (constraints) assert.ok(profileText.includes(constraints))
+      assert.match(request.instructions, /préférence.*profil|préférence.*PROFIL/s)
+    }
+    assert.match(requests[1].instructions, /un titre contenant E-LEARNING décrit le cours, jamais une préférence du profil/)
+    assert.match(requests[1].instructions, /une formation en e-learning reste autorisée sans préférence exprimée/)
+    // Ne pas masquer le défaut en excluant systématiquement l'e-learning.
+    assert.equal(result.recommendedSteps[0].course.code, 'OUTLOOK-E')
+    assert.equal(profile.constraints, constraints)
+  })
+}

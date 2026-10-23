@@ -495,6 +495,7 @@ export async function buildPathwayWithLuna(
 Interprète l'objectif professionnel, les acquis, le temps disponible et les contraintes.
 Sélectionne uniquement des formations susceptibles de former un ensemble cohérent.
 La proximité de mots génériques ne suffit pas : vérifie le sujet et le contexte professionnel de chaque formation par rapport à l'objectif.
+Ne transforme jamais une modalité mentionnée dans le catalogue en préférence de la personne. Seul le profil fait foi ; une contrainte absente ou « Aucune » ne signifie pas une préférence pour une modalité.
 N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
       input: `CATALOGUE OFFICIEL :\n${JSON.stringify(ultraCompactCatalogue)}\n\nPROFIL :\n${need}`,
       text: {
@@ -599,6 +600,10 @@ Règles impératives :
 - identifie les modalités à partir de tous les champs disponibles, y compris le titre lorsqu'elles n'existent pas sous forme structurée ;
 - si plusieurs formations couvrent essentiellement le même besoin, ne les présente pas comme des étapes cumulatives : choisis la meilleure pour recommendedSteps et place, si elle apporte un vrai choix de modalité, la meilleure autre option dans optionalSteps avec une justification explicite d'alternative ;
 - une préférence exprimée pour l'e-learning, le distanciel, le présentiel, l'hybride ou l'autonomie prime dans le classement lorsque la fiche la confirme ;
+- distingue la modalité de la formation de la préférence de la personne : un titre contenant E-LEARNING décrit le cours, jamais une préférence du profil ;
+- attribue une préférence à la personne uniquement si elle est explicitement exprimée dans le PROFIL ; une contrainte absente, vide, « Aucune » ou « sans préférence » ne constitue pas une préférence de modalité ;
+- une formation en e-learning reste autorisée sans préférence exprimée si elle répond à l'objectif ; justifie alors son utilité et décris sa modalité sans prétendre qu'elle a été demandée ;
+- applique cette fidélité au profil au résumé, à l'objectif interprété, à toutes les justifications et aux limites ; ne reprends pas une préférence inventée par l'OBJECTIF INTERPRÉTÉ si elle n'apparaît pas dans le PROFIL ;
 - ne déduis pas qu'une version de logiciel plus récente convient nécessairement mieux : respecte la version demandée et présente une autre version uniquement comme alternative pertinente ;
 - pour un objectif général et des acquis non précisés, construis un parcours minimal : recommande d'abord le socle et classe les niveaux avancés ou usages spécialisés dans optionalSteps ;
 - considère le temps disponible comme un repère de planification, jamais comme un motif pour retirer ou déclasser une étape directement nécessaire ;
