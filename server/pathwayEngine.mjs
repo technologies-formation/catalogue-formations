@@ -167,11 +167,18 @@ function institutionalAnchorCodes(profile, officialCodes) {
   return ['TRT3004H', 'SEM1246'].filter((code) => official.has(code))
 }
 
-function newManagerAnchorCodes(profile, officialCodes) {
+function newManagerCandidateCodes(profile, officialCodes) {
   if (!isNewManagerProfile(profile)) return []
 
   const official = new Set(officialCodes)
   return ['SEM1174'].filter((code) => official.has(code))
+}
+
+function rationaleWithAccessCheck(rationale, detail) {
+  // Une condition publiée est un point à confirmer, pas une inscription présumée.
+  const prerequisites = normalized(detail?.prerequisites)
+  if (!/\binscrite?\b.*\bprogramme\b/.test(prerequisites)) return rationale
+  return `${rationale} Si votre inscription n’est pas déjà confirmée : êtes-vous inscrit ou inscrite au programme requis par cette fiche ? En cas de doute, vérifiez ce point avec vos RH.`
 }
 
 function isAiRelevantInformationalCourse(course, detail) {
@@ -544,7 +551,7 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
   const firstResult = JSON.parse(extractText(first))
   const recalledCodes = deterministicRecall(profile, detailedByCode)
   const anchorCodes = institutionalAnchorCodes(profile, officialCodes)
-  const managerFoundationCodes = newManagerAnchorCodes(profile, officialCodes)
+  const managerCandidateCodes = newManagerCandidateCodes(profile, officialCodes)
   const officeFoundationCodes = officeAnchorCodes(
     profile,
     officialCodes,
@@ -553,7 +560,7 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
   )
   const initialCodes = [...new Set([
     ...anchorCodes,
-    ...managerFoundationCodes,
+    ...managerCandidateCodes,
     ...officeFoundationCodes,
     ...recalledCodes,
     ...(firstResult.codes ?? []),
@@ -623,6 +630,9 @@ Règles impératives :
 - chaque complément ou alternative doit apporter une compétence ou un choix utile au besoin ; une offre propre à une autre institution ou activité n'est pas une alternative sur la seule proximité de son intitulé ;
 - un profil qui se déclare nouveau manager est compatible avec une formation réservée aux nouvelles et nouveaux managers ;
 - tiens compte des acquis pour éviter les formations manifestement redondantes ;
+- la présence d'un cours parmi les candidats ne constitue ni une recommandation ni une preuve d'accès ; notamment, ne recommande pas PACIFIC (SEM1174) sur le seul statut de nouveau manager : évalue son contenu par rapport à l'objectif ; il peut rester facultatif ou être omis ;
+- si une fiche exige une inscription à un programme ou un prérequis, ne déduis pas qu'il est satisfait du seul métier ou statut de la personne ; signale la condition et pose une question de clarification utile dans la justification si le profil ne permet pas de trancher ;
+- n'invente ni critère d'accès ni information administrative non publiée dans les fiches ; une condition non confirmée doit rester à vérifier avec la personne, puis avec les RH si nécessaire ;
 - pour la modalité de chaque formation, utilise exclusivement deliveryMode ajouté par le serveur aux fiches autorisées ; sa preuve figure dans evidence et sourceField ;
 - si deliveryMode.value vaut unknown, indique que la modalité du cours est non renseignée ; n'affirme jamais présentiel par défaut, ni en te fondant sur des exercices, jeux de rôles, une durée ou l'absence d'E-LEARNING ;
 - la préférence du profil est connue même lorsque la modalité du cours est inconnue : dis que sa compatibilité ne peut pas être établie, jamais que la préférence de la personne est invérifiable ;
@@ -740,7 +750,7 @@ Règles impératives :
       const detail = detailedByCode.get(code)
       const item = {
         position: destination.length + 1,
-        rationale,
+        rationale: rationaleWithAccessCheck(rationale, detail),
         course: publicCourse(course, detail),
       }
 
@@ -791,45 +801,6 @@ Règles impératives :
       )
     : null
 
-  if (!plan.abstain && isNewManagerProfile(profile)) {
-    const code = managerFoundationCodes[0]
-    const course = code ? courseByCode.get(code) : null
-
-    if (course && audienceCompatibility(profile, course) !== 'incompatible') {
-      const allItems = [...recommendedSteps, ...optionalSteps, ...informationalCourses]
-      const existing = allItems.find((item) => item.course.code === code)
-      const detail = detailedByCode.get(code)
-      const item = existing
-        ? {
-            ...existing,
-            rationale: 'Renforcer le leadership et la gestion d’équipe dans le cadre du programme des nouvelles et nouveaux managers ; accès sous réserve des conditions d’inscription au programme.',
-          }
-        : {
-            position: 1,
-            rationale: 'Renforcer le leadership et la gestion d’équipe dans le cadre du programme des nouvelles et nouveaux managers ; accès sous réserve des conditions d’inscription au programme.',
-            course: publicCourse(course, detail),
-          }
-
-      recommendedSteps.splice(
-        0,
-        recommendedSteps.length,
-        ...recommendedSteps.filter((entry) => entry.course.code !== code),
-      )
-      optionalSteps.splice(
-        0,
-        optionalSteps.length,
-        ...optionalSteps.filter((entry) => entry.course.code !== code),
-      )
-      informationalCourses.splice(
-        0,
-        informationalCourses.length,
-        ...informationalCourses.filter((entry) => entry.course.code !== code),
-      )
-      if (recommendedSteps.length >= MAX_STEPS) optionalSteps.unshift(recommendedSteps.pop())
-      recommendedSteps.splice(Math.min(2, recommendedSteps.length), 0, item)
-    }
-  }
-
   if (budgetHours !== null && isNewManagerProfile(profile)) {
     const remainingOptions = []
 
@@ -840,6 +811,7 @@ Règles impératives :
       if (
         recommendedSteps.length < MAX_STEPS &&
         fitsBudget &&
+        !managerCandidateCodes.includes(item.course.code) &&
         isNewManagerCourse(courseByCode.get(item.course.code))
       ) {
         if (hours === null) allRecommendedDurationsKnown = false
