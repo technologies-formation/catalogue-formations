@@ -302,6 +302,7 @@ function publicCourse(course, detail) {
     duration: textOf(detail?.duration),
     durationHours: durationHours(detail),
     deliveryMode: courseDeliveryMode(course),
+    sessionAvailability: detail?.sessionAvailability ?? { hasOpenSession: null, hasScheduledSession: null, observedOn: null, source: null },
     catalogueOffers: course.catalogueOffers ?? [],
     sourceUrl: course.sourceUrl ?? '',
   }
@@ -592,7 +593,10 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
   const detailedCandidates = candidateCodes
     .map((code) => {
       const detail = detailedByCode.get(code)
-      return detail ? { ...detail, deliveryMode: courseDeliveryMode(courseByCode.get(code)) } : null
+      if (!detail) return null
+      // Les disponibilités sont ajoutées au résultat par le serveur, sans influencer la sélection IA.
+      const { sessionAvailability: _availability, ...description } = detail
+      return { ...description, deliveryMode: courseDeliveryMode(courseByCode.get(code)) }
     })
     .filter(Boolean)
 

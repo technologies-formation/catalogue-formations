@@ -713,3 +713,16 @@ for (const [title, expected] of [
     assert.match(requests[1].instructions,/signale explicitement cet écart/)
   })
 }
+
+test('indicateurs de sessions ajoutés par le serveur sans transmission au modèle ni modification du classement',async()=>{
+ const catalogue=officeFixture('Temps',[{code:'SESSION-1',title:'Organiser ses tâches'}])
+ const availability={hasOpenSession:true,hasScheduledSession:true,observedOn:'2026-10-23',source:'official-session-icons'}
+ catalogue.detailedByCode.get('SESSION-1').sessionAvailability=availability
+ const before=structuredClone(catalogue.detailedByCode.get('SESSION-1')),requests=[]
+ const replies=[response({interpretedGoal:'Organiser son travail',codes:['SESSION-1']}),response({abstain:false,summary:'Un socle.',recommendedSteps:[{code:'SESSION-1',rationale:'Apprendre les bases.',sessionAvailability:{source:'model',hasOpenSession:false}}],optionalSteps:[],informationalCourses:[],gaps:[]})]
+ const result=await buildPathwayWithLuna({personnelCategory:'PAT',objective:'Organiser les tâches'},{catalogue,apiKey:'FAKE_KEY_ONLY',fetchImpl:async(_url,init)=>{requests.push(JSON.parse(init.body));return replies.shift()}})
+ assert.equal(requests.length,2);assert.equal(result.recommendedSteps[0].course.code,'SESSION-1');assert.equal(result.recommendedSteps[0].position,1)
+ assert.deepEqual(result.recommendedSteps[0].course.sessionAvailability,availability)
+ assert.deepEqual(catalogue.detailedByCode.get('SESSION-1'),before)
+ for(const request of requests)assert.doesNotMatch(request.input,/sessionAvailability|official-session-icons|observedOn/)
+})
