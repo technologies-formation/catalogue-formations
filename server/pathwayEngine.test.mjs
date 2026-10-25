@@ -67,6 +67,46 @@ function officeFixture(theme, courses) {
   }
 }
 
+test('une version proche de Word reste recommandable pour le contenu demandé sans équivalence technique promise', async () => {
+  const catalogue = officeFixture('WORD', [
+    { code: 'WORD-LONG', title: 'Word 365 Longs documents' },
+  ])
+  const replies = [
+    response({ interpretedGoal: 'Structurer les rapports Word 2016', codes: ['WORD-LONG'] }),
+    response({ abstain: false, summary: 'Travailler la structuration des documents.',
+      recommendedSteps: [{ code: 'WORD-LONG', rationale: 'Styles et table des matières ; cours sur Word 365, différences avec Word 2016 à vérifier.' }],
+      optionalSteps: [], informationalCourses: [], gaps: [] }),
+  ]
+  const requests = []
+  const result = await buildPathwayWithLuna({ personnelCategory: 'PAT',
+    objective: 'Structurer mes rapports dans Word 2016 avec les styles et une table des matières',
+    existingSkills: 'Quelques bases de saisie', constraints: 'Aucune préférence' },
+  { catalogue, apiKey: 'test-key', fetchImpl: async (_url, options) => {
+    requests.push(JSON.parse(options.body)); return replies.shift()
+  } })
+  assert.deepEqual(result.recommendedSteps.map(item => item.course.code), ['WORD-LONG'])
+  assert.deepEqual(result.optionalSteps, [])
+  assert.match(result.recommendedSteps[0].rationale, /Word 365.*Word 2016/)
+  assert.match(requests[0].instructions, /différence de version.*ne suffit pas à exclure/)
+  assert.match(requests[1].instructions, /une version proche peut figurer dans recommendedSteps/)
+  assert.match(requests[1].instructions, /signale explicitement dans sa justification les deux versions/)
+  assert.match(requests[1].instructions, /impose explicitement une version exacte/)
+  assert.match(requests[1].instructions, /ne les étends jamais au catalogue complet/)
+})
+
+test('le repli bureautique ne promet pas de formation en autonomie quand aucune modalité en ligne n’est prouvée', async () => {
+  const catalogue = officeFixture('WORD', [{ code: 'WORD-BASE', title: 'Word 365 Base' }])
+  const replies = [response({ interpretedGoal: 'Apprendre Word', codes: ['WORD-BASE'] }),
+    response({ abstain: false, summary: 'Socle Word', recommendedSteps: [{ code: 'WORD-BASE', rationale: 'Bases' }],
+      optionalSteps: [], informationalCourses: [], gaps: [] })]
+  const result = await buildPathwayWithLuna({ objective: 'Apprendre Word', constraints: 'En ligne' },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() })
+  assert.deepEqual(result.recommendedSteps.map(item => item.course.code), ['WORD-BASE'])
+  assert.equal(result.recommendedSteps[0].course.deliveryMode.value, 'unknown')
+  assert.doesNotMatch(result.summary, /en autonomie|présentiel/)
+  assert.doesNotMatch(result.recommendedSteps[0].rationale, /en autonomie|présentiel/)
+})
+
 test('construit un parcours ordonné uniquement avec les formations autorisées', async () => {
   const replies = [
     response(
@@ -137,6 +177,8 @@ test('s abstient après la première passe quand aucun candidat n est trouvé', 
   assert.equal(result.abstain, true)
   assert.deepEqual(result.steps, [])
   assert.equal(result.usage.pass2, null)
+  assert.match(result.summary, /dans cette recherche/)
+  assert.doesNotMatch(result.summary, /catalogue actuel|catalogue complet/)
 })
 
 test('déduplique les étapes retournées par le modèle', async () => {
@@ -253,6 +295,8 @@ test('privilégie le e-learning pour un besoin Excel général en autonomie', as
     result.optionalSteps.map(({ course }) => course.code),
     ['EXCEL-BASE', 'EXCEL-PIVOT'],
   )
+  assert.doesNotMatch(result.summary, /présentiel/)
+  assert.match(result.optionalSteps[0].rationale, /modalité à vérifier/)
 })
 
 test('préserve un parcours PowerPoint spécialisé', async () => {

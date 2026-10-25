@@ -403,6 +403,7 @@ function stabilizeGeneralOfficePathway(
   const primaryCode = wantsElearning ? (elearningCode ?? foundationCode) : (foundationCode ?? elearningCode)
 
   if (!primaryCode) return null
+  const primaryIsOnline = courseDeliveryMode(courseByCode.get(primaryCode)).value === 'online'
 
   const all = [...recommendedSteps, ...optionalSteps]
   const byCode = new Map(all.map((item) => [item.course.code, item]))
@@ -420,7 +421,7 @@ function stabilizeGeneralOfficePathway(
 
   const primary = itemFor(
     primaryCode,
-    wantsElearning
+    wantsElearning && primaryIsOnline
       ? 'Parcours général en autonomie couvrant les fondamentaux jusqu’aux fonctions avancées.'
       : 'Socle adapté à un besoin général lorsque le niveau initial et les usages spécialisés ne sont pas précisés.',
   )
@@ -431,7 +432,7 @@ function stabilizeGeneralOfficePathway(
     ? itemFor(
         alternativeCode,
         primaryCode === elearningCode
-          ? 'Alternative en présentiel pour acquérir les bases avec accompagnement.'
+          ? 'Autre formule pour acquérir les bases ; modalité à vérifier sur la fiche officielle.'
           : 'Alternative e-learning en autonomie couvrant les fondamentaux jusqu’au perfectionnement.',
       )
     : null
@@ -451,8 +452,8 @@ function stabilizeGeneralOfficePathway(
     ...[alternative, ...displaced, ...remainingOptions].filter(Boolean),
   )
 
-  return wantsElearning
-    ? `${primary.course.title} constitue le parcours général recommandé en autonomie. Les modules présentiels sont proposés comme compléments ou alternatives selon les besoins.`
+  return wantsElearning && primaryIsOnline
+    ? `${primary.course.title} constitue le parcours général recommandé en autonomie. Les autres modules sont proposés comme compléments ou alternatives selon les besoins ; leur modalité reste à vérifier sur les fiches officielles.`
     : `Commencer par ${primary.course.title}. Les niveaux avancés et les autres modalités sont proposés comme compléments ou alternatives selon les besoins.`
 }
 
@@ -512,6 +513,8 @@ export async function buildPathwayWithLuna(
 Interprète l'objectif professionnel, les acquis, le temps disponible et les contraintes.
 Sélectionne uniquement des formations susceptibles de former un ensemble cohérent.
 La proximité de mots génériques ne suffit pas : vérifie le sujet et le contexte professionnel de chaque formation par rapport à l'objectif.
+Une différence de version d'un même logiciel ne suffit pas à exclure un cours : conserve les versions proches potentiellement pertinentes pour les compétences demandées, sauf contrainte explicite imposant une version exacte. N'affirme pas pour autant leur équivalence technique.
+L'objectif interprété reformule le besoin, sans conclure à l'absence d'une formation dans le catalogue complet.
 Ne transforme jamais une modalité mentionnée dans le catalogue en préférence de la personne. Seul le profil fait foi ; une contrainte absente ou « Aucune » ne signifie pas une préférence pour une modalité.
 N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
       input: `CATALOGUE OFFICIEL :\n${JSON.stringify(ultraCompactCatalogue)}\n\nPROFIL :\n${need}`,
@@ -571,7 +574,7 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
       mode: 'pathway-two-pass',
       abstain: true,
       interpretedGoal: firstResult.interpretedGoal,
-      summary: 'Aucun parcours fiable ne peut être construit avec le catalogue actuel.',
+      summary: 'Aucun parcours suffisamment pertinent n’a été identifié dans cette recherche.',
       steps: [],
       recommendedSteps: [],
       optionalSteps: [],
@@ -631,7 +634,11 @@ Règles impératives :
 - attribue une préférence à la personne uniquement si elle est explicitement exprimée dans le PROFIL ; une contrainte absente, vide, « Aucune » ou « sans préférence » ne constitue pas une préférence de modalité ;
 - une formation en e-learning reste autorisée sans préférence exprimée si elle répond à l'objectif ; justifie alors son utilité et décris sa modalité sans prétendre qu'elle a été demandée ;
 - applique cette fidélité au profil au résumé, à l'objectif interprété, à toutes les justifications et aux limites ; ne reprends pas une préférence inventée par l'OBJECTIF INTERPRÉTÉ si elle n'apparaît pas dans le PROFIL ;
-- ne déduis pas qu'une version de logiciel plus récente convient nécessairement mieux : respecte la version demandée et présente une autre version uniquement comme alternative pertinente ;
+- ne déduis pas qu'une version de logiciel plus récente convient nécessairement mieux ; une différence de version ne suffit pas non plus à exclure un cours ;
+- pour un même logiciel, une version proche peut figurer dans recommendedSteps si le contenu de la fiche répond aux compétences demandées ; précise la version du cours et les différences à vérifier, sans garantir une équivalence technique ;
+- si la personne indique une version et que celle du cours est différente, signale explicitement dans sa justification les deux versions : « Ce cours porte sur [version du cours] ; vous avez indiqué [version demandée]. Les différences sont à vérifier. » ; conserve cette possibilité si le contenu reste pertinent, sans inventer de différences techniques ;
+- si la personne impose explicitement une version exacte ou une fonctionnalité propre à cette version, respecte cette contrainte ; une simple mention de Word 2016 ne suffit pas à rendre toute autre version incompatible ;
+- n'ajoute pas deux versions d'un même contenu comme étapes cumulatives : présente la meilleure réponse au besoin, puis une autre version en alternative seulement si elle apporte un choix utile ;
 - pour un objectif général et des acquis non précisés, construis un parcours minimal : recommande d'abord le socle et classe les niveaux avancés ou usages spécialisés dans optionalSteps ;
 - considère le temps disponible comme un repère de planification, jamais comme un motif pour retirer ou déclasser une étape directement nécessaire ;
 - recommande le parcours qui répond précisément au besoin même si sa durée totale dépasse le temps disponible ;
@@ -643,10 +650,11 @@ Règles impératives :
 - ne commente pas dans gaps la vérification arithmétique des durées : le serveur s'en charge ;
 - gaps décrit uniquement les compétences ou objectifs professionnels que les fiches fournies ne couvrent pas ;
 - ne mentionne jamais dans gaps la durée, le temps disponible, le budget, le public, l'accès ou les conditions d'inscription : le serveur les contrôle et les affiche séparément ;
-- n'affirme jamais qu'un cours est absent du catalogue complet : tu ne vois qu'une sélection de fiches autorisées ;
+- dans summary, les justifications et gaps, limite les constats d'absence aux fiches examinées ou à cette recherche ; ne les étends jamais au catalogue complet ;
+- l'OBJECTIF INTERPRÉTÉ est une reformulation du besoin, pas une preuve de couverture du catalogue ; n'en reprends pas une affirmation d'absence globale ;
 - explique brièvement la valeur de chaque étape ;
 - si aucun parcours cohérent n'est possible, abstain vaut true et recommendedSteps est vide ;
-- indique honnêtement dans gaps ce que le catalogue ne couvre pas.`,
+- indique honnêtement dans gaps les compétences que les fiches examinées ne permettent pas de couvrir.`,
       input: `FICHES AUTORISÉES :\n${JSON.stringify(detailedCandidates)}\n\nPROFIL :\n${need}\n\nOBJECTIF INTERPRÉTÉ :\n${firstResult.interpretedGoal}`,
       text: {
         format: {
