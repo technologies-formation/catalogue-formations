@@ -227,3 +227,12 @@ test('refuse un snapshot qui n’est pas un tableau', () => {
     /doit être un tableau de formations/,
   )
 })
+
+
+test('dates d’ouverture : évolutions visibles, tableau comparé par valeur et ancien format compatible',()=>{
+ const before=course('A',{scheduledOpeningDates:['2026-11-03']})
+ assert.equal(compareCatalogueSnapshots([before],[structuredClone(before)]).modified.length,0)
+ assert.equal(compareCatalogueSnapshots([course('A')],[course('A',{scheduledOpeningDates:[]})]).modified.length,0)
+ const after=course('A',{scheduledOpeningDates:['2026-11-04']})
+ assert.deepEqual(compareCatalogueSnapshots([before],[after]).modified[0].visibleChanges,[{field:'scheduledOpeningDates',oldValue:['2026-11-03'],newValue:['2026-11-04']}])
+})

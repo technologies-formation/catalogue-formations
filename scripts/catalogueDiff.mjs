@@ -8,6 +8,7 @@ export const visibleCourseFields = [
   'targetAudienceRaw',
   'hasOpenSession',
   'hasScheduledSession',
+  'scheduledOpeningDates',
 ]
 
 export const longCourseFields = [
@@ -151,7 +152,9 @@ export function compareCatalogueSnapshots(officialCourses, candidateCourses) {
       ? visibleCourseFields.filter((field) => !sessionFlagFields.includes(field))
       : visibleCourseFields
     const visibleChanges = comparedVisibleFields
-      .filter((field) => officialCourse[field] !== candidateCourse[field])
+      .filter((field) => field === 'scheduledOpeningDates'
+        ? JSON.stringify(officialCourse[field] ?? []) !== JSON.stringify(candidateCourse[field] ?? [])
+        : officialCourse[field] !== candidateCourse[field])
       .map((field) => ({
         field,
         oldValue: officialCourse[field] ?? null,
