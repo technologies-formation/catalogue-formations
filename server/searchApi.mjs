@@ -1,3 +1,4 @@
+import {readConsumptionEnvironment,trackConsumption,calculatedUsage,reportingTokenMatches,handleConsumptionRequest} from './consumptionLedger.mjs'
 import http from 'node:http'
 import { randomUUID } from 'node:crypto'
 import { positiveIntegerEnv } from './config.mjs'
@@ -13,6 +14,7 @@ import { createStaticFrontendHandler } from './staticFrontend.mjs'
 import { createCorsHandler } from './cors.mjs'
 import { handleProfileReferences } from './profileReferences.mjs'
 
+const consumption=readConsumptionEnvironment(process.env)
 const PORT = Number(process.env.PORT || 8787)
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
@@ -139,6 +141,7 @@ const server = http.createServer(async (request, response) => {
     `http://${request.headers.host || 'localhost'}`
   )
 
+  if(handleConsumptionRequest(consumption,request,response,url))return
   if (!applyCors(request, response)) {
     sendJson(response, 403, {
       error: 'Origin non autorisée',
@@ -225,9 +228,10 @@ const server = http.createServer(async (request, response) => {
       let result
 
       try {
-        result = await buildPathwayWithLuna(profile, {
+        const fromAssistant=consumption && reportingTokenMatches(request.headers['x-a658-report-token'],consumption.token)
+        result = await trackConsumption(consumption?.ledger,fromAssistant?'assistant':'catalogue','pathway',()=>buildPathwayWithLuna(profile, {
           catalogue: catalogueStore.current().search,
-        })
+        }),calculatedUsage)
       } finally {
         activeLunaSearches -= 1
       }
@@ -331,7 +335,7 @@ const server = http.createServer(async (request, response) => {
       let result
 
       try {
-        result = await searchWithLuna(query)
+        result = await trackConsumption(consumption?.ledger,'catalogue','search',()=>searchWithLuna(query),calculatedUsage)
       } finally {
         activeLunaSearches -= 1
       }
