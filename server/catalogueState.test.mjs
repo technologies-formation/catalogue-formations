@@ -14,3 +14,11 @@ for(const [open,scheduled] of [[true,false],[false,true],[true,true],[false,fals
 test('sessions : échec de collecte, flags incomplets ou date invalide deviennent inconnus',()=>{
  for(const overrides of [{fetchStatus:'error'},{hasOpenSession:null},{hasScheduledSession:undefined},{sourceSnapshotDate:null},{sourceSnapshotDate:'2026-02-30'},{sourceSnapshotDate:'23/10/2026'}])assert.deepEqual(availability(row(overrides)),unknown)
 })
+
+
+test('sessions : dates d’ouverture officielles futures, triées, sans modifier les anciennes données',()=>{
+ const result=availability(row({hasScheduledSession:true,scheduledOpeningDates:['2026-11-03','2026-11-03','2026-02-30','2026-10-23','2027-01-02']}))
+ assert.deepEqual(result.scheduledOpeningDates,['2026-11-03','2027-01-02'])
+ assert.equal(availability(row({scheduledOpeningDates:['2026-11-03']})).scheduledOpeningDates,undefined)
+ assert.equal(availability(row({fetchStatus:'error',hasScheduledSession:true,scheduledOpeningDates:['2026-11-03']})).scheduledOpeningDates,undefined)
+})

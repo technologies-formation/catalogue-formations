@@ -8,6 +8,7 @@ import {
   monitorValidatedReferences,
   parseCourseDetail,
   parseSessionFlags,
+  parseScheduledOpeningDates,
 } from './importOfficialCatalogue.mjs'
 
 test('détecte les coordonnées dans les sections descriptives', () => {
@@ -251,4 +252,16 @@ test('le rapport de surveillance reste valide sans divergence', () => {
   assert.match(lines.join('\n'), /Références identiques \| 1/)
   assert.match(lines.join('\n'), /Aucun écart ni absence détecté/)
   assert.doesNotMatch(lines.join('\n'), /\| REF-001 \|/)
+})
+
+
+test('dates d’ouverture : colonne dédiée, horloge, dédoublonnage et dates réelles uniquement', () => {
+  const row = (opening, start, status='icon_timer.png') => `<tr><td>X</td><td>${opening}</td><td>${image(status)}</td><td>${start}</td></tr>`
+  const table = rows => page(`<h3>Liste des sessions</h3><table><tr><th>Session</th><th>Ouverture</th><th>Statut</th><th>Début</th></tr>${rows}</table>`)
+  const rows = row('03/11/26','10/05/27') + row('03/11/2026','22/11/27') + row('09/12/26','10/01/27') + row('31/02/26','01/03/26') + row('04/11/25','02/11/26','icon_vert.png') + row('','11/11/26')
+  assert.deepEqual(parseScheduledOpeningDates(table(rows)), ['2026-11-03','2026-12-09'])
+  assert.deepEqual(parseCourseDetail(table(rows)).scheduledOpeningDates, ['2026-11-03','2026-12-09'])
+  assert.deepEqual(parseScheduledOpeningDates(table(rows).replace('<th>Ouverture</th>', '<th>Autre date</th>')), [])
+  assert.deepEqual(parseScheduledOpeningDates(table(row('<img src="icon_timer.png">03/11/26','10/05/27')).replace('<td>X</td>', '<td colspan="2">X</td>')), [])
+  assert.deepEqual(parseScheduledOpeningDates(page(image('icon_timer.png'))), [])
 })

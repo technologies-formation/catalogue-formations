@@ -16,9 +16,10 @@ function sessionAvailability(course) {
   const date = course.sourceSnapshotDate
   const validDate = typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(date) &&
     Number.isFinite(Date.parse(date + 'T12:00:00Z')) && new Date(date + 'T12:00:00Z').toISOString().slice(0, 10) === date
+  const dates = Array.isArray(course.scheduledOpeningDates) ? [...new Set(course.scheduledOpeningDates.filter(value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(Date.parse(value + 'T12:00:00Z')) && new Date(value + 'T12:00:00Z').toISOString().slice(0, 10) === value && value > date))].sort().slice(0, 100) : []
   return course.fetchStatus === 'ok' && validDate &&
     typeof course.hasOpenSession === 'boolean' && typeof course.hasScheduledSession === 'boolean'
-    ? { hasOpenSession: course.hasOpenSession, hasScheduledSession: course.hasScheduledSession, observedOn: date, source: 'official-session-icons' }
+    ? { hasOpenSession: course.hasOpenSession, hasScheduledSession: course.hasScheduledSession, observedOn: date, source: 'official-session-icons', ...(course.hasScheduledSession && dates.length ? { scheduledOpeningDates: dates } : {}) }
     : { hasOpenSession: null, hasScheduledSession: null, observedOn: null, source: null }
 }
 
