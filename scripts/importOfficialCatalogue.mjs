@@ -223,7 +223,7 @@ function imageBasename(source) {
     .toLowerCase()
 }
 
-export function parseSessionFlags(html) {
+function sessionsTable(html) {
   let sessionsStart = -1
   for (const heading of html.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/gi)) {
     if (normalizeLabel(htmlToText(heading[1])) === 'liste des sessions') {
@@ -233,15 +233,19 @@ export function parseSessionFlags(html) {
   }
 
   if (sessionsStart === -1) {
-    return { hasOpenSession: false, hasScheduledSession: false }
+    return ''
   }
 
   const remainingHtml = html.slice(sessionsStart)
   const nextHeadingIndex = remainingHtml.search(/<h[1-3]\b/i)
   const sessionsSection = nextHeadingIndex === -1 ? remainingHtml : remainingHtml.slice(0, nextHeadingIndex)
-  const sessionsTable = sessionsSection.match(/<table\b[^>]*>([\s\S]*?)<\/table>/i)?.[1] ?? ''
+  return sessionsSection.match(/<table\b[^>]*>([\s\S]*?)<\/table>/i)?.[1] ?? ''
+}
+
+export function parseSessionFlags(html) {
+  const table = sessionsTable(html)
   const statusImages = new Set()
-  for (const image of sessionsTable.matchAll(/<img\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*>/gi)) {
+  for (const image of table.matchAll(/<img\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*>/gi)) {
     statusImages.add(imageBasename(image[1]))
   }
 
@@ -249,6 +253,27 @@ export function parseSessionFlags(html) {
     hasOpenSession: statusImages.has('icon_vert.png'),
     hasScheduledSession: statusImages.has('icon_timer.png'),
   }
+}
+
+// Only the Ouverture column of a row carrying the official timer icon is evidence.
+export function parseScheduledOpeningDates(html) {
+  const rows = [...sessionsTable(html).matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(row => row[1])
+  const headers = rows.map(row => [...row.matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map(cell => normalizeLabel(htmlToText(cell[1])))).filter(cells => cells.length)
+  if (headers.length !== 1 || headers[0].filter(label => label === 'ouverture').length !== 1) return []
+  const column = headers[0].indexOf('ouverture')
+  const dates = new Set()
+  for (const row of rows) {
+    const timer = [...row.matchAll(/<img\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*>/gi)].some(image => imageBasename(image[1]) === 'icon_timer.png')
+    if (!timer) continue
+    const cells = [...row.matchAll(/<td\b([^>]*)>([\s\S]*?)<\/td>/gi)]
+    if (cells.length <= column || cells.slice(0, column + 1).some(cell => /\b(?:colspan|rowspan)\s*=/i.test(cell[1]))) continue
+    const match = htmlToText(cells[column][2]).match(/^(\d{2})\/(\d{2})\/(\d{4}|\d{2})$/)
+    if (!match) continue
+    const iso = (match[3].length === 2 ? '20' + match[3] : match[3]) + '-' + match[2] + '-' + match[1]
+    const value = new Date(iso + 'T12:00:00Z')
+    if (Number.isFinite(value.getTime()) && value.toISOString().slice(0, 10) === iso) dates.add(iso)
+  }
+  return [...dates].sort().slice(0, 100)
 }
 
 export function parseCourseDetail(html) {
@@ -299,6 +324,7 @@ export function parseCourseDetail(html) {
     titleRaw,
     organizingEntityRaw,
     ...sessionFlags,
+    scheduledOpeningDates: parseScheduledOpeningDates(html),
     ...metadata,
     targetAudienceRaw: sections.targetAudienceRaw ?? null,
     generalInformationRaw: sections.generalInformationRaw ?? null,
@@ -832,6 +858,7 @@ async function main() {
         ...Object.fromEntries(detailFields.map((field) => [field, parsed?.[field] ?? null])),
         hasOpenSession: parsed?.hasOpenSession ?? null,
         hasScheduledSession: parsed?.hasScheduledSession ?? null,
+        scheduledOpeningDates: parsed?.scheduledOpeningDates ?? [],
         catalogueOffers: indexedCourse.catalogueOffers,
         fetchStatus,
         sourceSnapshotDate: SNAPSHOT_DATE,

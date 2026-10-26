@@ -53,6 +53,15 @@ export function validateCandidateSnapshot(candidate) {
     if (typeof course.sourceSnapshotDate !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(course.sourceSnapshotDate)) {
       throw new Error(`${course.code}: date de snapshot absente ou invalide`)
     }
+    if (course.scheduledOpeningDates !== undefined) {
+      const openings = course.scheduledOpeningDates
+      if (!Array.isArray(openings) || openings.length > 100 || openings.some((value, index) =>
+        typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value) ||
+        !Number.isFinite(Date.parse(value + 'T12:00:00Z')) || new Date(value + 'T12:00:00Z').toISOString().slice(0, 10) !== value ||
+        (index > 0 && openings[index - 1] >= value))) {
+        throw new Error(`${course.code}: dates d’ouverture invalides`)
+      }
+    }
     dates.add(course.sourceSnapshotDate)
   }
 

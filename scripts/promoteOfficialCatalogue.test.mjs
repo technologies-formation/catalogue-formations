@@ -163,3 +163,11 @@ test('refuse la promotion quand un artefact candidat manque', async (t) => {
     /Artefact candidat introuvable/,
   )
 })
+
+
+test('dates d’ouverture : ancien snapshot accepté, dates optionnelles strictes avant promotion',()=>{
+ assert.doesNotThrow(()=>validateCandidateSnapshot([course({scheduledOpeningDates:['2026-11-03']})]))
+ for(const scheduledOpeningDates of [null,['2026-02-30'],['2026-11-03','2026-11-03'],['2026-12-01','2026-11-03'],['<script>']]) {
+  assert.throws(()=>validateCandidateSnapshot([course({scheduledOpeningDates})]),/dates d’ouverture/)
+ }
+})
