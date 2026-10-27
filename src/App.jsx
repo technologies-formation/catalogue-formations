@@ -561,22 +561,27 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
                 <span className="brand-service">Formation du personnel</span>
               </div>
             </div>
-            <div className="hero-actions">
-              <button
-                className="help-button"
-                type="button"
-                onClick={() => setShowGettingStarted((visible) => !visible)}
-                aria-expanded={showGettingStarted}
-                aria-controls="getting-started-panel"
-              >
-                {showGettingStarted ? 'Masquer l’aide' : 'Aide'}
-              </button>
-            </div>
           </header>
+          <section className="pathway-choice" aria-labelledby="pathway-choice-title">
+            <div className="assistant-invitation">
+              <span className="assistant-invitation-robot" aria-hidden="true"
+                style={{ backgroundImage: `url(${assistantRobotUrl})` }} />
+              <div>
+                <p id="pathway-choice-title" className="pathway-choice-title">Besoin d’aide pour choisir ?</p>
+              </div>
+            </div>
+            <a className="pathway-launch-button"
+              href="https://avatar.a658yg-catalogue.ch/private/"
+              target="_blank" rel="noopener noreferrer"
+              aria-label="Échanger avec l’assistant — nouvel onglet">
+              Échanger avec l’assistant <span aria-hidden="true">↗</span>
+            </a>
+          </section>
           <div className="application-intro">
             <h1 id="page-title">Catalogue de formations</h1>
-            <p className="application-subtitle">
-              Recherchez les formations proposées au personnel de l’État de Genève.
+            <p className="catalogue-summary">
+              {catalogueDateLabel(sourceDate).replace('Catalogue actualisé', 'Actualisé')}
+              {' · '}{formatFormationCount(courses.length)} formations disponibles
             </p>
           </div>
           <div className="search-choice">
@@ -586,7 +591,7 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
               event.preventDefault()
             }}
           >
-            <label htmlFor="catalogue-search">Rechercher une formation</label>
+            <label htmlFor="catalogue-search">Rechercher des formations</label>
 
             <div className="main-search-row">
               <input
@@ -637,38 +642,8 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
               </p>
             )}
           </form>
-          <>
-              <div className="search-choice-separator" aria-hidden="true">
-                <span>OU</span>
-              </div>
-              <section className="pathway-choice" aria-labelledby="pathway-choice-title">
-                <div className="assistant-invitation">
-                  <span className="assistant-invitation-robot" aria-hidden="true"
-                    style={{ backgroundImage: `url(${assistantRobotUrl})` }} />
-                  <div>
-                    <p id="pathway-choice-title" className="pathway-choice-title">Besoin d’aide pour choisir ?</p>
-                    <p className="pathway-choice-help">Précisez votre besoin avec l’assistant formation.</p>
-                  </div>
-                </div>
-                <a className="pathway-launch-button"
-                  href="https://avatar.a658yg-catalogue.ch/private/"
-                  target="_blank" rel="noopener noreferrer"
-                  aria-label="Échanger avec l’assistant — nouvel onglet">
-                  Échanger avec l’assistant <span aria-hidden="true">↗</span>
-                </a>
-              </section>
-          </>
           </div>
-          <div className="search-support">
-            <p className="search-examples">
-              Exemples : communication, projet, intelligence artificielle, FP173
-            </p>
-            <p className="prototype-note catalogue-freshness">{catalogueDateLabel(sourceDate)}</p>
-            <p className="prototype-note">
-              Données issues du catalogue importé — {formatFormationCount(courses.length)} formations.
-              {' '}Prototype de démonstration.
-            </p>
-          </div>
+
         </section>
 
         {showAiExplanation && aiSearchStatus === 'success' && (
@@ -761,21 +736,6 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
           </div>
         )}
 
-        {showGettingStarted && (
-          <section
-            id="getting-started-panel"
-            className="getting-started"
-            aria-labelledby="getting-started-title"
-          >
-            <div>
-              <h2 id="getting-started-title">Besoin d’aide&nbsp;?</h2>
-              <p>
-                Utilisez la recherche ou les filtres pour trouver une formation.
-                Les résultats s’adaptent automatiquement à vos choix.
-              </p>
-            </div>
-          </section>
-        )}
 
         <section
           className="official-catalog"
@@ -900,6 +860,7 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
                       </button>
                     )}
                   </div>
+                  <div className="results-controls">
                   {isAiSearchActive ? (
                     <div className="course-sort-control">
                       Classement : pertinence IA
@@ -931,7 +892,28 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
                       </select>
                     </label>
                   )}
+                    <button className="help-button" type="button"
+                      onClick={() => setShowGettingStarted(visible => !visible)}
+                      aria-expanded={showGettingStarted} aria-controls="getting-started-panel">
+                      <span aria-hidden="true">ⓘ</span> {showGettingStarted ? 'Masquer l’aide à la recherche' : 'Aide à la recherche'}
+                    </button>
+                  </div>
                 </div>
+                {showGettingStarted && (
+                  <section
+                    id="getting-started-panel"
+                    className="getting-started"
+                    aria-labelledby="getting-started-title"
+                  >
+                    <div>
+                      <h2 id="getting-started-title">Aide à la recherche</h2>
+                      <p>
+                        Utilisez la recherche ou les filtres pour trouver une formation.
+                        Les résultats s’adaptent automatiquement à vos choix.
+                      </p>
+                    </div>
+                  </section>
+                )}
                 {hasTextSearch &&
                   matchingOfficialCourses.length > 1 &&
                   !hasCourseSelection &&
@@ -1252,10 +1234,10 @@ function OfficialCourseCard({ course }) {
   return (
     <article className="official-course-card">
       <div className="official-course-card-heading">
-        <p className="official-course-code">
-          <strong>{course.code}</strong>
-        </p>
-        <h3>{course.officialData.titleRaw ?? unavailable}</h3>
+        <div className="official-course-identity">
+          <p className="official-course-code"><strong>{course.code}</strong></p>
+          <h3>{course.officialData.titleRaw ?? unavailable}</h3>
+        </div>
         {(course.officialData.hasOpenSession || course.officialData.hasScheduledSession) && (
           <div className="course-session-statuses" aria-label="Statut des sessions">
             {course.officialData.hasOpenSession && (
@@ -1301,20 +1283,22 @@ function OfficialCourseCard({ course }) {
           <dd>{course.officialData.publicValue}</dd>
         </div>
       </dl>
-      <section className="official-course-target-audience" aria-label="Public visé">
-        <h4>Public visé</h4>
-        <p className="target-audience-preview">{targetAudience}</p>
-        {hasLongTargetAudience && (
-          <details className="target-audience-details">
-            <summary>Lire le public visé complet</summary>
-            <p>{targetAudience}</p>
-          </details>
-        )}
-      </section>
-      <div className="official-course-card-action">
-        <a href={course.sourceUrl} target="_blank" rel="noopener noreferrer">
-          Voir la formation <span aria-hidden="true">↗</span>
-        </a>
+      <div className="official-course-footer">
+        <section className="official-course-target-audience" aria-label="Public visé">
+          <h4>Public visé</h4>
+          <p className="target-audience-preview">{targetAudience}</p>
+          {hasLongTargetAudience && (
+            <details className="target-audience-details">
+              <summary>Lire le public visé complet</summary>
+              <p>{targetAudience}</p>
+            </details>
+          )}
+        </section>
+        <div className="official-course-card-action">
+          <a href={course.sourceUrl} target="_blank" rel="noopener noreferrer">
+            Voir la formation <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
     </article>
   )
