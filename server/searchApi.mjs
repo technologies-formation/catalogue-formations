@@ -1,3 +1,4 @@
+import {buildCataloguePathway} from './catalogueProvenance.mjs'
 import {readConsumptionEnvironment,trackConsumption,calculatedUsage,reportingTokenMatches,handleConsumptionRequest} from './consumptionLedger.mjs'
 import http from 'node:http'
 import { randomUUID } from 'node:crypto'
@@ -229,9 +230,7 @@ const server = http.createServer(async (request, response) => {
 
       try {
         const fromAssistant=consumption && reportingTokenMatches(request.headers['x-a658-report-token'],consumption.token)
-        result = await trackConsumption(consumption?.ledger,fromAssistant?'assistant':'catalogue','pathway',()=>buildPathwayWithLuna(profile, {
-          catalogue: catalogueStore.current().search,
-        }),calculatedUsage)
+        result = await trackConsumption(consumption?.ledger,fromAssistant?'assistant':'catalogue','pathway',()=>buildCataloguePathway(profile,catalogueStore.current(),buildPathwayWithLuna),calculatedUsage)
       } finally {
         activeLunaSearches -= 1
       }
