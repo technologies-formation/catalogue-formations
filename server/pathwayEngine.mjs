@@ -522,6 +522,7 @@ Sélectionne uniquement des formations susceptibles de former un ensemble cohér
 La proximité de mots génériques ne suffit pas : vérifie le sujet et le contexte professionnel de chaque formation par rapport à l'objectif.
 Une différence de version d'un même logiciel ne suffit pas à exclure un cours : conserve les versions proches potentiellement pertinentes pour les compétences demandées, sauf contrainte explicite imposant une version exacte. N'affirme pas pour autant leur équivalence technique.
 L'objectif interprété reformule le besoin, sans conclure à l'absence d'une formation dans le catalogue complet.
+Une absence de préférence de modalité n’est pas une contrainte à satisfaire : une modalité de cours inconnue ne constitue pas une incompatibilité avec cette absence de préférence. Ne présente jamais l’absence de préférence comme un obstacle ou une compatibilité impossible à établir.
 Ne transforme jamais une modalité mentionnée dans le catalogue en préférence de la personne. Seul le profil fait foi ; une contrainte absente ou « Aucune » ne signifie pas une préférence pour une modalité.
 N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
       input: `CATALOGUE OFFICIEL :\n${JSON.stringify(ultraCompactCatalogue)}\n\nPROFIL :\n${need}`,
@@ -642,6 +643,7 @@ Règles impératives :
 - une préférence exprimée pour l'e-learning, le distanciel, le présentiel, l'hybride ou l'autonomie prime dans le classement lorsque la fiche la confirme ;
 - distingue la modalité de la formation de la préférence de la personne : un titre contenant E-LEARNING décrit le cours, jamais une préférence du profil ;
 - attribue une préférence à la personne uniquement si elle est explicitement exprimée dans le PROFIL ; une contrainte absente, vide, « Aucune » ou « sans préférence » ne constitue pas une préférence de modalité ;
+- lorsqu’aucune préférence de modalité n’est exprimée (y compris « Indifférent » ou « Aucune préférence de modalité »), ne formule aucune réserve de compatibilité liée à cette absence de préférence ; si la modalité du cours est inconnue, indique seulement « modalité à vérifier sur la fiche officielle », sans présenter ce manque comme un obstacle au choix ;
 - une formation en e-learning reste autorisée sans préférence exprimée si elle répond à l'objectif ; justifie alors son utilité et décris sa modalité sans prétendre qu'elle a été demandée ;
 - applique cette fidélité au profil au résumé, à l'objectif interprété, à toutes les justifications et aux limites ; ne reprends pas une préférence inventée par l'OBJECTIF INTERPRÉTÉ si elle n'apparaît pas dans le PROFIL ;
 - ne déduis pas qu'une version de logiciel plus récente convient nécessairement mieux ; une différence de version ne suffit pas non plus à exclure un cours ;

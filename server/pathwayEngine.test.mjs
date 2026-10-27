@@ -696,7 +696,7 @@ test('ne promeut pas tous les compléments nouveau manager quand le parcours dé
 
 // Contrat de provenance transmis au modèle, sans appel OpenAI.
 // Le transport fictif ne mesure pas l'obéissance d'un modèle réel aux consignes.
-for (const constraints of [undefined, '', 'Aucune', 'sans préférence', 'E-learning uniquement']) {
+for (const constraints of [undefined, '', 'Aucune', 'sans préférence', 'Indifférent', 'Aucune préférence de modalité', 'E-learning uniquement']) {
   test(`sépare la modalité du cours et la préférence du profil : ${constraints ?? 'absente'}`, async () => {
     const catalogue = officeFixture('Outlook', [
       { code: 'OUTLOOK-E', title: 'Outlook : fondamentaux | E-LEARNING' },
@@ -723,6 +723,8 @@ for (const constraints of [undefined, '', 'Aucune', 'sans préférence', 'E-lear
     }
     assert.match(requests[1].instructions, /un titre contenant E-LEARNING décrit le cours, jamais une préférence du profil/)
     assert.match(requests[1].instructions, /une formation en e-learning reste autorisée sans préférence exprimée/)
+    assert.match(requests[0].instructions, /ne constitue pas une incompatibilité avec cette absence de préférence/)
+    assert.match(requests[1].instructions, /ne formule aucune réserve de compatibilité liée à cette absence de préférence/)
     // Ne pas masquer le défaut en excluant systématiquement l'e-learning.
     assert.equal(result.recommendedSteps[0].course.code, 'OUTLOOK-E')
     assert.equal(profile.constraints, constraints)
