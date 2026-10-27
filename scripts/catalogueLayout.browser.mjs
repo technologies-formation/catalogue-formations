@@ -55,7 +55,7 @@ try {
     await help.click()
     await page.locator('#getting-started-panel').waitFor()
     assert.equal(await page.locator('.official-results-heading #getting-started-panel').count(), 1)
-    await page.getByRole('button', { name: 'Masquer l’aide à la recherche' }).click()
+    await page.getByRole('button', { name: 'Fermer l’aide' }).click()
     const cards = page.locator('.official-course-card')
     const titleXs = []
     for (const card of await cards.all()) {
