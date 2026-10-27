@@ -15,7 +15,7 @@ const courses = [
   { ...first, code: 'TEST-LONG', officialData: { ...first.officialData, titleRaw: 'Word — structurer des documents longs, des modèles et des rapports pour le suivi de dossiers complexes', targetAudienceRaw: 'Public fictif pour vérifier que les informations restent accessibles. '.repeat(12), hasOpenSession: false, hasScheduledSession: true } },
   { ...first, code: 'TEST-EMPTY', officialData: { ...first.officialData, titleRaw: 'Word — fiche sans indication de sessions', targetAudienceRaw: '', hasOpenSession: false, hasScheduledSession: false } },
 ]
-const vite = await createServer({ mode: 'self-hosted', server: { host: '127.0.0.1', port: 0, hmr: false }, optimizeDeps: { noDiscovery: true, include: [] } })
+const vite = await createServer({ mode: 'self-hosted', server: { host: '127.0.0.1', port: 0, hmr: false }, optimizeDeps: { include: ['react', 'react-dom/client', 'react/jsx-dev-runtime'] } })
 await vite.listen()
 const origin = `http://127.0.0.1:${vite.httpServer.address().port}`
 const browser = await chromium.launch({ headless: true, ...(process.env.CATALOGUE_BROWSER_EXECUTABLE ? { executablePath: process.env.CATALOGUE_BROWSER_EXECUTABLE } : {}) })
@@ -35,7 +35,13 @@ try {
     const page = await context.newPage()
     page.on('pageerror', error => errors.push(error.message))
     await page.goto(origin)
-    await page.waitForFunction(() => document.querySelector('.catalogue-summary')?.textContent.includes('3 formations'))
+    try {
+      await page.waitForFunction(() => document.querySelector('.catalogue-summary')?.textContent.includes('3 formations'))
+    } catch (error) {
+      await page.screenshot({ path: `visual-check/catalogue-${name}-failure.png`, fullPage: true })
+      console.error(JSON.stringify({ name, errors, unexpected, content: (await page.locator('body').innerText()).slice(0, 2000) }))
+      throw error
+    }
     await page.locator('#catalogue-search').fill('word')
     await page.getByRole('heading', { name: '3 formations trouvées' }).waitFor()
     assert.equal(await page.locator('.official-course-card').count(), 3)
