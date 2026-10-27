@@ -33,8 +33,7 @@ import {
   isAiSearchConfigured,
   searchCatalogueWithAi,
 } from './services/catalogueSearchApi.js'
-import PathwayAssistant from './components/PathwayAssistant.jsx'
-import { isPathwayAssistantConfigured } from './services/pathwayAssistantApi.js'
+import assistantRobotUrl from './assets/assistant-robot.webp'
 
 const NO_FILTER = ''
 const LONG_TARGET_AUDIENCE_THRESHOLD = 240
@@ -90,7 +89,6 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
   const [courseSort, setCourseSort] = useState(initialSearchState.sort)
   const [classicSearchSort, setClassicSearchSort] = useState('relevance')
   const [showGettingStarted, setShowGettingStarted] = useState(false)
-  const [showPathwayAssistant, setShowPathwayAssistant] = useState(false)
   const [currentPage, dispatchPagination] = useReducer(paginationReducer, 1)
   const resultsHeadingRef = useRef(null)
   const aiSearchAbortRef = useRef(null)
@@ -639,28 +637,27 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
               </p>
             )}
           </form>
-          {isPathwayAssistantConfigured && (
-            <>
+          <>
               <div className="search-choice-separator" aria-hidden="true">
                 <span>OU</span>
               </div>
               <section className="pathway-choice" aria-labelledby="pathway-choice-title">
-                <p id="pathway-choice-title" className="pathway-choice-title">
-                  Besoin d’être guidé ?
-                </p>
-                <button
-                  className="pathway-launch-button"
-                  type="button"
-                  onClick={() => setShowPathwayAssistant(true)}
-                >
-                  Construire mon parcours
-                </button>
-                <p className="pathway-choice-help">
-                  Décrivez votre situation et obtenez un parcours progressif à partir du catalogue.
-                </p>
+                <div className="assistant-invitation">
+                  <span className="assistant-invitation-robot" aria-hidden="true"
+                    style={{ backgroundImage: `url(${assistantRobotUrl})` }} />
+                  <div>
+                    <p id="pathway-choice-title" className="pathway-choice-title">Besoin d’aide pour choisir ?</p>
+                    <p className="pathway-choice-help">Précisez votre besoin avec l’assistant formation.</p>
+                  </div>
+                </div>
+                <a className="pathway-launch-button"
+                  href="https://avatar.a658yg-catalogue.ch/private/"
+                  target="_blank" rel="noopener noreferrer"
+                  aria-label="Échanger avec l’assistant — nouvel onglet">
+                  Échanger avec l’assistant <span aria-hidden="true">↗</span>
+                </a>
               </section>
-            </>
-          )}
+          </>
           </div>
           <div className="search-support">
             <p className="search-examples">
@@ -673,10 +670,6 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
             </p>
           </div>
         </section>
-
-        {showPathwayAssistant && (
-          <PathwayAssistant onClose={() => setShowPathwayAssistant(false)} />
-        )}
 
         {showAiExplanation && aiSearchStatus === 'success' && (
           <div

@@ -1052,6 +1052,14 @@ select:disabled {
 }
 
 
+/* Accès à l’assistant : image locale, aucune requête au pilote avant le clic. */
+.assistant-invitation { display:flex;align-items:center;gap:12px;width:100%; }
+.assistant-invitation > div { min-width:0; }
+.assistant-invitation-robot { flex:0 0 68px;width:68px;height:78px;background-repeat:no-repeat;background-size:300% 100%;background-position:0 50%; }
+.assistant-invitation .pathway-choice-help { margin-top:6px; }
+a.pathway-launch-button { display:flex;align-items:center;justify-content:center;gap:8px;box-sizing:border-box;text-align:center;text-decoration:none;line-height:1.4; }
+a.pathway-launch-button:focus-visible { outline:3px solid #263746;outline-offset:3px; }
+
 /* Modes de recherche */
 .hero-actions {
   display: flex;
