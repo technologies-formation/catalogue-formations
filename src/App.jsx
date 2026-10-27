@@ -567,7 +567,7 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
               <span className="assistant-invitation-robot" aria-hidden="true"
                 style={{ backgroundImage: `url(${assistantRobotUrl})` }} />
               <div>
-                <p id="pathway-choice-title" className="pathway-choice-title">Besoin d’aide pour choisir ?</p>
+                <p id="pathway-choice-title" className="pathway-choice-title">Besoin d’aide ?</p>
               </div>
             </div>
             <a className="pathway-launch-button"
