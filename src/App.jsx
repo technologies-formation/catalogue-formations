@@ -1,6 +1,7 @@
+import { catalogueDateLabel } from './domain/catalogueDate.js'
 import { useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import './App.css'
-import { fullCatalogueCourses } from './data/fullCatalogueCourses.js'
+import { fullCatalogueCourses, fullCatalogueSnapshotDate } from './data/fullCatalogueCourses.js'
 import {
   getPublicFacetOptions,
   matchesPublicFacet,
@@ -54,7 +55,8 @@ function getFacetOptions(courses, getValue) {
   return uniqueTextValues(courses.flatMap((course) => getValue(course) ?? []))
 }
 
-function App({ courses = fullCatalogueCourses }) {
+function App({ courses = fullCatalogueCourses, catalogueDate }) {
+  const sourceDate = catalogueDate === undefined && courses === fullCatalogueCourses ? fullCatalogueSnapshotDate : catalogueDate
   const trainingOfferOptions = useMemo(
     () => getFacetOptions(courses, (course) => course.catalogueOffers),
     [courses],
@@ -664,6 +666,7 @@ function App({ courses = fullCatalogueCourses }) {
             <p className="search-examples">
               Exemples : communication, projet, intelligence artificielle, FP173
             </p>
+            <p className="prototype-note catalogue-freshness">{catalogueDateLabel(sourceDate)}</p>
             <p className="prototype-note">
               Données issues du catalogue importé — {formatFormationCount(courses.length)} formations.
               {' '}Prototype de démonstration.

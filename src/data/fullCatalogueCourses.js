@@ -51,3 +51,7 @@ export function projectSnapshotCourse(snapshotCourse) {
 }
 
 export const fullCatalogueCourses = officialCatalogueSnapshot.map(projectSnapshotCourse)
+
+// Date of the exact bundled dataset, never the browser clock or API check time.
+const snapshotDates = new Set(officialCatalogueSnapshot.map(course => course.sourceSnapshotDate))
+export const fullCatalogueSnapshotDate = snapshotDates.size === 1 ? [...snapshotDates][0] : null
