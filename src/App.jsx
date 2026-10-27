@@ -567,7 +567,7 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
               <span className="assistant-invitation-robot" aria-hidden="true"
                 style={{ backgroundImage: `url(${assistantRobotUrl})` }} />
               <div>
-                <p id="pathway-choice-title" className="pathway-choice-title">Besoin d’aide pour choisir ?</p>
+                <p id="pathway-choice-title" className="pathway-choice-title">Besoin d’aide ?</p>
               </div>
             </div>
             <a className="pathway-launch-button"
@@ -895,7 +895,7 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
                     <button className="help-button" type="button"
                       onClick={() => setShowGettingStarted(visible => !visible)}
                       aria-expanded={showGettingStarted} aria-controls="getting-started-panel">
-                      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/><path d="M12 16h.01"/></svg> {showGettingStarted ? 'Masquer l’aide à la recherche' : 'Aide à la recherche'}
+                      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/><path d="M12 16h.01"/></svg> {showGettingStarted ? 'Fermer l’aide' : 'Aide à la recherche'}
                     </button>
                   </div>
                 </div>
