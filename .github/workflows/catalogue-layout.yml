@@ -24,8 +24,15 @@ jobs:
       - run: npm run build:self-hosted
       - name: Install isolated browser tooling
         run: npm install --prefix "$RUNNER_TEMP/catalogue-browser" --ignore-scripts --no-audit --no-fund playwright@1.62.1
-      - name: Install Chromium
-        run: node "$RUNNER_TEMP/catalogue-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Prepare browser
+        timeout-minutes: 3
+        run: |
+          catalogue_browser=$(command -v google-chrome || command -v chromium || true)
+          if [ -n "$catalogue_browser" ]; then
+            echo "CATALOGUE_BROWSER_EXECUTABLE=$catalogue_browser" >> "$GITHUB_ENV"
+          else
+            node "$RUNNER_TEMP/catalogue-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          fi
       - name: Verify compact layout with fictitious courses only
         env:
           CATALOGUE_PLAYWRIGHT_MODULE: ${{ runner.temp }}/catalogue-browser/node_modules/playwright/index.mjs

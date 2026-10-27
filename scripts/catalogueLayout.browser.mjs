@@ -18,7 +18,7 @@ const courses = [
 const vite = await createServer({ mode: 'self-hosted', server: { host: '127.0.0.1', port: 0, hmr: false }, optimizeDeps: { noDiscovery: true, include: [] } })
 await vite.listen()
 const origin = `http://127.0.0.1:${vite.httpServer.address().port}`
-const browser = await chromium.launch({ headless: true })
+const browser = await chromium.launch({ headless: true, ...(process.env.CATALOGUE_BROWSER_EXECUTABLE ? { executablePath: process.env.CATALOGUE_BROWSER_EXECUTABLE } : {}) })
 mkdirSync('visual-check', { recursive: true })
 const report = []
 try {
