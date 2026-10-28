@@ -285,19 +285,40 @@ function isNewManagerCourse(course) {
     .test(normalized(course?.officialData?.targetAudienceRaw))
 }
 
-// Seule une étiquette explicite de modalité dans l’intitulé sert de preuve.
-// Ni les exercices, ni la durée, ni l’absence d’e-learning ne prouvent du présentiel.
-function courseDeliveryMode(course) {
+// Règle métier transitoire : le présentiel par défaut est une hypothèse,
+// distincte d’une modalité explicitement annoncée dans le titre ou le descriptif.
+function courseDeliveryMode(course, detail) {
   const title = course?.officialData?.titleRaw ?? ''
-  const text = normalized(title)
-  const modes = [
+  const titleText = normalized(title)
+  const patterns = [
     ['online', /(?:^|[|:()–—-])\s*(?:e[- ]?learning|en ligne|a distance|classe virtuelle)\s*(?=$|[|:()–—-])/],
     ['in_person', /(?:^|[|:()–—-])\s*(?:en presentiel|presentiel)\s*(?=$|[|:()–—-])/],
     ['hybrid', /(?:^|[|:()–—-])\s*(?:hybride|blended learning)\s*(?=$|[|:()–—-])/],
-  ].filter(([, expression]) => expression.test(text))
-  return modes.length === 1
-    ? { value: modes[0][0], sourceField: 'titleRaw', evidence: title }
-    : { value: 'unknown', sourceField: null, evidence: null }
+  ]
+  const evidence = patterns.filter(([,expression])=>expression.test(titleText))
+    .map(([value])=>({value,sourceField:'titleRaw',evidence:title}))
+  let mentionsMode = /e[- ]?learning|en ligne|a distance|classe virtuelle|presentiel|hybride|blended learning/.test(titleText)
+  for (const field of ['generalInformation','content','objectives','additionalInformation']) {
+    const value = textOf(detail?.[field])
+    // Les objectifs d’un cours sur la conception de e-learning ne décrivent pas sa modalité.
+    for (const sentence of value.split(/[.!?;\n]+/)) {
+      const text = normalized(sentence)
+      if (!/e[- ]?learning|en ligne|a distance|classe virtuelle|presentiel|hybride|blended learning/.test(text)) continue
+      mentionsMode = true
+      if (/\b(?:pas|sans|aucun|non)\b/.test(text)) continue
+      const declaration = /\bmodalite\b|\bformat\b|\bformation (?:est |se deroule |se suit |dispensee |proposee |suivie |entierement )|cours (?:est |se deroule |dispense |propose |suivi )|suivre (?:ce|cette|la|le) (?:cours|formation)|module (?:est |dispense |propose |suivi )/.test(text)
+      if (!declaration) continue
+      for (const [mode,expression] of [
+        ['online',/e[- ]?learning|en ligne|a distance|classe virtuelle/],
+        ['in_person',/presentiel/],
+        ['hybrid',/hybride|blended learning/],
+      ]) if(expression.test(text)) evidence.push({value:mode,sourceField:field,evidence:sentence.trim().slice(0,2000)})
+    }
+  }
+  const modes = new Set(evidence.map(item=>item.value))
+  if (modes.size===1) return evidence[0]
+  if (modes.size>1 || mentionsMode) return {value:'unknown',sourceField:null,evidence:null}
+  return {value:'in_person',sourceField:'catalogue-default',evidence:null}
 }
 
 function publicCourse(course, detail) {
@@ -310,7 +331,7 @@ function publicCourse(course, detail) {
     targetAudience: course.officialData?.targetAudienceRaw ?? '',
     duration: textOf(detail?.duration),
     durationHours: durationHours(detail),
-    deliveryMode: courseDeliveryMode(course),
+    deliveryMode: courseDeliveryMode(course, detail),
     sessionAvailability: detail?.sessionAvailability ?? { hasOpenSession: null, hasScheduledSession: null, observedOn: null, source: null },
     catalogueOffers: course.catalogueOffers ?? [],
     sourceUrl: course.sourceUrl ?? '',
@@ -412,7 +433,7 @@ function stabilizeGeneralOfficePathway(
   const primaryCode = wantsElearning ? (elearningCode ?? foundationCode) : (foundationCode ?? elearningCode)
 
   if (!primaryCode) return null
-  const primaryIsOnline = courseDeliveryMode(courseByCode.get(primaryCode)).value === 'online'
+  const primaryIsOnline = courseDeliveryMode(courseByCode.get(primaryCode), detailedByCode.get(primaryCode)).value === 'online'
 
   const all = [...recommendedSteps, ...optionalSteps]
   const byCode = new Map(all.map((item) => [item.course.code, item]))
@@ -611,7 +632,7 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
       if (!detail) return null
       // Les disponibilités sont ajoutées au résultat par le serveur, sans influencer la sélection IA.
       const { sessionAvailability: _availability, ...description } = detail
-      return { ...description, deliveryMode: courseDeliveryMode(courseByCode.get(code)) }
+      return { ...description, deliveryMode: courseDeliveryMode(courseByCode.get(code), detail) }
     })
     .filter(Boolean)
 
@@ -622,7 +643,7 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
       store: false,
       max_output_tokens: 1_200,
       instructions:
-        `Tu construis un parcours court, réaliste et ordonné à partir des seules fiches autorisées.
+        `Tu construis un parcours pertinent, progressif et ordonné à partir des seules fiches autorisées.
 Règles impératives :
 - utilise uniquement les codes fournis ;
 - évalue séparément la pertinence pour l'objectif et la compatibilité du public : un cours accessible n'est pas nécessairement utile au besoin ;
@@ -638,13 +659,18 @@ Règles impératives :
 - la présence d'un cours parmi les candidats ne constitue ni une recommandation ni une preuve d'accès ; notamment, ne recommande pas PACIFIC (SEM1174) sur le seul statut de nouveau manager : évalue son contenu par rapport à l'objectif ; il peut rester facultatif ou être omis ;
 - si une fiche exige une inscription à un programme ou un prérequis, ne déduis pas qu'il est satisfait du seul métier ou statut de la personne ; signale la condition et pose une question de clarification utile dans la justification si le profil ne permet pas de trancher ;
 - n'invente ni critère d'accès ni information administrative non publiée dans les fiches ; une condition non confirmée doit rester à vérifier avec la personne, puis avec les RH si nécessaire ;
-- pour la modalité de chaque formation, utilise exclusivement deliveryMode ajouté par le serveur aux fiches autorisées ; sa preuve figure dans evidence et sourceField ;
-- si deliveryMode.value vaut unknown, indique que la modalité du cours est non renseignée ; n'affirme jamais présentiel par défaut, ni en te fondant sur des exercices, jeux de rôles, une durée ou l'absence d'E-LEARNING ;
-- la préférence du profil est connue même lorsque la modalité du cours est inconnue : dis que sa compatibilité ne peut pas être établie, jamais que la préférence de la personne est invérifiable ;
+- pour la modalité de chaque formation, utilise exclusivement deliveryMode ajouté par le serveur aux fiches autorisées ; son origine figure dans evidence et sourceField ;
+- si deliveryMode.sourceField vaut catalogue-default, indique « présentiel présumé » : c'est la règle métier transitoire en l'absence de mention de modalité dans le titre ou le descriptif, pas une preuve issue d'un futur indicateur SIRH ; cette hypothèse reste à vérifier sur la fiche ;
+- si deliveryMode.value vaut unknown, indique que les mentions de modalité sont ambiguës ou contradictoires ; ne tranche pas à la place du serveur ;
+- la préférence du profil est connue même lorsque la modalité du cours est inconnue : dis que sa compatibilité ne peut pas être établie, jamais que la préférence de la personne est invérifiable ; une modalité présumée n'est pas une confirmation de compatibilité ;
 - si la modalité connue diffère de la préférence demandée, signale explicitement cet écart et présente la proposition comme une piste à comparer ; ne prétends pas que la préférence est satisfaite ;
 - une modalité hybride ne garantit pas un suivi entièrement en ligne ou entièrement en présentiel ; indique que les conditions sont à vérifier ;
 - si plusieurs formations couvrent essentiellement le même besoin, ne les présente pas comme des étapes cumulatives : choisis la meilleure pour recommendedSteps et place, si elle apporte un vrai choix de modalité, la meilleure autre option dans optionalSteps avec une justification explicite d'alternative ;
-- une préférence exprimée pour l'e-learning, le distanciel, le présentiel, l'hybride ou l'autonomie prime dans le classement lorsque la fiche la confirme ;
+- une préférence exprimée pour l'e-learning, le distanciel, le présentiel, l'hybride ou l'autonomie départage les formations de pertinence comparable lorsque la fiche la confirme ; elle ne prime pas sur le besoin précis, les acquis et la complémentarité des étapes ;
+- distingue une préférence souple d'une exigence exclusive : « en ligne de préférence, présentiel accepté » autorise des pistes de modalités différentes ou à vérifier, sans prétendre qu'elles sont en ligne ; ne transforme pas une préférence souple en filtre d'exclusion ;
+- pour un besoin ciblé avec des acquis déjà déclarés, privilégie les modules qui développent les compétences manquantes ; un e-learning généraliste couvrant les bases jusqu'au perfectionnement peut constituer une alternative au parcours ciblé, pas une étape à ajouter automatiquement ;
+- avant de cumuler un socle généraliste et un module spécialisé, vérifie dans les fiches que chacun apporte un apprentissage nécessaire non déjà couvert ; si les contenus se recouvrent, présente deux voies à comparer dans les justifications, avec l'alternative dans optionalSteps, jamais un cumul par défaut ;
+- n'écarte pas systématiquement le e-learning : il peut rester principal si sa couverture du besoin et son niveau sont les mieux adaptés, ou si la personne exige une formation exclusivement en ligne ;
 - distingue la modalité de la formation de la préférence de la personne : un titre contenant E-LEARNING décrit le cours, jamais une préférence du profil ;
 - attribue une préférence à la personne uniquement si elle est explicitement exprimée dans le PROFIL ; une contrainte absente, vide, « Aucune » ou « sans préférence » ne constitue pas une préférence de modalité ;
 - lorsqu’aucune préférence de modalité n’est exprimée (y compris « Indifférent » ou « Aucune préférence de modalité »), ne formule aucune réserve de compatibilité liée à cette absence de préférence ; si la modalité du cours est inconnue, indique seulement « modalité à vérifier sur la fiche officielle », sans présenter ce manque comme un obstacle au choix ;
@@ -657,7 +683,9 @@ Règles impératives :
 - n'ajoute pas deux versions d'un même contenu comme étapes cumulatives : présente la meilleure réponse au besoin, puis une autre version en alternative seulement si elle apporte un choix utile ;
 - pour un objectif général et des acquis non précisés, construis un parcours minimal : recommande d'abord le socle et classe les niveaux avancés ou usages spécialisés dans optionalSteps ;
 - considère le temps disponible comme un repère de planification, jamais comme un motif pour retirer ou déclasser une étape directement nécessaire ;
-- recommande le parcours qui répond précisément au besoin même si sa durée totale dépasse le temps disponible ;
+- recommande le parcours qui répond précisément au besoin même si sa durée totale dépasse le temps disponible ; n'ajoute pas de cours redondants pour autant ;
+- une disponibilité de deux heures ne suffit pas à supprimer un socle nécessaire à une personne débutante : conserve les apprentissages utiles et laisse le serveur afficher l'écart ; ce repère pourra être reconsidéré avec la personne et sa hiérarchie ;
+- ne réduis pas silencieusement l'objectif et ne suppose pas qu'un étalement dans le temps a été accepté ;
 - place les prérequis avant les approfondissements ;
 - privilégie les formations directement liées au métier et aux outils demandés avant les compétences transversales ;
 - ne remplis pas artificiellement le parcours si peu de formations conviennent ;

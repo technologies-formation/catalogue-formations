@@ -102,7 +102,8 @@ test('le repli bureautique ne promet pas de formation en autonomie quand aucune 
   const result = await buildPathwayWithLuna({ objective: 'Apprendre Word', constraints: 'En ligne' },
     { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() })
   assert.deepEqual(result.recommendedSteps.map(item => item.course.code), ['WORD-BASE'])
-  assert.equal(result.recommendedSteps[0].course.deliveryMode.value, 'unknown')
+  assert.equal(result.recommendedSteps[0].course.deliveryMode.value, 'in_person')
+  assert.equal(result.recommendedSteps[0].course.deliveryMode.sourceField, 'catalogue-default')
   assert.doesNotMatch(result.summary, /en autonomie|présentiel/)
   assert.doesNotMatch(result.recommendedSteps[0].rationale, /en autonomie|présentiel/)
 })
@@ -733,7 +734,7 @@ for (const constraints of [undefined, '', 'Aucune', 'sans préférence', 'Indiff
 
 
 for (const [title, expected] of [
-  ['Gestion du temps et des priorités','unknown'],
+  ['Gestion du temps et des priorités','in_person'],
   ['Outlook | E-LEARNING','online'],
   ['Word (en ligne)','online'],
   ['Word — PRÉSENTIEL','in_person'],
@@ -741,7 +742,7 @@ for (const [title, expected] of [
   ['Concevoir des formations e-learning','unknown'],
   ['Word | EN LIGNE | PRÉSENTIEL','unknown'],
 ]) {
-  test(`modalité prouvée uniquement par une étiquette explicite : ${title}`, async () => {
+  test(`modalité explicite, ambiguë ou présumée selon la règle métier : ${title}`, async () => {
     const catalogue = officeFixture('Temps',[{code:'MODE-1',title}])
     catalogue.detailedByCode.get('MODE-1').content='Jeux de rôles et exercices en salle'
     const requests=[],replies=[response({interpretedGoal:'Organiser son travail',codes:['MODE-1']}),
@@ -750,11 +751,13 @@ for (const [title, expected] of [
       {catalogue,apiKey:'FAKE_KEY_ONLY',fetchImpl:async(_url,init)=>{requests.push(JSON.parse(init.body));return replies.shift()}})
     const mode=result.recommendedSteps[0].course.deliveryMode
     assert.equal(mode.value,expected)
-    assert.equal(mode.evidence,expected==='unknown'?null:title)
-    assert.equal(mode.sourceField,expected==='unknown'?null:'titleRaw')
+    const assumed=title==='Gestion du temps et des priorités'
+    assert.equal(mode.evidence,expected==='unknown'||assumed?null:title)
+    assert.equal(mode.sourceField,assumed?'catalogue-default':expected==='unknown'?null:'titleRaw')
     const candidates=JSON.parse(requests[1].input.split('FICHES AUTORISÉES :\n')[1].split('\n\nPROFIL :')[0])
     assert.deepEqual(candidates[0].deliveryMode,mode)
-    assert.match(requests[1].instructions,/n'affirme jamais présentiel par défaut/)
+    assert.match(requests[1].instructions,/présentiel présumé/)
+    assert.match(requests[1].instructions,/pas une preuve issue d'un futur indicateur SIRH/)
     assert.match(requests[1].instructions,/la préférence du profil est connue/)
     assert.match(requests[1].instructions,/signale explicitement cet écart/)
   })
@@ -771,4 +774,45 @@ test('indicateurs de sessions ajoutés par le serveur sans transmission au modè
  assert.deepEqual(result.recommendedSteps[0].course.sessionAvailability,availability)
  assert.deepEqual(catalogue.detailedByCode.get('SESSION-1'),before)
  for(const request of requests)assert.doesNotMatch(request.input,/sessionAvailability|official-session-icons|observedOn/)
+})
+
+
+test('détecte la modalité dans un descriptif sans confondre sujet enseigné, négation et modalité', async () => {
+  for (const [field,description,value,source] of [
+    ['generalInformation','Cette formation est entièrement en ligne.','online','generalInformation'],
+    ['additionalInformation','Format : e-learning.','online','additionalInformation'],
+    ['content','La formation se déroule en présentiel.','in_person','content'],
+    ['objectives','Concevoir des formations e-learning.','unknown',null],
+    ['generalInformation','Cette formation ne se déroule pas en ligne.','unknown',null],
+    ['content','Exercices de mise en page et de rédaction.','in_person','catalogue-default'],
+    ['generalInformation','Cette formation est en ligne. Ce cours est en présentiel.','unknown',null],
+  ]) {
+    const catalogue=officeFixture('WORD',[{code:'MODE-DESC',title:'Word styles'}])
+    catalogue.detailedByCode.get('MODE-DESC')[field]=description
+    const replies=[response({interpretedGoal:'Utiliser les styles Word',codes:['MODE-DESC']}),response({abstain:false,summary:'Styles.',recommendedSteps:[{code:'MODE-DESC',rationale:'Structurer les documents.'}],optionalSteps:[],informationalCourses:[],gaps:[]})]
+    const result=await buildPathwayWithLuna({objective:'Utiliser les styles Word',existingSkills:'Saisie de texte'}, {catalogue,apiKey:'FAKE_KEY_ONLY',fetchImpl:async()=>replies.shift()})
+    const mode=result.recommendedSteps[0].course.deliveryMode
+    assert.equal(mode.value,value,description)
+    assert.equal(mode.sourceField,source,description)
+  }
+})
+
+test('un débutant avec deux heures garde le socle nécessaire et le dépassement, sans promotion de l’alternative', async () => {
+  const catalogue=officeFixture('EXCEL',[
+    {code:'EXCEL-BASE',title:'Excel 365 Base'},
+    {code:'EXCEL-ONLINE',title:'Excel 2016 : Fondamentaux au perfectionnement | E-LEARNING'},
+  ])
+  catalogue.detailedByCode.get('EXCEL-BASE').duration='2 jours'
+  catalogue.detailedByCode.get('EXCEL-ONLINE').duration='18 heures'
+  const requests=[],replies=[response({interpretedGoal:'Acquérir les bases Excel',codes:catalogue.officialCodes}),response({abstain:false,summary:'Acquérir les bases.',recommendedSteps:[{code:'EXCEL-BASE',rationale:'Socle nécessaire pour commencer.'}],optionalSteps:[{code:'EXCEL-ONLINE',rationale:'Alternative complète, à choisir à la place du socle.'}],informationalCourses:[],gaps:[]})]
+  const result=await buildPathwayWithLuna({personnelCategory:'PAT',objective:'Apprendre Excel',existingSkills:'Je débute',timeAvailable:'2 heures au total',constraints:'En ligne de préférence, présentiel accepté'}, {catalogue,apiKey:'FAKE_KEY_ONLY',fetchImpl:async(_url,init)=>{requests.push(JSON.parse(init.body));return replies.shift()}})
+  assert.deepEqual(result.recommendedSteps.map(x=>x.course.code),['EXCEL-BASE'])
+  assert.deepEqual(result.optionalSteps.map(x=>x.course.code),['EXCEL-ONLINE'])
+  assert.equal(result.durationSummary.budgetHours,2)
+  assert.equal(result.durationSummary.recommendedHours,16)
+  assert.equal(result.durationSummary.excessHours,14)
+  assert.match(requests[1].instructions,/elle ne prime pas sur le besoin précis/)
+  assert.match(requests[1].instructions,/ne transforme pas une préférence souple en filtre d'exclusion/)
+  assert.match(requests[1].instructions,/vérifie dans les fiches que chacun apporte un apprentissage nécessaire/)
+  assert.doesNotMatch(requests[1].instructions,/prime dans le classement lorsque la fiche la confirme/)
 })
