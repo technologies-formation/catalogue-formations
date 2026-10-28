@@ -14,6 +14,8 @@ import { buildPathwayWithLuna } from './pathwayEngine.mjs'
 import { createStaticFrontendHandler } from './staticFrontend.mjs'
 import { createCorsHandler } from './cors.mjs'
 import { handleProfileReferences } from './profileReferences.mjs'
+import {createPublicCatalogueRuntime,publicCatalogueUsage} from './publicPilotRuntime.mjs'
+import {PublicCostError} from './publicCostPolicy.mjs'
 
 const consumption=readConsumptionEnvironment(process.env)
 const PORT = Number(process.env.PORT || 8787)
@@ -34,6 +36,16 @@ const MAX_CONCURRENT_SEARCHES = positiveIntegerEnv(
 let activeLunaSearches = 0
 const rateLimits = new Map()
 const serveStaticFrontend = createStaticFrontendHandler()
+const publicCatalogue=createPublicCatalogueRuntime({
+  privateDirectories:consumption?[consumption.ledger.directory]:[],
+  getCatalogue:()=>catalogueStore.current(),
+  async runExclusive(run){
+    if(activeLunaSearches>=MAX_CONCURRENT_SEARCHES)throw new PublicCostError('public_busy')
+    activeLunaSearches++
+    try{return await run()}finally{activeLunaSearches--}
+  },
+  observe:(action,run)=>trackConsumption(consumption?.ledger,'assistant',action,run,publicCatalogueUsage),
+})
 
 function getClientIp(request) {
   if (TRUST_PROXY) {
@@ -143,6 +155,7 @@ const server = http.createServer(async (request, response) => {
   )
 
   if(handleConsumptionRequest(consumption,request,response,url))return
+  if(await publicCatalogue.handler(request,response,url))return
   if (!applyCors(request, response)) {
     sendJson(response, 403, {
       error: 'Origin non autorisée',
@@ -171,6 +184,7 @@ const server = http.createServer(async (request, response) => {
       service: 'catalogue-search-api',
       openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
       pathwayAssistantEnabled: isPathwayAssistantEnabled(),
+      publicPilotEnabled:publicCatalogue.enabled,
       catalogue: { syncEnabled: catalogueSyncEnabled, ...catalogueStore.status() },
     })
     return
@@ -430,5 +444,6 @@ server.listen(PORT, '0.0.0.0', () => {
     }`
   )
   console.log('Mode /api/search : LUNA + rappel lexical — appels OpenAI actifs')
+  console.log(publicCatalogue.enabled?'Pilote public du catalogue : accès serveur protégé activé.':'Pilote public du catalogue : désactivé.')
   console.log(`Frontend statique : ${process.env.NODE_ENV === 'production' ? 'racine du service si dist est présent' : 'disponible si dist est présent'}`)
 })

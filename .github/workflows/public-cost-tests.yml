@@ -3,7 +3,7 @@ on:
   push:
     branches: ['feat/public-cost-bounds-2026-10-28']
   pull_request:
-    paths: ['server/**', '.github/workflows/public-cost-tests.yml']
+    paths: ['server/**', 'scripts/installPublicPilotPreparation*', '.github/workflows/public-cost-tests.yml']
 permissions:
   contents: read
 jobs:
