@@ -47,11 +47,11 @@ function usageCost(usage = {}) {
 
 const OPENAI_TIMEOUT_MS = positiveIntegerEnv('OPENAI_TIMEOUT_MS', 90_000, 1_000)
 
-async function callOpenAI(body) {
-  const response = await fetch('https://api.openai.com/v1/responses', {
+async function callOpenAI(body, {fetchImpl = fetch, apiKey = process.env.OPENAI_API_KEY} = {}) {
+  const response = await fetchImpl('https://api.openai.com/v1/responses', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
@@ -69,13 +69,13 @@ async function callOpenAI(body) {
   return data
 }
 
-export async function searchWithLuna(query) {
-  if (!process.env.OPENAI_API_KEY) {
+export async function searchWithLuna(query, {fetchImpl = fetch, apiKey = process.env.OPENAI_API_KEY, catalogue = null} = {}) {
+  if (!apiKey) {
     throw new Error('OPENAI_API_KEY absente côté serveur')
   }
 
   // Capture once: both passes and lexical recall keep this version across awaits.
-  const { courses, ultraCompactCatalogue, officialCodes, detailedByCode, courseByCode } = catalogueStore.current().search
+  const { courses, ultraCompactCatalogue, officialCodes, detailedByCode, courseByCode } = catalogue ?? catalogueStore.current().search
 
   const normalizedQuery = String(query ?? '').trim()
 
@@ -135,7 +135,7 @@ ${normalizedQuery}`,
         },
       },
     },
-  })
+  }, {fetchImpl, apiKey})
 
   const firstResult = JSON.parse(extractText(first))
 
@@ -289,7 +289,7 @@ ${normalizedQuery}`,
         },
       },
     },
-  })
+  }, {fetchImpl, apiKey})
 
   const finalResult = JSON.parse(extractText(second))
   const cost2 = usageCost(second.usage)
