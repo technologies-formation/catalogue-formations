@@ -192,7 +192,7 @@ const server = http.createServer(async (request, response) => {
     response.setHeader('ETag', etag)
     response.setHeader('Cache-Control', 'no-cache')
     sendJson(response, 200, {
-      courses: current.search.courses,
+      courses: current.search.courses.map(course=>({...course,officialData:{...course.officialData,durationRaw:current.search.detailedByCode.get(course.code)?.duration??'',sourceSnapshotDate:current.metadata.snapshotDate,scheduledOpeningDates:current.search.detailedByCode.get(course.code)?.sessionAvailability?.scheduledOpeningDates??[]}})),
       catalogue: catalogueStore.status(),
     })
     return

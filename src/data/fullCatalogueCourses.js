@@ -36,9 +36,6 @@ export function projectSnapshotCourse(snapshotCourse) {
           ? snapshotCourse.themeRaw
           : null,
       publicRaw: snapshotCourse.publicRaw,
-      durationRaw: snapshotCourse.durationRaw,
-      sourceSnapshotDate: snapshotCourse.sourceSnapshotDate,
-      scheduledOpeningDates: snapshotCourse.scheduledOpeningDates ?? [],
       publicValue: getCoursePublicValue(snapshotCourse.publicRaw),
       targetAudienceRaw: snapshotCourse.targetAudienceRaw,
       objectivesRaw: snapshotCourse.objectivesRaw,
