@@ -67,6 +67,46 @@ function officeFixture(theme, courses) {
   }
 }
 
+test('une version proche de Word reste recommandable pour le contenu demandé sans équivalence technique promise', async () => {
+  const catalogue = officeFixture('WORD', [
+    { code: 'WORD-LONG', title: 'Word 365 Longs documents' },
+  ])
+  const replies = [
+    response({ interpretedGoal: 'Structurer les rapports Word 2016', codes: ['WORD-LONG'] }),
+    response({ abstain: false, summary: 'Travailler la structuration des documents.',
+      recommendedSteps: [{ code: 'WORD-LONG', rationale: 'Styles et table des matières ; cours sur Word 365, différences avec Word 2016 à vérifier.' }],
+      optionalSteps: [], informationalCourses: [], gaps: [] }),
+  ]
+  const requests = []
+  const result = await buildPathwayWithLuna({ personnelCategory: 'PAT',
+    objective: 'Structurer mes rapports dans Word 2016 avec les styles et une table des matières',
+    existingSkills: 'Quelques bases de saisie', constraints: 'Aucune préférence' },
+  { catalogue, apiKey: 'test-key', fetchImpl: async (_url, options) => {
+    requests.push(JSON.parse(options.body)); return replies.shift()
+  } })
+  assert.deepEqual(result.recommendedSteps.map(item => item.course.code), ['WORD-LONG'])
+  assert.deepEqual(result.optionalSteps, [])
+  assert.match(result.recommendedSteps[0].rationale, /Word 365.*Word 2016/)
+  assert.match(requests[0].instructions, /différence de version.*ne suffit pas à exclure/)
+  assert.match(requests[1].instructions, /une version proche peut figurer dans recommendedSteps/)
+  assert.match(requests[1].instructions, /signale explicitement dans sa justification les deux versions/)
+  assert.match(requests[1].instructions, /impose explicitement une version exacte/)
+  assert.match(requests[1].instructions, /ne les étends jamais au catalogue complet/)
+})
+
+test('le repli bureautique ne promet pas de formation en autonomie quand aucune modalité en ligne n’est prouvée', async () => {
+  const catalogue = officeFixture('WORD', [{ code: 'WORD-BASE', title: 'Word 365 Base' }])
+  const replies = [response({ interpretedGoal: 'Apprendre Word', codes: ['WORD-BASE'] }),
+    response({ abstain: false, summary: 'Socle Word', recommendedSteps: [{ code: 'WORD-BASE', rationale: 'Bases' }],
+      optionalSteps: [], informationalCourses: [], gaps: [] })]
+  const result = await buildPathwayWithLuna({ objective: 'Apprendre Word', constraints: 'En ligne' },
+    { catalogue, apiKey: 'test-key', fetchImpl: async () => replies.shift() })
+  assert.deepEqual(result.recommendedSteps.map(item => item.course.code), ['WORD-BASE'])
+  assert.equal(result.recommendedSteps[0].course.deliveryMode.value, 'unknown')
+  assert.doesNotMatch(result.summary, /en autonomie|présentiel/)
+  assert.doesNotMatch(result.recommendedSteps[0].rationale, /en autonomie|présentiel/)
+})
+
 test('construit un parcours ordonné uniquement avec les formations autorisées', async () => {
   const replies = [
     response(
@@ -137,6 +177,8 @@ test('s abstient après la première passe quand aucun candidat n est trouvé', 
   assert.equal(result.abstain, true)
   assert.deepEqual(result.steps, [])
   assert.equal(result.usage.pass2, null)
+  assert.match(result.summary, /dans cette recherche/)
+  assert.doesNotMatch(result.summary, /catalogue actuel|catalogue complet/)
 })
 
 test('déduplique les étapes retournées par le modèle', async () => {
@@ -253,6 +295,8 @@ test('privilégie le e-learning pour un besoin Excel général en autonomie', as
     result.optionalSteps.map(({ course }) => course.code),
     ['EXCEL-BASE', 'EXCEL-PIVOT'],
   )
+  assert.doesNotMatch(result.summary, /présentiel/)
+  assert.match(result.optionalSteps[0].rationale, /modalité à vérifier/)
 })
 
 test('préserve un parcours PowerPoint spécialisé', async () => {
@@ -652,7 +696,7 @@ test('ne promeut pas tous les compléments nouveau manager quand le parcours dé
 
 // Contrat de provenance transmis au modèle, sans appel OpenAI.
 // Le transport fictif ne mesure pas l'obéissance d'un modèle réel aux consignes.
-for (const constraints of [undefined, '', 'Aucune', 'sans préférence', 'E-learning uniquement']) {
+for (const constraints of [undefined, '', 'Aucune', 'sans préférence', 'Indifférent', 'Aucune préférence de modalité', 'E-learning uniquement']) {
   test(`sépare la modalité du cours et la préférence du profil : ${constraints ?? 'absente'}`, async () => {
     const catalogue = officeFixture('Outlook', [
       { code: 'OUTLOOK-E', title: 'Outlook : fondamentaux | E-LEARNING' },
@@ -679,8 +723,52 @@ for (const constraints of [undefined, '', 'Aucune', 'sans préférence', 'E-lear
     }
     assert.match(requests[1].instructions, /un titre contenant E-LEARNING décrit le cours, jamais une préférence du profil/)
     assert.match(requests[1].instructions, /une formation en e-learning reste autorisée sans préférence exprimée/)
+    assert.match(requests[0].instructions, /ne constitue pas une incompatibilité avec cette absence de préférence/)
+    assert.match(requests[1].instructions, /ne formule aucune réserve de compatibilité liée à cette absence de préférence/)
     // Ne pas masquer le défaut en excluant systématiquement l'e-learning.
     assert.equal(result.recommendedSteps[0].course.code, 'OUTLOOK-E')
     assert.equal(profile.constraints, constraints)
   })
 }
+
+
+for (const [title, expected] of [
+  ['Gestion du temps et des priorités','unknown'],
+  ['Outlook | E-LEARNING','online'],
+  ['Word (en ligne)','online'],
+  ['Word — PRÉSENTIEL','in_person'],
+  ['Word | HYBRIDE','hybrid'],
+  ['Concevoir des formations e-learning','unknown'],
+  ['Word | EN LIGNE | PRÉSENTIEL','unknown'],
+]) {
+  test(`modalité prouvée uniquement par une étiquette explicite : ${title}`, async () => {
+    const catalogue = officeFixture('Temps',[{code:'MODE-1',title}])
+    catalogue.detailedByCode.get('MODE-1').content='Jeux de rôles et exercices en salle'
+    const requests=[],replies=[response({interpretedGoal:'Organiser son travail',codes:['MODE-1']}),
+      response({abstain:false,summary:'Un socle.',recommendedSteps:[{code:'MODE-1',rationale:'Apprendre les bases.'}],optionalSteps:[],informationalCourses:[],gaps:[]})]
+    const result=await buildPathwayWithLuna({personnelCategory:'PAT',objective:'Organiser les tâches',constraints:'Modalité souhaitée : en ligne'},
+      {catalogue,apiKey:'FAKE_KEY_ONLY',fetchImpl:async(_url,init)=>{requests.push(JSON.parse(init.body));return replies.shift()}})
+    const mode=result.recommendedSteps[0].course.deliveryMode
+    assert.equal(mode.value,expected)
+    assert.equal(mode.evidence,expected==='unknown'?null:title)
+    assert.equal(mode.sourceField,expected==='unknown'?null:'titleRaw')
+    const candidates=JSON.parse(requests[1].input.split('FICHES AUTORISÉES :\n')[1].split('\n\nPROFIL :')[0])
+    assert.deepEqual(candidates[0].deliveryMode,mode)
+    assert.match(requests[1].instructions,/n'affirme jamais présentiel par défaut/)
+    assert.match(requests[1].instructions,/la préférence du profil est connue/)
+    assert.match(requests[1].instructions,/signale explicitement cet écart/)
+  })
+}
+
+test('indicateurs de sessions ajoutés par le serveur sans transmission au modèle ni modification du classement',async()=>{
+ const catalogue=officeFixture('Temps',[{code:'SESSION-1',title:'Organiser ses tâches'}])
+ const availability={hasOpenSession:true,hasScheduledSession:true,observedOn:'2026-10-23',source:'official-session-icons'}
+ catalogue.detailedByCode.get('SESSION-1').sessionAvailability=availability
+ const before=structuredClone(catalogue.detailedByCode.get('SESSION-1')),requests=[]
+ const replies=[response({interpretedGoal:'Organiser son travail',codes:['SESSION-1']}),response({abstain:false,summary:'Un socle.',recommendedSteps:[{code:'SESSION-1',rationale:'Apprendre les bases.',sessionAvailability:{source:'model',hasOpenSession:false}}],optionalSteps:[],informationalCourses:[],gaps:[]})]
+ const result=await buildPathwayWithLuna({personnelCategory:'PAT',objective:'Organiser les tâches'},{catalogue,apiKey:'FAKE_KEY_ONLY',fetchImpl:async(_url,init)=>{requests.push(JSON.parse(init.body));return replies.shift()}})
+ assert.equal(requests.length,2);assert.equal(result.recommendedSteps[0].course.code,'SESSION-1');assert.equal(result.recommendedSteps[0].position,1)
+ assert.deepEqual(result.recommendedSteps[0].course.sessionAvailability,availability)
+ assert.deepEqual(catalogue.detailedByCode.get('SESSION-1'),before)
+ for(const request of requests)assert.doesNotMatch(request.input,/sessionAvailability|official-session-icons|observedOn/)
+})

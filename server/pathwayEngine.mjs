@@ -1,3 +1,4 @@
+import { scopeCatalogue } from './trainingScope.mjs'
 const MODEL = 'gpt-5.6-luna'
 const MAX_CANDIDATES = 30
 const MAX_RECALL_CANDIDATES = 12
@@ -64,6 +65,7 @@ async function callOpenAI(body, { fetchImpl, apiKey, timeoutMs }) {
 function profileText(profile) {
   return [
     ['Catégorie de personnel', profile.personnelCategory],
+    ['Environnement professionnel', profile.professionalEnvironment],
     ['Entité', profile.entity],
     ['Situation managériale', profile.managerStatus],
     ['Fonction ou situation', profile.role],
@@ -167,11 +169,18 @@ function institutionalAnchorCodes(profile, officialCodes) {
   return ['TRT3004H', 'SEM1246'].filter((code) => official.has(code))
 }
 
-function newManagerAnchorCodes(profile, officialCodes) {
+function newManagerCandidateCodes(profile, officialCodes) {
   if (!isNewManagerProfile(profile)) return []
 
   const official = new Set(officialCodes)
   return ['SEM1174'].filter((code) => official.has(code))
+}
+
+function rationaleWithAccessCheck(rationale, detail) {
+  // Une condition publiée est un point à confirmer, pas une inscription présumée.
+  const prerequisites = normalized(detail?.prerequisites)
+  if (!/\binscrite?\b.*\bprogramme\b/.test(prerequisites)) return rationale
+  return `${rationale} Si votre inscription n’est pas déjà confirmée : êtes-vous inscrit ou inscrite au programme requis par cette fiche ? En cas de doute, vérifiez ce point avec vos RH.`
 }
 
 function isAiRelevantInformationalCourse(course, detail) {
@@ -276,6 +285,21 @@ function isNewManagerCourse(course) {
     .test(normalized(course?.officialData?.targetAudienceRaw))
 }
 
+// Seule une étiquette explicite de modalité dans l’intitulé sert de preuve.
+// Ni les exercices, ni la durée, ni l’absence d’e-learning ne prouvent du présentiel.
+function courseDeliveryMode(course) {
+  const title = course?.officialData?.titleRaw ?? ''
+  const text = normalized(title)
+  const modes = [
+    ['online', /(?:^|[|:()–—-])\s*(?:e[- ]?learning|en ligne|a distance|classe virtuelle)\s*(?=$|[|:()–—-])/],
+    ['in_person', /(?:^|[|:()–—-])\s*(?:en presentiel|presentiel)\s*(?=$|[|:()–—-])/],
+    ['hybrid', /(?:^|[|:()–—-])\s*(?:hybride|blended learning)\s*(?=$|[|:()–—-])/],
+  ].filter(([, expression]) => expression.test(text))
+  return modes.length === 1
+    ? { value: modes[0][0], sourceField: 'titleRaw', evidence: title }
+    : { value: 'unknown', sourceField: null, evidence: null }
+}
+
 function publicCourse(course, detail) {
   return {
     code: course.code,
@@ -286,6 +310,8 @@ function publicCourse(course, detail) {
     targetAudience: course.officialData?.targetAudienceRaw ?? '',
     duration: textOf(detail?.duration),
     durationHours: durationHours(detail),
+    deliveryMode: courseDeliveryMode(course),
+    sessionAvailability: detail?.sessionAvailability ?? { hasOpenSession: null, hasScheduledSession: null, observedOn: null, source: null },
     catalogueOffers: course.catalogueOffers ?? [],
     sourceUrl: course.sourceUrl ?? '',
   }
@@ -386,6 +412,7 @@ function stabilizeGeneralOfficePathway(
   const primaryCode = wantsElearning ? (elearningCode ?? foundationCode) : (foundationCode ?? elearningCode)
 
   if (!primaryCode) return null
+  const primaryIsOnline = courseDeliveryMode(courseByCode.get(primaryCode)).value === 'online'
 
   const all = [...recommendedSteps, ...optionalSteps]
   const byCode = new Map(all.map((item) => [item.course.code, item]))
@@ -403,7 +430,7 @@ function stabilizeGeneralOfficePathway(
 
   const primary = itemFor(
     primaryCode,
-    wantsElearning
+    wantsElearning && primaryIsOnline
       ? 'Parcours général en autonomie couvrant les fondamentaux jusqu’aux fonctions avancées.'
       : 'Socle adapté à un besoin général lorsque le niveau initial et les usages spécialisés ne sont pas précisés.',
   )
@@ -414,7 +441,7 @@ function stabilizeGeneralOfficePathway(
     ? itemFor(
         alternativeCode,
         primaryCode === elearningCode
-          ? 'Alternative en présentiel pour acquérir les bases avec accompagnement.'
+          ? 'Autre formule pour acquérir les bases ; modalité à vérifier sur la fiche officielle.'
           : 'Alternative e-learning en autonomie couvrant les fondamentaux jusqu’au perfectionnement.',
       )
     : null
@@ -434,8 +461,8 @@ function stabilizeGeneralOfficePathway(
     ...[alternative, ...displaced, ...remainingOptions].filter(Boolean),
   )
 
-  return wantsElearning
-    ? `${primary.course.title} constitue le parcours général recommandé en autonomie. Les modules présentiels sont proposés comme compléments ou alternatives selon les besoins.`
+  return wantsElearning && primaryIsOnline
+    ? `${primary.course.title} constitue le parcours général recommandé en autonomie. Les autres modules sont proposés comme compléments ou alternatives selon les besoins ; leur modalité reste à vérifier sur les fiches officielles.`
     : `Commencer par ${primary.course.title}. Les niveaux avancés et les autres modalités sont proposés comme compléments ou alternatives selon les besoins.`
 }
 
@@ -475,6 +502,8 @@ export async function buildPathwayWithLuna(
     throw new Error('OPENAI_API_KEY absente côté serveur')
   }
 
+  catalogue = scopeCatalogue(catalogue, profile)
+  if(!catalogue.officialCodes.length)return {ok:true,abstain:true,summary:'Aucun cours ne correspond au périmètre de recherche choisi.',recommendedSteps:[],optionalSteps:[],informationalCourses:[],gaps:['Vous pouvez élargir les offres ou les entités de formation dans Ma demande.']}
   const {
     ultraCompactCatalogue,
     officialCodes,
@@ -495,6 +524,9 @@ export async function buildPathwayWithLuna(
 Interprète l'objectif professionnel, les acquis, le temps disponible et les contraintes.
 Sélectionne uniquement des formations susceptibles de former un ensemble cohérent.
 La proximité de mots génériques ne suffit pas : vérifie le sujet et le contexte professionnel de chaque formation par rapport à l'objectif.
+Une différence de version d'un même logiciel ne suffit pas à exclure un cours : conserve les versions proches potentiellement pertinentes pour les compétences demandées, sauf contrainte explicite imposant une version exacte. N'affirme pas pour autant leur équivalence technique.
+L'objectif interprété reformule le besoin, sans conclure à l'absence d'une formation dans le catalogue complet.
+Une absence de préférence de modalité n’est pas une contrainte à satisfaire : une modalité de cours inconnue ne constitue pas une incompatibilité avec cette absence de préférence. Ne présente jamais l’absence de préférence comme un obstacle ou une compatibilité impossible à établir.
 Ne transforme jamais une modalité mentionnée dans le catalogue en préférence de la personne. Seul le profil fait foi ; une contrainte absente ou « Aucune » ne signifie pas une préférence pour une modalité.
 N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
       input: `CATALOGUE OFFICIEL :\n${JSON.stringify(ultraCompactCatalogue)}\n\nPROFIL :\n${need}`,
@@ -524,7 +556,7 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
   const firstResult = JSON.parse(extractText(first))
   const recalledCodes = deterministicRecall(profile, detailedByCode)
   const anchorCodes = institutionalAnchorCodes(profile, officialCodes)
-  const managerFoundationCodes = newManagerAnchorCodes(profile, officialCodes)
+  const managerCandidateCodes = newManagerCandidateCodes(profile, officialCodes)
   const officeFoundationCodes = officeAnchorCodes(
     profile,
     officialCodes,
@@ -533,7 +565,7 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
   )
   const initialCodes = [...new Set([
     ...anchorCodes,
-    ...managerFoundationCodes,
+    ...managerCandidateCodes,
     ...officeFoundationCodes,
     ...recalledCodes,
     ...(firstResult.codes ?? []),
@@ -554,7 +586,7 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
       mode: 'pathway-two-pass',
       abstain: true,
       interpretedGoal: firstResult.interpretedGoal,
-      summary: 'Aucun parcours fiable ne peut être construit avec le catalogue actuel.',
+      summary: 'Aucun parcours suffisamment pertinent n’a été identifié dans cette recherche.',
       steps: [],
       recommendedSteps: [],
       optionalSteps: [],
@@ -574,7 +606,13 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
   }
 
   const detailedCandidates = candidateCodes
-    .map((code) => detailedByCode.get(code))
+    .map((code) => {
+      const detail = detailedByCode.get(code)
+      if (!detail) return null
+      // Les disponibilités sont ajoutées au résultat par le serveur, sans influencer la sélection IA.
+      const { sessionAvailability: _availability, ...description } = detail
+      return { ...description, deliveryMode: courseDeliveryMode(courseByCode.get(code)) }
+    })
     .filter(Boolean)
 
   const second = await callOpenAI(
@@ -597,14 +635,26 @@ Règles impératives :
 - chaque complément ou alternative doit apporter une compétence ou un choix utile au besoin ; une offre propre à une autre institution ou activité n'est pas une alternative sur la seule proximité de son intitulé ;
 - un profil qui se déclare nouveau manager est compatible avec une formation réservée aux nouvelles et nouveaux managers ;
 - tiens compte des acquis pour éviter les formations manifestement redondantes ;
-- identifie les modalités à partir de tous les champs disponibles, y compris le titre lorsqu'elles n'existent pas sous forme structurée ;
+- la présence d'un cours parmi les candidats ne constitue ni une recommandation ni une preuve d'accès ; notamment, ne recommande pas PACIFIC (SEM1174) sur le seul statut de nouveau manager : évalue son contenu par rapport à l'objectif ; il peut rester facultatif ou être omis ;
+- si une fiche exige une inscription à un programme ou un prérequis, ne déduis pas qu'il est satisfait du seul métier ou statut de la personne ; signale la condition et pose une question de clarification utile dans la justification si le profil ne permet pas de trancher ;
+- n'invente ni critère d'accès ni information administrative non publiée dans les fiches ; une condition non confirmée doit rester à vérifier avec la personne, puis avec les RH si nécessaire ;
+- pour la modalité de chaque formation, utilise exclusivement deliveryMode ajouté par le serveur aux fiches autorisées ; sa preuve figure dans evidence et sourceField ;
+- si deliveryMode.value vaut unknown, indique que la modalité du cours est non renseignée ; n'affirme jamais présentiel par défaut, ni en te fondant sur des exercices, jeux de rôles, une durée ou l'absence d'E-LEARNING ;
+- la préférence du profil est connue même lorsque la modalité du cours est inconnue : dis que sa compatibilité ne peut pas être établie, jamais que la préférence de la personne est invérifiable ;
+- si la modalité connue diffère de la préférence demandée, signale explicitement cet écart et présente la proposition comme une piste à comparer ; ne prétends pas que la préférence est satisfaite ;
+- une modalité hybride ne garantit pas un suivi entièrement en ligne ou entièrement en présentiel ; indique que les conditions sont à vérifier ;
 - si plusieurs formations couvrent essentiellement le même besoin, ne les présente pas comme des étapes cumulatives : choisis la meilleure pour recommendedSteps et place, si elle apporte un vrai choix de modalité, la meilleure autre option dans optionalSteps avec une justification explicite d'alternative ;
 - une préférence exprimée pour l'e-learning, le distanciel, le présentiel, l'hybride ou l'autonomie prime dans le classement lorsque la fiche la confirme ;
 - distingue la modalité de la formation de la préférence de la personne : un titre contenant E-LEARNING décrit le cours, jamais une préférence du profil ;
 - attribue une préférence à la personne uniquement si elle est explicitement exprimée dans le PROFIL ; une contrainte absente, vide, « Aucune » ou « sans préférence » ne constitue pas une préférence de modalité ;
+- lorsqu’aucune préférence de modalité n’est exprimée (y compris « Indifférent » ou « Aucune préférence de modalité »), ne formule aucune réserve de compatibilité liée à cette absence de préférence ; si la modalité du cours est inconnue, indique seulement « modalité à vérifier sur la fiche officielle », sans présenter ce manque comme un obstacle au choix ;
 - une formation en e-learning reste autorisée sans préférence exprimée si elle répond à l'objectif ; justifie alors son utilité et décris sa modalité sans prétendre qu'elle a été demandée ;
 - applique cette fidélité au profil au résumé, à l'objectif interprété, à toutes les justifications et aux limites ; ne reprends pas une préférence inventée par l'OBJECTIF INTERPRÉTÉ si elle n'apparaît pas dans le PROFIL ;
-- ne déduis pas qu'une version de logiciel plus récente convient nécessairement mieux : respecte la version demandée et présente une autre version uniquement comme alternative pertinente ;
+- ne déduis pas qu'une version de logiciel plus récente convient nécessairement mieux ; une différence de version ne suffit pas non plus à exclure un cours ;
+- pour un même logiciel, une version proche peut figurer dans recommendedSteps si le contenu de la fiche répond aux compétences demandées ; précise la version du cours et les différences à vérifier, sans garantir une équivalence technique ;
+- si la personne indique une version et que celle du cours est différente, signale explicitement dans sa justification les deux versions : « Ce cours porte sur [version du cours] ; vous avez indiqué [version demandée]. Les différences sont à vérifier. » ; conserve cette possibilité si le contenu reste pertinent, sans inventer de différences techniques ;
+- si la personne impose explicitement une version exacte ou une fonctionnalité propre à cette version, respecte cette contrainte ; une simple mention de Word 2016 ne suffit pas à rendre toute autre version incompatible ;
+- n'ajoute pas deux versions d'un même contenu comme étapes cumulatives : présente la meilleure réponse au besoin, puis une autre version en alternative seulement si elle apporte un choix utile ;
 - pour un objectif général et des acquis non précisés, construis un parcours minimal : recommande d'abord le socle et classe les niveaux avancés ou usages spécialisés dans optionalSteps ;
 - considère le temps disponible comme un repère de planification, jamais comme un motif pour retirer ou déclasser une étape directement nécessaire ;
 - recommande le parcours qui répond précisément au besoin même si sa durée totale dépasse le temps disponible ;
@@ -616,10 +666,11 @@ Règles impératives :
 - ne commente pas dans gaps la vérification arithmétique des durées : le serveur s'en charge ;
 - gaps décrit uniquement les compétences ou objectifs professionnels que les fiches fournies ne couvrent pas ;
 - ne mentionne jamais dans gaps la durée, le temps disponible, le budget, le public, l'accès ou les conditions d'inscription : le serveur les contrôle et les affiche séparément ;
-- n'affirme jamais qu'un cours est absent du catalogue complet : tu ne vois qu'une sélection de fiches autorisées ;
+- dans summary, les justifications et gaps, limite les constats d'absence aux fiches examinées ou à cette recherche ; ne les étends jamais au catalogue complet ;
+- l'OBJECTIF INTERPRÉTÉ est une reformulation du besoin, pas une preuve de couverture du catalogue ; n'en reprends pas une affirmation d'absence globale ;
 - explique brièvement la valeur de chaque étape ;
 - si aucun parcours cohérent n'est possible, abstain vaut true et recommendedSteps est vide ;
-- indique honnêtement dans gaps ce que le catalogue ne couvre pas.`,
+- indique honnêtement dans gaps les compétences que les fiches examinées ne permettent pas de couvrir.`,
       input: `FICHES AUTORISÉES :\n${JSON.stringify(detailedCandidates)}\n\nPROFIL :\n${need}\n\nOBJECTIF INTERPRÉTÉ :\n${firstResult.interpretedGoal}`,
       text: {
         format: {
@@ -705,7 +756,7 @@ Règles impératives :
       const detail = detailedByCode.get(code)
       const item = {
         position: destination.length + 1,
-        rationale,
+        rationale: rationaleWithAccessCheck(rationale, detail),
         course: publicCourse(course, detail),
       }
 
@@ -756,45 +807,6 @@ Règles impératives :
       )
     : null
 
-  if (!plan.abstain && isNewManagerProfile(profile)) {
-    const code = managerFoundationCodes[0]
-    const course = code ? courseByCode.get(code) : null
-
-    if (course && audienceCompatibility(profile, course) !== 'incompatible') {
-      const allItems = [...recommendedSteps, ...optionalSteps, ...informationalCourses]
-      const existing = allItems.find((item) => item.course.code === code)
-      const detail = detailedByCode.get(code)
-      const item = existing
-        ? {
-            ...existing,
-            rationale: 'Renforcer le leadership et la gestion d’équipe dans le cadre du programme des nouvelles et nouveaux managers ; accès sous réserve des conditions d’inscription au programme.',
-          }
-        : {
-            position: 1,
-            rationale: 'Renforcer le leadership et la gestion d’équipe dans le cadre du programme des nouvelles et nouveaux managers ; accès sous réserve des conditions d’inscription au programme.',
-            course: publicCourse(course, detail),
-          }
-
-      recommendedSteps.splice(
-        0,
-        recommendedSteps.length,
-        ...recommendedSteps.filter((entry) => entry.course.code !== code),
-      )
-      optionalSteps.splice(
-        0,
-        optionalSteps.length,
-        ...optionalSteps.filter((entry) => entry.course.code !== code),
-      )
-      informationalCourses.splice(
-        0,
-        informationalCourses.length,
-        ...informationalCourses.filter((entry) => entry.course.code !== code),
-      )
-      if (recommendedSteps.length >= MAX_STEPS) optionalSteps.unshift(recommendedSteps.pop())
-      recommendedSteps.splice(Math.min(2, recommendedSteps.length), 0, item)
-    }
-  }
-
   if (budgetHours !== null && isNewManagerProfile(profile)) {
     const remainingOptions = []
 
@@ -805,6 +817,7 @@ Règles impératives :
       if (
         recommendedSteps.length < MAX_STEPS &&
         fitsBudget &&
+        !managerCandidateCodes.includes(item.course.code) &&
         isNewManagerCourse(courseByCode.get(item.course.code))
       ) {
         if (hours === null) allRecommendedDurationsKnown = false
