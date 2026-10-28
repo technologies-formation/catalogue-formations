@@ -57,7 +57,7 @@ export function installPublicPreparation({siteDirectory,backupParent,sourceDirec
    const target=join(siteDirectory,path),old=current.get(path)
    if(old?!same(readCode(target).content,old.content):present(target))throw Error('Code modifié pendant la préparation')
    const temp=target+'.a658-'+randomUUID()+'.tmp';temporary.push(temp)
-   writeFileSync(temp,sources.get(path).content,{mode:old?.mode??0o644,flag:'wx'});flush(temp);renameSync(temp,target);written.push(path);flush(dirname(target))
+   writeFileSync(temp,sources.get(path).content,{mode:old?.mode??0o644,flag:'wx'});chmodSync(temp,old?.mode??0o644);flush(temp);renameSync(temp,target);written.push(path);flush(dirname(target))
    checkSyntax(target)
    if(!same(readCode(target).content,sources.get(path).content))throw Error('Code installé non vérifié')
   }

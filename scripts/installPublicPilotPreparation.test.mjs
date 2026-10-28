@@ -17,10 +17,11 @@ function fixture(t){
  return {root,site,source,before,options:{siteDirectory:site,backupParent:root,sourceDirectory:source,expectedBefore:before}}
 }
 test('installation limitée, sauvegarde privée vérifiée, moteur conservé et seconde exécution sans remplacement',t=>{
- const f=fixture(t),result=installPublicPreparation(f.options)
+ const f=fixture(t),mask=process.umask(0o077);let result
+ try{result=installPublicPreparation(f.options)}finally{process.umask(mask)}
  assert.equal(result.changed,true);assert.equal(statSync(result.backup).mode&0o777,0o700)
  const manifest=JSON.parse(readFileSync(join(result.backup,'manifest.json'),'utf8'));assert.equal(manifest.publicActivation,false)
- for(const path of PUBLIC_CODE_FILES)assert.equal(readFileSync(join(f.site,path),'utf8'),readFileSync(join(f.source,path),'utf8'))
+ for(const path of PUBLIC_CODE_FILES){assert.equal(readFileSync(join(f.site,path),'utf8'),readFileSync(join(f.source,path),'utf8'));assert.equal(statSync(join(f.site,path)).mode&0o777,0o644)}
  assert.equal(hash(readFileSync(join(f.site,'server/pathwayEngine.mjs'))),f.before['server/pathwayEngine.mjs'])
  for(const path of ['server/searchApi.mjs','server/llmSearch.mjs']){assert.equal(hash(readFileSync(join(result.backup,path))),f.before[path]);assert.equal(statSync(join(result.backup,path)).mode&0o777,0o600)}
  assert.equal(existsSync(join(result.backup,'.env')),false)
