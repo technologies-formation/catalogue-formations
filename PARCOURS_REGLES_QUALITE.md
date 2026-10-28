@@ -13,3 +13,10 @@ Les modalités sont calculées par le serveur et transmises aux deux passes util
 Installer d'abord l'Assistant qui accepte les nouvelles provenances, puis `server/pathwayEngine.mjs`. Les autres modules composites du Catalogue et l'interface construite restent inchangés. Les résultats déjà enregistrés gardent leur contenu d'origine.
 
 Validation : 386 tests locaux réussis, dont présence d'un socle de 16 h pour 2 h disponibles et alternative non cumulée, modes explicites/présumés, descriptif, négation et ambiguïté. Faux transports uniquement, aucune génération payante. La pertinence réelle du prochain résultat devra être évaluée par l'opérateur : les tests de consignes ne prouvent pas une décision sémantique du modèle.
+
+
+## Retours complémentaires du même essai
+
+L'objectif interprété de la première passe ne doit pas transformer le temps de planification en plafond : cette règle est désormais explicite dès la sélection des candidats. Un cours de base ne peut pas être imposé uniquement pour vérifier une maîtrise inconnue lorsqu'un prérequis accepte une expérience équivalente ; la vérification et une éventuelle remise à niveau doivent rester conditionnelles. Les consignes ne valent pas validation générale de la pertinence du modèle.
+
+Les déclarations de titre séparées par une barre oblique, dont « Formation autonome en ligne », sont reconnues. Les explications publiques traduisent les quatre identifiants de provenance, sans toucher aux preuves structurées ni au contenu source des cours.

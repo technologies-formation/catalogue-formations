@@ -85,6 +85,14 @@ function textOf(value) {
   return JSON.stringify(value)
 }
 
+// Les explications sont destinées à la personne, les provenances structurées restent intactes.
+function learnerExplanation(value) {
+  return textOf(value).replace(/\b(deliveryMode|sourceField|evidence|catalogue-default)\b/g, term => ({
+    deliveryMode: 'la modalité du cours', sourceField: 'l’origine de cette indication',
+    evidence: 'la mention relevée', 'catalogue-default': 'la règle de lecture du catalogue',
+  })[term])
+}
+
 function normalized(value) {
   return textOf(value)
     .normalize('NFD')
@@ -291,9 +299,9 @@ function courseDeliveryMode(course, detail) {
   const title = course?.officialData?.titleRaw ?? ''
   const titleText = normalized(title)
   const patterns = [
-    ['online', /(?:^|[|:()–—-])\s*(?:e[- ]?learning|en ligne|a distance|classe virtuelle)\s*(?=$|[|:()–—-])/],
-    ['in_person', /(?:^|[|:()–—-])\s*(?:en presentiel|presentiel)\s*(?=$|[|:()–—-])/],
-    ['hybrid', /(?:^|[|:()–—-])\s*(?:hybride|blended learning)\s*(?=$|[|:()–—-])/],
+    ['online', /(?:^|[|:/()–—-])\s*(?:(?:formation|cours|module)\s+(?:autonome\s+)?)?(?:e[- ]?learning|en ligne|a distance|classe virtuelle)\s*(?=$|[|:/()–—-])/],
+    ['in_person', /(?:^|[|:/()–—-])\s*(?:en presentiel|presentiel)\s*(?=$|[|:/()–—-])/],
+    ['hybrid', /(?:^|[|:/()–—-])\s*(?:hybride|blended learning)\s*(?=$|[|:/()–—-])/],
   ]
   const evidence = patterns.filter(([,expression])=>expression.test(titleText))
     .map(([value])=>({value,sourceField:'titleRaw',evidence:title}))
@@ -546,7 +554,9 @@ Interprète l'objectif professionnel, les acquis, le temps disponible et les con
 Sélectionne uniquement des formations susceptibles de former un ensemble cohérent.
 La proximité de mots génériques ne suffit pas : vérifie le sujet et le contexte professionnel de chaque formation par rapport à l'objectif.
 Une différence de version d'un même logiciel ne suffit pas à exclure un cours : conserve les versions proches potentiellement pertinentes pour les compétences demandées, sauf contrainte explicite imposant une version exacte. N'affirme pas pour autant leur équivalence technique.
-L'objectif interprété reformule le besoin, sans conclure à l'absence d'une formation dans le catalogue complet.
+L'objectif interprété reformule les compétences à acquérir et les acquis, sans conclure à l'absence d'une formation dans le catalogue complet.
+Dès cette première passe, le temps disponible est un repère de planification : ne filtre pas les candidats selon leur durée et n'écris jamais que le parcours doit tenir dans ce temps. N'impose ni réduction de l'objectif ni étalement déjà accepté.
+Les prérequis déjà maîtrisés n'imposent pas de suivre à nouveau un cours de base. Si la maîtrise n'est pas établie, garde les candidats utiles et fais expliciter cette vérification, sans déduire que la remise à niveau entière est nécessaire.
 Une absence de préférence de modalité n’est pas une contrainte à satisfaire : une modalité de cours inconnue ne constitue pas une incompatibilité avec cette absence de préférence. Ne présente jamais l’absence de préférence comme un obstacle ou une compatibilité impossible à établir.
 Ne transforme jamais une modalité mentionnée dans le catalogue en préférence de la personne. Seul le profil fait foi ; une contrainte absente ou « Aucune » ne signifie pas une préférence pour une modalité.
 N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
@@ -606,7 +616,7 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
     return {
       mode: 'pathway-two-pass',
       abstain: true,
-      interpretedGoal: firstResult.interpretedGoal,
+      interpretedGoal: learnerExplanation(firstResult.interpretedGoal),
       summary: 'Aucun parcours suffisamment pertinent n’a été identifié dans cette recherche.',
       steps: [],
       recommendedSteps: [],
@@ -660,6 +670,7 @@ Règles impératives :
 - si une fiche exige une inscription à un programme ou un prérequis, ne déduis pas qu'il est satisfait du seul métier ou statut de la personne ; signale la condition et pose une question de clarification utile dans la justification si le profil ne permet pas de trancher ;
 - n'invente ni critère d'accès ni information administrative non publiée dans les fiches ; une condition non confirmée doit rester à vérifier avec la personne, puis avec les RH si nécessaire ;
 - pour la modalité de chaque formation, utilise exclusivement deliveryMode ajouté par le serveur aux fiches autorisées ; son origine figure dans evidence et sourceField ;
+- dans les textes destinés à la personne, n'affiche jamais les noms techniques deliveryMode, sourceField, evidence ou catalogue-default ; explique simplement « présentiel présumé en l'absence d'une mention de modalité » lorsque c'est le cas ;
 - si deliveryMode.sourceField vaut catalogue-default, indique « présentiel présumé » : c'est la règle métier transitoire en l'absence de mention de modalité dans le titre ou le descriptif, pas une preuve issue d'un futur indicateur SIRH ; cette hypothèse reste à vérifier sur la fiche ;
 - si deliveryMode.value vaut unknown, indique que les mentions de modalité sont ambiguës ou contradictoires ; ne tranche pas à la place du serveur ;
 - la préférence du profil est connue même lorsque la modalité du cours est inconnue : dis que sa compatibilité ne peut pas être établie, jamais que la préférence de la personne est invérifiable ; une modalité présumée n'est pas une confirmation de compatibilité ;
@@ -686,7 +697,9 @@ Règles impératives :
 - recommande le parcours qui répond précisément au besoin même si sa durée totale dépasse le temps disponible ; n'ajoute pas de cours redondants pour autant ;
 - une disponibilité de deux heures ne suffit pas à supprimer un socle nécessaire à une personne débutante : conserve les apprentissages utiles et laisse le serveur afficher l'écart ; ce repère pourra être reconsidéré avec la personne et sa hiérarchie ;
 - ne réduis pas silencieusement l'objectif et ne suppose pas qu'un étalement dans le temps a été accepté ;
-- place les prérequis avant les approfondissements ;
+- place les prérequis avant les approfondissements lorsqu'une formation préalable est réellement nécessaire ; « avoir suivi le cours de base OU maîtriser les contenus » ne rend pas ce cours obligatoire ;
+- ne recommande pas un cours de base de plusieurs jours dans le seul but de vérifier des acquis : si les acquis requis ne sont pas établis, indique la question précise à clarifier et présente la remise à niveau comme conditionnelle dans optionalSteps, sans affirmer l'accès au module avancé ;
+- distingue les compétences explicitement acquises, celles qui restent inconnues et celles qui sont explicitement absentes ; une simple pratique de Word ne prouve ni la maîtrise complète du socle ni la nécessité de tout reprendre ;
 - privilégie les formations directement liées au métier et aux outils demandés avant les compétences transversales ;
 - ne remplis pas artificiellement le parcours si peu de formations conviennent ;
 - le résumé décrit uniquement le parcours recommandé ; il ne présente jamais les cours informatifs comme des étapes du parcours ;
@@ -784,7 +797,7 @@ Règles impératives :
       const detail = detailedByCode.get(code)
       const item = {
         position: destination.length + 1,
-        rationale: rationaleWithAccessCheck(rationale, detail),
+        rationale: learnerExplanation(rationaleWithAccessCheck(rationale, detail)),
         course: publicCourse(course, detail),
       }
 
@@ -931,8 +944,8 @@ Règles impératives :
   return {
     mode: 'pathway-two-pass',
     abstain,
-    interpretedGoal: firstResult.interpretedGoal,
-    summary: stabilizedOfficeSummary ?? plan.summary,
+    interpretedGoal: learnerExplanation(firstResult.interpretedGoal),
+    summary: learnerExplanation(stabilizedOfficeSummary ?? plan.summary),
     steps: abstain ? [] : recommendedSteps,
     recommendedSteps: abstain ? [] : recommendedSteps,
     optionalSteps,
@@ -965,7 +978,7 @@ Règles impératives :
             .filter((code) => courseByCode.has(code))
 
         return mentionedCourseCodes.every((code) => recommendedCodes.has(code))
-      }),
+      }).map(learnerExplanation),
     usage: {
       pass1: cost1,
       pass2: cost2,

@@ -737,6 +737,7 @@ for (const [title, expected] of [
   ['Gestion du temps et des priorités','in_person'],
   ['Outlook | E-LEARNING','online'],
   ['Word (en ligne)','online'],
+  ['EP-CO-ESII-OMP / Utiliser les styles / Formation autonome en ligne','online'],
   ['Word — PRÉSENTIEL','in_person'],
   ['Word | HYBRIDE','hybrid'],
   ['Concevoir des formations e-learning','unknown'],
@@ -815,4 +816,19 @@ test('un débutant avec deux heures garde le socle nécessaire et le dépassemen
   assert.match(requests[1].instructions,/ne transforme pas une préférence souple en filtre d'exclusion/)
   assert.match(requests[1].instructions,/vérifie dans les fiches que chacun apporte un apprentissage nécessaire/)
   assert.doesNotMatch(requests[1].instructions,/prime dans le classement lorsque la fiche la confirme/)
+})
+
+
+test('les textes publics restent lisibles sans identifiants de provenance, les preuves structurées sont conservées', async () => {
+ const catalogue=officeFixture('WORD',[{code:'WORD-LONG',title:'Word 365 Longs documents'}])
+ const replies=[response({interpretedGoal:'Structurer les rapports Word',codes:['WORD-LONG']}),response({abstain:false,summary:'Parcours avec deliveryMode.',recommendedSteps:[{code:'WORD-LONG',rationale:'Présentiel présumé car deliveryMode provient de catalogue-default.'}],optionalSteps:[],informationalCourses:[],gaps:['La sourceField des modèles de rapports est non précisée.']})]
+ const requests=[]
+ const result=await buildPathwayWithLuna({objective:'Structurer les rapports Word',existingSkills:'Saisir du texte',timeAvailable:'2 jours'}, {catalogue,apiKey:'FAKE_KEY_ONLY',fetchImpl:async(_url,init)=>{requests.push(JSON.parse(init.body));return replies.shift()}})
+ const text=[result.summary,result.interpretedGoal,...result.recommendedSteps.map(x=>x.rationale),...result.gaps].join(' ')
+ assert.doesNotMatch(text,/deliveryMode|catalogue-default|sourceField/)
+ assert.equal(result.recommendedSteps[0].course.deliveryMode.sourceField,'catalogue-default')
+ assert.match(requests[0].instructions,/Dès cette première passe, le temps disponible est un repère/)
+ assert.match(requests[0].instructions,/n'écris jamais que le parcours doit tenir/)
+ assert.match(requests[1].instructions,/ne recommande pas un cours de base de plusieurs jours dans le seul but de vérifier des acquis/)
+ assert.match(requests[1].instructions,/la remise à niveau comme conditionnelle dans optionalSteps/)
 })
