@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { buildPathway } from '../services/pathwayAssistantApi.js'
 import { createEmptyPathwayProfile, pathwayProfileFields } from '../config/pathwayProfile.js'
 
@@ -48,6 +48,32 @@ export default function PathwayAssistant({ onClose }) {
   const [error, setError] = useState('')
   const [validationErrors, setValidationErrors] = useState({})
   const abortRef = useRef(null)
+  const dialogRef = useRef(null)
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    dialog.querySelector('button')?.focus()
+    const handleKey = event => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        abortRef.current?.abort()
+        onClose()
+      } else if (event.key === 'Tab') {
+        const controls = [...dialog.querySelectorAll('button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href]')].filter(el => el.getClientRects().length)
+        const first = controls[0], last = controls.at(-1)
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus() }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus() }
+      }
+    }
+    dialog.addEventListener('keydown', handleKey)
+    return () => {
+      dialog.removeEventListener('keydown', handleKey)
+      document.body.style.overflow = previousOverflow
+      abortRef.current?.abort()
+    }
+  }, [onClose])
 
   function update(field) {
     return (event) => {
@@ -114,6 +140,7 @@ export default function PathwayAssistant({ onClose }) {
     <div className="pathway-overlay" role="presentation" onClick={close}>
       <section
         className="pathway-dialog"
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="pathway-title"
@@ -121,9 +148,9 @@ export default function PathwayAssistant({ onClose }) {
       >
         <header className="pathway-header">
           <div>
-            <span className="pathway-kicker">Assistant de parcours</span>
+            <span className="pathway-kicker">Formulaire de parcours</span>
             <h2 id="pathway-title">Construire mon parcours de formation</h2>
-            <p>Décrivez votre situation : l’assistant proposera un ordre réaliste à partir du catalogue.</p>
+            <p>Décrivez votre situation et votre objectif. La construction du parcours utilise l’IA du catalogue uniquement après votre clic sur « Construire mon parcours ».</p>
           </div>
           <button type="button" className="pathway-close" onClick={close} aria-label="Fermer">×</button>
         </header>
