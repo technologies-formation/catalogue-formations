@@ -34,8 +34,8 @@ export const pathwayProfile = freeze({
       requiredInForm: true,
       formControl: 'select',
       options: [
-        { value: 'PAT', label: 'PAT — Personnel administratif et technique' },
-        { value: 'PE', label: 'PE — Personnel enseignant' },
+        { value: 'PAT', label: 'Personnel administratif et technique' },
+        { value: 'PE', label: 'Personnel enseignant' },
         { value: 'PU Police', label: 'Personnel en uniforme — Police' },
         { value: 'PU Prison', label: 'Personnel en uniforme — Prison' },
         { value: 'PJ', label: 'Personnel du Pouvoir judiciaire' },
@@ -50,6 +50,7 @@ export const pathwayProfile = freeze({
       options: [
         { value: 'Nouveau manager', label: 'Nouveau manager' },
         { value: 'Manager expérimenté', label: 'Manager expérimenté' },
+        { value: 'Manager, expérience non précisée', label: 'Manager, expérience non précisée' },
         { value: 'Sans responsabilité managériale', label: 'Sans responsabilité managériale' },
       ],
     }),

@@ -7,8 +7,8 @@ import { PathwayInputError, validatePathwayInput } from '../../server/pathwayAss
 
 test('le parcours conserve ses cinq valeurs et libelles historiques sans conversion du ciblage', () => {
   assert.deepEqual(pathwayProfileFields.personnelCategory.options, [
-    { value: 'PAT', label: 'PAT — Personnel administratif et technique' },
-    { value: 'PE', label: 'PE — Personnel enseignant' },
+    { value: 'PAT', label: 'Personnel administratif et technique' },
+    { value: 'PE', label: 'Personnel enseignant' },
     { value: 'PU Police', label: 'Personnel en uniforme — Police' },
     { value: 'PU Prison', label: 'Personnel en uniforme — Prison' },
     { value: 'PJ', label: 'Personnel du Pouvoir judiciaire' },
@@ -19,7 +19,7 @@ test('le parcours conserve ses cinq valeurs et libelles historiques sans convers
 
 test('statuts historiques et suggestions d entites : une seule definition, saisie libre preservee', () => {
   assert.deepEqual(pathwayProfileFields.managerStatus.options.map(({ value }) => value), [
-    'Nouveau manager', 'Manager expérimenté', 'Sans responsabilité managériale',
+    'Nouveau manager', 'Manager expérimenté', 'Manager, expérience non précisée', 'Sans responsabilité managériale',
   ])
   assert.deepEqual(pathwayProfileFields.entity.suggestions, entities.map(({ id, label }) => ({ value: id, label })))
   assert.equal(pathwayProfileFields.entity.allowCustom, true)

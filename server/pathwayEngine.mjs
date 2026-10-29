@@ -162,6 +162,16 @@ function deterministicRecall(profile, detailedByCode) {
     .map(({ code }) => code)
 }
 
+function requestedCockpitCodes(profile, detailedByCode) {
+  const objective = normalized(profile.objective)
+  if (!/\bcockpits?\b/.test(objective) || /(?:sans|exclure|pas de)\s+(?:les?\s+)?cockpits?/.test(objective)) return []
+  const specific = [...objective.matchAll(/cockpits?\s+(rh|paie|formation)\b/g)].map(match => match[1])
+  return [...detailedByCode.entries()].filter(([, detail]) => {
+    const title = normalized(detail?.title ?? detail?.officialData?.titleRaw)
+    return /\bcockpits?\b/.test(title) && (!specific.length || specific.some(topic => title.includes(topic)))
+  }).map(([code]) => code).slice(0, 4)
+}
+
 function isPatGenerativeAiProfile(profile) {
   const need = normalized(Object.values(profile).join(' '))
   const isPat = normalized(profile.personnelCategory) === 'pat' || /personnel administratif|chef de projet/.test(need)
@@ -540,6 +550,7 @@ export async function buildPathwayWithLuna(
     courseByCode,
   } = catalogue
   const need = profileText(profile)
+  const primaryCodes = requestedCockpitCodes(profile, detailedByCode)
 
   const first = await callOpenAI(
     {
@@ -551,6 +562,7 @@ export async function buildPathwayWithLuna(
       instructions:
         `Tu prépares un parcours de formation à partir du catalogue officiel.
 Interprète l'objectif professionnel, les acquis, le temps disponible et les contraintes.
+L'objectif reste prioritaire : un outil mentionné dans les acquis, par exemple un niveau débutant avec Excel, ne remplace pas un besoin explicite portant sur un cockpit métier. Conserve les cours directement liés au besoin initial parmi les candidats, même si une préparation bureautique est utile.
 Sélectionne uniquement des formations susceptibles de former un ensemble cohérent.
 La proximité de mots génériques ne suffit pas : vérifie le sujet et le contexte professionnel de chaque formation par rapport à l'objectif.
 Une différence de version d'un même logiciel ne suffit pas à exclure un cours : conserve les versions proches potentiellement pertinentes pour les compétences demandées, sauf contrainte explicite imposant une version exacte. N'affirme pas pour autant leur équivalence technique.
@@ -595,6 +607,7 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
     detailedByCode,
   )
   const initialCodes = [...new Set([
+    ...primaryCodes,
     ...anchorCodes,
     ...managerCandidateCodes,
     ...officeFoundationCodes,
@@ -608,7 +621,7 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
     detailedByCode,
     officialCodes,
   )
-  const candidateCodes = [...new Set([...prerequisiteCodes, ...initialCodes])]
+  const candidateCodes = [...new Set([...primaryCodes, ...prerequisiteCodes, ...initialCodes])]
     .slice(0, MAX_CANDIDATES)
   const cost1 = usageCost(first.usage)
 
@@ -656,6 +669,8 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
         `Tu construis un parcours pertinent, progressif et ordonné à partir des seules fiches autorisées.
 Règles impératives :
 - utilise uniquement les codes fournis ;
+- l'objectif du PROFIL prime sur l'objectif interprété : ne remplace jamais une demande sur un outil métier nommé par le logiciel cité dans les acquis. Une préparation Excel peut accompagner une demande Cockpit, elle ne la remplace pas ;
+- examine explicitement les ateliers Cockpit candidats lorsque le besoin les nomme. Si le type de cockpit ou les droits sont inconnus, conserve les pistes pertinentes sous réserve avec une question de clarification, sans promettre leur accessibilité ni leur adéquation à la conception de nouveaux tableaux ;
 - évalue séparément la pertinence pour l'objectif et la compatibilité du public : un cours accessible n'est pas nécessairement utile au besoin ;
 - omets les formations hors sujet de toutes les rubriques, y compris informationalCourses ; un mot commun comme projet, suivi, travail ou communication ne suffit pas si le contenu concerne une autre activité professionnelle ;
 - classe les cours dans recommendedSteps, optionalSteps ou informationalCourses, sans doublon ;
@@ -812,7 +827,7 @@ Règles impératives :
       if (destination === informationalCourses) {
         // L'absence de restriction détectée n'établit ni l'accès ni la pertinence.
         // Conserver seulement la récupération déjà prévue pour les nouveaux managers.
-        if (!isNewManagerProfile(profile) || !isNewManagerCourse(course)) continue
+        if (!primaryCodes.includes(code) && (!isNewManagerProfile(profile) || !isNewManagerCourse(course))) continue
 
         seen.add(code)
         item.position = optionalSteps.length + 1
@@ -925,6 +940,24 @@ Règles impératives :
     informationalCourses.splice(0, informationalCourses.length, ...relevantInformation)
   }
 
+  // Une piste portant le nom du besoin initial ne disparaît pas silencieusement
+  // derrière les cours préparatoires. Aucun accès ni prérequis n'est supposé.
+  let conditionalPrimary = false
+  if (!plan.abstain && (profile.trainingOffers?.trim() || profile.trainingOrganizers?.trim())) {
+    const retained = new Set([...recommendedSteps, ...optionalSteps, ...informationalCourses].map(item => item.course.code))
+    const recovered = []
+    for (const code of primaryCodes) {
+      if (retained.has(code)) continue
+      const course = courseByCode.get(code), detail = detailedByCode.get(code)
+      if (!course || !candidateCodes.includes(code)) continue
+      const item = {position: 0, rationale: rationaleWithAccessCheck('Piste liée à votre demande initiale sur les cockpits. Vérifiez que ce cours concerne le cockpit et l’usage recherchés, ainsi que vos droits d’accès et les prérequis. Il ne garantit pas de couvrir la création de nouveaux tableaux.', detail), course: publicCourse(course, detail)}
+      if (audienceCompatibility(profile, course) === 'incompatible') informationalCourses.push(item)
+      else recovered.push(item)
+      conditionalPrimary = true
+    }
+    optionalSteps.unshift(...recovered)
+  }
+
   recommendedHours = 0
   allRecommendedDurationsKnown = true
   for (const item of recommendedSteps) {
@@ -944,8 +977,8 @@ Règles impératives :
   return {
     mode: 'pathway-two-pass',
     abstain,
-    interpretedGoal: learnerExplanation(firstResult.interpretedGoal),
-    summary: learnerExplanation(stabilizedOfficeSummary ?? plan.summary),
+    interpretedGoal: learnerExplanation(primaryCodes.length ? 'Besoin initial : '+profile.objective+'. '+firstResult.interpretedGoal : firstResult.interpretedGoal),
+    summary: learnerExplanation((stabilizedOfficeSummary ?? plan.summary)+(conditionalPrimary ? ' Des pistes Cockpit liées au besoin initial sont également présentées sous réserve : le cockpit visé, les usages couverts et les conditions d’accès restent à confirmer.' : '')),
     steps: abstain ? [] : recommendedSteps,
     recommendedSteps: abstain ? [] : recommendedSteps,
     optionalSteps,
