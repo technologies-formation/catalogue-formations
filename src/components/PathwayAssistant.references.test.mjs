@@ -18,7 +18,7 @@ test('le vrai formulaire rend les options et contraintes partagees sans fermer l
   for (const option of [...pathwayProfileFields.personnelCategory.options, ...pathwayProfileFields.managerStatus.options]) {
     assert.ok(html.includes(`<option value="${option.value}">${option.label}</option>`), option.value)
   }
-  assert.equal((html.match(/<option /g) ?? []).length, 10)
+  assert.equal((html.match(/<option /g) ?? []).length, 11)
   assert.match(html, /<option value="" disabled="" selected="">À renseigner<\/option>/)
   assert.match(html, /<option value="" selected="">Non précisée<\/option>/)
   assert.match(html, /<input[^>]*maxLength="120"[^>]*placeholder="Par exemple : OPE, DIP, Police…"/)
