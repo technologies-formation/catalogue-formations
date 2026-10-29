@@ -63,13 +63,14 @@ export default function PathwayAssistant({ onClose }) {
       } else if (event.key === 'Tab') {
         const controls = [...dialog.querySelectorAll('button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href]')].filter(el => el.getClientRects().length)
         const first = controls[0], last = controls.at(-1)
-        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus() }
+        if (!dialog.contains(document.activeElement)) { event.preventDefault(); first?.focus() }
+        else if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus() }
         else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus() }
       }
     }
-    dialog.addEventListener('keydown', handleKey)
+    document.addEventListener('keydown', handleKey)
     return () => {
-      dialog.removeEventListener('keydown', handleKey)
+      document.removeEventListener('keydown', handleKey)
       document.body.style.overflow = previousOverflow
       abortRef.current?.abort()
     }
