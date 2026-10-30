@@ -832,3 +832,11 @@ test('les textes publics restent lisibles sans identifiants de provenance, les p
  assert.match(requests[1].instructions,/ne recommande pas un cours de base de plusieurs jours dans le seul but de vérifier des acquis/)
  assert.match(requests[1].instructions,/la remise à niveau comme conditionnelle dans optionalSteps/)
 })
+
+
+test('appréciation structurée et organisateur conservés sans changer les catégories ni ajouter un appel',async()=>{
+ const catalogue=fixture();catalogue.courseByCode.get('AI-BASE').catalogueOffers=['OPE'];catalogue.courseByCode.get('AI-BASE').organizingEntity='Centre officiel';
+ const replies=[response({interpretedGoal:'Progresser en IA',codes:['AI-BASE']}),response({abstain:false,summary:'Socle IA',recommendedSteps:[{code:'AI-BASE',rationale:'Bases utiles',relevance:{level:'direct',reason:'Le cours couvre les bases recherchées.'}}],optionalSteps:[],informationalCourses:[],gaps:[]})];let calls=0;
+ const result=await buildPathwayWithLuna({role:'Chef',objective:'Découvrir l’intelligence artificielle'},{catalogue,apiKey:'fake-key',fetchImpl:async(_url,init)=>{calls++;const body=JSON.parse(init.body);assert.ok(body.max_output_tokens<=1200);if(calls===2)assert.ok(body.text.format.schema.properties.recommendedSteps.items.required.includes('relevance'));return replies.shift();}});
+ assert.equal(calls,2);assert.equal(result.recommendedSteps[0].relevance.level,'direct');assert.deepEqual(result.recommendedSteps[0].course.catalogueOffers,['OPE']);assert.equal(result.recommendedSteps[0].course.organizingEntity,'Centre officiel');
+});

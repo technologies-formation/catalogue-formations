@@ -142,6 +142,7 @@ test('a running two-pass search keeps its captured catalogue when refresh comple
   const { catalogueStore } = await import('./catalogueRuntime.mjs')
   const { searchWithLuna } = await import('./llmSearch.mjs')
   const oldSearch = prepareSearchCatalogue(JSON.parse(fixture('OLD').snapshotText))
+  oldSearch.courseByCode.get('OLD').organizingEntity='Centre officiel de test'
   const newSearch = prepareSearchCatalogue(JSON.parse(fixture('NEW').snapshotText))
   let current = oldSearch
   const originalCurrent = catalogueStore.current
@@ -161,7 +162,7 @@ test('a running two-pass search keeps its captured catalogue when refresh comple
     calls.push(body)
     current = newSearch
     const result = calls.length === 1 ? { codes: ['OLD'] }
-      : { abstain: false, recommendedCodes: ['OLD'], complementaryCodes: [], relatedCodes: [], reason: 'test' }
+      : { abstain: false, recommendedCodes: ['OLD'], complementaryCodes: [], relatedCodes: [], reason: 'test', relevance:[{code:'OLD',level:'direct',reason:'Le contenu répond au besoin.'}] }
     return new Response(JSON.stringify({ output: [{ content: [{ type: 'output_text', text: JSON.stringify(result) }] }], usage: {} }))
   }
   const result = await searchWithLuna('Course OLD')
@@ -173,4 +174,8 @@ test('a running two-pass search keeps its captured catalogue when refresh comple
   assert.match(calls[1].instructions, /ne les présente pas comme un parcours cumulatif/)
   assert.match(calls[1].instructions, /demande générale et un niveau non précisé/)
   assert.equal(result.recommendedResults[0].code, 'OLD')
+  assert.equal(result.recommendedResults[0].organizingEntity,'Centre officiel de test')
+  assert.deepEqual(result.recommendedResults[0].relevance,{level:'direct',reason:'Le contenu répond au besoin.'})
+  assert.ok(calls[1].text.format.schema.required.includes('relevance'))
+  assert.ok(calls[1].max_output_tokens<=1200)
 })

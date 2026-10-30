@@ -352,6 +352,7 @@ function publicCourse(course, detail) {
     deliveryMode: courseDeliveryMode(course, detail),
     sessionAvailability: detail?.sessionAvailability ?? { hasOpenSession: null, hasScheduledSession: null, observedOn: null, source: null },
     catalogueOffers: course.catalogueOffers ?? [],
+    organizingEntity: course.organizingEntity ?? course.officialData?.organizingEntityRaw ?? '',
     sourceUrl: course.sourceUrl ?? '',
   }
 }
@@ -725,6 +726,9 @@ Règles impératives :
 - dans summary, les justifications et gaps, limite les constats d'absence aux fiches examinées ou à cette recherche ; ne les étends jamais au catalogue complet ;
 - l'OBJECTIF INTERPRÉTÉ est une reformulation du besoin, pas une preuve de couverture du catalogue ; n'en reprends pas une affirmation d'absence globale ;
 - explique brièvement la valeur de chaque étape ;
+- pour chaque cours, renseigne relevance avec level direct, partial ou support et une courte reason fondée sur l'objectif, le contenu et les acquis. direct = réponse directe au besoin établi ; partial = couverture partielle ou besoin à clarifier ; support = compétence en appui. Ce n'est ni un pourcentage, ni un indicateur d'accès ou de modalité ;
+- si le type de cockpit (RH, Paie, Formation) reste inconnu, utilise partial et pose la question dans reason ; ne présente pas RH comme le choix confirmé ;
+- si Excel n'est qu'un appui à une demande Cockpit et que les acquis Excel sont inconnus, place-le dans optionalSteps avec relevance support, sous réserve du besoin de remise à niveau ;
 - si aucun parcours cohérent n'est possible, abstain vaut true et recommendedSteps est vide ;
 - indique honnêtement dans gaps les compétences que les fiches examinées ne permettent pas de couvrir.`,
       input: `FICHES AUTORISÉES :\n${JSON.stringify(detailedCandidates)}\n\nPROFIL :\n${need}\n\nOBJECTIF INTERPRÉTÉ :\n${firstResult.interpretedGoal}`,
@@ -746,8 +750,9 @@ Règles impératives :
                   properties: {
                     code: { type: 'string', enum: candidateCodes },
                     rationale: { type: 'string' },
+                    relevance: {type:'object',properties:{level:{type:'string',enum:['direct','partial','support']},reason:{type:'string'}},required:['level','reason'],additionalProperties:false},
                   },
-                  required: ['code', 'rationale'],
+                  required: ['code', 'rationale', 'relevance'],
                   additionalProperties: false,
                 },
               },
@@ -759,8 +764,9 @@ Règles impératives :
                   properties: {
                     code: { type: 'string', enum: candidateCodes },
                     rationale: { type: 'string' },
+                    relevance: {type:'object',properties:{level:{type:'string',enum:['direct','partial','support']},reason:{type:'string'}},required:['level','reason'],additionalProperties:false},
                   },
-                  required: ['code', 'rationale'],
+                  required: ['code', 'rationale', 'relevance'],
                   additionalProperties: false,
                 },
               },
@@ -772,8 +778,9 @@ Règles impératives :
                   properties: {
                     code: { type: 'string', enum: candidateCodes },
                     rationale: { type: 'string' },
+                    relevance: {type:'object',properties:{level:{type:'string',enum:['direct','partial','support']},reason:{type:'string'}},required:['level','reason'],additionalProperties:false},
                   },
-                  required: ['code', 'rationale'],
+                  required: ['code', 'rationale', 'relevance'],
                   additionalProperties: false,
                 },
               },
@@ -802,7 +809,7 @@ Règles impératives :
   let allRecommendedDurationsKnown = true
 
   function add(items, destination) {
-    for (const { code, rationale } of items ?? []) {
+    for (const { code, rationale, relevance } of items ?? []) {
       const course = courseByCode.get(code)
 
       if (!course || !candidateCodes.includes(code) || seen.has(code)) {
@@ -813,6 +820,7 @@ Règles impératives :
       const item = {
         position: destination.length + 1,
         rationale: learnerExplanation(rationaleWithAccessCheck(rationale, detail)),
+        ...(relevance&&['direct','partial','support'].includes(relevance.level)&&typeof relevance.reason==='string'&&relevance.reason.trim()?{relevance:{level:relevance.level,reason:learnerExplanation(relevance.reason).slice(0,1000)}}:{}),
         course: publicCourse(course, detail),
       }
 

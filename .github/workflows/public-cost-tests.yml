@@ -1,7 +1,7 @@
 name: Public pilot bounds
 on:
   push:
-    branches: ['feat/public-cost-bounds-2026-10-28']
+    branches: ['feat/public-cost-bounds-2026-10-28', 'fix/course-relevance-2026-10-30']
   pull_request:
     paths: ['server/**', 'scripts/installPublicPilotPreparation*', '.github/workflows/public-cost-tests.yml']
 permissions:

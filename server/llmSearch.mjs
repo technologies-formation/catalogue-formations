@@ -200,7 +200,7 @@ ${normalizedQuery}`,
       effort: 'none',
     },
     store: false,
-    max_output_tokens: 500,
+    max_output_tokens: 1_200,
 
     instructions:
       `Tu réalises la sélection finale de formations à partir des fiches détaillées.
@@ -230,7 +230,8 @@ Règles impératives :
 - si aucune formation ne répond suffisamment au besoin, abstain doit être true, recommendedCodes et complementaryCodes doivent être vides ; relatedCodes peut alors contenir des formations proches du sujet ;
 - si abstain est false, recommendedCodes doit contenir au moins une formation et relatedCodes doit être vide ;
 - complementaryCodes peut être vide lorsqu'aucun complément n'apporte de réelle valeur ;
-- utilise exclusivement les codes autorisés.`,
+- utilise exclusivement les codes autorisés.
+- pour chaque code retenu, ajoute une appréciation dans relevance : level direct si le contenu répond au besoin établi, partial si la couverture ou le besoin reste à préciser, support si le cours est seulement un appui. reason explique ce choix en une courte phrase (160 caractères environ), fondée sur le besoin et les fiches. Ce niveau ne mesure ni accès, ni modalité, ni disponibilité ; aucun pourcentage.`,
 
     input:
       `FICHES DÉTAILLÉES DES CANDIDATS :
@@ -277,6 +278,7 @@ ${normalizedQuery}`,
             reason: {
               type: 'string',
             },
+            relevance:{type:'array',maxItems:9,items:{type:'object',properties:{code:{type:'string',enum:candidateCodes},level:{type:'string',enum:['direct','partial','support']},reason:{type:'string'}},required:['code','level','reason'],additionalProperties:false}},
           },
           required: [
             'abstain',
@@ -284,6 +286,7 @@ ${normalizedQuery}`,
             'complementaryCodes',
             'relatedCodes',
             'reason',
+            'relevance',
           ],
           additionalProperties: false,
         },
@@ -312,6 +315,11 @@ ${normalizedQuery}`,
 
   const finalCodes = [...recommendedCodes, ...complementaryCodes]
 
+  const relevanceFor = code => {
+    const item=Array.isArray(finalResult.relevance)?finalResult.relevance.find(x=>x.code===code):null
+    return item&&['direct','partial','support'].includes(item.level)&&typeof item.reason==='string'&&item.reason.trim()
+      ? {relevance:{level:item.level,reason:item.reason.slice(0,1000)}} : {}
+  }
   const mapResults = (codes) =>
     codes
       .map((code) => courseByCode.get(code))
@@ -324,6 +332,8 @@ ${normalizedQuery}`,
         public: course.officialData?.publicRaw ?? '',
         targetAudience: course.officialData?.targetAudienceRaw ?? '',
         catalogueOffers: course.catalogueOffers ?? [],
+        organizingEntity: course.organizingEntity ?? course.officialData?.organizingEntityRaw ?? '',
+        ...relevanceFor(course.code),
         sourceUrl: course.sourceUrl ?? '',
       }))
 

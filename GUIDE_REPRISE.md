@@ -1597,3 +1597,17 @@ git add -- chemin/du/fichier1 chemin/du/fichier2
 - Ne jamais versionner de secret, mot de passe, jeton, fichier `.env`, clé privée ou configuration propre au poste.
 - Configurer l’identité Git localement au dépôt si nécessaire, jamais globalement sans décision explicite.
 - La recherche classique locale n’utilise aucun service externe, modèle IA, token ou API. La recherche Luna utilise en revanche l’API OpenAI via le backend Node sécurisé. Toute évolution doit préserver les règles de sécurité et être justifiée par un besoin mesuré.
+
+## 30 octobre 2026 — Appréciation qualitative des cours
+
+GO utilisateur pour les corrections du dialogue Assistant et les fiches validées en maquette. Base Catalogue : `ce07b1fa7d9c0319df6f37ad188ec75290e240d4`. Deux modules d'exploitation changent : `server/llmSearch.mjs` et `server/pathwayEngine.mjs` ; le formulaire restauré et les fichiers statiques ne sont pas remplacés.
+
+Les sélections de la seconde passe portent une appréciation structurée `relevance` : `direct`, `partial` ou `support`, avec une justification fondée sur objectif, contenu et acquis. Il ne s'agit ni d'un score chiffré ni d'une preuve d'accès ou de modalité. Un cockpit non précisé doit rester partiellement correspondant ; Excel en appui et de niveau inconnu reste conditionnel et facultatif. L'organisateur est transmis depuis `organizingEntity` ou `officialData.organizingEntityRaw`, sans déduction depuis le profil. Les offres restent celles du cours.
+
+Les appels restent au nombre de deux. La seconde passe de recherche passe d'un plafond de sortie de 500 à 1200 tokens pour contenir ces appréciations ; ce plafond reste dans la politique de réservation existante du pilote public. Le plafond de parcours reste 1200. Cela ne garantit pas un coût réel inchangé : l'usage réel est comptabilisé par le suivi existant. Aucun appel payant n'est nécessaire aux tests. Le pilote public reste désactivé.
+
+Validation : suite locale Catalogue, contrôles des bornes publiques, tests de transmission des appréciations et de l'organisateur ; scénarios indépendants des recommandations réelles, aucun benchmark officiel modifié. Installer après sauvegarde vérifiée des deux modules et contrôle de leur empreinte, puis redémarrer le Catalogue. Ne pas supprimer les états, recherches ni compteurs.
+
+Résultat local du lot : 408 tests réussis ; compilation réussie et lint terminé avec deux avertissements préexistants dans `server/profileReferences.mjs` (variables `body` et `etag`). Publication et installation restent en attente d'une autorisation explicite de publication dans les dépôts publics demandée par la revue automatique. Aucun déploiement n'a été réalisé.
+
+Empreintes attendues AVANT remplacement des modules installés issus de `ce07b1f` : `server/pathwayEngine.mjs` = `8a33fde2b6b525c09dd4352602765fabd768bcc3109d4981a134be3199268607`, `server/llmSearch.mjs` = `d93732bbceaf3ee5683cc086bedf77b24e8506edc2bfd9d2ae48e1c65ba39927`. Toute différence doit interrompre l'installation avant remplacement pour analyse. Les nouvelles empreintes sont respectivement `477012854fc692e0b40ac4262d5953998c0c2ee58d8238d972989f5a738cdceb` et `978f029e898a7a5a856fdd835433a788795215069f28c3f3f58a801eeca5089e`.
