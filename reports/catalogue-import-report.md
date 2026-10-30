@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-10-29
+- Date du snapshot : 2026-10-30
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 124.6 secondes
-- Taille du JSON final : 2.08 Mio (2177403 octets)
-- Empreinte SHA-256 du snapshot : `8726cd39fffad6754c34fa357e8d2e4bc9a03b96ceb7b65ea578b3a525209000`
+- Durée totale de l’import : 127.5 secondes
+- Taille du JSON final : 2.08 Mio (2181565 octets)
+- Empreinte SHA-256 du snapshot : `422c55bf167a6356a26abd9ab82a53277b6bbf1cd9affc6849feb1d31d06831e`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1616
-- Codes uniques : 1056
+- Occurrences détectées dans l’index : 1617
+- Codes uniques : 1057
 - Occurrences éliminées par déduplication : 560
 - Formations présentes dans plusieurs offres : 287
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1056
+- Fiches récupérées avec succès : 1057
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1053 |
-| Cours dans le candidat | 1056 |
-| Cours ajoutés | 7 |
-| Cours supprimés | 4 |
-| Cours modifiés | 25 |
+| Cours dans le snapshot officiel | 1056 |
+| Cours dans le candidat | 1057 |
+| Cours ajoutés | 3 |
+| Cours supprimés | 2 |
+| Cours modifiés | 40 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,58 +34,69 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| EP-1292ETB | Réparer plutôt que punir : les cercles restauratifs dans ma classe | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
-| SEM1234E | Apprendre autrement: licence Gamelearn | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | APPRENDRE AUTREMENT |
-| SEM1266 | L'intelligence émotionnelle : de la compréhension à l'action | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | MANAGEMENT ET RESSOURCES HUMAINES |
-| TRT3015E | OneNote : Prenez, organisez et partagez vos notes efficacement \| E-LEARNING | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | LOGICIELS BUREAUTIQUES |
-| TRT3018E | Outlook 365 : Fondamentaux au perfectionnement \| E-LEARNING | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | LOGICIELS BUREAUTIQUES |
-| TRT3019E | PowerPoint 365 : Fondamentaux au perfectionnement \| E-LEARNING | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | LOGICIELS BUREAUTIQUES |
-| TRT3020E | Word 365 : Fondamentaux au perfectionnement \| E-LEARNING | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | LOGICIELS BUREAUTIQUES |
+| CO-1172HES | FIO IOSP : VISITES HES | DIP-CO - Offre de formation du Cycle d'orientation | DGEO/SRH/Secteur de la formation continue EO | Formation générale |
+| SEM0729E | Système de contrôle interne (SCI) - E-learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | FONCTIONNEMENT DE L'ADMINISTRATION |
+| SEM1265 | L'Odyssée du changement : concevoir des interventions pour favoriser le changement de comportements | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | FONCTIONNEMENT DE L'ADMINISTRATION |
 
 ### Cours supprimés
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| TRT3000E | Excel 2016 : Fondamentaux au perfectionnement \| E-LEARNING | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | LOGICIELS BUREAUTIQUES |
-| TRT3001E | Outlook 2016 : Fondamentaux au perfectionnement \| E-LEARNING | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | LOGICIELS BUREAUTIQUES |
-| TRT3002E | PowerPoint 2016: Fondamentaux au perfectionnement \| E-LEARNING | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | LOGICIELS BUREAUTIQUES |
-| TRT3003E | Word 2016 : Fondamentaux au perfectionnement \| E-LEARNING | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | LOGICIELS BUREAUTIQUES |
+| FP131 | Pilotage Moto / FJR - Supérieur (piste) | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
+| FP156 | Pilotage moto / FJR - Trajectoire 1 (route) | POLICE - CFPS - Centre de Formation de la Police | Centre Formation Police et Métiers Sécurité | 02. FORMATION CONTINUE Police |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01453 | Initiation à la sérigraphie | `targetAudienceRaw` : « Enseignantes et enseignants d'AV de l'enseignement primaire (MDAS AV), de l'ESI et de l'ESII » → « Enseignantes et enseignants d'arts visuels de l'enseignement primaire (MDAS AV), de l'ESI et de l'ESII » |
-| CO-1172CFP | FIO IOSP : VISITES AUX CFP | `hasOpenSession` : « true » → « false » |
-| OMP-18SSEJ | Premiers secours : cours de base - OMP | `publicRaw` : « Enseignants EP - OMP » → `null` |
-| OMP-19SSEJ | Premiers secours - cours de rafraîchissement - OMP | `publicRaw` : « Enseignants div. spécialisée » → `null` |
-| PJ-1093 | Sensibilisation au flow et à la pleine conscience au travail | `hasOpenSession` : « true » → « false » |
-| S2-952 | Au-delà des faits : comment évaluer l'information et raisonner sous incertitude | `hasOpenSession` : « true » → « false » |
-| SEM0735 | Ethique et déontologie de la fonction publique | `hasOpenSession` : « false » → « true » |
-| SEM0737 | Les bases de la gestion de projet | `hasOpenSession` : « true » → « false » |
-| SEM1086 | Budget et planification financière | `hasOpenSession` : « true » → « false » |
-| SEM1095 | Prévenir et gérer les comportements agressifs | `hasOpenSession` : « true » → « false » |
-| SEM1161 | Sensibilisation à la pleine-conscience au travail | `hasOpenSession` : « true » → « false » |
-| SEM1162 | Comment concilier équilibre personnel et efficacité professionnelle ? | `hasOpenSession` : « true » → « false » |
-| SEM1163 | Développer ses ressources personnelles pour agir avec confiance | `hasOpenSession` : « false » → « true » |
-| SEM1166 | L'intelligence émotionnelle au service de la conduite d'équipe | `hasOpenSession` : « true » → « false » |
-| SEM1169 | Ecrire pour être compris | `hasOpenSession` : « true » → « false » |
-| SEM1171 | Comment collaborer au sein d'une équipe intergénérationnelle | `hasOpenSession` : « true » → « false » |
-| SEM1198 | Prendre soin de soi pour un meilleur équilibre au travail : intégrer les TOP dans son quotidien | `hasOpenSession` : « true » → « false » |
-| SEM1263 | Améliorer sa mémoire pour être plus efficace | `hasScheduledSession` : « false » → « true »<br>`scheduledOpeningDates` : «  » → « 2026-11-03 » |
+| CO-1172CFP | FIO IOSP : VISITES AUX CFP | `hasOpenSession` : « false » → « true » |
+| EP-1057 | Stratégies pour enseigner l'orthographe aux élèves faibles en orthographe ou dysorthographiques | `hasOpenSession` : « true » → « false » |
+| EP-1292ETB | Réparer plutôt que punir : les cercles restauratifs dans ma classe | `targetAudienceRaw` : `null` → « Personnel enseignant CE+CM (MGEN*, ECSP, ECA, MDAS) *maitresses et maitres généralistes titulaires de classe » |
+| FP291 | Formation initiale pour évaluateurs - Recrutement | `hasOpenSession` : « false » → « true » |
+| S2-553 | W3 : Maîtriser le prompt : dialoguer avec l'IA sans perdre son intention pédagogique | `titleRaw` : « W3 : Maîtriser le prompt : dialoguer avec l?IA sans perdre son intention pédagogique » → « W3 : Maîtriser le prompt : dialoguer avec l'IA sans perdre son intention pédagogique » |
+| S2-556 | W6 : Agents IA pour l'éducation : concevoir des assistants pédagogiques contrôlés | `titleRaw` : « W6 : Agents IA pour l?éducation : concevoir des assistants pédagogiques contrôlés » → « W6 : Agents IA pour l'éducation : concevoir des assistants pédagogiques contrôlés » |
+| S2-FOSEC4 | Premiers secours : cours de perfectionnement pour personnes préposées aux premiers secours de l'ES II et de l'ES I | `hasOpenSession` : « true » → « false » |
+| SEM-P1574 | EP / GarageBand : créations sonores sur tablette / NOUVEAU | `hasOpenSession` : « true » → « false » |
+| SEM1084 | Finances publiques: introduction | `targetAudienceRaw` : « Nouveaux collaborateurs de l'Etat » → « Cette formation est exclusivement réservée aux collaboratrices et collaborateurs du Petit Etat Nouveaux collaborateurs de l'Etat » |
+| SEM1085 | Finances et comptabilité | `targetAudienceRaw` : « - Nouveaux collaborateurs à l'Etat, qui ont suivi le module d'introduction mais veulent un approfondissement - Nouveaux collaborateurs des directions financières et des services financiers - Collaborateurs en charge de la gestion comptab… » → « Cette formation est exclusivement réservée aux collaboratrices et collaborateurs du Petit Etat - Nouveaux collaborateurs à l'Etat, qui ont suivi le module d'introduction mais veulent un approfondissement - Nouveaux collaborateurs des dir… » |
+| SEM1086 | Budget et planification financière | `targetAudienceRaw` : « - Cadres supérieurs de l'Etat, qui ont suivi le module introduction mais veulent un approfondissement - Collaborateurs des directions financières et des services financiers - Cadres supérieurs des Etats-majors ou des directions générales » → « Cette formation est exclusivement réservée aux collaboratrices et collaborateurs du Petit Etat - Cadres supérieurs de l'Etat, qui ont suivi le module introduction mais veulent un approfondissement - Collaborateurs des directions financiè… » |
+| SEM1121 | Management de la continuité des activités (MCA) | `targetAudienceRaw` : « - Toute personne (responsable de service, expert/e métier, etc.) devant réaliser ou participer à la réalisation d'un plan de continuité - Toute personne chargée de contrôle interne (CI), relais ou répondante CI d'une entité - Toute perso… » → « Cette formation est exclusivement réservée aux collaboratrices et collaborateurs du Petit Etat - Toute personne (responsable de service, expert/e métier, etc.) devant réaliser ou participer à la réalisation d'un plan de continuité - Tout… » |
+| SEM1129E | Formation au plan comptable MCH2 de l'Etat de Genève - E-learning | `targetAudienceRaw` : « - Comptables - Contrôleurs de gestion et contrôleurs internes - Gestionnaires s'occupant de factures ou de suivi budgétaire - Responsables intéressés par l'organisation budgétaire et comptable de l'Etat » → « Cette formation est exclusivement réservée aux collaboratrices et collaborateurs du Petit Etat - Comptables - Contrôleurs de gestion et contrôleurs internes - Gestionnaires s'occupant de factures ou de suivi budgétaire - Responsables int… » |
+| SEM1145 | Mener des concertations avec des partenaires de projets | `titleRaw` : « Mener des concertations avec des partenaires de projet » → « Mener des concertations avec des partenaires de projets » |
+| SEM1149 | La négociation entre stratégie et relation | `hasOpenSession` : « true » → « false » |
+| SEM1161 | Sensibilisation à la pleine-conscience au travail | `hasOpenSession` : « false » → « true » |
+| SEM1176 | Prise en main de l'outil de gestion des risques Etat | `targetAudienceRaw` : « - Toute personne (responsable d'unité, expert/e métier, etc.) pouvant être amenée à participer à l'analyse ou à la gestion des risques - Toute personne chargée de contrôle interne, relais ou répondante CI d'un service, responsable de la … » → « Cette formation est exclusivement réservée aux collaboratrices et collaborateurs du Petit Etat - Toute personne (responsable d'unité, expert/e métier, etc.) pouvant être amenée à participer à l'analyse ou à la gestion des risques - Toute… » |
+| SEM1195 | Communication et feed-back constructif | `hasOpenSession` : « true » → « false » |
+| SEM1197 | Formatrices et formateurs occasionnels | `titleRaw` : « Formatrices et formateurs occasionnels : construire et animer une formation » → « Formatrices et formateurs occasionnels » |
+| SEM1215 | Les neurosciences au service du management | `hasOpenSession` : « true » → « false » |
+| SEM1220 | Adapter sa manière de communiquer pour des relations professionnelles efficaces (PCM) | `hasOpenSession` : « true » → « false » |
+| SEM1221 | Gestion des risques | `targetAudienceRaw` : « Tout public » → « Cette formation est exclusivement réservée aux collaboratrices et collaborateurs du Petit Etat Tout public » |
+| SEM1243 | Identification et transfert des savoirs en vue de la retraite | `titleRaw` : « Identification et transfert des savoirs pour les futures personnes retraitées » → « Identification et transfert des savoirs en vue de la retraite » |
+| SEM1244 | Comment manager les équipes intergénérationnelles ? | `titleRaw` : « Comment manager les équipes intergénérationnelles » → « Comment manager les équipes intergénérationnelles ? » |
+| SEM1256 | Gestion des investissements | `targetAudienceRaw` : « Collaborateurs de l'Etat impliqués dans la gestion financière des investissements. Collaborateurs des directions financières et services financiers, ainsi que des services de contrôle de gestion. » → « Cette formation est exclusivement réservée aux collaboratrices et collaborateurs du Petit Etat Collaborateurs de l'Etat impliqués dans la gestion financière des investissements. Collaborateurs des directions financières et services finan… » |
+| SEM1257 | Projets d'investissement et immobilisations | `targetAudienceRaw` : « Chef de projets (investissement) » → « Cette formation est exclusivement réservée aux collaboratrices et collaborateurs du Petit Etat Chef de projets (investissement) » |
+| SEM1266 | L'intelligence émotionnelle : de la compréhension à l'action | `hasScheduledSession` : « false » → « true »<br>`scheduledOpeningDates` : «  » → « 2026-11-03 » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| EO-010 | Histoire sans chute ou comment repenser le travail du textile dans nos ateliers | `prerequisitesRaw` |
-| SEM0052 | Tensions et conflits au sein de vos équipes : anticiper, désamorcer et réguler | `generalInformationRaw` |
+| EP-017MDAS | Recyclage massage cardiaque BLS-AED | `contentRaw` |
+| EP-1292ETB | Réparer plutôt que punir : les cercles restauratifs dans ma classe | `objectivesRaw` |
+| S2-110 | Histoire et esthétique des séries télévisées et initiation à la réalisation pratique d'une mini-série | `contentRaw` |
+| S2-267 | La galassia delle scrittrici siciliane contemporanee | `contentRaw` |
+| S2-362 | Enseigner le droit de manière ludique en consolidant son savoir professionnel | `objectivesRaw`, `contentRaw` |
+| S2-429 | Energie solaire : panneaux photovoltaïques et thermiques | `contentRaw` |
+| S2-454 | Enseigner les questions socialement vives (QSV) en mobilisant la nature des sciences (NOS), pour des décisions éclairées | `objectivesRaw`, `contentRaw` |
+| S2-553 | W3 : Maîtriser le prompt : dialoguer avec l'IA sans perdre son intention pédagogique | `contentRaw` |
+| S2-555 | W5 : Automatiser sans déshumaniser : workflows utiles pour l'enseignement | `contentRaw` |
+| S2-556 | W6 : Agents IA pour l'éducation : concevoir des assistants pédagogiques contrôlés | `contentRaw` |
+| S2-620 | Gestion du stress et prévention du burn-out | `objectivesRaw` |
+| S2-646 | Un T-shirt en filature : enseigner l'interdépendance à partir du textile par une approche systémique et concrète | `objectivesRaw` |
+| S2-851 | Favoriser le travail autonome des élèves et la différenciation de l'enseignement au collège et à l'école de culture générale (ECG) | `objectivesRaw` |
+| S2-952 | Au-delà des faits : comment évaluer l'information et raisonner sous incertitude | `contentRaw` |
+| S2-EPS02 | Escalade murs et zones blocs (I) | `contentRaw` |
 | SEM0487 | L'Etat et son administration : les fondamentaux | `generalInformationRaw` |
-| SEM0518 | Développer ses qualités relationnelles pour prévenir les tensions | `generalInformationRaw` |
-| SEM0815 | Mi-parcours professionnel: donner un nouvel élan à sa carrière | `generalInformationRaw` |
-| SEM1043 | Trouver sa place dans la complexité du monde professionnel | `generalInformationRaw` |
-| SEM1141 | Retrouver son équilibre et développer son pouvoir d'agir au travail | `generalInformationRaw` |
-| SEM1163 | Développer ses ressources personnelles pour agir avec confiance | `generalInformationRaw` |
 
 ### Changements d’offres
 
@@ -127,31 +138,31 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 60 | 60 |
-| DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
+| DF-OPE - L'offre de formation de l'OPE | 170 | 170 |
 | DIP - Service de la formation DRH-DIP | 5 | 5 |
-| DIP-CO - Offre de formation du Cycle d'orientation | 217 | 217 |
+| DIP-CO - Offre de formation du Cycle d'orientation | 218 | 218 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 315 | 315 |
 | DIP-ES II - Offre de formation de l'ES II | 233 | 233 |
 | DIP-OMP - Offre formation de l'OMP | 228 | 228 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
-| POLICE - CFPS - Centre de Formation de la Police | 193 | 193 |
+| POLICE - CFPS - Centre de Formation de la Police | 191 | 191 |
 | Pouvoir Judiciaire - Offre de formation du Pouvoir judiciaire | 54 | 54 |
 
 ## Disponibilité des champs
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1056/1056 | 100.0 % |
-| `domainRaw` | 1056/1056 | 100.0 % |
-| `themeRaw` | 986/1056 | 93.4 % |
-| `publicRaw` | 943/1056 | 89.3 % |
-| `durationRaw` | 1036/1056 | 98.1 % |
-| `targetAudienceRaw` | 938/1056 | 88.8 % |
-| `generalInformationRaw` | 522/1056 | 49.4 % |
-| `objectivesRaw` | 1001/1056 | 94.8 % |
-| `contentRaw` | 925/1056 | 87.6 % |
-| `prerequisitesRaw` | 374/1056 | 35.4 % |
-| `additionalInformationRaw` | 320/1056 | 30.3 % |
+| `organizingEntityRaw` | 1057/1057 | 100.0 % |
+| `domainRaw` | 1057/1057 | 100.0 % |
+| `themeRaw` | 987/1057 | 93.4 % |
+| `publicRaw` | 944/1057 | 89.3 % |
+| `durationRaw` | 1037/1057 | 98.1 % |
+| `targetAudienceRaw` | 940/1057 | 88.9 % |
+| `generalInformationRaw` | 522/1057 | 49.4 % |
+| `objectivesRaw` | 1002/1057 | 94.8 % |
+| `contentRaw` | 925/1057 | 87.5 % |
+| `prerequisitesRaw` | 374/1057 | 35.4 % |
+| `additionalInformationRaw` | 319/1057 | 30.2 % |
 
 ### Correspondance des libellés officiels
 
@@ -184,7 +195,7 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 - Lignes de cours non analysées : 0
 - Occurrences répétées dans une même offre : 0
 - Codes avec plusieurs intitulés dans l’index : 0
-- Sections écartées car elles contenaient une coordonnée de contact : 22
+- Sections écartées car elles contenaient une coordonnée de contact : 23
 
 ### Sections exclues pour minimisation des données
 
@@ -193,8 +204,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
-- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
@@ -204,6 +215,7 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
+- CO-1172HES — Contenu (`contentRaw`)
 - S2-301 — Informations complémentaires (`additionalInformationRaw`)
 - EP-002ANG — Pré-requis (`prerequisitesRaw`)
 - FP254 — Informations complémentaires (`additionalInformationRaw`)
@@ -235,7 +247,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-10-29T10:52:06.320Z
-- Snapshot candidat validé : 2026-10-29
-- Empreinte SHA-256 : `8726cd39fffad6754c34fa357e8d2e4bc9a03b96ceb7b65ea578b3a525209000`
+- Date et heure de promotion : 2026-10-30T10:50:41.207Z
+- Snapshot candidat validé : 2026-10-30
+- Empreinte SHA-256 : `422c55bf167a6356a26abd9ab82a53277b6bbf1cd9affc6849feb1d31d06831e`
 - Promotion manuelle confirmée.
