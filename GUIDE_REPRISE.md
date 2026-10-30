@@ -1,5 +1,7 @@
 # Guide de reprise — A658-YG — Catalogue de formations — Projet n°2
 
+> Complément du 30 octobre 2026 : l’état courant de l’Assistant séparé est centralisé dans [Assistant formation — référence avant pilote](https://github.com/technologies-formation/a658-yg-avatar/blob/fix/dialogue-course-relevance-2026-10-30/GUIDE_REPRISE.md). L’Assistant `13fd45b` est confirmé installé ; le cas RH/absences + DF-OPE sans entité DIP-SEM est vérifié par l’opérateur ; quatre accès sont préparés et zéro testeur activé. Ce complément documentaire ne modifie ni les modules Catalogue ni ses fichiers statiques et ne prouve pas une nouvelle installation du backend. Les constats datés ci-dessous restent historiques.
+
 > **Synthèse de reprise vérifiée dans GitHub le 18 octobre 2026**
 >
 > - Révision de `main` examinée : `bbc7ed98138c998684bdab350b898b0dc4b56666`,
@@ -1616,3 +1618,12 @@ Empreintes attendues AVANT remplacement des modules installés issus de `ce07b1f
 ### Publication et validation distantes
 
 Le GO explicite de publication a été reçu. Version de code publiée sur `fix/course-relevance-2026-10-30` : `c807f71e3d118aabfd70a7721ed1d2d64e0506c6`, arbre identique à la version locale validée. Le workflow GitHub 41032148918 est réussi : 408 tests, lint et compilation. L'Assistant associé `3ac02bcaa697d359ecfebebfef438fc100542a81` a également passé ses tests Linux/Windows et la suite navigateur complète. Ces résultats remplacent l'attente de publication mentionnée plus haut. Aucun service Infomaniak n'a encore été modifié. Les empreintes d'installation précédentes restent valables ; ne remplacer que les deux modules prévus, après sauvegarde vérifiée, puis redémarrer le Catalogue avant l'Assistant. Coût OpenAI API des vérifications : 0 token / 0 $.
+
+
+## Assistant — référence avant pilote, 30 octobre 2026
+
+Le groupe pilote utilisera quatre identifiants/mots de passe individuels sur l’Assistant séparé, sans inscription publique par mail. L’opérateur confirme par SSH la version Assistant `13fd45b2f90b5a1d594a4ac54936fe7e7d8f2610` et le marqueur de préparation, avec zéro testeur actif. Les captures après acceptation et reprise confirment le besoin Cockpit RH/suivi des absences, l’offre DF-OPE seule et la suppression de l’entité DIP-SEM ; une confirmation distincte reste nécessaire avant génération.
+
+Ces contrôles concernent l’Assistant. Les lots d’affinement et de quatre accès n’ont pas modifié le Catalogue. La version du snapshot de données ne désigne pas les versions des modules serveur ; ne pas en déduire une installation depuis le seul journal de synchronisation. Le cas général des trois cockpits et la durée officielle inhabituelle restent expressément conservés à la demande de l’utilisateur.
+
+Le [guide Assistant](https://github.com/technologies-formation/a658-yg-avatar/blob/fix/dialogue-course-relevance-2026-10-30/GUIDE_REPRISE.md) contient les références de tests, les procédures privées, les limites et les étapes avant ouverture. Nom retenu du jalon : « Assistant formation — référence avant pilote », tag Assistant prévu `jalon-assistant-avant-pilote-2026-10-30`. Ne pas confondre ce repère avec une validation de tous les cas métier ou une ouverture effective. Les sauvegardes privées, le budget/seuil d’arrêt et le document personnel de reprise doivent être finalisés avant l’activation des testeurs. Aucune clé, fiche d’accès, recherche réelle ou capture privée n’est publiée par cette mise à jour.

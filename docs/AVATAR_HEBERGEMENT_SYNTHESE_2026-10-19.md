@@ -1,5 +1,7 @@
 # Complément au guide de reprise — Hébergement de l’avatar distant
 
+> Complément du 30 octobre 2026 : l’état courant de l’Assistant séparé est centralisé dans [Assistant formation — référence avant pilote](https://github.com/technologies-formation/a658-yg-avatar/blob/fix/dialogue-course-relevance-2026-10-30/GUIDE_REPRISE.md). L’Assistant `13fd45b` est confirmé installé ; le cas RH/absences + DF-OPE sans entité DIP-SEM est vérifié par l’opérateur ; quatre accès sont préparés et zéro testeur activé. Ce complément documentaire ne modifie ni les modules Catalogue ni ses fichiers statiques et ne prouve pas une nouvelle installation du backend. Les constats datés ci-dessous restent historiques.
+
 Synthèse initiale : 19 octobre 2026. Mise à jour : 23 octobre 2026.
 
 À lire avec le [guide de reprise](../GUIDE_REPRISE.md). Cette synthèse conserve uniquement les décisions et les résultats généraux du projet ; les détails privés d’exploitation n’y figurent pas.
