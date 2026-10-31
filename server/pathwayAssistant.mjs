@@ -1,3 +1,4 @@
+import { environmentOptions, selectedScope } from './trainingScope.mjs'
 import { pathwayProfileFields } from '../src/config/pathwayProfile.js'
 
 export class PathwayInputError extends Error {
@@ -48,5 +49,13 @@ export function validatePathwayInput(body) {
     }
   }
 
+  for (const [key,max] of [['professionalEnvironment',120],['trainingOffers',4000],['trainingOrganizers',4000]]) {
+    if(body[key]==null||body[key]==='')continue
+    if(typeof body[key]!=='string'||body[key].trim().length>max)throw new PathwayInputError(422,'Critère invalide : '+key)
+    const text=body[key].trim()
+    if(key==='professionalEnvironment'&&!environmentOptions.includes(text))throw new PathwayInputError(422,'Environnement invalide')
+    if(key!=='professionalEnvironment')try{selectedScope(text)}catch{throw new PathwayInputError(422,'Périmètre invalide')}
+    profile[key]=text
+  }
   return profile
 }

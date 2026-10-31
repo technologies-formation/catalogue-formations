@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import http from 'node:http'
 import test from 'node:test'
+import { trainingFields } from './trainingScope.mjs'
 import { pathwayProfile } from '../src/config/pathwayProfile.js'
 import { createCorsHandler } from './cors.mjs'
 import { buildProfileReferences, handleProfileReferences } from './profileReferences.mjs'
@@ -23,7 +24,7 @@ test('contrat versionne : uniquement le parcours, aucune regle de ciblage ou de 
   assert.deepEqual(Object.keys(data), ['schemaVersion', 'revision', 'pathway'])
   assert.equal(data.schemaVersion, 1)
   assert.match(data.revision, /^[a-f0-9]{64}$/)
-  assert.deepEqual(data.pathway, pathwayProfile)
+  assert.deepEqual(data.pathway, {...pathwayProfile,fields:{...pathwayProfile.fields,...trainingFields([])}})
   assert.equal(data.revision, createHash('sha256').update(JSON.stringify({ schemaVersion: 1, pathway: data.pathway })).digest('hex'))
 })
 
