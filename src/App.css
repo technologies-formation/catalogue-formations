@@ -2032,3 +2032,10 @@ a.pathway-launch-button:focus-visible { outline:3px solid #263746;outline-offset
   .brand-name { font-size:.75rem;letter-spacing:0; }
   .brand-service { font-size:.75rem; }
 }
+
+/* Accès direct au formulaire historique, distinct du dialogue avec l’assistant. */
+.catalogue-pathway-access { margin-top:14px; }
+.catalogue-pathway-button { width:100%;min-height:46px;padding:12px 16px;border:1px solid #a7195b;border-radius:3px;background:#fff;color:#8b174d;font:inherit;font-weight:700;cursor:pointer;line-height:1.5; }
+.catalogue-pathway-button:hover { background:#fcf3f7; }
+.catalogue-pathway-button:focus-visible { outline:3px solid #263746;outline-offset:3px; }
+.catalogue-pathway-access p { margin:7px 0 0;color:#5b6873;font-size:.82rem;line-height:1.5; }

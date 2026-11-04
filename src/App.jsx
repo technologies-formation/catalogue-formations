@@ -33,6 +33,8 @@ import {
   isAiSearchConfigured,
   searchCatalogueWithAi,
 } from './services/catalogueSearchApi.js'
+import PathwayAssistant from './components/PathwayAssistant.jsx'
+import { isPathwayAssistantConfigured } from './services/pathwayAssistantApi.js'
 import assistantRobotUrl from './assets/assistant-robot.webp'
 
 const NO_FILTER = ''
@@ -89,6 +91,8 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
   const [courseSort, setCourseSort] = useState(initialSearchState.sort)
   const [classicSearchSort, setClassicSearchSort] = useState('relevance')
   const [showGettingStarted, setShowGettingStarted] = useState(false)
+  const [showPathwayAssistant, setShowPathwayAssistant] = useState(false)
+  const pathwayLauncherRef = useRef(null)
   const [currentPage, dispatchPagination] = useReducer(paginationReducer, 1)
   const resultsHeadingRef = useRef(null)
   const aiSearchAbortRef = useRef(null)
@@ -642,9 +646,30 @@ function App({ courses = fullCatalogueCourses, catalogueDate }) {
               </p>
             )}
           </form>
+          {isPathwayAssistantConfigured && (
+            <div className="catalogue-pathway-access">
+              <button
+                ref={pathwayLauncherRef}
+                type="button"
+                className="catalogue-pathway-button"
+                aria-haspopup="dialog"
+                onClick={() => setShowPathwayAssistant(true)}
+              >
+                Préparer un parcours avec le formulaire
+              </button>
+              <p>Renseignez directement votre demande, puis lancez la construction du parcours.</p>
+            </div>
+          )}
           </div>
 
         </section>
+
+        {showPathwayAssistant && (
+          <PathwayAssistant onClose={() => {
+            setShowPathwayAssistant(false)
+            requestAnimationFrame(() => pathwayLauncherRef.current?.focus())
+          }} />
+        )}
 
         {showAiExplanation && aiSearchStatus === 'success' && (
           <div
