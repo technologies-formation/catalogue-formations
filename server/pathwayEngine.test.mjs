@@ -684,3 +684,32 @@ for (const constraints of [undefined, '', 'Aucune', 'sans préférence', 'E-lear
     assert.equal(profile.constraints, constraints)
   })
 }
+
+
+for (const [title, expected] of [
+  ['Gestion du temps et des priorités','unknown'],
+  ['Outlook | E-LEARNING','online'],
+  ['Word (en ligne)','online'],
+  ['Word — PRÉSENTIEL','in_person'],
+  ['Word | HYBRIDE','hybrid'],
+  ['Concevoir des formations e-learning','unknown'],
+  ['Word | EN LIGNE | PRÉSENTIEL','unknown'],
+]) {
+  test(`modalité prouvée uniquement par une étiquette explicite : ${title}`, async () => {
+    const catalogue = officeFixture('Temps',[{code:'MODE-1',title}])
+    catalogue.detailedByCode.get('MODE-1').content='Jeux de rôles et exercices en salle'
+    const requests=[],replies=[response({interpretedGoal:'Organiser son travail',codes:['MODE-1']}),
+      response({abstain:false,summary:'Un socle.',recommendedSteps:[{code:'MODE-1',rationale:'Apprendre les bases.'}],optionalSteps:[],informationalCourses:[],gaps:[]})]
+    const result=await buildPathwayWithLuna({personnelCategory:'PAT',objective:'Organiser les tâches',constraints:'Modalité souhaitée : en ligne'},
+      {catalogue,apiKey:'FAKE_KEY_ONLY',fetchImpl:async(_url,init)=>{requests.push(JSON.parse(init.body));return replies.shift()}})
+    const mode=result.recommendedSteps[0].course.deliveryMode
+    assert.equal(mode.value,expected)
+    assert.equal(mode.evidence,expected==='unknown'?null:title)
+    assert.equal(mode.sourceField,expected==='unknown'?null:'titleRaw')
+    const candidates=JSON.parse(requests[1].input.split('FICHES AUTORISÉES :\n')[1].split('\n\nPROFIL :')[0])
+    assert.deepEqual(candidates[0].deliveryMode,mode)
+    assert.match(requests[1].instructions,/n'affirme jamais présentiel par défaut/)
+    assert.match(requests[1].instructions,/la préférence du profil est connue/)
+    assert.match(requests[1].instructions,/signale explicitement cet écart/)
+  })
+}
