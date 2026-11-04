@@ -24,11 +24,15 @@ const report = []
 try {
   for (const [name, width, height] of [['desktop', 1440, 1000], ['tablet', 900, 1000], ['mobile', 390, 844], ['small-mobile', 320, 780]]) {
     const context = await browser.newContext({ viewport: { width, height } })
-    const unexpected = [], errors = []
+    const unexpected = [], errors = [], pathwayRequests = []
     await context.route('**/*', route => {
       const url = new URL(route.request().url())
       if (url.origin !== origin) { unexpected.push(url.href); return route.abort() }
       if (url.pathname === '/api/catalogue') return route.fulfill({ json: { courses, catalogue: { snapshotDate: '2026-10-27' } } })
+      if (url.pathname === '/api/pathway' && route.request().method() === 'POST') {
+        pathwayRequests.push(route.request().postDataJSON())
+        return route.fulfill({ json: { summary:'Parcours fictif de vérification',recommendedSteps:[],optionalSteps:[],informationalCourses:[],durationSummary:{budgetHours:null} } })
+      }
       if (url.pathname.startsWith('/api/')) { unexpected.push(url.pathname); return route.abort() }
       return route.continue()
     })
@@ -84,6 +88,29 @@ try {
     await page.screenshot({ path: `visual-check/catalogue-${name}-header.png`, animations: 'disabled' })
     await page.locator('.official-results-heading').scrollIntoViewIfNeeded()
     await page.screenshot({ path: `visual-check/catalogue-${name}-results.png`, animations: 'disabled' })
+    const launcher = page.getByRole('button', { name: 'Préparer un parcours avec le formulaire', exact: true })
+    await launcher.click()
+    const dialog = page.getByRole('dialog', { name: 'Construire mon parcours de formation', exact: true })
+    await dialog.waitFor()
+    assert.equal(pathwayRequests.length,0,'ouvrir le formulaire ne lance pas le moteur')
+    assert.equal(await page.locator('#pathway-objective').inputValue(),'')
+    await dialog.getByRole('button',{name:'Construire mon parcours',exact:true}).click()
+    assert.equal(pathwayRequests.length,0,'les champs obligatoires doivent être complétés')
+    await page.locator('#pathway-personnelCategory').selectOption('PAT')
+    await page.locator('#pathway-role').fill('Assistant administratif')
+    await page.locator('#pathway-objective').fill('Mieux structurer mes documents Word')
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),false)
+    await page.screenshot({path:`visual-check/catalogue-${name}-pathway-form.png`,animations:'disabled'})
+    await dialog.getByRole('button',{name:'Construire mon parcours',exact:true}).click()
+    await dialog.getByText('Parcours fictif de vérification',{exact:true}).waitFor()
+    assert.equal(pathwayRequests.length,1)
+    assert.equal(pathwayRequests[0].objective,'Mieux structurer mes documents Word')
+    await page.keyboard.press('Escape')
+    await dialog.waitFor({state:'hidden'})
+    await launcher.waitFor({state:'visible'})
+    await page.waitForFunction(() => document.activeElement?.textContent === 'Préparer un parcours avec le formulaire')
+    assert.equal(await page.locator('#catalogue-search').inputValue(),'word','la recherche classique reste conservée')
+    assert.equal(pathwayRequests.length,1)
     assert.deepEqual(errors, []); assert.deepEqual(unexpected, [])
     report.push({ name, width, noOverflow: true, accessibleDetails: true, noPaidCalls: true })
     await context.close()
