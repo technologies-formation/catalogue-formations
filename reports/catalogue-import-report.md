@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-05
+- Date du snapshot : 2026-11-06
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 126.1 secondes
-- Taille du JSON final : 2.11 Mio (2208902 octets)
-- Empreinte SHA-256 du snapshot : `9b9c7104f6979ccc41da7400cdb0c683d57ec7d4010341848db86659495741e4`
+- Durée totale de l’import : 115.8 secondes
+- Taille du JSON final : 2.11 Mio (2208803 octets)
+- Empreinte SHA-256 du snapshot : `9d79511613b410c2006a8eb6b0179b449e99a81aea732d19317452e727a93736`
 
 ## Synthèse
 
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1063 |
+| Cours dans le snapshot officiel | 1073 |
 | Cours dans le candidat | 1073 |
-| Cours ajoutés | 10 |
-| Cours supprimés | 0 |
-| Cours modifiés | 9 |
+| Cours ajoutés | 1 |
+| Cours supprimés | 1 |
+| Cours modifiés | 12 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,38 +34,37 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| OCD005 | Permis D1 - Pratique | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
-| OCD030 | Permis D1 - Théorie | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
-| OCD153 | Papillon - Harmonisation | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
-| OCD156 | Papillon - Spécialisation juridique | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
-| OCD405 | PLESORR - Module 1 : présentation générale de PLESORR | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
-| OCD412 | PLESORR - Module 2 : le tri initial | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
-| OCD413 | PLESORR - Module 3 : l'évaluation | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
-| OCD414 | PLESORR - Module 4 : la planification et le suivi | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
-| OCD415 | PLESORR - Module 5 : le LS/CMI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
-| OCD421 | PLESORR - Module 6 : l'approche de la désistance | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Outils métier |
+| EP-1258ETB | Gestion des conflits entre élèves | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| SEM1086 | Budget et planification financière | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | FONCTIONNEMENT DE L'ADMINISTRATION |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| S2-202 | La déclamation antique pour l'école d'aujourd'hui : une formation à l'éloquence et à la citoyenneté | `hasOpenSession` : « true » → « false » |
-| S2-293 | Conception avancée de tâches d'examen de langue (B1-B2) | `hasOpenSession` : « true » → « false » |
-| SEM-10756 | CO-ESII : Découverte de Typst pour la rédaction de PDF / NOUVEAU / Formation hybride | `hasOpenSession` : « true » → « false » |
-| SEM-P1570 | EP-OMP / Didactique de l'informatique : Scratch Jr, Scratch et Bluebot | `hasOpenSession` : « true » → « false » |
-| SEM-P4018 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 7P-8P | `hasScheduledSession` : « false » → « true »<br>`scheduledOpeningDates` : «  » → « 2026-11-11 » |
-| SEM0487 | L'Etat et son administration : les fondamentaux | `hasOpenSession` : « true » → « false » |
-| SEM1220 | Adapter sa manière de communiquer pour des relations professionnelles efficaces (PCM) | `hasOpenSession` : « true » → « false » |
-| SEM1254 | Storytelling, l'art de convaincre par le récit | `hasOpenSession` : « true » → « false » |
-| SEM1263 | Améliorer sa mémoire pour être plus efficace | `hasOpenSession` : « true » → « false » |
+| CO-01555 | Initiation aux arts de combat/jeux de lutte (Module 1) | `hasOpenSession` : « true » → « false » |
+| DIP-008 | MiDip' - Lunchs thématiques pour les cadres du DIP | `hasOpenSession` : « false » → « true » |
+| EO-020 | Refus scolaire anxieux : quel rôle pour l'école face à cette problématique complexe ? | `hasOpenSession` : « true » → « false » |
+| EP-088EVEN | Prévention numérique 7P-8P : atelier Action Innocence | `hasOpenSession` : « true » → « false » |
+| EP-100MDAS | La danse Hip-Hop comme outil pédagogique et artistique au Cycle 2 | `hasOpenSession` : « true » → « false » |
+| FP196 | FOCO en matière d'audition (St-Yves) : POLICE (Sauf PJ & GSJ) | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false »<br>`scheduledOpeningDates` : « 2026-11-06 » → «  » |
+| FP197 | FOCO en matière d'audition (St-Yves) : PJ & Suivi Judiciaire | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false »<br>`scheduledOpeningDates` : « 2026-11-06 » → «  » |
+| S2-EPS03 | Escalade murs et zones blocs : accréditation (II) | `hasOpenSession` : « true » → « false » |
+| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « true » → « false » |
+| SEM-P4018 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 7P-8P | `scheduledOpeningDates` : « 2026-11-11 » → « 2026-11-10 » |
 
 ### Cours modifiés — champs descriptifs longs
 
-Aucun champ descriptif long n’a changé.
+| Code | Intitulé candidat | Champs modifiés |
+| --- | --- | --- |
+| DIP-008 | MiDip' - Lunchs thématiques pour les cadres du DIP | `objectivesRaw`, `contentRaw` |
+| S2-EPS03 | Escalade murs et zones blocs : accréditation (II) | `objectivesRaw` |
+| S2-EPS16 | J+S Cours d'introduction escalade sportive pour enseignants du DIP | `objectivesRaw` |
+| SEM-P1575 | EP-OMP / Découvrir l'intelligence artificielle / Formation hybride / NOUVEAU | `generalInformationRaw`, `prerequisitesRaw` |
 
 ### Changements d’offres
 
@@ -107,10 +106,10 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 70 | 70 |
-| DF-OPE - L'offre de formation de l'OPE | 169 | 169 |
+| DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
 | DIP - Service de la formation DRH-DIP | 6 | 6 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 218 | 218 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 321 | 321 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 322 | 322 |
 | DIP-ES II - Offre de formation de l'ES II | 233 | 233 |
 | DIP-OMP - Offre formation de l'OMP | 228 | 228 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
@@ -129,7 +128,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | `targetAudienceRaw` | 956/1073 | 89.1 % |
 | `generalInformationRaw` | 532/1073 | 49.6 % |
 | `objectivesRaw` | 1018/1073 | 94.9 % |
-| `contentRaw` | 934/1073 | 87.0 % |
+| `contentRaw` | 933/1073 | 87.0 % |
 | `prerequisitesRaw` | 373/1073 | 34.8 % |
 | `additionalInformationRaw` | 323/1073 | 30.1 % |
 
@@ -173,8 +172,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
-- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
@@ -182,8 +181,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
-- EP-373FEX — Généralités (`generalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
+- EP-373FEX — Généralités (`generalInformationRaw`)
 - CO-1172HES — Contenu (`contentRaw`)
 - S2-301 — Informations complémentaires (`additionalInformationRaw`)
 - EP-002ANG — Pré-requis (`prerequisitesRaw`)
@@ -191,8 +190,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - FP208 — Généralités (`generalInformationRaw`)
 - FP209 — Généralités (`generalInformationRaw`)
 - FP210 — Généralités (`generalInformationRaw`)
-- FP218 — Généralités (`generalInformationRaw`)
 - FP217 — Généralités (`generalInformationRaw`)
+- FP218 — Généralités (`generalInformationRaw`)
 
 ## Erreurs de récupération
 
@@ -216,7 +215,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-05T12:10:56.692Z
-- Snapshot candidat validé : 2026-11-05
-- Empreinte SHA-256 : `9b9c7104f6979ccc41da7400cdb0c683d57ec7d4010341848db86659495741e4`
+- Date et heure de promotion : 2026-11-06T12:01:10.729Z
+- Snapshot candidat validé : 2026-11-06
+- Empreinte SHA-256 : `9d79511613b410c2006a8eb6b0179b449e99a81aea732d19317452e727a93736`
 - Promotion manuelle confirmée.
