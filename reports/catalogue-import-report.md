@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-06
+- Date du snapshot : 2026-11-09
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 115.8 secondes
-- Taille du JSON final : 2.11 Mio (2208803 octets)
-- Empreinte SHA-256 du snapshot : `9d79511613b410c2006a8eb6b0179b449e99a81aea732d19317452e727a93736`
+- Durée totale de l’import : 140.7 secondes
+- Taille du JSON final : 2.08 Mio (2186191 octets)
+- Empreinte SHA-256 du snapshot : `306d4128e2d9dd3a51483febc5b95a62fabd8b50512e9d883e9544fefb41a744`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1633
-- Codes uniques : 1073
+- Occurrences détectées dans l’index : 1621
+- Codes uniques : 1061
 - Occurrences éliminées par déduplication : 560
 - Formations présentes dans plusieurs offres : 287
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1073
+- Fiches récupérées avec succès : 1061
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -23,10 +23,10 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | Indicateur | Valeur |
 | --- | ---: |
 | Cours dans le snapshot officiel | 1073 |
-| Cours dans le candidat | 1073 |
+| Cours dans le candidat | 1061 |
 | Cours ajoutés | 1 |
-| Cours supprimés | 1 |
-| Cours modifiés | 12 |
+| Cours supprimés | 13 |
+| Cours modifiés | 5 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,37 +34,41 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| EP-1258ETB | Gestion des conflits entre élèves | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| SEM0729E | Système de contrôle interne (SCI) - E-learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | FONCTIONNEMENT DE L'ADMINISTRATION |
 
 ### Cours supprimés
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| SEM1086 | Budget et planification financière | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | FONCTIONNEMENT DE L'ADMINISTRATION |
+| FSM012 | Moniteurs sanitaires - refresh BLS-AED (Generic provider) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD001 | Accompagnement des stagiaires (ADS) - base | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD022 | Coach FOBA | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD170 | Formateurs TTI (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD171 | Formateurs Tir (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD177 | Cours cadre TTI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD183 | Cours cadre Tir | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD207 | BFFA - M1 : Animer des sessions de formation pour des groupes d'adultes (FFA CF-AF). | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD240 | Coach FOI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD373 | Accompagnement des stagiaires - Refresh | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD418 | Formation continue pour les coaches de la pratique - module 1: Rôle et tâches de la/du coach et formulation des objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD419 | Formation continue pour les coaches de la pratique - module 2: planifier, organiser et suivre les objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| OCD422 | Formation continue pour les coaches de la pratique - module 3: Evaluation de l'apprentissage et du transfert | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01555 | Initiation aux arts de combat/jeux de lutte (Module 1) | `hasOpenSession` : « true » → « false » |
-| DIP-008 | MiDip' - Lunchs thématiques pour les cadres du DIP | `hasOpenSession` : « false » → « true » |
-| EO-020 | Refus scolaire anxieux : quel rôle pour l'école face à cette problématique complexe ? | `hasOpenSession` : « true » → « false » |
-| EP-088EVEN | Prévention numérique 7P-8P : atelier Action Innocence | `hasOpenSession` : « true » → « false » |
-| EP-100MDAS | La danse Hip-Hop comme outil pédagogique et artistique au Cycle 2 | `hasOpenSession` : « true » → « false » |
-| FP196 | FOCO en matière d'audition (St-Yves) : POLICE (Sauf PJ & GSJ) | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false »<br>`scheduledOpeningDates` : « 2026-11-06 » → «  » |
-| FP197 | FOCO en matière d'audition (St-Yves) : PJ & Suivi Judiciaire | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false »<br>`scheduledOpeningDates` : « 2026-11-06 » → «  » |
-| S2-EPS03 | Escalade murs et zones blocs : accréditation (II) | `hasOpenSession` : « true » → « false » |
-| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « true » → « false » |
-| SEM-P4018 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 7P-8P | `scheduledOpeningDates` : « 2026-11-11 » → « 2026-11-10 » |
+| CO-01683 | Suivi des élèves avec l'équipe enseignante, MPS et la direction (Maîtrise de classe, module 2) | `hasOpenSession` : « true » → « false » |
+| DIP-008 | MiDip' - Lunchs thématiques pour les cadres du DIP | `themeRaw` : « Climat de travail » → « Moi, manager » |
+| FP133 | Introduction à Mercure V3 | `hasOpenSession` : « true » → « false » |
+| FP291 | Formation initiale pour évaluateurs - Recrutement | `hasOpenSession` : « true » → « false » |
+| SEM1266 | L'intelligence émotionnelle : de la compréhension à l'action | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
 | DIP-008 | MiDip' - Lunchs thématiques pour les cadres du DIP | `objectivesRaw`, `contentRaw` |
-| S2-EPS03 | Escalade murs et zones blocs : accréditation (II) | `objectivesRaw` |
-| S2-EPS16 | J+S Cours d'introduction escalade sportive pour enseignants du DIP | `objectivesRaw` |
-| SEM-P1575 | EP-OMP / Découvrir l'intelligence artificielle / Formation hybride / NOUVEAU | `generalInformationRaw`, `prerequisitesRaw` |
 
 ### Changements d’offres
 
@@ -81,9 +85,9 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Indicateur | Références |
 | --- | ---: |
 | Références contrôlées | 24 |
-| Références présentes | 22 |
-| Références absentes | 2 |
-| Références identiques | 19 |
+| Références présentes | 21 |
+| Références absentes | 3 |
+| Références identiques | 18 |
 | Revues métier prioritaires | 0 |
 | Revues métier | 0 |
 | Références nécessitant une revue métier | 0 |
@@ -100,13 +104,14 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | CO-01660 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 | EP-520 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 | CO-01686 | INFORMATION À EXAMINER | `targetAudienceRaw` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP<br>Les participants identifient quelques-unes des préoccupations majeures des élèves, de leurs familles et des enseignants qui les côtoient à travers une expérience rapportée du terrain ;<br>A la fin de la séance, les participants sont capables d'identifier les défis pour ces familles et, en collaboration avec les personnes ressources de leur établissement (conseillères et conseillers sociaux, éducatrices et éducateurs), de mieux les orienter.` | `Enseignantes et enseignants de l'EP, de l'ESI, de l'ESII et de l'OMP` |
+| OCD207 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 
 ## Offres détectées
 
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
-| Détention - Offre de formation de l'OCD | 70 | 70 |
-| DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
+| Détention - Offre de formation de l'OCD | 57 | 57 |
+| DF-OPE - L'offre de formation de l'OPE | 169 | 169 |
 | DIP - Service de la formation DRH-DIP | 6 | 6 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 218 | 218 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 322 | 322 |
@@ -120,17 +125,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1073/1073 | 100.0 % |
-| `domainRaw` | 1073/1073 | 100.0 % |
-| `themeRaw` | 993/1073 | 92.5 % |
-| `publicRaw` | 958/1073 | 89.3 % |
-| `durationRaw` | 1053/1073 | 98.1 % |
-| `targetAudienceRaw` | 956/1073 | 89.1 % |
-| `generalInformationRaw` | 532/1073 | 49.6 % |
-| `objectivesRaw` | 1018/1073 | 94.9 % |
-| `contentRaw` | 933/1073 | 87.0 % |
-| `prerequisitesRaw` | 373/1073 | 34.8 % |
-| `additionalInformationRaw` | 323/1073 | 30.1 % |
+| `organizingEntityRaw` | 1061/1061 | 100.0 % |
+| `domainRaw` | 1061/1061 | 100.0 % |
+| `themeRaw` | 994/1061 | 93.7 % |
+| `publicRaw` | 946/1061 | 89.2 % |
+| `durationRaw` | 1041/1061 | 98.1 % |
+| `targetAudienceRaw` | 944/1061 | 89.0 % |
+| `generalInformationRaw` | 520/1061 | 49.0 % |
+| `objectivesRaw` | 1007/1061 | 94.9 % |
+| `contentRaw` | 921/1061 | 86.8 % |
+| `prerequisitesRaw` | 373/1061 | 35.2 % |
+| `additionalInformationRaw` | 321/1061 | 30.3 % |
 
 ### Correspondance des libellés officiels
 
@@ -172,12 +177,12 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
@@ -190,8 +195,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - FP208 — Généralités (`generalInformationRaw`)
 - FP209 — Généralités (`generalInformationRaw`)
 - FP210 — Généralités (`generalInformationRaw`)
-- FP217 — Généralités (`generalInformationRaw`)
 - FP218 — Généralités (`generalInformationRaw`)
+- FP217 — Généralités (`generalInformationRaw`)
 
 ## Erreurs de récupération
 
@@ -215,7 +220,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-06T12:01:10.729Z
-- Snapshot candidat validé : 2026-11-06
-- Empreinte SHA-256 : `9d79511613b410c2006a8eb6b0179b449e99a81aea732d19317452e727a93736`
+- Date et heure de promotion : 2026-11-09T12:47:01.008Z
+- Snapshot candidat validé : 2026-11-09
+- Empreinte SHA-256 : `306d4128e2d9dd3a51483febc5b95a62fabd8b50512e9d883e9544fefb41a744`
 - Promotion manuelle confirmée.
