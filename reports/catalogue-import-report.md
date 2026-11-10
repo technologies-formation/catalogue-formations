@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-09
+- Date du snapshot : 2026-11-10
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 140.7 secondes
-- Taille du JSON final : 2.08 Mio (2186191 octets)
-- Empreinte SHA-256 du snapshot : `306d4128e2d9dd3a51483febc5b95a62fabd8b50512e9d883e9544fefb41a744`
+- Durée totale de l’import : 137.8 secondes
+- Taille du JSON final : 2.08 Mio (2178531 octets)
+- Empreinte SHA-256 du snapshot : `520a56ee4aee2b4a8fce005ade18661610e970826d89d94e09773e74b2aea057`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1621
-- Codes uniques : 1061
-- Occurrences éliminées par déduplication : 560
-- Formations présentes dans plusieurs offres : 287
+- Occurrences détectées dans l’index : 1616
+- Codes uniques : 1058
+- Occurrences éliminées par déduplication : 558
+- Formations présentes dans plusieurs offres : 285
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1061
+- Fiches récupérées avec succès : 1058
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,53 +22,43 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1073 |
-| Cours dans le candidat | 1061 |
-| Cours ajoutés | 1 |
-| Cours supprimés | 13 |
-| Cours modifiés | 5 |
+| Cours dans le snapshot officiel | 1061 |
+| Cours dans le candidat | 1058 |
+| Cours ajoutés | 0 |
+| Cours supprimés | 3 |
+| Cours modifiés | 9 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| SEM0729E | Système de contrôle interne (SCI) - E-learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | FONCTIONNEMENT DE L'ADMINISTRATION |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| FSM012 | Moniteurs sanitaires - refresh BLS-AED (Generic provider) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD001 | Accompagnement des stagiaires (ADS) - base | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD022 | Coach FOBA | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD170 | Formateurs TTI (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD171 | Formateurs Tir (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD177 | Cours cadre TTI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD183 | Cours cadre Tir | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD207 | BFFA - M1 : Animer des sessions de formation pour des groupes d'adultes (FFA CF-AF). | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD240 | Coach FOI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD373 | Accompagnement des stagiaires - Refresh | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD418 | Formation continue pour les coaches de la pratique - module 1: Rôle et tâches de la/du coach et formulation des objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD419 | Formation continue pour les coaches de la pratique - module 2: planifier, organiser et suivre les objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD422 | Formation continue pour les coaches de la pratique - module 3: Evaluation de l'apprentissage et du transfert | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
+| CO-01555 | Initiation aux arts de combat/jeux de lutte (Module 1) | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
+| CO-01683 | Suivi des élèves avec l'équipe enseignante, MPS et la direction (Maîtrise de classe, module 2) | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
+| SEM0729E | Système de contrôle interne (SCI) - E-learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | FONCTIONNEMENT DE L'ADMINISTRATION |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01683 | Suivi des élèves avec l'équipe enseignante, MPS et la direction (Maîtrise de classe, module 2) | `hasOpenSession` : « true » → « false » |
-| DIP-008 | MiDip' - Lunchs thématiques pour les cadres du DIP | `themeRaw` : « Climat de travail » → « Moi, manager » |
-| FP133 | Introduction à Mercure V3 | `hasOpenSession` : « true » → « false » |
-| FP291 | Formation initiale pour évaluateurs - Recrutement | `hasOpenSession` : « true » → « false » |
-| SEM1266 | L'intelligence émotionnelle : de la compréhension à l'action | `hasOpenSession` : « true » → « false » |
+| DIP-008 | MiDip' - Lunchs thématiques pour les cadres du DIP | `hasOpenSession` : « true » → « false » |
+| FP006 | CCI - Gestion de groupe (séminaire) | `hasOpenSession` : « false » → « true » |
+| FP178 | Manager : gérer les tensions au sein de son équipe | `hasOpenSession` : « false » → « true » |
+| PJ-1094 | Communication interpersonnelle - Responsables de secteur et référents | `hasOpenSession` : « false » → « true » |
+| PJ-1095 | Communication interpersonnelle - Collaboratrices et Collaborateurs | `hasOpenSession` : « false » → « true » |
+| SEM-10930 | CO-ESII / Débuter avec moodle / NOUVEAU | `hasOpenSession` : « true » → « false » |
+| SEM-P1303 | EP-OMP / Petit-Bazar : l'éducation numérique en pratique | `hasOpenSession` : « true » → « false » |
+| SEM-P4018 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 7P-8P | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false »<br>`scheduledOpeningDates` : « 2026-11-10 » → «  » |
+| SEM1237 | Comment acquérir une vision synthétique et objective d'une situation ? | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-| Code | Intitulé candidat | Champs modifiés |
-| --- | --- | --- |
-| DIP-008 | MiDip' - Lunchs thématiques pour les cadres du DIP | `objectivesRaw`, `contentRaw` |
+Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
@@ -85,9 +75,9 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Indicateur | Références |
 | --- | ---: |
 | Références contrôlées | 24 |
-| Références présentes | 21 |
-| Références absentes | 3 |
-| Références identiques | 18 |
+| Références présentes | 20 |
+| Références absentes | 4 |
+| Références identiques | 17 |
 | Revues métier prioritaires | 0 |
 | Revues métier | 0 |
 | Références nécessitant une revue métier | 0 |
@@ -99,6 +89,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Code | Catégorie d’écart | Champ | Valeur de référence | Valeur actuelle |
 | --- | --- | --- | --- | --- |
 | DIP-002 | INFORMATION À EXAMINER | `targetAudienceRaw` | `Cette séance d'accueil s'adresse aux personnes nouvellement engagées au sein du DIP, répondant aux critères suivants :<br><br>- le personnel administratif et technique<br>- les apprenties et apprentis<br>- le personnel enseignant engagé en cours d'année scolaire, n'ayant pas bénéficié d'une séance d'accueil organisée par sa direction générale<br><br>Dans certains cas, des auxiliaires peuvent également être invitées et invités à y prendre part.` | `Cette séance d'accueil s'adresse aux personnes nouvellement engagées au sein du DIP, répondant aux critères suivants :<br>- le personnel administratif et technique<br>- le personnel enseignant engagé en cours d'année scolaire, n'ayant pas bénéficié d'une séance d'accueil organisée par sa direction générale<br>Dans certains cas, des auxiliaires peuvent également être invitées et invités à y prendre part.` |
+| CO-01683 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
 | SEM0518 | ÉVOLUTION CONTEXTUELLE | `titleRaw` | `Prévenir les tensions dans ses relations par une bonne communication` | `Développer ses qualités relationnelles pour prévenir les tensions` |
 | SEM0518 | INFORMATION À EXAMINER | `targetAudienceRaw` | `Collaboratices et collaborateurs désireux d'agir pour améliorer sa communication et éviter les conflits.<br>Ce cours n'est pas un lieu de résolution pour des conflits avérés. Si vous avez des difficultés, nous vous invitons à solliciter votre hiérarchie ou votre RH départemental, voire le Groupe de confiance - qui peuvent vous accompagner dans une démarche et/ou vous orienter.<br>Les responsables d'équipe amenés à gérer des conflits dans lesquels elles et ils ne sont pas impliqués, mais dans lesquels elles et ils jouent un rôle de tiers, ou souhaitant développer leur compétence à gérer les tensions au quotidien dans leur équipe, choisiront la formation "Manager : Gérer les tensions au sein de son équipe".` | `Le cours s'adresse à toute personne souhaitant développer ses qualités relationnelles et prévenir les tensions dans son cadre professionnel. Il a une visée préventive et n'est pas un lieu de résolution de conflits avérés : en cas de difficulté installée, la hiérarchie, le RH départemental ou le Groupe de confiance peuvent accompagner et orienter. Les responsables d'équipe appelés à intervenir comme tiers s'orienteront vers le cours « Tensions et conflits au sein de vos équipes : anticiper, désamorcer et réguler» (SEM00052).` |
 | CO-01660 | RÉFÉRENCE ABSENTE | `présence` | `présente` | `absente` |
@@ -111,11 +102,11 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Offre | Occurrences | Formations uniques |
 | --- | ---: | ---: |
 | Détention - Offre de formation de l'OCD | 57 | 57 |
-| DF-OPE - L'offre de formation de l'OPE | 169 | 169 |
+| DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
 | DIP - Service de la formation DRH-DIP | 6 | 6 |
-| DIP-CO - Offre de formation du Cycle d'orientation | 218 | 218 |
+| DIP-CO - Offre de formation du Cycle d'orientation | 216 | 216 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 322 | 322 |
-| DIP-ES II - Offre de formation de l'ES II | 233 | 233 |
+| DIP-ES II - Offre de formation de l'ES II | 231 | 231 |
 | DIP-OMP - Offre formation de l'OMP | 228 | 228 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
 | POLICE - CFPS - Centre de Formation de la Police | 191 | 191 |
@@ -125,17 +116,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1061/1061 | 100.0 % |
-| `domainRaw` | 1061/1061 | 100.0 % |
-| `themeRaw` | 994/1061 | 93.7 % |
-| `publicRaw` | 946/1061 | 89.2 % |
-| `durationRaw` | 1041/1061 | 98.1 % |
-| `targetAudienceRaw` | 944/1061 | 89.0 % |
-| `generalInformationRaw` | 520/1061 | 49.0 % |
-| `objectivesRaw` | 1007/1061 | 94.9 % |
-| `contentRaw` | 921/1061 | 86.8 % |
-| `prerequisitesRaw` | 373/1061 | 35.2 % |
-| `additionalInformationRaw` | 321/1061 | 30.3 % |
+| `organizingEntityRaw` | 1058/1058 | 100.0 % |
+| `domainRaw` | 1058/1058 | 100.0 % |
+| `themeRaw` | 991/1058 | 93.7 % |
+| `publicRaw` | 943/1058 | 89.1 % |
+| `durationRaw` | 1038/1058 | 98.1 % |
+| `targetAudienceRaw` | 941/1058 | 88.9 % |
+| `generalInformationRaw` | 519/1058 | 49.1 % |
+| `objectivesRaw` | 1004/1058 | 94.9 % |
+| `contentRaw` | 918/1058 | 86.8 % |
+| `prerequisitesRaw` | 371/1058 | 35.1 % |
+| `additionalInformationRaw` | 318/1058 | 30.1 % |
 
 ### Correspondance des libellés officiels
 
@@ -177,12 +168,12 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
-- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
-- TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
+- TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
@@ -195,8 +186,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - FP208 — Généralités (`generalInformationRaw`)
 - FP209 — Généralités (`generalInformationRaw`)
 - FP210 — Généralités (`generalInformationRaw`)
-- FP218 — Généralités (`generalInformationRaw`)
 - FP217 — Généralités (`generalInformationRaw`)
+- FP218 — Généralités (`generalInformationRaw`)
 
 ## Erreurs de récupération
 
@@ -220,7 +211,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-09T12:47:01.008Z
-- Snapshot candidat validé : 2026-11-09
-- Empreinte SHA-256 : `306d4128e2d9dd3a51483febc5b95a62fabd8b50512e9d883e9544fefb41a744`
+- Date et heure de promotion : 2026-11-10T12:30:08.387Z
+- Snapshot candidat validé : 2026-11-10
+- Empreinte SHA-256 : `520a56ee4aee2b4a8fce005ade18661610e970826d89d94e09773e74b2aea057`
 - Promotion manuelle confirmée.
