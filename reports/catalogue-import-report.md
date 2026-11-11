@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-10
+- Date du snapshot : 2026-11-11
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 137.8 secondes
-- Taille du JSON final : 2.08 Mio (2178531 octets)
-- Empreinte SHA-256 du snapshot : `520a56ee4aee2b4a8fce005ade18661610e970826d89d94e09773e74b2aea057`
+- Durée totale de l’import : 118.6 secondes
+- Taille du JSON final : 2.07 Mio (2174775 octets)
+- Empreinte SHA-256 du snapshot : `6a1d7faced9bcd621856828dd80001f2aa951f84a53c0a9e633cc67d821e7198`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1616
-- Codes uniques : 1058
-- Occurrences éliminées par déduplication : 558
-- Formations présentes dans plusieurs offres : 285
+- Occurrences détectées dans l’index : 1611
+- Codes uniques : 1056
+- Occurrences éliminées par déduplication : 555
+- Formations présentes dans plusieurs offres : 284
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1058
+- Fiches récupérées avec succès : 1056
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,10 +22,10 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1061 |
-| Cours dans le candidat | 1058 |
+| Cours dans le snapshot officiel | 1058 |
+| Cours dans le candidat | 1056 |
 | Cours ajoutés | 0 |
-| Cours supprimés | 3 |
+| Cours supprimés | 2 |
 | Cours modifiés | 9 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
@@ -38,27 +38,28 @@ Aucun cours ajouté.
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| CO-01555 | Initiation aux arts de combat/jeux de lutte (Module 1) | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
-| CO-01683 | Suivi des élèves avec l'équipe enseignante, MPS et la direction (Maîtrise de classe, module 2) | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
-| SEM0729E | Système de contrôle interne (SCI) - E-learning | DF-OPE - L'offre de formation de l'OPE | Service du développement professionnel OPE | FONCTIONNEMENT DE L'ADMINISTRATION |
+| EP-045WEB | Accueil des élèves et des familles relevant du domaine de l'asile | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP | DGEO/SRH/Secteur de la formation continue EO | Sciences humaines et sociales |
+| EP-1022 | Phase test Senso5 / 1P-2P | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| DIP-008 | MiDip' - Lunchs thématiques pour les cadres du DIP | `hasOpenSession` : « true » → « false » |
-| FP006 | CCI - Gestion de groupe (séminaire) | `hasOpenSession` : « false » → « true » |
-| FP178 | Manager : gérer les tensions au sein de son équipe | `hasOpenSession` : « false » → « true » |
-| PJ-1094 | Communication interpersonnelle - Responsables de secteur et référents | `hasOpenSession` : « false » → « true » |
-| PJ-1095 | Communication interpersonnelle - Collaboratrices et Collaborateurs | `hasOpenSession` : « false » → « true » |
-| SEM-10930 | CO-ESII / Débuter avec moodle / NOUVEAU | `hasOpenSession` : « true » → « false » |
-| SEM-P1303 | EP-OMP / Petit-Bazar : l'éducation numérique en pratique | `hasOpenSession` : « true » → « false » |
-| SEM-P4018 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 7P-8P | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false »<br>`scheduledOpeningDates` : « 2026-11-10 » → «  » |
-| SEM1237 | Comment acquérir une vision synthétique et objective d'une situation ? | `hasOpenSession` : « true » → « false » |
+| EP-098MDAS | Improvisation collective à l'aide du langage visuel (Rythme Signé) | `hasOpenSession` : « true » → « false » |
+| FP003 | Formation coach | `hasOpenSession` : « false » → « true » |
+| FP177 | Gérer ses ressources de manière efficiente | `hasOpenSession` : « false » → « true » |
+| FP306 | Formation maître de stage ASP | `hasOpenSession` : « false » → « true » |
+| OMP-001HY | Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire | `hasScheduledSession` : « false » → « true »<br>`scheduledOpeningDates` : «  » → « 2026-11-18 » |
+| SEM-P4013 | OMP / Formation institutionnelle obligatoire / Tablettes numériques au service des apprentissages / Formation hybride | `hasOpenSession` : « false » → « true » |
+| SEM0720 | Méthode et rédaction législative | `hasOpenSession` : « true » → « false » |
+| SEM0735 | Ethique et déontologie de la fonction publique | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-Aucun champ descriptif long n’a changé.
+| Code | Intitulé candidat | Champs modifiés |
+| --- | --- | --- |
+| EP-732 | Les inégalités scolaires de genre : de la théorie à la pratique, de la classe au préau | `contentRaw` |
+| OMP-001HY | Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire | `generalInformationRaw` |
 
 ### Changements d’offres
 
@@ -104,10 +105,10 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Détention - Offre de formation de l'OCD | 57 | 57 |
 | DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
 | DIP - Service de la formation DRH-DIP | 6 | 6 |
-| DIP-CO - Offre de formation du Cycle d'orientation | 216 | 216 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 322 | 322 |
-| DIP-ES II - Offre de formation de l'ES II | 231 | 231 |
-| DIP-OMP - Offre formation de l'OMP | 228 | 228 |
+| DIP-CO - Offre de formation du Cycle d'orientation | 215 | 215 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 320 | 320 |
+| DIP-ES II - Offre de formation de l'ES II | 230 | 230 |
+| DIP-OMP - Offre formation de l'OMP | 227 | 227 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
 | POLICE - CFPS - Centre de Formation de la Police | 191 | 191 |
 | Pouvoir Judiciaire - Offre de formation du Pouvoir judiciaire | 54 | 54 |
@@ -116,17 +117,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1058/1058 | 100.0 % |
-| `domainRaw` | 1058/1058 | 100.0 % |
-| `themeRaw` | 991/1058 | 93.7 % |
-| `publicRaw` | 943/1058 | 89.1 % |
-| `durationRaw` | 1038/1058 | 98.1 % |
-| `targetAudienceRaw` | 941/1058 | 88.9 % |
-| `generalInformationRaw` | 519/1058 | 49.1 % |
-| `objectivesRaw` | 1004/1058 | 94.9 % |
-| `contentRaw` | 918/1058 | 86.8 % |
-| `prerequisitesRaw` | 371/1058 | 35.1 % |
-| `additionalInformationRaw` | 318/1058 | 30.1 % |
+| `organizingEntityRaw` | 1056/1056 | 100.0 % |
+| `domainRaw` | 1056/1056 | 100.0 % |
+| `themeRaw` | 989/1056 | 93.7 % |
+| `publicRaw` | 941/1056 | 89.1 % |
+| `durationRaw` | 1036/1056 | 98.1 % |
+| `targetAudienceRaw` | 939/1056 | 88.9 % |
+| `generalInformationRaw` | 518/1056 | 49.1 % |
+| `objectivesRaw` | 1003/1056 | 95.0 % |
+| `contentRaw` | 916/1056 | 86.7 % |
+| `prerequisitesRaw` | 370/1056 | 35.0 % |
+| `additionalInformationRaw` | 318/1056 | 30.1 % |
 
 ### Correspondance des libellés officiels
 
@@ -211,7 +212,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-10T12:30:08.387Z
-- Snapshot candidat validé : 2026-11-10
-- Empreinte SHA-256 : `520a56ee4aee2b4a8fce005ade18661610e970826d89d94e09773e74b2aea057`
+- Date et heure de promotion : 2026-11-11T11:50:07.904Z
+- Snapshot candidat validé : 2026-11-11
+- Empreinte SHA-256 : `6a1d7faced9bcd621856828dd80001f2aa951f84a53c0a9e633cc67d821e7198`
 - Promotion manuelle confirmée.
