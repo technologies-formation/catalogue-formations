@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-11
+- Date du snapshot : 2026-11-12
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 118.6 secondes
-- Taille du JSON final : 2.07 Mio (2174775 octets)
-- Empreinte SHA-256 du snapshot : `6a1d7faced9bcd621856828dd80001f2aa951f84a53c0a9e633cc67d821e7198`
+- Durée totale de l’import : 117.0 secondes
+- Taille du JSON final : 2.08 Mio (2176616 octets)
+- Empreinte SHA-256 du snapshot : `96e312dc438a1af21a59c4d6cb5a612573e33c2529e129dbf53b9e35aac76ab4`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1611
-- Codes uniques : 1056
+- Occurrences détectées dans l’index : 1612
+- Codes uniques : 1057
 - Occurrences éliminées par déduplication : 555
 - Formations présentes dans plusieurs offres : 284
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1056
+- Fiches récupérées avec succès : 1057
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,44 +22,37 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1058 |
-| Cours dans le candidat | 1056 |
-| Cours ajoutés | 0 |
-| Cours supprimés | 2 |
-| Cours modifiés | 9 |
+| Cours dans le snapshot officiel | 1056 |
+| Cours dans le candidat | 1057 |
+| Cours ajoutés | 1 |
+| Cours supprimés | 0 |
+| Cours modifiés | 5 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-Aucun cours ajouté.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| EO-046WEB | Mémoriser à l'école \| Comment aider les élèves à mieux retenir, et à retenir durablement ? | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Capacités transversales |
 
 ### Cours supprimés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| EP-045WEB | Accueil des élèves et des familles relevant du domaine de l'asile | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-EP - Offre de formation de l'enseignement primaire<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-OMP - Offre formation de l'OMP | DGEO/SRH/Secteur de la formation continue EO | Sciences humaines et sociales |
-| EP-1022 | Phase test Senso5 / 1P-2P | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Corps et mouvement |
+Aucun cours supprimé.
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-098MDAS | Improvisation collective à l'aide du langage visuel (Rythme Signé) | `hasOpenSession` : « true » → « false » |
-| FP003 | Formation coach | `hasOpenSession` : « false » → « true » |
-| FP177 | Gérer ses ressources de manière efficiente | `hasOpenSession` : « false » → « true » |
-| FP306 | Formation maître de stage ASP | `hasOpenSession` : « false » → « true » |
-| OMP-001HY | Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire | `hasScheduledSession` : « false » → « true »<br>`scheduledOpeningDates` : «  » → « 2026-11-18 » |
-| SEM-P4013 | OMP / Formation institutionnelle obligatoire / Tablettes numériques au service des apprentissages / Formation hybride | `hasOpenSession` : « false » → « true » |
-| SEM0720 | Méthode et rédaction législative | `hasOpenSession` : « true » → « false » |
-| SEM0735 | Ethique et déontologie de la fonction publique | `hasOpenSession` : « true » → « false » |
+| CO-01610 | TDAH et CO - Outils pour gérer l'hétérogénéité des élèves dont les élèves TDAH | `publicRaw` : « Enseignants du CO + ES II » → « Enseignants de l' EP - CO - ES II »<br>`targetAudienceRaw` : « Enseignantes et enseignants de l'ESI et de l'ESII » → « Enseignantes et enseignants de l'enseignement primaire, du CO et de l'ESII » |
+| OMP-001HY | Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false »<br>`scheduledOpeningDates` : « 2026-11-18 » → «  » |
+| S2-612 | Rapports inégalitaires de genre à l'école : comprendre et agir | `hasOpenSession` : « true » → « false » |
+| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « false » → « true » |
+| SEM1215 | Les neurosciences au service du management | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-| Code | Intitulé candidat | Champs modifiés |
-| --- | --- | --- |
-| EP-732 | Les inégalités scolaires de genre : de la théorie à la pratique, de la classe au préau | `contentRaw` |
-| OMP-001HY | Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire | `generalInformationRaw` |
+Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
@@ -106,7 +99,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
 | DIP - Service de la formation DRH-DIP | 6 | 6 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 215 | 215 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 320 | 320 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 321 | 321 |
 | DIP-ES II - Offre de formation de l'ES II | 230 | 230 |
 | DIP-OMP - Offre formation de l'OMP | 227 | 227 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
@@ -117,17 +110,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1056/1056 | 100.0 % |
-| `domainRaw` | 1056/1056 | 100.0 % |
-| `themeRaw` | 989/1056 | 93.7 % |
-| `publicRaw` | 941/1056 | 89.1 % |
-| `durationRaw` | 1036/1056 | 98.1 % |
-| `targetAudienceRaw` | 939/1056 | 88.9 % |
-| `generalInformationRaw` | 518/1056 | 49.1 % |
-| `objectivesRaw` | 1003/1056 | 95.0 % |
-| `contentRaw` | 916/1056 | 86.7 % |
-| `prerequisitesRaw` | 370/1056 | 35.0 % |
-| `additionalInformationRaw` | 318/1056 | 30.1 % |
+| `organizingEntityRaw` | 1057/1057 | 100.0 % |
+| `domainRaw` | 1057/1057 | 100.0 % |
+| `themeRaw` | 990/1057 | 93.7 % |
+| `publicRaw` | 942/1057 | 89.1 % |
+| `durationRaw` | 1037/1057 | 98.1 % |
+| `targetAudienceRaw` | 940/1057 | 88.9 % |
+| `generalInformationRaw` | 518/1057 | 49.0 % |
+| `objectivesRaw` | 1004/1057 | 95.0 % |
+| `contentRaw` | 917/1057 | 86.8 % |
+| `prerequisitesRaw` | 370/1057 | 35.0 % |
+| `additionalInformationRaw` | 319/1057 | 30.2 % |
 
 ### Correspondance des libellés officiels
 
@@ -174,8 +167,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
-- TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
+- TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
@@ -212,7 +205,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-11T11:50:07.904Z
-- Snapshot candidat validé : 2026-11-11
-- Empreinte SHA-256 : `6a1d7faced9bcd621856828dd80001f2aa951f84a53c0a9e633cc67d821e7198`
+- Date et heure de promotion : 2026-11-12T12:32:52.614Z
+- Snapshot candidat validé : 2026-11-12
+- Empreinte SHA-256 : `96e312dc438a1af21a59c4d6cb5a612573e33c2529e129dbf53b9e35aac76ab4`
 - Promotion manuelle confirmée.
