@@ -276,6 +276,21 @@ function isNewManagerCourse(course) {
     .test(normalized(course?.officialData?.targetAudienceRaw))
 }
 
+// Seule une étiquette explicite de modalité dans l’intitulé sert de preuve.
+// Ni les exercices, ni la durée, ni l’absence d’e-learning ne prouvent du présentiel.
+function courseDeliveryMode(course) {
+  const title = course?.officialData?.titleRaw ?? ''
+  const text = normalized(title)
+  const modes = [
+    ['online', /(?:^|[|:()–—-])\s*(?:e[- ]?learning|en ligne|a distance|classe virtuelle)\s*(?=$|[|:()–—-])/],
+    ['in_person', /(?:^|[|:()–—-])\s*(?:en presentiel|presentiel)\s*(?=$|[|:()–—-])/],
+    ['hybrid', /(?:^|[|:()–—-])\s*(?:hybride|blended learning)\s*(?=$|[|:()–—-])/],
+  ].filter(([, expression]) => expression.test(text))
+  return modes.length === 1
+    ? { value: modes[0][0], sourceField: 'titleRaw', evidence: title }
+    : { value: 'unknown', sourceField: null, evidence: null }
+}
+
 function publicCourse(course, detail) {
   return {
     code: course.code,
@@ -286,6 +301,7 @@ function publicCourse(course, detail) {
     targetAudience: course.officialData?.targetAudienceRaw ?? '',
     duration: textOf(detail?.duration),
     durationHours: durationHours(detail),
+    deliveryMode: courseDeliveryMode(course),
     catalogueOffers: course.catalogueOffers ?? [],
     sourceUrl: course.sourceUrl ?? '',
   }
@@ -574,7 +590,10 @@ N'invente jamais de code. Retourne au maximum ${MAX_CANDIDATES} codes.`,
   }
 
   const detailedCandidates = candidateCodes
-    .map((code) => detailedByCode.get(code))
+    .map((code) => {
+      const detail = detailedByCode.get(code)
+      return detail ? { ...detail, deliveryMode: courseDeliveryMode(courseByCode.get(code)) } : null
+    })
     .filter(Boolean)
 
   const second = await callOpenAI(
@@ -597,7 +616,11 @@ Règles impératives :
 - chaque complément ou alternative doit apporter une compétence ou un choix utile au besoin ; une offre propre à une autre institution ou activité n'est pas une alternative sur la seule proximité de son intitulé ;
 - un profil qui se déclare nouveau manager est compatible avec une formation réservée aux nouvelles et nouveaux managers ;
 - tiens compte des acquis pour éviter les formations manifestement redondantes ;
-- identifie les modalités à partir de tous les champs disponibles, y compris le titre lorsqu'elles n'existent pas sous forme structurée ;
+- pour la modalité de chaque formation, utilise exclusivement deliveryMode ajouté par le serveur aux fiches autorisées ; sa preuve figure dans evidence et sourceField ;
+- si deliveryMode.value vaut unknown, indique que la modalité du cours est non renseignée ; n'affirme jamais présentiel par défaut, ni en te fondant sur des exercices, jeux de rôles, une durée ou l'absence d'E-LEARNING ;
+- la préférence du profil est connue même lorsque la modalité du cours est inconnue : dis que sa compatibilité ne peut pas être établie, jamais que la préférence de la personne est invérifiable ;
+- si la modalité connue diffère de la préférence demandée, signale explicitement cet écart et présente la proposition comme une piste à comparer ; ne prétends pas que la préférence est satisfaite ;
+- une modalité hybride ne garantit pas un suivi entièrement en ligne ou entièrement en présentiel ; indique que les conditions sont à vérifier ;
 - si plusieurs formations couvrent essentiellement le même besoin, ne les présente pas comme des étapes cumulatives : choisis la meilleure pour recommendedSteps et place, si elle apporte un vrai choix de modalité, la meilleure autre option dans optionalSteps avec une justification explicite d'alternative ;
 - une préférence exprimée pour l'e-learning, le distanciel, le présentiel, l'hybride ou l'autonomie prime dans le classement lorsque la fiche la confirme ;
 - distingue la modalité de la formation de la préférence de la personne : un titre contenant E-LEARNING décrit le cours, jamais une préférence du profil ;
