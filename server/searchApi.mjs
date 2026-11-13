@@ -1,3 +1,5 @@
+import {buildCataloguePathway} from './catalogueProvenance.mjs'
+import {readConsumptionEnvironment,trackConsumption,calculatedUsage,reportingTokenMatches,handleConsumptionRequest} from './consumptionLedger.mjs'
 import http from 'node:http'
 import { randomUUID } from 'node:crypto'
 import { positiveIntegerEnv } from './config.mjs'
@@ -13,6 +15,7 @@ import { createStaticFrontendHandler } from './staticFrontend.mjs'
 import { createCorsHandler } from './cors.mjs'
 import { handleProfileReferences } from './profileReferences.mjs'
 
+const consumption=readConsumptionEnvironment(process.env)
 const PORT = Number(process.env.PORT || 8787)
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
@@ -139,6 +142,7 @@ const server = http.createServer(async (request, response) => {
     `http://${request.headers.host || 'localhost'}`
   )
 
+  if(handleConsumptionRequest(consumption,request,response,url))return
   if (!applyCors(request, response)) {
     sendJson(response, 403, {
       error: 'Origin non autorisée',
@@ -146,7 +150,7 @@ const server = http.createServer(async (request, response) => {
     return
   }
 
-  if (handleProfileReferences(request, response, url)) return
+  if (handleProfileReferences(request, response, url, catalogueStore.current().search.courses)) return
 
   if (
     request.method === 'OPTIONS' &&
@@ -188,7 +192,7 @@ const server = http.createServer(async (request, response) => {
     response.setHeader('ETag', etag)
     response.setHeader('Cache-Control', 'no-cache')
     sendJson(response, 200, {
-      courses: current.search.courses,
+      courses: current.search.courses.map(course=>({...course,officialData:{...course.officialData,durationRaw:current.search.detailedByCode.get(course.code)?.duration??'',sourceSnapshotDate:current.metadata.snapshotDate,scheduledOpeningDates:current.search.detailedByCode.get(course.code)?.sessionAvailability?.scheduledOpeningDates??[]}})),
       catalogue: catalogueStore.status(),
     })
     return
@@ -225,9 +229,8 @@ const server = http.createServer(async (request, response) => {
       let result
 
       try {
-        result = await buildPathwayWithLuna(profile, {
-          catalogue: catalogueStore.current().search,
-        })
+        const fromAssistant=consumption && reportingTokenMatches(request.headers['x-a658-report-token'],consumption.token)
+        result = await trackConsumption(consumption?.ledger,fromAssistant?'assistant':'catalogue','pathway',()=>buildCataloguePathway(profile,catalogueStore.current(),buildPathwayWithLuna),calculatedUsage)
       } finally {
         activeLunaSearches -= 1
       }
@@ -327,11 +330,12 @@ const server = http.createServer(async (request, response) => {
       }
 
       activeLunaSearches += 1
+      const searchCatalogueVersion={snapshotDate:catalogueStore.current().metadata.snapshotDate,snapshotHash:catalogueStore.current().metadata.snapshotHash}
 
       let result
 
       try {
-        result = await searchWithLuna(query)
+        result = await trackConsumption(consumption?.ledger,consumption&&reportingTokenMatches(request.headers['x-a658-report-token'],consumption.token)?'assistant':'catalogue','search',()=>searchWithLuna(query),calculatedUsage)
       } finally {
         activeLunaSearches -= 1
       }
@@ -350,6 +354,7 @@ const server = http.createServer(async (request, response) => {
         ok: true,
         query,
         ...result,
+        catalogue:searchCatalogueVersion,
       })
     } catch (error) {
       if (error instanceof HttpError) {

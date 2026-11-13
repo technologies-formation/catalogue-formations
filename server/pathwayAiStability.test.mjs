@@ -14,6 +14,59 @@ function response(output) {
   }
 }
 
+for (const destination of ['omitted', 'optionalSteps', 'recommendedSteps']) {
+  test(`PACIFIC reste candidat sans ajout ni promotion automatiques : ${destination}`, async () => {
+    const courses = [
+      { code: 'SEM1192', title: 'Socle managérial synthétique', duration: '2 jours',
+        officialData: { titleRaw: 'Socle managérial synthétique', publicRaw: 'Manager' } },
+      { code: 'SEM1174', title: 'Pacific : Leadership et gestion d’équipe', duration: '8 heures',
+        prerequisites: 'Être inscrite ou inscrit dans le programme des nouvelles et nouveaux managers.',
+        officialData: { titleRaw: 'Pacific : Leadership et gestion d’équipe', publicRaw: 'Manager',
+          targetAudienceRaw: 'Formation réservée aux nouvelles et nouveaux managers' } },
+    ]
+    const catalogue = {
+      officialCodes: courses.map(c => c.code), ultraCompactCatalogue: courses.map(c => [c.code, c.title]),
+      detailedByCode: new Map(courses.map(c => [c.code, c])), courseByCode: new Map(courses.map(c => [c.code, c])),
+    }
+    const plan = { abstain: false, summary: 'Socle sélectionné selon le besoin.',
+      recommendedSteps: [{ code: 'SEM1192', rationale: 'Socle pertinent.' }], optionalSteps: [], informationalCourses: [], gaps: [] }
+    if (destination !== 'omitted') plan[destination].push({ code: 'SEM1174', rationale: 'Travailler le feedback.' })
+    const replies = [response({ interpretedGoal: 'Conduire mes entretiens', codes: ['SEM1192'] }), response(plan)]
+    const requests = []
+    const result = await buildPathwayWithLuna({ personnelCategory: 'PAT', managerStatus: 'Nouveau manager',
+      objective: 'Conduire mes entretiens de feedback', timeAvailable: '5 jours' },
+    { catalogue, apiKey: 'fake-key', fetchImpl: async (_url, options) => {
+      requests.push(JSON.parse(options.body)); return replies.shift()
+    } })
+    assert.match(requests[1].input, /SEM1174/)
+    assert.match(requests[1].instructions, /ne recommande pas PACIFIC.*seul statut de nouveau manager/)
+    const all = [...result.recommendedSteps, ...result.optionalSteps, ...result.informationalCourses]
+    if (destination === 'omitted') {
+      assert.equal(all.some(item => item.course.code === 'SEM1174'), false)
+      assert.equal(result.durationSummary.recommendedHours, 16)
+    } else {
+      const selected = result[destination].find(item => item.course.code === 'SEM1174')
+      assert.ok(selected)
+      assert.match(selected.rationale, /êtes-vous inscrit ou inscrite au programme requis/)
+      assert.match(selected.rationale, /vérifiez ce point avec vos RH/)
+      assert.equal(all.filter(item => item.course.code === 'SEM1174').length, 1)
+      assert.equal(result.durationSummary.recommendedHours, destination === 'recommendedSteps' ? 24 : 16)
+    }
+  })
+}
+
+test('aucune inscription à un programme n’est inventée quand la fiche n’en indique pas', async () => {
+  const course = { code: 'SYNTHETIC', title: 'Leadership synthétique', officialData: { titleRaw: 'Leadership synthétique', publicRaw: 'Tout public' } }
+  const catalogue = { officialCodes: [course.code], ultraCompactCatalogue: [[course.code, course.title]],
+    detailedByCode: new Map([[course.code, course]]), courseByCode: new Map([[course.code, course]]) }
+  const replies = [response({ interpretedGoal: 'Progresser en leadership', codes: [course.code] }),
+    response({ abstain: false, summary: 'Socle.', recommendedSteps: [{ code: course.code, rationale: 'Progresser en leadership.' }],
+      optionalSteps: [], informationalCourses: [], gaps: [] })]
+  const result = await buildPathwayWithLuna({ objective: 'Progresser en leadership' },
+    { catalogue, apiKey: 'fake-key', fetchImpl: async () => replies.shift() })
+  assert.equal(result.recommendedSteps[0].rationale, 'Progresser en leadership.')
+})
+
 test('stabilise le parcours IA générative PAT sur les deux fondations institutionnelles', async () => {
   const courses = [
     {
@@ -201,8 +254,9 @@ test('écarte une limite qui attribue au parcours recommandé des cours non rete
 
   assert.deepEqual(
     result.recommendedSteps.map(({ course }) => course.code),
-    ['SEM1192', 'SEM1174'],
+    ['SEM1192'],
   )
+  assert.ok(result.optionalSteps.some(({ course }) => course.code === 'SEM1174'))
   assert.deepEqual(result.gaps, [
     'Le catalogue ne propose pas de formation dédiée au travail à distance.',
   ])
