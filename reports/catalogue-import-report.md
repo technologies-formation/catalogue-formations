@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-12
+- Date du snapshot : 2026-11-13
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 117.0 secondes
-- Taille du JSON final : 2.08 Mio (2176616 octets)
-- Empreinte SHA-256 du snapshot : `96e312dc438a1af21a59c4d6cb5a612573e33c2529e129dbf53b9e35aac76ab4`
+- Durée totale de l’import : 127.8 secondes
+- Taille du JSON final : 2.08 Mio (2178310 octets)
+- Empreinte SHA-256 du snapshot : `42e5dbb2e30a568bc076fe7fb4f5fb818924bae0d5dd9bcd513426046a22655e`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1612
-- Codes uniques : 1057
+- Occurrences détectées dans l’index : 1613
+- Codes uniques : 1058
 - Occurrences éliminées par déduplication : 555
 - Formations présentes dans plusieurs offres : 284
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1057
+- Fiches récupérées avec succès : 1058
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,8 +22,8 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1056 |
-| Cours dans le candidat | 1057 |
+| Cours dans le snapshot officiel | 1057 |
+| Cours dans le candidat | 1058 |
 | Cours ajoutés | 1 |
 | Cours supprimés | 0 |
 | Cours modifiés | 5 |
@@ -34,7 +34,7 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| EO-046WEB | Mémoriser à l'école \| Comment aider les élèves à mieux retenir, et à retenir durablement ? | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Capacités transversales |
+| OMP-001CAA | Connaitre ,comprendre et utiliser les outils de CAA développés pour l'OMP | DIP-OMP - Offre formation de l'OMP | DGOMP/SRH | Formations spécifiques |
 
 ### Cours supprimés
 
@@ -44,15 +44,16 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-01610 | TDAH et CO - Outils pour gérer l'hétérogénéité des élèves dont les élèves TDAH | `publicRaw` : « Enseignants du CO + ES II » → « Enseignants de l' EP - CO - ES II »<br>`targetAudienceRaw` : « Enseignantes et enseignants de l'ESI et de l'ESII » → « Enseignantes et enseignants de l'enseignement primaire, du CO et de l'ESII » |
-| OMP-001HY | Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false »<br>`scheduledOpeningDates` : « 2026-11-18 » → «  » |
-| S2-612 | Rapports inégalitaires de genre à l'école : comprendre et agir | `hasOpenSession` : « true » → « false » |
-| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « false » → « true » |
-| SEM1215 | Les neurosciences au service du management | `hasOpenSession` : « true » → « false » |
+| EP-085EVEN | Formation institutionnelle obligatoire Éducation numérique 7P-8P En différé | `hasOpenSession` : « true » → « false » |
+| FP230 | Techniques Optimisation Potentiel (TOP) - Formation 1er niveau | `hasOpenSession` : « false » → « true » |
+| FP255 | Sport et Santé - Bilan fonctionnel | `hasOpenSession` : « true » → « false » |
+| SEM1246 | Renforcer son esprit critique à l'ère de l'IA et de la désinformation | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-Aucun champ descriptif long n’a changé.
+| Code | Intitulé candidat | Champs modifiés |
+| --- | --- | --- |
+| EO-046WEB | Mémoriser à l'école \| Comment aider les élèves à mieux retenir, et à retenir durablement ? | `objectivesRaw`, `additionalInformationRaw` |
 
 ### Changements d’offres
 
@@ -101,7 +102,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DIP-CO - Offre de formation du Cycle d'orientation | 215 | 215 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 321 | 321 |
 | DIP-ES II - Offre de formation de l'ES II | 230 | 230 |
-| DIP-OMP - Offre formation de l'OMP | 227 | 227 |
+| DIP-OMP - Offre formation de l'OMP | 228 | 228 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
 | POLICE - CFPS - Centre de Formation de la Police | 191 | 191 |
 | Pouvoir Judiciaire - Offre de formation du Pouvoir judiciaire | 54 | 54 |
@@ -110,17 +111,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1057/1057 | 100.0 % |
-| `domainRaw` | 1057/1057 | 100.0 % |
-| `themeRaw` | 990/1057 | 93.7 % |
-| `publicRaw` | 942/1057 | 89.1 % |
-| `durationRaw` | 1037/1057 | 98.1 % |
-| `targetAudienceRaw` | 940/1057 | 88.9 % |
-| `generalInformationRaw` | 518/1057 | 49.0 % |
-| `objectivesRaw` | 1004/1057 | 95.0 % |
-| `contentRaw` | 917/1057 | 86.8 % |
-| `prerequisitesRaw` | 370/1057 | 35.0 % |
-| `additionalInformationRaw` | 319/1057 | 30.2 % |
+| `organizingEntityRaw` | 1058/1058 | 100.0 % |
+| `domainRaw` | 1058/1058 | 100.0 % |
+| `themeRaw` | 991/1058 | 93.7 % |
+| `publicRaw` | 942/1058 | 89.0 % |
+| `durationRaw` | 1038/1058 | 98.1 % |
+| `targetAudienceRaw` | 941/1058 | 88.9 % |
+| `generalInformationRaw` | 518/1058 | 49.0 % |
+| `objectivesRaw` | 1005/1058 | 95.0 % |
+| `contentRaw` | 918/1058 | 86.8 % |
+| `prerequisitesRaw` | 370/1058 | 35.0 % |
+| `additionalInformationRaw` | 319/1058 | 30.2 % |
 
 ### Correspondance des libellés officiels
 
@@ -167,8 +168,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
-- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
@@ -205,7 +206,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-12T12:32:52.614Z
-- Snapshot candidat validé : 2026-11-12
-- Empreinte SHA-256 : `96e312dc438a1af21a59c4d6cb5a612573e33c2529e129dbf53b9e35aac76ab4`
+- Date et heure de promotion : 2026-11-13T12:05:53.095Z
+- Snapshot candidat validé : 2026-11-13
+- Empreinte SHA-256 : `42e5dbb2e30a568bc076fe7fb4f5fb818924bae0d5dd9bcd513426046a22655e`
 - Promotion manuelle confirmée.
