@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-17
+- Date du snapshot : 2026-11-18
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 146.0 secondes
-- Taille du JSON final : 2.11 Mio (2207294 octets)
-- Empreinte SHA-256 du snapshot : `36bd86182ac5dafe81e47c0edf0edc7af331e3de633431f05e308ce062e5a0ff`
+- Durée totale de l’import : 116.5 secondes
+- Taille du JSON final : 2.11 Mio (2209281 octets)
+- Empreinte SHA-256 du snapshot : `ce66dc9ea98342b5aae7f3db76b5408ce983d69108747a3b23695287170583cd`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1628
-- Codes uniques : 1073
+- Occurrences détectées dans l’index : 1629
+- Codes uniques : 1074
 - Occurrences éliminées par déduplication : 555
 - Formations présentes dans plusieurs offres : 284
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1073
+- Fiches récupérées avec succès : 1074
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1058 |
-| Cours dans le candidat | 1073 |
-| Cours ajoutés | 15 |
+| Cours dans le snapshot officiel | 1073 |
+| Cours dans le candidat | 1074 |
+| Cours ajoutés | 1 |
 | Cours supprimés | 0 |
-| Cours modifiés | 9 |
+| Cours modifiés | 7 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,21 +34,7 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| EP-095EVEN | Table ronde : Enseigner au cycle élémentaire | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Capacités transversales |
-| FSM012 | Moniteurs sanitaires - refresh BLS-AED (Generic provider) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD001 | Accompagnement des stagiaires (ADS) - base | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD022 | Coach FOBA | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD170 | Formateurs TTI (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD171 | Formateurs Tir (technique) | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD177 | Cours cadre TTI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD183 | Cours cadre Tir | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD207 | BFFA - M1 : Animer des sessions de formation pour des groupes d'adultes (FFA CF-AF). | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD240 | Coach FOI | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD373 | Accompagnement des stagiaires - Refresh | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD418 | Formation continue pour les coaches de la pratique - module 1: Rôle et tâches de la/du coach et formulation des objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD419 | Formation continue pour les coaches de la pratique - module 2: planifier, organiser et suivre les objectifs. | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| OCD422 | Formation continue pour les coaches de la pratique - module 3: Evaluation de l'apprentissage et du transfert | Détention - Offre de formation de l'OCD | Centre de formation de l'OCD | Formateurs |
-| S2-920 | Contextes, difficultés et décrochage scolaires dans une école inclusive | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
+| S2-921 | Besoins particuliers et différenciation de l'enseignement | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
 
 ### Cours supprimés
 
@@ -58,19 +44,19 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| CO-1172HES | FIO IOSP : VISITES HES | `hasOpenSession` : « true » → « false » |
-| EP-088EVEN | Prévention numérique 7P-8P : atelier Action Innocence | `hasOpenSession` : « false » → « true » |
-| FP020 | Pilotage automobile | `hasOpenSession` : « false » → « true » |
-| FP109 | Techniques d'optimisation du potentiel (TOP) - Praticiens - Cours Cadre | `hasOpenSession` : « false » → « true » |
-| FP192 | Compétences émotionnelles | `hasOpenSession` : « true » → « false » |
-| PJ-0042 | Introduction aux systèmes d'information<br>La convocation est directement adressée aux collaboratrices et collaborateurs par RH-Formation | `hasScheduledSession` : « false » → « true »<br>`scheduledOpeningDates` : «  » → « 2027-01-01,2027-02-01,2027-03-01,2027-04-01,2027-05-01,2027-06-01,2027-07-01,2027-08-01,2027-09-01,2027-10-01 » |
-| SEM1089 | Le management transversal | `hasOpenSession` : « false » → « true » |
-| SEM1149 | La négociation entre stratégie et relation | `hasOpenSession` : « true » → « false » |
-| TRT382 | SIRH Suite 9: Actes par étapes | `hasOpenSession` : « true » → « false » |
+| EP-095EVEN | Table ronde : Enseigner au cycle élémentaire | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false »<br>`scheduledOpeningDates` : « 2026-11-18 » → «  » |
+| S2-920 | Contextes, difficultés et décrochage scolaires dans une école inclusive | `targetAudienceRaw` : « Personnel enseignant du secondaire I et II, (notamment du préqualifiant), et de l?enseignement spécialisé » → « Personnel enseignant du secondaire I et II, (notamment du préqualifiant), et de l'enseignement spécialisé » |
+| S2-PATC017 | Formation continue pour les médiatrices et médiateurs du réseau de médiation de l'ESII. | `hasOpenSession` : « true » → « false » |
+| S2-PATC018 | Médiation scolaire : formation de base pour rejoindre le réseau de médiation de l'ESII | `hasOpenSession` : « false » → « true » |
+| SEM0737 | Les bases de la gestion de projet | `hasOpenSession` : « true » → « false » |
+| SEM1089 | Le management transversal | `hasOpenSession` : « true » → « false » |
+| SEM1216 | Lecture rapide à l'ère numérique | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-Aucun champ descriptif long n’a changé.
+| Code | Intitulé candidat | Champs modifiés |
+| --- | --- | --- |
+| EP-095EVEN | Table ronde : Enseigner au cycle élémentaire | `objectivesRaw` |
 
 ### Changements d’offres
 
@@ -117,7 +103,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DIP - Service de la formation DRH-DIP | 6 | 6 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 215 | 215 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 322 | 322 |
-| DIP-ES II - Offre de formation de l'ES II | 231 | 231 |
+| DIP-ES II - Offre de formation de l'ES II | 232 | 232 |
 | DIP-OMP - Offre formation de l'OMP | 228 | 228 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
 | POLICE - CFPS - Centre de Formation de la Police | 191 | 191 |
@@ -127,17 +113,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1073/1073 | 100.0 % |
-| `domainRaw` | 1073/1073 | 100.0 % |
-| `themeRaw` | 993/1073 | 92.5 % |
-| `publicRaw` | 957/1073 | 89.2 % |
-| `durationRaw` | 1053/1073 | 98.1 % |
-| `targetAudienceRaw` | 955/1073 | 89.0 % |
-| `generalInformationRaw` | 531/1073 | 49.5 % |
-| `objectivesRaw` | 1019/1073 | 95.0 % |
-| `contentRaw` | 933/1073 | 87.0 % |
-| `prerequisitesRaw` | 372/1073 | 34.7 % |
-| `additionalInformationRaw` | 322/1073 | 30.0 % |
+| `organizingEntityRaw` | 1074/1074 | 100.0 % |
+| `domainRaw` | 1074/1074 | 100.0 % |
+| `themeRaw` | 994/1074 | 92.6 % |
+| `publicRaw` | 957/1074 | 89.1 % |
+| `durationRaw` | 1054/1074 | 98.1 % |
+| `targetAudienceRaw` | 956/1074 | 89.0 % |
+| `generalInformationRaw` | 531/1074 | 49.4 % |
+| `objectivesRaw` | 1020/1074 | 95.0 % |
+| `contentRaw` | 934/1074 | 87.0 % |
+| `prerequisitesRaw` | 372/1074 | 34.6 % |
+| `additionalInformationRaw` | 322/1074 | 30.0 % |
 
 ### Correspondance des libellés officiels
 
@@ -177,19 +163,19 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
-- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
+- TRT701 — Informations complémentaires (`additionalInformationRaw`)
+- TRT703 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
-- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
-- EP-373FEX — Généralités (`generalInformationRaw`)
+- TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
+- EP-373FEX — Généralités (`generalInformationRaw`)
 - CO-1172HES — Contenu (`contentRaw`)
 - S2-301 — Informations complémentaires (`additionalInformationRaw`)
 - EP-002ANG — Pré-requis (`prerequisitesRaw`)
@@ -222,7 +208,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-17T13:06:49.125Z
-- Snapshot candidat validé : 2026-11-17
-- Empreinte SHA-256 : `36bd86182ac5dafe81e47c0edf0edc7af331e3de633431f05e308ce062e5a0ff`
+- Date et heure de promotion : 2026-11-18T12:57:38.895Z
+- Snapshot candidat validé : 2026-11-18
+- Empreinte SHA-256 : `ce66dc9ea98342b5aae7f3db76b5408ce983d69108747a3b23695287170583cd`
 - Promotion manuelle confirmée.
