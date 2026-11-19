@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-18
+- Date du snapshot : 2026-11-19
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 116.5 secondes
-- Taille du JSON final : 2.11 Mio (2209281 octets)
-- Empreinte SHA-256 du snapshot : `ce66dc9ea98342b5aae7f3db76b5408ce983d69108747a3b23695287170583cd`
+- Durée totale de l’import : 142.0 secondes
+- Taille du JSON final : 2.11 Mio (2212917 octets)
+- Empreinte SHA-256 du snapshot : `6ffeecd7141c4b0fb7b8715d2e328962928949c53bbff6af4795ff9b1f3b0c35`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1629
-- Codes uniques : 1074
+- Occurrences détectées dans l’index : 1631
+- Codes uniques : 1076
 - Occurrences éliminées par déduplication : 555
 - Formations présentes dans plusieurs offres : 284
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1074
+- Fiches récupérées avec succès : 1076
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1073 |
-| Cours dans le candidat | 1074 |
-| Cours ajoutés | 1 |
+| Cours dans le snapshot officiel | 1074 |
+| Cours dans le candidat | 1076 |
+| Cours ajoutés | 2 |
 | Cours supprimés | 0 |
-| Cours modifiés | 7 |
+| Cours modifiés | 5 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,7 +34,8 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| S2-921 | Besoins particuliers et différenciation de l'enseignement | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
+| S2-922 | Travail en classe, rapports à l'école, aux savoirs et apprentissages à l'adolescence ; enseigner explicitement | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
+| S2-923 | Evaluation critériée et alignement curriculaire | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
 
 ### Cours supprimés
 
@@ -44,19 +45,16 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-095EVEN | Table ronde : Enseigner au cycle élémentaire | `hasOpenSession` : « false » → « true »<br>`hasScheduledSession` : « true » → « false »<br>`scheduledOpeningDates` : « 2026-11-18 » → «  » |
-| S2-920 | Contextes, difficultés et décrochage scolaires dans une école inclusive | `targetAudienceRaw` : « Personnel enseignant du secondaire I et II, (notamment du préqualifiant), et de l?enseignement spécialisé » → « Personnel enseignant du secondaire I et II, (notamment du préqualifiant), et de l'enseignement spécialisé » |
-| S2-PATC017 | Formation continue pour les médiatrices et médiateurs du réseau de médiation de l'ESII. | `hasOpenSession` : « true » → « false » |
-| S2-PATC018 | Médiation scolaire : formation de base pour rejoindre le réseau de médiation de l'ESII | `hasOpenSession` : « false » → « true » |
-| SEM0737 | Les bases de la gestion de projet | `hasOpenSession` : « true » → « false » |
-| SEM1089 | Le management transversal | `hasOpenSession` : « true » → « false » |
-| SEM1216 | Lecture rapide à l'ère numérique | `hasOpenSession` : « true » → « false » |
+| EP-996 | Accueillir un élève allophone nouvellement arrivé en classe régulière : pistes d'action | `hasOpenSession` : « false » → « true » |
+| OMP-001HY | Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire | `hasOpenSession` : « true » → « false » |
+| SEM-10615 | CO-ESII / Le film au coeur des enjeux humains et sociaux de l'Amérique du Sud avec le festival FILMAR | `hasOpenSession` : « true » → « false » |
+| SEM1122 | Ajuster sa voix et son comportement non verbal, forces d'influence | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| EP-095EVEN | Table ronde : Enseigner au cycle élémentaire | `objectivesRaw` |
+| S2-EPS03 | Escalade murs et zones blocs : accréditation (II) | `additionalInformationRaw` |
 
 ### Changements d’offres
 
@@ -103,7 +101,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DIP - Service de la formation DRH-DIP | 6 | 6 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 215 | 215 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 322 | 322 |
-| DIP-ES II - Offre de formation de l'ES II | 232 | 232 |
+| DIP-ES II - Offre de formation de l'ES II | 234 | 234 |
 | DIP-OMP - Offre formation de l'OMP | 228 | 228 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
 | POLICE - CFPS - Centre de Formation de la Police | 191 | 191 |
@@ -113,17 +111,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1074/1074 | 100.0 % |
-| `domainRaw` | 1074/1074 | 100.0 % |
-| `themeRaw` | 994/1074 | 92.6 % |
-| `publicRaw` | 957/1074 | 89.1 % |
-| `durationRaw` | 1054/1074 | 98.1 % |
-| `targetAudienceRaw` | 956/1074 | 89.0 % |
-| `generalInformationRaw` | 531/1074 | 49.4 % |
-| `objectivesRaw` | 1020/1074 | 95.0 % |
-| `contentRaw` | 934/1074 | 87.0 % |
-| `prerequisitesRaw` | 372/1074 | 34.6 % |
-| `additionalInformationRaw` | 322/1074 | 30.0 % |
+| `organizingEntityRaw` | 1076/1076 | 100.0 % |
+| `domainRaw` | 1076/1076 | 100.0 % |
+| `themeRaw` | 996/1076 | 92.6 % |
+| `publicRaw` | 958/1076 | 89.0 % |
+| `durationRaw` | 1056/1076 | 98.1 % |
+| `targetAudienceRaw` | 958/1076 | 89.0 % |
+| `generalInformationRaw` | 531/1076 | 49.3 % |
+| `objectivesRaw` | 1022/1076 | 95.0 % |
+| `contentRaw` | 936/1076 | 87.0 % |
+| `prerequisitesRaw` | 372/1076 | 34.6 % |
+| `additionalInformationRaw` | 322/1076 | 29.9 % |
 
 ### Correspondance des libellés officiels
 
@@ -164,16 +162,16 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
 - TRT700 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
-- TRT024 — Informations complémentaires (`additionalInformationRaw`)
-- TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
+- TRT023 — Informations complémentaires (`additionalInformationRaw`)
+- TRT024 — Informations complémentaires (`additionalInformationRaw`)
 - EP-372FEX — Généralités (`generalInformationRaw`)
 - EP-373FEX — Généralités (`generalInformationRaw`)
 - CO-1172HES — Contenu (`contentRaw`)
@@ -208,7 +206,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-18T12:57:38.895Z
-- Snapshot candidat validé : 2026-11-18
-- Empreinte SHA-256 : `ce66dc9ea98342b5aae7f3db76b5408ce983d69108747a3b23695287170583cd`
+- Date et heure de promotion : 2026-11-19T12:50:57.991Z
+- Snapshot candidat validé : 2026-11-19
+- Empreinte SHA-256 : `6ffeecd7141c4b0fb7b8715d2e328962928949c53bbff6af4795ff9b1f3b0c35`
 - Promotion manuelle confirmée.
