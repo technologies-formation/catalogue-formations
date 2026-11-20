@@ -1,10 +1,10 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-19
+- Date du snapshot : 2026-11-20
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 142.0 secondes
-- Taille du JSON final : 2.11 Mio (2212917 octets)
-- Empreinte SHA-256 du snapshot : `6ffeecd7141c4b0fb7b8715d2e328962928949c53bbff6af4795ff9b1f3b0c35`
+- Durée totale de l’import : 118.1 secondes
+- Taille du JSON final : 2.11 Mio (2212943 octets)
+- Empreinte SHA-256 du snapshot : `988f864c7063a8cf6b45572abd50d3ac81fc58dc0b99064a75f2bde3a4b83be5`
 
 ## Synthèse
 
@@ -22,20 +22,17 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1074 |
+| Cours dans le snapshot officiel | 1076 |
 | Cours dans le candidat | 1076 |
-| Cours ajoutés | 2 |
+| Cours ajoutés | 0 |
 | Cours supprimés | 0 |
-| Cours modifiés | 5 |
+| Cours modifiés | 6 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-| Code | Intitulé | Offres | Entité | Domaine |
-| --- | --- | --- | --- | --- |
-| S2-922 | Travail en classe, rapports à l'école, aux savoirs et apprentissages à l'adolescence ; enseigner explicitement | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
-| S2-923 | Evaluation critériée et alignement curriculaire | DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Profession enseignante |
+Aucun cours ajouté.
 
 ### Cours supprimés
 
@@ -45,16 +42,17 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-996 | Accueillir un élève allophone nouvellement arrivé en classe régulière : pistes d'action | `hasOpenSession` : « false » → « true » |
-| OMP-001HY | Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire | `hasOpenSession` : « true » → « false » |
-| SEM-10615 | CO-ESII / Le film au coeur des enjeux humains et sociaux de l'Amérique du Sud avec le festival FILMAR | `hasOpenSession` : « true » → « false » |
-| SEM1122 | Ajuster sa voix et son comportement non verbal, forces d'influence | `hasOpenSession` : « true » → « false » |
+| EP-088EVEN | Prévention numérique 7P-8P : atelier Action Innocence | `hasOpenSession` : « true » → « false » |
+| OMP-001HY | Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire | `hasOpenSession` : « false » → « true » |
+| SEM-3159 | LabTice, le nouveau logiciel de labo langues pour l'ESI et l'ESII / formation pour les référents | `hasOpenSession` : « true » → « false » |
+| SEM-P1519 | EP-OMP-CO-ESII / Réaliser un film d'animation avec sa classe - Stop Motion / Formation hybride | `hasOpenSession` : « true » → « false » |
+| SEM1183 | Prendre soin de soi pour rester performant : intégrer les TOP dans son management | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
-| S2-EPS03 | Escalade murs et zones blocs : accréditation (II) | `additionalInformationRaw` |
+| S2-EPS03 | Escalade murs et zones blocs : accréditation (II) | `objectivesRaw` |
 
 ### Changements d’offres
 
@@ -165,8 +163,8 @@ Ces sections n’ont pas été copiées car elles contenaient une adresse élect
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
 - TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
-- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
+- SFIN-002 — Généralités (`generalInformationRaw`)
 - SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
@@ -206,7 +204,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-19T12:50:57.991Z
-- Snapshot candidat validé : 2026-11-19
-- Empreinte SHA-256 : `6ffeecd7141c4b0fb7b8715d2e328962928949c53bbff6af4795ff9b1f3b0c35`
+- Date et heure de promotion : 2026-11-20T12:45:41.188Z
+- Snapshot candidat validé : 2026-11-20
+- Empreinte SHA-256 : `988f864c7063a8cf6b45572abd50d3ac81fc58dc0b99064a75f2bde3a4b83be5`
 - Promotion manuelle confirmée.
