@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-20
+- Date du snapshot : 2026-11-23
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 118.1 secondes
-- Taille du JSON final : 2.11 Mio (2212943 octets)
-- Empreinte SHA-256 du snapshot : `988f864c7063a8cf6b45572abd50d3ac81fc58dc0b99064a75f2bde3a4b83be5`
+- Durée totale de l’import : 144.2 secondes
+- Taille du JSON final : 2.11 Mio (2214546 octets)
+- Empreinte SHA-256 du snapshot : `42ad69eb07d0074bb88f889f97507c12d70f4ff961ca38d5c65cfd814accaa2b`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1631
-- Codes uniques : 1076
+- Occurrences détectées dans l’index : 1632
+- Codes uniques : 1077
 - Occurrences éliminées par déduplication : 555
 - Formations présentes dans plusieurs offres : 284
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1076
+- Fiches récupérées avec succès : 1077
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -23,16 +23,18 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 | Indicateur | Valeur |
 | --- | ---: |
 | Cours dans le snapshot officiel | 1076 |
-| Cours dans le candidat | 1076 |
-| Cours ajoutés | 0 |
+| Cours dans le candidat | 1077 |
+| Cours ajoutés | 1 |
 | Cours supprimés | 0 |
-| Cours modifiés | 6 |
+| Cours modifiés | 1 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
 ### Cours ajoutés
 
-Aucun cours ajouté.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| EP-1373ETB | L'autorité pédagogique aujourd'hui, et si on changeait de paradigme ? | DIP-EP - Offre de formation de l'enseignement primaire | DGEO/SRH/Secteur de la formation continue EO | Profession enseignante |
 
 ### Cours supprimés
 
@@ -42,17 +44,11 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-088EVEN | Prévention numérique 7P-8P : atelier Action Innocence | `hasOpenSession` : « true » → « false » |
-| OMP-001HY | Module autocontrôle: Bonnes pratiques d'hygiène & maîtrise du risque sanitaire | `hasOpenSession` : « false » → « true » |
-| SEM-3159 | LabTice, le nouveau logiciel de labo langues pour l'ESI et l'ESII / formation pour les référents | `hasOpenSession` : « true » → « false » |
-| SEM-P1519 | EP-OMP-CO-ESII / Réaliser un film d'animation avec sa classe - Stop Motion / Formation hybride | `hasOpenSession` : « true » → « false » |
-| SEM1183 | Prendre soin de soi pour rester performant : intégrer les TOP dans son management | `hasOpenSession` : « true » → « false » |
+| PJ-0068 | Sensibilisation à la sécurité du système d'information | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-| Code | Intitulé candidat | Champs modifiés |
-| --- | --- | --- |
-| S2-EPS03 | Escalade murs et zones blocs : accréditation (II) | `objectivesRaw` |
+Aucun champ descriptif long n’a changé.
 
 ### Changements d’offres
 
@@ -98,7 +94,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
 | DIP - Service de la formation DRH-DIP | 6 | 6 |
 | DIP-CO - Offre de formation du Cycle d'orientation | 215 | 215 |
-| DIP-EP - Offre de formation de l'enseignement primaire | 322 | 322 |
+| DIP-EP - Offre de formation de l'enseignement primaire | 323 | 323 |
 | DIP-ES II - Offre de formation de l'ES II | 234 | 234 |
 | DIP-OMP - Offre formation de l'OMP | 228 | 228 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
@@ -109,17 +105,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1076/1076 | 100.0 % |
-| `domainRaw` | 1076/1076 | 100.0 % |
-| `themeRaw` | 996/1076 | 92.6 % |
-| `publicRaw` | 958/1076 | 89.0 % |
-| `durationRaw` | 1056/1076 | 98.1 % |
-| `targetAudienceRaw` | 958/1076 | 89.0 % |
-| `generalInformationRaw` | 531/1076 | 49.3 % |
-| `objectivesRaw` | 1022/1076 | 95.0 % |
-| `contentRaw` | 936/1076 | 87.0 % |
-| `prerequisitesRaw` | 372/1076 | 34.6 % |
-| `additionalInformationRaw` | 322/1076 | 29.9 % |
+| `organizingEntityRaw` | 1077/1077 | 100.0 % |
+| `domainRaw` | 1077/1077 | 100.0 % |
+| `themeRaw` | 997/1077 | 92.6 % |
+| `publicRaw` | 959/1077 | 89.0 % |
+| `durationRaw` | 1057/1077 | 98.1 % |
+| `targetAudienceRaw` | 959/1077 | 89.0 % |
+| `generalInformationRaw` | 531/1077 | 49.3 % |
+| `objectivesRaw` | 1023/1077 | 95.0 % |
+| `contentRaw` | 936/1077 | 86.9 % |
+| `prerequisitesRaw` | 372/1077 | 34.5 % |
+| `additionalInformationRaw` | 322/1077 | 29.9 % |
 
 ### Correspondance des libellés officiels
 
@@ -204,7 +200,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-20T12:45:41.188Z
-- Snapshot candidat validé : 2026-11-20
-- Empreinte SHA-256 : `988f864c7063a8cf6b45572abd50d3ac81fc58dc0b99064a75f2bde3a4b83be5`
+- Date et heure de promotion : 2026-11-23T14:24:47.004Z
+- Snapshot candidat validé : 2026-11-23
+- Empreinte SHA-256 : `42ad69eb07d0074bb88f889f97507c12d70f4ff961ca38d5c65cfd814accaa2b`
 - Promotion manuelle confirmée.
