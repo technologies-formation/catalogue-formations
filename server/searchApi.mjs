@@ -11,6 +11,7 @@ import {
 import { buildPathwayWithLuna } from './pathwayEngine.mjs'
 import { createStaticFrontendHandler } from './staticFrontend.mjs'
 import { createCorsHandler } from './cors.mjs'
+import { createCataloguePeerMonitoring } from './peerMonitoring.mjs'
 
 const PORT = Number(process.env.PORT || 8787)
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
@@ -30,6 +31,7 @@ const MAX_CONCURRENT_SEARCHES = positiveIntegerEnv(
 let activeLunaSearches = 0
 const rateLimits = new Map()
 const serveStaticFrontend = createStaticFrontendHandler()
+const peerMonitor = createCataloguePeerMonitoring()
 
 function getClientIp(request) {
   if (TRUST_PROXY) {
@@ -412,6 +414,8 @@ await initializeCatalogue()
 server.once('listening', () => {
   const stopSync = startCatalogueSync()
   server.once('close', stopSync)
+  peerMonitor?.start()
+  server.once('close', () => peerMonitor?.stop())
 })
 
 server.listen(PORT, '0.0.0.0', () => {
