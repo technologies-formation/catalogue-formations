@@ -1,19 +1,19 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-24
+- Date du snapshot : 2026-11-25
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 146.4 secondes
-- Taille du JSON final : 2.11 Mio (2215688 octets)
-- Empreinte SHA-256 du snapshot : `f45cb5d1b1fb7549b519ce1a094a7efd9f852f042ba6175a45d8b19dd0a5a2bc`
+- Durée totale de l’import : 130.3 secondes
+- Taille du JSON final : 2.12 Mio (2219271 octets)
+- Empreinte SHA-256 du snapshot : `ec4d89bb16f8704ae5459a31778e60beaf5067469492eb9e211a3c9008d9065c`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1633
-- Codes uniques : 1078
-- Occurrences éliminées par déduplication : 555
-- Formations présentes dans plusieurs offres : 284
+- Occurrences détectées dans l’index : 1635
+- Codes uniques : 1079
+- Occurrences éliminées par déduplication : 556
+- Formations présentes dans plusieurs offres : 285
 - Nombre maximal d’offres pour une formation : 5
-- Fiches récupérées avec succès : 1078
+- Fiches récupérées avec succès : 1079
 - Fiches indisponibles : 0
 
 ## Comparaison avec le snapshot officiel
@@ -22,11 +22,11 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1077 |
-| Cours dans le candidat | 1078 |
+| Cours dans le snapshot officiel | 1078 |
+| Cours dans le candidat | 1079 |
 | Cours ajoutés | 1 |
 | Cours supprimés | 0 |
-| Cours modifiés | 6 |
+| Cours modifiés | 8 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
 
@@ -34,7 +34,7 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| CO-1172ENT | FIO IOSP : VISITES EN ENTREPRISE | DIP-CO - Offre de formation du Cycle d'orientation | DGEO/SRH/Secteur de la formation continue EO | Formation générale |
+| S2-381 | Pratiquer le dialogue philosophique en classe | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Sciences humaines et sociales |
 
 ### Cours supprimés
 
@@ -44,16 +44,19 @@ Aucun cours supprimé.
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| EP-1336ETB | Plans de travail/atelier/autonomie/Différenciation/Coopération | `targetAudienceRaw` : `null` → « Personnel enseignant CE+CM (MGEN*, ECSP, ECA, MDAS) Personnel enseignant OMP *maitresses et maitres généralistes titulaires de classe » |
-| FP211 | EC1 Processus d'évaluation SOF - Inscription participant-e-s | `hasOpenSession` : « true » → « false » |
-| OMP-084 | Le théâtre d'improvisation: un outil pédagogique ludique pour la cohésion de groupe et l'amélioration du climat scolaire. | `hasOpenSession` : « true » → « false » |
-| PJ-0068 | Sensibilisation à la sécurité du système d'information | `hasOpenSession` : « false » → « true » |
-| S2-221 | Narrative Across Media : Film and Literature in the ESL Classroom | `hasOpenSession` : « true » → « false » |
-| SEM-10266 | CO-ESII / Apprendre Javascript avec p5.js / Formation hybride | `hasOpenSession` : « true » → « false » |
+| FP192 | Compétences émotionnelles | `hasOpenSession` : « false » → « true » |
+| FP211 | EC1 Processus d'évaluation SOF - Inscription participant-e-s | `hasOpenSession` : « false » → « true » |
+| OMP-063 | Introduction aux notions de fonctions exécutives et attentionnelles dans le contexte scolaire | `hasOpenSession` : « true » → « false » |
+| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
-Aucun champ descriptif long n’a changé.
+| Code | Intitulé candidat | Champs modifiés |
+| --- | --- | --- |
+| CO-1172ENT | FIO IOSP : VISITES EN ENTREPRISE | `contentRaw` |
+| EO-046WEB | Mémoriser à l'école \| Comment aider les élèves à mieux retenir, et à retenir durablement ? | `additionalInformationRaw` |
+| EP-004EPP | Encadrer, planifier et sécuriser les activités scolaires (anciennement prévention des accidents) | `prerequisitesRaw` |
+| S2-920 | Contextes, difficultés et décrochage scolaires dans une école inclusive | `prerequisitesRaw` |
 
 ### Changements d’offres
 
@@ -98,9 +101,9 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Détention - Offre de formation de l'OCD | 70 | 70 |
 | DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
 | DIP - Service de la formation DRH-DIP | 6 | 6 |
-| DIP-CO - Offre de formation du Cycle d'orientation | 216 | 216 |
+| DIP-CO - Offre de formation du Cycle d'orientation | 217 | 217 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 323 | 323 |
-| DIP-ES II - Offre de formation de l'ES II | 234 | 234 |
+| DIP-ES II - Offre de formation de l'ES II | 235 | 235 |
 | DIP-OMP - Offre formation de l'OMP | 228 | 228 |
 | DIP-SEM - Offre de formation du Service Écoles-Médias | 143 | 143 |
 | POLICE - CFPS - Centre de Formation de la Police | 191 | 191 |
@@ -110,17 +113,17 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 
 | Champ | Présent | Pourcentage |
 | --- | ---: | ---: |
-| `organizingEntityRaw` | 1078/1078 | 100.0 % |
-| `domainRaw` | 1078/1078 | 100.0 % |
-| `themeRaw` | 998/1078 | 92.6 % |
-| `publicRaw` | 960/1078 | 89.1 % |
-| `durationRaw` | 1058/1078 | 98.1 % |
-| `targetAudienceRaw` | 961/1078 | 89.1 % |
-| `generalInformationRaw` | 531/1078 | 49.3 % |
-| `objectivesRaw` | 1023/1078 | 94.9 % |
-| `contentRaw` | 936/1078 | 86.8 % |
-| `prerequisitesRaw` | 373/1078 | 34.6 % |
-| `additionalInformationRaw` | 322/1078 | 29.9 % |
+| `organizingEntityRaw` | 1079/1079 | 100.0 % |
+| `domainRaw` | 1079/1079 | 100.0 % |
+| `themeRaw` | 999/1079 | 92.6 % |
+| `publicRaw` | 961/1079 | 89.1 % |
+| `durationRaw` | 1059/1079 | 98.1 % |
+| `targetAudienceRaw` | 962/1079 | 89.2 % |
+| `generalInformationRaw` | 531/1079 | 49.2 % |
+| `objectivesRaw` | 1024/1079 | 94.9 % |
+| `contentRaw` | 938/1079 | 86.9 % |
+| `prerequisitesRaw` | 374/1079 | 34.7 % |
+| `additionalInformationRaw` | 322/1079 | 29.8 % |
 
 ### Correspondance des libellés officiels
 
@@ -205,7 +208,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-24T14:46:48.342Z
-- Snapshot candidat validé : 2026-11-24
-- Empreinte SHA-256 : `f45cb5d1b1fb7549b519ce1a094a7efd9f852f042ba6175a45d8b19dd0a5a2bc`
+- Date et heure de promotion : 2026-11-25T14:10:15.989Z
+- Snapshot candidat validé : 2026-11-25
+- Empreinte SHA-256 : `ec4d89bb16f8704ae5459a31778e60beaf5067469492eb9e211a3c9008d9065c`
 - Promotion manuelle confirmée.
