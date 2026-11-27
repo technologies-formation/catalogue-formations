@@ -1,16 +1,16 @@
 # Rapport d’import du catalogue officiel
 
-- Date du snapshot : 2026-11-25
+- Date du snapshot : 2026-11-27
 - URL source : https://outils.ge.ch/referentiel/formation/CatalogueDescription/
-- Durée totale de l’import : 130.3 secondes
-- Taille du JSON final : 2.12 Mio (2219271 octets)
-- Empreinte SHA-256 du snapshot : `ec4d89bb16f8704ae5459a31778e60beaf5067469492eb9e211a3c9008d9065c`
+- Durée totale de l’import : 144.3 secondes
+- Taille du JSON final : 2.12 Mio (2218465 octets)
+- Empreinte SHA-256 du snapshot : `4f51c5facc065208db6ff6bd014e5a2eb787626ed84175e1672f3566a138d206`
 
 ## Synthèse
 
-- Occurrences détectées dans l’index : 1635
+- Occurrences détectées dans l’index : 1634
 - Codes uniques : 1079
-- Occurrences éliminées par déduplication : 556
+- Occurrences éliminées par déduplication : 555
 - Formations présentes dans plusieurs offres : 285
 - Nombre maximal d’offres pour une formation : 5
 - Fiches récupérées avec succès : 1079
@@ -22,10 +22,10 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Indicateur | Valeur |
 | --- | ---: |
-| Cours dans le snapshot officiel | 1078 |
+| Cours dans le snapshot officiel | 1079 |
 | Cours dans le candidat | 1079 |
 | Cours ajoutés | 1 |
-| Cours supprimés | 0 |
+| Cours supprimés | 1 |
 | Cours modifiés | 8 |
 | Cours dont les offres ont changé | 0 |
 | Anomalies techniques | 0 |
@@ -34,29 +34,31 @@ Les ajouts, suppressions et modifications sont des évolutions métier à examin
 
 | Code | Intitulé | Offres | Entité | Domaine |
 | --- | --- | --- | --- | --- |
-| S2-381 | Pratiquer le dialogue philosophique en classe | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II | Direction générale de l'enseig. secondaire II | Sciences humaines et sociales |
+| SEM-10547 | ESII / Gérer facilement les ressources bibliographiques avec Zotero et ZoteroBib / Formation autonome en ligne | DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Médias, image, numérique |
 
 ### Cours supprimés
 
-Aucun cours supprimé.
+| Code | Intitulé | Offres | Entité | Domaine |
+| --- | --- | --- | --- | --- |
+| SEM-10615 | CO-ESII / Le film au coeur des enjeux humains et sociaux de l'Amérique du Sud avec le festival FILMAR | DIP-CO - Offre de formation du Cycle d'orientation<br>DIP-ES II - Offre de formation de l'ES II<br>DIP-SEM - Offre de formation du Service Écoles-Médias | DIP-SEM / Secteur Formation | Sciences humaines et sociales |
 
 ### Cours modifiés — champs visibles ou utilisés
 
 | Code | Intitulé candidat | Changements |
 | --- | --- | --- |
-| FP192 | Compétences émotionnelles | `hasOpenSession` : « false » → « true » |
-| FP211 | EC1 Processus d'évaluation SOF - Inscription participant-e-s | `hasOpenSession` : « false » → « true » |
-| OMP-063 | Introduction aux notions de fonctions exécutives et attentionnelles dans le contexte scolaire | `hasOpenSession` : « true » → « false » |
-| SEM-P4001 | EP / Formation institutionnelle obligatoire / TBI (Base) pour le Cycle 2 | `hasOpenSession` : « true » → « false » |
+| DIP-008 | MiDip' - Lunchs thématiques pour les cadres du DIP | `hasOpenSession` : « false » → « true » |
+| EP-093MDAS | Circle Song et improvisation méthode sonoga© | `hasOpenSession` : « true » → « false » |
+| EP-094MDAS | Beatbox | `hasOpenSession` : « true » → « false » |
+| SEM-10348 | EP-CO-ESII-OMP / Esprit critique : gestion de l'incertitude (bayésianisme) | `hasOpenSession` : « true » → « false » |
+| SEM-P4002 | EP / Formation institutionnelle obligatoire / Tablettes numériques au service des apprentissages / Formation hybride | `hasOpenSession` : « true » → « false » |
+| SEM-P4009 | EP / Formation institutionnelle obligatoire / Science informatique pour les enseignants 5P-6P | `hasOpenSession` : « true » → « false » |
+| TRT1019 | Word 365 Formulaires et modèles | `hasOpenSession` : « true » → « false » |
 
 ### Cours modifiés — champs descriptifs longs
 
 | Code | Intitulé candidat | Champs modifiés |
 | --- | --- | --- |
 | CO-1172ENT | FIO IOSP : VISITES EN ENTREPRISE | `contentRaw` |
-| EO-046WEB | Mémoriser à l'école \| Comment aider les élèves à mieux retenir, et à retenir durablement ? | `additionalInformationRaw` |
-| EP-004EPP | Encadrer, planifier et sécuriser les activités scolaires (anciennement prévention des accidents) | `prerequisitesRaw` |
-| S2-920 | Contextes, difficultés et décrochage scolaires dans une école inclusive | `prerequisitesRaw` |
 
 ### Changements d’offres
 
@@ -101,7 +103,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | Détention - Offre de formation de l'OCD | 70 | 70 |
 | DF-OPE - L'offre de formation de l'OPE | 168 | 168 |
 | DIP - Service de la formation DRH-DIP | 6 | 6 |
-| DIP-CO - Offre de formation du Cycle d'orientation | 217 | 217 |
+| DIP-CO - Offre de formation du Cycle d'orientation | 216 | 216 |
 | DIP-EP - Offre de formation de l'enseignement primaire | 323 | 323 |
 | DIP-ES II - Offre de formation de l'ES II | 235 | 235 |
 | DIP-OMP - Offre formation de l'OMP | 228 | 228 |
@@ -123,7 +125,7 @@ Ces signaux sont informatifs et non bloquants. Ils ne modifient ni le ciblage ni
 | `objectivesRaw` | 1024/1079 | 94.9 % |
 | `contentRaw` | 938/1079 | 86.9 % |
 | `prerequisitesRaw` | 374/1079 | 34.7 % |
-| `additionalInformationRaw` | 322/1079 | 29.8 % |
+| `additionalInformationRaw` | 323/1079 | 29.9 % |
 
 ### Correspondance des libellés officiels
 
@@ -163,14 +165,14 @@ Libellés de blocs observés : `Contenu`, `Détails de l'inscription`, `Généra
 Ces sections n’ont pas été copiées car elles contenaient une adresse électronique ou un numéro de téléphone.
 
 - OCD001E — Informations complémentaires (`additionalInformationRaw`)
-- TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT701 — Informations complémentaires (`additionalInformationRaw`)
-- TRT702 — Informations complémentaires (`additionalInformationRaw`)
+- TRT700 — Informations complémentaires (`additionalInformationRaw`)
 - TRT703 — Informations complémentaires (`additionalInformationRaw`)
+- TRT702 — Informations complémentaires (`additionalInformationRaw`)
 - SFIN-001 — Généralités (`generalInformationRaw`)
 - SFIN-002 — Généralités (`generalInformationRaw`)
-- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT011 — Informations complémentaires (`additionalInformationRaw`)
+- SFIN-003 — Généralités (`generalInformationRaw`)
 - TRT012 — Informations complémentaires (`additionalInformationRaw`)
 - TRT023 — Informations complémentaires (`additionalInformationRaw`)
 - TRT024 — Informations complémentaires (`additionalInformationRaw`)
@@ -208,7 +210,7 @@ Les contrôles structurels sont réussis. Toute intégration dans l’applicatio
 
 ## Promotion
 
-- Date et heure de promotion : 2026-11-25T14:10:15.989Z
-- Snapshot candidat validé : 2026-11-25
-- Empreinte SHA-256 : `ec4d89bb16f8704ae5459a31778e60beaf5067469492eb9e211a3c9008d9065c`
+- Date et heure de promotion : 2026-11-27T13:44:39.344Z
+- Snapshot candidat validé : 2026-11-27
+- Empreinte SHA-256 : `4f51c5facc065208db6ff6bd014e5a2eb787626ed84175e1672f3566a138d206`
 - Promotion manuelle confirmée.
